@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oor:component-data
+    oor:name="Addons"
+    oor:package="org.openoffice.Office"
+    xmlns:oor="http://openoffice.org/2001/registry"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <node oor:name="AddonUI">
+
+    <!-- ── Top-level menu ─────────────────────────────────────────────── -->
+    <node oor:name="OfficeMenuBar">
+      <node oor:name="org.libreai.menu" oor:op="replace">
+        <prop oor:name="Title" oor:type="xs:string">
+          <value xml:lang="en">LibreAI</value>
+        </prop>
+        <node oor:name="Submenu">
+          <node oor:name="m01" oor:op="replace">
+            <prop oor:name="URL" oor:type="xs:string">
+              <value>service:org.libreai.job?open</value>
+            </prop>
+            <prop oor:name="Title" oor:type="xs:string">
+              <value xml:lang="en">Open chat</value>
+            </prop>
+            <prop oor:name="Target" oor:type="xs:string">
+              <value>_self</value>
+            </prop>
+            <prop oor:name="ImageURL" oor:type="xs:string">
+              <value>%origin%/icons/icon_16.png</value>
+            </prop>
+          </node>
+        </node>
+      </node>
+    </node>
+
+    <!-- ── Toolbar button ────────────────────────────────────────────── -->
+    <node oor:name="OfficeToolBar">
+      <node oor:name="org.libreai.toolbar" oor:op="replace">
+        <node oor:name="t01" oor:op="replace">
+          <prop oor:name="URL" oor:type="xs:string">
+            <value>service:org.libreai.job?open</value>
+          </prop>
+          <prop oor:name="Title" oor:type="xs:string">
+            <value xml:lang="en">LibreAI</value>
+          </prop>
+          <prop oor:name="Target" oor:type="xs:string">
+            <value>_self</value>
+          </prop>
+          <prop oor:name="IsVisible" oor:type="xs:boolean">
+            <value>true</value>
+          </prop>
+          <prop oor:name="ImageURL" oor:type="xs:string">
+            <value>%origin%/icons/icon_26.png</value>
+          </prop>
+        </node>
+      </node>
+    </node>
+
+  </node>
+</oor:component-data>

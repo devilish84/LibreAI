@@ -1,0 +1,27 @@
+# Build output
+build/
+*.so
+*.oxt
+
+# Debian packaging staging
+libreai_*/
+*.deb
+
+# Generated UNO headers (produced by cppumaker from LO RDB files)
+include/
+
+# Qt MOC / CMake cache
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code session data
+.claude/

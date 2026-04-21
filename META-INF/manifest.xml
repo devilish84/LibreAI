@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest:manifest xmlns:manifest="http://openoffice.org/2001/manifest">
+
+  <manifest:file-entry
+    manifest:media-type="application/vnd.sun.star.uno-component;type=native;platform=Linux_X86_64"
+    manifest:full-path="libreai.so"/>
+
+  <manifest:file-entry
+    manifest:media-type="application/vnd.sun.star.configuration-data"
+    manifest:full-path="Addons.xcu"/>
+
+  <manifest:file-entry
+    manifest:media-type="application/vnd.sun.star.configuration-data"
+    manifest:full-path="Jobs.xcu"/>
+
+</manifest:manifest>

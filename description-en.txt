@@ -1,0 +1,19 @@
+LibreAI — AI writing assistant for LibreOffice Writer
+
+A native sidebar panel with a dark VS Code-inspired theme that brings Ollama,
+OpenAI, and Anthropic Claude models directly into your document workflow.
+
+Features:
+• Native LibreOffice sidebar panel (right-hand side, always accessible)
+• Right-click "LibreAI…" to open with selected text pre-loaded
+• Chat session with message history
+• Rewrite selected text with a single click
+• Apply AI response back to the document
+• Supports Ollama (local), OpenAI, and Anthropic Claude
+• Persistent configuration (provider, URL, API key, model)
+
+Requirements:
+• LibreOffice 7.0 or newer
+• Java runtime: sudo apt-get install libreoffice-java-common
+• For Ollama: Ollama running at http://localhost:11434
+• For OpenAI / Claude: valid API key
