@@ -4,7 +4,7 @@ An AI writing assistant extension for **LibreOffice Writer**, implemented as a n
 
 Connects to locally-running [Ollama](https://ollama.com) models or cloud providers (OpenAI, Anthropic Claude). Lets you grab selected text from your document, send it to an AI model, and apply the response back — all from a floating chat window or the right-click context menu.
 
-![LibreAI screenshot placeholder](icons/icon_26.png)
+![LibreAI in action](screenshots/inaction.png)
 
 ---
 
