@@ -10,12 +10,22 @@ set(CMAKE_AUTORCC ON)
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets Network
     HINTS /usr/lib/x86_64-linux-gnu/cmake)
 
-set(LO_INCLUDE      /usr/include/libreoffice)
-set(LO_CPPU_INCLUDE /usr/include/libreoffice)
-set(LO_GEN_INCLUDE  ${CMAKE_SOURCE_DIR}/include)
-set(LO_SDK_LIB      /usr/lib/libreoffice/sdk/lib)
+set(LO_GEN_INCLUDE ${CMAKE_SOURCE_DIR}/include)
 
-add_compile_definitions(LINUX GCC CPPU_ENV=gcc3 UNX)
+if(WIN32)
+    set(LO_INCLUDE  "$ENV{PROGRAMFILES}/LibreOffice/sdk/include")
+    set(LO_SDK_LIB  "$ENV{PROGRAMFILES}/LibreOffice/sdk/lib")
+    add_compile_definitions(WNT _WIN32 CPPU_ENV=msvc)
+    set(UNO_LIBS iuno_cppu iuno_cppuhelper iuno_sal)
+else()
+    set(LO_INCLUDE  /usr/include/libreoffice)
+    set(LO_SDK_LIB  /usr/lib/libreoffice/sdk/lib)
+    add_compile_definitions(LINUX GCC CPPU_ENV=gcc3 UNX)
+    set(UNO_LIBS
+        ${LO_SDK_LIB}/libuno_cppu.so
+        ${LO_SDK_LIB}/libuno_cppuhelpergcc3.so
+        ${LO_SDK_LIB}/libuno_sal.so)
+endif()
 
 set(SOURCES
     src/component.cpp
@@ -41,9 +51,11 @@ target_include_directories(libreai PRIVATE
 
 target_link_libraries(libreai PRIVATE
     Qt6::Core Qt6::Widgets Qt6::Network
-    ${LO_SDK_LIB}/libuno_cppu.so
-    ${LO_SDK_LIB}/libuno_cppuhelpergcc3.so
-    ${LO_SDK_LIB}/libuno_sal.so
+    ${UNO_LIBS}
 )
 
-set_target_properties(libreai PROPERTIES PREFIX "" OUTPUT_NAME "libreai")
+if(WIN32)
+    set_target_properties(libreai PROPERTIES PREFIX "" OUTPUT_NAME "libreai" SUFFIX ".dll")
+else()
+    set_target_properties(libreai PROPERTIES PREFIX "" OUTPUT_NAME "libreai" SUFFIX ".so")
+endif()

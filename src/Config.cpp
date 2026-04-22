@@ -6,7 +6,7 @@
 #include <QStandardPaths>
 
 static QString configPath() {
-    QString dir = QDir::homePath() + "/.config/libreai";
+    QString dir = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
     QDir().mkpath(dir);
     return dir + "/config.json";
 }

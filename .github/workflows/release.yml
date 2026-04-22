@@ -1,0 +1,154 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            qt6-base-dev \
+            libreoffice-dev \
+            zip
+
+      - name: Generate UNO headers
+        run: |
+          mkdir -p include
+          cppumaker -O include \
+            /usr/lib/libreoffice/program/types.rdb \
+            /usr/lib/libreoffice/program/types/offapi.rdb
+
+      - name: Build
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-fvisibility=hidden" -Wno-dev
+          cmake --build build --parallel $(nproc)
+          cp build/libreai.so libreai.so
+
+      - name: Upload Linux binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-binary
+          path: libreai.so
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt6
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.7.*'
+          arch: win64_msvc2019_64
+
+      - name: Install LibreOffice SDK
+        shell: pwsh
+        run: |
+          $url = "https://download.documentfoundation.org/libreoffice/stable/24.8.4/win/x86_64/LibreOffice_24.8.4_Win_x86-64_sdk.msi"
+          Invoke-WebRequest $url -OutFile lo_sdk.msi
+          Start-Process msiexec.exe -ArgumentList '/i', 'lo_sdk.msi', '/quiet', '/norestart' -Wait
+          echo "LO SDK installed"
+
+      - name: Generate UNO headers
+        shell: pwsh
+        run: |
+          $cppumaker = "C:\Program Files\LibreOfficeSdk\bin\cppumaker.exe"
+          $types = "C:\Program Files\LibreOfficeSdk\program\types.rdb"
+          $offapi = "C:\Program Files\LibreOfficeSdk\program\types\offapi.rdb"
+          New-Item -ItemType Directory -Force -Path include
+          & $cppumaker -O include $types $offapi
+
+      - name: Build
+        shell: pwsh
+        run: |
+          $sdkPath = "C:\Program Files\LibreOfficeSdk"
+          cmake -S . -B build `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DLO_INCLUDE="$sdkPath\include" `
+            -DLO_SDK_LIB="$sdkPath\lib"
+          cmake --build build --config Release --parallel $env:NUMBER_OF_PROCESSORS
+
+      - name: Upload Windows binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-binary
+          path: build/Release/libreai.dll
+
+  release:
+    needs: [build-linux, build-windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Get version
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
+
+      - name: Package Linux OXT
+        run: |
+          cp artifacts/linux-binary/libreai.so .
+          zip -r libreai_linux_x86_64.oxt \
+            META-INF/ description.xml description-en.txt \
+            Addons.xcu Jobs.xcu libreai.so icons/
+
+      - name: Package Windows OXT
+        run: |
+          cp artifacts/windows-binary/libreai.dll .
+          zip -r libreai_windows_x86_64.oxt \
+            META-INF/ description.xml description-en.txt \
+            Addons.xcu Jobs.xcu libreai.dll icons/
+
+      - name: Package cross-platform OXT
+        run: |
+          zip -r libreai_cross_platform.oxt \
+            META-INF/ description.xml description-en.txt \
+            Addons.xcu Jobs.xcu libreai.so libreai.dll icons/
+
+      - name: Build Debian package
+        run: |
+          sudo apt-get install -y dpkg-dev
+          bash package_deb.sh
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.VERSION }}
+          name: "LibreAI ${{ steps.version.outputs.VERSION }}"
+          body: |
+            ## LibreAI ${{ steps.version.outputs.VERSION }}
+
+            AI writing assistant for LibreOffice Writer — supports Ollama, OpenAI, and Anthropic Claude.
+
+            ### Downloads
+
+            | File | Platform | Install method |
+            |------|----------|----------------|
+            | `libreai_linux_x86_64.oxt` | Linux x86_64 | `unopkg add libreai_linux_x86_64.oxt` |
+            | `libreai_windows_x86_64.oxt` | Windows x86_64 | Extension Manager → Add |
+            | `libreai_cross_platform.oxt` | Linux + Windows | Either method above |
+            | `libreai_*.deb` | Debian/Ubuntu | `sudo dpkg -i libreai_*.deb` |
+
+            ### Requirements
+            - LibreOffice 7.x or later
+            - Qt 6 runtime (Linux: `libqt6widgets6`; Windows: bundled with OXT)
+            - Ollama, OpenAI key, or Anthropic key for AI providers
+          files: |
+            libreai_linux_x86_64.oxt
+            libreai_windows_x86_64.oxt
+            libreai_cross_platform.oxt
+            libreai_*.deb
