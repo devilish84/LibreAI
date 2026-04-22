@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_PRIORITY_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_PRIORITY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI Priority
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI Priority
+{
+
+#endif
+    Priority_HIGHEST = 0,
+    Priority_HIGH = 1,
+    Priority_NORMAL = 2,
+    Priority_LOW = 3,
+    Priority_LOWEST = 4,
+    Priority_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto Priority_HIGHEST = Priority::Priority_HIGHEST;
+constexpr auto Priority_HIGH = Priority::Priority_HIGH;
+constexpr auto Priority_NORMAL = Priority::Priority_NORMAL;
+constexpr auto Priority_LOW = Priority::Priority_LOW;
+constexpr auto Priority_LOWEST = Priority::Priority_LOWEST;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::Priority const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::Priority *);
+
+#endif

@@ -1,0 +1,24 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_VERTORIENTATION_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_VERTORIENTATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace VertOrientation {
+
+static const ::sal_Int16 BOTTOM = (sal_Int16)3;
+static const ::sal_Int16 CENTER = (sal_Int16)2;
+static const ::sal_Int16 CHAR_BOTTOM = (sal_Int16)6;
+static const ::sal_Int16 CHAR_CENTER = (sal_Int16)5;
+static const ::sal_Int16 CHAR_TOP = (sal_Int16)4;
+static const ::sal_Int16 LINE_BOTTOM = (sal_Int16)9;
+static const ::sal_Int16 LINE_CENTER = (sal_Int16)8;
+static const ::sal_Int16 LINE_TOP = (sal_Int16)7;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+static const ::sal_Int16 TOP = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_VERTORIENTATION_HDL

@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_CRYPTO_XNSSINITIALIZER_HDL
+#define INCLUDED_COM_SUN_STAR_XML_CRYPTO_XNSSINITIALIZER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/xml/crypto/NSSProfile.hdl"
+#include "com/sun/star/xml/crypto/XCipherContextSupplier.hdl"
+#include "com/sun/star/xml/crypto/XDigestContextSupplier.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XNSSInitializer : public ::css::xml::crypto::XDigestContextSupplier, public ::css::xml::crypto::XCipherContextSupplier
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XNSSInitializer() = default;
+    XNSSInitializer(XNSSInitializer const &) = default;
+    XNSSInitializer(XNSSInitializer &&) = default;
+    XNSSInitializer & operator =(XNSSInitializer const &) = default;
+    XNSSInitializer & operator =(XNSSInitializer &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getNSSPath() = 0;
+    virtual ::sal_Bool SAL_CALL getIsNSSinitialized() = 0;
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::xml::crypto::NSSProfile > SAL_CALL getNSSProfiles() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XNSSInitializer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::crypto::XNSSInitializer const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::crypto::XNSSInitializer > *);
+
+#endif

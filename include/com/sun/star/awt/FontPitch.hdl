@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTPITCH_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_FONTPITCH_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace FontPitch {
+
+static const ::sal_Int16 DONTKNOW = (sal_Int16)0;
+static const ::sal_Int16 FIXED = (sal_Int16)1;
+static const ::sal_Int16 VARIABLE = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FONTPITCH_HDL

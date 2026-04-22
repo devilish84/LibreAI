@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_XPATH_XXPATHAPI_HDL
+#define INCLUDED_COM_SUN_STAR_XML_XPATH_XXPATHAPI_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XNode; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XNodeList; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace xpath { class XXPathExtension; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace xpath { class XXPathObject; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace xpath {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XXPathAPI : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XXPathAPI() = default;
+    XXPathAPI(XXPathAPI const &) = default;
+    XXPathAPI(XXPathAPI &&) = default;
+    XXPathAPI & operator =(XXPathAPI const &) = default;
+    XXPathAPI & operator =(XXPathAPI &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL registerNS( const ::rtl::OUString& prefix, const ::rtl::OUString& url ) = 0;
+    virtual void SAL_CALL unregisterNS( const ::rtl::OUString& prefix, const ::rtl::OUString& url ) = 0;
+    virtual void SAL_CALL registerExtension( const ::rtl::OUString& serviceName ) = 0;
+    virtual void SAL_CALL registerExtensionInstance( const ::css::uno::Reference< ::css::xml::xpath::XXPathExtension >& aExtension ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::xpath::XXPathObject > SAL_CALL eval( const ::css::uno::Reference< ::css::xml::dom::XNode >& contextNode, const ::rtl::OUString& expr ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::xpath::XXPathObject > SAL_CALL evalNS( const ::css::uno::Reference< ::css::xml::dom::XNode >& contextNode, const ::rtl::OUString& expr, const ::css::uno::Reference< ::css::xml::dom::XNode >& namespaceNode ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNodeList > SAL_CALL selectNodeList( const ::css::uno::Reference< ::css::xml::dom::XNode >& contextNode, const ::rtl::OUString& expr ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNodeList > SAL_CALL selectNodeListNS( const ::css::uno::Reference< ::css::xml::dom::XNode >& contextNode, const ::rtl::OUString& expr, const ::css::uno::Reference< ::css::xml::dom::XNode >& namespaceNode ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL selectSingleNode( const ::css::uno::Reference< ::css::xml::dom::XNode >& contextNode, const ::rtl::OUString& expr ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL selectSingleNodeNS( const ::css::uno::Reference< ::css::xml::dom::XNode >& contextNode, const ::rtl::OUString& expr, const ::css::uno::Reference< ::css::xml::dom::XNode >& namespaceNode ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XXPathAPI() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::xpath::XXPathAPI const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::xpath::XXPathAPI > *);
+
+#endif

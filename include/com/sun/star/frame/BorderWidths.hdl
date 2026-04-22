@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_BORDERWIDTHS_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_BORDERWIDTHS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED BorderWidths {
+    inline BorderWidths();
+
+    inline BorderWidths(const ::sal_Int32& Left_, const ::sal_Int32& Top_, const ::sal_Int32& Right_, const ::sal_Int32& Bottom_);
+
+    ::sal_Int32 Left;
+    ::sal_Int32 Top;
+    ::sal_Int32 Right;
+    ::sal_Int32 Bottom;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::BorderWidths const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::frame::BorderWidths *);
+
+#endif

@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XTASK_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XTASK_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/frame/XFrame.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTask : public ::css::frame::XFrame
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTask() = default;
+    XTask(XTask const &) = default;
+    XTask(XTask &&) = default;
+    XTask & operator =(XTask const &) = default;
+    XTask & operator =(XTask &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL close() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL tileWindows() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL arrangeWindowsVertical() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL arrangeWindowsHorizontal() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTask() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XTask const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XTask > *);
+
+#endif

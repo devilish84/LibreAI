@@ -1,0 +1,29 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_NUMBERFORMAT_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_NUMBERFORMAT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace util { namespace NumberFormat {
+
+static const ::sal_Int16 ALL = (sal_Int16)0;
+static const ::sal_Int16 CURRENCY = (sal_Int16)8;
+static const ::sal_Int16 DATE = (sal_Int16)2;
+static const ::sal_Int16 DATETIME = (sal_Int16)6;
+static const ::sal_Int16 DEFINED = (sal_Int16)1;
+static const ::sal_Int16 DURATION = (sal_Int16)8196;
+static const ::sal_Int16 EMPTY = (sal_Int16)4096;
+static const ::sal_Int16 FRACTION = (sal_Int16)64;
+static const ::sal_Int16 LOGICAL = (sal_Int16)1024;
+static const ::sal_Int16 NUMBER = (sal_Int16)16;
+static const ::sal_Int16 PERCENT = (sal_Int16)128;
+static const ::sal_Int16 SCIENTIFIC = (sal_Int16)32;
+static const ::sal_Int16 TEXT = (sal_Int16)256;
+static const ::sal_Int16 TIME = (sal_Int16)4;
+static const ::sal_Int16 UNDEFINED = (sal_Int16)2048;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UTIL_NUMBERFORMAT_HDL

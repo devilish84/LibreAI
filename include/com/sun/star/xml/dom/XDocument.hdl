@@ -1,0 +1,70 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_XDOCUMENT_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_XDOCUMENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XAttr; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XCDATASection; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XComment; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XDOMImplementation; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XDocumentFragment; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XDocumentType; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XElement; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XEntityReference; } } } } }
+#include "com/sun/star/xml/dom/XNode.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XNodeList; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XProcessingInstruction; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XText; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDocument : public ::css::xml::dom::XNode
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDocument() = default;
+    XDocument(XDocument const &) = default;
+    XDocument(XDocument &&) = default;
+    XDocument & operator =(XDocument const &) = default;
+    XDocument & operator =(XDocument &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::xml::dom::XAttr > SAL_CALL createAttribute( const ::rtl::OUString& name ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XAttr > SAL_CALL createAttributeNS( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& qualifiedName ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XCDATASection > SAL_CALL createCDATASection( const ::rtl::OUString& data ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XComment > SAL_CALL createComment( const ::rtl::OUString& data ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XDocumentFragment > SAL_CALL createDocumentFragment() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XElement > SAL_CALL createElement( const ::rtl::OUString& tagName ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XElement > SAL_CALL createElementNS( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& qualifiedName ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XEntityReference > SAL_CALL createEntityReference( const ::rtl::OUString& name ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XProcessingInstruction > SAL_CALL createProcessingInstruction( const ::rtl::OUString& target, const ::rtl::OUString& data ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XText > SAL_CALL createTextNode( const ::rtl::OUString& data ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XDocumentType > SAL_CALL getDoctype() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XElement > SAL_CALL getDocumentElement() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XElement > SAL_CALL getElementById( const ::rtl::OUString& elementId ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNodeList > SAL_CALL getElementsByTagName( const ::rtl::OUString& tagname ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNodeList > SAL_CALL getElementsByTagNameNS( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& localName ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XDOMImplementation > SAL_CALL getImplementation() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL importNode( const ::css::uno::Reference< ::css::xml::dom::XNode >& importedNode, ::sal_Bool deep ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDocument() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::XDocument const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::XDocument > *);
+
+#endif

@@ -1,0 +1,64 @@
+#ifndef INCLUDED_COM_SUN_STAR_DEPLOYMENT_XEXTENSIONMANAGER_HDL
+#define INCLUDED_COM_SUN_STAR_DEPLOYMENT_XEXTENSIONMANAGER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/NamedValue.hdl"
+namespace com { namespace sun { namespace star { namespace deployment { class XPackage; } } } }
+namespace com { namespace sun { namespace star { namespace deployment { class XPackageTypeInfo; } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace task { class XAbortChannel; } } } }
+namespace com { namespace sun { namespace star { namespace ucb { class XCommandEnvironment; } } } }
+#include "com/sun/star/util/XModifyBroadcaster.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace deployment {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XExtensionManager : public ::css::lang::XComponent, public ::css::util::XModifyBroadcaster
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XExtensionManager() = default;
+    XExtensionManager(XExtensionManager const &) = default;
+    XExtensionManager(XExtensionManager &&) = default;
+    XExtensionManager & operator =(XExtensionManager const &) = default;
+    XExtensionManager & operator =(XExtensionManager &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::deployment::XPackageTypeInfo > > SAL_CALL getSupportedPackageTypes() = 0;
+    virtual ::css::uno::Reference< ::css::task::XAbortChannel > SAL_CALL createAbortChannel() = 0;
+    virtual ::css::uno::Reference< ::css::deployment::XPackage > SAL_CALL addExtension( const ::rtl::OUString& url, const ::css::uno::Sequence< ::css::beans::NamedValue >& properties, const ::rtl::OUString& repository, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual void SAL_CALL removeExtension( const ::rtl::OUString& identifier, const ::rtl::OUString& fileName, const ::rtl::OUString& repository, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual void SAL_CALL enableExtension( const ::css::uno::Reference< ::css::deployment::XPackage >& extension, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual void SAL_CALL disableExtension( const ::css::uno::Reference< ::css::deployment::XPackage >& extension, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::deployment::XPackage > > SAL_CALL getDeployedExtensions( const ::rtl::OUString& repository, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::css::uno::Reference< ::css::deployment::XPackage > SAL_CALL getDeployedExtension( const ::rtl::OUString& repository, const ::rtl::OUString& identifier, const ::rtl::OUString& fileName, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::deployment::XPackage > > SAL_CALL getExtensionsWithSameIdentifier( const ::rtl::OUString& identifier, const ::rtl::OUString& fileName, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Sequence< ::css::uno::Reference< ::css::deployment::XPackage > > > SAL_CALL getAllExtensions( const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual void SAL_CALL reinstallDeployedExtensions( ::sal_Bool force, const ::rtl::OUString& repository, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::sal_Bool SAL_CALL synchronize( const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::deployment::XPackage > > SAL_CALL getExtensionsWithUnacceptedLicenses( const ::rtl::OUString& repository, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::sal_Int32 SAL_CALL checkPrerequisitesAndEnable( const ::css::uno::Reference< ::css::deployment::XPackage >& extension, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::sal_Bool SAL_CALL isReadOnlyRepository( const ::rtl::OUString& repository ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XExtensionManager() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::deployment::XExtensionManager const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::deployment::XExtensionManager > *);
+
+#endif

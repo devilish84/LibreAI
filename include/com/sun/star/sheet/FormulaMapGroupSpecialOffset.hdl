@@ -1,0 +1,28 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_FORMULAMAPGROUPSPECIALOFFSET_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_FORMULAMAPGROUPSPECIALOFFSET_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace FormulaMapGroupSpecialOffset {
+
+static const ::sal_Int32 BAD = (sal_Int32)7;
+static const ::sal_Int32 CALL = (sal_Int32)1;
+static const ::sal_Int32 COL_ROW_NAME = (sal_Int32)12;
+static const ::sal_Int32 DB_AREA = (sal_Int32)10;
+static const ::sal_Int32 EXTERNAL = (sal_Int32)3;
+static const ::sal_Int32 MACRO = (sal_Int32)11;
+static const ::sal_Int32 MAT_REF = (sal_Int32)9;
+static const ::sal_Int32 MISSING = (sal_Int32)6;
+static const ::sal_Int32 NAME = (sal_Int32)4;
+static const ::sal_Int32 NO_NAME = (sal_Int32)5;
+static const ::sal_Int32 PUSH = (sal_Int32)0;
+static const ::sal_Int32 SPACES = (sal_Int32)8;
+static const ::sal_Int32 STOP = (sal_Int32)2;
+static const ::sal_Int32 WHITESPACE = (sal_Int32)13;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_FORMULAMAPGROUPSPECIALOFFSET_HDL

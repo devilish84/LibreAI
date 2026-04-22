@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_XDRAWVIEW_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_XDRAWVIEW_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace drawing { class XDrawPage; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDrawView : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDrawView() = default;
+    XDrawView(XDrawView const &) = default;
+    XDrawView(XDrawView &&) = default;
+    XDrawView & operator =(XDrawView const &) = default;
+    XDrawView & operator =(XDrawView &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setCurrentPage( const ::css::uno::Reference< ::css::drawing::XDrawPage >& xPage ) = 0;
+    virtual ::css::uno::Reference< ::css::drawing::XDrawPage > SAL_CALL getCurrentPage() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDrawView() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::XDrawView const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::XDrawView > *);
+
+#endif

@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XDOCUMENTREVISIONLISTPERSISTENCE_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XDOCUMENTREVISIONLISTPERSISTENCE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/RevisionTag.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDocumentRevisionListPersistence : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDocumentRevisionListPersistence() = default;
+    XDocumentRevisionListPersistence(XDocumentRevisionListPersistence const &) = default;
+    XDocumentRevisionListPersistence(XDocumentRevisionListPersistence &&) = default;
+    XDocumentRevisionListPersistence & operator =(XDocumentRevisionListPersistence const &) = default;
+    XDocumentRevisionListPersistence & operator =(XDocumentRevisionListPersistence &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::util::RevisionTag > SAL_CALL load( const ::css::uno::Reference< ::css::embed::XStorage >& Storage ) = 0;
+    virtual void SAL_CALL store( const ::css::uno::Reference< ::css::embed::XStorage >& Storage, const ::css::uno::Sequence< ::css::util::RevisionTag >& List ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDocumentRevisionListPersistence() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XDocumentRevisionListPersistence const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XDocumentRevisionListPersistence > *);
+
+#endif

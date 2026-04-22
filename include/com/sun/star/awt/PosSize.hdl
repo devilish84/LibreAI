@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_POSSIZE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_POSSIZE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace PosSize {
+
+static const ::sal_Int16 HEIGHT = (sal_Int16)8;
+static const ::sal_Int16 POS = (sal_Int16)3;
+static const ::sal_Int16 POSSIZE = (sal_Int16)15;
+static const ::sal_Int16 SIZE = (sal_Int16)12;
+static const ::sal_Int16 WIDTH = (sal_Int16)4;
+static const ::sal_Int16 X = (sal_Int16)1;
+static const ::sal_Int16 Y = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_POSSIZE_HDL

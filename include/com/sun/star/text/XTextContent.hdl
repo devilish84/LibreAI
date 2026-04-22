@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XTEXTCONTENT_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XTEXTCONTENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace text { class XTextRange; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTextContent : public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTextContent() = default;
+    XTextContent(XTextContent const &) = default;
+    XTextContent(XTextContent &&) = default;
+    XTextContent & operator =(XTextContent const &) = default;
+    XTextContent & operator =(XTextContent &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL attach( const ::css::uno::Reference< ::css::text::XTextRange >& xTextRange ) = 0;
+    virtual ::css::uno::Reference< ::css::text::XTextRange > SAL_CALL getAnchor() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTextContent() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XTextContent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XTextContent > *);
+
+#endif

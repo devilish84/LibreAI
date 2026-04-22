@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_XUIELEMENT_HDL
+#define INCLUDED_COM_SUN_STAR_UI_XUIELEMENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace frame { class XFrame; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUIElement : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUIElement() = default;
+    XUIElement(XUIElement const &) = default;
+    XUIElement(XUIElement &&) = default;
+    XUIElement & operator =(XUIElement const &) = default;
+    XUIElement & operator =(XUIElement &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Reference< ::css::frame::XFrame > SAL_CALL getFrame() = 0;
+    virtual ::rtl::OUString SAL_CALL getResourceURL() = 0;
+    virtual ::sal_Int16 SAL_CALL getType() = 0;
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::uno::XInterface > SAL_CALL getRealInterface() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUIElement() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::XUIElement const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::XUIElement > *);
+
+#endif

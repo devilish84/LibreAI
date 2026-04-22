@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_APPLICATION_XCOPYTABLEWIZARD_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_APPLICATION_XCOPYTABLEWIZARD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/Optional.hdl"
+namespace com { namespace sun { namespace star { namespace sdb { namespace application { class XCopyTableListener; } } } } }
+#include "com/sun/star/ui/dialogs/XExecutableDialog.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace application {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCopyTableWizard : public ::css::ui::dialogs::XExecutableDialog
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCopyTableWizard() = default;
+    XCopyTableWizard(XCopyTableWizard const &) = default;
+    XCopyTableWizard(XCopyTableWizard &&) = default;
+    XCopyTableWizard & operator =(XCopyTableWizard const &) = default;
+    XCopyTableWizard & operator =(XCopyTableWizard &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int16 SAL_CALL getOperation() = 0;
+    virtual void SAL_CALL setOperation( ::sal_Int16 _operation ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDestinationTableName() = 0;
+    virtual void SAL_CALL setDestinationTableName( const ::rtl::OUString& _destinationtablename ) = 0;
+    virtual ::css::beans::Optional< ::rtl::OUString > SAL_CALL getCreatePrimaryKey() = 0;
+    virtual void SAL_CALL setCreatePrimaryKey( const ::css::beans::Optional< ::rtl::OUString >& _createprimarykey ) = 0;
+    virtual ::sal_Bool SAL_CALL getUseHeaderLineAsColumnNames() = 0;
+    virtual void SAL_CALL setUseHeaderLineAsColumnNames( ::sal_Bool _useheaderlineascolumnnames ) = 0;
+
+    // Methods
+    virtual void SAL_CALL addCopyTableListener( const ::css::uno::Reference< ::css::sdb::application::XCopyTableListener >& Listener ) = 0;
+    virtual void SAL_CALL removeCopyTableListener( const ::css::uno::Reference< ::css::sdb::application::XCopyTableListener >& Listener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCopyTableWizard() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdb::application::XCopyTableWizard const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdb::application::XCopyTableWizard > *);
+
+#endif

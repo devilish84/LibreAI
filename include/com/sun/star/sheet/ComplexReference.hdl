@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_COMPLEXREFERENCE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_COMPLEXREFERENCE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/SingleReference.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED ComplexReference {
+    inline ComplexReference();
+
+    inline ComplexReference(const ::css::sheet::SingleReference& Reference1_, const ::css::sheet::SingleReference& Reference2_);
+
+    ::css::sheet::SingleReference Reference1;
+    ::css::sheet::SingleReference Reference2;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::ComplexReference const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::ComplexReference *);
+
+#endif

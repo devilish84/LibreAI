@@ -1,0 +1,26 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_COLORSPACETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_COLORSPACETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace ColorSpaceType {
+
+static const ::sal_Int8 CIELAB = (sal_Int8)6;
+static const ::sal_Int8 CIEXYZ = (sal_Int8)5;
+static const ::sal_Int8 CMYK = (sal_Int8)3;
+static const ::sal_Int8 CMYKOG = (sal_Int8)4;
+static const ::sal_Int8 DEVICE_COLOR = (sal_Int8)0;
+static const ::sal_Int8 GREY = (sal_Int8)1;
+static const ::sal_Int8 HSL = (sal_Int8)9;
+static const ::sal_Int8 HSV = (sal_Int8)8;
+static const ::sal_Int8 INDEXED = (sal_Int8)11;
+static const ::sal_Int8 RGB = (sal_Int8)2;
+static const ::sal_Int8 SRGB = (sal_Int8)7;
+static const ::sal_Int8 YCBCR = (sal_Int8)10;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_COLORSPACETYPE_HDL

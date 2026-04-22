@@ -1,0 +1,71 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_GRID_XGRIDCOLUMN_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_GRID_XGRIDCOLUMN_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace grid { class XGridColumnListener; } } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/style/HorizontalAlignment.hdl"
+#include "com/sun/star/util/XCloneable.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt { namespace grid {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XGridColumn : public ::css::lang::XComponent, public ::css::util::XCloneable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XGridColumn() = default;
+    XGridColumn(XGridColumn const &) = default;
+    XGridColumn(XGridColumn &&) = default;
+    XGridColumn & operator =(XGridColumn const &) = default;
+    XGridColumn & operator =(XGridColumn &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Any SAL_CALL getIdentifier() = 0;
+    virtual void SAL_CALL setIdentifier( const ::css::uno::Any& _identifier ) = 0;
+    virtual ::sal_Int32 SAL_CALL getColumnWidth() = 0;
+    virtual void SAL_CALL setColumnWidth( ::sal_Int32 _columnwidth ) = 0;
+    virtual ::sal_Int32 SAL_CALL getMinWidth() = 0;
+    virtual void SAL_CALL setMinWidth( ::sal_Int32 _minwidth ) = 0;
+    virtual ::sal_Int32 SAL_CALL getMaxWidth() = 0;
+    virtual void SAL_CALL setMaxWidth( ::sal_Int32 _maxwidth ) = 0;
+    virtual ::sal_Bool SAL_CALL getResizeable() = 0;
+    virtual void SAL_CALL setResizeable( ::sal_Bool _resizeable ) = 0;
+    virtual ::sal_Int32 SAL_CALL getFlexibility() = 0;
+    virtual void SAL_CALL setFlexibility( ::sal_Int32 _flexibility ) = 0;
+    virtual ::css::style::HorizontalAlignment SAL_CALL getHorizontalAlign() = 0;
+    virtual void SAL_CALL setHorizontalAlign( ::css::style::HorizontalAlignment _horizontalalign ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTitle() = 0;
+    virtual void SAL_CALL setTitle( const ::rtl::OUString& _title ) = 0;
+    virtual ::rtl::OUString SAL_CALL getHelpText() = 0;
+    virtual void SAL_CALL setHelpText( const ::rtl::OUString& _helptext ) = 0;
+    virtual ::sal_Int32 SAL_CALL getIndex() = 0;
+    virtual ::sal_Int32 SAL_CALL getDataColumnIndex() = 0;
+    virtual void SAL_CALL setDataColumnIndex( ::sal_Int32 _datacolumnindex ) = 0;
+
+    // Methods
+    virtual void SAL_CALL addGridColumnListener( const ::css::uno::Reference< ::css::awt::grid::XGridColumnListener >& Listener ) = 0;
+    virtual void SAL_CALL removeGridColumnListener( const ::css::uno::Reference< ::css::awt::grid::XGridColumnListener >& Listener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XGridColumn() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::grid::XGridColumn const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::grid::XGridColumn > *);
+
+#endif

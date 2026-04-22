@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_NAMECLASH_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_NAMECLASH_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ucb { namespace NameClash {
+
+static const ::sal_Int32 ASK = (sal_Int32)4;
+static const ::sal_Int32 ERROR = (sal_Int32)0;
+static const ::sal_Int32 KEEP = (sal_Int32)3;
+static const ::sal_Int32 OVERWRITE = (sal_Int32)1;
+static const ::sal_Int32 RENAME = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UCB_NAMECLASH_HDL

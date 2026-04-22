@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_MODULESIZEEXCEEDEDREQUEST_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_MODULESIZEEXCEEDEDREQUEST_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Exception.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED ModuleSizeExceededRequest : public ::css::uno::Exception
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE ModuleSizeExceededRequest(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE ModuleSizeExceededRequest(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::css::uno::Sequence< ::rtl::OUString >& Names_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE ModuleSizeExceededRequest(ModuleSizeExceededRequest const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~ModuleSizeExceededRequest();
+
+    inline CPPU_GCC_DLLPRIVATE ModuleSizeExceededRequest & operator =(ModuleSizeExceededRequest const &);
+#endif
+
+    ::css::uno::Sequence< ::rtl::OUString > Names CPPU_GCC3_ALIGN( ::css::uno::Exception );
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::ModuleSizeExceededRequest const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::script::ModuleSizeExceededRequest *);
+
+#endif

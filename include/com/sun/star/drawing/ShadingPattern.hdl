@@ -1,0 +1,77 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_SHADINGPATTERN_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_SHADINGPATTERN_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace ShadingPattern {
+
+static const ::sal_Int32 CLEAR = (sal_Int32)0;
+static const ::sal_Int32 DIAG_CROSS = (sal_Int32)19;
+static const ::sal_Int32 DIAG_STRIPE = (sal_Int32)17;
+static const ::sal_Int32 HORZ_CROSS = (sal_Int32)18;
+static const ::sal_Int32 HORZ_STRIPE = (sal_Int32)14;
+static const ::sal_Int32 NIL = (sal_Int32)65535;
+static const ::sal_Int32 PCT10 = (sal_Int32)3;
+static const ::sal_Int32 PCT12 = (sal_Int32)37;
+static const ::sal_Int32 PCT15 = (sal_Int32)38;
+static const ::sal_Int32 PCT17 = (sal_Int32)39;
+static const ::sal_Int32 PCT2 = (sal_Int32)35;
+static const ::sal_Int32 PCT20 = (sal_Int32)4;
+static const ::sal_Int32 PCT22 = (sal_Int32)40;
+static const ::sal_Int32 PCT25 = (sal_Int32)5;
+static const ::sal_Int32 PCT27 = (sal_Int32)41;
+static const ::sal_Int32 PCT30 = (sal_Int32)6;
+static const ::sal_Int32 PCT32 = (sal_Int32)42;
+static const ::sal_Int32 PCT35 = (sal_Int32)43;
+static const ::sal_Int32 PCT37 = (sal_Int32)44;
+static const ::sal_Int32 PCT40 = (sal_Int32)7;
+static const ::sal_Int32 PCT42 = (sal_Int32)45;
+static const ::sal_Int32 PCT45 = (sal_Int32)46;
+static const ::sal_Int32 PCT47 = (sal_Int32)47;
+static const ::sal_Int32 PCT5 = (sal_Int32)2;
+static const ::sal_Int32 PCT50 = (sal_Int32)8;
+static const ::sal_Int32 PCT52 = (sal_Int32)48;
+static const ::sal_Int32 PCT55 = (sal_Int32)49;
+static const ::sal_Int32 PCT57 = (sal_Int32)50;
+static const ::sal_Int32 PCT60 = (sal_Int32)9;
+static const ::sal_Int32 PCT62 = (sal_Int32)51;
+static const ::sal_Int32 PCT65 = (sal_Int32)52;
+static const ::sal_Int32 PCT67 = (sal_Int32)53;
+static const ::sal_Int32 PCT7 = (sal_Int32)36;
+static const ::sal_Int32 PCT70 = (sal_Int32)10;
+static const ::sal_Int32 PCT72 = (sal_Int32)54;
+static const ::sal_Int32 PCT75 = (sal_Int32)11;
+static const ::sal_Int32 PCT77 = (sal_Int32)55;
+static const ::sal_Int32 PCT80 = (sal_Int32)12;
+static const ::sal_Int32 PCT82 = (sal_Int32)56;
+static const ::sal_Int32 PCT85 = (sal_Int32)57;
+static const ::sal_Int32 PCT87 = (sal_Int32)58;
+static const ::sal_Int32 PCT90 = (sal_Int32)13;
+static const ::sal_Int32 PCT92 = (sal_Int32)59;
+static const ::sal_Int32 PCT95 = (sal_Int32)60;
+static const ::sal_Int32 PCT97 = (sal_Int32)61;
+static const ::sal_Int32 REVERSE_DIAG_STRIPE = (sal_Int32)16;
+static const ::sal_Int32 SOLID = (sal_Int32)1;
+static const ::sal_Int32 THIN_DIAG_CROSS = (sal_Int32)25;
+static const ::sal_Int32 THIN_DIAG_STRIPE = (sal_Int32)23;
+static const ::sal_Int32 THIN_HORZ_CROSS = (sal_Int32)24;
+static const ::sal_Int32 THIN_HORZ_STRIPE = (sal_Int32)20;
+static const ::sal_Int32 THIN_REVERSE_DIAG_STRIPE = (sal_Int32)22;
+static const ::sal_Int32 THIN_VERT_STRIPE = (sal_Int32)21;
+static const ::sal_Int32 UNUSED_1 = (sal_Int32)26;
+static const ::sal_Int32 UNUSED_2 = (sal_Int32)27;
+static const ::sal_Int32 UNUSED_3 = (sal_Int32)28;
+static const ::sal_Int32 UNUSED_4 = (sal_Int32)29;
+static const ::sal_Int32 UNUSED_5 = (sal_Int32)30;
+static const ::sal_Int32 UNUSED_6 = (sal_Int32)31;
+static const ::sal_Int32 UNUSED_7 = (sal_Int32)32;
+static const ::sal_Int32 UNUSED_8 = (sal_Int32)33;
+static const ::sal_Int32 UNUSED_9 = (sal_Int32)34;
+static const ::sal_Int32 VERT_STRIPE = (sal_Int32)15;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_DRAWING_SHADINGPATTERN_HDL

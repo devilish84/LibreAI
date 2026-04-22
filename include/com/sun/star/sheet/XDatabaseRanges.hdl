@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XDATABASERANGES_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XDATABASERANGES_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XNameAccess.hdl"
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDatabaseRanges : public ::css::container::XNameAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDatabaseRanges() = default;
+    XDatabaseRanges(XDatabaseRanges const &) = default;
+    XDatabaseRanges(XDatabaseRanges &&) = default;
+    XDatabaseRanges & operator =(XDatabaseRanges const &) = default;
+    XDatabaseRanges & operator =(XDatabaseRanges &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addNewByName( const ::rtl::OUString& aName, const ::css::table::CellRangeAddress& aRange ) = 0;
+    virtual void SAL_CALL removeByName( const ::rtl::OUString& aName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDatabaseRanges() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XDatabaseRanges const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XDatabaseRanges > *);
+
+#endif

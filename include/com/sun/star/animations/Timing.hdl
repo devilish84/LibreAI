@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_TIMING_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_TIMING_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace animations {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI Timing
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI Timing
+{
+
+#endif
+    Timing_INDEFINITE = 0,
+    Timing_MEDIA = 1,
+    Timing_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto Timing_INDEFINITE = Timing::Timing_INDEFINITE;
+constexpr auto Timing_MEDIA = Timing::Timing_MEDIA;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::animations::Timing const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::animations::Timing *);
+
+#endif

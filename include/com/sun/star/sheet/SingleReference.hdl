@@ -1,0 +1,41 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_SINGLEREFERENCE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_SINGLEREFERENCE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED SingleReference {
+    inline SingleReference();
+
+    inline SingleReference(const ::sal_Int32& Column_, const ::sal_Int32& RelativeColumn_, const ::sal_Int32& Row_, const ::sal_Int32& RelativeRow_, const ::sal_Int32& Sheet_, const ::sal_Int32& RelativeSheet_, const ::sal_Int32& Flags_);
+
+    ::sal_Int32 Column;
+    ::sal_Int32 RelativeColumn;
+    ::sal_Int32 Row;
+    ::sal_Int32 RelativeRow;
+    ::sal_Int32 Sheet;
+    ::sal_Int32 RelativeSheet;
+    ::sal_Int32 Flags;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::SingleReference const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::SingleReference *);
+
+#endif

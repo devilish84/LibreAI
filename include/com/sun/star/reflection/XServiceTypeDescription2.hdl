@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_REFLECTION_XSERVICETYPEDESCRIPTION2_HDL
+#define INCLUDED_COM_SUN_STAR_REFLECTION_XSERVICETYPEDESCRIPTION2_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace reflection { class XServiceConstructorDescription; } } } }
+#include "com/sun/star/reflection/XServiceTypeDescription.hdl"
+namespace com { namespace sun { namespace star { namespace reflection { class XTypeDescription; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace reflection {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XServiceTypeDescription2 : public ::css::reflection::XServiceTypeDescription
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XServiceTypeDescription2() = default;
+    XServiceTypeDescription2(XServiceTypeDescription2 const &) = default;
+    XServiceTypeDescription2(XServiceTypeDescription2 &&) = default;
+    XServiceTypeDescription2 & operator =(XServiceTypeDescription2 const &) = default;
+    XServiceTypeDescription2 & operator =(XServiceTypeDescription2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isSingleInterfaceBased() = 0;
+    virtual ::css::uno::Reference< ::css::reflection::XTypeDescription > SAL_CALL getInterface() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::reflection::XServiceConstructorDescription > > SAL_CALL getConstructors() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XServiceTypeDescription2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::reflection::XServiceTypeDescription2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::reflection::XServiceTypeDescription2 > *);
+
+#endif

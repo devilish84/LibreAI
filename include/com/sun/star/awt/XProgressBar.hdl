@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XPROGRESSBAR_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XPROGRESSBAR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/Color.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XProgressBar : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XProgressBar() = default;
+    XProgressBar(XProgressBar const &) = default;
+    XProgressBar(XProgressBar &&) = default;
+    XProgressBar & operator =(XProgressBar const &) = default;
+    XProgressBar & operator =(XProgressBar &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setForegroundColor( ::sal_Int32 Color ) = 0;
+    virtual void SAL_CALL setBackgroundColor( ::sal_Int32 Color ) = 0;
+    virtual void SAL_CALL setRange( ::sal_Int32 Min, ::sal_Int32 Max ) = 0;
+    virtual void SAL_CALL setValue( ::sal_Int32 Value ) = 0;
+    virtual ::sal_Int32 SAL_CALL getValue() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XProgressBar() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XProgressBar const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XProgressBar > *);
+
+#endif

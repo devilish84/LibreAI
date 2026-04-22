@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_XPATH_LIBXML2EXTENSIONHANDLE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_XPATH_LIBXML2EXTENSIONHANDLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace xpath {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED Libxml2ExtensionHandle {
+    inline Libxml2ExtensionHandle();
+
+    inline Libxml2ExtensionHandle(const ::sal_Int64& functionLookupFunction_, const ::sal_Int64& functionData_, const ::sal_Int64& variableLookupFunction_, const ::sal_Int64& variableData_);
+
+    ::sal_Int64 functionLookupFunction;
+    ::sal_Int64 functionData;
+    ::sal_Int64 variableLookupFunction;
+    ::sal_Int64 variableData;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::xpath::Libxml2ExtensionHandle const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::xml::xpath::Libxml2ExtensionHandle *);
+
+#endif

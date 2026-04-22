@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ChartDataRowSource
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ChartDataRowSource
+{
+
+#endif
+    ChartDataRowSource_ROWS = 0,
+    ChartDataRowSource_COLUMNS = 1,
+    ChartDataRowSource_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ChartDataRowSource_ROWS = ChartDataRowSource::ChartDataRowSource_ROWS;
+constexpr auto ChartDataRowSource_COLUMNS = ChartDataRowSource::ChartDataRowSource_COLUMNS;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::ChartDataRowSource const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart::ChartDataRowSource *);
+
+#endif

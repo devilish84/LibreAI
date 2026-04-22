@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEEVENTOBJECT_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEEVENTOBJECT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI AccessibleEventObject: public ::css::lang::EventObject {
+    inline AccessibleEventObject();
+
+    inline AccessibleEventObject(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::sal_Int16& EventId_, const ::css::uno::Any& NewValue_, const ::css::uno::Any& OldValue_);
+
+    ::sal_Int16 EventId CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::css::uno::Any NewValue;
+    ::css::uno::Any OldValue;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::AccessibleEventObject const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::accessibility::AccessibleEventObject *);
+
+#endif

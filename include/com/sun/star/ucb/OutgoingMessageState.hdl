@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_OUTGOINGMESSAGESTATE_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_OUTGOINGMESSAGESTATE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI OutgoingMessageState
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI OutgoingMessageState
+{
+
+#endif
+    OutgoingMessageState_WRITTEN = 0,
+    OutgoingMessageState_PARTIALLY_LOCALLY_SENT = 1,
+    OutgoingMessageState_COMPLETELY_LOCALLY_SENT = 2,
+    OutgoingMessageState_RECOVERABLE_LOCAL_ERROR = 3,
+    OutgoingMessageState_NONRECOVERABLE_LOCAL_ERROR = 4,
+    OutgoingMessageState_EXTERNAL_ERROR = 5,
+    OutgoingMessageState_WAITING_CONFIRMATION = 6,
+    OutgoingMessageState_CONFIRMED = 7,
+    OutgoingMessageState_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto OutgoingMessageState_WRITTEN = OutgoingMessageState::OutgoingMessageState_WRITTEN;
+constexpr auto OutgoingMessageState_PARTIALLY_LOCALLY_SENT = OutgoingMessageState::OutgoingMessageState_PARTIALLY_LOCALLY_SENT;
+constexpr auto OutgoingMessageState_COMPLETELY_LOCALLY_SENT = OutgoingMessageState::OutgoingMessageState_COMPLETELY_LOCALLY_SENT;
+constexpr auto OutgoingMessageState_RECOVERABLE_LOCAL_ERROR = OutgoingMessageState::OutgoingMessageState_RECOVERABLE_LOCAL_ERROR;
+constexpr auto OutgoingMessageState_NONRECOVERABLE_LOCAL_ERROR = OutgoingMessageState::OutgoingMessageState_NONRECOVERABLE_LOCAL_ERROR;
+constexpr auto OutgoingMessageState_EXTERNAL_ERROR = OutgoingMessageState::OutgoingMessageState_EXTERNAL_ERROR;
+constexpr auto OutgoingMessageState_WAITING_CONFIRMATION = OutgoingMessageState::OutgoingMessageState_WAITING_CONFIRMATION;
+constexpr auto OutgoingMessageState_CONFIRMED = OutgoingMessageState::OutgoingMessageState_CONFIRMED;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::OutgoingMessageState const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::OutgoingMessageState *);
+
+#endif

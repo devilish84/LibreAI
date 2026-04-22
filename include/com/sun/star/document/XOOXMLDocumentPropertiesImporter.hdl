@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XOOXMLDOCUMENTPROPERTIESIMPORTER_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XOOXMLDOCUMENTPROPERTIESIMPORTER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace document { class XDocumentProperties; } } } }
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XOOXMLDocumentPropertiesImporter : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XOOXMLDocumentPropertiesImporter() = default;
+    XOOXMLDocumentPropertiesImporter(XOOXMLDocumentPropertiesImporter const &) = default;
+    XOOXMLDocumentPropertiesImporter(XOOXMLDocumentPropertiesImporter &&) = default;
+    XOOXMLDocumentPropertiesImporter & operator =(XOOXMLDocumentPropertiesImporter const &) = default;
+    XOOXMLDocumentPropertiesImporter & operator =(XOOXMLDocumentPropertiesImporter &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL importProperties( const ::css::uno::Reference< ::css::embed::XStorage >& xSource, const ::css::uno::Reference< ::css::document::XDocumentProperties >& xDocumentProperties ) = 0;
+    virtual ::css::uno::Reference< ::css::io::XInputStream > SAL_CALL getCorePropertiesStream( const ::css::uno::Reference< ::css::embed::XStorage >& xSource ) = 0;
+    virtual ::css::uno::Reference< ::css::io::XInputStream > SAL_CALL getExtendedPropertiesStream( const ::css::uno::Reference< ::css::embed::XStorage >& xSource ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::io::XInputStream > > SAL_CALL getCustomPropertiesStreams( const ::css::uno::Reference< ::css::embed::XStorage >& xSource ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XOOXMLDocumentPropertiesImporter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XOOXMLDocumentPropertiesImporter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XOOXMLDocumentPropertiesImporter > *);
+
+#endif

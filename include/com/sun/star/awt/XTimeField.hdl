@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XTIMEFIELD_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XTIMEFIELD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/Time.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTimeField : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTimeField() = default;
+    XTimeField(XTimeField const &) = default;
+    XTimeField(XTimeField &&) = default;
+    XTimeField & operator =(XTimeField const &) = default;
+    XTimeField & operator =(XTimeField &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setTime( const ::css::util::Time& Time ) = 0;
+    virtual ::css::util::Time SAL_CALL getTime() = 0;
+    virtual void SAL_CALL setMin( const ::css::util::Time& Time ) = 0;
+    virtual ::css::util::Time SAL_CALL getMin() = 0;
+    virtual void SAL_CALL setMax( const ::css::util::Time& Time ) = 0;
+    virtual ::css::util::Time SAL_CALL getMax() = 0;
+    virtual void SAL_CALL setFirst( const ::css::util::Time& Time ) = 0;
+    virtual ::css::util::Time SAL_CALL getFirst() = 0;
+    virtual void SAL_CALL setLast( const ::css::util::Time& Time ) = 0;
+    virtual ::css::util::Time SAL_CALL getLast() = 0;
+    virtual void SAL_CALL setEmpty() = 0;
+    virtual ::sal_Bool SAL_CALL isEmpty() = 0;
+    virtual void SAL_CALL setStrictFormat( ::sal_Bool bStrict ) = 0;
+    virtual ::sal_Bool SAL_CALL isStrictFormat() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTimeField() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XTimeField const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XTimeField > *);
+
+#endif

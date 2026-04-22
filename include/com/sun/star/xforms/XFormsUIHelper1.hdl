@@ -1,0 +1,70 @@
+#ifndef INCLUDED_COM_SUN_STAR_XFORMS_XFORMSUIHELPER1_HDL
+#define INCLUDED_COM_SUN_STAR_XFORMS_XFORMSUIHELPER1_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace beans { class XPropertySet; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XModel; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xforms { class XModel; } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XDocument; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XNode; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xforms {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFormsUIHelper1 : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFormsUIHelper1() = default;
+    XFormsUIHelper1(XFormsUIHelper1 const &) = default;
+    XFormsUIHelper1(XFormsUIHelper1 &&) = default;
+    XFormsUIHelper1 & operator =(XFormsUIHelper1 const &) = default;
+    XFormsUIHelper1 & operator =(XFormsUIHelper1 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getDefaultServiceNameForNode( const ::css::uno::Reference< ::css::xml::dom::XNode >& xNode ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDefaultBindingExpressionForNode( const ::css::uno::Reference< ::css::xml::dom::XNode >& xNode ) = 0;
+    virtual ::rtl::OUString SAL_CALL getNodeDisplayName( const ::css::uno::Reference< ::css::xml::dom::XNode >& xNode, ::sal_Bool bDetail ) = 0;
+    virtual ::rtl::OUString SAL_CALL getNodeName( const ::css::uno::Reference< ::css::xml::dom::XNode >& xNode ) = 0;
+    virtual ::rtl::OUString SAL_CALL getBindingName( const ::css::uno::Reference< ::css::beans::XPropertySet >& xBinding, ::sal_Bool bDetail ) = 0;
+    virtual ::rtl::OUString SAL_CALL getSubmissionName( const ::css::uno::Reference< ::css::beans::XPropertySet >& xSubm, ::sal_Bool bDetail ) = 0;
+    virtual ::css::uno::Reference< ::css::beans::XPropertySet > SAL_CALL cloneBindingAsGhost( const ::css::uno::Reference< ::css::beans::XPropertySet >& binding ) = 0;
+    virtual void SAL_CALL removeBindingIfUseless( const ::css::uno::Reference< ::css::beans::XPropertySet >& xBinding ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XDocument > SAL_CALL newInstance( const ::rtl::OUString& sName, const ::rtl::OUString& sURL, ::sal_Bool bURLOnce ) = 0;
+    virtual void SAL_CALL renameInstance( const ::rtl::OUString& sFrom, const ::rtl::OUString& sTo, const ::rtl::OUString& sURL, ::sal_Bool bURLOnce ) = 0;
+    virtual void SAL_CALL removeInstance( const ::rtl::OUString& sName ) = 0;
+    virtual ::css::uno::Reference< ::css::xforms::XModel > SAL_CALL newModel( const ::css::uno::Reference< ::css::frame::XModel >& xModel, const ::rtl::OUString& sName ) = 0;
+    virtual void SAL_CALL renameModel( const ::css::uno::Reference< ::css::frame::XModel >& xModel, const ::rtl::OUString& sFrom, const ::rtl::OUString& sTo ) = 0;
+    virtual void SAL_CALL removeModel( const ::css::uno::Reference< ::css::frame::XModel >& xModel, const ::rtl::OUString& sName ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL createElement( const ::css::uno::Reference< ::css::xml::dom::XNode >& xParent, const ::rtl::OUString& sName ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL createAttribute( const ::css::uno::Reference< ::css::xml::dom::XNode >& xParent, const ::rtl::OUString& sName ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL renameNode( const ::css::uno::Reference< ::css::xml::dom::XNode >& xNode, const ::rtl::OUString& sName ) = 0;
+    virtual ::css::uno::Reference< ::css::beans::XPropertySet > SAL_CALL getBindingForNode( const ::css::uno::Reference< ::css::xml::dom::XNode >& xNode, ::sal_Bool bCreate ) = 0;
+    virtual void SAL_CALL removeBindingForNode( const ::css::uno::Reference< ::css::xml::dom::XNode >& xNode ) = 0;
+    virtual ::rtl::OUString SAL_CALL getResultForExpression( const ::css::uno::Reference< ::css::beans::XPropertySet >& xBinding, ::sal_Bool bIsBindingExpression, const ::rtl::OUString& sExpression ) = 0;
+    virtual ::sal_Bool SAL_CALL isValidXMLName( const ::rtl::OUString& sName ) = 0;
+    virtual ::sal_Bool SAL_CALL isValidPrefixName( const ::rtl::OUString& sName ) = 0;
+    virtual void SAL_CALL setNodeValue( const ::css::uno::Reference< ::css::xml::dom::XNode >& xNode, const ::rtl::OUString& sValue ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFormsUIHelper1() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xforms::XFormsUIHelper1 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xforms::XFormsUIHelper1 > *);
+
+#endif

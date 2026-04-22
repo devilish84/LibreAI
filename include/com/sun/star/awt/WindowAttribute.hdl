@@ -1,0 +1,24 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_WINDOWATTRIBUTE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_WINDOWATTRIBUTE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace WindowAttribute {
+
+static const ::sal_Int32 BORDER = (sal_Int32)16;
+static const ::sal_Int32 CLOSEABLE = (sal_Int32)128;
+static const ::sal_Int32 FULLSIZE = (sal_Int32)2;
+static const ::sal_Int32 MINSIZE = (sal_Int32)8;
+static const ::sal_Int32 MOVEABLE = (sal_Int32)64;
+static const ::sal_Int32 NODECORATION = (sal_Int32)512;
+static const ::sal_Int32 OPTIMUMSIZE = (sal_Int32)4;
+static const ::sal_Int32 SHOW = (sal_Int32)1;
+static const ::sal_Int32 SIZEABLE = (sal_Int32)32;
+static const ::sal_Int32 SYSTEMDEPENDENT = (sal_Int32)256;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_WINDOWATTRIBUTE_HDL

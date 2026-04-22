@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTWEIGHT_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_FONTWEIGHT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace FontWeight {
+
+static const float BLACK = (float)200;
+static const float BOLD = (float)150;
+static const float DONTKNOW = (float)0;
+static const float LIGHT = (float)75;
+static const float NORMAL = (float)100;
+static const float SEMIBOLD = (float)110;
+static const float SEMILIGHT = (float)90;
+static const float THIN = (float)50;
+static const float ULTRABOLD = (float)175;
+static const float ULTRALIGHT = (float)60;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FONTWEIGHT_HDL

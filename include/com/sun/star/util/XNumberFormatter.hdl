@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/Color.hdl"
+namespace com { namespace sun { namespace star { namespace util { class XNumberFormatsSupplier; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XNumberFormatter : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XNumberFormatter() = default;
+    XNumberFormatter(XNumberFormatter const &) = default;
+    XNumberFormatter(XNumberFormatter &&) = default;
+    XNumberFormatter & operator =(XNumberFormatter const &) = default;
+    XNumberFormatter & operator =(XNumberFormatter &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL attachNumberFormatsSupplier( const ::css::uno::Reference< ::css::util::XNumberFormatsSupplier >& xSupplier ) = 0;
+    virtual ::css::uno::Reference< ::css::util::XNumberFormatsSupplier > SAL_CALL getNumberFormatsSupplier() = 0;
+    virtual ::sal_Int32 SAL_CALL detectNumberFormat( ::sal_Int32 nKey, const ::rtl::OUString& aString ) = 0;
+    virtual double SAL_CALL convertStringToNumber( ::sal_Int32 nKey, const ::rtl::OUString& aString ) = 0;
+    virtual ::rtl::OUString SAL_CALL convertNumberToString( ::sal_Int32 nKey, double fValue ) = 0;
+    virtual ::sal_Int32 SAL_CALL queryColorForNumber( ::sal_Int32 nKey, double fValue, ::sal_Int32 aDefaultColor ) = 0;
+    virtual ::rtl::OUString SAL_CALL formatString( ::sal_Int32 nKey, const ::rtl::OUString& aString ) = 0;
+    virtual ::sal_Int32 SAL_CALL queryColorForString( ::sal_Int32 nKey, const ::rtl::OUString& aString, ::sal_Int32 aDefaultColor ) = 0;
+    virtual ::rtl::OUString SAL_CALL getInputString( ::sal_Int32 nKey, double fValue ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XNumberFormatter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::XNumberFormatter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::util::XNumberFormatter > *);
+
+#endif

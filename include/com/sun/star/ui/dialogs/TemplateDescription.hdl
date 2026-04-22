@@ -1,0 +1,28 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_TEMPLATEDESCRIPTION_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_TEMPLATEDESCRIPTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs { namespace TemplateDescription {
+
+static const ::sal_Int16 FILEOPEN_LINK_PLAY = (sal_Int16)12;
+static const ::sal_Int16 FILEOPEN_LINK_PREVIEW = (sal_Int16)9;
+static const ::sal_Int16 FILEOPEN_LINK_PREVIEW_IMAGE_ANCHOR = (sal_Int16)13;
+static const ::sal_Int16 FILEOPEN_LINK_PREVIEW_IMAGE_TEMPLATE = (sal_Int16)6;
+static const ::sal_Int16 FILEOPEN_PLAY = (sal_Int16)7;
+static const ::sal_Int16 FILEOPEN_PREVIEW = (sal_Int16)11;
+static const ::sal_Int16 FILEOPEN_READONLY_VERSION = (sal_Int16)8;
+static const ::sal_Int16 FILEOPEN_SIMPLE = (sal_Int16)0;
+static const ::sal_Int16 FILESAVE_AUTOEXTENSION = (sal_Int16)10;
+static const ::sal_Int16 FILESAVE_AUTOEXTENSION_PASSWORD = (sal_Int16)2;
+static const ::sal_Int16 FILESAVE_AUTOEXTENSION_PASSWORD_FILTEROPTIONS = (sal_Int16)3;
+static const ::sal_Int16 FILESAVE_AUTOEXTENSION_SELECTION = (sal_Int16)4;
+static const ::sal_Int16 FILESAVE_AUTOEXTENSION_TEMPLATE = (sal_Int16)5;
+static const ::sal_Int16 FILESAVE_SIMPLE = (sal_Int16)1;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UI_DIALOGS_TEMPLATEDESCRIPTION_HDL

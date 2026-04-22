@@ -1,0 +1,24 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_MACROEXECMODE_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_MACROEXECMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace document { namespace MacroExecMode {
+
+static const ::sal_Int16 ALWAYS_EXECUTE = (sal_Int16)2;
+static const ::sal_Int16 ALWAYS_EXECUTE_NO_WARN = (sal_Int16)4;
+static const ::sal_Int16 FROM_LIST = (sal_Int16)1;
+static const ::sal_Int16 FROM_LIST_AND_SIGNED_NO_WARN = (sal_Int16)9;
+static const ::sal_Int16 FROM_LIST_AND_SIGNED_WARN = (sal_Int16)8;
+static const ::sal_Int16 FROM_LIST_NO_WARN = (sal_Int16)7;
+static const ::sal_Int16 NEVER_EXECUTE = (sal_Int16)0;
+static const ::sal_Int16 USE_CONFIG = (sal_Int16)3;
+static const ::sal_Int16 USE_CONFIG_APPROVE_CONFIRMATION = (sal_Int16)6;
+static const ::sal_Int16 USE_CONFIG_REJECT_CONFIRMATION = (sal_Int16)5;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_DOCUMENT_MACROEXECMODE_HDL

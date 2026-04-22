@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XHALFFLOATBITMAP_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XHALFFLOATBITMAP_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/geometry/IntegerPoint2D.hdl"
+#include "com/sun/star/geometry/IntegerRectangle2D.hdl"
+#include "com/sun/star/rendering/FloatingPointBitmapLayout.hdl"
+#include "com/sun/star/rendering/XHalfFloatReadOnlyBitmap.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XHalfFloatBitmap : public ::css::rendering::XHalfFloatReadOnlyBitmap
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XHalfFloatBitmap() = default;
+    XHalfFloatBitmap(XHalfFloatBitmap const &) = default;
+    XHalfFloatBitmap(XHalfFloatBitmap &&) = default;
+    XHalfFloatBitmap & operator =(XHalfFloatBitmap const &) = default;
+    XHalfFloatBitmap & operator =(XHalfFloatBitmap &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setData( const ::css::uno::Sequence< ::sal_Int16 >& data, const ::css::rendering::FloatingPointBitmapLayout& bitmapLayout, const ::css::geometry::IntegerRectangle2D& rect ) = 0;
+    virtual void SAL_CALL setPixel( const ::css::uno::Sequence< ::sal_Int16 >& color, const ::css::rendering::FloatingPointBitmapLayout& bitmapLayout, const ::css::geometry::IntegerPoint2D& pos ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XHalfFloatBitmap() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XHalfFloatBitmap const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XHalfFloatBitmap > *);
+
+#endif

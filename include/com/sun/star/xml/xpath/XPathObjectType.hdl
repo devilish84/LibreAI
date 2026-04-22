@@ -1,0 +1,54 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_XPATH_XPATHOBJECTTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_XPATH_XPATHOBJECTTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace xpath {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI XPathObjectType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI XPathObjectType
+{
+
+#endif
+    XPathObjectType_XPATH_UNDEFINED = 0,
+    XPathObjectType_XPATH_NODESET = 1,
+    XPathObjectType_XPATH_BOOLEAN = 2,
+    XPathObjectType_XPATH_NUMBER = 3,
+    XPathObjectType_XPATH_STRING = 4,
+    XPathObjectType_XPATH_POINT = 5,
+    XPathObjectType_XPATH_RANGE = 6,
+    XPathObjectType_XPATH_LOCATIONSET = 7,
+    XPathObjectType_XPATH_USERS = 8,
+    XPathObjectType_XPATH_XSLT_TREE = 9,
+    XPathObjectType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto XPathObjectType_XPATH_UNDEFINED = XPathObjectType::XPathObjectType_XPATH_UNDEFINED;
+constexpr auto XPathObjectType_XPATH_NODESET = XPathObjectType::XPathObjectType_XPATH_NODESET;
+constexpr auto XPathObjectType_XPATH_BOOLEAN = XPathObjectType::XPathObjectType_XPATH_BOOLEAN;
+constexpr auto XPathObjectType_XPATH_NUMBER = XPathObjectType::XPathObjectType_XPATH_NUMBER;
+constexpr auto XPathObjectType_XPATH_STRING = XPathObjectType::XPathObjectType_XPATH_STRING;
+constexpr auto XPathObjectType_XPATH_POINT = XPathObjectType::XPathObjectType_XPATH_POINT;
+constexpr auto XPathObjectType_XPATH_RANGE = XPathObjectType::XPathObjectType_XPATH_RANGE;
+constexpr auto XPathObjectType_XPATH_LOCATIONSET = XPathObjectType::XPathObjectType_XPATH_LOCATIONSET;
+constexpr auto XPathObjectType_XPATH_USERS = XPathObjectType::XPathObjectType_XPATH_USERS;
+constexpr auto XPathObjectType_XPATH_XSLT_TREE = XPathObjectType::XPathObjectType_XPATH_XSLT_TREE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::xpath::XPathObjectType const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::xml::xpath::XPathObjectType *);
+
+#endif

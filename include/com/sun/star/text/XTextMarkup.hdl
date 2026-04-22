@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XTEXTMARKUP_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XTEXTMARKUP_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XStringKeyMap; } } } }
+namespace com { namespace sun { namespace star { namespace text { class XTextRange; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTextMarkup : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTextMarkup() = default;
+    XTextMarkup(XTextMarkup const &) = default;
+    XTextMarkup(XTextMarkup &&) = default;
+    XTextMarkup & operator =(XTextMarkup const &) = default;
+    XTextMarkup & operator =(XTextMarkup &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::container::XStringKeyMap > SAL_CALL getMarkupInfoContainer() = 0;
+    virtual void SAL_CALL commitStringMarkup( ::sal_Int32 nType, const ::rtl::OUString& aIdentifier, ::sal_Int32 nStart, ::sal_Int32 nLength, const ::css::uno::Reference< ::css::container::XStringKeyMap >& xMarkupInfoContainer ) = 0;
+    virtual void SAL_CALL commitTextRangeMarkup( ::sal_Int32 nType, const ::rtl::OUString& aIdentifier, const ::css::uno::Reference< ::css::text::XTextRange >& xRange, const ::css::uno::Reference< ::css::container::XStringKeyMap >& xMarkupInfoContainer ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTextMarkup() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XTextMarkup const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XTextMarkup > *);
+
+#endif

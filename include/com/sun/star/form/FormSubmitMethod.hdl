@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_FORMSUBMITMETHOD_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_FORMSUBMITMETHOD_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FormSubmitMethod
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FormSubmitMethod
+{
+
+#endif
+    FormSubmitMethod_GET = 0,
+    FormSubmitMethod_POST = 1,
+    FormSubmitMethod_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FormSubmitMethod_GET = FormSubmitMethod::FormSubmitMethod_GET;
+constexpr auto FormSubmitMethod_POST = FormSubmitMethod::FormSubmitMethod_POST;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::FormSubmitMethod const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::form::FormSubmitMethod *);
+
+#endif

@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_XIMAGECONTROL_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_XIMAGECONTROL_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/form/XImageProducerSupplier.hdl"
+#include "com/sun/star/report/XReportControlModel.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XImageControl : public ::css::report::XReportControlModel, public ::css::form::XImageProducerSupplier
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XImageControl() = default;
+    XImageControl(XImageControl const &) = default;
+    XImageControl(XImageControl &&) = default;
+    XImageControl & operator =(XImageControl const &) = default;
+    XImageControl & operator =(XImageControl &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getImageURL() = 0;
+    virtual void SAL_CALL setImageURL( const ::rtl::OUString& _imageurl ) = 0;
+    virtual ::sal_Int16 SAL_CALL getScaleMode() = 0;
+    virtual void SAL_CALL setScaleMode( ::sal_Int16 _scalemode ) = 0;
+    virtual ::sal_Bool SAL_CALL getPreserveIRI() = 0;
+    virtual void SAL_CALL setPreserveIRI( ::sal_Bool _preserveiri ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XImageControl() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::XImageControl const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::XImageControl > *);
+
+#endif

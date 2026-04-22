@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_FILLDATEMODE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_FILLDATEMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FillDateMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FillDateMode
+{
+
+#endif
+    FillDateMode_FILL_DATE_DAY = 0,
+    FillDateMode_FILL_DATE_WEEKDAY = 1,
+    FillDateMode_FILL_DATE_MONTH = 2,
+    FillDateMode_FILL_DATE_YEAR = 3,
+    FillDateMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FillDateMode_FILL_DATE_DAY = FillDateMode::FillDateMode_FILL_DATE_DAY;
+constexpr auto FillDateMode_FILL_DATE_WEEKDAY = FillDateMode::FillDateMode_FILL_DATE_WEEKDAY;
+constexpr auto FillDateMode_FILL_DATE_MONTH = FillDateMode::FillDateMode_FILL_DATE_MONTH;
+constexpr auto FillDateMode_FILL_DATE_YEAR = FillDateMode::FillDateMode_FILL_DATE_YEAR;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::FillDateMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::FillDateMode *);
+
+#endif

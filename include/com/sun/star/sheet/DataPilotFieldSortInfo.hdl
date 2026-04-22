@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDSORTINFO_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDSORTINFO_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DataPilotFieldSortInfo {
+    inline DataPilotFieldSortInfo();
+
+    inline DataPilotFieldSortInfo(const ::rtl::OUString& Field_, const ::sal_Bool& IsAscending_, const ::sal_Int32& Mode_);
+
+    ::rtl::OUString Field;
+    ::sal_Bool IsAscending;
+    ::sal_Int32 Mode;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::DataPilotFieldSortInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::DataPilotFieldSortInfo *);
+
+#endif

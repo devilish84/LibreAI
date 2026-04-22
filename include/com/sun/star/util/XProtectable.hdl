@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_XPROTECTABLE_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_XPROTECTABLE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XProtectable : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XProtectable() = default;
+    XProtectable(XProtectable const &) = default;
+    XProtectable(XProtectable &&) = default;
+    XProtectable & operator =(XProtectable const &) = default;
+    XProtectable & operator =(XProtectable &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL protect( const ::rtl::OUString& aPassword ) = 0;
+    virtual void SAL_CALL unprotect( const ::rtl::OUString& aPassword ) = 0;
+    virtual ::sal_Bool SAL_CALL isProtected() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XProtectable() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::XProtectable const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::util::XProtectable > *);
+
+#endif

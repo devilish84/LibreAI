@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_RELATIVEPOSITION_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_RELATIVEPOSITION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/drawing/Alignment.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED RelativePosition {
+    inline RelativePosition();
+
+    inline RelativePosition(const double& Primary_, const double& Secondary_, const ::css::drawing::Alignment& Anchor_);
+
+    double Primary;
+    double Secondary;
+    ::css::drawing::Alignment Anchor;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::RelativePosition const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart2::RelativePosition *);
+
+#endif

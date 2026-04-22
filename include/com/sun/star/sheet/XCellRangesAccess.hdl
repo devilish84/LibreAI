@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XCELLRANGESACCESS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XCELLRANGESACCESS_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace table { class XCell; } } } }
+namespace com { namespace sun { namespace star { namespace table { class XCellRange; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCellRangesAccess : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCellRangesAccess() = default;
+    XCellRangesAccess(XCellRangesAccess const &) = default;
+    XCellRangesAccess(XCellRangesAccess &&) = default;
+    XCellRangesAccess & operator =(XCellRangesAccess const &) = default;
+    XCellRangesAccess & operator =(XCellRangesAccess &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::table::XCell > SAL_CALL getCellByPosition( ::sal_Int32 nColumn, ::sal_Int32 nRow, ::sal_Int32 nSheet ) = 0;
+    virtual ::css::uno::Reference< ::css::table::XCellRange > SAL_CALL getCellRangeByPosition( ::sal_Int32 nLeft, ::sal_Int32 nTop, ::sal_Int32 nRight, ::sal_Int32 nBottom, ::sal_Int32 nSheet ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::table::XCellRange > > SAL_CALL getCellRangesByName( const ::rtl::OUString& aRange ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCellRangesAccess() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XCellRangesAccess const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XCellRangesAccess > *);
+
+#endif

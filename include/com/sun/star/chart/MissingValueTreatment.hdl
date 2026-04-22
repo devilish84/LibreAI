@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_MISSINGVALUETREATMENT_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_MISSINGVALUETREATMENT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace chart { namespace MissingValueTreatment {
+
+static const ::sal_Int32 CONTINUE = (sal_Int32)2;
+static const ::sal_Int32 LEAVE_GAP = (sal_Int32)0;
+static const ::sal_Int32 USE_ZERO = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_CHART_MISSINGVALUETREATMENT_HDL

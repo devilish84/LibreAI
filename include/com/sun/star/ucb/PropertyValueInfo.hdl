@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_PROPERTYVALUEINFO_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_PROPERTYVALUEINFO_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/ucb/PropertyValueState.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI PropertyValueInfo: public ::css::beans::PropertyValue {
+    inline PropertyValueInfo();
+
+    inline PropertyValueInfo(const ::rtl::OUString& Name_, const ::sal_Int32& Handle_, const ::css::uno::Any& Value_, const ::css::beans::PropertyState& State_, const ::css::ucb::PropertyValueState& ValueState_);
+
+    ::css::ucb::PropertyValueState ValueState CPPU_GCC3_ALIGN(::css::beans::PropertyValue);
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::PropertyValueInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::PropertyValueInfo *);
+
+#endif

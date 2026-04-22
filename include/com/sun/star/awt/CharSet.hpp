@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_CHARSET_HPP
+#define INCLUDED_COM_SUN_STAR_AWT_CHARSET_HPP
+
+#include "com/sun/star/awt/CharSet.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_CHARSET_HPP

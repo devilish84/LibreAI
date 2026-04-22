@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XSHEETCELLRANGES_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XSHEETCELLRANGES_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XEnumerationAccess; } } } }
+#include "com/sun/star/container/XIndexAccess.hdl"
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSheetCellRanges : public ::css::container::XIndexAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSheetCellRanges() = default;
+    XSheetCellRanges(XSheetCellRanges const &) = default;
+    XSheetCellRanges(XSheetCellRanges &&) = default;
+    XSheetCellRanges & operator =(XSheetCellRanges const &) = default;
+    XSheetCellRanges & operator =(XSheetCellRanges &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::container::XEnumerationAccess > SAL_CALL getCells() = 0;
+    virtual ::rtl::OUString SAL_CALL getRangeAddressesAsString() = 0;
+    virtual ::css::uno::Sequence< ::css::table::CellRangeAddress > SAL_CALL getRangeAddresses() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSheetCellRanges() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XSheetCellRanges const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XSheetCellRanges > *);
+
+#endif

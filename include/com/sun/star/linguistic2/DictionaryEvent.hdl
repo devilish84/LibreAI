@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_DICTIONARYEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_DICTIONARYEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+namespace com { namespace sun { namespace star { namespace linguistic2 { class XDictionaryEntry; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI DictionaryEvent: public ::css::lang::EventObject {
+    inline DictionaryEvent();
+
+    inline DictionaryEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::sal_Int16& nEvent_, const ::css::uno::Reference< ::css::linguistic2::XDictionaryEntry >& xDictionaryEntry_);
+
+    ::sal_Int16 nEvent CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::css::uno::Reference< ::css::linguistic2::XDictionaryEntry > xDictionaryEntry;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::DictionaryEvent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::linguistic2::DictionaryEvent *);
+
+#endif

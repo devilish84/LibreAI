@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_BINDING_INCOMPATIBLETYPESEXCEPTION_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_BINDING_INCOMPATIBLETYPESEXCEPTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Exception.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form { namespace binding {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED IncompatibleTypesException : public ::css::uno::Exception
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE IncompatibleTypesException(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE IncompatibleTypesException(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_ = ::css::uno::Reference< ::css::uno::XInterface >()
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE IncompatibleTypesException(IncompatibleTypesException const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~IncompatibleTypesException();
+
+    inline CPPU_GCC_DLLPRIVATE IncompatibleTypesException & operator =(IncompatibleTypesException const &);
+#endif
+
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::binding::IncompatibleTypesException const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::form::binding::IncompatibleTypesException *);
+
+#endif

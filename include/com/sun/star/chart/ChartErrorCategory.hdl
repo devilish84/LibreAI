@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTERRORCATEGORY_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTERRORCATEGORY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ChartErrorCategory
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ChartErrorCategory
+{
+
+#endif
+    ChartErrorCategory_NONE = 0,
+    ChartErrorCategory_VARIANCE = 1,
+    ChartErrorCategory_STANDARD_DEVIATION = 2,
+    ChartErrorCategory_PERCENT = 3,
+    ChartErrorCategory_ERROR_MARGIN = 4,
+    ChartErrorCategory_CONSTANT_VALUE = 5,
+    ChartErrorCategory_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ChartErrorCategory_NONE = ChartErrorCategory::ChartErrorCategory_NONE;
+constexpr auto ChartErrorCategory_VARIANCE = ChartErrorCategory::ChartErrorCategory_VARIANCE;
+constexpr auto ChartErrorCategory_STANDARD_DEVIATION = ChartErrorCategory::ChartErrorCategory_STANDARD_DEVIATION;
+constexpr auto ChartErrorCategory_PERCENT = ChartErrorCategory::ChartErrorCategory_PERCENT;
+constexpr auto ChartErrorCategory_ERROR_MARGIN = ChartErrorCategory::ChartErrorCategory_ERROR_MARGIN;
+constexpr auto ChartErrorCategory_CONSTANT_VALUE = ChartErrorCategory::ChartErrorCategory_CONSTANT_VALUE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::ChartErrorCategory const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart::ChartErrorCategory *);
+
+#endif

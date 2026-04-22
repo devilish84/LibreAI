@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_SEARCHFLAGS_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_SEARCHFLAGS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace util { namespace SearchFlags {
+
+static const ::sal_Int32 ALL_IGNORE_CASE = (sal_Int32)1;
+static const ::sal_Int32 LEV_RELAXED = (sal_Int32)65536;
+static const ::sal_Int32 NORM_WORD_ONLY = (sal_Int32)16;
+static const ::sal_Int32 REG_EXTENDED = (sal_Int32)256;
+static const ::sal_Int32 REG_NEWLINE = (sal_Int32)1024;
+static const ::sal_Int32 REG_NOSUB = (sal_Int32)512;
+static const ::sal_Int32 REG_NOT_BEGINOFLINE = (sal_Int32)2048;
+static const ::sal_Int32 REG_NOT_ENDOFLINE = (sal_Int32)4096;
+static const ::sal_Int32 WILD_MATCH_SELECTION = (sal_Int32)1048576;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UTIL_SEARCHFLAGS_HDL

@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XDIRECTINVOCATION_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XDIRECTINVOCATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDirectInvocation : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDirectInvocation() = default;
+    XDirectInvocation(XDirectInvocation const &) = default;
+    XDirectInvocation(XDirectInvocation &&) = default;
+    XDirectInvocation & operator =(XDirectInvocation const &) = default;
+    XDirectInvocation & operator =(XDirectInvocation &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Any SAL_CALL directInvoke( const ::rtl::OUString& aName, const ::css::uno::Sequence< ::css::uno::Any >& aParams ) = 0;
+    virtual ::sal_Bool SAL_CALL hasMember( const ::rtl::OUString& aName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDirectInvocation() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XDirectInvocation const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XDirectInvocation > *);
+
+#endif

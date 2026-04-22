@@ -1,0 +1,28 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_GENERALFUNCTION2_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_GENERALFUNCTION2_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace GeneralFunction2 {
+
+static const ::sal_Int16 AUTO = (sal_Int16)1;
+static const ::sal_Int16 AVERAGE = (sal_Int16)4;
+static const ::sal_Int16 COUNT = (sal_Int16)3;
+static const ::sal_Int16 COUNTNUMS = (sal_Int16)8;
+static const ::sal_Int16 MAX = (sal_Int16)5;
+static const ::sal_Int16 MEDIAN = (sal_Int16)13;
+static const ::sal_Int16 MIN = (sal_Int16)6;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+static const ::sal_Int16 PRODUCT = (sal_Int16)7;
+static const ::sal_Int16 STDEV = (sal_Int16)9;
+static const ::sal_Int16 STDEVP = (sal_Int16)10;
+static const ::sal_Int16 SUM = (sal_Int16)2;
+static const ::sal_Int16 VAR = (sal_Int16)11;
+static const ::sal_Int16 VARP = (sal_Int16)12;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_GENERALFUNCTION2_HDL

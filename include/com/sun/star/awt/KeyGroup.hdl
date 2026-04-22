@@ -1,0 +1,20 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_KEYGROUP_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_KEYGROUP_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace KeyGroup {
+
+static const ::sal_Int16 ALPHA = (sal_Int16)512;
+static const ::sal_Int16 CURSOR = (sal_Int16)1024;
+static const ::sal_Int16 FKEYS = (sal_Int16)768;
+static const ::sal_Int16 MISC = (sal_Int16)1280;
+static const ::sal_Int16 NUM = (sal_Int16)256;
+static const ::sal_Int16 TYPE = (sal_Int16)3840;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_KEYGROUP_HDL

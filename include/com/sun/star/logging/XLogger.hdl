@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_LOGGING_XLOGGER_HDL
+#define INCLUDED_COM_SUN_STAR_LOGGING_XLOGGER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace logging { class XLogHandler; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace logging {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLogger : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLogger() = default;
+    XLogger(XLogger const &) = default;
+    XLogger(XLogger &&) = default;
+    XLogger & operator =(XLogger const &) = default;
+    XLogger & operator =(XLogger &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getName() = 0;
+    virtual ::sal_Int32 SAL_CALL getLevel() = 0;
+    virtual void SAL_CALL setLevel( ::sal_Int32 _level ) = 0;
+
+    // Methods
+    virtual void SAL_CALL addLogHandler( const ::css::uno::Reference< ::css::logging::XLogHandler >& LogHandler ) = 0;
+    virtual void SAL_CALL removeLogHandler( const ::css::uno::Reference< ::css::logging::XLogHandler >& LogHandler ) = 0;
+    virtual ::sal_Bool SAL_CALL isLoggable( ::sal_Int32 Level ) = 0;
+    virtual void SAL_CALL log( ::sal_Int32 Level, const ::rtl::OUString& Message ) = 0;
+    virtual void SAL_CALL logp( ::sal_Int32 Level, const ::rtl::OUString& SourceClass, const ::rtl::OUString& SourceMethod, const ::rtl::OUString& Message ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLogger() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::logging::XLogger const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::logging::XLogger > *);
+
+#endif

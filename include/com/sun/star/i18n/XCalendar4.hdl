@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XCALENDAR4_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XCALENDAR4_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/XCalendar3.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCalendar4 : public ::css::i18n::XCalendar3
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCalendar4() = default;
+    XCalendar4(XCalendar4 const &) = default;
+    XCalendar4(XCalendar4 &&) = default;
+    XCalendar4 & operator =(XCalendar4 const &) = default;
+    XCalendar4 & operator =(XCalendar4 &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setLocalDateTime( double TimeInDays ) = 0;
+    virtual double SAL_CALL getLocalDateTime() = 0;
+    virtual void SAL_CALL loadDefaultCalendarTZ( const ::css::lang::Locale& rLocale, const ::rtl::OUString& TimeZone ) = 0;
+    virtual void SAL_CALL loadCalendarTZ( const ::rtl::OUString& uniqueID, const ::css::lang::Locale& rLocale, const ::rtl::OUString& TimeZone ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCalendar4() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XCalendar4 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XCalendar4 > *);
+
+#endif

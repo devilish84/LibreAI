@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_X3DDEFAULTSETTER_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_X3DDEFAULTSETTER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI X3DDefaultSetter : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    X3DDefaultSetter() = default;
+    X3DDefaultSetter(X3DDefaultSetter const &) = default;
+    X3DDefaultSetter(X3DDefaultSetter &&) = default;
+    X3DDefaultSetter & operator =(X3DDefaultSetter const &) = default;
+    X3DDefaultSetter & operator =(X3DDefaultSetter &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL set3DSettingsToDefault() = 0;
+    virtual void SAL_CALL setDefaultRotation() = 0;
+    virtual void SAL_CALL setDefaultIllumination() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~X3DDefaultSetter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::X3DDefaultSetter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::chart::X3DDefaultSetter > *);
+
+#endif

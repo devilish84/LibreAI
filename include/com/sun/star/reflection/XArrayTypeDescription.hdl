@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_REFLECTION_XARRAYTYPEDESCRIPTION_HDL
+#define INCLUDED_COM_SUN_STAR_REFLECTION_XARRAYTYPEDESCRIPTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/reflection/XTypeDescription.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace reflection {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XArrayTypeDescription : public ::css::reflection::XTypeDescription
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XArrayTypeDescription() = default;
+    XArrayTypeDescription(XArrayTypeDescription const &) = default;
+    XArrayTypeDescription(XArrayTypeDescription &&) = default;
+    XArrayTypeDescription & operator =(XArrayTypeDescription const &) = default;
+    XArrayTypeDescription & operator =(XArrayTypeDescription &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::reflection::XTypeDescription > SAL_CALL getType() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Int32 SAL_CALL getNumberOfDimensions() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::sal_Int32 > SAL_CALL getDimensions() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XArrayTypeDescription() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::reflection::XArrayTypeDescription const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::reflection::XArrayTypeDescription > *);
+
+#endif

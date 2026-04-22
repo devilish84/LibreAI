@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLESCROLLTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLESCROLLTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI AccessibleScrollType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI AccessibleScrollType
+{
+
+#endif
+    AccessibleScrollType_SCROLL_TOP_LEFT = 0,
+    AccessibleScrollType_SCROLL_BOTTOM_RIGHT = 1,
+    AccessibleScrollType_SCROLL_TOP_EDGE = 2,
+    AccessibleScrollType_SCROLL_BOTTOM_EDGE = 3,
+    AccessibleScrollType_SCROLL_LEFT_EDGE = 4,
+    AccessibleScrollType_SCROLL_RIGHT_EDGE = 5,
+    AccessibleScrollType_SCROLL_ANYWHERE = 6,
+    AccessibleScrollType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto AccessibleScrollType_SCROLL_TOP_LEFT = AccessibleScrollType::AccessibleScrollType_SCROLL_TOP_LEFT;
+constexpr auto AccessibleScrollType_SCROLL_BOTTOM_RIGHT = AccessibleScrollType::AccessibleScrollType_SCROLL_BOTTOM_RIGHT;
+constexpr auto AccessibleScrollType_SCROLL_TOP_EDGE = AccessibleScrollType::AccessibleScrollType_SCROLL_TOP_EDGE;
+constexpr auto AccessibleScrollType_SCROLL_BOTTOM_EDGE = AccessibleScrollType::AccessibleScrollType_SCROLL_BOTTOM_EDGE;
+constexpr auto AccessibleScrollType_SCROLL_LEFT_EDGE = AccessibleScrollType::AccessibleScrollType_SCROLL_LEFT_EDGE;
+constexpr auto AccessibleScrollType_SCROLL_RIGHT_EDGE = AccessibleScrollType::AccessibleScrollType_SCROLL_RIGHT_EDGE;
+constexpr auto AccessibleScrollType_SCROLL_ANYWHERE = AccessibleScrollType::AccessibleScrollType_SCROLL_ANYWHERE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::AccessibleScrollType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::accessibility::AccessibleScrollType *);
+
+#endif

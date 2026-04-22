@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLERELATION_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLERELATION_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class XInterface; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI AccessibleRelation {
+    inline AccessibleRelation();
+
+    inline AccessibleRelation(const ::sal_Int16& RelationType_, const ::css::uno::Sequence< ::css::uno::Reference< ::css::uno::XInterface > >& TargetSet_);
+
+    ::sal_Int16 RelationType;
+    ::css::uno::Sequence< ::css::uno::Reference< ::css::uno::XInterface > > TargetSet;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::AccessibleRelation const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::accessibility::AccessibleRelation *);
+
+#endif

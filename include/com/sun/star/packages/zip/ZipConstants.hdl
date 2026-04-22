@@ -1,0 +1,66 @@
+#ifndef INCLUDED_COM_SUN_STAR_PACKAGES_ZIP_ZIPCONSTANTS_HDL
+#define INCLUDED_COM_SUN_STAR_PACKAGES_ZIP_ZIPCONSTANTS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace packages { namespace zip { namespace ZipConstants {
+
+static const ::sal_Int16 BEST_COMPRESSION = (sal_Int16)9;
+static const ::sal_Int16 BEST_SPEED = (sal_Int16)1;
+static const ::sal_Int16 CENATT = (sal_Int16)36;
+static const ::sal_Int16 CENATX = (sal_Int16)38;
+static const ::sal_Int16 CENCOM = (sal_Int16)32;
+static const ::sal_Int16 CENCRC = (sal_Int16)16;
+static const ::sal_Int16 CENDAT = (sal_Int16)14;
+static const ::sal_Int16 CENDSK = (sal_Int16)34;
+static const ::sal_Int16 CENEXT = (sal_Int16)30;
+static const ::sal_Int16 CENFLG = (sal_Int16)8;
+static const ::sal_Int16 CENHDR = (sal_Int16)46;
+static const ::sal_Int16 CENHOW = (sal_Int16)10;
+static const ::sal_Int16 CENLEN = (sal_Int16)24;
+static const ::sal_Int16 CENNAM = (sal_Int16)28;
+static const ::sal_Int16 CENOFF = (sal_Int16)42;
+static const ::sal_Int32 CENSIG = (sal_Int32)33639248;
+static const ::sal_Int16 CENSIZ = (sal_Int16)20;
+static const ::sal_Int16 CENTIM = (sal_Int16)12;
+static const ::sal_Int16 CENVEM = (sal_Int16)4;
+static const ::sal_Int16 CENVER = (sal_Int16)6;
+static const ::sal_Int16 DEFAULT_COMPRESSION = (sal_Int16)-1;
+static const ::sal_Int16 DEFAULT_STRATEGY = (sal_Int16)0;
+static const ::sal_Int16 DEFLATED = (sal_Int16)8;
+static const ::sal_Int16 DEF_MEM_LEVEL = (sal_Int16)8;
+static const ::sal_Int16 ENDCOM = (sal_Int16)20;
+static const ::sal_Int16 ENDHDR = (sal_Int16)22;
+static const ::sal_Int16 ENDOFF = (sal_Int16)16;
+static const ::sal_Int32 ENDSIG = (sal_Int32)101010256;
+static const ::sal_Int16 ENDSIZ = (sal_Int16)12;
+static const ::sal_Int16 ENDSUB = (sal_Int16)8;
+static const ::sal_Int16 ENDTOT = (sal_Int16)10;
+static const ::sal_Int16 EXTCRC = (sal_Int16)4;
+static const ::sal_Int16 EXTHDR = (sal_Int16)16;
+static const ::sal_Int16 EXTLEN = (sal_Int16)12;
+static const ::sal_Int32 EXTSIG = (sal_Int32)134695760;
+static const ::sal_Int16 EXTSIZ = (sal_Int16)8;
+static const ::sal_Int16 FILTERED = (sal_Int16)1;
+static const ::sal_Int16 HUFFMAN_ONLY = (sal_Int16)2;
+static const ::sal_Int16 LOCCRC = (sal_Int16)14;
+static const ::sal_Int16 LOCEXT = (sal_Int16)28;
+static const ::sal_Int16 LOCFLG = (sal_Int16)6;
+static const ::sal_Int16 LOCHDR = (sal_Int16)30;
+static const ::sal_Int16 LOCHOW = (sal_Int16)8;
+static const ::sal_Int16 LOCLEN = (sal_Int16)22;
+static const ::sal_Int16 LOCNAM = (sal_Int16)26;
+static const ::sal_Int32 LOCSIG = (sal_Int32)67324752;
+static const ::sal_Int16 LOCSIZ = (sal_Int16)18;
+static const ::sal_Int16 LOCTIM = (sal_Int16)10;
+static const ::sal_Int16 LOCVER = (sal_Int16)4;
+static const ::sal_Int16 NO_COMPRESSION = (sal_Int16)0;
+static const ::sal_Int32 SPANSIG = (sal_Int32)134695760;
+static const ::sal_Int16 STORED = (sal_Int16)0;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_PACKAGES_ZIP_ZIPCONSTANTS_HDL

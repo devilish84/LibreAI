@@ -1,0 +1,15 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTDATAPOINT_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTDATAPOINT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/chart/ChartDataValue.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+typedef ::css::uno::Sequence< ::css::chart::ChartDataValue > ChartDataPoint;
+
+} } } }
+#endif // INCLUDED_COM_SUN_STAR_CHART_CHARTDATAPOINT_HDL

@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_DATAEDITOREVENTTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_DATAEDITOREVENTTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI DataEditorEventType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI DataEditorEventType
+{
+
+#endif
+    DataEditorEventType_DONE = 0,
+    DataEditorEventType_CANCELED = 1,
+    DataEditorEventType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto DataEditorEventType_DONE = DataEditorEventType::DataEditorEventType_DONE;
+constexpr auto DataEditorEventType_CANCELED = DataEditorEventType::DataEditorEventType_CANCELED;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::DataEditorEventType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::util::DataEditorEventType *);
+
+#endif

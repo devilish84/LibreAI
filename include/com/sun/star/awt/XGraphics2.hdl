@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XGRAPHICS2_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XGRAPHICS2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/awt/XGraphics.hdl"
+namespace com { namespace sun { namespace star { namespace graphic { class XGraphic; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XGraphics2 : public ::css::awt::XGraphics
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XGraphics2() = default;
+    XGraphics2(XGraphics2 const &) = default;
+    XGraphics2(XGraphics2 &&) = default;
+    XGraphics2 & operator =(XGraphics2 const &) = default;
+    XGraphics2 & operator =(XGraphics2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL clear( const ::css::awt::Rectangle& aRect ) = 0;
+    virtual void SAL_CALL drawImage( ::sal_Int32 nX, ::sal_Int32 nY, ::sal_Int32 nWidth, ::sal_Int32 nHeight, ::sal_Int16 nStyle, const ::css::uno::Reference< ::css::graphic::XGraphic >& aGraphic ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XGraphics2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XGraphics2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XGraphics2 > *);
+
+#endif

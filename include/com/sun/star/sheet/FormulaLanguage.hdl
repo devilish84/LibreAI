@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_FORMULALANGUAGE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_FORMULALANGUAGE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace FormulaLanguage {
+
+static const ::sal_Int32 API = (sal_Int32)6;
+static const ::sal_Int32 ENGLISH = (sal_Int32)2;
+static const ::sal_Int32 NATIVE = (sal_Int32)3;
+static const ::sal_Int32 ODFF = (sal_Int32)0;
+static const ::sal_Int32 ODF_11 = (sal_Int32)1;
+static const ::sal_Int32 OOXML = (sal_Int32)5;
+static const ::sal_Int32 XL_ENGLISH = (sal_Int32)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_FORMULALANGUAGE_HDL

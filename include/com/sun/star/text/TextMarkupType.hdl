@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_TEXTMARKUPTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_TEXTMARKUPTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace TextMarkupType {
+
+static const ::sal_Int32 PROOFREADING = (sal_Int32)2;
+static const ::sal_Int32 SENTENCE = (sal_Int32)4;
+static const ::sal_Int32 SMARTTAG = (sal_Int32)3;
+static const ::sal_Int32 SPELLCHECK = (sal_Int32)1;
+static const ::sal_Int32 TRACK_CHANGE_DELETION = (sal_Int32)6;
+static const ::sal_Int32 TRACK_CHANGE_FORMATCHANGE = (sal_Int32)7;
+static const ::sal_Int32 TRACK_CHANGE_INSERTION = (sal_Int32)5;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_TEXTMARKUPTYPE_HDL

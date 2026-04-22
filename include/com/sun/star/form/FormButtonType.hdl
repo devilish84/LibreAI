@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_FORMBUTTONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_FORMBUTTONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FormButtonType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FormButtonType
+{
+
+#endif
+    FormButtonType_PUSH = 0,
+    FormButtonType_SUBMIT = 1,
+    FormButtonType_RESET = 2,
+    FormButtonType_URL = 3,
+    FormButtonType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FormButtonType_PUSH = FormButtonType::FormButtonType_PUSH;
+constexpr auto FormButtonType_SUBMIT = FormButtonType::FormButtonType_SUBMIT;
+constexpr auto FormButtonType_RESET = FormButtonType::FormButtonType_RESET;
+constexpr auto FormButtonType_URL = FormButtonType::FormButtonType_URL;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::FormButtonType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::form::FormButtonType *);
+
+#endif

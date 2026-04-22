@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLEHYPERTEXT_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLEHYPERTEXT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace accessibility { class XAccessibleHyperlink; } } } }
+#include "com/sun/star/accessibility/XAccessibleText.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAccessibleHypertext : public ::css::accessibility::XAccessibleText
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAccessibleHypertext() = default;
+    XAccessibleHypertext(XAccessibleHypertext const &) = default;
+    XAccessibleHypertext(XAccessibleHypertext &&) = default;
+    XAccessibleHypertext & operator =(XAccessibleHypertext const &) = default;
+    XAccessibleHypertext & operator =(XAccessibleHypertext &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getHyperLinkCount() = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessibleHyperlink > SAL_CALL getHyperLink( ::sal_Int32 nLinkIndex ) = 0;
+    virtual ::sal_Int32 SAL_CALL getHyperLinkIndex( ::sal_Int32 nCharIndex ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAccessibleHypertext() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::XAccessibleHypertext const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::accessibility::XAccessibleHypertext > *);
+
+#endif

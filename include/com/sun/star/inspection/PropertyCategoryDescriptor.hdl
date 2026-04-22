@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_INSPECTION_PROPERTYCATEGORYDESCRIPTOR_HDL
+#define INCLUDED_COM_SUN_STAR_INSPECTION_PROPERTYCATEGORYDESCRIPTOR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace inspection {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED PropertyCategoryDescriptor {
+    inline PropertyCategoryDescriptor();
+
+    inline PropertyCategoryDescriptor(const ::rtl::OUString& ProgrammaticName_, const ::rtl::OUString& UIName_, const ::rtl::OUString& HelpURL_);
+
+    ::rtl::OUString ProgrammaticName;
+    ::rtl::OUString UIName;
+    ::rtl::OUString HelpURL;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::inspection::PropertyCategoryDescriptor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::inspection::PropertyCategoryDescriptor *);
+
+#endif

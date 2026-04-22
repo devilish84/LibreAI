@@ -1,0 +1,73 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_XSQLOUTPUT_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_XSQLOUTPUT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XArray; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XBlob; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XClob; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XRef; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XSQLData; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XStruct; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/Date.hdl"
+#include "com/sun/star/util/DateTime.hdl"
+#include "com/sun/star/util/Time.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSQLOutput : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSQLOutput() = default;
+    XSQLOutput(XSQLOutput const &) = default;
+    XSQLOutput(XSQLOutput &&) = default;
+    XSQLOutput & operator =(XSQLOutput const &) = default;
+    XSQLOutput & operator =(XSQLOutput &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL writeString( const ::rtl::OUString& x ) = 0;
+    virtual void SAL_CALL writeBoolean( ::sal_Bool x ) = 0;
+    virtual void SAL_CALL writeByte( ::sal_Int8 x ) = 0;
+    virtual void SAL_CALL writeShort( ::sal_Int16 x ) = 0;
+    virtual void SAL_CALL writeInt( ::sal_Int32 x ) = 0;
+    virtual void SAL_CALL writeLong( ::sal_Int64 x ) = 0;
+    virtual void SAL_CALL writeFloat( float x ) = 0;
+    virtual void SAL_CALL writeDouble( double x ) = 0;
+    virtual void SAL_CALL writeBytes( const ::css::uno::Sequence< ::sal_Int8 >& x ) = 0;
+    virtual void SAL_CALL writeDate( const ::css::util::Date& x ) = 0;
+    virtual void SAL_CALL writeTime( const ::css::util::Time& x ) = 0;
+    virtual void SAL_CALL writeTimestamp( const ::css::util::DateTime& x ) = 0;
+    virtual void SAL_CALL writeBinaryStream( const ::css::uno::Reference< ::css::io::XInputStream >& x ) = 0;
+    virtual void SAL_CALL writeCharacterStream( const ::css::uno::Reference< ::css::io::XInputStream >& x ) = 0;
+    virtual void SAL_CALL writeObject( const ::css::uno::Reference< ::css::sdbc::XSQLData >& x ) = 0;
+    virtual void SAL_CALL writeRef( const ::css::uno::Reference< ::css::sdbc::XRef >& x ) = 0;
+    virtual void SAL_CALL writeBlob( const ::css::uno::Reference< ::css::sdbc::XBlob >& x ) = 0;
+    virtual void SAL_CALL writeClob( const ::css::uno::Reference< ::css::sdbc::XClob >& x ) = 0;
+    virtual void SAL_CALL writeStruct( const ::css::uno::Reference< ::css::sdbc::XStruct >& x ) = 0;
+    virtual void SAL_CALL writeArray( const ::css::uno::Reference< ::css::sdbc::XArray >& x ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSQLOutput() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::XSQLOutput const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbc::XSQLOutput > *);
+
+#endif

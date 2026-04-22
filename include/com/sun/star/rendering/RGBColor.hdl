@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_RGBCOLOR_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_RGBCOLOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/rendering/ColorComponent.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED RGBColor {
+    inline RGBColor();
+
+    inline RGBColor(const double& Red_, const double& Green_, const double& Blue_);
+
+    double Red;
+    double Green;
+    double Blue;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::RGBColor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::rendering::RGBColor *);
+
+#endif

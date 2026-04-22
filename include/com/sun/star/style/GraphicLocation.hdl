@@ -1,0 +1,58 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_GRAPHICLOCATION_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_GRAPHICLOCATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace style {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI GraphicLocation
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI GraphicLocation
+{
+
+#endif
+    GraphicLocation_NONE = 0,
+    GraphicLocation_LEFT_TOP = 1,
+    GraphicLocation_MIDDLE_TOP = 2,
+    GraphicLocation_RIGHT_TOP = 3,
+    GraphicLocation_LEFT_MIDDLE = 4,
+    GraphicLocation_MIDDLE_MIDDLE = 5,
+    GraphicLocation_RIGHT_MIDDLE = 6,
+    GraphicLocation_LEFT_BOTTOM = 7,
+    GraphicLocation_MIDDLE_BOTTOM = 8,
+    GraphicLocation_RIGHT_BOTTOM = 9,
+    GraphicLocation_AREA = 10,
+    GraphicLocation_TILED = 11,
+    GraphicLocation_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto GraphicLocation_NONE = GraphicLocation::GraphicLocation_NONE;
+constexpr auto GraphicLocation_LEFT_TOP = GraphicLocation::GraphicLocation_LEFT_TOP;
+constexpr auto GraphicLocation_MIDDLE_TOP = GraphicLocation::GraphicLocation_MIDDLE_TOP;
+constexpr auto GraphicLocation_RIGHT_TOP = GraphicLocation::GraphicLocation_RIGHT_TOP;
+constexpr auto GraphicLocation_LEFT_MIDDLE = GraphicLocation::GraphicLocation_LEFT_MIDDLE;
+constexpr auto GraphicLocation_MIDDLE_MIDDLE = GraphicLocation::GraphicLocation_MIDDLE_MIDDLE;
+constexpr auto GraphicLocation_RIGHT_MIDDLE = GraphicLocation::GraphicLocation_RIGHT_MIDDLE;
+constexpr auto GraphicLocation_LEFT_BOTTOM = GraphicLocation::GraphicLocation_LEFT_BOTTOM;
+constexpr auto GraphicLocation_MIDDLE_BOTTOM = GraphicLocation::GraphicLocation_MIDDLE_BOTTOM;
+constexpr auto GraphicLocation_RIGHT_BOTTOM = GraphicLocation::GraphicLocation_RIGHT_BOTTOM;
+constexpr auto GraphicLocation_AREA = GraphicLocation::GraphicLocation_AREA;
+constexpr auto GraphicLocation_TILED = GraphicLocation::GraphicLocation_TILED;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::style::GraphicLocation const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::style::GraphicLocation *);
+
+#endif

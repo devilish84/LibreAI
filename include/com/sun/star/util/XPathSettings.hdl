@@ -1,0 +1,93 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_XPATHSETTINGS_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_XPATHSETTINGS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XPropertySet.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPathSettings : public ::css::beans::XPropertySet
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPathSettings() = default;
+    XPathSettings(XPathSettings const &) = default;
+    XPathSettings(XPathSettings &&) = default;
+    XPathSettings & operator =(XPathSettings const &) = default;
+    XPathSettings & operator =(XPathSettings &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getAddin() = 0;
+    virtual void SAL_CALL setAddin( const ::rtl::OUString& _addin ) = 0;
+    virtual ::rtl::OUString SAL_CALL getAutoCorrect() = 0;
+    virtual void SAL_CALL setAutoCorrect( const ::rtl::OUString& _autocorrect ) = 0;
+    virtual ::rtl::OUString SAL_CALL getAutoText() = 0;
+    virtual void SAL_CALL setAutoText( const ::rtl::OUString& _autotext ) = 0;
+    virtual ::rtl::OUString SAL_CALL getBackup() = 0;
+    virtual void SAL_CALL setBackup( const ::rtl::OUString& _backup ) = 0;
+    virtual ::rtl::OUString SAL_CALL getBasic() = 0;
+    virtual void SAL_CALL setBasic( const ::rtl::OUString& _basic ) = 0;
+    virtual ::rtl::OUString SAL_CALL getBitmap() = 0;
+    virtual void SAL_CALL setBitmap( const ::rtl::OUString& _bitmap ) = 0;
+    virtual ::rtl::OUString SAL_CALL getConfig() = 0;
+    virtual void SAL_CALL setConfig( const ::rtl::OUString& _config ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDictionary() = 0;
+    virtual void SAL_CALL setDictionary( const ::rtl::OUString& _dictionary ) = 0;
+    virtual ::rtl::OUString SAL_CALL getFavorite() = 0;
+    virtual void SAL_CALL setFavorite( const ::rtl::OUString& _favorite ) = 0;
+    virtual ::rtl::OUString SAL_CALL getFilter() = 0;
+    virtual void SAL_CALL setFilter( const ::rtl::OUString& _filter ) = 0;
+    virtual ::rtl::OUString SAL_CALL getGallery() = 0;
+    virtual void SAL_CALL setGallery( const ::rtl::OUString& _gallery ) = 0;
+    virtual ::rtl::OUString SAL_CALL getGraphic() = 0;
+    virtual void SAL_CALL setGraphic( const ::rtl::OUString& _graphic ) = 0;
+    virtual ::rtl::OUString SAL_CALL getHelp() = 0;
+    virtual void SAL_CALL setHelp( const ::rtl::OUString& _help ) = 0;
+    virtual ::rtl::OUString SAL_CALL getLinguistic() = 0;
+    virtual void SAL_CALL setLinguistic( const ::rtl::OUString& _linguistic ) = 0;
+    virtual ::rtl::OUString SAL_CALL getModule() = 0;
+    virtual void SAL_CALL setModule( const ::rtl::OUString& _module ) = 0;
+    virtual ::rtl::OUString SAL_CALL getPalette() = 0;
+    virtual void SAL_CALL setPalette( const ::rtl::OUString& _palette ) = 0;
+    virtual ::rtl::OUString SAL_CALL getPlugin() = 0;
+    virtual void SAL_CALL setPlugin( const ::rtl::OUString& _plugin ) = 0;
+    virtual ::rtl::OUString SAL_CALL getStorage() = 0;
+    virtual void SAL_CALL setStorage( const ::rtl::OUString& _storage ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTemp() = 0;
+    virtual void SAL_CALL setTemp( const ::rtl::OUString& _temp ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTemplate() = 0;
+    virtual void SAL_CALL setTemplate( const ::rtl::OUString& _template ) = 0;
+    virtual ::rtl::OUString SAL_CALL getUIConfig() = 0;
+    virtual void SAL_CALL setUIConfig( const ::rtl::OUString& _uiconfig ) = 0;
+    virtual ::rtl::OUString SAL_CALL getUserConfig() = 0;
+    virtual void SAL_CALL setUserConfig( const ::rtl::OUString& _userconfig ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getUserDictionary() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setUserDictionary( const ::rtl::OUString& _userdictionary ) = 0;
+    virtual ::rtl::OUString SAL_CALL getWork() = 0;
+    virtual void SAL_CALL setWork( const ::rtl::OUString& _work ) = 0;
+    virtual ::rtl::OUString SAL_CALL getBasePathShareLayer() = 0;
+    virtual void SAL_CALL setBasePathShareLayer( const ::rtl::OUString& _basepathsharelayer ) = 0;
+    virtual ::rtl::OUString SAL_CALL getBasePathUserLayer() = 0;
+    virtual void SAL_CALL setBasePathUserLayer( const ::rtl::OUString& _basepathuserlayer ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPathSettings() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::XPathSettings const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::util::XPathSettings > *);
+
+#endif

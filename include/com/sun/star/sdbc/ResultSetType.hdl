@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_RESULTSETTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_RESULTSETTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbc { namespace ResultSetType {
+
+static const ::sal_Int32 FORWARD_ONLY = (sal_Int32)1003;
+static const ::sal_Int32 SCROLL_INSENSITIVE = (sal_Int32)1004;
+static const ::sal_Int32 SCROLL_SENSITIVE = (sal_Int32)1005;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBC_RESULTSETTYPE_HDL

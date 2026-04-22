@@ -1,0 +1,15 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_PROPERTYVALUES_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_PROPERTYVALUES_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace beans {
+
+typedef ::css::uno::Sequence< ::css::beans::PropertyValue > PropertyValues;
+
+} } } }
+#endif // INCLUDED_COM_SUN_STAR_BEANS_PROPERTYVALUES_HDL

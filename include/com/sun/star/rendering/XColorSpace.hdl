@@ -1,0 +1,58 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XCOLORSPACE_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XCOLORSPACE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/rendering/ARGBColor.hdl"
+#include "com/sun/star/rendering/ColorComponent.hdl"
+#include "com/sun/star/rendering/RGBColor.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XColorSpace; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XColorSpace : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XColorSpace() = default;
+    XColorSpace(XColorSpace const &) = default;
+    XColorSpace(XColorSpace &&) = default;
+    XColorSpace & operator =(XColorSpace const &) = default;
+    XColorSpace & operator =(XColorSpace &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int8 SAL_CALL getType() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getComponentTags() = 0;
+    virtual ::sal_Int8 SAL_CALL getRenderingIntent() = 0;
+    virtual ::css::uno::Sequence< ::css::beans::PropertyValue > SAL_CALL getProperties() = 0;
+    virtual ::css::uno::Sequence< double > SAL_CALL convertColorSpace( const ::css::uno::Sequence< double >& deviceColor, const ::css::uno::Reference< ::css::rendering::XColorSpace >& targetColorSpace ) = 0;
+    virtual ::css::uno::Sequence< ::css::rendering::RGBColor > SAL_CALL convertToRGB( const ::css::uno::Sequence< double >& deviceColor ) = 0;
+    virtual ::css::uno::Sequence< ::css::rendering::ARGBColor > SAL_CALL convertToARGB( const ::css::uno::Sequence< double >& deviceColor ) = 0;
+    virtual ::css::uno::Sequence< ::css::rendering::ARGBColor > SAL_CALL convertToPARGB( const ::css::uno::Sequence< double >& deviceColor ) = 0;
+    virtual ::css::uno::Sequence< double > SAL_CALL convertFromRGB( const ::css::uno::Sequence< ::css::rendering::RGBColor >& rgbColor ) = 0;
+    virtual ::css::uno::Sequence< double > SAL_CALL convertFromARGB( const ::css::uno::Sequence< ::css::rendering::ARGBColor >& rgbColor ) = 0;
+    virtual ::css::uno::Sequence< double > SAL_CALL convertFromPARGB( const ::css::uno::Sequence< ::css::rendering::ARGBColor >& rgbColor ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XColorSpace() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XColorSpace const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XColorSpace > *);
+
+#endif

@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONFIGURATION_XREADWRITEACCESS_HDL
+#define INCLUDED_COM_SUN_STAR_CONFIGURATION_XREADWRITEACCESS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XHierarchicalPropertySetInfo.hdl"
+#include "com/sun/star/container/XHierarchicalNameReplace.hdl"
+#include "com/sun/star/util/XChangesBatch.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace configuration {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XReadWriteAccess : public ::css::container::XHierarchicalNameReplace, public ::css::util::XChangesBatch, public ::css::beans::XHierarchicalPropertySetInfo
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XReadWriteAccess() = default;
+    XReadWriteAccess(XReadWriteAccess const &) = default;
+    XReadWriteAccess(XReadWriteAccess &&) = default;
+    XReadWriteAccess & operator =(XReadWriteAccess const &) = default;
+    XReadWriteAccess & operator =(XReadWriteAccess &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XReadWriteAccess() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::configuration::XReadWriteAccess const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::configuration::XReadWriteAccess > *);
+
+#endif

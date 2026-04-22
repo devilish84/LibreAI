@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_PARAGRAPHADJUST_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_PARAGRAPHADJUST_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace style {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ParagraphAdjust
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ParagraphAdjust
+{
+
+#endif
+    ParagraphAdjust_LEFT = 0,
+    ParagraphAdjust_RIGHT = 1,
+    ParagraphAdjust_BLOCK = 2,
+    ParagraphAdjust_CENTER = 3,
+    ParagraphAdjust_STRETCH = 4,
+    ParagraphAdjust_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ParagraphAdjust_LEFT = ParagraphAdjust::ParagraphAdjust_LEFT;
+constexpr auto ParagraphAdjust_RIGHT = ParagraphAdjust::ParagraphAdjust_RIGHT;
+constexpr auto ParagraphAdjust_BLOCK = ParagraphAdjust::ParagraphAdjust_BLOCK;
+constexpr auto ParagraphAdjust_CENTER = ParagraphAdjust::ParagraphAdjust_CENTER;
+constexpr auto ParagraphAdjust_STRETCH = ParagraphAdjust::ParagraphAdjust_STRETCH;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::style::ParagraphAdjust const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::style::ParagraphAdjust *);
+
+#endif

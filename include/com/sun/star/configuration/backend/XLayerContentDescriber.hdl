@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_XLAYERCONTENTDESCRIBER_HDL
+#define INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_XLAYERCONTENTDESCRIBER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/configuration/backend/PropertyInfo.hdl"
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend { class XLayerHandler; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLayerContentDescriber : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLayerContentDescriber() = default;
+    XLayerContentDescriber(XLayerContentDescriber const &) = default;
+    XLayerContentDescriber(XLayerContentDescriber &&) = default;
+    XLayerContentDescriber & operator =(XLayerContentDescriber const &) = default;
+    XLayerContentDescriber & operator =(XLayerContentDescriber &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL describeLayer( const ::css::uno::Reference< ::css::configuration::backend::XLayerHandler >& aHandler, const ::css::uno::Sequence< ::css::configuration::backend::PropertyInfo >& aPropertyInfos ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLayerContentDescriber() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::configuration::backend::XLayerContentDescriber const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::configuration::backend::XLayerContentDescriber > *);
+
+#endif

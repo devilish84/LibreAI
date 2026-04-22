@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATATYPE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATATYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace BibliographyDataType {
+
+static const ::sal_Int16 ARTICLE = (sal_Int16)0;
+static const ::sal_Int16 BOOK = (sal_Int16)1;
+static const ::sal_Int16 BOOKLET = (sal_Int16)2;
+static const ::sal_Int16 CONFERENCE = (sal_Int16)3;
+static const ::sal_Int16 CUSTOM1 = (sal_Int16)17;
+static const ::sal_Int16 CUSTOM2 = (sal_Int16)18;
+static const ::sal_Int16 CUSTOM3 = (sal_Int16)19;
+static const ::sal_Int16 CUSTOM4 = (sal_Int16)20;
+static const ::sal_Int16 CUSTOM5 = (sal_Int16)21;
+static const ::sal_Int16 EMAIL = (sal_Int16)15;
+static const ::sal_Int16 INBOOK = (sal_Int16)4;
+static const ::sal_Int16 INCOLLECTION = (sal_Int16)5;
+static const ::sal_Int16 INPROCEEDINGS = (sal_Int16)6;
+static const ::sal_Int16 JOURNAL = (sal_Int16)7;
+static const ::sal_Int16 MANUAL = (sal_Int16)8;
+static const ::sal_Int16 MASTERSTHESIS = (sal_Int16)9;
+static const ::sal_Int16 MISC = (sal_Int16)10;
+static const ::sal_Int16 PHDTHESIS = (sal_Int16)11;
+static const ::sal_Int16 PROCEEDINGS = (sal_Int16)12;
+static const ::sal_Int16 TECHREPORT = (sal_Int16)13;
+static const ::sal_Int16 UNPUBLISHED = (sal_Int16)14;
+static const ::sal_Int16 WWW = (sal_Int16)16;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATATYPE_HDL

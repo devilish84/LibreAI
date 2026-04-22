@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XFONT_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XFONT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/FontDescriptor.hdl"
+#include "com/sun/star/awt/SimpleFontMetric.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFont : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFont() = default;
+    XFont(XFont const &) = default;
+    XFont(XFont &&) = default;
+    XFont & operator =(XFont const &) = default;
+    XFont & operator =(XFont &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::awt::FontDescriptor SAL_CALL getFontDescriptor() = 0;
+    virtual ::css::awt::SimpleFontMetric SAL_CALL getFontMetric() = 0;
+    virtual ::sal_Int16 SAL_CALL getCharWidth( ::sal_Unicode c ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int16 > SAL_CALL getCharWidths( ::sal_Unicode nFirst, ::sal_Unicode nLast ) = 0;
+    virtual ::sal_Int32 SAL_CALL getStringWidth( const ::rtl::OUString& str ) = 0;
+    virtual ::sal_Int32 SAL_CALL getStringWidthArray( const ::rtl::OUString& str, ::css::uno::Sequence< ::sal_Int32 >& aDXArray ) = 0;
+    virtual void SAL_CALL getKernPairs( ::css::uno::Sequence< ::sal_Unicode >& Chars1, ::css::uno::Sequence< ::sal_Unicode >& Chars2, ::css::uno::Sequence< ::sal_Int16 >& Kerns ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFont() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XFont const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XFont > *);
+
+#endif

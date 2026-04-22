@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONTAINER_XSET_HDL
+#define INCLUDED_COM_SUN_STAR_CONTAINER_XSET_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XEnumerationAccess.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace container {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSet : public ::css::container::XEnumerationAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSet() = default;
+    XSet(XSet const &) = default;
+    XSet(XSet &&) = default;
+    XSet & operator =(XSet const &) = default;
+    XSet & operator =(XSet &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL has( const ::css::uno::Any& aElement ) = 0;
+    virtual void SAL_CALL insert( const ::css::uno::Any& aElement ) = 0;
+    virtual void SAL_CALL remove( const ::css::uno::Any& aElement ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSet() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::container::XSet const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::container::XSet > *);
+
+#endif

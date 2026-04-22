@@ -1,0 +1,67 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_RUNTIME_XFORMCONTROLLER_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_RUNTIME_XFORMCONTROLLER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XControl; } } } }
+#include "com/sun/star/awt/XTabController.hdl"
+#include "com/sun/star/container/XChild.hdl"
+#include "com/sun/star/container/XEnumerationAccess.hdl"
+#include "com/sun/star/container/XIndexAccess.hdl"
+#include "com/sun/star/form/XConfirmDeleteBroadcaster.hdl"
+#include "com/sun/star/form/XDatabaseParameterBroadcaster2.hdl"
+namespace com { namespace sun { namespace star { namespace form { class XFormControllerListener; } } } }
+namespace com { namespace sun { namespace star { namespace form { namespace runtime { class XFormController; } } } } }
+namespace com { namespace sun { namespace star { namespace form { namespace runtime { class XFormControllerContext; } } } } }
+namespace com { namespace sun { namespace star { namespace form { namespace runtime { class XFormOperations; } } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/sdb/XRowSetApproveBroadcaster.hdl"
+#include "com/sun/star/sdb/XSQLErrorBroadcaster.hdl"
+namespace com { namespace sun { namespace star { namespace task { class XInteractionHandler; } } } }
+#include "com/sun/star/util/XModeSelector.hdl"
+#include "com/sun/star/util/XModifyBroadcaster.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form { namespace runtime {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFormController : public ::css::awt::XTabController, public ::css::container::XChild, public ::css::container::XIndexAccess, public ::css::container::XEnumerationAccess, public ::css::lang::XComponent, public ::css::util::XModifyBroadcaster, public ::css::form::XConfirmDeleteBroadcaster, public ::css::sdb::XSQLErrorBroadcaster, public ::css::sdb::XRowSetApproveBroadcaster, public ::css::form::XDatabaseParameterBroadcaster2, public ::css::util::XModeSelector
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFormController() = default;
+    XFormController(XFormController const &) = default;
+    XFormController(XFormController &&) = default;
+    XFormController & operator =(XFormController const &) = default;
+    XFormController & operator =(XFormController &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Reference< ::css::form::runtime::XFormOperations > SAL_CALL getFormOperations() = 0;
+    virtual ::css::uno::Reference< ::css::awt::XControl > SAL_CALL getCurrentControl() = 0;
+    virtual ::css::uno::Reference< ::css::form::runtime::XFormControllerContext > SAL_CALL getContext() = 0;
+    virtual void SAL_CALL setContext( const ::css::uno::Reference< ::css::form::runtime::XFormControllerContext >& _context ) = 0;
+    virtual ::css::uno::Reference< ::css::task::XInteractionHandler > SAL_CALL getInteractionHandler() = 0;
+    virtual void SAL_CALL setInteractionHandler( const ::css::uno::Reference< ::css::task::XInteractionHandler >& _interactionhandler ) = 0;
+
+    // Methods
+    virtual void SAL_CALL addActivateListener( const ::css::uno::Reference< ::css::form::XFormControllerListener >& Listener ) = 0;
+    virtual void SAL_CALL removeActivateListener( const ::css::uno::Reference< ::css::form::XFormControllerListener >& Listener ) = 0;
+    virtual void SAL_CALL addChildController( const ::css::uno::Reference< ::css::form::runtime::XFormController >& ChildController ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFormController() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::runtime::XFormController const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::form::runtime::XFormController > *);
+
+#endif

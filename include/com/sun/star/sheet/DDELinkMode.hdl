@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DDELINKMODE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DDELINKMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI DDELinkMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI DDELinkMode
+{
+
+#endif
+    DDELinkMode_DEFAULT = 0,
+    DDELinkMode_ENGLISH = 1,
+    DDELinkMode_TEXT = 2,
+    DDELinkMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto DDELinkMode_DEFAULT = DDELinkMode::DDELinkMode_DEFAULT;
+constexpr auto DDELinkMode_ENGLISH = DDELinkMode::DDELinkMode_ENGLISH;
+constexpr auto DDELinkMode_TEXT = DDELinkMode::DDELinkMode_TEXT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::DDELinkMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::DDELinkMode *);
+
+#endif

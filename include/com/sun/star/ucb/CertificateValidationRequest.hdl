@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_CERTIFICATEVALIDATIONREQUEST_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_CERTIFICATEVALIDATIONREQUEST_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace security { class XCertificate; } } } }
+#include "com/sun/star/task/ClassifiedInteractionRequest.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED CertificateValidationRequest : public ::css::task::ClassifiedInteractionRequest
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE CertificateValidationRequest(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE CertificateValidationRequest(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::css::task::InteractionClassification& Classification_, const ::sal_Int32& CertificateValidity_, const ::css::uno::Reference< ::css::security::XCertificate >& Certificate_, const ::rtl::OUString& HostName_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE CertificateValidationRequest(CertificateValidationRequest const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~CertificateValidationRequest();
+
+    inline CPPU_GCC_DLLPRIVATE CertificateValidationRequest & operator =(CertificateValidationRequest const &);
+#endif
+
+    ::sal_Int32 CertificateValidity CPPU_GCC3_ALIGN( ::css::task::ClassifiedInteractionRequest );
+    ::css::uno::Reference< ::css::security::XCertificate > Certificate;
+    ::rtl::OUString HostName;
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::CertificateValidationRequest const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::CertificateValidationRequest *);
+
+#endif

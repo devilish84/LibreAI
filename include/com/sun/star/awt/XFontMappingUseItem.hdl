@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XFONTMAPPINGUSEITEM_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XFONTMAPPINGUSEITEM_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED XFontMappingUseItem {
+    inline XFontMappingUseItem();
+
+    inline XFontMappingUseItem(const ::rtl::OUString& originalFont_, const ::css::uno::Sequence< ::rtl::OUString >& usedFonts_, const ::sal_Int32& count_);
+
+    ::rtl::OUString originalFont;
+    ::css::uno::Sequence< ::rtl::OUString > usedFonts;
+    ::sal_Int32 count;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XFontMappingUseItem const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::XFontMappingUseItem *);
+
+#endif

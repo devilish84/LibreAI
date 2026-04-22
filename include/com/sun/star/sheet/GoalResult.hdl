@@ -1,0 +1,35 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_GOALRESULT_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_GOALRESULT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED GoalResult {
+    inline GoalResult();
+
+    inline GoalResult(const double& Divergence_, const double& Result_);
+
+    double Divergence;
+    double Result;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::GoalResult const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::GoalResult *);
+
+#endif

@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XCONVERSIONPROPERTYTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XCONVERSIONPROPERTYTYPE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XConversionPropertyType : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XConversionPropertyType() = default;
+    XConversionPropertyType(XConversionPropertyType const &) = default;
+    XConversionPropertyType(XConversionPropertyType &&) = default;
+    XConversionPropertyType & operator =(XConversionPropertyType const &) = default;
+    XConversionPropertyType & operator =(XConversionPropertyType &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setPropertyType( const ::rtl::OUString& aLeftText, const ::rtl::OUString& aRightText, ::sal_Int16 nPropertyType ) = 0;
+    virtual ::sal_Int16 SAL_CALL getPropertyType( const ::rtl::OUString& aLeftText, const ::rtl::OUString& aRightText ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XConversionPropertyType() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XConversionPropertyType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XConversionPropertyType > *);
+
+#endif

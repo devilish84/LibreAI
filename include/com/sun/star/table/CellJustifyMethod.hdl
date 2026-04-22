@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_CELLJUSTIFYMETHOD_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_CELLJUSTIFYMETHOD_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace table { namespace CellJustifyMethod {
+
+static const ::sal_Int32 AUTO = (sal_Int32)0;
+static const ::sal_Int32 DISTRIBUTE = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TABLE_CELLJUSTIFYMETHOD_HDL

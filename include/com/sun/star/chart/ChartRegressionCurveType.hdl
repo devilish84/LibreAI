@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTREGRESSIONCURVETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTREGRESSIONCURVETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ChartRegressionCurveType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ChartRegressionCurveType
+{
+
+#endif
+    ChartRegressionCurveType_NONE = 0,
+    ChartRegressionCurveType_LINEAR = 1,
+    ChartRegressionCurveType_LOGARITHM = 2,
+    ChartRegressionCurveType_EXPONENTIAL = 3,
+    ChartRegressionCurveType_POLYNOMIAL = 4,
+    ChartRegressionCurveType_POWER = 5,
+    ChartRegressionCurveType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ChartRegressionCurveType_NONE = ChartRegressionCurveType::ChartRegressionCurveType_NONE;
+constexpr auto ChartRegressionCurveType_LINEAR = ChartRegressionCurveType::ChartRegressionCurveType_LINEAR;
+constexpr auto ChartRegressionCurveType_LOGARITHM = ChartRegressionCurveType::ChartRegressionCurveType_LOGARITHM;
+constexpr auto ChartRegressionCurveType_EXPONENTIAL = ChartRegressionCurveType::ChartRegressionCurveType_EXPONENTIAL;
+constexpr auto ChartRegressionCurveType_POLYNOMIAL = ChartRegressionCurveType::ChartRegressionCurveType_POLYNOMIAL;
+constexpr auto ChartRegressionCurveType_POWER = ChartRegressionCurveType::ChartRegressionCurveType_POWER;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::ChartRegressionCurveType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart::ChartRegressionCurveType *);
+
+#endif

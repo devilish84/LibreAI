@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLEEDITABLETEXT_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLEEDITABLETEXT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/accessibility/XAccessibleText.hdl"
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAccessibleEditableText : public ::css::accessibility::XAccessibleText
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAccessibleEditableText() = default;
+    XAccessibleEditableText(XAccessibleEditableText const &) = default;
+    XAccessibleEditableText(XAccessibleEditableText &&) = default;
+    XAccessibleEditableText & operator =(XAccessibleEditableText const &) = default;
+    XAccessibleEditableText & operator =(XAccessibleEditableText &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL cutText( ::sal_Int32 nStartIndex, ::sal_Int32 nEndIndex ) = 0;
+    virtual ::sal_Bool SAL_CALL pasteText( ::sal_Int32 nIndex ) = 0;
+    virtual ::sal_Bool SAL_CALL deleteText( ::sal_Int32 nStartIndex, ::sal_Int32 nEndIndex ) = 0;
+    virtual ::sal_Bool SAL_CALL insertText( const ::rtl::OUString& sText, ::sal_Int32 nIndex ) = 0;
+    virtual ::sal_Bool SAL_CALL replaceText( ::sal_Int32 nStartIndex, ::sal_Int32 nEndIndex, const ::rtl::OUString& sReplacement ) = 0;
+    virtual ::sal_Bool SAL_CALL setAttributes( ::sal_Int32 nStartIndex, ::sal_Int32 nEndIndex, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aAttributeSet ) = 0;
+    virtual ::sal_Bool SAL_CALL setText( const ::rtl::OUString& sText ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAccessibleEditableText() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::XAccessibleEditableText const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::accessibility::XAccessibleEditableText > *);
+
+#endif

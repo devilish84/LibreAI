@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_REFLECTION_FIELDACCESSMODE_HDL
+#define INCLUDED_COM_SUN_STAR_REFLECTION_FIELDACCESSMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace reflection {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FieldAccessMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FieldAccessMode
+{
+
+#endif
+    FieldAccessMode_READWRITE = 0,
+    FieldAccessMode_READONLY = 1,
+    FieldAccessMode_WRITEONLY = 2,
+    FieldAccessMode_CONST = 3,
+    FieldAccessMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FieldAccessMode_READWRITE = FieldAccessMode::FieldAccessMode_READWRITE;
+constexpr auto FieldAccessMode_READONLY = FieldAccessMode::FieldAccessMode_READONLY;
+constexpr auto FieldAccessMode_WRITEONLY = FieldAccessMode::FieldAccessMode_WRITEONLY;
+constexpr auto FieldAccessMode_CONST = FieldAccessMode::FieldAccessMode_CONST;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::reflection::FieldAccessMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::reflection::FieldAccessMode *);
+
+#endif

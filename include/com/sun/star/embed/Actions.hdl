@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_ACTIONS_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_ACTIONS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace embed { namespace Actions {
+
+static const ::sal_Int32 PREVENT_CLOSE = (sal_Int32)1;
+static const ::sal_Int32 PREVENT_TERMINATION = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_EMBED_ACTIONS_HDL

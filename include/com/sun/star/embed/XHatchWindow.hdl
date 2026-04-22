@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XHATCHWINDOW_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XHATCHWINDOW_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Size.hdl"
+namespace com { namespace sun { namespace star { namespace embed { class XHatchWindowController; } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XHatchWindow : public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XHatchWindow() = default;
+    XHatchWindow(XHatchWindow const &) = default;
+    XHatchWindow(XHatchWindow &&) = default;
+    XHatchWindow & operator =(XHatchWindow const &) = default;
+    XHatchWindow & operator =(XHatchWindow &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::awt::Size SAL_CALL getHatchBorderSize() = 0;
+    virtual void SAL_CALL setHatchBorderSize( const ::css::awt::Size& _hatchbordersize ) = 0;
+
+    // Methods
+    virtual void SAL_CALL setController( const ::css::uno::Reference< ::css::embed::XHatchWindowController >& xController ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XHatchWindow() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XHatchWindow const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XHatchWindow > *);
+
+#endif

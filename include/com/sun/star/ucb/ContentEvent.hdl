@@ -1,0 +1,41 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_CONTENTEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_CONTENTEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+namespace com { namespace sun { namespace star { namespace ucb { class XContent; } } } }
+namespace com { namespace sun { namespace star { namespace ucb { class XContentIdentifier; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI ContentEvent: public ::css::lang::EventObject {
+    inline ContentEvent();
+
+    inline ContentEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::sal_Int32& Action_, const ::css::uno::Reference< ::css::ucb::XContent >& Content_, const ::css::uno::Reference< ::css::ucb::XContentIdentifier >& Id_);
+
+    ::sal_Int32 Action CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::css::uno::Reference< ::css::ucb::XContent > Content;
+    ::css::uno::Reference< ::css::ucb::XContentIdentifier > Id;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::ContentEvent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::ContentEvent *);
+
+#endif

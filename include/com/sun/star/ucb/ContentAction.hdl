@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_CONTENTACTION_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_CONTENTACTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ucb { namespace ContentAction {
+
+static const ::sal_Int32 DELETED = (sal_Int32)2;
+static const ::sal_Int32 EXCHANGED = (sal_Int32)4;
+static const ::sal_Int32 INSERTED = (sal_Int32)0;
+static const ::sal_Int32 REMOVED = (sal_Int32)1;
+static const ::sal_Int32 SEARCH_MATCHED = (sal_Int32)128;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UCB_CONTENTACTION_HDL

@@ -1,0 +1,15 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_CHANGESSET_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_CHANGESSET_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/util/ElementChange.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace util {
+
+typedef ::css::uno::Sequence< ::css::util::ElementChange > ChangesSet;
+
+} } } }
+#endif // INCLUDED_COM_SUN_STAR_UTIL_CHANGESSET_HDL

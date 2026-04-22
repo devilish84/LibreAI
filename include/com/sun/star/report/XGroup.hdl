@@ -1,0 +1,68 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_XGROUP_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_XGROUP_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XPropertySet.hdl"
+#include "com/sun/star/container/XChild.hdl"
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/report/XFunctionsSupplier.hdl"
+namespace com { namespace sun { namespace star { namespace report { class XGroups; } } } }
+namespace com { namespace sun { namespace star { namespace report { class XSection; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XGroup : public ::css::container::XChild, public ::css::beans::XPropertySet, public ::css::lang::XComponent, public ::css::report::XFunctionsSupplier
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XGroup() = default;
+    XGroup(XGroup const &) = default;
+    XGroup(XGroup &&) = default;
+    XGroup & operator =(XGroup const &) = default;
+    XGroup & operator =(XGroup &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Bool SAL_CALL getSortAscending() = 0;
+    virtual void SAL_CALL setSortAscending( ::sal_Bool _sortascending ) = 0;
+    virtual ::sal_Bool SAL_CALL getHeaderOn() = 0;
+    virtual void SAL_CALL setHeaderOn( ::sal_Bool _headeron ) = 0;
+    virtual ::sal_Bool SAL_CALL getFooterOn() = 0;
+    virtual void SAL_CALL setFooterOn( ::sal_Bool _footeron ) = 0;
+    virtual ::css::uno::Reference< ::css::report::XSection > SAL_CALL getHeader() = 0;
+    virtual ::css::uno::Reference< ::css::report::XSection > SAL_CALL getFooter() = 0;
+    virtual ::sal_Int16 SAL_CALL getGroupOn() = 0;
+    virtual void SAL_CALL setGroupOn( ::sal_Int16 _groupon ) = 0;
+    virtual ::sal_Int32 SAL_CALL getGroupInterval() = 0;
+    virtual void SAL_CALL setGroupInterval( ::sal_Int32 _groupinterval ) = 0;
+    virtual ::sal_Int16 SAL_CALL getKeepTogether() = 0;
+    virtual void SAL_CALL setKeepTogether( ::sal_Int16 _keeptogether ) = 0;
+    virtual ::css::uno::Reference< ::css::report::XGroups > SAL_CALL getGroups() = 0;
+    virtual ::rtl::OUString SAL_CALL getExpression() = 0;
+    virtual void SAL_CALL setExpression( const ::rtl::OUString& _expression ) = 0;
+    virtual ::sal_Bool SAL_CALL getStartNewColumn() = 0;
+    virtual void SAL_CALL setStartNewColumn( ::sal_Bool _startnewcolumn ) = 0;
+    virtual ::sal_Bool SAL_CALL getResetPageNumber() = 0;
+    virtual void SAL_CALL setResetPageNumber( ::sal_Bool _resetpagenumber ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XGroup() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::XGroup const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::XGroup > *);
+
+#endif

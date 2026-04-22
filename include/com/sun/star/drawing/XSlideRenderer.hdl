@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_XSLIDERENDERER_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_XSLIDERENDERER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Size.hdl"
+namespace com { namespace sun { namespace star { namespace awt { class XBitmap; } } } }
+namespace com { namespace sun { namespace star { namespace drawing { class XDrawPage; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XBitmap; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XCanvas; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSlideRenderer : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSlideRenderer() = default;
+    XSlideRenderer(XSlideRenderer const &) = default;
+    XSlideRenderer(XSlideRenderer &&) = default;
+    XSlideRenderer & operator =(XSlideRenderer const &) = default;
+    XSlideRenderer & operator =(XSlideRenderer &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::awt::XBitmap > SAL_CALL createPreview( const ::css::uno::Reference< ::css::drawing::XDrawPage >& xSlide, const ::css::awt::Size& aMaximumPreviewPixelSize, ::sal_Int16 nSuperSampleFactor ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XBitmap > SAL_CALL createPreviewForCanvas( const ::css::uno::Reference< ::css::drawing::XDrawPage >& xSlide, const ::css::awt::Size& aMaximumPreviewPixelSize, ::sal_Int16 nSuperSampleFactor, const ::css::uno::Reference< ::css::rendering::XCanvas >& xCanvas ) = 0;
+    virtual ::css::awt::Size SAL_CALL calculatePreviewSize( double nSlideAspectRatio, const ::css::awt::Size& aMaximumPreviewPixelSize ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSlideRenderer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::XSlideRenderer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::XSlideRenderer > *);
+
+#endif

@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_SYSTEM_SYSTEMSHELLEXECUTEFLAGS_HDL
+#define INCLUDED_COM_SUN_STAR_SYSTEM_SYSTEMSHELLEXECUTEFLAGS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace system { namespace SystemShellExecuteFlags {
+
+static const ::sal_Int32 DEFAULTS = (sal_Int32)0;
+static const ::sal_Int32 NO_SYSTEM_ERROR_MESSAGE = (sal_Int32)1;
+static const ::sal_Int32 URIS_ONLY = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SYSTEM_SYSTEMSHELLEXECUTEFLAGS_HDL

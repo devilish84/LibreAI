@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_RASTEROPERATION_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_RASTEROPERATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI RasterOperation
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI RasterOperation
+{
+
+#endif
+    RasterOperation_OVERPAINT = 0,
+    RasterOperation_XOR = 1,
+    RasterOperation_ZEROBITS = 2,
+    RasterOperation_ALLBITS = 3,
+    RasterOperation_INVERT = 4,
+    RasterOperation_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto RasterOperation_OVERPAINT = RasterOperation::RasterOperation_OVERPAINT;
+constexpr auto RasterOperation_XOR = RasterOperation::RasterOperation_XOR;
+constexpr auto RasterOperation_ZEROBITS = RasterOperation::RasterOperation_ZEROBITS;
+constexpr auto RasterOperation_ALLBITS = RasterOperation::RasterOperation_ALLBITS;
+constexpr auto RasterOperation_INVERT = RasterOperation::RasterOperation_INVERT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::RasterOperation const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::RasterOperation *);
+
+#endif

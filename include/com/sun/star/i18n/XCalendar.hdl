@@ -1,0 +1,66 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XCALENDAR_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XCALENDAR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/Calendar.hdl"
+#include "com/sun/star/i18n/CalendarItem.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCalendar : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCalendar() = default;
+    XCalendar(XCalendar const &) = default;
+    XCalendar(XCalendar &&) = default;
+    XCalendar & operator =(XCalendar const &) = default;
+    XCalendar & operator =(XCalendar &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL loadDefaultCalendar( const ::css::lang::Locale& rLocale ) = 0;
+    virtual void SAL_CALL loadCalendar( const ::rtl::OUString& uniqueID, const ::css::lang::Locale& rLocale ) = 0;
+    virtual ::css::i18n::Calendar SAL_CALL getLoadedCalendar() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getAllCalendars( const ::css::lang::Locale& rLocale ) = 0;
+    virtual ::rtl::OUString SAL_CALL getUniqueID() = 0;
+    virtual void SAL_CALL setDateTime( double nTimeInDays ) = 0;
+    virtual double SAL_CALL getDateTime() = 0;
+    virtual void SAL_CALL setValue( ::sal_Int16 nCalendarFieldIndex, ::sal_Int16 nValue ) = 0;
+    virtual ::sal_Int16 SAL_CALL getValue( ::sal_Int16 nCalendarFieldIndex ) = 0;
+    virtual ::sal_Bool SAL_CALL isValid() = 0;
+    virtual void SAL_CALL addValue( ::sal_Int16 nCalendarFieldIndex, ::sal_Int32 nAmount ) = 0;
+    virtual ::sal_Int16 SAL_CALL getFirstDayOfWeek() = 0;
+    virtual void SAL_CALL setFirstDayOfWeek( ::sal_Int16 nDay ) = 0;
+    virtual void SAL_CALL setMinimumNumberOfDaysForFirstWeek( ::sal_Int16 nDays ) = 0;
+    virtual ::sal_Int16 SAL_CALL getMinimumNumberOfDaysForFirstWeek() = 0;
+    virtual ::sal_Int16 SAL_CALL getNumberOfMonthsInYear() = 0;
+    virtual ::sal_Int16 SAL_CALL getNumberOfDaysInWeek() = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::CalendarItem > SAL_CALL getMonths() = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::CalendarItem > SAL_CALL getDays() = 0;
+    virtual ::rtl::OUString SAL_CALL getDisplayName( ::sal_Int16 nCalendarDisplayIndex, ::sal_Int16 nIdx, ::sal_Int16 nNameType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCalendar() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XCalendar const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XCalendar > *);
+
+#endif

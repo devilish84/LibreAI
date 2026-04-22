@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_PRESENTATION_SHAPEANIMATIONSUBTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_PRESENTATION_SHAPEANIMATIONSUBTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace presentation { namespace ShapeAnimationSubType {
+
+static const ::sal_Int16 AS_WHOLE = (sal_Int16)0;
+static const ::sal_Int16 ONLY_BACKGROUND = (sal_Int16)1;
+static const ::sal_Int16 ONLY_TEXT = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_PRESENTATION_SHAPEANIMATIONSUBTYPE_HDL

@@ -1,0 +1,68 @@
+#ifndef INCLUDED_COM_SUN_STAR_PRESENTATION_XSLIDESHOW_HDL
+#define INCLUDED_COM_SUN_STAR_PRESENTATION_XSLIDESHOW_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace animations { class XAnimationNode; } } } }
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace drawing { class XDrawPage; } } } }
+namespace com { namespace sun { namespace star { namespace drawing { class XDrawPagesSupplier; } } } }
+namespace com { namespace sun { namespace star { namespace drawing { class XShape; } } } }
+namespace com { namespace sun { namespace star { namespace lang { class XMultiServiceFactory; } } } }
+namespace com { namespace sun { namespace star { namespace presentation { class XShapeEventListener; } } } }
+namespace com { namespace sun { namespace star { namespace presentation { class XSlideShowListener; } } } }
+namespace com { namespace sun { namespace star { namespace presentation { class XSlideShowView; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace presentation {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSlideShow : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSlideShow() = default;
+    XSlideShow(XSlideShow const &) = default;
+    XSlideShow(XSlideShow &&) = default;
+    XSlideShow & operator =(XSlideShow const &) = default;
+    XSlideShow & operator =(XSlideShow &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL nextEffect() = 0;
+    virtual ::sal_Bool SAL_CALL previousEffect() = 0;
+    virtual ::sal_Bool SAL_CALL startShapeActivity( const ::css::uno::Reference< ::css::drawing::XShape >& xShape ) = 0;
+    virtual ::sal_Bool SAL_CALL stopShapeActivity( const ::css::uno::Reference< ::css::drawing::XShape >& xShape ) = 0;
+    virtual void SAL_CALL displaySlide( const ::css::uno::Reference< ::css::drawing::XDrawPage >& xSlide, const ::css::uno::Reference< ::css::drawing::XDrawPagesSupplier >& xDrawPages, const ::css::uno::Reference< ::css::animations::XAnimationNode >& AnimationNode, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aProperties ) = 0;
+    virtual ::sal_Bool SAL_CALL pause( ::sal_Bool bPauseShow ) = 0;
+    virtual ::css::uno::Reference< ::css::drawing::XDrawPage > SAL_CALL getCurrentSlide() = 0;
+    virtual void SAL_CALL registerUserPaintPolygons( const ::css::uno::Reference< ::css::lang::XMultiServiceFactory >& xDocFactory ) = 0;
+    virtual ::sal_Bool SAL_CALL setProperty( const ::css::beans::PropertyValue& aShowProperty ) = 0;
+    virtual ::sal_Bool SAL_CALL addView( const ::css::uno::Reference< ::css::presentation::XSlideShowView >& xView ) = 0;
+    virtual ::sal_Bool SAL_CALL removeView( const ::css::uno::Reference< ::css::presentation::XSlideShowView >& xView ) = 0;
+    virtual ::sal_Bool SAL_CALL update( double& nNextTimeout ) = 0;
+    virtual void SAL_CALL addSlideShowListener( const ::css::uno::Reference< ::css::presentation::XSlideShowListener >& xListener ) = 0;
+    virtual void SAL_CALL removeSlideShowListener( const ::css::uno::Reference< ::css::presentation::XSlideShowListener >& xListener ) = 0;
+    virtual void SAL_CALL addShapeEventListener( const ::css::uno::Reference< ::css::presentation::XShapeEventListener >& xListener, const ::css::uno::Reference< ::css::drawing::XShape >& xShape ) = 0;
+    virtual void SAL_CALL removeShapeEventListener( const ::css::uno::Reference< ::css::presentation::XShapeEventListener >& xListener, const ::css::uno::Reference< ::css::drawing::XShape >& xShape ) = 0;
+    virtual void SAL_CALL setShapeCursor( const ::css::uno::Reference< ::css::drawing::XShape >& xShape, ::sal_Int16 nPointerShape ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSlideShow() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::presentation::XSlideShow const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::presentation::XSlideShow > *);
+
+#endif

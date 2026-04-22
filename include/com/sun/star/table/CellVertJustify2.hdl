@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_CELLVERTJUSTIFY2_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_CELLVERTJUSTIFY2_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace table { namespace CellVertJustify2 {
+
+static const ::sal_Int32 BLOCK = (sal_Int32)4;
+static const ::sal_Int32 BOTTOM = (sal_Int32)3;
+static const ::sal_Int32 CENTER = (sal_Int32)2;
+static const ::sal_Int32 STANDARD = (sal_Int32)0;
+static const ::sal_Int32 TOP = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TABLE_CELLVERTJUSTIFY2_HDL

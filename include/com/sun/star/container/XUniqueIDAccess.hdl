@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONTAINER_XUNIQUEIDACCESS_HDL
+#define INCLUDED_COM_SUN_STAR_CONTAINER_XUNIQUEIDACCESS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace container {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUniqueIDAccess : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUniqueIDAccess() = default;
+    XUniqueIDAccess(XUniqueIDAccess const &) = default;
+    XUniqueIDAccess(XUniqueIDAccess &&) = default;
+    XUniqueIDAccess & operator =(XUniqueIDAccess const &) = default;
+    XUniqueIDAccess & operator =(XUniqueIDAccess &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Any SAL_CALL getByUniqueID( const ::rtl::OUString& ID ) = 0;
+    virtual void SAL_CALL removeByUniqueID( const ::rtl::OUString& ID ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUniqueIDAccess() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::container::XUniqueIDAccess const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::container::XUniqueIDAccess > *);
+
+#endif

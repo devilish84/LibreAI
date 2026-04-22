@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_SEARCHALGORITHMS2_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_SEARCHALGORITHMS2_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace util { namespace SearchAlgorithms2 {
+
+static const ::sal_Int16 ABSOLUTE = (sal_Int16)1;
+static const ::sal_Int16 APPROXIMATE = (sal_Int16)3;
+static const ::sal_Int16 REGEXP = (sal_Int16)2;
+static const ::sal_Int16 WILDCARD = (sal_Int16)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UTIL_SEARCHALGORITHMS2_HDL

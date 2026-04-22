@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_PANOSESTROKEVARIATION_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_PANOSESTROKEVARIATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace PanoseStrokeVariation {
+
+static const ::sal_Int8 ANYTHING = (sal_Int8)0;
+static const ::sal_Int8 GRADUAL_DIAGONAL = (sal_Int8)2;
+static const ::sal_Int8 GRADUAL_HORIZONTAL = (sal_Int8)5;
+static const ::sal_Int8 GRADUAL_TRANSITIONAL = (sal_Int8)3;
+static const ::sal_Int8 GRADUAL_VERTICAL = (sal_Int8)4;
+static const ::sal_Int8 INSTANT_VERTICAL = (sal_Int8)8;
+static const ::sal_Int8 NO_FIT = (sal_Int8)1;
+static const ::sal_Int8 RAPID_HORIZONTAL = (sal_Int8)7;
+static const ::sal_Int8 RAPID_VERTICAL = (sal_Int8)6;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_PANOSESTROKEVARIATION_HDL

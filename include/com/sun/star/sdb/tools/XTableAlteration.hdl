@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_TOOLS_XTABLEALTERATION_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_TOOLS_XTABLEALTERATION_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace beans { class XPropertySet; } } } }
+#include "com/sun/star/sdb/tools/XConnectionSupplier.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace tools {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTableAlteration : public ::css::sdb::tools::XConnectionSupplier
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTableAlteration() = default;
+    XTableAlteration(XTableAlteration const &) = default;
+    XTableAlteration(XTableAlteration &&) = default;
+    XTableAlteration & operator =(XTableAlteration const &) = default;
+    XTableAlteration & operator =(XTableAlteration &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL alterColumnByName( const ::css::uno::Reference< ::css::beans::XPropertySet >& table, const ::rtl::OUString& columnName, const ::css::uno::Reference< ::css::beans::XPropertySet >& columnDescriptor ) = 0;
+    virtual void SAL_CALL addColumn( const ::css::uno::Reference< ::css::beans::XPropertySet >& table, const ::css::uno::Reference< ::css::beans::XPropertySet >& descriptor ) = 0;
+    virtual void SAL_CALL dropColumn( const ::css::uno::Reference< ::css::beans::XPropertySet >& table, const ::rtl::OUString& columnName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTableAlteration() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdb::tools::XTableAlteration const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdb::tools::XTableAlteration > *);
+
+#endif

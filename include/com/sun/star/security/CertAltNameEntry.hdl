@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_SECURITY_CERTALTNAMEENTRY_HDL
+#define INCLUDED_COM_SUN_STAR_SECURITY_CERTALTNAMEENTRY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/security/ExtAltNameType.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace security {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI CertAltNameEntry {
+    inline CertAltNameEntry();
+
+    inline CertAltNameEntry(const ::css::security::ExtAltNameType& Type_, const ::css::uno::Any& Value_);
+
+    ::css::security::ExtAltNameType Type;
+    ::css::uno::Any Value;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::security::CertAltNameEntry const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::security::CertAltNameEntry *);
+
+#endif

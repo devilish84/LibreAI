@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_WRITINGMODE2_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_WRITINGMODE2_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace WritingMode2 {
+
+static const ::sal_Int16 BT_LR = (sal_Int16)5;
+static const ::sal_Int16 CONTEXT = (sal_Int16)4;
+static const ::sal_Int16 LR_TB = (sal_Int16)0;
+static const ::sal_Int16 PAGE = (sal_Int16)4;
+static const ::sal_Int16 RL_TB = (sal_Int16)1;
+static const ::sal_Int16 TB_LR = (sal_Int16)3;
+static const ::sal_Int16 TB_RL = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_WRITINGMODE2_HDL

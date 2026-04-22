@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XANIMATEDIMAGES_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XANIMATEDIMAGES_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XContainer.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAnimatedImages : public ::css::container::XContainer
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAnimatedImages() = default;
+    XAnimatedImages(XAnimatedImages const &) = default;
+    XAnimatedImages(XAnimatedImages &&) = default;
+    XAnimatedImages & operator =(XAnimatedImages const &) = default;
+    XAnimatedImages & operator =(XAnimatedImages &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int32 SAL_CALL getStepTime() = 0;
+    virtual void SAL_CALL setStepTime( ::sal_Int32 _steptime ) = 0;
+    virtual ::sal_Bool SAL_CALL getAutoRepeat() = 0;
+    virtual void SAL_CALL setAutoRepeat( ::sal_Bool _autorepeat ) = 0;
+    virtual ::sal_Int16 SAL_CALL getScaleMode() = 0;
+    virtual void SAL_CALL setScaleMode( ::sal_Int16 _scalemode ) = 0;
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getImageSetCount() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getImageSet( ::sal_Int32 iIndex ) = 0;
+    virtual void SAL_CALL insertImageSet( ::sal_Int32 iIndex, const ::css::uno::Sequence< ::rtl::OUString >& iImageURLs ) = 0;
+    virtual void SAL_CALL replaceImageSet( ::sal_Int32 iIndex, const ::css::uno::Sequence< ::rtl::OUString >& iImageURLs ) = 0;
+    virtual void SAL_CALL removeImageSet( ::sal_Int32 iIndex ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAnimatedImages() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XAnimatedImages const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XAnimatedImages > *);
+
+#endif

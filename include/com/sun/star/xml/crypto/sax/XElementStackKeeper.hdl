@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_CRYPTO_SAX_XELEMENTSTACKKEEPER_HDL
+#define INCLUDED_COM_SUN_STAR_XML_CRYPTO_SAX_XELEMENTSTACKKEEPER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { class XDocumentHandler; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto { namespace sax {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XElementStackKeeper : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XElementStackKeeper() = default;
+    XElementStackKeeper(XElementStackKeeper const &) = default;
+    XElementStackKeeper(XElementStackKeeper &&) = default;
+    XElementStackKeeper & operator =(XElementStackKeeper const &) = default;
+    XElementStackKeeper & operator =(XElementStackKeeper &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL start() = 0;
+    virtual void SAL_CALL stop() = 0;
+    virtual void SAL_CALL retrieve( const ::css::uno::Reference< ::css::xml::sax::XDocumentHandler >& handler, ::sal_Bool includingTheLastEvent ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XElementStackKeeper() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::crypto::sax::XElementStackKeeper const *);
+} } } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::crypto::sax::XElementStackKeeper > *);
+
+#endif

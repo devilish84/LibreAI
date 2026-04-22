@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_GRAPHICCROP_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_GRAPHICCROP_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED GraphicCrop {
+    inline GraphicCrop();
+
+    inline GraphicCrop(const ::sal_Int32& Top_, const ::sal_Int32& Bottom_, const ::sal_Int32& Left_, const ::sal_Int32& Right_);
+
+    ::sal_Int32 Top;
+    ::sal_Int32 Bottom;
+    ::sal_Int32 Left;
+    ::sal_Int32 Right;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::GraphicCrop const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::text::GraphicCrop *);
+
+#endif

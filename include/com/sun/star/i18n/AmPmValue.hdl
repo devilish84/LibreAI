@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_AMPMVALUE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_AMPMVALUE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace AmPmValue {
+
+static const ::sal_Int16 AM = (sal_Int16)0;
+static const ::sal_Int16 PM = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_AMPMVALUE_HDL

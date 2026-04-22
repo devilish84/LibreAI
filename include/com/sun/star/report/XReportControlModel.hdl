@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_XREPORTCONTROLMODEL_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_XREPORTCONTROLMODEL_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XContainer.hdl"
+#include "com/sun/star/container/XIndexContainer.hdl"
+namespace com { namespace sun { namespace star { namespace report { class XFormatCondition; } } } }
+#include "com/sun/star/report/XReportComponent.hdl"
+#include "com/sun/star/report/XReportControlFormat.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XReportControlModel : public ::css::report::XReportComponent, public ::css::report::XReportControlFormat, public ::css::container::XContainer, public ::css::container::XIndexContainer
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XReportControlModel() = default;
+    XReportControlModel(XReportControlModel const &) = default;
+    XReportControlModel(XReportControlModel &&) = default;
+    XReportControlModel & operator =(XReportControlModel const &) = default;
+    XReportControlModel & operator =(XReportControlModel &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getDataField() = 0;
+    virtual void SAL_CALL setDataField( const ::rtl::OUString& _datafield ) = 0;
+    virtual ::sal_Bool SAL_CALL getPrintWhenGroupChange() = 0;
+    virtual void SAL_CALL setPrintWhenGroupChange( ::sal_Bool _printwhengroupchange ) = 0;
+    virtual ::rtl::OUString SAL_CALL getConditionalPrintExpression() = 0;
+    virtual void SAL_CALL setConditionalPrintExpression( const ::rtl::OUString& _conditionalprintexpression ) = 0;
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::report::XFormatCondition > SAL_CALL createFormatCondition() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XReportControlModel() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::XReportControlModel const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::XReportControlModel > *);
+
+#endif

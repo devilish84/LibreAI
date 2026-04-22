@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DATABARENTRYTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DATABARENTRYTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace DataBarEntryType {
+
+static const ::sal_Int32 DATABAR_AUTO = (sal_Int32)1;
+static const ::sal_Int32 DATABAR_FORMULA = (sal_Int32)6;
+static const ::sal_Int32 DATABAR_MAX = (sal_Int32)2;
+static const ::sal_Int32 DATABAR_MIN = (sal_Int32)1;
+static const ::sal_Int32 DATABAR_PERCENT = (sal_Int32)5;
+static const ::sal_Int32 DATABAR_PERCENTILE = (sal_Int32)3;
+static const ::sal_Int32 DATABAR_VALUE = (sal_Int32)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_DATABARENTRYTYPE_HDL

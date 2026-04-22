@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_XTABLEROWS_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_XTABLEROWS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XIndexAccess.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTableRows : public ::css::container::XIndexAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTableRows() = default;
+    XTableRows(XTableRows const &) = default;
+    XTableRows(XTableRows &&) = default;
+    XTableRows & operator =(XTableRows const &) = default;
+    XTableRows & operator =(XTableRows &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL insertByIndex( ::sal_Int32 nIndex, ::sal_Int32 nCount ) = 0;
+    virtual void SAL_CALL removeByIndex( ::sal_Int32 nIndex, ::sal_Int32 nCount ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTableRows() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::XTableRows const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::table::XTableRows > *);
+
+#endif

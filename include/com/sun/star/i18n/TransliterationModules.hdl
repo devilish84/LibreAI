@@ -1,0 +1,108 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_TRANSLITERATIONMODULES_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_TRANSLITERATIONMODULES_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TransliterationModules
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TransliterationModules
+{
+
+#endif
+    TransliterationModules_UPPERCASE_LOWERCASE = 1,
+    TransliterationModules_LOWERCASE_UPPERCASE = 2,
+    TransliterationModules_HALFWIDTH_FULLWIDTH = 3,
+    TransliterationModules_FULLWIDTH_HALFWIDTH = 4,
+    TransliterationModules_KATAKANA_HIRAGANA = 5,
+    TransliterationModules_HIRAGANA_KATAKANA = 6,
+    TransliterationModules_NumToTextLower_zh_CN = 7,
+    TransliterationModules_NumToTextUpper_zh_CN = 8,
+    TransliterationModules_NumToTextLower_zh_TW = 9,
+    TransliterationModules_NumToTextUpper_zh_TW = 10,
+    TransliterationModules_NumToTextFormalHangul_ko = 11,
+    TransliterationModules_NumToTextFormalLower_ko = 12,
+    TransliterationModules_NumToTextFormalUpper_ko = 13,
+    TransliterationModules_NON_IGNORE_MASK = 255,
+    TransliterationModules_IGNORE_MASK = -256,
+    TransliterationModules_IGNORE_CASE = 256,
+    TransliterationModules_IGNORE_KANA = 512,
+    TransliterationModules_IGNORE_WIDTH = 1024,
+    TransliterationModules_IgnoreTraditionalKanji_ja_JP = 4096,
+    TransliterationModules_IgnoreTraditionalKana_ja_JP = 8192,
+    TransliterationModules_IgnoreMinusSign_ja_JP = 16384,
+    TransliterationModules_IgnoreIterationMark_ja_JP = 32768,
+    TransliterationModules_IgnoreSeparator_ja_JP = 65536,
+    TransliterationModules_IgnoreZiZu_ja_JP = 131072,
+    TransliterationModules_IgnoreBaFa_ja_JP = 262144,
+    TransliterationModules_IgnoreTiJi_ja_JP = 524288,
+    TransliterationModules_IgnoreHyuByu_ja_JP = 1048576,
+    TransliterationModules_IgnoreSeZe_ja_JP = 2097152,
+    TransliterationModules_IgnoreIandEfollowedByYa_ja_JP = 4194304,
+    TransliterationModules_IgnoreKiKuFollowedBySa_ja_JP = 8388608,
+    TransliterationModules_IgnoreSize_ja_JP = 16777216,
+    TransliterationModules_IgnoreProlongedSoundMark_ja_JP = 33554432,
+    TransliterationModules_IgnoreMiddleDot_ja_JP = 67108864,
+    TransliterationModules_IgnoreSpace_ja_JP = 134217728,
+    TransliterationModules_SmallToLarge_ja_JP = 268435456,
+    TransliterationModules_LargeToSmall_ja_JP = 536870912,
+    TransliterationModules_END_OF_MODULE = 0,
+    TransliterationModules_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TransliterationModules_UPPERCASE_LOWERCASE = TransliterationModules::TransliterationModules_UPPERCASE_LOWERCASE;
+constexpr auto TransliterationModules_LOWERCASE_UPPERCASE = TransliterationModules::TransliterationModules_LOWERCASE_UPPERCASE;
+constexpr auto TransliterationModules_HALFWIDTH_FULLWIDTH = TransliterationModules::TransliterationModules_HALFWIDTH_FULLWIDTH;
+constexpr auto TransliterationModules_FULLWIDTH_HALFWIDTH = TransliterationModules::TransliterationModules_FULLWIDTH_HALFWIDTH;
+constexpr auto TransliterationModules_KATAKANA_HIRAGANA = TransliterationModules::TransliterationModules_KATAKANA_HIRAGANA;
+constexpr auto TransliterationModules_HIRAGANA_KATAKANA = TransliterationModules::TransliterationModules_HIRAGANA_KATAKANA;
+constexpr auto TransliterationModules_NumToTextLower_zh_CN = TransliterationModules::TransliterationModules_NumToTextLower_zh_CN;
+constexpr auto TransliterationModules_NumToTextUpper_zh_CN = TransliterationModules::TransliterationModules_NumToTextUpper_zh_CN;
+constexpr auto TransliterationModules_NumToTextLower_zh_TW = TransliterationModules::TransliterationModules_NumToTextLower_zh_TW;
+constexpr auto TransliterationModules_NumToTextUpper_zh_TW = TransliterationModules::TransliterationModules_NumToTextUpper_zh_TW;
+constexpr auto TransliterationModules_NumToTextFormalHangul_ko = TransliterationModules::TransliterationModules_NumToTextFormalHangul_ko;
+constexpr auto TransliterationModules_NumToTextFormalLower_ko = TransliterationModules::TransliterationModules_NumToTextFormalLower_ko;
+constexpr auto TransliterationModules_NumToTextFormalUpper_ko = TransliterationModules::TransliterationModules_NumToTextFormalUpper_ko;
+constexpr auto TransliterationModules_NON_IGNORE_MASK = TransliterationModules::TransliterationModules_NON_IGNORE_MASK;
+constexpr auto TransliterationModules_IGNORE_MASK = TransliterationModules::TransliterationModules_IGNORE_MASK;
+constexpr auto TransliterationModules_IGNORE_CASE = TransliterationModules::TransliterationModules_IGNORE_CASE;
+constexpr auto TransliterationModules_IGNORE_KANA = TransliterationModules::TransliterationModules_IGNORE_KANA;
+constexpr auto TransliterationModules_IGNORE_WIDTH = TransliterationModules::TransliterationModules_IGNORE_WIDTH;
+constexpr auto TransliterationModules_IgnoreTraditionalKanji_ja_JP = TransliterationModules::TransliterationModules_IgnoreTraditionalKanji_ja_JP;
+constexpr auto TransliterationModules_IgnoreTraditionalKana_ja_JP = TransliterationModules::TransliterationModules_IgnoreTraditionalKana_ja_JP;
+constexpr auto TransliterationModules_IgnoreMinusSign_ja_JP = TransliterationModules::TransliterationModules_IgnoreMinusSign_ja_JP;
+constexpr auto TransliterationModules_IgnoreIterationMark_ja_JP = TransliterationModules::TransliterationModules_IgnoreIterationMark_ja_JP;
+constexpr auto TransliterationModules_IgnoreSeparator_ja_JP = TransliterationModules::TransliterationModules_IgnoreSeparator_ja_JP;
+constexpr auto TransliterationModules_IgnoreZiZu_ja_JP = TransliterationModules::TransliterationModules_IgnoreZiZu_ja_JP;
+constexpr auto TransliterationModules_IgnoreBaFa_ja_JP = TransliterationModules::TransliterationModules_IgnoreBaFa_ja_JP;
+constexpr auto TransliterationModules_IgnoreTiJi_ja_JP = TransliterationModules::TransliterationModules_IgnoreTiJi_ja_JP;
+constexpr auto TransliterationModules_IgnoreHyuByu_ja_JP = TransliterationModules::TransliterationModules_IgnoreHyuByu_ja_JP;
+constexpr auto TransliterationModules_IgnoreSeZe_ja_JP = TransliterationModules::TransliterationModules_IgnoreSeZe_ja_JP;
+constexpr auto TransliterationModules_IgnoreIandEfollowedByYa_ja_JP = TransliterationModules::TransliterationModules_IgnoreIandEfollowedByYa_ja_JP;
+constexpr auto TransliterationModules_IgnoreKiKuFollowedBySa_ja_JP = TransliterationModules::TransliterationModules_IgnoreKiKuFollowedBySa_ja_JP;
+constexpr auto TransliterationModules_IgnoreSize_ja_JP = TransliterationModules::TransliterationModules_IgnoreSize_ja_JP;
+constexpr auto TransliterationModules_IgnoreProlongedSoundMark_ja_JP = TransliterationModules::TransliterationModules_IgnoreProlongedSoundMark_ja_JP;
+constexpr auto TransliterationModules_IgnoreMiddleDot_ja_JP = TransliterationModules::TransliterationModules_IgnoreMiddleDot_ja_JP;
+constexpr auto TransliterationModules_IgnoreSpace_ja_JP = TransliterationModules::TransliterationModules_IgnoreSpace_ja_JP;
+constexpr auto TransliterationModules_SmallToLarge_ja_JP = TransliterationModules::TransliterationModules_SmallToLarge_ja_JP;
+constexpr auto TransliterationModules_LargeToSmall_ja_JP = TransliterationModules::TransliterationModules_LargeToSmall_ja_JP;
+constexpr auto TransliterationModules_END_OF_MODULE = TransliterationModules::TransliterationModules_END_OF_MODULE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::TransliterationModules const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::i18n::TransliterationModules *);
+
+#endif

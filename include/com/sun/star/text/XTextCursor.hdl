@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XTEXTCURSOR_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XTEXTCURSOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/text/XTextRange.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTextCursor : public ::css::text::XTextRange
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTextCursor() = default;
+    XTextCursor(XTextCursor const &) = default;
+    XTextCursor(XTextCursor &&) = default;
+    XTextCursor & operator =(XTextCursor const &) = default;
+    XTextCursor & operator =(XTextCursor &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL collapseToStart() = 0;
+    virtual void SAL_CALL collapseToEnd() = 0;
+    virtual ::sal_Bool SAL_CALL isCollapsed() = 0;
+    virtual ::sal_Bool SAL_CALL goLeft( ::sal_Int16 nCount, ::sal_Bool bExpand ) = 0;
+    virtual ::sal_Bool SAL_CALL goRight( ::sal_Int16 nCount, ::sal_Bool bExpand ) = 0;
+    virtual void SAL_CALL gotoStart( ::sal_Bool bExpand ) = 0;
+    virtual void SAL_CALL gotoEnd( ::sal_Bool bExpand ) = 0;
+    virtual void SAL_CALL gotoRange( const ::css::uno::Reference< ::css::text::XTextRange >& xRange, ::sal_Bool bExpand ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTextCursor() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XTextCursor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XTextCursor > *);
+
+#endif

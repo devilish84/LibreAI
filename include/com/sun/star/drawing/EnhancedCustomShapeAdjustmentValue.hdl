@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPEADJUSTMENTVALUE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPEADJUSTMENTVALUE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyState.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI EnhancedCustomShapeAdjustmentValue {
+    inline EnhancedCustomShapeAdjustmentValue();
+
+    inline EnhancedCustomShapeAdjustmentValue(const ::css::uno::Any& Value_, const ::css::beans::PropertyState& State_, const ::rtl::OUString& Name_);
+
+    ::css::uno::Any Value;
+    ::css::beans::PropertyState State;
+    ::rtl::OUString Name;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::EnhancedCustomShapeAdjustmentValue const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::EnhancedCustomShapeAdjustmentValue *);
+
+#endif

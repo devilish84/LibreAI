@@ -1,0 +1,57 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XDEBUGGING_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XDEBUGGING_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/script/ContextInformation.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDebugging : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDebugging() = default;
+    XDebugging(XDebugging const &) = default;
+    XDebugging(XDebugging &&) = default;
+    XDebugging & operator =(XDebugging const &) = default;
+    XDebugging & operator =(XDebugging &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Int32 SAL_CALL setBreakPoint( const ::rtl::OUString& aModuleName, ::sal_Int32 nSourceCodeLine, ::sal_Bool bOn ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL clearAllBreakPoints( const ::rtl::OUString& aModuleName ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL eval( const ::rtl::OUString& aSourceCode, ::sal_Int16 nCallStackPos ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getStackTrace() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::script::ContextInformation SAL_CALL getContextInformation( ::sal_Int16 nCallStackPos ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL dumpVariable( const ::rtl::OUString& aVariableName, ::sal_Int16 nCallStackPos ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setVariable( const ::rtl::OUString& aVariableName, const ::rtl::OUString& aValue, ::sal_Int16 nCallStackPos ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL isVariable( const ::rtl::OUString& aVariableName, ::sal_Int16 nCallStackPos ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL stop() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL stepOver() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL stepIn() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL stepOut() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL doContinue() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDebugging() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XDebugging const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XDebugging > *);
+
+#endif

@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECONTEXT_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECONTEXT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace accessibility { class XAccessible; } } } }
+namespace com { namespace sun { namespace star { namespace accessibility { class XAccessibleRelationSet; } } } }
+namespace com { namespace sun { namespace star { namespace accessibility { class XAccessibleStateSet; } } } }
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAccessibleContext : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAccessibleContext() = default;
+    XAccessibleContext(XAccessibleContext const &) = default;
+    XAccessibleContext(XAccessibleContext &&) = default;
+    XAccessibleContext & operator =(XAccessibleContext const &) = default;
+    XAccessibleContext & operator =(XAccessibleContext &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getAccessibleChildCount() = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessible > SAL_CALL getAccessibleChild( ::sal_Int32 i ) = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessible > SAL_CALL getAccessibleParent() = 0;
+    virtual ::sal_Int32 SAL_CALL getAccessibleIndexInParent() = 0;
+    virtual ::sal_Int16 SAL_CALL getAccessibleRole() = 0;
+    virtual ::rtl::OUString SAL_CALL getAccessibleDescription() = 0;
+    virtual ::rtl::OUString SAL_CALL getAccessibleName() = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessibleRelationSet > SAL_CALL getAccessibleRelationSet() = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessibleStateSet > SAL_CALL getAccessibleStateSet() = 0;
+    virtual ::css::lang::Locale SAL_CALL getLocale() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAccessibleContext() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::XAccessibleContext const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::accessibility::XAccessibleContext > *);
+
+#endif

@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER3_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER3_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/script/XLibraryContainer2.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLibraryContainer3 : public ::css::script::XLibraryContainer2
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLibraryContainer3() = default;
+    XLibraryContainer3(XLibraryContainer3 const &) = default;
+    XLibraryContainer3(XLibraryContainer3 &&) = default;
+    XLibraryContainer3 & operator =(XLibraryContainer3 const &) = default;
+    XLibraryContainer3 & operator =(XLibraryContainer3 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getOriginalLibraryLinkURL( const ::rtl::OUString& Name ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLibraryContainer3() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XLibraryContainer3 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XLibraryContainer3 > *);
+
+#endif

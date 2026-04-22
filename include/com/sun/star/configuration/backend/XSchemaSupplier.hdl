@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_XSCHEMASUPPLIER_HDL
+#define INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_XSCHEMASUPPLIER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend { class XSchema; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSchemaSupplier : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSchemaSupplier() = default;
+    XSchemaSupplier(XSchemaSupplier const &) = default;
+    XSchemaSupplier(XSchemaSupplier &&) = default;
+    XSchemaSupplier & operator =(XSchemaSupplier const &) = default;
+    XSchemaSupplier & operator =(XSchemaSupplier &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::configuration::backend::XSchema > SAL_CALL getComponentSchema( const ::rtl::OUString& aComponent ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSchemaSupplier() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::configuration::backend::XSchemaSupplier const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::configuration::backend::XSchemaSupplier > *);
+
+#endif

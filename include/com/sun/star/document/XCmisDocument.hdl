@@ -1,0 +1,58 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XCMISDOCUMENT_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XCMISDOCUMENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/document/CmisProperty.hdl"
+#include "com/sun/star/document/CmisVersion.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCmisDocument : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCmisDocument() = default;
+    XCmisDocument(XCmisDocument const &) = default;
+    XCmisDocument(XCmisDocument &&) = default;
+    XCmisDocument & operator =(XCmisDocument const &) = default;
+    XCmisDocument & operator =(XCmisDocument &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Sequence< ::css::document::CmisProperty > SAL_CALL getCmisProperties() = 0;
+    virtual void SAL_CALL setCmisProperties( const ::css::uno::Sequence< ::css::document::CmisProperty >& _cmisproperties ) = 0;
+
+    // Methods
+    virtual void SAL_CALL checkOut() = 0;
+    virtual void SAL_CALL cancelCheckOut() = 0;
+    virtual void SAL_CALL checkIn( ::sal_Bool isMajor, const ::rtl::OUString& comment ) = 0;
+    virtual ::sal_Bool SAL_CALL isVersionable() = 0;
+    virtual ::sal_Bool SAL_CALL canCheckOut() = 0;
+    virtual ::sal_Bool SAL_CALL canCancelCheckOut() = 0;
+    virtual ::sal_Bool SAL_CALL canCheckIn() = 0;
+    virtual void SAL_CALL updateCmisProperties( const ::css::uno::Sequence< ::css::document::CmisProperty >& cmisProperties ) = 0;
+    virtual ::css::uno::Sequence< ::css::document::CmisVersion > SAL_CALL getAllVersions() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCmisDocument() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XCmisDocument const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XCmisDocument > *);
+
+#endif

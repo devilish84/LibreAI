@@ -1,0 +1,86 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_NUMBERINGTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_NUMBERINGTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace style { namespace NumberingType {
+
+static const ::sal_Int16 AIU_FULLWIDTH_JA = (sal_Int16)21;
+static const ::sal_Int16 AIU_HALFWIDTH_JA = (sal_Int16)22;
+static const ::sal_Int16 ARABIC = (sal_Int16)4;
+static const ::sal_Int16 ARABIC_ZERO = (sal_Int16)64;
+static const ::sal_Int16 ARABIC_ZERO3 = (sal_Int16)65;
+static const ::sal_Int16 ARABIC_ZERO4 = (sal_Int16)66;
+static const ::sal_Int16 ARABIC_ZERO5 = (sal_Int16)67;
+static const ::sal_Int16 BITMAP = (sal_Int16)8;
+static const ::sal_Int16 CHARS_ARABIC = (sal_Int16)31;
+static const ::sal_Int16 CHARS_ARABIC_ABJAD = (sal_Int16)54;
+static const ::sal_Int16 CHARS_CYRILLIC_LOWER_LETTER_BG = (sal_Int16)39;
+static const ::sal_Int16 CHARS_CYRILLIC_LOWER_LETTER_N_BG = (sal_Int16)41;
+static const ::sal_Int16 CHARS_CYRILLIC_LOWER_LETTER_N_RU = (sal_Int16)45;
+static const ::sal_Int16 CHARS_CYRILLIC_LOWER_LETTER_N_SR = (sal_Int16)51;
+static const ::sal_Int16 CHARS_CYRILLIC_LOWER_LETTER_RU = (sal_Int16)43;
+static const ::sal_Int16 CHARS_CYRILLIC_LOWER_LETTER_SR = (sal_Int16)49;
+static const ::sal_Int16 CHARS_CYRILLIC_UPPER_LETTER_BG = (sal_Int16)38;
+static const ::sal_Int16 CHARS_CYRILLIC_UPPER_LETTER_N_BG = (sal_Int16)40;
+static const ::sal_Int16 CHARS_CYRILLIC_UPPER_LETTER_N_RU = (sal_Int16)44;
+static const ::sal_Int16 CHARS_CYRILLIC_UPPER_LETTER_N_SR = (sal_Int16)50;
+static const ::sal_Int16 CHARS_CYRILLIC_UPPER_LETTER_RU = (sal_Int16)42;
+static const ::sal_Int16 CHARS_CYRILLIC_UPPER_LETTER_SR = (sal_Int16)48;
+static const ::sal_Int16 CHARS_GREEK_LOWER_LETTER = (sal_Int16)53;
+static const ::sal_Int16 CHARS_GREEK_UPPER_LETTER = (sal_Int16)52;
+static const ::sal_Int16 CHARS_HEBREW = (sal_Int16)33;
+static const ::sal_Int16 CHARS_KHMER = (sal_Int16)35;
+static const ::sal_Int16 CHARS_LAO = (sal_Int16)36;
+static const ::sal_Int16 CHARS_LOWER_LETTER = (sal_Int16)1;
+static const ::sal_Int16 CHARS_LOWER_LETTER_N = (sal_Int16)10;
+static const ::sal_Int16 CHARS_MYANMAR = (sal_Int16)47;
+static const ::sal_Int16 CHARS_NEPALI = (sal_Int16)34;
+static const ::sal_Int16 CHARS_PERSIAN = (sal_Int16)46;
+static const ::sal_Int16 CHARS_PERSIAN_WORD = (sal_Int16)55;
+static const ::sal_Int16 CHARS_THAI = (sal_Int16)32;
+static const ::sal_Int16 CHARS_TIBETAN = (sal_Int16)37;
+static const ::sal_Int16 CHARS_UPPER_LETTER = (sal_Int16)0;
+static const ::sal_Int16 CHARS_UPPER_LETTER_N = (sal_Int16)9;
+static const ::sal_Int16 CHAR_SPECIAL = (sal_Int16)6;
+static const ::sal_Int16 CIRCLE_NUMBER = (sal_Int16)14;
+static const ::sal_Int16 DI_ZI_ZH = (sal_Int16)19;
+static const ::sal_Int16 FULLWIDTH_ARABIC = (sal_Int16)13;
+static const ::sal_Int16 HANGUL_CIRCLED_JAMO_KO = (sal_Int16)29;
+static const ::sal_Int16 HANGUL_CIRCLED_SYLLABLE_KO = (sal_Int16)30;
+static const ::sal_Int16 HANGUL_JAMO_KO = (sal_Int16)27;
+static const ::sal_Int16 HANGUL_SYLLABLE_KO = (sal_Int16)28;
+static const ::sal_Int16 IROHA_FULLWIDTH_JA = (sal_Int16)23;
+static const ::sal_Int16 IROHA_HALFWIDTH_JA = (sal_Int16)24;
+static const ::sal_Int16 NATIVE_NUMBERING = (sal_Int16)12;
+static const ::sal_Int16 NUMBER_ARABIC_INDIC = (sal_Int16)57;
+static const ::sal_Int16 NUMBER_DIGITAL2_KO = (sal_Int16)70;
+static const ::sal_Int16 NUMBER_DIGITAL_KO = (sal_Int16)69;
+static const ::sal_Int16 NUMBER_EAST_ARABIC_INDIC = (sal_Int16)58;
+static const ::sal_Int16 NUMBER_HANGUL_KO = (sal_Int16)26;
+static const ::sal_Int16 NUMBER_HEBREW = (sal_Int16)56;
+static const ::sal_Int16 NUMBER_INDIC_DEVANAGARI = (sal_Int16)59;
+static const ::sal_Int16 NUMBER_LEGAL_KO = (sal_Int16)71;
+static const ::sal_Int16 NUMBER_LOWER_ZH = (sal_Int16)15;
+static const ::sal_Int16 NUMBER_NONE = (sal_Int16)5;
+static const ::sal_Int16 NUMBER_TRADITIONAL_JA = (sal_Int16)20;
+static const ::sal_Int16 NUMBER_UPPER_KO = (sal_Int16)25;
+static const ::sal_Int16 NUMBER_UPPER_ZH = (sal_Int16)16;
+static const ::sal_Int16 NUMBER_UPPER_ZH_TW = (sal_Int16)17;
+static const ::sal_Int16 PAGE_DESCRIPTOR = (sal_Int16)7;
+static const ::sal_Int16 ROMAN_LOWER = (sal_Int16)3;
+static const ::sal_Int16 ROMAN_UPPER = (sal_Int16)2;
+static const ::sal_Int16 SYMBOL_CHICAGO = (sal_Int16)63;
+static const ::sal_Int16 SZEKELY_ROVAS = (sal_Int16)68;
+static const ::sal_Int16 TEXT_CARDINAL = (sal_Int16)61;
+static const ::sal_Int16 TEXT_NUMBER = (sal_Int16)60;
+static const ::sal_Int16 TEXT_ORDINAL = (sal_Int16)62;
+static const ::sal_Int16 TIAN_GAN_ZH = (sal_Int16)18;
+static const ::sal_Int16 TRANSLITERATION = (sal_Int16)11;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_STYLE_NUMBERINGTYPE_HDL

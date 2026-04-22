@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_XINTERACTIONDOCUMENTSAVE_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_XINTERACTIONDOCUMENTSAVE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/task/XInteractionContinuation.hdl"
+namespace com { namespace sun { namespace star { namespace ucb { class XContent; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XInteractionDocumentSave : public ::css::task::XInteractionContinuation
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XInteractionDocumentSave() = default;
+    XInteractionDocumentSave(XInteractionDocumentSave const &) = default;
+    XInteractionDocumentSave(XInteractionDocumentSave &&) = default;
+    XInteractionDocumentSave & operator =(XInteractionDocumentSave const &) = default;
+    XInteractionDocumentSave & operator =(XInteractionDocumentSave &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setName( const ::rtl::OUString& Name, const ::css::uno::Reference< ::css::ucb::XContent >& Content ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XInteractionDocumentSave() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdb::XInteractionDocumentSave const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdb::XInteractionDocumentSave > *);
+
+#endif

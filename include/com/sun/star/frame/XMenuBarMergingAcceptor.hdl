@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XMENUBARMERGINGACCEPTOR_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XMENUBARMERGINGACCEPTOR_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XIndexAccess; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMenuBarMergingAcceptor : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMenuBarMergingAcceptor() = default;
+    XMenuBarMergingAcceptor(XMenuBarMergingAcceptor const &) = default;
+    XMenuBarMergingAcceptor(XMenuBarMergingAcceptor &&) = default;
+    XMenuBarMergingAcceptor & operator =(XMenuBarMergingAcceptor const &) = default;
+    XMenuBarMergingAcceptor & operator =(XMenuBarMergingAcceptor &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL setMergedMenuBar( const ::css::uno::Reference< ::css::container::XIndexAccess >& xMergedMenuBar ) = 0;
+    virtual void SAL_CALL removeMergedMenuBar() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMenuBarMergingAcceptor() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XMenuBarMergingAcceptor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XMenuBarMergingAcceptor > *);
+
+#endif

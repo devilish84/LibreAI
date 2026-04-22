@@ -1,0 +1,24 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_CELLFLAGS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_CELLFLAGS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace CellFlags {
+
+static const ::sal_Int32 ANNOTATION = (sal_Int32)8;
+static const ::sal_Int32 DATETIME = (sal_Int32)2;
+static const ::sal_Int32 EDITATTR = (sal_Int32)256;
+static const ::sal_Int32 FORMATTED = (sal_Int32)512;
+static const ::sal_Int32 FORMULA = (sal_Int32)16;
+static const ::sal_Int32 HARDATTR = (sal_Int32)32;
+static const ::sal_Int32 OBJECTS = (sal_Int32)128;
+static const ::sal_Int32 STRING = (sal_Int32)4;
+static const ::sal_Int32 STYLES = (sal_Int32)64;
+static const ::sal_Int32 VALUE = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_CELLFLAGS_HDL

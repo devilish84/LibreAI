@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_PROPERTYVALUESTATE_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_PROPERTYVALUESTATE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI PropertyValueState
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI PropertyValueState
+{
+
+#endif
+    PropertyValueState_UNPROCESSED = 0,
+    PropertyValueState_PROCESSED = 1,
+    PropertyValueState_INVALID_NAME = 2,
+    PropertyValueState_INVALID_TYPE = 3,
+    PropertyValueState_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto PropertyValueState_UNPROCESSED = PropertyValueState::PropertyValueState_UNPROCESSED;
+constexpr auto PropertyValueState_PROCESSED = PropertyValueState::PropertyValueState_PROCESSED;
+constexpr auto PropertyValueState_INVALID_NAME = PropertyValueState::PropertyValueState_INVALID_NAME;
+constexpr auto PropertyValueState_INVALID_TYPE = PropertyValueState::PropertyValueState_INVALID_TYPE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::PropertyValueState const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::PropertyValueState *);
+
+#endif

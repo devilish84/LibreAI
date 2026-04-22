@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_CRYPTO_XXMLSIGNATURETEMPLATE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_CRYPTO_XXMLSIGNATURETEMPLATE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto { class XUriBinding; } } } } }
+#include "com/sun/star/xml/crypto/XXMLSecurityTemplate.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace wrapper { class XXMLElementWrapper; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XXMLSignatureTemplate : public ::css::xml::crypto::XXMLSecurityTemplate
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XXMLSignatureTemplate() = default;
+    XXMLSignatureTemplate(XXMLSignatureTemplate const &) = default;
+    XXMLSignatureTemplate(XXMLSignatureTemplate &&) = default;
+    XXMLSignatureTemplate & operator =(XXMLSignatureTemplate const &) = default;
+    XXMLSignatureTemplate & operator =(XXMLSignatureTemplate &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::xml::wrapper::XXMLElementWrapper > > SAL_CALL getTargets() = 0;
+    virtual void SAL_CALL setBinding( const ::css::uno::Reference< ::css::xml::crypto::XUriBinding >& aUriBinding ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::crypto::XUriBinding > SAL_CALL getBinding() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XXMLSignatureTemplate() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::crypto::XXMLSignatureTemplate const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::crypto::XXMLSignatureTemplate > *);
+
+#endif

@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_GEOMETRY_REALBEZIERSEGMENT2D_HDL
+#define INCLUDED_COM_SUN_STAR_GEOMETRY_REALBEZIERSEGMENT2D_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace geometry {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED RealBezierSegment2D {
+    inline RealBezierSegment2D();
+
+    inline RealBezierSegment2D(const double& Px_, const double& Py_, const double& C1x_, const double& C1y_, const double& C2x_, const double& C2y_);
+
+    double Px;
+    double Py;
+    double C1x;
+    double C1y;
+    double C2x;
+    double C2y;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::geometry::RealBezierSegment2D const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::geometry::RealBezierSegment2D *);
+
+#endif

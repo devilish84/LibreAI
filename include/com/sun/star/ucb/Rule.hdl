@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_RULE_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_RULE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/RuleTerm.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI Rule {
+    inline Rule();
+
+    inline Rule(const ::css::uno::Sequence< ::css::ucb::RuleTerm >& Terms_, const ::rtl::OUString& Parameter_, const ::sal_Int16& Action_);
+
+    ::css::uno::Sequence< ::css::ucb::RuleTerm > Terms;
+    ::rtl::OUString Parameter;
+    ::sal_Int16 Action;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::Rule const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::Rule *);
+
+#endif

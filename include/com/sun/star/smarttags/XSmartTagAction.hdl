@@ -1,0 +1,60 @@
+#ifndef INCLUDED_COM_SUN_STAR_SMARTTAGS_XSMARTTAGACTION_HDL
+#define INCLUDED_COM_SUN_STAR_SMARTTAGS_XSMARTTAGACTION_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XStringKeyMap; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XController; } } } }
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/lang/XInitialization.hdl"
+namespace com { namespace sun { namespace star { namespace text { class XTextRange; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace smarttags {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSmartTagAction : public ::css::lang::XInitialization
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSmartTagAction() = default;
+    XSmartTagAction(XSmartTagAction const &) = default;
+    XSmartTagAction(XSmartTagAction &&) = default;
+    XSmartTagAction & operator =(XSmartTagAction const &) = default;
+    XSmartTagAction & operator =(XSmartTagAction &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int32 SAL_CALL getSmartTagCount() = 0;
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getName( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDescription( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::rtl::OUString SAL_CALL getSmartTagName( ::sal_Int32 nSmartTagIndex ) = 0;
+    virtual ::rtl::OUString SAL_CALL getSmartTagCaption( ::sal_Int32 nSmartTagIndex, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::sal_Int32 SAL_CALL getActionCount( const ::rtl::OUString& aSmartTagName, const ::css::uno::Reference< ::css::frame::XController >& xController, const ::css::uno::Reference< ::css::container::XStringKeyMap >& xProperties ) = 0;
+    virtual ::sal_Int32 SAL_CALL getActionID( const ::rtl::OUString& aSmartTagName, ::sal_Int32 nActionIndex, const ::css::uno::Reference< ::css::frame::XController >& xController ) = 0;
+    virtual ::rtl::OUString SAL_CALL getActionCaptionFromID( ::sal_Int32 nActionID, const ::rtl::OUString& aApplicationName, const ::css::lang::Locale& aLocale, const ::css::uno::Reference< ::css::container::XStringKeyMap >& xProperties, const ::rtl::OUString& aText, const ::rtl::OUString& aXML, const ::css::uno::Reference< ::css::frame::XController >& xController, const ::css::uno::Reference< ::css::text::XTextRange >& xTarget ) = 0;
+    virtual ::rtl::OUString SAL_CALL getActionNameFromID( ::sal_Int32 nActionID, const ::css::uno::Reference< ::css::frame::XController >& xController ) = 0;
+    virtual void SAL_CALL invokeAction( ::sal_Int32 nActionID, const ::rtl::OUString& aApplicationName, const ::css::uno::Reference< ::css::frame::XController >& xController, const ::css::uno::Reference< ::css::text::XTextRange >& xTarget, const ::css::uno::Reference< ::css::container::XStringKeyMap >& xProperties, const ::rtl::OUString& aText, const ::rtl::OUString& aXML, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::sal_Bool SAL_CALL isCaptionDynamic( ::sal_Int32 nActionID, const ::rtl::OUString& aApplicationName, const ::css::uno::Reference< ::css::frame::XController >& xController, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::sal_Bool SAL_CALL isShowSmartTagIndicator( ::sal_Int32 nActionID, const ::rtl::OUString& aApplicationName, const ::css::uno::Reference< ::css::frame::XController >& xController, const ::css::lang::Locale& aLocale ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSmartTagAction() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::smarttags::XSmartTagAction const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::smarttags::XSmartTagAction > *);
+
+#endif

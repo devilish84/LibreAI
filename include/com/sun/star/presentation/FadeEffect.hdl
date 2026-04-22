@@ -1,0 +1,148 @@
+#ifndef INCLUDED_COM_SUN_STAR_PRESENTATION_FADEEFFECT_HDL
+#define INCLUDED_COM_SUN_STAR_PRESENTATION_FADEEFFECT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace presentation {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FadeEffect
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FadeEffect
+{
+
+#endif
+    FadeEffect_NONE = 0,
+    FadeEffect_FADE_FROM_LEFT = 1,
+    FadeEffect_FADE_FROM_TOP = 2,
+    FadeEffect_FADE_FROM_RIGHT = 3,
+    FadeEffect_FADE_FROM_BOTTOM = 4,
+    FadeEffect_FADE_TO_CENTER = 5,
+    FadeEffect_FADE_FROM_CENTER = 6,
+    FadeEffect_MOVE_FROM_LEFT = 7,
+    FadeEffect_MOVE_FROM_TOP = 8,
+    FadeEffect_MOVE_FROM_RIGHT = 9,
+    FadeEffect_MOVE_FROM_BOTTOM = 10,
+    FadeEffect_ROLL_FROM_LEFT = 11,
+    FadeEffect_ROLL_FROM_TOP = 12,
+    FadeEffect_ROLL_FROM_RIGHT = 13,
+    FadeEffect_ROLL_FROM_BOTTOM = 14,
+    FadeEffect_VERTICAL_STRIPES = 15,
+    FadeEffect_HORIZONTAL_STRIPES = 16,
+    FadeEffect_CLOCKWISE = 17,
+    FadeEffect_COUNTERCLOCKWISE = 18,
+    FadeEffect_FADE_FROM_UPPERLEFT = 19,
+    FadeEffect_FADE_FROM_UPPERRIGHT = 20,
+    FadeEffect_FADE_FROM_LOWERLEFT = 21,
+    FadeEffect_FADE_FROM_LOWERRIGHT = 22,
+    FadeEffect_CLOSE_VERTICAL = 23,
+    FadeEffect_CLOSE_HORIZONTAL = 24,
+    FadeEffect_OPEN_VERTICAL = 25,
+    FadeEffect_OPEN_HORIZONTAL = 26,
+    FadeEffect_SPIRALIN_LEFT = 27,
+    FadeEffect_SPIRALIN_RIGHT = 28,
+    FadeEffect_SPIRALOUT_LEFT = 29,
+    FadeEffect_SPIRALOUT_RIGHT = 30,
+    FadeEffect_DISSOLVE = 31,
+    FadeEffect_WAVYLINE_FROM_LEFT = 32,
+    FadeEffect_WAVYLINE_FROM_TOP = 33,
+    FadeEffect_WAVYLINE_FROM_RIGHT = 34,
+    FadeEffect_WAVYLINE_FROM_BOTTOM = 35,
+    FadeEffect_RANDOM = 36,
+    FadeEffect_STRETCH_FROM_LEFT = 37,
+    FadeEffect_STRETCH_FROM_TOP = 38,
+    FadeEffect_STRETCH_FROM_RIGHT = 39,
+    FadeEffect_STRETCH_FROM_BOTTOM = 40,
+    FadeEffect_VERTICAL_LINES = 41,
+    FadeEffect_HORIZONTAL_LINES = 42,
+    FadeEffect_MOVE_FROM_UPPERLEFT = 43,
+    FadeEffect_MOVE_FROM_UPPERRIGHT = 44,
+    FadeEffect_MOVE_FROM_LOWERRIGHT = 45,
+    FadeEffect_MOVE_FROM_LOWERLEFT = 46,
+    FadeEffect_UNCOVER_TO_LEFT = 47,
+    FadeEffect_UNCOVER_TO_UPPERLEFT = 48,
+    FadeEffect_UNCOVER_TO_TOP = 49,
+    FadeEffect_UNCOVER_TO_UPPERRIGHT = 50,
+    FadeEffect_UNCOVER_TO_RIGHT = 51,
+    FadeEffect_UNCOVER_TO_LOWERRIGHT = 52,
+    FadeEffect_UNCOVER_TO_BOTTOM = 53,
+    FadeEffect_UNCOVER_TO_LOWERLEFT = 54,
+    FadeEffect_VERTICAL_CHECKERBOARD = 55,
+    FadeEffect_HORIZONTAL_CHECKERBOARD = 56,
+    FadeEffect_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FadeEffect_NONE = FadeEffect::FadeEffect_NONE;
+constexpr auto FadeEffect_FADE_FROM_LEFT = FadeEffect::FadeEffect_FADE_FROM_LEFT;
+constexpr auto FadeEffect_FADE_FROM_TOP = FadeEffect::FadeEffect_FADE_FROM_TOP;
+constexpr auto FadeEffect_FADE_FROM_RIGHT = FadeEffect::FadeEffect_FADE_FROM_RIGHT;
+constexpr auto FadeEffect_FADE_FROM_BOTTOM = FadeEffect::FadeEffect_FADE_FROM_BOTTOM;
+constexpr auto FadeEffect_FADE_TO_CENTER = FadeEffect::FadeEffect_FADE_TO_CENTER;
+constexpr auto FadeEffect_FADE_FROM_CENTER = FadeEffect::FadeEffect_FADE_FROM_CENTER;
+constexpr auto FadeEffect_MOVE_FROM_LEFT = FadeEffect::FadeEffect_MOVE_FROM_LEFT;
+constexpr auto FadeEffect_MOVE_FROM_TOP = FadeEffect::FadeEffect_MOVE_FROM_TOP;
+constexpr auto FadeEffect_MOVE_FROM_RIGHT = FadeEffect::FadeEffect_MOVE_FROM_RIGHT;
+constexpr auto FadeEffect_MOVE_FROM_BOTTOM = FadeEffect::FadeEffect_MOVE_FROM_BOTTOM;
+constexpr auto FadeEffect_ROLL_FROM_LEFT = FadeEffect::FadeEffect_ROLL_FROM_LEFT;
+constexpr auto FadeEffect_ROLL_FROM_TOP = FadeEffect::FadeEffect_ROLL_FROM_TOP;
+constexpr auto FadeEffect_ROLL_FROM_RIGHT = FadeEffect::FadeEffect_ROLL_FROM_RIGHT;
+constexpr auto FadeEffect_ROLL_FROM_BOTTOM = FadeEffect::FadeEffect_ROLL_FROM_BOTTOM;
+constexpr auto FadeEffect_VERTICAL_STRIPES = FadeEffect::FadeEffect_VERTICAL_STRIPES;
+constexpr auto FadeEffect_HORIZONTAL_STRIPES = FadeEffect::FadeEffect_HORIZONTAL_STRIPES;
+constexpr auto FadeEffect_CLOCKWISE = FadeEffect::FadeEffect_CLOCKWISE;
+constexpr auto FadeEffect_COUNTERCLOCKWISE = FadeEffect::FadeEffect_COUNTERCLOCKWISE;
+constexpr auto FadeEffect_FADE_FROM_UPPERLEFT = FadeEffect::FadeEffect_FADE_FROM_UPPERLEFT;
+constexpr auto FadeEffect_FADE_FROM_UPPERRIGHT = FadeEffect::FadeEffect_FADE_FROM_UPPERRIGHT;
+constexpr auto FadeEffect_FADE_FROM_LOWERLEFT = FadeEffect::FadeEffect_FADE_FROM_LOWERLEFT;
+constexpr auto FadeEffect_FADE_FROM_LOWERRIGHT = FadeEffect::FadeEffect_FADE_FROM_LOWERRIGHT;
+constexpr auto FadeEffect_CLOSE_VERTICAL = FadeEffect::FadeEffect_CLOSE_VERTICAL;
+constexpr auto FadeEffect_CLOSE_HORIZONTAL = FadeEffect::FadeEffect_CLOSE_HORIZONTAL;
+constexpr auto FadeEffect_OPEN_VERTICAL = FadeEffect::FadeEffect_OPEN_VERTICAL;
+constexpr auto FadeEffect_OPEN_HORIZONTAL = FadeEffect::FadeEffect_OPEN_HORIZONTAL;
+constexpr auto FadeEffect_SPIRALIN_LEFT = FadeEffect::FadeEffect_SPIRALIN_LEFT;
+constexpr auto FadeEffect_SPIRALIN_RIGHT = FadeEffect::FadeEffect_SPIRALIN_RIGHT;
+constexpr auto FadeEffect_SPIRALOUT_LEFT = FadeEffect::FadeEffect_SPIRALOUT_LEFT;
+constexpr auto FadeEffect_SPIRALOUT_RIGHT = FadeEffect::FadeEffect_SPIRALOUT_RIGHT;
+constexpr auto FadeEffect_DISSOLVE = FadeEffect::FadeEffect_DISSOLVE;
+constexpr auto FadeEffect_WAVYLINE_FROM_LEFT = FadeEffect::FadeEffect_WAVYLINE_FROM_LEFT;
+constexpr auto FadeEffect_WAVYLINE_FROM_TOP = FadeEffect::FadeEffect_WAVYLINE_FROM_TOP;
+constexpr auto FadeEffect_WAVYLINE_FROM_RIGHT = FadeEffect::FadeEffect_WAVYLINE_FROM_RIGHT;
+constexpr auto FadeEffect_WAVYLINE_FROM_BOTTOM = FadeEffect::FadeEffect_WAVYLINE_FROM_BOTTOM;
+constexpr auto FadeEffect_RANDOM = FadeEffect::FadeEffect_RANDOM;
+constexpr auto FadeEffect_STRETCH_FROM_LEFT = FadeEffect::FadeEffect_STRETCH_FROM_LEFT;
+constexpr auto FadeEffect_STRETCH_FROM_TOP = FadeEffect::FadeEffect_STRETCH_FROM_TOP;
+constexpr auto FadeEffect_STRETCH_FROM_RIGHT = FadeEffect::FadeEffect_STRETCH_FROM_RIGHT;
+constexpr auto FadeEffect_STRETCH_FROM_BOTTOM = FadeEffect::FadeEffect_STRETCH_FROM_BOTTOM;
+constexpr auto FadeEffect_VERTICAL_LINES = FadeEffect::FadeEffect_VERTICAL_LINES;
+constexpr auto FadeEffect_HORIZONTAL_LINES = FadeEffect::FadeEffect_HORIZONTAL_LINES;
+constexpr auto FadeEffect_MOVE_FROM_UPPERLEFT = FadeEffect::FadeEffect_MOVE_FROM_UPPERLEFT;
+constexpr auto FadeEffect_MOVE_FROM_UPPERRIGHT = FadeEffect::FadeEffect_MOVE_FROM_UPPERRIGHT;
+constexpr auto FadeEffect_MOVE_FROM_LOWERRIGHT = FadeEffect::FadeEffect_MOVE_FROM_LOWERRIGHT;
+constexpr auto FadeEffect_MOVE_FROM_LOWERLEFT = FadeEffect::FadeEffect_MOVE_FROM_LOWERLEFT;
+constexpr auto FadeEffect_UNCOVER_TO_LEFT = FadeEffect::FadeEffect_UNCOVER_TO_LEFT;
+constexpr auto FadeEffect_UNCOVER_TO_UPPERLEFT = FadeEffect::FadeEffect_UNCOVER_TO_UPPERLEFT;
+constexpr auto FadeEffect_UNCOVER_TO_TOP = FadeEffect::FadeEffect_UNCOVER_TO_TOP;
+constexpr auto FadeEffect_UNCOVER_TO_UPPERRIGHT = FadeEffect::FadeEffect_UNCOVER_TO_UPPERRIGHT;
+constexpr auto FadeEffect_UNCOVER_TO_RIGHT = FadeEffect::FadeEffect_UNCOVER_TO_RIGHT;
+constexpr auto FadeEffect_UNCOVER_TO_LOWERRIGHT = FadeEffect::FadeEffect_UNCOVER_TO_LOWERRIGHT;
+constexpr auto FadeEffect_UNCOVER_TO_BOTTOM = FadeEffect::FadeEffect_UNCOVER_TO_BOTTOM;
+constexpr auto FadeEffect_UNCOVER_TO_LOWERLEFT = FadeEffect::FadeEffect_UNCOVER_TO_LOWERLEFT;
+constexpr auto FadeEffect_VERTICAL_CHECKERBOARD = FadeEffect::FadeEffect_VERTICAL_CHECKERBOARD;
+constexpr auto FadeEffect_HORIZONTAL_CHECKERBOARD = FadeEffect::FadeEffect_HORIZONTAL_CHECKERBOARD;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::presentation::FadeEffect const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::presentation::FadeEffect *);
+
+#endif

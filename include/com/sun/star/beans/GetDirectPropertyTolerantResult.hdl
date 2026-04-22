@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_GETDIRECTPROPERTYTOLERANTRESULT_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_GETDIRECTPROPERTYTOLERANTRESULT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/GetPropertyTolerantResult.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace beans {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI GetDirectPropertyTolerantResult: public ::css::beans::GetPropertyTolerantResult {
+    inline GetDirectPropertyTolerantResult();
+
+    inline GetDirectPropertyTolerantResult(const ::sal_Int16& Result_, const ::css::beans::PropertyState& State_, const ::css::uno::Any& Value_, const ::rtl::OUString& Name_);
+
+    ::rtl::OUString Name CPPU_GCC3_ALIGN(::css::beans::GetPropertyTolerantResult);
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::beans::GetDirectPropertyTolerantResult const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::beans::GetDirectPropertyTolerantResult *);
+
+#endif

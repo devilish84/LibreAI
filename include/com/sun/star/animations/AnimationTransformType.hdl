@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONTRANSFORMTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONTRANSFORMTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace animations { namespace AnimationTransformType {
+
+static const ::sal_Int16 ROTATE = (sal_Int16)2;
+static const ::sal_Int16 SCALE = (sal_Int16)1;
+static const ::sal_Int16 SKEWX = (sal_Int16)3;
+static const ::sal_Int16 SKEWY = (sal_Int16)4;
+static const ::sal_Int16 TRANSLATE = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONTRANSFORMTYPE_HDL

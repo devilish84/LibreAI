@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_STATUSBARFUNCTION_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_STATUSBARFUNCTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace StatusBarFunction {
+
+static const ::sal_Int16 AVERAGE = (sal_Int16)1;
+static const ::sal_Int16 COUNT = (sal_Int16)3;
+static const ::sal_Int16 COUNTNUMS = (sal_Int16)2;
+static const ::sal_Int16 MAX = (sal_Int16)4;
+static const ::sal_Int16 MIN = (sal_Int16)5;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+static const ::sal_Int16 SUM = (sal_Int16)9;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_STATUSBARFUNCTION_HDL

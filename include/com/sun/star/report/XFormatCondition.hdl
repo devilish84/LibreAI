@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_XFORMATCONDITION_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_XFORMATCONDITION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XPropertySet.hdl"
+#include "com/sun/star/report/XReportControlFormat.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFormatCondition : public ::css::report::XReportControlFormat, public ::css::beans::XPropertySet
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFormatCondition() = default;
+    XFormatCondition(XFormatCondition const &) = default;
+    XFormatCondition(XFormatCondition &&) = default;
+    XFormatCondition & operator =(XFormatCondition const &) = default;
+    XFormatCondition & operator =(XFormatCondition &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Bool SAL_CALL getEnabled() = 0;
+    virtual void SAL_CALL setEnabled( ::sal_Bool _enabled ) = 0;
+    virtual ::rtl::OUString SAL_CALL getFormula() = 0;
+    virtual void SAL_CALL setFormula( const ::rtl::OUString& _formula ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFormatCondition() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::XFormatCondition const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::XFormatCondition > *);
+
+#endif

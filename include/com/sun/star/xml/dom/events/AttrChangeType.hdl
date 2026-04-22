@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_ATTRCHANGETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_ATTRCHANGETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace events {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI AttrChangeType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI AttrChangeType
+{
+
+#endif
+    AttrChangeType_MODIFICATION = 0,
+    AttrChangeType_ADDITION = 1,
+    AttrChangeType_REMOVAL = 2,
+    AttrChangeType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto AttrChangeType_MODIFICATION = AttrChangeType::AttrChangeType_MODIFICATION;
+constexpr auto AttrChangeType_ADDITION = AttrChangeType::AttrChangeType_ADDITION;
+constexpr auto AttrChangeType_REMOVAL = AttrChangeType::AttrChangeType_REMOVAL;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::events::AttrChangeType const *);
+} } } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::xml::dom::events::AttrChangeType *);
+
+#endif

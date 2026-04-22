@@ -1,0 +1,113 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_ERROR_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_ERROR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ucb { namespace Error {
+
+static const ::sal_Int32 ACCOUNT_SYNTAX = (sal_Int32)122977;
+static const ::sal_Int32 BAD_CCMAIL_EXPORT_PASSWORD = (sal_Int32)122909;
+static const ::sal_Int32 BAD_INET = (sal_Int32)122965;
+static const ::sal_Int32 CCMAIL_EXPORT_ERROR = (sal_Int32)122905;
+static const ::sal_Int32 CCMAIL_EXPORT_NOT_TERMINATING = (sal_Int32)122957;
+static const ::sal_Int32 CCMAIL_EXPORT_TOO_LONG = (sal_Int32)122910;
+static const ::sal_Int32 CNTOUT_NO_FROM = (sal_Int32)122890;
+static const ::sal_Int32 CONFIRM_EMPTY_TRASH = (sal_Int32)122952;
+static const ::sal_Int32 CONNECT_FAILURE = (sal_Int32)122883;
+static const ::sal_Int32 COULD_NOT_INIT_COMPONENT = (sal_Int32)122961;
+static const ::sal_Int32 DELETE_ABORTED = (sal_Int32)122892;
+static const ::sal_Int32 DO_LOG = (sal_Int32)122947;
+static const ::sal_Int32 EMPTY_SERVERNAME = (sal_Int32)122963;
+static const ::sal_Int32 EMPTY_USERNAME = (sal_Int32)122964;
+static const ::sal_Int32 EXTERNAL_COMMAND_FAILED = (sal_Int32)122958;
+static const ::sal_Int32 FILE_EXISTS = (sal_Int32)122921;
+static const ::sal_Int32 FILE_NOT_EXISTS = (sal_Int32)122922;
+static const ::sal_Int32 FOLDER_EXISTS = (sal_Int32)122911;
+static const ::sal_Int32 FOLDER_INVALID = (sal_Int32)122896;
+static const ::sal_Int32 FOLDER_NOT_EXISTS = (sal_Int32)122912;
+static const ::sal_Int32 FSYS_ACCESS_DENIED = (sal_Int32)122926;
+static const ::sal_Int32 FSYS_CACHE_INCONSISTENT = (sal_Int32)122940;
+static const ::sal_Int32 FSYS_CANT_ITERATE = (sal_Int32)122937;
+static const ::sal_Int32 FSYS_CANT_RESOLVE_CONFLICT = (sal_Int32)122936;
+static const ::sal_Int32 FSYS_DELETE = (sal_Int32)122944;
+static const ::sal_Int32 FSYS_INSERT_MEDIUM = (sal_Int32)122955;
+static const ::sal_Int32 FSYS_INVALID_CHAR = (sal_Int32)122924;
+static const ::sal_Int32 FSYS_INVALID_DEVICE = (sal_Int32)122925;
+static const ::sal_Int32 FSYS_IS_MARKED = (sal_Int32)122945;
+static const ::sal_Int32 FSYS_IS_WILDCARD = (sal_Int32)122933;
+static const ::sal_Int32 FSYS_LOCK = (sal_Int32)122942;
+static const ::sal_Int32 FSYS_LOCK_VIOLATION = (sal_Int32)122927;
+static const ::sal_Int32 FSYS_LOST_ROOT = (sal_Int32)122949;
+static const ::sal_Int32 FSYS_MISPLACED_CHAR = (sal_Int32)122923;
+static const ::sal_Int32 FSYS_NOT_A_DIRECTORY = (sal_Int32)122932;
+static const ::sal_Int32 FSYS_NOT_A_FILE = (sal_Int32)122931;
+static const ::sal_Int32 FSYS_NOT_SUPPORTED = (sal_Int32)122929;
+static const ::sal_Int32 FSYS_NO_TARGET = (sal_Int32)122953;
+static const ::sal_Int32 FSYS_READONLY = (sal_Int32)122941;
+static const ::sal_Int32 FSYS_RECURSIVE = (sal_Int32)122954;
+static const ::sal_Int32 FSYS_ROOT_DELETE = (sal_Int32)122920;
+static const ::sal_Int32 FSYS_UNKNOWN = (sal_Int32)122930;
+static const ::sal_Int32 FSYS_UNLOCK = (sal_Int32)122943;
+static const ::sal_Int32 FSYS_UPDATE_NEEDED = (sal_Int32)122935;
+static const ::sal_Int32 FSYS_VOLUME_FULL = (sal_Int32)122928;
+static const ::sal_Int32 FTP_DCONFAILURE = (sal_Int32)122901;
+static const ::sal_Int32 FTP_GENERAL_FAILURE = (sal_Int32)122946;
+static const ::sal_Int32 FTP_NETWORKERROR = (sal_Int32)122898;
+static const ::sal_Int32 FTP_NOTNECESSARYCMD = (sal_Int32)122899;
+static const ::sal_Int32 FTP_PROXY = (sal_Int32)122950;
+static const ::sal_Int32 FTP_RESOLVERERROR = (sal_Int32)122897;
+static const ::sal_Int32 FTP_SERVICEUNAVAILABLE = (sal_Int32)122900;
+static const ::sal_Int32 FTP_TRANSFERABORTED = (sal_Int32)122902;
+static const ::sal_Int32 HTTP_COOKIE_REQUEST = (sal_Int32)122948;
+static const ::sal_Int32 ILLEGAL_CCMAIL_EXPORT_FILE = (sal_Int32)122907;
+static const ::sal_Int32 ILLEGAL_MESSAGE_ID = (sal_Int32)122914;
+static const ::sal_Int32 IMAP_BAD_SERVER = (sal_Int32)122969;
+static const ::sal_Int32 IMAP_BAD_TITLE = (sal_Int32)122971;
+static const ::sal_Int32 IMAP_CONNECTION_CLOSED = (sal_Int32)122967;
+static const ::sal_Int32 IMAP_NOT_IMAP4 = (sal_Int32)122968;
+static const ::sal_Int32 IMAP_SERVER_MSG = (sal_Int32)122966;
+static const ::sal_Int32 IS_RESCHEDULED = (sal_Int32)122918;
+static const ::sal_Int32 LOGIN_FAILURE_ACCOUNT = (sal_Int32)122976;
+static const ::sal_Int32 LOGIN_FAILURE_MAILSEND = (sal_Int32)122882;
+static const ::sal_Int32 LOGIN_FAILURE_NEWSSEND = (sal_Int32)122881;
+static const ::sal_Int32 LOGIN_FAILURE_RECEIVE = (sal_Int32)122880;
+static const ::sal_Int32 MESSAGE_NOT_FOUND = (sal_Int32)122908;
+static const ::sal_Int32 MULTIPLE_NOT_SEARCHABLE = (sal_Int32)122939;
+static const ::sal_Int32 NONE = (sal_Int32)0;
+static const ::sal_Int32 NOTAVAILABLE = (sal_Int32)122894;
+static const ::sal_Int32 NOT_HANDLED = (sal_Int32)122960;
+static const ::sal_Int32 NO_CCMAIL_EXPORT_FILE = (sal_Int32)122906;
+static const ::sal_Int32 NO_DOCINFO = (sal_Int32)122956;
+static const ::sal_Int32 NO_VIM_BBOARDLIST = (sal_Int32)122913;
+static const ::sal_Int32 NO_VIM_LIBRARY = (sal_Int32)122903;
+static const ::sal_Int32 ONE_NOT_SEARCHABLE = (sal_Int32)122938;
+static const ::sal_Int32 PASSWORD_SYNTAX = (sal_Int32)122973;
+static const ::sal_Int32 QUERY_DELETE = (sal_Int32)122893;
+static const ::sal_Int32 QUERY_DELETE_CACHE = (sal_Int32)122974;
+static const ::sal_Int32 RENAMED_WRONG_FILE_FORMAT = (sal_Int32)122934;
+static const ::sal_Int32 RENAME_FAILED = (sal_Int32)122959;
+static const ::sal_Int32 REORGANIZE_FILE_LOCKED = (sal_Int32)122970;
+static const ::sal_Int32 REORGANIZE_NO_DISKSPACE = (sal_Int32)122975;
+static const ::sal_Int32 SERVERNAME_SYNTAX = (sal_Int32)122916;
+static const ::sal_Int32 SERVER_CONNECT_FAILURE = (sal_Int32)122972;
+static const ::sal_Int32 SERVER_PORT_SYNTAX = (sal_Int32)122915;
+static const ::sal_Int32 SOURCE_SAME_AS_TARGET = (sal_Int32)122951;
+static const ::sal_Int32 STORAGE_KILLED = (sal_Int32)122887;
+static const ::sal_Int32 STORAGE_READONLY = (sal_Int32)122886;
+static const ::sal_Int32 TOO_MANY_GROUPS = (sal_Int32)122891;
+static const ::sal_Int32 TRANSFER_URL_NOT_SUPPORTED = (sal_Int32)122962;
+static const ::sal_Int32 UCB_OFFLINE = (sal_Int32)122884;
+static const ::sal_Int32 UCB_SERVER_ERROR = (sal_Int32)122885;
+static const ::sal_Int32 UNSUPPORTED_URL = (sal_Int32)122889;
+static const ::sal_Int32 USERNAME_SYNTAX = (sal_Int32)122917;
+static const ::sal_Int32 VIM_LIBRARY_CORRUPTED = (sal_Int32)122904;
+static const ::sal_Int32 VIM_LIBRARY_ERROR = (sal_Int32)122895;
+static const ::sal_Int32 VIM_NO_FAKE_MESSAGE_ID = (sal_Int32)122919;
+static const ::sal_Int32 WRONG_FILE_FORMAT = (sal_Int32)122888;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UCB_ERROR_HDL

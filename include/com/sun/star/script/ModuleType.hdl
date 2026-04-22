@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_MODULETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_MODULETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace script { namespace ModuleType {
+
+static const ::sal_Int32 CLASS = (sal_Int32)2;
+static const ::sal_Int32 DOCUMENT = (sal_Int32)4;
+static const ::sal_Int32 FORM = (sal_Int32)3;
+static const ::sal_Int32 NORMAL = (sal_Int32)1;
+static const ::sal_Int32 UNKNOWN = (sal_Int32)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SCRIPT_MODULETYPE_HDL

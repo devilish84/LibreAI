@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_UNDOMANAGEREVENT_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_UNDOMANAGEREVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI UndoManagerEvent: public ::css::lang::EventObject {
+    inline UndoManagerEvent();
+
+    inline UndoManagerEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::rtl::OUString& UndoActionTitle_, const ::sal_Int32& UndoContextDepth_);
+
+    ::rtl::OUString UndoActionTitle CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::sal_Int32 UndoContextDepth;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::UndoManagerEvent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::document::UndoManagerEvent *);
+
+#endif

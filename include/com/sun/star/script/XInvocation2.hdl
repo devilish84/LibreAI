@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XINVOCATION2_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XINVOCATION2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/script/InvocationInfo.hdl"
+#include "com/sun/star/script/XInvocation.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XInvocation2 : public ::css::script::XInvocation
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XInvocation2() = default;
+    XInvocation2(XInvocation2 const &) = default;
+    XInvocation2(XInvocation2 &&) = default;
+    XInvocation2 & operator =(XInvocation2 const &) = default;
+    XInvocation2 & operator =(XInvocation2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getMemberNames() = 0;
+    virtual ::css::uno::Sequence< ::css::script::InvocationInfo > SAL_CALL getInfo() = 0;
+    virtual ::css::script::InvocationInfo SAL_CALL getInfoForName( const ::rtl::OUString& aName, ::sal_Bool bExact ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XInvocation2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XInvocation2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XInvocation2 > *);
+
+#endif

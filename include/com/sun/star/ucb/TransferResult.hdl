@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_TRANSFERRESULT_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_TRANSFERRESULT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI TransferResult {
+    inline TransferResult();
+
+    inline TransferResult(const ::rtl::OUString& Source_, const ::rtl::OUString& Target_, const ::css::uno::Any& Result_);
+
+    ::rtl::OUString Source;
+    ::rtl::OUString Target;
+    ::css::uno::Any Result;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::TransferResult const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::TransferResult *);
+
+#endif

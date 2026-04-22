@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_TARGETPROPERTIES_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_TARGETPROPERTIES_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/NamedValue.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace animations {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI TargetProperties {
+    inline TargetProperties();
+
+    inline TargetProperties(const ::css::uno::Any& Target_, const ::css::uno::Sequence< ::css::beans::NamedValue >& Properties_);
+
+    ::css::uno::Any Target;
+    ::css::uno::Sequence< ::css::beans::NamedValue > Properties;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::animations::TargetProperties const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::animations::TargetProperties *);
+
+#endif

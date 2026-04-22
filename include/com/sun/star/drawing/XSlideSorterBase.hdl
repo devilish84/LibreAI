@@ -1,0 +1,70 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_XSLIDESORTERBASE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_XSLIDESORTERBASE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XIndexAccess; } } } }
+#include "com/sun/star/drawing/XDrawView.hdl"
+#include "com/sun/star/drawing/framework/XView.hdl"
+#include "com/sun/star/util/Color.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSlideSorterBase : public ::css::drawing::framework::XView, public ::css::drawing::XDrawView
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSlideSorterBase() = default;
+    XSlideSorterBase(XSlideSorterBase const &) = default;
+    XSlideSorterBase(XSlideSorterBase &&) = default;
+    XSlideSorterBase & operator =(XSlideSorterBase const &) = default;
+    XSlideSorterBase & operator =(XSlideSorterBase &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Reference< ::css::container::XIndexAccess > SAL_CALL getDocumentSlides() = 0;
+    virtual void SAL_CALL setDocumentSlides( const ::css::uno::Reference< ::css::container::XIndexAccess >& _documentslides ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsHighlightCurrentSlide() = 0;
+    virtual void SAL_CALL setIsHighlightCurrentSlide( ::sal_Bool _ishighlightcurrentslide ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsShowSelection() = 0;
+    virtual void SAL_CALL setIsShowSelection( ::sal_Bool _isshowselection ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsShowFocus() = 0;
+    virtual void SAL_CALL setIsShowFocus( ::sal_Bool _isshowfocus ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsCenterSelection() = 0;
+    virtual void SAL_CALL setIsCenterSelection( ::sal_Bool _iscenterselection ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsSuspendPreviewUpdatesDuringFullScreenPresentation() = 0;
+    virtual void SAL_CALL setIsSuspendPreviewUpdatesDuringFullScreenPresentation( ::sal_Bool _issuspendpreviewupdatesduringfullscreenpresentation ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsOrientationVertical() = 0;
+    virtual void SAL_CALL setIsOrientationVertical( ::sal_Bool _isorientationvertical ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsSmoothScrolling() = 0;
+    virtual void SAL_CALL setIsSmoothScrolling( ::sal_Bool _issmoothscrolling ) = 0;
+    virtual ::sal_Int32 SAL_CALL getBackgroundColor() = 0;
+    virtual void SAL_CALL setBackgroundColor( ::sal_Int32 _backgroundcolor ) = 0;
+    virtual ::sal_Int32 SAL_CALL getTextColor() = 0;
+    virtual void SAL_CALL setTextColor( ::sal_Int32 _textcolor ) = 0;
+    virtual ::sal_Int32 SAL_CALL getSelectionColor() = 0;
+    virtual void SAL_CALL setSelectionColor( ::sal_Int32 _selectioncolor ) = 0;
+    virtual ::sal_Int32 SAL_CALL getHighlightColor() = 0;
+    virtual void SAL_CALL setHighlightColor( ::sal_Int32 _highlightcolor ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsUIReadOnly() = 0;
+    virtual void SAL_CALL setIsUIReadOnly( ::sal_Bool _isuireadonly ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSlideSorterBase() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::XSlideSorterBase const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::XSlideSorterBase > *);
+
+#endif

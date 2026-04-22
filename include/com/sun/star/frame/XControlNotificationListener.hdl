@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XCONTROLNOTIFICATIONLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XCONTROLNOTIFICATIONLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/frame/ControlEvent.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XControlNotificationListener : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XControlNotificationListener() = default;
+    XControlNotificationListener(XControlNotificationListener const &) = default;
+    XControlNotificationListener(XControlNotificationListener &&) = default;
+    XControlNotificationListener & operator =(XControlNotificationListener const &) = default;
+    XControlNotificationListener & operator =(XControlNotificationListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL controlEvent( const ::css::frame::ControlEvent& Event ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XControlNotificationListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XControlNotificationListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XControlNotificationListener > *);
+
+#endif

@@ -1,0 +1,14 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_COLOR_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_COLOR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace util {
+
+typedef ::sal_Int32 Color;
+
+} } } }
+#endif // INCLUDED_COM_SUN_STAR_UTIL_COLOR_HDL

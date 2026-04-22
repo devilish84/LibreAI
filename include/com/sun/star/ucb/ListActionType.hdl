@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_LISTACTIONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_LISTACTIONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ucb { namespace ListActionType {
+
+static const ::sal_Int32 CLEARED = (sal_Int32)23;
+static const ::sal_Int32 COMPLETED = (sal_Int32)27;
+static const ::sal_Int32 INSERTED = (sal_Int32)21;
+static const ::sal_Int32 MOVED = (sal_Int32)24;
+static const ::sal_Int32 PROPERTIES_CHANGED = (sal_Int32)25;
+static const ::sal_Int32 REMOVED = (sal_Int32)22;
+static const ::sal_Int32 WELCOME = (sal_Int32)20;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UCB_LISTACTIONTYPE_HDL

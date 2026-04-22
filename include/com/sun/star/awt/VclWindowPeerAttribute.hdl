@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_VCLWINDOWPEERATTRIBUTE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_VCLWINDOWPEERATTRIBUTE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace VclWindowPeerAttribute {
+
+static const ::sal_Int32 AUTOHSCROLL = (sal_Int32)1073741824;
+static const ::sal_Int32 AUTOVSCROLL = SAL_MIN_INT32;
+static const ::sal_Int32 CENTER = (sal_Int32)2048;
+static const ::sal_Int32 CLIPCHILDREN = (sal_Int32)524288;
+static const ::sal_Int32 DEFBUTTON = (sal_Int32)65536;
+static const ::sal_Int32 DEF_CANCEL = (sal_Int32)268435456;
+static const ::sal_Int32 DEF_NO = SAL_MIN_INT32;
+static const ::sal_Int32 DEF_OK = (sal_Int32)134217728;
+static const ::sal_Int32 DEF_RETRY = (sal_Int32)536870912;
+static const ::sal_Int32 DEF_YES = (sal_Int32)1073741824;
+static const ::sal_Int32 DROPDOWN = (sal_Int32)32768;
+static const ::sal_Int32 GROUP = (sal_Int32)2097152;
+static const ::sal_Int32 HSCROLL = (sal_Int32)256;
+static const ::sal_Int32 LEFT = (sal_Int32)1024;
+static const ::sal_Int32 NOBORDER = (sal_Int32)1048576;
+static const ::sal_Int32 NOLABEL = (sal_Int32)536870912;
+static const ::sal_Int32 OK = (sal_Int32)4194304;
+static const ::sal_Int32 OK_CANCEL = (sal_Int32)8388608;
+static const ::sal_Int32 READONLY = (sal_Int32)262144;
+static const ::sal_Int32 RETRY_CANCEL = (sal_Int32)67108864;
+static const ::sal_Int32 RIGHT = (sal_Int32)4096;
+static const ::sal_Int32 SORT = (sal_Int32)16384;
+static const ::sal_Int32 SPIN = (sal_Int32)8192;
+static const ::sal_Int32 VSCROLL = (sal_Int32)512;
+static const ::sal_Int32 YES_NO = (sal_Int32)16777216;
+static const ::sal_Int32 YES_NO_CANCEL = (sal_Int32)33554432;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_VCLWINDOWPEERATTRIBUTE_HDL

@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_CRYPTO_XXMLSECURITYTEMPLATE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_CRYPTO_XXMLSECURITYTEMPLATE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/xml/crypto/SecurityOperationStatus.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace wrapper { class XXMLElementWrapper; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XXMLSecurityTemplate : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XXMLSecurityTemplate() = default;
+    XXMLSecurityTemplate(XXMLSecurityTemplate const &) = default;
+    XXMLSecurityTemplate(XXMLSecurityTemplate &&) = default;
+    XXMLSecurityTemplate & operator =(XXMLSecurityTemplate const &) = default;
+    XXMLSecurityTemplate & operator =(XXMLSecurityTemplate &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setTemplate( const ::css::uno::Reference< ::css::xml::wrapper::XXMLElementWrapper >& aXmlElement ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::wrapper::XXMLElementWrapper > SAL_CALL getTemplate() = 0;
+    virtual void SAL_CALL setTarget( const ::css::uno::Reference< ::css::xml::wrapper::XXMLElementWrapper >& aXmlElement ) = 0;
+    virtual void SAL_CALL setStatus( ::css::xml::crypto::SecurityOperationStatus status ) = 0;
+    virtual ::css::xml::crypto::SecurityOperationStatus SAL_CALL getStatus() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XXMLSecurityTemplate() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::crypto::XXMLSecurityTemplate const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::crypto::XXMLSecurityTemplate > *);
+
+#endif

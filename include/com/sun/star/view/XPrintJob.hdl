@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_VIEW_XPRINTJOB_HDL
+#define INCLUDED_COM_SUN_STAR_VIEW_XPRINTJOB_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace view { class XPrintable; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace view {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPrintJob : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPrintJob() = default;
+    XPrintJob(XPrintJob const &) = default;
+    XPrintJob(XPrintJob &&) = default;
+    XPrintJob & operator =(XPrintJob const &) = default;
+    XPrintJob & operator =(XPrintJob &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::beans::PropertyValue > SAL_CALL getPrintOptions() = 0;
+    virtual ::css::uno::Sequence< ::css::beans::PropertyValue > SAL_CALL getPrinter() = 0;
+    virtual ::css::uno::Reference< ::css::view::XPrintable > SAL_CALL getPrintable() = 0;
+    virtual void SAL_CALL cancelJob() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPrintJob() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::view::XPrintJob const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::view::XPrintJob > *);
+
+#endif

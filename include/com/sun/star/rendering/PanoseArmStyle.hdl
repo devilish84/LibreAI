@@ -1,0 +1,26 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_PANOSEARMSTYLE_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_PANOSEARMSTYLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace PanoseArmStyle {
+
+static const ::sal_Int8 ANYTHING = (sal_Int8)0;
+static const ::sal_Int8 BENT_DOUBLE_SERIF = (sal_Int8)11;
+static const ::sal_Int8 BENT_HORIZONTAL = (sal_Int8)7;
+static const ::sal_Int8 BENT_SINGLE_SERIF = (sal_Int8)10;
+static const ::sal_Int8 BENT_VERTICAL = (sal_Int8)9;
+static const ::sal_Int8 BENT_WEDGE = (sal_Int8)8;
+static const ::sal_Int8 NO_FIT = (sal_Int8)1;
+static const ::sal_Int8 STRAIGHT_DOUBLE_SERIF = (sal_Int8)6;
+static const ::sal_Int8 STRAIGHT_HORIZONTAL = (sal_Int8)2;
+static const ::sal_Int8 STRAIGHT_SINGLE_SERIF = (sal_Int8)5;
+static const ::sal_Int8 STRAIGHT_VERTICAL = (sal_Int8)4;
+static const ::sal_Int8 STRAIGHT_WEDGE = (sal_Int8)3;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_PANOSEARMSTYLE_HDL

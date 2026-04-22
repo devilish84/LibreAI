@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XOPTIMIZEDSTORAGE_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XOPTIMIZEDSTORAGE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace embed { class XOptimizedStorage; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XStream; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XOptimizedStorage : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XOptimizedStorage() = default;
+    XOptimizedStorage(XOptimizedStorage const &) = default;
+    XOptimizedStorage(XOptimizedStorage &&) = default;
+    XOptimizedStorage & operator =(XOptimizedStorage const &) = default;
+    XOptimizedStorage & operator =(XOptimizedStorage &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL insertRawNonEncrStreamElementDirect( const ::rtl::OUString& sStreamName, const ::css::uno::Reference< ::css::io::XInputStream >& xInStream ) = 0;
+    virtual void SAL_CALL insertStreamElementDirect( const ::rtl::OUString& sStreamName, const ::css::uno::Reference< ::css::io::XInputStream >& xInStream, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aProperties ) = 0;
+    virtual void SAL_CALL copyElementDirectlyTo( const ::rtl::OUString& sSourceName, const ::css::uno::Reference< ::css::embed::XOptimizedStorage >& xTargetStorage, const ::rtl::OUString& sTargetName ) = 0;
+    virtual void SAL_CALL writeAndAttachToStream( const ::css::uno::Reference< ::css::io::XStream >& xStream ) = 0;
+    virtual void SAL_CALL attachToURL( const ::rtl::OUString& sURL, ::sal_Bool bReadOnly ) = 0;
+    virtual ::css::uno::Any SAL_CALL getElementPropertyValue( const ::rtl::OUString& sElementName, const ::rtl::OUString& sPropertyName ) = 0;
+    virtual void SAL_CALL copyStreamElementData( const ::rtl::OUString& sStreamName, const ::css::uno::Reference< ::css::io::XStream >& xTargetStream ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XOptimizedStorage() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XOptimizedStorage const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XOptimizedStorage > *);
+
+#endif

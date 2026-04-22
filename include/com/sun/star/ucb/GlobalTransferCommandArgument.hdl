@@ -1,0 +1,41 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_GLOBALTRANSFERCOMMANDARGUMENT_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_GLOBALTRANSFERCOMMANDARGUMENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/TransferCommandOperation.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED GlobalTransferCommandArgument {
+    inline GlobalTransferCommandArgument();
+
+    inline GlobalTransferCommandArgument(const ::css::ucb::TransferCommandOperation& Operation_, const ::rtl::OUString& SourceURL_, const ::rtl::OUString& TargetURL_, const ::rtl::OUString& NewTitle_, const ::sal_Int32& NameClash_);
+
+    ::css::ucb::TransferCommandOperation Operation;
+    ::rtl::OUString SourceURL;
+    ::rtl::OUString TargetURL;
+    ::rtl::OUString NewTitle;
+    ::sal_Int32 NameClash;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::GlobalTransferCommandArgument const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::GlobalTransferCommandArgument *);
+
+#endif

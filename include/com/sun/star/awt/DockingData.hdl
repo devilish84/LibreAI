@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_DOCKINGDATA_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_DOCKINGDATA_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DockingData {
+    inline DockingData();
+
+    inline DockingData(const ::css::awt::Rectangle& TrackingRectangle_, const ::sal_Bool& bFloating_);
+
+    ::css::awt::Rectangle TrackingRectangle;
+    ::sal_Bool bFloating;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::DockingData const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::DockingData *);
+
+#endif

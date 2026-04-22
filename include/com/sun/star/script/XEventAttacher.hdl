@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XEVENTATTACHER_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XEVENTATTACHER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace lang { class XEventListener; } } } }
+namespace com { namespace sun { namespace star { namespace script { class XAllListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XEventAttacher : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XEventAttacher() = default;
+    XEventAttacher(XEventAttacher const &) = default;
+    XEventAttacher(XEventAttacher &&) = default;
+    XEventAttacher & operator =(XEventAttacher const &) = default;
+    XEventAttacher & operator =(XEventAttacher &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::lang::XEventListener > SAL_CALL attachListener( const ::css::uno::Reference< ::css::uno::XInterface >& xTarget, const ::css::uno::Reference< ::css::script::XAllListener >& xAllListener, const ::css::uno::Any& aHelper, const ::rtl::OUString& aListenerType, const ::rtl::OUString& aAddListenerParam ) = 0;
+    virtual ::css::uno::Reference< ::css::lang::XEventListener > SAL_CALL attachSingleEventListener( const ::css::uno::Reference< ::css::uno::XInterface >& xTarget, const ::css::uno::Reference< ::css::script::XAllListener >& xAllListener, const ::css::uno::Any& aHelper, const ::rtl::OUString& aListenerType, const ::rtl::OUString& aAddListenerParam, const ::rtl::OUString& aEventMethod ) = 0;
+    virtual void SAL_CALL removeListener( const ::css::uno::Reference< ::css::uno::XInterface >& xTarget, const ::rtl::OUString& aListenerType, const ::rtl::OUString& aRemoveListenerParam, const ::css::uno::Reference< ::css::lang::XEventListener >& xToRemoveListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XEventAttacher() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XEventAttacher const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XEventAttacher > *);
+
+#endif

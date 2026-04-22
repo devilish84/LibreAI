@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_BREAKTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_BREAKTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace BreakType {
+
+static const ::sal_Int16 HANGINGPUNCTUATION = (sal_Int16)3;
+static const ::sal_Int16 HYPHENATION = (sal_Int16)2;
+static const ::sal_Int16 WORDBOUNDARY = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_BREAKTYPE_HDL

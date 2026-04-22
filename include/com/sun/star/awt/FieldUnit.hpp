@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FIELDUNIT_HPP
+#define INCLUDED_COM_SUN_STAR_AWT_FIELDUNIT_HPP
+
+#include "com/sun/star/awt/FieldUnit.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FIELDUNIT_HPP

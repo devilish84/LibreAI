@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_MENUITEMTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_MENUITEMTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI MenuItemType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI MenuItemType
+{
+
+#endif
+    MenuItemType_DONTKNOW = 0,
+    MenuItemType_STRING = 1,
+    MenuItemType_IMAGE = 2,
+    MenuItemType_STRINGIMAGE = 3,
+    MenuItemType_SEPARATOR = 4,
+    MenuItemType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto MenuItemType_DONTKNOW = MenuItemType::MenuItemType_DONTKNOW;
+constexpr auto MenuItemType_STRING = MenuItemType::MenuItemType_STRING;
+constexpr auto MenuItemType_IMAGE = MenuItemType::MenuItemType_IMAGE;
+constexpr auto MenuItemType_STRINGIMAGE = MenuItemType::MenuItemType_STRINGIMAGE;
+constexpr auto MenuItemType_SEPARATOR = MenuItemType::MenuItemType_SEPARATOR;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::MenuItemType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::MenuItemType *);
+
+#endif

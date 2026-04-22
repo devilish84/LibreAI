@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_SHADOWFORMAT_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_SHADOWFORMAT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/table/ShadowLocation.hdl"
+#include "com/sun/star/util/Color.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED ShadowFormat {
+    inline ShadowFormat();
+
+    inline ShadowFormat(const ::css::table::ShadowLocation& Location_, const ::sal_Int16& ShadowWidth_, const ::sal_Bool& IsTransparent_, const ::sal_Int32& Color_);
+
+    ::css::table::ShadowLocation Location;
+    ::sal_Int16 ShadowWidth;
+    ::sal_Bool IsTransparent;
+    ::sal_Int32 Color;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::ShadowFormat const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::table::ShadowFormat *);
+
+#endif

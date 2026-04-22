@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DDELINKINFO_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DDELINKINFO_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/DDEItemInfo.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI DDELinkInfo {
+    inline DDELinkInfo();
+
+    inline DDELinkInfo(const ::rtl::OUString& Service_, const ::rtl::OUString& Topic_, const ::css::uno::Sequence< ::css::sheet::DDEItemInfo >& Items_);
+
+    ::rtl::OUString Service;
+    ::rtl::OUString Topic;
+    ::css::uno::Sequence< ::css::sheet::DDEItemInfo > Items;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::DDELinkInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::DDELinkInfo *);
+
+#endif

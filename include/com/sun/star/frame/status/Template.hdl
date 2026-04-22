@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_STATUS_TEMPLATE_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_STATUS_TEMPLATE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame { namespace status {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED Template {
+    inline Template();
+
+    inline Template(const ::rtl::OUString& StyleName_, const ::sal_Int32& Value_, const ::rtl::OUString& StyleNameIdentifier_);
+
+    ::rtl::OUString StyleName;
+    ::sal_Int32 Value;
+    ::rtl::OUString StyleNameIdentifier;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::status::Template const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::frame::status::Template *);
+
+#endif

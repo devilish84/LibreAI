@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_REFLECTION_XIDLFIELD2_HDL
+#define INCLUDED_COM_SUN_STAR_REFLECTION_XIDLFIELD2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/reflection/FieldAccessMode.hdl"
+namespace com { namespace sun { namespace star { namespace reflection { class XIdlClass; } } } }
+#include "com/sun/star/reflection/XIdlMember.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace reflection {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XIdlField2 : public ::css::reflection::XIdlMember
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XIdlField2() = default;
+    XIdlField2(XIdlField2 const &) = default;
+    XIdlField2(XIdlField2 &&) = default;
+    XIdlField2 & operator =(XIdlField2 const &) = default;
+    XIdlField2 & operator =(XIdlField2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::reflection::XIdlClass > SAL_CALL getType() = 0;
+    virtual ::css::reflection::FieldAccessMode SAL_CALL getAccessMode() = 0;
+    virtual ::css::uno::Any SAL_CALL get( const ::css::uno::Any& obj ) = 0;
+    virtual void SAL_CALL set( ::css::uno::Any& obj, const ::css::uno::Any& value ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XIdlField2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::reflection::XIdlField2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::reflection::XIdlField2 > *);
+
+#endif

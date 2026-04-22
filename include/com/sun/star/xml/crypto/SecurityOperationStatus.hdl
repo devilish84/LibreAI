@@ -1,0 +1,134 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_CRYPTO_SECURITYOPERATIONSTATUS_HDL
+#define INCLUDED_COM_SUN_STAR_XML_CRYPTO_SECURITYOPERATIONSTATUS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI SecurityOperationStatus
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI SecurityOperationStatus
+{
+
+#endif
+    SecurityOperationStatus_UNKNOWN = 0,
+    SecurityOperationStatus_OPERATION_SUCCEEDED = 1,
+    SecurityOperationStatus_RUNTIMEERROR_FAILED = 2,
+    SecurityOperationStatus_ENGINE_FAILED = 3,
+    SecurityOperationStatus_MALLOC_FAILED = 4,
+    SecurityOperationStatus_STRDUP_FAILED = 5,
+    SecurityOperationStatus_CRYPTO_FAILED = 6,
+    SecurityOperationStatus_XML_FAILED = 7,
+    SecurityOperationStatus_XSLT_FAILED = 8,
+    SecurityOperationStatus_IO_FAILED = 9,
+    SecurityOperationStatus_DISABLED = 10,
+    SecurityOperationStatus_NOT_IMPLEMENTED = 11,
+    SecurityOperationStatus_INVALID_SIZE = 12,
+    SecurityOperationStatus_INVALID_DATA = 13,
+    SecurityOperationStatus_INVALID_RESULT = 14,
+    SecurityOperationStatus_INVALID_TYPE = 15,
+    SecurityOperationStatus_INVALID_OPERATION = 16,
+    SecurityOperationStatus_INVALID_STATUS = 17,
+    SecurityOperationStatus_INVALID_FORMAT = 18,
+    SecurityOperationStatus_DATA_NOT_MATCH = 19,
+    SecurityOperationStatus_INVALID_NODE = 20,
+    SecurityOperationStatus_INVALID_NODE_CONTENT = 21,
+    SecurityOperationStatus_INVALID_NODE_ATTRIBUTE = 22,
+    SecurityOperationStatus_MISSING_NODE_ATTRIBUTE = 23,
+    SecurityOperationStatus_NODE_ALREADY_PRESENT = 24,
+    SecurityOperationStatus_UNEXPECTED_NODE = 25,
+    SecurityOperationStatus_NODE_NOT_FOUND = 26,
+    SecurityOperationStatus_INVALID_TRANSFORM = 27,
+    SecurityOperationStatus_INVALID_TRANSFORM_KEY = 28,
+    SecurityOperationStatus_INVALID_URI_TYPE = 29,
+    SecurityOperationStatus_TRANSFORM_SAME_DOCUMENT_REQUIRED = 30,
+    SecurityOperationStatus_TRANSFORM_DISABLED = 31,
+    SecurityOperationStatus_INVALID_KEY_DATA = 32,
+    SecurityOperationStatus_KEY_DATA_NOT_FOUND = 33,
+    SecurityOperationStatus_KEY_DATA_ALREADY_EXIST = 34,
+    SecurityOperationStatus_INVALID_KEY_DATA_SIZE = 35,
+    SecurityOperationStatus_KEY_NOT_FOUND = 36,
+    SecurityOperationStatus_KEYDATA_DISABLED = 37,
+    SecurityOperationStatus_MAX_RETRIEVALS_LEVEL = 38,
+    SecurityOperationStatus_MAX_RETRIEVAL_TYPE_MISMATCH = 39,
+    SecurityOperationStatus_MAX_ENCKEY_LEVEL = 40,
+    SecurityOperationStatus_CERT_VERIFY_FAILED = 41,
+    SecurityOperationStatus_CERT_NOT_FOUND = 42,
+    SecurityOperationStatus_CERT_REVOKED = 43,
+    SecurityOperationStatus_CERT_ISSUER_FAILED = 44,
+    SecurityOperationStatus_CERT_NOT_YET_VALID = 45,
+    SecurityOperationStatus_CERT_HAS_EXPIRED = 46,
+    SecurityOperationStatus_DSIG_NO_REFERENCES = 47,
+    SecurityOperationStatus_DSIG_INVALID_REFERENCE = 48,
+    SecurityOperationStatus_ASSERTION = 49,
+    SecurityOperationStatus_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto SecurityOperationStatus_UNKNOWN = SecurityOperationStatus::SecurityOperationStatus_UNKNOWN;
+constexpr auto SecurityOperationStatus_OPERATION_SUCCEEDED = SecurityOperationStatus::SecurityOperationStatus_OPERATION_SUCCEEDED;
+constexpr auto SecurityOperationStatus_RUNTIMEERROR_FAILED = SecurityOperationStatus::SecurityOperationStatus_RUNTIMEERROR_FAILED;
+constexpr auto SecurityOperationStatus_ENGINE_FAILED = SecurityOperationStatus::SecurityOperationStatus_ENGINE_FAILED;
+constexpr auto SecurityOperationStatus_MALLOC_FAILED = SecurityOperationStatus::SecurityOperationStatus_MALLOC_FAILED;
+constexpr auto SecurityOperationStatus_STRDUP_FAILED = SecurityOperationStatus::SecurityOperationStatus_STRDUP_FAILED;
+constexpr auto SecurityOperationStatus_CRYPTO_FAILED = SecurityOperationStatus::SecurityOperationStatus_CRYPTO_FAILED;
+constexpr auto SecurityOperationStatus_XML_FAILED = SecurityOperationStatus::SecurityOperationStatus_XML_FAILED;
+constexpr auto SecurityOperationStatus_XSLT_FAILED = SecurityOperationStatus::SecurityOperationStatus_XSLT_FAILED;
+constexpr auto SecurityOperationStatus_IO_FAILED = SecurityOperationStatus::SecurityOperationStatus_IO_FAILED;
+constexpr auto SecurityOperationStatus_DISABLED = SecurityOperationStatus::SecurityOperationStatus_DISABLED;
+constexpr auto SecurityOperationStatus_NOT_IMPLEMENTED = SecurityOperationStatus::SecurityOperationStatus_NOT_IMPLEMENTED;
+constexpr auto SecurityOperationStatus_INVALID_SIZE = SecurityOperationStatus::SecurityOperationStatus_INVALID_SIZE;
+constexpr auto SecurityOperationStatus_INVALID_DATA = SecurityOperationStatus::SecurityOperationStatus_INVALID_DATA;
+constexpr auto SecurityOperationStatus_INVALID_RESULT = SecurityOperationStatus::SecurityOperationStatus_INVALID_RESULT;
+constexpr auto SecurityOperationStatus_INVALID_TYPE = SecurityOperationStatus::SecurityOperationStatus_INVALID_TYPE;
+constexpr auto SecurityOperationStatus_INVALID_OPERATION = SecurityOperationStatus::SecurityOperationStatus_INVALID_OPERATION;
+constexpr auto SecurityOperationStatus_INVALID_STATUS = SecurityOperationStatus::SecurityOperationStatus_INVALID_STATUS;
+constexpr auto SecurityOperationStatus_INVALID_FORMAT = SecurityOperationStatus::SecurityOperationStatus_INVALID_FORMAT;
+constexpr auto SecurityOperationStatus_DATA_NOT_MATCH = SecurityOperationStatus::SecurityOperationStatus_DATA_NOT_MATCH;
+constexpr auto SecurityOperationStatus_INVALID_NODE = SecurityOperationStatus::SecurityOperationStatus_INVALID_NODE;
+constexpr auto SecurityOperationStatus_INVALID_NODE_CONTENT = SecurityOperationStatus::SecurityOperationStatus_INVALID_NODE_CONTENT;
+constexpr auto SecurityOperationStatus_INVALID_NODE_ATTRIBUTE = SecurityOperationStatus::SecurityOperationStatus_INVALID_NODE_ATTRIBUTE;
+constexpr auto SecurityOperationStatus_MISSING_NODE_ATTRIBUTE = SecurityOperationStatus::SecurityOperationStatus_MISSING_NODE_ATTRIBUTE;
+constexpr auto SecurityOperationStatus_NODE_ALREADY_PRESENT = SecurityOperationStatus::SecurityOperationStatus_NODE_ALREADY_PRESENT;
+constexpr auto SecurityOperationStatus_UNEXPECTED_NODE = SecurityOperationStatus::SecurityOperationStatus_UNEXPECTED_NODE;
+constexpr auto SecurityOperationStatus_NODE_NOT_FOUND = SecurityOperationStatus::SecurityOperationStatus_NODE_NOT_FOUND;
+constexpr auto SecurityOperationStatus_INVALID_TRANSFORM = SecurityOperationStatus::SecurityOperationStatus_INVALID_TRANSFORM;
+constexpr auto SecurityOperationStatus_INVALID_TRANSFORM_KEY = SecurityOperationStatus::SecurityOperationStatus_INVALID_TRANSFORM_KEY;
+constexpr auto SecurityOperationStatus_INVALID_URI_TYPE = SecurityOperationStatus::SecurityOperationStatus_INVALID_URI_TYPE;
+constexpr auto SecurityOperationStatus_TRANSFORM_SAME_DOCUMENT_REQUIRED = SecurityOperationStatus::SecurityOperationStatus_TRANSFORM_SAME_DOCUMENT_REQUIRED;
+constexpr auto SecurityOperationStatus_TRANSFORM_DISABLED = SecurityOperationStatus::SecurityOperationStatus_TRANSFORM_DISABLED;
+constexpr auto SecurityOperationStatus_INVALID_KEY_DATA = SecurityOperationStatus::SecurityOperationStatus_INVALID_KEY_DATA;
+constexpr auto SecurityOperationStatus_KEY_DATA_NOT_FOUND = SecurityOperationStatus::SecurityOperationStatus_KEY_DATA_NOT_FOUND;
+constexpr auto SecurityOperationStatus_KEY_DATA_ALREADY_EXIST = SecurityOperationStatus::SecurityOperationStatus_KEY_DATA_ALREADY_EXIST;
+constexpr auto SecurityOperationStatus_INVALID_KEY_DATA_SIZE = SecurityOperationStatus::SecurityOperationStatus_INVALID_KEY_DATA_SIZE;
+constexpr auto SecurityOperationStatus_KEY_NOT_FOUND = SecurityOperationStatus::SecurityOperationStatus_KEY_NOT_FOUND;
+constexpr auto SecurityOperationStatus_KEYDATA_DISABLED = SecurityOperationStatus::SecurityOperationStatus_KEYDATA_DISABLED;
+constexpr auto SecurityOperationStatus_MAX_RETRIEVALS_LEVEL = SecurityOperationStatus::SecurityOperationStatus_MAX_RETRIEVALS_LEVEL;
+constexpr auto SecurityOperationStatus_MAX_RETRIEVAL_TYPE_MISMATCH = SecurityOperationStatus::SecurityOperationStatus_MAX_RETRIEVAL_TYPE_MISMATCH;
+constexpr auto SecurityOperationStatus_MAX_ENCKEY_LEVEL = SecurityOperationStatus::SecurityOperationStatus_MAX_ENCKEY_LEVEL;
+constexpr auto SecurityOperationStatus_CERT_VERIFY_FAILED = SecurityOperationStatus::SecurityOperationStatus_CERT_VERIFY_FAILED;
+constexpr auto SecurityOperationStatus_CERT_NOT_FOUND = SecurityOperationStatus::SecurityOperationStatus_CERT_NOT_FOUND;
+constexpr auto SecurityOperationStatus_CERT_REVOKED = SecurityOperationStatus::SecurityOperationStatus_CERT_REVOKED;
+constexpr auto SecurityOperationStatus_CERT_ISSUER_FAILED = SecurityOperationStatus::SecurityOperationStatus_CERT_ISSUER_FAILED;
+constexpr auto SecurityOperationStatus_CERT_NOT_YET_VALID = SecurityOperationStatus::SecurityOperationStatus_CERT_NOT_YET_VALID;
+constexpr auto SecurityOperationStatus_CERT_HAS_EXPIRED = SecurityOperationStatus::SecurityOperationStatus_CERT_HAS_EXPIRED;
+constexpr auto SecurityOperationStatus_DSIG_NO_REFERENCES = SecurityOperationStatus::SecurityOperationStatus_DSIG_NO_REFERENCES;
+constexpr auto SecurityOperationStatus_DSIG_INVALID_REFERENCE = SecurityOperationStatus::SecurityOperationStatus_DSIG_INVALID_REFERENCE;
+constexpr auto SecurityOperationStatus_ASSERTION = SecurityOperationStatus::SecurityOperationStatus_ASSERTION;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::crypto::SecurityOperationStatus const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::xml::crypto::SecurityOperationStatus *);
+
+#endif

@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_XENTITYREFERENCE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_XENTITYREFERENCE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/xml/dom/XNode.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XEntityReference : public ::css::xml::dom::XNode
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XEntityReference() = default;
+    XEntityReference(XEntityReference const &) = default;
+    XEntityReference(XEntityReference &&) = default;
+    XEntityReference & operator =(XEntityReference const &) = default;
+    XEntityReference & operator =(XEntityReference &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XEntityReference() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::XEntityReference const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::XEntityReference > *);
+
+#endif

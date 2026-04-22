@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTTABLEHEADERDATA_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTTABLEHEADERDATA_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DataPilotTableHeaderData {
+    inline DataPilotTableHeaderData();
+
+    inline DataPilotTableHeaderData(const ::sal_Int32& Dimension_, const ::sal_Int32& Hierarchy_, const ::sal_Int32& Level_, const ::sal_Int32& Flags_, const ::rtl::OUString& MemberName_);
+
+    ::sal_Int32 Dimension;
+    ::sal_Int32 Hierarchy;
+    ::sal_Int32 Level;
+    ::sal_Int32 Flags;
+    ::rtl::OUString MemberName;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::DataPilotTableHeaderData const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::DataPilotTableHeaderData *);
+
+#endif

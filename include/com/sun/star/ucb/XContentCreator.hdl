@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XCONTENTCREATOR_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XCONTENTCREATOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/ContentInfo.hdl"
+namespace com { namespace sun { namespace star { namespace ucb { class XContent; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XContentCreator : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XContentCreator() = default;
+    XContentCreator(XContentCreator const &) = default;
+    XContentCreator(XContentCreator &&) = default;
+    XContentCreator & operator =(XContentCreator const &) = default;
+    XContentCreator & operator =(XContentCreator &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::css::ucb::ContentInfo > SAL_CALL queryCreatableContentsInfo() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::ucb::XContent > SAL_CALL createNewContent( const ::css::ucb::ContentInfo& Info ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XContentCreator() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XContentCreator const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XContentCreator > *);
+
+#endif

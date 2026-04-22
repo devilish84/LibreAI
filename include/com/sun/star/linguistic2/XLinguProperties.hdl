@@ -1,0 +1,74 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XLINGUPROPERTIES_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XLINGUPROPERTIES_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XPropertySet.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLinguProperties : public ::css::beans::XPropertySet
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLinguProperties() = default;
+    XLinguProperties(XLinguProperties const &) = default;
+    XLinguProperties(XLinguProperties &&) = default;
+    XLinguProperties & operator =(XLinguProperties const &) = default;
+    XLinguProperties & operator =(XLinguProperties &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Bool SAL_CALL getIsUseDictionaryList() = 0;
+    virtual void SAL_CALL setIsUseDictionaryList( ::sal_Bool _isusedictionarylist ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsIgnoreControlCharacters() = 0;
+    virtual void SAL_CALL setIsIgnoreControlCharacters( ::sal_Bool _isignorecontrolcharacters ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsSpellUpperCase() = 0;
+    virtual void SAL_CALL setIsSpellUpperCase( ::sal_Bool _isspelluppercase ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsSpellWithDigits() = 0;
+    virtual void SAL_CALL setIsSpellWithDigits( ::sal_Bool _isspellwithdigits ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL getIsSpellCapitalization() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setIsSpellCapitalization( ::sal_Bool _isspellcapitalization ) = 0;
+    virtual ::sal_Int16 SAL_CALL getHyphMinLeading() = 0;
+    virtual void SAL_CALL setHyphMinLeading( ::sal_Int16 _hyphminleading ) = 0;
+    virtual ::sal_Int16 SAL_CALL getHyphMinTrailing() = 0;
+    virtual void SAL_CALL setHyphMinTrailing( ::sal_Int16 _hyphmintrailing ) = 0;
+    virtual ::sal_Int16 SAL_CALL getHyphMinWordLength() = 0;
+    virtual void SAL_CALL setHyphMinWordLength( ::sal_Int16 _hyphminwordlength ) = 0;
+    virtual ::css::lang::Locale SAL_CALL getDefaultLocale() = 0;
+    virtual void SAL_CALL setDefaultLocale( const ::css::lang::Locale& _defaultlocale ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsHyphAuto() = 0;
+    virtual void SAL_CALL setIsHyphAuto( ::sal_Bool _ishyphauto ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsHyphSpecial() = 0;
+    virtual void SAL_CALL setIsHyphSpecial( ::sal_Bool _ishyphspecial ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsSpellAuto() = 0;
+    virtual void SAL_CALL setIsSpellAuto( ::sal_Bool _isspellauto ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsSpellSpecial() = 0;
+    virtual void SAL_CALL setIsSpellSpecial( ::sal_Bool _isspellspecial ) = 0;
+    virtual ::sal_Bool SAL_CALL getIsWrapReverse() = 0;
+    virtual void SAL_CALL setIsWrapReverse( ::sal_Bool _iswrapreverse ) = 0;
+    virtual ::css::lang::Locale SAL_CALL getDefaultLocale_CJK() = 0;
+    virtual void SAL_CALL setDefaultLocale_CJK( const ::css::lang::Locale& _defaultlocale_cjk ) = 0;
+    virtual ::css::lang::Locale SAL_CALL getDefaultLocale_CTL() = 0;
+    virtual void SAL_CALL setDefaultLocale_CTL( const ::css::lang::Locale& _defaultlocale_ctl ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLinguProperties() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XLinguProperties const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XLinguProperties > *);
+
+#endif

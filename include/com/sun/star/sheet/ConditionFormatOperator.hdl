@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_CONDITIONFORMATOPERATOR_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_CONDITIONFORMATOPERATOR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace ConditionFormatOperator {
+
+static const ::sal_Int32 ABOVE_AVERAGE = (sal_Int32)14;
+static const ::sal_Int32 ABOVE_EQUAL_AVERAGE = (sal_Int32)16;
+static const ::sal_Int32 BEGINS_WITH = (sal_Int32)20;
+static const ::sal_Int32 BELOW_AVERAGE = (sal_Int32)15;
+static const ::sal_Int32 BELOW_EQUAL_AVERAGE = (sal_Int32)17;
+static const ::sal_Int32 BETWEEN = (sal_Int32)6;
+static const ::sal_Int32 BOTTOM_N_ELEMENTS = (sal_Int32)11;
+static const ::sal_Int32 BOTTOM_N_PERCENT = (sal_Int32)13;
+static const ::sal_Int32 CONTAINS = (sal_Int32)22;
+static const ::sal_Int32 DUPLICATE = (sal_Int32)8;
+static const ::sal_Int32 ENDS_WITH = (sal_Int32)21;
+static const ::sal_Int32 EQUAL = (sal_Int32)0;
+static const ::sal_Int32 ERROR = (sal_Int32)18;
+static const ::sal_Int32 EXPRESSION = (sal_Int32)24;
+static const ::sal_Int32 GREATER = (sal_Int32)2;
+static const ::sal_Int32 GREATER_EQUAL = (sal_Int32)4;
+static const ::sal_Int32 LESS = (sal_Int32)1;
+static const ::sal_Int32 LESS_EQUAL = (sal_Int32)3;
+static const ::sal_Int32 NOT_BETWEEN = (sal_Int32)7;
+static const ::sal_Int32 NOT_CONTAINS = (sal_Int32)23;
+static const ::sal_Int32 NOT_EQUAL = (sal_Int32)5;
+static const ::sal_Int32 NO_ERROR = (sal_Int32)19;
+static const ::sal_Int32 TOP_N_ELEMENTS = (sal_Int32)10;
+static const ::sal_Int32 TOP_N_PERCENT = (sal_Int32)12;
+static const ::sal_Int32 UNIQUE = (sal_Int32)9;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_CONDITIONFORMATOPERATOR_HDL

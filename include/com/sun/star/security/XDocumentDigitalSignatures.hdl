@@ -1,0 +1,81 @@
+#ifndef INCLUDED_COM_SUN_STAR_SECURITY_XDOCUMENTDIGITALSIGNATURES_HDL
+#define INCLUDED_COM_SUN_STAR_SECURITY_XDOCUMENTDIGITALSIGNATURES_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XWindow; } } } }
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+namespace com { namespace sun { namespace star { namespace graphic { class XGraphic; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XStream; } } } }
+#include "com/sun/star/security/CertificateKind.hdl"
+#include "com/sun/star/security/DocumentSignatureInformation.hdl"
+namespace com { namespace sun { namespace star { namespace security { class XCertificate; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace security {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDocumentDigitalSignatures : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDocumentDigitalSignatures() = default;
+    XDocumentDigitalSignatures(XDocumentDigitalSignatures const &) = default;
+    XDocumentDigitalSignatures(XDocumentDigitalSignatures &&) = default;
+    XDocumentDigitalSignatures & operator =(XDocumentDigitalSignatures const &) = default;
+    XDocumentDigitalSignatures & operator =(XDocumentDigitalSignatures &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL signDocumentContent( const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::css::uno::Reference< ::css::io::XStream >& xSignStream ) = 0;
+    virtual ::sal_Bool SAL_CALL signSignatureLine( const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::css::uno::Reference< ::css::io::XStream >& xSignStream, const ::rtl::OUString& signatureLineId, const ::css::uno::Reference< ::css::security::XCertificate >& xCertificate, const ::css::uno::Reference< ::css::graphic::XGraphic >& xValidGraphic, const ::css::uno::Reference< ::css::graphic::XGraphic >& xInvalidGraphic, const ::rtl::OUString& comment ) = 0;
+    virtual ::css::uno::Sequence< ::css::security::DocumentSignatureInformation > SAL_CALL verifyDocumentContentSignatures( const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::css::uno::Reference< ::css::io::XInputStream >& xSignInStream ) = 0;
+    virtual void SAL_CALL showDocumentContentSignatures( const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::css::uno::Reference< ::css::io::XInputStream >& xSignInStream ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDocumentContentSignatureDefaultStreamName() = 0;
+    virtual ::sal_Bool SAL_CALL signScriptingContent( const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::css::uno::Reference< ::css::io::XStream >& xSignStream ) = 0;
+    virtual ::css::uno::Sequence< ::css::security::DocumentSignatureInformation > SAL_CALL verifyScriptingContentSignatures( const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::css::uno::Reference< ::css::io::XInputStream >& xSignInStream ) = 0;
+    virtual void SAL_CALL showScriptingContentSignatures( const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::css::uno::Reference< ::css::io::XInputStream >& xSignInStream ) = 0;
+    virtual ::rtl::OUString SAL_CALL getScriptingContentSignatureDefaultStreamName() = 0;
+    virtual ::sal_Bool SAL_CALL signPackage( const ::css::uno::Reference< ::css::embed::XStorage >& Storage, const ::css::uno::Reference< ::css::io::XStream >& xSignStream ) = 0;
+    virtual ::css::uno::Sequence< ::css::security::DocumentSignatureInformation > SAL_CALL verifyPackageSignatures( const ::css::uno::Reference< ::css::embed::XStorage >& Storage, const ::css::uno::Reference< ::css::io::XInputStream >& xSignInStream ) = 0;
+    virtual void SAL_CALL showPackageSignatures( const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::css::uno::Reference< ::css::io::XInputStream >& xSignInStream ) = 0;
+    virtual ::rtl::OUString SAL_CALL getPackageSignatureDefaultStreamName() = 0;
+    virtual void SAL_CALL showCertificate( const ::css::uno::Reference< ::css::security::XCertificate >& Certificate ) = 0;
+    virtual void SAL_CALL manageTrustedSources() = 0;
+    virtual ::sal_Bool SAL_CALL isAuthorTrusted( const ::css::uno::Reference< ::css::security::XCertificate >& Author ) = 0;
+    virtual ::sal_Bool SAL_CALL isLocationTrusted( const ::rtl::OUString& Location ) = 0;
+    virtual void SAL_CALL addAuthorToTrustedSources( const ::css::uno::Reference< ::css::security::XCertificate >& Author ) = 0;
+    virtual void SAL_CALL addLocationToTrustedSources( const ::rtl::OUString& Location ) = 0;
+    virtual ::css::uno::Reference< ::css::security::XCertificate > SAL_CALL chooseCertificate( ::rtl::OUString& Description ) = 0;
+    virtual ::css::uno::Reference< ::css::security::XCertificate > SAL_CALL chooseSigningCertificate( ::rtl::OUString& Description ) = 0;
+    virtual ::css::uno::Reference< ::css::security::XCertificate > SAL_CALL selectSigningCertificate( ::rtl::OUString& Description ) = 0;
+    virtual ::css::uno::Reference< ::css::security::XCertificate > SAL_CALL selectSigningCertificateWithType( ::css::security::CertificateKind certificateKind, ::rtl::OUString& Description ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::security::XCertificate > > SAL_CALL chooseEncryptionCertificate() = 0;
+    virtual ::css::uno::Reference< ::css::security::XCertificate > SAL_CALL chooseCertificateWithProps( ::css::uno::Sequence< ::css::beans::PropertyValue >& Properties ) = 0;
+    virtual ::sal_Bool SAL_CALL signDocumentWithCertificate( const ::css::uno::Reference< ::css::security::XCertificate >& xCertificate, const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::css::uno::Reference< ::css::io::XStream >& xStream ) = 0;
+    virtual void SAL_CALL setParentWindow( const ::css::uno::Reference< ::css::awt::XWindow >& xParentWindow ) = 0;
+    virtual ::sal_Bool SAL_CALL signScriptingContentWithCertificate( const ::css::uno::Reference< ::css::security::XCertificate >& xCertificate, const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::css::uno::Reference< ::css::io::XStream >& xStream ) = 0;
+    virtual ::sal_Bool SAL_CALL signPackageWithCertificate( const ::css::uno::Reference< ::css::security::XCertificate >& xCertificate, const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::css::uno::Reference< ::css::io::XStream >& xStream ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDocumentDigitalSignatures() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::security::XDocumentDigitalSignatures const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::security::XDocumentDigitalSignatures > *);
+
+#endif

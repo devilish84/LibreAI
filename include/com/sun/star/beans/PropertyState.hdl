@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_PROPERTYSTATE_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_PROPERTYSTATE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace beans {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI PropertyState
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI PropertyState
+{
+
+#endif
+    PropertyState_DIRECT_VALUE = 0,
+    PropertyState_DEFAULT_VALUE = 1,
+    PropertyState_AMBIGUOUS_VALUE = 2,
+    PropertyState_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto PropertyState_DIRECT_VALUE = PropertyState::PropertyState_DIRECT_VALUE;
+constexpr auto PropertyState_DEFAULT_VALUE = PropertyState::PropertyState_DEFAULT_VALUE;
+constexpr auto PropertyState_AMBIGUOUS_VALUE = PropertyState::PropertyState_AMBIGUOUS_VALUE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::beans::PropertyState const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::beans::PropertyState *);
+
+#endif

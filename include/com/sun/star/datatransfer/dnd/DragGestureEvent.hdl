@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_DRAGGESTUREEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_DRAGGESTUREEVENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace datatransfer { namespace dnd { class XDragSource; } } } } }
+#include "com/sun/star/lang/EventObject.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace datatransfer { namespace dnd {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI DragGestureEvent: public ::css::lang::EventObject {
+    inline DragGestureEvent();
+
+    inline DragGestureEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::sal_Int8& DragAction_, const ::sal_Int32& DragOriginX_, const ::sal_Int32& DragOriginY_, const ::css::uno::Reference< ::css::datatransfer::dnd::XDragSource >& DragSource_, const ::css::uno::Any& Event_);
+
+    ::sal_Int8 DragAction CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::sal_Int32 DragOriginX;
+    ::sal_Int32 DragOriginY;
+    ::css::uno::Reference< ::css::datatransfer::dnd::XDragSource > DragSource;
+    ::css::uno::Any Event;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::datatransfer::dnd::DragGestureEvent const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::datatransfer::dnd::DragGestureEvent *);
+
+#endif

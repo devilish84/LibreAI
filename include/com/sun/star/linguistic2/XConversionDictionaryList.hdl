@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XCONVERSIONDICTIONARYLIST_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XCONVERSIONDICTIONARYLIST_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XNameContainer; } } } }
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/linguistic2/ConversionDirection.hdl"
+namespace com { namespace sun { namespace star { namespace linguistic2 { class XConversionDictionary; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XConversionDictionaryList : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XConversionDictionaryList() = default;
+    XConversionDictionaryList(XConversionDictionaryList const &) = default;
+    XConversionDictionaryList(XConversionDictionaryList &&) = default;
+    XConversionDictionaryList & operator =(XConversionDictionaryList const &) = default;
+    XConversionDictionaryList & operator =(XConversionDictionaryList &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::container::XNameContainer > SAL_CALL getDictionaryContainer() = 0;
+    virtual ::css::uno::Reference< ::css::linguistic2::XConversionDictionary > SAL_CALL addNewDictionary( const ::rtl::OUString& aName, const ::css::lang::Locale& aLocale, ::sal_Int16 nConversionDictionaryType ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL queryConversions( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, ::sal_Int32 nLength, const ::css::lang::Locale& aLocale, ::sal_Int16 nConversionDictionaryType, ::css::linguistic2::ConversionDirection eDirection, ::sal_Int32 nTextConversionOptions ) = 0;
+    virtual ::sal_Int16 SAL_CALL queryMaxCharCount( const ::css::lang::Locale& aLocale, ::sal_Int16 nConversionDictionaryType, ::css::linguistic2::ConversionDirection eDirection ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XConversionDictionaryList() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XConversionDictionaryList const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XConversionDictionaryList > *);
+
+#endif

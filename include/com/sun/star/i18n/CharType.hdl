@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_CHARTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_CHARTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace CharType {
+
+static const ::sal_Int16 ANY_CHAR = (sal_Int16)0;
+static const ::sal_Int16 COMBINING_SPACING_MARK = (sal_Int16)8;
+static const ::sal_Int16 CONNECTOR_PUNCTUATION = (sal_Int16)22;
+static const ::sal_Int16 CONTROL = (sal_Int16)15;
+static const ::sal_Int16 CURRENCY_SYMBOL = (sal_Int16)25;
+static const ::sal_Int16 DASH_PUNCTUATION = (sal_Int16)19;
+static const ::sal_Int16 DECIMAL_DIGIT_NUMBER = (sal_Int16)9;
+static const ::sal_Int16 ENCLOSING_MARK = (sal_Int16)7;
+static const ::sal_Int16 END_PUNCTUATION = (sal_Int16)21;
+static const ::sal_Int16 FINAL_PUNCTUATION = (sal_Int16)29;
+static const ::sal_Int16 FORMAT = (sal_Int16)16;
+static const ::sal_Int16 GENERAL_TYPES_COUNT = (sal_Int16)30;
+static const ::sal_Int16 INITIAL_PUNCTUATION = (sal_Int16)28;
+static const ::sal_Int16 LETTER_NUMBER = (sal_Int16)10;
+static const ::sal_Int16 LINE_SEPARATOR = (sal_Int16)13;
+static const ::sal_Int16 LOWERCASE_LETTER = (sal_Int16)2;
+static const ::sal_Int16 MATH_SYMBOL = (sal_Int16)24;
+static const ::sal_Int16 MODIFIER_LETTER = (sal_Int16)4;
+static const ::sal_Int16 MODIFIER_SYMBOL = (sal_Int16)26;
+static const ::sal_Int16 NON_SPACING_MARK = (sal_Int16)6;
+static const ::sal_Int16 OTHER_LETTER = (sal_Int16)5;
+static const ::sal_Int16 OTHER_NUMBER = (sal_Int16)11;
+static const ::sal_Int16 OTHER_PUNCTUATION = (sal_Int16)23;
+static const ::sal_Int16 OTHER_SYMBOL = (sal_Int16)27;
+static const ::sal_Int16 PARAGRAPH_SEPARATOR = (sal_Int16)14;
+static const ::sal_Int16 PRIVATE_USE = (sal_Int16)17;
+static const ::sal_Int16 SPACE_SEPARATOR = (sal_Int16)12;
+static const ::sal_Int16 START_PUNCTUATION = (sal_Int16)20;
+static const ::sal_Int16 SURROGATE = (sal_Int16)18;
+static const ::sal_Int16 TITLECASE_LETTER = (sal_Int16)3;
+static const ::sal_Int16 UPPERCASE_LETTER = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_CHARTYPE_HDL

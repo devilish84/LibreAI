@@ -1,0 +1,26 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_PANOSEWEIGHT_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_PANOSEWEIGHT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace PanoseWeight {
+
+static const ::sal_Int8 ANYTHING = (sal_Int8)0;
+static const ::sal_Int8 BLACK = (sal_Int8)10;
+static const ::sal_Int8 BOLD = (sal_Int8)8;
+static const ::sal_Int8 BOOK = (sal_Int8)5;
+static const ::sal_Int8 DEMI_BOLD = (sal_Int8)7;
+static const ::sal_Int8 HEAVY = (sal_Int8)9;
+static const ::sal_Int8 LIGHT = (sal_Int8)3;
+static const ::sal_Int8 MEDIUM = (sal_Int8)6;
+static const ::sal_Int8 NORD = (sal_Int8)11;
+static const ::sal_Int8 NO_FIT = (sal_Int8)1;
+static const ::sal_Int8 THIN = (sal_Int8)4;
+static const ::sal_Int8 VERY_LIGHT = (sal_Int8)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_PANOSEWEIGHT_HDL

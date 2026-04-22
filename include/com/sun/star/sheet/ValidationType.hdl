@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_VALIDATIONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_VALIDATIONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ValidationType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ValidationType
+{
+
+#endif
+    ValidationType_ANY = 0,
+    ValidationType_WHOLE = 1,
+    ValidationType_DECIMAL = 2,
+    ValidationType_DATE = 3,
+    ValidationType_TIME = 4,
+    ValidationType_TEXT_LEN = 5,
+    ValidationType_LIST = 6,
+    ValidationType_CUSTOM = 7,
+    ValidationType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ValidationType_ANY = ValidationType::ValidationType_ANY;
+constexpr auto ValidationType_WHOLE = ValidationType::ValidationType_WHOLE;
+constexpr auto ValidationType_DECIMAL = ValidationType::ValidationType_DECIMAL;
+constexpr auto ValidationType_DATE = ValidationType::ValidationType_DATE;
+constexpr auto ValidationType_TIME = ValidationType::ValidationType_TIME;
+constexpr auto ValidationType_TEXT_LEN = ValidationType::ValidationType_TEXT_LEN;
+constexpr auto ValidationType_LIST = ValidationType::ValidationType_LIST;
+constexpr auto ValidationType_CUSTOM = ValidationType::ValidationType_CUSTOM;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::ValidationType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::ValidationType *);
+
+#endif

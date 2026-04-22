@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_CONNECTORTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_CONNECTORTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ConnectorType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ConnectorType
+{
+
+#endif
+    ConnectorType_STANDARD = 0,
+    ConnectorType_CURVE = 1,
+    ConnectorType_LINE = 2,
+    ConnectorType_LINES = 3,
+    ConnectorType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ConnectorType_STANDARD = ConnectorType::ConnectorType_STANDARD;
+constexpr auto ConnectorType_CURVE = ConnectorType::ConnectorType_CURVE;
+constexpr auto ConnectorType_LINE = ConnectorType::ConnectorType_LINE;
+constexpr auto ConnectorType_LINES = ConnectorType::ConnectorType_LINES;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::ConnectorType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::ConnectorType *);
+
+#endif

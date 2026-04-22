@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_TIMEINTERVAL_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_TIMEINTERVAL_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED TimeInterval {
+    inline TimeInterval();
+
+    inline TimeInterval(const ::sal_Int32& Number_, const ::sal_Int32& TimeUnit_);
+
+    ::sal_Int32 Number;
+    ::sal_Int32 TimeUnit;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::TimeInterval const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart::TimeInterval *);
+
+#endif

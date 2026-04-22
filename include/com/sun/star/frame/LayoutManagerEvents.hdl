@@ -1,0 +1,22 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_LAYOUTMANAGEREVENTS_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_LAYOUTMANAGEREVENTS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace frame { namespace LayoutManagerEvents {
+
+static const ::sal_Int16 INVISIBLE = (sal_Int16)4;
+static const ::sal_Int16 LAYOUT = (sal_Int16)2;
+static const ::sal_Int16 LOCK = (sal_Int16)0;
+static const ::sal_Int16 MERGEDMENUBAR = (sal_Int16)5;
+static const ::sal_Int16 UIELEMENT_INVISIBLE = (sal_Int16)7;
+static const ::sal_Int16 UIELEMENT_VISIBLE = (sal_Int16)6;
+static const ::sal_Int16 UNLOCK = (sal_Int16)1;
+static const ::sal_Int16 VISIBLE = (sal_Int16)3;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_FRAME_LAYOUTMANAGEREVENTS_HDL

@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONTAINER_XENUMERABLEMAP_HDL
+#define INCLUDED_COM_SUN_STAR_CONTAINER_XENUMERABLEMAP_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XEnumeration; } } } }
+#include "com/sun/star/container/XMap.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace container {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XEnumerableMap : public ::css::container::XMap
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XEnumerableMap() = default;
+    XEnumerableMap(XEnumerableMap const &) = default;
+    XEnumerableMap(XEnumerableMap &&) = default;
+    XEnumerableMap & operator =(XEnumerableMap const &) = default;
+    XEnumerableMap & operator =(XEnumerableMap &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::container::XEnumeration > SAL_CALL createKeyEnumeration( ::sal_Bool Isolated ) = 0;
+    virtual ::css::uno::Reference< ::css::container::XEnumeration > SAL_CALL createValueEnumeration( ::sal_Bool Isolated ) = 0;
+    virtual ::css::uno::Reference< ::css::container::XEnumeration > SAL_CALL createElementEnumeration( ::sal_Bool Isolated ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XEnumerableMap() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::container::XEnumerableMap const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::container::XEnumerableMap > *);
+
+#endif

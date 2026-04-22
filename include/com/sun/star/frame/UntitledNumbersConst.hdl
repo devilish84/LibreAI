@@ -1,0 +1,15 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_UNTITLEDNUMBERSCONST_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_UNTITLEDNUMBERSCONST_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace frame { namespace UntitledNumbersConst {
+
+static const ::sal_Int32 INVALID_NUMBER = (sal_Int32)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_FRAME_UNTITLEDNUMBERSCONST_HDL

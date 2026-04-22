@@ -1,0 +1,66 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_WEBDAVHTTPMETHOD_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_WEBDAVHTTPMETHOD_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI WebDAVHTTPMethod
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI WebDAVHTTPMethod
+{
+
+#endif
+    WebDAVHTTPMethod_GET = 0,
+    WebDAVHTTPMethod_HEAD = 1,
+    WebDAVHTTPMethod_POST = 2,
+    WebDAVHTTPMethod_PUT = 3,
+    WebDAVHTTPMethod_DELETE = 4,
+    WebDAVHTTPMethod_TRACE = 5,
+    WebDAVHTTPMethod_OPTIONS = 6,
+    WebDAVHTTPMethod_CONNECT = 7,
+    WebDAVHTTPMethod_PATCH = 8,
+    WebDAVHTTPMethod_PROPFIND = 9,
+    WebDAVHTTPMethod_PROPPATCH = 10,
+    WebDAVHTTPMethod_MKCOL = 11,
+    WebDAVHTTPMethod_COPY = 12,
+    WebDAVHTTPMethod_MOVE = 13,
+    WebDAVHTTPMethod_LOCK = 14,
+    WebDAVHTTPMethod_UNLOCK = 15,
+    WebDAVHTTPMethod_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto WebDAVHTTPMethod_GET = WebDAVHTTPMethod::WebDAVHTTPMethod_GET;
+constexpr auto WebDAVHTTPMethod_HEAD = WebDAVHTTPMethod::WebDAVHTTPMethod_HEAD;
+constexpr auto WebDAVHTTPMethod_POST = WebDAVHTTPMethod::WebDAVHTTPMethod_POST;
+constexpr auto WebDAVHTTPMethod_PUT = WebDAVHTTPMethod::WebDAVHTTPMethod_PUT;
+constexpr auto WebDAVHTTPMethod_DELETE = WebDAVHTTPMethod::WebDAVHTTPMethod_DELETE;
+constexpr auto WebDAVHTTPMethod_TRACE = WebDAVHTTPMethod::WebDAVHTTPMethod_TRACE;
+constexpr auto WebDAVHTTPMethod_OPTIONS = WebDAVHTTPMethod::WebDAVHTTPMethod_OPTIONS;
+constexpr auto WebDAVHTTPMethod_CONNECT = WebDAVHTTPMethod::WebDAVHTTPMethod_CONNECT;
+constexpr auto WebDAVHTTPMethod_PATCH = WebDAVHTTPMethod::WebDAVHTTPMethod_PATCH;
+constexpr auto WebDAVHTTPMethod_PROPFIND = WebDAVHTTPMethod::WebDAVHTTPMethod_PROPFIND;
+constexpr auto WebDAVHTTPMethod_PROPPATCH = WebDAVHTTPMethod::WebDAVHTTPMethod_PROPPATCH;
+constexpr auto WebDAVHTTPMethod_MKCOL = WebDAVHTTPMethod::WebDAVHTTPMethod_MKCOL;
+constexpr auto WebDAVHTTPMethod_COPY = WebDAVHTTPMethod::WebDAVHTTPMethod_COPY;
+constexpr auto WebDAVHTTPMethod_MOVE = WebDAVHTTPMethod::WebDAVHTTPMethod_MOVE;
+constexpr auto WebDAVHTTPMethod_LOCK = WebDAVHTTPMethod::WebDAVHTTPMethod_LOCK;
+constexpr auto WebDAVHTTPMethod_UNLOCK = WebDAVHTTPMethod::WebDAVHTTPMethod_UNLOCK;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::WebDAVHTTPMethod const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::WebDAVHTTPMethod *);
+
+#endif

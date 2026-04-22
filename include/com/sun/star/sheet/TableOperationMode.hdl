@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_TABLEOPERATIONMODE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_TABLEOPERATIONMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TableOperationMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TableOperationMode
+{
+
+#endif
+    TableOperationMode_COLUMN = 0,
+    TableOperationMode_ROW = 1,
+    TableOperationMode_BOTH = 2,
+    TableOperationMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TableOperationMode_COLUMN = TableOperationMode::TableOperationMode_COLUMN;
+constexpr auto TableOperationMode_ROW = TableOperationMode::TableOperationMode_ROW;
+constexpr auto TableOperationMode_BOTH = TableOperationMode::TableOperationMode_BOTH;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::TableOperationMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::TableOperationMode *);
+
+#endif

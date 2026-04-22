@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_CRYPTO_XURIBINDING_HDL
+#define INCLUDED_COM_SUN_STAR_XML_CRYPTO_XURIBINDING_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUriBinding : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUriBinding() = default;
+    XUriBinding(XUriBinding const &) = default;
+    XUriBinding(XUriBinding &&) = default;
+    XUriBinding & operator =(XUriBinding const &) = default;
+    XUriBinding & operator =(XUriBinding &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setUriBinding( const ::rtl::OUString& uri, const ::css::uno::Reference< ::css::io::XInputStream >& InputStream ) = 0;
+    virtual ::css::uno::Reference< ::css::io::XInputStream > SAL_CALL getUriBinding( const ::rtl::OUString& uri ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUriBinding() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::crypto::XUriBinding const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::crypto::XUriBinding > *);
+
+#endif

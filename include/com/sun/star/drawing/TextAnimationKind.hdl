@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_TEXTANIMATIONKIND_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_TEXTANIMATIONKIND_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TextAnimationKind
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TextAnimationKind
+{
+
+#endif
+    TextAnimationKind_NONE = 0,
+    TextAnimationKind_BLINK = 1,
+    TextAnimationKind_SCROLL = 2,
+    TextAnimationKind_ALTERNATE = 3,
+    TextAnimationKind_SLIDE = 4,
+    TextAnimationKind_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TextAnimationKind_NONE = TextAnimationKind::TextAnimationKind_NONE;
+constexpr auto TextAnimationKind_BLINK = TextAnimationKind::TextAnimationKind_BLINK;
+constexpr auto TextAnimationKind_SCROLL = TextAnimationKind::TextAnimationKind_SCROLL;
+constexpr auto TextAnimationKind_ALTERNATE = TextAnimationKind::TextAnimationKind_ALTERNATE;
+constexpr auto TextAnimationKind_SLIDE = TextAnimationKind::TextAnimationKind_SLIDE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::TextAnimationKind const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::TextAnimationKind *);
+
+#endif

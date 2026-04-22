@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_VIEW_PRINTJOBEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_VIEW_PRINTJOBEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "com/sun/star/view/PrintableState.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace view {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI PrintJobEvent: public ::css::lang::EventObject {
+    inline PrintJobEvent();
+
+    inline PrintJobEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::css::view::PrintableState& State_);
+
+    ::css::view::PrintableState State CPPU_GCC3_ALIGN(::css::lang::EventObject);
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::view::PrintJobEvent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::view::PrintJobEvent *);
+
+#endif

@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_SECURITY_DOCUMENTSIGNATUREINFORMATION_HDL
+#define INCLUDED_COM_SUN_STAR_SECURITY_DOCUMENTSIGNATUREINFORMATION_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace graphic { class XGraphic; } } } }
+namespace com { namespace sun { namespace star { namespace security { class XCertificate; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace security {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI DocumentSignatureInformation {
+    inline DocumentSignatureInformation();
+
+    inline DocumentSignatureInformation(const ::css::uno::Reference< ::css::security::XCertificate >& Signer_, const ::sal_Int32& SignatureDate_, const ::sal_Int32& SignatureTime_, const ::sal_Bool& SignatureIsValid_, const ::sal_Int32& CertificateStatus_, const ::sal_Bool& PartialDocumentSignature_, const ::rtl::OUString& SignatureLineId_, const ::css::uno::Reference< ::css::graphic::XGraphic >& ValidSignatureLineImage_, const ::css::uno::Reference< ::css::graphic::XGraphic >& InvalidSignatureLineImage_);
+
+    ::css::uno::Reference< ::css::security::XCertificate > Signer;
+    ::sal_Int32 SignatureDate;
+    ::sal_Int32 SignatureTime;
+    ::sal_Bool SignatureIsValid;
+    ::sal_Int32 CertificateStatus;
+    ::sal_Bool PartialDocumentSignature;
+    ::rtl::OUString SignatureLineId;
+    ::css::uno::Reference< ::css::graphic::XGraphic > ValidSignatureLineImage;
+    ::css::uno::Reference< ::css::graphic::XGraphic > InvalidSignatureLineImage;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::security::DocumentSignatureInformation const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::security::DocumentSignatureInformation *);
+
+#endif

@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XCOMMANDINFO_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XCOMMANDINFO_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/CommandInfo.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCommandInfo : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCommandInfo() = default;
+    XCommandInfo(XCommandInfo const &) = default;
+    XCommandInfo(XCommandInfo &&) = default;
+    XCommandInfo & operator =(XCommandInfo const &) = default;
+    XCommandInfo & operator =(XCommandInfo &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::ucb::CommandInfo > SAL_CALL getCommands() = 0;
+    virtual ::css::ucb::CommandInfo SAL_CALL getCommandInfoByName( const ::rtl::OUString& Name ) = 0;
+    virtual ::css::ucb::CommandInfo SAL_CALL getCommandInfoByHandle( ::sal_Int32 Handle ) = 0;
+    virtual ::sal_Bool SAL_CALL hasCommandByName( const ::rtl::OUString& Name ) = 0;
+    virtual ::sal_Bool SAL_CALL hasCommandByHandle( ::sal_Int32 Handle ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCommandInfo() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XCommandInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XCommandInfo > *);
+
+#endif

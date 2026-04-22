@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_PAGESTYLELAYOUT_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_PAGESTYLELAYOUT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace style {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI PageStyleLayout
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI PageStyleLayout
+{
+
+#endif
+    PageStyleLayout_ALL = 0,
+    PageStyleLayout_LEFT = 1,
+    PageStyleLayout_RIGHT = 2,
+    PageStyleLayout_MIRRORED = 3,
+    PageStyleLayout_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto PageStyleLayout_ALL = PageStyleLayout::PageStyleLayout_ALL;
+constexpr auto PageStyleLayout_LEFT = PageStyleLayout::PageStyleLayout_LEFT;
+constexpr auto PageStyleLayout_RIGHT = PageStyleLayout::PageStyleLayout_RIGHT;
+constexpr auto PageStyleLayout_MIRRORED = PageStyleLayout::PageStyleLayout_MIRRORED;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::style::PageStyleLayout const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::style::PageStyleLayout *);
+
+#endif

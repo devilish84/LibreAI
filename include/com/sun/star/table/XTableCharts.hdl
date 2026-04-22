@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_XTABLECHARTS_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_XTABLECHARTS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/container/XNameAccess.hdl"
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTableCharts : public ::css::container::XNameAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTableCharts() = default;
+    XTableCharts(XTableCharts const &) = default;
+    XTableCharts(XTableCharts &&) = default;
+    XTableCharts & operator =(XTableCharts const &) = default;
+    XTableCharts & operator =(XTableCharts &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addNewByName( const ::rtl::OUString& aName, const ::css::awt::Rectangle& aRect, const ::css::uno::Sequence< ::css::table::CellRangeAddress >& aRanges, ::sal_Bool bColumnHeaders, ::sal_Bool bRowHeaders ) = 0;
+    virtual void SAL_CALL removeByName( const ::rtl::OUString& aName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTableCharts() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::XTableCharts const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::table::XTableCharts > *);
+
+#endif

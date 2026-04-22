@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_SHADOWLOCATION_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_SHADOWLOCATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ShadowLocation
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ShadowLocation
+{
+
+#endif
+    ShadowLocation_NONE = 0,
+    ShadowLocation_TOP_LEFT = 1,
+    ShadowLocation_TOP_RIGHT = 2,
+    ShadowLocation_BOTTOM_LEFT = 3,
+    ShadowLocation_BOTTOM_RIGHT = 4,
+    ShadowLocation_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ShadowLocation_NONE = ShadowLocation::ShadowLocation_NONE;
+constexpr auto ShadowLocation_TOP_LEFT = ShadowLocation::ShadowLocation_TOP_LEFT;
+constexpr auto ShadowLocation_TOP_RIGHT = ShadowLocation::ShadowLocation_TOP_RIGHT;
+constexpr auto ShadowLocation_BOTTOM_LEFT = ShadowLocation::ShadowLocation_BOTTOM_LEFT;
+constexpr auto ShadowLocation_BOTTOM_RIGHT = ShadowLocation::ShadowLocation_BOTTOM_RIGHT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::ShadowLocation const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::table::ShadowLocation *);
+
+#endif

@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XSHEETLINKABLE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XSHEETLINKABLE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/SheetLinkMode.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSheetLinkable : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSheetLinkable() = default;
+    XSheetLinkable(XSheetLinkable const &) = default;
+    XSheetLinkable(XSheetLinkable &&) = default;
+    XSheetLinkable & operator =(XSheetLinkable const &) = default;
+    XSheetLinkable & operator =(XSheetLinkable &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::sheet::SheetLinkMode SAL_CALL getLinkMode() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setLinkMode( ::css::sheet::SheetLinkMode nLinkMode ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getLinkUrl() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setLinkUrl( const ::rtl::OUString& aLinkUrl ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getLinkSheetName() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setLinkSheetName( const ::rtl::OUString& aLinkSheetName ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL link( const ::rtl::OUString& aUrl, const ::rtl::OUString& aSheetName, const ::rtl::OUString& aFilterName, const ::rtl::OUString& aFilterOptions, ::css::sheet::SheetLinkMode nMode ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSheetLinkable() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XSheetLinkable const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XSheetLinkable > *);
+
+#endif

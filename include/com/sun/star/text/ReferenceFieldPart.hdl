@@ -1,0 +1,25 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_REFERENCEFIELDPART_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_REFERENCEFIELDPART_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace ReferenceFieldPart {
+
+static const ::sal_Int16 CATEGORY_AND_NUMBER = (sal_Int16)5;
+static const ::sal_Int16 CHAPTER = (sal_Int16)1;
+static const ::sal_Int16 NUMBER = (sal_Int16)8;
+static const ::sal_Int16 NUMBER_FULL_CONTEXT = (sal_Int16)10;
+static const ::sal_Int16 NUMBER_NO_CONTEXT = (sal_Int16)9;
+static const ::sal_Int16 ONLY_CAPTION = (sal_Int16)6;
+static const ::sal_Int16 ONLY_SEQUENCE_NUMBER = (sal_Int16)7;
+static const ::sal_Int16 PAGE = (sal_Int16)0;
+static const ::sal_Int16 PAGE_DESC = (sal_Int16)4;
+static const ::sal_Int16 TEXT = (sal_Int16)2;
+static const ::sal_Int16 UP_DOWN = (sal_Int16)3;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_REFERENCEFIELDPART_HDL

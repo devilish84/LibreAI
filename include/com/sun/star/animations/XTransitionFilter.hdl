@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_XTRANSITIONFILTER_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_XTRANSITIONFILTER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/animations/XAnimate.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace animations {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTransitionFilter : public ::css::animations::XAnimate
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTransitionFilter() = default;
+    XTransitionFilter(XTransitionFilter const &) = default;
+    XTransitionFilter(XTransitionFilter &&) = default;
+    XTransitionFilter & operator =(XTransitionFilter const &) = default;
+    XTransitionFilter & operator =(XTransitionFilter &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int16 SAL_CALL getTransition() = 0;
+    virtual void SAL_CALL setTransition( ::sal_Int16 _transition ) = 0;
+    virtual ::sal_Int16 SAL_CALL getSubtype() = 0;
+    virtual void SAL_CALL setSubtype( ::sal_Int16 _subtype ) = 0;
+    virtual ::sal_Bool SAL_CALL getMode() = 0;
+    virtual void SAL_CALL setMode( ::sal_Bool _mode ) = 0;
+    virtual ::sal_Bool SAL_CALL getDirection() = 0;
+    virtual void SAL_CALL setDirection( ::sal_Bool _direction ) = 0;
+    virtual ::sal_Int32 SAL_CALL getFadeColor() = 0;
+    virtual void SAL_CALL setFadeColor( ::sal_Int32 _fadecolor ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTransitionFilter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::animations::XTransitionFilter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::animations::XTransitionFilter > *);
+
+#endif

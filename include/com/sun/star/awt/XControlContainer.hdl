@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XCONTROLCONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XCONTROLCONTAINER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XControl; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XControlContainer : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XControlContainer() = default;
+    XControlContainer(XControlContainer const &) = default;
+    XControlContainer(XControlContainer &&) = default;
+    XControlContainer & operator =(XControlContainer const &) = default;
+    XControlContainer & operator =(XControlContainer &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setStatusText( const ::rtl::OUString& StatusText ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::awt::XControl > > SAL_CALL getControls() = 0;
+    virtual ::css::uno::Reference< ::css::awt::XControl > SAL_CALL getControl( const ::rtl::OUString& aName ) = 0;
+    virtual void SAL_CALL addControl( const ::rtl::OUString& Name, const ::css::uno::Reference< ::css::awt::XControl >& Control ) = 0;
+    virtual void SAL_CALL removeControl( const ::css::uno::Reference< ::css::awt::XControl >& Control ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XControlContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XControlContainer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XControlContainer > *);
+
+#endif

@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_XAXISXSUPPLIER_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_XAXISXSUPPLIER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace beans { class XPropertySet; } } } }
+namespace com { namespace sun { namespace star { namespace drawing { class XShape; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAxisXSupplier : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAxisXSupplier() = default;
+    XAxisXSupplier(XAxisXSupplier const &) = default;
+    XAxisXSupplier(XAxisXSupplier &&) = default;
+    XAxisXSupplier & operator =(XAxisXSupplier const &) = default;
+    XAxisXSupplier & operator =(XAxisXSupplier &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::drawing::XShape > SAL_CALL getXAxisTitle() = 0;
+    virtual ::css::uno::Reference< ::css::beans::XPropertySet > SAL_CALL getXAxis() = 0;
+    virtual ::css::uno::Reference< ::css::beans::XPropertySet > SAL_CALL getXMainGrid() = 0;
+    virtual ::css::uno::Reference< ::css::beans::XPropertySet > SAL_CALL getXHelpGrid() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAxisXSupplier() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::XAxisXSupplier const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::chart::XAxisXSupplier > *);
+
+#endif

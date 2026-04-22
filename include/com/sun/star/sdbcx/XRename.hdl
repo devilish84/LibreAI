@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBCX_XRENAME_HDL
+#define INCLUDED_COM_SUN_STAR_SDBCX_XRENAME_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbcx {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRename : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRename() = default;
+    XRename(XRename const &) = default;
+    XRename(XRename &&) = default;
+    XRename & operator =(XRename const &) = default;
+    XRename & operator =(XRename &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL rename( const ::rtl::OUString& newName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRename() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbcx::XRename const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbcx::XRename > *);
+
+#endif

@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_RESULTSETCONCURRENCY_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_RESULTSETCONCURRENCY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbc { namespace ResultSetConcurrency {
+
+static const ::sal_Int32 READ_ONLY = (sal_Int32)1007;
+static const ::sal_Int32 UPDATABLE = (sal_Int32)1008;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBC_RESULTSETCONCURRENCY_HDL

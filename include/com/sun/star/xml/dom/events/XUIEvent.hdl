@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_XUIEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_XUIEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/xml/dom/events/XEvent.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace views { class XAbstractView; } } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace events {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUIEvent : public ::css::xml::dom::events::XEvent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUIEvent() = default;
+    XUIEvent(XUIEvent const &) = default;
+    XUIEvent(XUIEvent &&) = default;
+    XUIEvent & operator =(XUIEvent const &) = default;
+    XUIEvent & operator =(XUIEvent &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::xml::dom::views::XAbstractView > SAL_CALL getView() = 0;
+    virtual ::sal_Int32 SAL_CALL getDetail() = 0;
+    virtual void SAL_CALL initUIEvent( const ::rtl::OUString& typeArg, ::sal_Bool canBubbleArg, ::sal_Bool cancelableArg, const ::css::uno::Reference< ::css::xml::dom::views::XAbstractView >& viewArg, ::sal_Int32 detailArg ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUIEvent() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::events::XUIEvent const *);
+} } } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::events::XUIEvent > *);
+
+#endif

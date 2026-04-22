@@ -1,0 +1,54 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_XIMAGEMANAGER_HDL
+#define INCLUDED_COM_SUN_STAR_UI_XIMAGEMANAGER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace graphic { class XGraphic; } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/lang/XInitialization.hdl"
+#include "com/sun/star/ui/XUIConfiguration.hdl"
+#include "com/sun/star/ui/XUIConfigurationPersistence.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XImageManager : public ::css::ui::XUIConfigurationPersistence, public ::css::ui::XUIConfiguration, public ::css::lang::XComponent, public ::css::lang::XInitialization
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XImageManager() = default;
+    XImageManager(XImageManager const &) = default;
+    XImageManager(XImageManager &&) = default;
+    XImageManager & operator =(XImageManager const &) = default;
+    XImageManager & operator =(XImageManager &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL reset() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getAllImageNames( ::sal_Int16 nImageType ) = 0;
+    virtual ::sal_Bool SAL_CALL hasImage( ::sal_Int16 nImageType, const ::rtl::OUString& CommandURL ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::graphic::XGraphic > > SAL_CALL getImages( ::sal_Int16 nImageType, const ::css::uno::Sequence< ::rtl::OUString >& aCommandURLSequence ) = 0;
+    virtual void SAL_CALL replaceImages( ::sal_Int16 nImageType, const ::css::uno::Sequence< ::rtl::OUString >& aCommandURLSequence, const ::css::uno::Sequence< ::css::uno::Reference< ::css::graphic::XGraphic > >& aGraphicsSequence ) = 0;
+    virtual void SAL_CALL removeImages( ::sal_Int16 nImageType, const ::css::uno::Sequence< ::rtl::OUString >& CommandURLs ) = 0;
+    virtual void SAL_CALL insertImages( ::sal_Int16 nImageType, const ::css::uno::Sequence< ::rtl::OUString >& aCommandURLSequence, const ::css::uno::Sequence< ::css::uno::Reference< ::css::graphic::XGraphic > >& aGraphicSequence ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XImageManager() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::XImageManager const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::XImageManager > *);
+
+#endif

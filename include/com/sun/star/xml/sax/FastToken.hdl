@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_SAX_FASTTOKEN_HDL
+#define INCLUDED_COM_SUN_STAR_XML_SAX_FASTTOKEN_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { namespace FastToken {
+
+static const ::sal_Int32 DONTKNOW = (sal_Int32)-1;
+static const ::sal_Int32 NAMESPACE = (sal_Int32)65536;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_XML_SAX_FASTTOKEN_HDL

@@ -1,0 +1,66 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLETEXT_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLETEXT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/accessibility/AccessibleScrollType.hdl"
+#include "com/sun/star/accessibility/TextSegment.hdl"
+#include "com/sun/star/awt/Point.hdl"
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAccessibleText : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAccessibleText() = default;
+    XAccessibleText(XAccessibleText const &) = default;
+    XAccessibleText(XAccessibleText &&) = default;
+    XAccessibleText & operator =(XAccessibleText const &) = default;
+    XAccessibleText & operator =(XAccessibleText &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getCaretPosition() = 0;
+    virtual ::sal_Bool SAL_CALL setCaretPosition( ::sal_Int32 nIndex ) = 0;
+    virtual ::sal_Unicode SAL_CALL getCharacter( ::sal_Int32 nIndex ) = 0;
+    virtual ::css::uno::Sequence< ::css::beans::PropertyValue > SAL_CALL getCharacterAttributes( ::sal_Int32 nIndex, const ::css::uno::Sequence< ::rtl::OUString >& aRequestedAttributes ) = 0;
+    virtual ::css::awt::Rectangle SAL_CALL getCharacterBounds( ::sal_Int32 nIndex ) = 0;
+    virtual ::sal_Int32 SAL_CALL getCharacterCount() = 0;
+    virtual ::sal_Int32 SAL_CALL getIndexAtPoint( const ::css::awt::Point& aPoint ) = 0;
+    virtual ::rtl::OUString SAL_CALL getSelectedText() = 0;
+    virtual ::sal_Int32 SAL_CALL getSelectionStart() = 0;
+    virtual ::sal_Int32 SAL_CALL getSelectionEnd() = 0;
+    virtual ::sal_Bool SAL_CALL setSelection( ::sal_Int32 nStartIndex, ::sal_Int32 nEndIndex ) = 0;
+    virtual ::rtl::OUString SAL_CALL getText() = 0;
+    virtual ::rtl::OUString SAL_CALL getTextRange( ::sal_Int32 nStartIndex, ::sal_Int32 nEndIndex ) = 0;
+    virtual ::css::accessibility::TextSegment SAL_CALL getTextAtIndex( ::sal_Int32 nIndex, ::sal_Int16 nTextType ) = 0;
+    virtual ::css::accessibility::TextSegment SAL_CALL getTextBeforeIndex( ::sal_Int32 nIndex, ::sal_Int16 nTextType ) = 0;
+    virtual ::css::accessibility::TextSegment SAL_CALL getTextBehindIndex( ::sal_Int32 nIndex, ::sal_Int16 nTextType ) = 0;
+    virtual ::sal_Bool SAL_CALL copyText( ::sal_Int32 nStartIndex, ::sal_Int32 nEndIndex ) = 0;
+    virtual ::sal_Bool SAL_CALL scrollSubstringTo( ::sal_Int32 nStartIndex, ::sal_Int32 nEndIndex, ::css::accessibility::AccessibleScrollType aScrollType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAccessibleText() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::XAccessibleText const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::accessibility::XAccessibleText > *);
+
+#endif

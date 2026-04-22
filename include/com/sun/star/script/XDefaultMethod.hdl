@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XDEFAULTMETHOD_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XDEFAULTMETHOD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDefaultMethod : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDefaultMethod() = default;
+    XDefaultMethod(XDefaultMethod const &) = default;
+    XDefaultMethod(XDefaultMethod &&) = default;
+    XDefaultMethod & operator =(XDefaultMethod const &) = default;
+    XDefaultMethod & operator =(XDefaultMethod &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getDefaultMethodName() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDefaultMethod() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XDefaultMethod const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XDefaultMethod > *);
+
+#endif

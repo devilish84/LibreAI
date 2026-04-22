@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_XCOMMAND_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_XCOMMAND_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/animations/XAnimationNode.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace animations {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCommand : public ::css::animations::XAnimationNode
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCommand() = default;
+    XCommand(XCommand const &) = default;
+    XCommand(XCommand &&) = default;
+    XCommand & operator =(XCommand const &) = default;
+    XCommand & operator =(XCommand &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Any SAL_CALL getTarget() = 0;
+    virtual void SAL_CALL setTarget( const ::css::uno::Any& _target ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCommand() = 0;
+    virtual void SAL_CALL setCommand( ::sal_Int16 _command ) = 0;
+    virtual ::css::uno::Any SAL_CALL getParameter() = 0;
+    virtual void SAL_CALL setParameter( const ::css::uno::Any& _parameter ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCommand() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::animations::XCommand const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::animations::XCommand > *);
+
+#endif

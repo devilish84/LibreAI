@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_TABLEBORDERDISTANCES_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_TABLEBORDERDISTANCES_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED TableBorderDistances {
+    inline TableBorderDistances();
+
+    inline TableBorderDistances(const ::sal_Int16& TopDistance_, const ::sal_Bool& IsTopDistanceValid_, const ::sal_Int16& BottomDistance_, const ::sal_Bool& IsBottomDistanceValid_, const ::sal_Int16& LeftDistance_, const ::sal_Bool& IsLeftDistanceValid_, const ::sal_Int16& RightDistance_, const ::sal_Bool& IsRightDistanceValid_);
+
+    ::sal_Int16 TopDistance;
+    ::sal_Bool IsTopDistanceValid;
+    ::sal_Int16 BottomDistance;
+    ::sal_Bool IsBottomDistanceValid;
+    ::sal_Int16 LeftDistance;
+    ::sal_Bool IsLeftDistanceValid;
+    ::sal_Int16 RightDistance;
+    ::sal_Bool IsRightDistanceValid;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::TableBorderDistances const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::table::TableBorderDistances *);
+
+#endif

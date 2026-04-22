@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_RUNTIME_FILTEREVENT_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_RUNTIME_FILTEREVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form { namespace runtime {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI FilterEvent: public ::css::lang::EventObject {
+    inline FilterEvent();
+
+    inline FilterEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::sal_Int32& DisjunctiveTerm_, const ::sal_Int32& FilterComponent_, const ::rtl::OUString& PredicateExpression_);
+
+    ::sal_Int32 DisjunctiveTerm CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::sal_Int32 FilterComponent;
+    ::rtl::OUString PredicateExpression;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::runtime::FilterEvent const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::form::runtime::FilterEvent *);
+
+#endif

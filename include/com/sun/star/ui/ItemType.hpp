@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_ITEMTYPE_HPP
+#define INCLUDED_COM_SUN_STAR_UI_ITEMTYPE_HPP
+
+#include "com/sun/star/ui/ItemType.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_UI_ITEMTYPE_HPP

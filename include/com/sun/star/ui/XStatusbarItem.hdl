@@ -1,0 +1,62 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_XSTATUSBARITEM_HDL
+#define INCLUDED_COM_SUN_STAR_UI_XSTATUSBARITEM_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStatusbarItem : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStatusbarItem() = default;
+    XStatusbarItem(XStatusbarItem const &) = default;
+    XStatusbarItem(XStatusbarItem &&) = default;
+    XStatusbarItem & operator =(XStatusbarItem const &) = default;
+    XStatusbarItem & operator =(XStatusbarItem &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getCommand() = 0;
+    virtual ::sal_uInt16 SAL_CALL getItemId() = 0;
+    virtual ::sal_uInt32 SAL_CALL getWidth() = 0;
+    virtual ::sal_uInt16 SAL_CALL getStyle() = 0;
+    virtual ::sal_Int32 SAL_CALL getOffset() = 0;
+    virtual ::css::awt::Rectangle SAL_CALL getItemRect() = 0;
+    virtual ::rtl::OUString SAL_CALL getText() = 0;
+    virtual void SAL_CALL setText( const ::rtl::OUString& _text ) = 0;
+    virtual ::rtl::OUString SAL_CALL getHelpText() = 0;
+    virtual void SAL_CALL setHelpText( const ::rtl::OUString& _helptext ) = 0;
+    virtual ::rtl::OUString SAL_CALL getQuickHelpText() = 0;
+    virtual void SAL_CALL setQuickHelpText( const ::rtl::OUString& _quickhelptext ) = 0;
+    virtual ::rtl::OUString SAL_CALL getAccessibleName() = 0;
+    virtual void SAL_CALL setAccessibleName( const ::rtl::OUString& _accessiblename ) = 0;
+    virtual ::sal_Bool SAL_CALL getVisible() = 0;
+    virtual void SAL_CALL setVisible( ::sal_Bool _visible ) = 0;
+
+    // Methods
+    virtual void SAL_CALL repaint() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStatusbarItem() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::XStatusbarItem const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::XStatusbarItem > *);
+
+#endif

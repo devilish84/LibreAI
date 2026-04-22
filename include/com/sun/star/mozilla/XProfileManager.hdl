@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_MOZILLA_XPROFILEMANAGER_HDL
+#define INCLUDED_COM_SUN_STAR_MOZILLA_XPROFILEMANAGER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/mozilla/MozillaProductType.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace mozilla {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XProfileManager : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XProfileManager() = default;
+    XProfileManager(XProfileManager const &) = default;
+    XProfileManager(XProfileManager &&) = default;
+    XProfileManager & operator =(XProfileManager const &) = default;
+    XProfileManager & operator =(XProfileManager &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL bootupProfile( ::css::mozilla::MozillaProductType product, const ::rtl::OUString& profileName ) = 0;
+    virtual ::sal_Int32 SAL_CALL shutdownProfile() = 0;
+    virtual ::css::mozilla::MozillaProductType SAL_CALL getCurrentProduct() = 0;
+    virtual ::rtl::OUString SAL_CALL getCurrentProfile() = 0;
+    virtual ::sal_Bool SAL_CALL isCurrentProfileLocked() = 0;
+    virtual ::rtl::OUString SAL_CALL setCurrentProfile( ::css::mozilla::MozillaProductType product, const ::rtl::OUString& profileName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XProfileManager() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::mozilla::XProfileManager const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::mozilla::XProfileManager > *);
+
+#endif

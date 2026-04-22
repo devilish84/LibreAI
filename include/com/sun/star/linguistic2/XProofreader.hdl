@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XPROOFREADER_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XPROOFREADER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/linguistic2/ProofreadingResult.hdl"
+#include "com/sun/star/linguistic2/XSupportedLocales.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XProofreader : public ::css::linguistic2::XSupportedLocales
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XProofreader() = default;
+    XProofreader(XProofreader const &) = default;
+    XProofreader(XProofreader &&) = default;
+    XProofreader & operator =(XProofreader const &) = default;
+    XProofreader & operator =(XProofreader &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isSpellChecker() = 0;
+    virtual ::css::linguistic2::ProofreadingResult SAL_CALL doProofreading( const ::rtl::OUString& aDocumentIdentifier, const ::rtl::OUString& aText, const ::css::lang::Locale& aLocale, ::sal_Int32 nStartOfSentencePosition, ::sal_Int32 nSuggestedBehindEndOfSentencePosition, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aProperties ) = 0;
+    virtual void SAL_CALL ignoreRule( const ::rtl::OUString& aRuleIdentifier, const ::css::lang::Locale& aLocale ) = 0;
+    virtual void SAL_CALL resetIgnoreRules() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XProofreader() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XProofreader const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XProofreader > *);
+
+#endif

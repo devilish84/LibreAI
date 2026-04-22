@@ -1,0 +1,57 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_XCHARTTYPETEMPLATE_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_XCHARTTYPETEMPLATE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace chart2 { class XChartType; } } } }
+namespace com { namespace sun { namespace star { namespace chart2 { class XDataInterpreter; } } } }
+namespace com { namespace sun { namespace star { namespace chart2 { class XDataSeries; } } } }
+namespace com { namespace sun { namespace star { namespace chart2 { class XDiagram; } } } }
+namespace com { namespace sun { namespace star { namespace chart2 { namespace data { class XDataSource; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XChartTypeTemplate : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XChartTypeTemplate() = default;
+    XChartTypeTemplate(XChartTypeTemplate const &) = default;
+    XChartTypeTemplate(XChartTypeTemplate &&) = default;
+    XChartTypeTemplate & operator =(XChartTypeTemplate const &) = default;
+    XChartTypeTemplate & operator =(XChartTypeTemplate &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::chart2::XDiagram > SAL_CALL createDiagramByDataSource( const ::css::uno::Reference< ::css::chart2::data::XDataSource >& xDataSource, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aArguments ) = 0;
+    virtual ::sal_Bool SAL_CALL supportsCategories() = 0;
+    virtual void SAL_CALL changeDiagram( const ::css::uno::Reference< ::css::chart2::XDiagram >& xDiagram ) = 0;
+    virtual void SAL_CALL changeDiagramData( const ::css::uno::Reference< ::css::chart2::XDiagram >& xDiagram, const ::css::uno::Reference< ::css::chart2::data::XDataSource >& xDataSource, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aArguments ) = 0;
+    virtual ::sal_Bool SAL_CALL matchesTemplate( const ::css::uno::Reference< ::css::chart2::XDiagram >& xDiagram, ::sal_Bool bAdaptProperties ) = 0;
+    virtual ::css::uno::Reference< ::css::chart2::XChartType > SAL_CALL getChartTypeForNewSeries( const ::css::uno::Sequence< ::css::uno::Reference< ::css::chart2::XChartType > >& aFormerlyUsedChartTypes ) = 0;
+    virtual ::css::uno::Reference< ::css::chart2::XDataInterpreter > SAL_CALL getDataInterpreter() = 0;
+    virtual void SAL_CALL applyStyle( const ::css::uno::Reference< ::css::chart2::XDataSeries >& xSeries, ::sal_Int32 nChartTypeGroupIndex, ::sal_Int32 nSeriesIndex, ::sal_Int32 nSeriesCount ) = 0;
+    virtual void SAL_CALL resetStyles( const ::css::uno::Reference< ::css::chart2::XDiagram >& xDiagram ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XChartTypeTemplate() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::XChartTypeTemplate const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::chart2::XChartTypeTemplate > *);
+
+#endif

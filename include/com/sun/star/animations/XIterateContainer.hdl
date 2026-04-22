@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_XITERATECONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_XITERATECONTAINER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/animations/XTimeContainer.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace animations {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XIterateContainer : public ::css::animations::XTimeContainer
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XIterateContainer() = default;
+    XIterateContainer(XIterateContainer const &) = default;
+    XIterateContainer(XIterateContainer &&) = default;
+    XIterateContainer & operator =(XIterateContainer const &) = default;
+    XIterateContainer & operator =(XIterateContainer &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Any SAL_CALL getTarget() = 0;
+    virtual void SAL_CALL setTarget( const ::css::uno::Any& _target ) = 0;
+    virtual ::sal_Int16 SAL_CALL getSubItem() = 0;
+    virtual void SAL_CALL setSubItem( ::sal_Int16 _subitem ) = 0;
+    virtual ::sal_Int16 SAL_CALL getIterateType() = 0;
+    virtual void SAL_CALL setIterateType( ::sal_Int16 _iteratetype ) = 0;
+    virtual double SAL_CALL getIterateInterval() = 0;
+    virtual void SAL_CALL setIterateInterval( double _iterateinterval ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XIterateContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::animations::XIterateContainer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::animations::XIterateContainer > *);
+
+#endif

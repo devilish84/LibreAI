@@ -1,0 +1,22 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_DICTIONARYLISTEVENTFLAGS_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_DICTIONARYLISTEVENTFLAGS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace linguistic2 { namespace DictionaryListEventFlags {
+
+static const ::sal_Int16 ACTIVATE_NEG_DIC = (sal_Int16)64;
+static const ::sal_Int16 ACTIVATE_POS_DIC = (sal_Int16)16;
+static const ::sal_Int16 ADD_NEG_ENTRY = (sal_Int16)4;
+static const ::sal_Int16 ADD_POS_ENTRY = (sal_Int16)1;
+static const ::sal_Int16 DEACTIVATE_NEG_DIC = (sal_Int16)128;
+static const ::sal_Int16 DEACTIVATE_POS_DIC = (sal_Int16)32;
+static const ::sal_Int16 DEL_NEG_ENTRY = (sal_Int16)8;
+static const ::sal_Int16 DEL_POS_ENTRY = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_LINGUISTIC2_DICTIONARYLISTEVENTFLAGS_HDL

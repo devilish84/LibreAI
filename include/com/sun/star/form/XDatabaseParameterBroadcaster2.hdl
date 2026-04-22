@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_XDATABASEPARAMETERBROADCASTER2_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_XDATABASEPARAMETERBROADCASTER2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/form/XDatabaseParameterBroadcaster.hdl"
+namespace com { namespace sun { namespace star { namespace form { class XDatabaseParameterListener; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDatabaseParameterBroadcaster2 : public ::css::form::XDatabaseParameterBroadcaster
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDatabaseParameterBroadcaster2() = default;
+    XDatabaseParameterBroadcaster2(XDatabaseParameterBroadcaster2 const &) = default;
+    XDatabaseParameterBroadcaster2(XDatabaseParameterBroadcaster2 &&) = default;
+    XDatabaseParameterBroadcaster2 & operator =(XDatabaseParameterBroadcaster2 const &) = default;
+    XDatabaseParameterBroadcaster2 & operator =(XDatabaseParameterBroadcaster2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addDatabaseParameterListener( const ::css::uno::Reference< ::css::form::XDatabaseParameterListener >& aListener ) = 0;
+    virtual void SAL_CALL removeDatabaseParameterListener( const ::css::uno::Reference< ::css::form::XDatabaseParameterListener >& aListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDatabaseParameterBroadcaster2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::XDatabaseParameterBroadcaster2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::form::XDatabaseParameterBroadcaster2 > *);
+
+#endif

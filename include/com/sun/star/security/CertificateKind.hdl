@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_SECURITY_CERTIFICATEKIND_HDL
+#define INCLUDED_COM_SUN_STAR_SECURITY_CERTIFICATEKIND_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace security {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI CertificateKind
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI CertificateKind
+{
+
+#endif
+    CertificateKind_X509 = 0,
+    CertificateKind_OPENPGP = 1,
+    CertificateKind_NONE = 2,
+    CertificateKind_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto CertificateKind_X509 = CertificateKind::CertificateKind_X509;
+constexpr auto CertificateKind_OPENPGP = CertificateKind::CertificateKind_OPENPGP;
+constexpr auto CertificateKind_NONE = CertificateKind::CertificateKind_NONE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::security::CertificateKind const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::security::CertificateKind *);
+
+#endif

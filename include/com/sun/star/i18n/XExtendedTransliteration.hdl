@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XEXTENDEDTRANSLITERATION_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XEXTENDEDTRANSLITERATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/XTransliteration.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XExtendedTransliteration : public ::css::i18n::XTransliteration
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XExtendedTransliteration() = default;
+    XExtendedTransliteration(XExtendedTransliteration const &) = default;
+    XExtendedTransliteration(XExtendedTransliteration &&) = default;
+    XExtendedTransliteration & operator =(XExtendedTransliteration const &) = default;
+    XExtendedTransliteration & operator =(XExtendedTransliteration &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL transliterateString2String( const ::rtl::OUString& aStr, ::sal_Int32 nStartPos, ::sal_Int32 nCount ) = 0;
+    virtual ::rtl::OUString SAL_CALL transliterateChar2String( ::sal_Unicode cChar ) = 0;
+    virtual ::sal_Unicode SAL_CALL transliterateChar2Char( ::sal_Unicode cChar ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XExtendedTransliteration() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XExtendedTransliteration const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XExtendedTransliteration > *);
+
+#endif

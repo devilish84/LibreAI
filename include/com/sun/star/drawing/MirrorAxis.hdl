@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_MIRRORAXIS_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_MIRRORAXIS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI MirrorAxis
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI MirrorAxis
+{
+
+#endif
+    MirrorAxis_VERTICAL = 0,
+    MirrorAxis_HORIZONTAL = 1,
+    MirrorAxis_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto MirrorAxis_VERTICAL = MirrorAxis::MirrorAxis_VERTICAL;
+constexpr auto MirrorAxis_HORIZONTAL = MirrorAxis::MirrorAxis_HORIZONTAL;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::MirrorAxis const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::MirrorAxis *);
+
+#endif

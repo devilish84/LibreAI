@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_REPAINTRESULT_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_REPAINTRESULT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace RepaintResult {
+
+static const ::sal_Int8 DRAFTED = (sal_Int8)2;
+static const ::sal_Int8 FAILED = (sal_Int8)3;
+static const ::sal_Int8 REDRAWN = (sal_Int8)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_REPAINTRESULT_HDL

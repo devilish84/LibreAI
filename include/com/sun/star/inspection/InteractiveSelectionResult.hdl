@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_INSPECTION_INTERACTIVESELECTIONRESULT_HDL
+#define INCLUDED_COM_SUN_STAR_INSPECTION_INTERACTIVESELECTIONRESULT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace inspection {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI InteractiveSelectionResult
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI InteractiveSelectionResult
+{
+
+#endif
+    InteractiveSelectionResult_Cancelled = 0,
+    InteractiveSelectionResult_Success = 1,
+    InteractiveSelectionResult_ObtainedValue = 2,
+    InteractiveSelectionResult_Pending = 3,
+    InteractiveSelectionResult_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto InteractiveSelectionResult_Cancelled = InteractiveSelectionResult::InteractiveSelectionResult_Cancelled;
+constexpr auto InteractiveSelectionResult_Success = InteractiveSelectionResult::InteractiveSelectionResult_Success;
+constexpr auto InteractiveSelectionResult_ObtainedValue = InteractiveSelectionResult::InteractiveSelectionResult_ObtainedValue;
+constexpr auto InteractiveSelectionResult_Pending = InteractiveSelectionResult::InteractiveSelectionResult_Pending;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::inspection::InteractiveSelectionResult const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::inspection::InteractiveSelectionResult *);
+
+#endif

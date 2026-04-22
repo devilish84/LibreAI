@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_XDRIVER_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_XDRIVER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/sdbc/DriverPropertyInfo.hdl"
+namespace com { namespace sun { namespace star { namespace sdbc { class XConnection; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDriver : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDriver() = default;
+    XDriver(XDriver const &) = default;
+    XDriver(XDriver &&) = default;
+    XDriver & operator =(XDriver const &) = default;
+    XDriver & operator =(XDriver &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::sdbc::XConnection > SAL_CALL connect( const ::rtl::OUString& url, const ::css::uno::Sequence< ::css::beans::PropertyValue >& info ) = 0;
+    virtual ::sal_Bool SAL_CALL acceptsURL( const ::rtl::OUString& url ) = 0;
+    virtual ::css::uno::Sequence< ::css::sdbc::DriverPropertyInfo > SAL_CALL getPropertyInfo( const ::rtl::OUString& url, const ::css::uno::Sequence< ::css::beans::PropertyValue >& info ) = 0;
+    virtual ::sal_Int32 SAL_CALL getMajorVersion() = 0;
+    virtual ::sal_Int32 SAL_CALL getMinorVersion() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDriver() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::XDriver const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbc::XDriver > *);
+
+#endif

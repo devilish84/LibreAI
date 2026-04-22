@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XSHEETPASTABLE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XSHEETPASTABLE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/CellInsertMode.hdl"
+#include "com/sun/star/sheet/PasteOperation.hdl"
+#include "com/sun/star/table/CellAddress.hdl"
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSheetPastable : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSheetPastable() = default;
+    XSheetPastable(XSheetPastable const &) = default;
+    XSheetPastable(XSheetPastable &&) = default;
+    XSheetPastable & operator =(XSheetPastable const &) = default;
+    XSheetPastable & operator =(XSheetPastable &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL paste( const ::css::table::CellAddress& aDestination ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL pasteFormat( const ::css::table::CellAddress& aDestination, const ::rtl::OUString& aFormat ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL pasteCellRange( const ::css::table::CellRangeAddress& aDestination, ::css::sheet::PasteOperation nOperation, ::sal_Int16 nContents, ::sal_Bool bSkipEmpty, ::sal_Bool bTranspose, ::sal_Bool bAsLink, ::css::sheet::CellInsertMode nInsert ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSheetPastable() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XSheetPastable const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XSheetPastable > *);
+
+#endif

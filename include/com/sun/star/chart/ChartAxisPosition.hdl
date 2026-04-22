@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTAXISPOSITION_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTAXISPOSITION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ChartAxisPosition
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ChartAxisPosition
+{
+
+#endif
+    ChartAxisPosition_ZERO = 0,
+    ChartAxisPosition_START = 1,
+    ChartAxisPosition_END = 2,
+    ChartAxisPosition_VALUE = 3,
+    ChartAxisPosition_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ChartAxisPosition_ZERO = ChartAxisPosition::ChartAxisPosition_ZERO;
+constexpr auto ChartAxisPosition_START = ChartAxisPosition::ChartAxisPosition_START;
+constexpr auto ChartAxisPosition_END = ChartAxisPosition::ChartAxisPosition_END;
+constexpr auto ChartAxisPosition_VALUE = ChartAxisPosition::ChartAxisPosition_VALUE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::ChartAxisPosition const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart::ChartAxisPosition *);
+
+#endif

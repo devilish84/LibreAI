@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_PROPERTYSETINFOCHANGE_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_PROPERTYSETINFOCHANGE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace beans { namespace PropertySetInfoChange {
+
+static const ::sal_Int32 PROPERTY_INSERTED = (sal_Int32)0;
+static const ::sal_Int32 PROPERTY_REMOVED = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_BEANS_PROPERTYSETINFOCHANGE_HDL

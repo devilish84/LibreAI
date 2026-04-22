@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_ELEMENTMODES_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_ELEMENTMODES_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace embed { namespace ElementModes {
+
+static const ::sal_Int32 NOCREATE = (sal_Int32)16;
+static const ::sal_Int32 READ = (sal_Int32)1;
+static const ::sal_Int32 READWRITE = (sal_Int32)7;
+static const ::sal_Int32 SEEKABLE = (sal_Int32)2;
+static const ::sal_Int32 SEEKABLEREAD = (sal_Int32)3;
+static const ::sal_Int32 TRUNCATE = (sal_Int32)8;
+static const ::sal_Int32 WRITE = (sal_Int32)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_EMBED_ELEMENTMODES_HDL

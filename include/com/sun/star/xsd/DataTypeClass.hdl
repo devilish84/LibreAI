@@ -1,0 +1,33 @@
+#ifndef INCLUDED_COM_SUN_STAR_XSD_DATATYPECLASS_HDL
+#define INCLUDED_COM_SUN_STAR_XSD_DATATYPECLASS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace xsd { namespace DataTypeClass {
+
+static const ::sal_Int16 BOOLEAN = (sal_Int16)2;
+static const ::sal_Int16 DATE = (sal_Int16)9;
+static const ::sal_Int16 DATETIME = (sal_Int16)7;
+static const ::sal_Int16 DECIMAL = (sal_Int16)3;
+static const ::sal_Int16 DOUBLE = (sal_Int16)5;
+static const ::sal_Int16 DURATION = (sal_Int16)6;
+static const ::sal_Int16 FLOAT = (sal_Int16)4;
+static const ::sal_Int16 NOTATION = (sal_Int16)19;
+static const ::sal_Int16 QName = (sal_Int16)18;
+static const ::sal_Int16 STRING = (sal_Int16)1;
+static const ::sal_Int16 TIME = (sal_Int16)8;
+static const ::sal_Int16 anyURI = (sal_Int16)17;
+static const ::sal_Int16 base64Binary = (sal_Int16)16;
+static const ::sal_Int16 gDay = (sal_Int16)13;
+static const ::sal_Int16 gMonth = (sal_Int16)14;
+static const ::sal_Int16 gMonthDay = (sal_Int16)12;
+static const ::sal_Int16 gYear = (sal_Int16)11;
+static const ::sal_Int16 gYearMonth = (sal_Int16)10;
+static const ::sal_Int16 hexBinary = (sal_Int16)15;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_XSD_DATATYPECLASS_HDL

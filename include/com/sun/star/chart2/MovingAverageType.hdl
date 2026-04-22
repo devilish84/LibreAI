@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_MOVINGAVERAGETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_MOVINGAVERAGETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace chart2 { namespace MovingAverageType {
+
+static const ::sal_Int32 AveragedAbscissa = (sal_Int32)3;
+static const ::sal_Int32 Central = (sal_Int32)2;
+static const ::sal_Int32 Prior = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_CHART2_MOVINGAVERAGETYPE_HDL

@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_REGISTRY_REGISTRYKEYTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_REGISTRY_REGISTRYKEYTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace registry {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI RegistryKeyType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI RegistryKeyType
+{
+
+#endif
+    RegistryKeyType_KEY = 0,
+    RegistryKeyType_LINK = 1,
+    RegistryKeyType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto RegistryKeyType_KEY = RegistryKeyType::RegistryKeyType_KEY;
+constexpr auto RegistryKeyType_LINK = RegistryKeyType::RegistryKeyType_LINK;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::registry::RegistryKeyType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::registry::RegistryKeyType *);
+
+#endif

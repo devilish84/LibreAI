@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XCONTROLLERBORDER_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XCONTROLLERBORDER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/frame/BorderWidths.hdl"
+namespace com { namespace sun { namespace star { namespace frame { class XBorderResizeListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XControllerBorder : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XControllerBorder() = default;
+    XControllerBorder(XControllerBorder const &) = default;
+    XControllerBorder(XControllerBorder &&) = default;
+    XControllerBorder & operator =(XControllerBorder const &) = default;
+    XControllerBorder & operator =(XControllerBorder &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::frame::BorderWidths SAL_CALL getBorder() = 0;
+    virtual void SAL_CALL addBorderResizeListener( const ::css::uno::Reference< ::css::frame::XBorderResizeListener >& xListener ) = 0;
+    virtual void SAL_CALL removeBorderResizeListener( const ::css::uno::Reference< ::css::frame::XBorderResizeListener >& xListener ) = 0;
+    virtual ::css::awt::Rectangle SAL_CALL queryBorderedArea( const ::css::awt::Rectangle& aPreliminaryRectangle ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XControllerBorder() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XControllerBorder const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XControllerBorder > *);
+
+#endif

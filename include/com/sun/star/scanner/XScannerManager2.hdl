@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCANNER_XSCANNERMANAGER2_HDL
+#define INCLUDED_COM_SUN_STAR_SCANNER_XSCANNERMANAGER2_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace lang { class XEventListener; } } } }
+#include "com/sun/star/scanner/ScannerContext.hdl"
+#include "com/sun/star/scanner/XScannerManager.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace scanner {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XScannerManager2 : public ::css::scanner::XScannerManager
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XScannerManager2() = default;
+    XScannerManager2(XScannerManager2 const &) = default;
+    XScannerManager2(XScannerManager2 &&) = default;
+    XScannerManager2 & operator =(XScannerManager2 const &) = default;
+    XScannerManager2 & operator =(XScannerManager2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL configureScannerAndScan( ::css::scanner::ScannerContext& scannerContext, const ::css::uno::Reference< ::css::lang::XEventListener >& listener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XScannerManager2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::scanner::XScannerManager2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::scanner::XScannerManager2 > *);
+
+#endif

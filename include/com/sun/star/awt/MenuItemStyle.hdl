@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_MENUITEMSTYLE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_MENUITEMSTYLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace MenuItemStyle {
+
+static const ::sal_Int16 AUTOCHECK = (sal_Int16)4;
+static const ::sal_Int16 CHECKABLE = (sal_Int16)1;
+static const ::sal_Int16 RADIOCHECK = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_MENUITEMSTYLE_HDL

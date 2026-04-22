@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_WIZARDTRAVELTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_WIZARDTRAVELTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs { namespace WizardTravelType {
+
+static const ::sal_Int16 BACKWARD = (sal_Int16)2;
+static const ::sal_Int16 FINISH = (sal_Int16)3;
+static const ::sal_Int16 FORWARD = (sal_Int16)1;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UI_DIALOGS_WIZARDTRAVELTYPE_HDL

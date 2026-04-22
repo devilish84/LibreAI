@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_RESOURCE_XSTRINGRESOURCERESOLVER_HDL
+#define INCLUDED_COM_SUN_STAR_RESOURCE_XSTRINGRESOURCERESOLVER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/util/XModifyBroadcaster.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace resource {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStringResourceResolver : public ::css::util::XModifyBroadcaster
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStringResourceResolver() = default;
+    XStringResourceResolver(XStringResourceResolver const &) = default;
+    XStringResourceResolver(XStringResourceResolver &&) = default;
+    XStringResourceResolver & operator =(XStringResourceResolver const &) = default;
+    XStringResourceResolver & operator =(XStringResourceResolver &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL resolveString( const ::rtl::OUString& ResourceID ) = 0;
+    virtual ::rtl::OUString SAL_CALL resolveStringForLocale( const ::rtl::OUString& ResourceID, const ::css::lang::Locale& locale ) = 0;
+    virtual ::sal_Bool SAL_CALL hasEntryForId( const ::rtl::OUString& ResourceID ) = 0;
+    virtual ::sal_Bool SAL_CALL hasEntryForIdAndLocale( const ::rtl::OUString& ResourceID, const ::css::lang::Locale& locale ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getResourceIDs() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getResourceIDsForLocale( const ::css::lang::Locale& locale ) = 0;
+    virtual ::css::lang::Locale SAL_CALL getCurrentLocale() = 0;
+    virtual ::css::lang::Locale SAL_CALL getDefaultLocale() = 0;
+    virtual ::css::uno::Sequence< ::css::lang::Locale > SAL_CALL getLocales() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStringResourceResolver() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::resource::XStringResourceResolver const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::resource::XStringResourceResolver > *);
+
+#endif

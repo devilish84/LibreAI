@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_CONTROLCOMMAND_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_CONTROLCOMMAND_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/NamedValue.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI ControlCommand {
+    inline ControlCommand();
+
+    inline ControlCommand(const ::rtl::OUString& Command_, const ::css::uno::Sequence< ::css::beans::NamedValue >& Arguments_);
+
+    ::rtl::OUString Command;
+    ::css::uno::Sequence< ::css::beans::NamedValue > Arguments;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::ControlCommand const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::frame::ControlCommand *);
+
+#endif

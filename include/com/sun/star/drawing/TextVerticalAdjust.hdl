@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_TEXTVERTICALADJUST_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_TEXTVERTICALADJUST_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TextVerticalAdjust
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TextVerticalAdjust
+{
+
+#endif
+    TextVerticalAdjust_TOP = 0,
+    TextVerticalAdjust_CENTER = 1,
+    TextVerticalAdjust_BOTTOM = 2,
+    TextVerticalAdjust_BLOCK = 3,
+    TextVerticalAdjust_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TextVerticalAdjust_TOP = TextVerticalAdjust::TextVerticalAdjust_TOP;
+constexpr auto TextVerticalAdjust_CENTER = TextVerticalAdjust::TextVerticalAdjust_CENTER;
+constexpr auto TextVerticalAdjust_BOTTOM = TextVerticalAdjust::TextVerticalAdjust_BOTTOM;
+constexpr auto TextVerticalAdjust_BLOCK = TextVerticalAdjust::TextVerticalAdjust_BLOCK;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::TextVerticalAdjust const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::TextVerticalAdjust *);
+
+#endif

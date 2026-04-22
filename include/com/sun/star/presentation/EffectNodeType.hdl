@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_PRESENTATION_EFFECTNODETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_PRESENTATION_EFFECTNODETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace presentation { namespace EffectNodeType {
+
+static const ::sal_Int16 AFTER_PREVIOUS = (sal_Int16)3;
+static const ::sal_Int16 DEFAULT = (sal_Int16)0;
+static const ::sal_Int16 INTERACTIVE_SEQUENCE = (sal_Int16)6;
+static const ::sal_Int16 MAIN_SEQUENCE = (sal_Int16)4;
+static const ::sal_Int16 ON_CLICK = (sal_Int16)1;
+static const ::sal_Int16 TIMING_ROOT = (sal_Int16)5;
+static const ::sal_Int16 WITH_PREVIOUS = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_PRESENTATION_EFFECTNODETYPE_HDL

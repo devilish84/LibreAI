@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_XSCALING_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_XSCALING_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace chart2 { class XScaling; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XScaling : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XScaling() = default;
+    XScaling(XScaling const &) = default;
+    XScaling(XScaling &&) = default;
+    XScaling & operator =(XScaling const &) = default;
+    XScaling & operator =(XScaling &&) = default;
+#endif
+
+
+    // Methods
+    virtual double SAL_CALL doScaling( double value ) = 0;
+    virtual ::css::uno::Reference< ::css::chart2::XScaling > SAL_CALL getInverseScaling() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XScaling() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::XScaling const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::chart2::XScaling > *);
+
+#endif

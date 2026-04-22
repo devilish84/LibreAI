@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XLOCALEDATA3_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XLOCALEDATA3_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/Calendar2.hdl"
+#include "com/sun/star/i18n/XLocaleData2.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLocaleData3 : public ::css::i18n::XLocaleData2
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLocaleData3() = default;
+    XLocaleData3(XLocaleData3 const &) = default;
+    XLocaleData3(XLocaleData3 &&) = default;
+    XLocaleData3 & operator =(XLocaleData3 const &) = default;
+    XLocaleData3 & operator =(XLocaleData3 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::i18n::Calendar2 > SAL_CALL getAllCalendars2( const ::css::lang::Locale& aLocale ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLocaleData3() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XLocaleData3 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XLocaleData3 > *);
+
+#endif

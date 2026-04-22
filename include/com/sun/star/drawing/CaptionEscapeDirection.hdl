@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_CAPTIONESCAPEDIRECTION_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_CAPTIONESCAPEDIRECTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace CaptionEscapeDirection {
+
+static const ::sal_Int16 auto = (sal_Int16)2;
+static const ::sal_Int16 horizontal = (sal_Int16)0;
+static const ::sal_Int16 vertical = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_DRAWING_CAPTIONESCAPEDIRECTION_HDL

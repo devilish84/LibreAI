@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XLIBRARYACCESS_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XLIBRARYACCESS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLibraryAccess : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLibraryAccess() = default;
+    XLibraryAccess(XLibraryAccess const &) = default;
+    XLibraryAccess(XLibraryAccess &&) = default;
+    XLibraryAccess & operator =(XLibraryAccess const &) = default;
+    XLibraryAccess & operator =(XLibraryAccess &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL isFunction( const ::rtl::OUString& aFunctionName ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL isValidPath( const ::rtl::OUString& aPathName ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getModuleNames() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getModuleSource( const ::rtl::OUString& aModulName ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getModuleCode( const ::rtl::OUString& aModuleName ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getFunctionSource( const ::rtl::OUString& aFunctionName ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getFunctionCode( const ::rtl::OUString& FunctionName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLibraryAccess() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XLibraryAccess const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XLibraryAccess > *);
+
+#endif

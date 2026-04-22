@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_MAIL_XMAILSERVICEPROVIDER_HDL
+#define INCLUDED_COM_SUN_STAR_MAIL_XMAILSERVICEPROVIDER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/mail/MailServiceType.hdl"
+namespace com { namespace sun { namespace star { namespace mail { class XMailService; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace mail {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMailServiceProvider : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMailServiceProvider() = default;
+    XMailServiceProvider(XMailServiceProvider const &) = default;
+    XMailServiceProvider(XMailServiceProvider &&) = default;
+    XMailServiceProvider & operator =(XMailServiceProvider const &) = default;
+    XMailServiceProvider & operator =(XMailServiceProvider &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::mail::XMailService > SAL_CALL create( ::css::mail::MailServiceType aType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMailServiceProvider() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::mail::XMailServiceProvider const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::mail::XMailServiceProvider > *);
+
+#endif

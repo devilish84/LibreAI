@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_LOCK_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_LOCK_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/LockDepth.hdl"
+#include "com/sun/star/ucb/LockEntry.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI Lock: public ::css::ucb::LockEntry {
+    inline Lock();
+
+    inline Lock(const ::css::ucb::LockScope& Scope_, const ::css::ucb::LockType& Type_, const ::css::ucb::LockDepth& Depth_, const ::css::uno::Any& Owner_, const ::sal_Int64& Timeout_, const ::css::uno::Sequence< ::rtl::OUString >& LockTokens_);
+
+    ::css::ucb::LockDepth Depth CPPU_GCC3_ALIGN(::css::ucb::LockEntry);
+    ::css::uno::Any Owner;
+    ::sal_Int64 Timeout;
+    ::css::uno::Sequence< ::rtl::OUString > LockTokens;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::Lock const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::Lock *);
+
+#endif

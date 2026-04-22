@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_XFOLDERPICKER2_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_XFOLDERPICKER2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ui/dialogs/XFolderPicker.hdl"
+#include "com/sun/star/util/XCancellable.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFolderPicker2 : public ::css::ui::dialogs::XFolderPicker, public ::css::util::XCancellable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFolderPicker2() = default;
+    XFolderPicker2(XFolderPicker2 const &) = default;
+    XFolderPicker2(XFolderPicker2 &&) = default;
+    XFolderPicker2 & operator =(XFolderPicker2 const &) = default;
+    XFolderPicker2 & operator =(XFolderPicker2 &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFolderPicker2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::dialogs::XFolderPicker2 const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::dialogs::XFolderPicker2 > *);
+
+#endif

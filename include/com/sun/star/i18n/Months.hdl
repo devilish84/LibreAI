@@ -1,0 +1,26 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_MONTHS_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_MONTHS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace Months {
+
+static const ::sal_Int16 APRIL = (sal_Int16)3;
+static const ::sal_Int16 AUGUST = (sal_Int16)7;
+static const ::sal_Int16 DECEMBER = (sal_Int16)11;
+static const ::sal_Int16 FEBURARY = (sal_Int16)1;
+static const ::sal_Int16 JANUARY = (sal_Int16)0;
+static const ::sal_Int16 JULY = (sal_Int16)6;
+static const ::sal_Int16 JUNE = (sal_Int16)5;
+static const ::sal_Int16 MARCH = (sal_Int16)2;
+static const ::sal_Int16 MAY = (sal_Int16)4;
+static const ::sal_Int16 NOVEMBER = (sal_Int16)10;
+static const ::sal_Int16 OCTOBER = (sal_Int16)9;
+static const ::sal_Int16 SEPTEMBER = (sal_Int16)8;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_MONTHS_HDL

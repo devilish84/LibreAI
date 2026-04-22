@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_CALENDAR_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_CALENDAR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/CalendarItem.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED Calendar {
+    inline Calendar();
+
+    inline Calendar(const ::css::uno::Sequence< ::css::i18n::CalendarItem >& Days_, const ::css::uno::Sequence< ::css::i18n::CalendarItem >& Months_, const ::css::uno::Sequence< ::css::i18n::CalendarItem >& Eras_, const ::rtl::OUString& StartOfWeek_, const ::sal_Int16& MinimumNumberOfDaysForFirstWeek_, const ::sal_Bool& Default_, const ::rtl::OUString& Name_);
+
+    ::css::uno::Sequence< ::css::i18n::CalendarItem > Days;
+    ::css::uno::Sequence< ::css::i18n::CalendarItem > Months;
+    ::css::uno::Sequence< ::css::i18n::CalendarItem > Eras;
+    ::rtl::OUString StartOfWeek;
+    ::sal_Int16 MinimumNumberOfDaysForFirstWeek;
+    ::sal_Bool Default;
+    ::rtl::OUString Name;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::Calendar const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::i18n::Calendar *);
+
+#endif

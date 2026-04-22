@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLESELECTION_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLESELECTION_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace accessibility { class XAccessible; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAccessibleSelection : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAccessibleSelection() = default;
+    XAccessibleSelection(XAccessibleSelection const &) = default;
+    XAccessibleSelection(XAccessibleSelection &&) = default;
+    XAccessibleSelection & operator =(XAccessibleSelection const &) = default;
+    XAccessibleSelection & operator =(XAccessibleSelection &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL selectAccessibleChild( ::sal_Int32 nChildIndex ) = 0;
+    virtual ::sal_Bool SAL_CALL isAccessibleChildSelected( ::sal_Int32 nChildIndex ) = 0;
+    virtual void SAL_CALL clearAccessibleSelection() = 0;
+    virtual void SAL_CALL selectAllAccessibleChildren() = 0;
+    virtual ::sal_Int32 SAL_CALL getSelectedAccessibleChildCount() = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessible > SAL_CALL getSelectedAccessibleChild( ::sal_Int32 nSelectedChildIndex ) = 0;
+    virtual void SAL_CALL deselectAccessibleChild( ::sal_Int32 nChildIndex ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAccessibleSelection() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::XAccessibleSelection const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::accessibility::XAccessibleSelection > *);
+
+#endif

@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_MOZILLA_XMOZILLABOOTSTRAP_HDL
+#define INCLUDED_COM_SUN_STAR_MOZILLA_XMOZILLABOOTSTRAP_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/mozilla/XProfileDiscover.hdl"
+#include "com/sun/star/mozilla/XProfileManager.hdl"
+#include "com/sun/star/mozilla/XProxyRunner.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace mozilla {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMozillaBootstrap : public ::css::mozilla::XProfileDiscover, public ::css::mozilla::XProfileManager, public ::css::mozilla::XProxyRunner
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMozillaBootstrap() = default;
+    XMozillaBootstrap(XMozillaBootstrap const &) = default;
+    XMozillaBootstrap(XMozillaBootstrap &&) = default;
+    XMozillaBootstrap & operator =(XMozillaBootstrap const &) = default;
+    XMozillaBootstrap & operator =(XMozillaBootstrap &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMozillaBootstrap() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::mozilla::XMozillaBootstrap const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::mozilla::XMozillaBootstrap > *);
+
+#endif

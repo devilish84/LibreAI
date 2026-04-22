@@ -1,0 +1,62 @@
+#ifndef INCLUDED_COM_SUN_STAR_DEPLOYMENT_XPACKAGEMANAGER_HDL
+#define INCLUDED_COM_SUN_STAR_DEPLOYMENT_XPACKAGEMANAGER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/NamedValue.hdl"
+namespace com { namespace sun { namespace star { namespace deployment { class XPackage; } } } }
+namespace com { namespace sun { namespace star { namespace deployment { class XPackageTypeInfo; } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace task { class XAbortChannel; } } } }
+namespace com { namespace sun { namespace star { namespace ucb { class XCommandEnvironment; } } } }
+#include "com/sun/star/util/XModifyBroadcaster.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace deployment {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPackageManager : public ::css::lang::XComponent, public ::css::util::XModifyBroadcaster
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPackageManager() = default;
+    XPackageManager(XPackageManager const &) = default;
+    XPackageManager(XPackageManager &&) = default;
+    XPackageManager & operator =(XPackageManager const &) = default;
+    XPackageManager & operator =(XPackageManager &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getContext() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::deployment::XPackageTypeInfo > > SAL_CALL getSupportedPackageTypes() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::task::XAbortChannel > SAL_CALL createAbortChannel() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::deployment::XPackage > SAL_CALL addPackage( const ::rtl::OUString& url, const ::css::uno::Sequence< ::css::beans::NamedValue >& properties, const ::rtl::OUString& mediaType, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::deployment::XPackage > SAL_CALL importExtension( const ::css::uno::Reference< ::css::deployment::XPackage >& extension, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL removePackage( const ::rtl::OUString& identifier, const ::rtl::OUString& fileName, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::deployment::XPackage > SAL_CALL getDeployedPackage( const ::rtl::OUString& identifier, const ::rtl::OUString& fileName, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::deployment::XPackage > > SAL_CALL getDeployedPackages( const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL reinstallDeployedPackages( ::sal_Bool force, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL isReadOnly() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL synchronize( const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::deployment::XPackage > > SAL_CALL getExtensionsWithUnacceptedLicenses( const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Int32 SAL_CALL checkPrerequisites( const ::css::uno::Reference< ::css::deployment::XPackage >& extension, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPackageManager() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::deployment::XPackageManager const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::deployment::XPackageManager > *);
+
+#endif

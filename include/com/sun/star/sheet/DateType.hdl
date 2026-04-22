@@ -1,0 +1,27 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DATETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DATETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace DateType {
+
+static const ::sal_Int32 LAST7DAYS = (sal_Int32)3;
+static const ::sal_Int32 LASTMONTH = (sal_Int32)8;
+static const ::sal_Int32 LASTWEEK = (sal_Int32)5;
+static const ::sal_Int32 LASTYEAR = (sal_Int32)11;
+static const ::sal_Int32 NEXTMONTH = (sal_Int32)9;
+static const ::sal_Int32 NEXTWEEK = (sal_Int32)6;
+static const ::sal_Int32 NEXTYEAR = (sal_Int32)12;
+static const ::sal_Int32 THISMONTH = (sal_Int32)7;
+static const ::sal_Int32 THISWEEK = (sal_Int32)4;
+static const ::sal_Int32 THISYEAR = (sal_Int32)10;
+static const ::sal_Int32 TODAY = (sal_Int32)0;
+static const ::sal_Int32 TOMORROW = (sal_Int32)2;
+static const ::sal_Int32 YESTERDAY = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_DATETYPE_HDL

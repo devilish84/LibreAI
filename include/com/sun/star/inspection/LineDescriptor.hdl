@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_INSPECTION_LINEDESCRIPTOR_HDL
+#define INCLUDED_COM_SUN_STAR_INSPECTION_LINEDESCRIPTOR_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace graphic { class XGraphic; } } } }
+namespace com { namespace sun { namespace star { namespace inspection { class XPropertyControl; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace inspection {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI LineDescriptor {
+    inline LineDescriptor();
+
+    inline LineDescriptor(const ::rtl::OUString& DisplayName_, const ::css::uno::Reference< ::css::inspection::XPropertyControl >& Control_, const ::rtl::OUString& HelpURL_, const ::sal_Bool& HasPrimaryButton_, const ::rtl::OUString& PrimaryButtonId_, const ::rtl::OUString& PrimaryButtonImageURL_, const ::css::uno::Reference< ::css::graphic::XGraphic >& PrimaryButtonImage_, const ::sal_Bool& HasSecondaryButton_, const ::rtl::OUString& SecondaryButtonId_, const ::rtl::OUString& SecondaryButtonImageURL_, const ::css::uno::Reference< ::css::graphic::XGraphic >& SecondaryButtonImage_, const ::sal_Int16& IndentLevel_, const ::rtl::OUString& Category_);
+
+    ::rtl::OUString DisplayName;
+    ::css::uno::Reference< ::css::inspection::XPropertyControl > Control;
+    ::rtl::OUString HelpURL;
+    ::sal_Bool HasPrimaryButton;
+    ::rtl::OUString PrimaryButtonId;
+    ::rtl::OUString PrimaryButtonImageURL;
+    ::css::uno::Reference< ::css::graphic::XGraphic > PrimaryButtonImage;
+    ::sal_Bool HasSecondaryButton;
+    ::rtl::OUString SecondaryButtonId;
+    ::rtl::OUString SecondaryButtonImageURL;
+    ::css::uno::Reference< ::css::graphic::XGraphic > SecondaryButtonImage;
+    ::sal_Int16 IndentLevel;
+    ::rtl::OUString Category;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::inspection::LineDescriptor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::inspection::LineDescriptor *);
+
+#endif

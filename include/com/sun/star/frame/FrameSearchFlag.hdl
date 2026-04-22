@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_FRAMESEARCHFLAG_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_FRAMESEARCHFLAG_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace frame { namespace FrameSearchFlag {
+
+static const ::sal_Int32 ALL = (sal_Int32)23;
+static const ::sal_Int32 AUTO = (sal_Int32)0;
+static const ::sal_Int32 CHILDREN = (sal_Int32)4;
+static const ::sal_Int32 CREATE = (sal_Int32)8;
+static const ::sal_Int32 GLOBAL = (sal_Int32)55;
+static const ::sal_Int32 PARENT = (sal_Int32)1;
+static const ::sal_Int32 SELF = (sal_Int32)2;
+static const ::sal_Int32 SIBLINGS = (sal_Int32)16;
+static const ::sal_Int32 TASKS = (sal_Int32)32;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_FRAME_FRAMESEARCHFLAG_HDL

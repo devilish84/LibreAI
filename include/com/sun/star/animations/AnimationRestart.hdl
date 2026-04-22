@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONRESTART_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONRESTART_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace animations { namespace AnimationRestart {
+
+static const ::sal_Int16 ALWAYS = (sal_Int16)1;
+static const ::sal_Int16 DEFAULT = (sal_Int16)0;
+static const ::sal_Int16 INHERIT = (sal_Int16)0;
+static const ::sal_Int16 NEVER = (sal_Int16)3;
+static const ::sal_Int16 WHEN_NOT_ACTIVE = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONRESTART_HDL

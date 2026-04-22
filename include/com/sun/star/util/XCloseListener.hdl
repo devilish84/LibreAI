@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_XCLOSELISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_XCLOSELISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCloseListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCloseListener() = default;
+    XCloseListener(XCloseListener const &) = default;
+    XCloseListener(XCloseListener &&) = default;
+    XCloseListener & operator =(XCloseListener const &) = default;
+    XCloseListener & operator =(XCloseListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL queryClosing( const ::css::lang::EventObject& Source, ::sal_Bool GetsOwnership ) = 0;
+    virtual void SAL_CALL notifyClosing( const ::css::lang::EventObject& Source ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCloseListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::XCloseListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::util::XCloseListener > *);
+
+#endif

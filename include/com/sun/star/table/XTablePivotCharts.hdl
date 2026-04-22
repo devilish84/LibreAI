@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_XTABLEPIVOTCHARTS_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_XTABLEPIVOTCHARTS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/container/XNameAccess.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTablePivotCharts : public ::css::container::XNameAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTablePivotCharts() = default;
+    XTablePivotCharts(XTablePivotCharts const &) = default;
+    XTablePivotCharts(XTablePivotCharts &&) = default;
+    XTablePivotCharts & operator =(XTablePivotCharts const &) = default;
+    XTablePivotCharts & operator =(XTablePivotCharts &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addNewByName( const ::rtl::OUString& aName, const ::css::awt::Rectangle& aRect, const ::rtl::OUString& aPivotTableName ) = 0;
+    virtual void SAL_CALL removeByName( const ::rtl::OUString& aName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTablePivotCharts() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::XTablePivotCharts const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::table::XTablePivotCharts > *);
+
+#endif

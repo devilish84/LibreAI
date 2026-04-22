@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_LANG_XCOMPONENT_HDL
+#define INCLUDED_COM_SUN_STAR_LANG_XCOMPONENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace lang { class XEventListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace lang {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XComponent : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XComponent() = default;
+    XComponent(XComponent const &) = default;
+    XComponent(XComponent &&) = default;
+    XComponent & operator =(XComponent const &) = default;
+    XComponent & operator =(XComponent &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL dispose() = 0;
+    virtual void SAL_CALL addEventListener( const ::css::uno::Reference< ::css::lang::XEventListener >& xListener ) = 0;
+    virtual void SAL_CALL removeEventListener( const ::css::uno::Reference< ::css::lang::XEventListener >& aListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XComponent() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::lang::XComponent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::lang::XComponent > *);
+
+#endif

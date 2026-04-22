@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_MONTHS_HPP
+#define INCLUDED_COM_SUN_STAR_I18N_MONTHS_HPP
+
+#include "com/sun/star/i18n/Months.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_MONTHS_HPP

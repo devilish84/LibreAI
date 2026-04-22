@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_VIEWSTATE_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_VIEWSTATE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/geometry/AffineMatrix2D.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XPolyPolygon2D; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI ViewState {
+    inline ViewState();
+
+    inline ViewState(const ::css::geometry::AffineMatrix2D& AffineTransform_, const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D >& Clip_);
+
+    ::css::geometry::AffineMatrix2D AffineTransform;
+    ::css::uno::Reference< ::css::rendering::XPolyPolygon2D > Clip;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::ViewState const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::rendering::ViewState *);
+
+#endif

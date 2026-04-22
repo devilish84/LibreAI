@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_XPROPERTYCONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_XPROPERTYCONTAINER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace beans {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPropertyContainer : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPropertyContainer() = default;
+    XPropertyContainer(XPropertyContainer const &) = default;
+    XPropertyContainer(XPropertyContainer &&) = default;
+    XPropertyContainer & operator =(XPropertyContainer const &) = default;
+    XPropertyContainer & operator =(XPropertyContainer &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addProperty( const ::rtl::OUString& Name, ::sal_Int16 Attributes, const ::css::uno::Any& DefaultValue ) = 0;
+    virtual void SAL_CALL removeProperty( const ::rtl::OUString& Name ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPropertyContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::beans::XPropertyContainer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::beans::XPropertyContainer > *);
+
+#endif

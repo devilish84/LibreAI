@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_XSTYLELOADER2_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_XSTYLELOADER2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace lang { class XComponent; } } } }
+#include "com/sun/star/style/XStyleLoader.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace style {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStyleLoader2 : public ::css::style::XStyleLoader
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStyleLoader2() = default;
+    XStyleLoader2(XStyleLoader2 const &) = default;
+    XStyleLoader2(XStyleLoader2 &&) = default;
+    XStyleLoader2 & operator =(XStyleLoader2 const &) = default;
+    XStyleLoader2 & operator =(XStyleLoader2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL loadStylesFromDocument( const ::css::uno::Reference< ::css::lang::XComponent >& aSourceComponent, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aOptions ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStyleLoader2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::style::XStyleLoader2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::style::XStyleLoader2 > *);
+
+#endif

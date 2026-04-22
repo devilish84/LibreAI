@@ -1,0 +1,34 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_AMBIGUOUS_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_AMBIGUOUS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace beans {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+template< typename typeparam_T > struct SAL_DLLPUBLIC_RTTI Ambiguous {
+    inline Ambiguous();
+
+    inline Ambiguous(typeparam_T const & Value_, const ::sal_Bool& IsAmbiguous_);
+
+    typeparam_T Value;
+    ::sal_Bool IsAmbiguous;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+} } } }
+
+template< typename typeparam_T > SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::beans::Ambiguous< typeparam_T > *);
+
+#endif

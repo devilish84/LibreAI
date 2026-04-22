@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_XNAMEDNODEMAP_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_XNAMEDNODEMAP_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XNode; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XNamedNodeMap : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XNamedNodeMap() = default;
+    XNamedNodeMap(XNamedNodeMap const &) = default;
+    XNamedNodeMap(XNamedNodeMap &&) = default;
+    XNamedNodeMap & operator =(XNamedNodeMap const &) = default;
+    XNamedNodeMap & operator =(XNamedNodeMap &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getLength() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL getNamedItem( const ::rtl::OUString& name ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL getNamedItemNS( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& localName ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL item( ::sal_Int32 index ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL removeNamedItem( const ::rtl::OUString& name ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL removeNamedItemNS( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& localName ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL setNamedItem( const ::css::uno::Reference< ::css::xml::dom::XNode >& arg ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL setNamedItemNS( const ::css::uno::Reference< ::css::xml::dom::XNode >& arg ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XNamedNodeMap() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::XNamedNodeMap const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::XNamedNodeMap > *);
+
+#endif

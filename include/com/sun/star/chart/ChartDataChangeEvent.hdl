@@ -1,0 +1,41 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/chart/ChartDataChangeType.hdl"
+#include "com/sun/star/lang/EventObject.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI ChartDataChangeEvent: public ::css::lang::EventObject {
+    inline ChartDataChangeEvent();
+
+    inline ChartDataChangeEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::css::chart::ChartDataChangeType& Type_, const ::sal_Int16& StartColumn_, const ::sal_Int16& EndColumn_, const ::sal_Int16& StartRow_, const ::sal_Int16& EndRow_);
+
+    ::css::chart::ChartDataChangeType Type CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::sal_Int16 StartColumn;
+    ::sal_Int16 EndColumn;
+    ::sal_Int16 StartRow;
+    ::sal_Int16 EndRow;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::ChartDataChangeEvent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart::ChartDataChangeEvent *);
+
+#endif

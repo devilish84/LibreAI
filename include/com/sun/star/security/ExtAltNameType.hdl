@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_SECURITY_EXTALTNAMETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SECURITY_EXTALTNAMETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace security {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ExtAltNameType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ExtAltNameType
+{
+
+#endif
+    ExtAltNameType_OTHER_NAME = 0,
+    ExtAltNameType_RFC822_NAME = 1,
+    ExtAltNameType_DNS_NAME = 2,
+    ExtAltNameType_DIRECTORY_NAME = 3,
+    ExtAltNameType_URL = 4,
+    ExtAltNameType_IP_ADDRESS = 5,
+    ExtAltNameType_REGISTERED_ID = 6,
+    ExtAltNameType_EDI_PARTY_NAME = 7,
+    ExtAltNameType_X400_ADDRESS = 8,
+    ExtAltNameType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ExtAltNameType_OTHER_NAME = ExtAltNameType::ExtAltNameType_OTHER_NAME;
+constexpr auto ExtAltNameType_RFC822_NAME = ExtAltNameType::ExtAltNameType_RFC822_NAME;
+constexpr auto ExtAltNameType_DNS_NAME = ExtAltNameType::ExtAltNameType_DNS_NAME;
+constexpr auto ExtAltNameType_DIRECTORY_NAME = ExtAltNameType::ExtAltNameType_DIRECTORY_NAME;
+constexpr auto ExtAltNameType_URL = ExtAltNameType::ExtAltNameType_URL;
+constexpr auto ExtAltNameType_IP_ADDRESS = ExtAltNameType::ExtAltNameType_IP_ADDRESS;
+constexpr auto ExtAltNameType_REGISTERED_ID = ExtAltNameType::ExtAltNameType_REGISTERED_ID;
+constexpr auto ExtAltNameType_EDI_PARTY_NAME = ExtAltNameType::ExtAltNameType_EDI_PARTY_NAME;
+constexpr auto ExtAltNameType_X400_ADDRESS = ExtAltNameType::ExtAltNameType_X400_ADDRESS;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::security::ExtAltNameType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::security::ExtAltNameType *);
+
+#endif

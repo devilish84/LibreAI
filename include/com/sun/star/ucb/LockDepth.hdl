@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_LOCKDEPTH_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_LOCKDEPTH_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI LockDepth
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI LockDepth
+{
+
+#endif
+    LockDepth_ZERO = 0,
+    LockDepth_ONE = 1,
+    LockDepth_INFINITY = 2,
+    LockDepth_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto LockDepth_ZERO = LockDepth::LockDepth_ZERO;
+constexpr auto LockDepth_ONE = LockDepth::LockDepth_ONE;
+constexpr auto LockDepth_INFINITY = LockDepth::LockDepth_INFINITY;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::LockDepth const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::LockDepth *);
+
+#endif

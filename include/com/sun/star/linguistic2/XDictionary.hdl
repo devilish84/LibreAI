@@ -1,0 +1,62 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XDICTIONARY_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XDICTIONARY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XNamed.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/linguistic2/DictionaryType.hdl"
+namespace com { namespace sun { namespace star { namespace linguistic2 { class XDictionaryEntry; } } } }
+namespace com { namespace sun { namespace star { namespace linguistic2 { class XDictionaryEventListener; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDictionary : public ::css::container::XNamed
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDictionary() = default;
+    XDictionary(XDictionary const &) = default;
+    XDictionary(XDictionary &&) = default;
+    XDictionary & operator =(XDictionary const &) = default;
+    XDictionary & operator =(XDictionary &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::linguistic2::DictionaryType SAL_CALL getDictionaryType() = 0;
+    virtual void SAL_CALL setActive( ::sal_Bool bActivate ) = 0;
+    virtual ::sal_Bool SAL_CALL isActive() = 0;
+    virtual ::sal_Int32 SAL_CALL getCount() = 0;
+    virtual ::css::lang::Locale SAL_CALL getLocale() = 0;
+    virtual void SAL_CALL setLocale( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::uno::Reference< ::css::linguistic2::XDictionaryEntry > SAL_CALL getEntry( const ::rtl::OUString& aWord ) = 0;
+    virtual ::sal_Bool SAL_CALL addEntry( const ::css::uno::Reference< ::css::linguistic2::XDictionaryEntry >& xDicEntry ) = 0;
+    virtual ::sal_Bool SAL_CALL add( const ::rtl::OUString& aWord, ::sal_Bool bIsNegative, const ::rtl::OUString& aRplcText ) = 0;
+    virtual ::sal_Bool SAL_CALL remove( const ::rtl::OUString& aWord ) = 0;
+    virtual ::sal_Bool SAL_CALL isFull() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::linguistic2::XDictionaryEntry > > SAL_CALL getEntries() = 0;
+    virtual void SAL_CALL clear() = 0;
+    virtual ::sal_Bool SAL_CALL addDictionaryEventListener( const ::css::uno::Reference< ::css::linguistic2::XDictionaryEventListener >& xListener ) = 0;
+    virtual ::sal_Bool SAL_CALL removeDictionaryEventListener( const ::css::uno::Reference< ::css::linguistic2::XDictionaryEventListener >& xListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDictionary() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XDictionary const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XDictionary > *);
+
+#endif

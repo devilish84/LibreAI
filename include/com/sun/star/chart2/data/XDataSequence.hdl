@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_DATA_XDATASEQUENCE_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_DATA_XDATASEQUENCE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/chart2/data/LabelOrigin.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 { namespace data {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDataSequence : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDataSequence() = default;
+    XDataSequence(XDataSequence const &) = default;
+    XDataSequence(XDataSequence &&) = default;
+    XDataSequence & operator =(XDataSequence const &) = default;
+    XDataSequence & operator =(XDataSequence &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::uno::Any > SAL_CALL getData() = 0;
+    virtual ::rtl::OUString SAL_CALL getSourceRangeRepresentation() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL generateLabel( ::css::chart2::data::LabelOrigin eLabelOrigin ) = 0;
+    virtual ::sal_Int32 SAL_CALL getNumberFormatKeyByIndex( ::sal_Int32 nIndex ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDataSequence() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::data::XDataSequence const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::chart2::data::XDataSequence > *);
+
+#endif

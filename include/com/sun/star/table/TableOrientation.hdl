@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_TABLEORIENTATION_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_TABLEORIENTATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TableOrientation
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TableOrientation
+{
+
+#endif
+    TableOrientation_COLUMNS = 0,
+    TableOrientation_ROWS = 1,
+    TableOrientation_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TableOrientation_COLUMNS = TableOrientation::TableOrientation_COLUMNS;
+constexpr auto TableOrientation_ROWS = TableOrientation::TableOrientation_ROWS;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::TableOrientation const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::table::TableOrientation *);
+
+#endif

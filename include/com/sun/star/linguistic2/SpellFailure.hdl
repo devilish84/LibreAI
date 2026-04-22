@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_SPELLFAILURE_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_SPELLFAILURE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace linguistic2 { namespace SpellFailure {
+
+static const ::sal_Int16 CAPTION_ERROR = (sal_Int16)3;
+static const ::sal_Int16 IS_NEGATIVE_WORD = (sal_Int16)2;
+static const ::sal_Int16 SPELLING_ERROR = (sal_Int16)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_LINGUISTIC2_SPELLFAILURE_HDL

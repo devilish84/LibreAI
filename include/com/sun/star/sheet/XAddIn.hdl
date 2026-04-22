@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XADDIN_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XADDIN_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/XLocalizable.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAddIn : public ::css::lang::XLocalizable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAddIn() = default;
+    XAddIn(XAddIn const &) = default;
+    XAddIn(XAddIn &&) = default;
+    XAddIn & operator =(XAddIn const &) = default;
+    XAddIn & operator =(XAddIn &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getProgrammaticFuntionName( const ::rtl::OUString& aDisplayName ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDisplayFunctionName( const ::rtl::OUString& aProgrammaticName ) = 0;
+    virtual ::rtl::OUString SAL_CALL getFunctionDescription( const ::rtl::OUString& aProgrammaticName ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDisplayArgumentName( const ::rtl::OUString& aProgrammaticFunctionName, ::sal_Int32 nArgument ) = 0;
+    virtual ::rtl::OUString SAL_CALL getArgumentDescription( const ::rtl::OUString& aProgrammaticFunctionName, ::sal_Int32 nArgument ) = 0;
+    virtual ::rtl::OUString SAL_CALL getProgrammaticCategoryName( const ::rtl::OUString& aProgrammaticFunctionName ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDisplayCategoryName( const ::rtl::OUString& aProgrammaticFunctionName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAddIn() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XAddIn const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XAddIn > *);
+
+#endif

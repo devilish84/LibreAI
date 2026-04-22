@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XMOUSEMOTIONHANDLER_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XMOUSEMOTIONHANDLER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/MouseEvent.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMouseMotionHandler : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMouseMotionHandler() = default;
+    XMouseMotionHandler(XMouseMotionHandler const &) = default;
+    XMouseMotionHandler(XMouseMotionHandler &&) = default;
+    XMouseMotionHandler & operator =(XMouseMotionHandler const &) = default;
+    XMouseMotionHandler & operator =(XMouseMotionHandler &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL mouseDragged( const ::css::awt::MouseEvent& e ) = 0;
+    virtual ::sal_Bool SAL_CALL mouseMoved( const ::css::awt::MouseEvent& e ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMouseMotionHandler() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XMouseMotionHandler const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XMouseMotionHandler > *);
+
+#endif

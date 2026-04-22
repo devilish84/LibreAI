@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLEMULTILINETEXT_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLEMULTILINETEXT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/accessibility/TextSegment.hdl"
+#include "com/sun/star/accessibility/XAccessibleText.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAccessibleMultiLineText : public ::css::accessibility::XAccessibleText
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAccessibleMultiLineText() = default;
+    XAccessibleMultiLineText(XAccessibleMultiLineText const &) = default;
+    XAccessibleMultiLineText(XAccessibleMultiLineText &&) = default;
+    XAccessibleMultiLineText & operator =(XAccessibleMultiLineText const &) = default;
+    XAccessibleMultiLineText & operator =(XAccessibleMultiLineText &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getLineNumberAtIndex( ::sal_Int32 nIndex ) = 0;
+    virtual ::css::accessibility::TextSegment SAL_CALL getTextAtLineNumber( ::sal_Int32 nLineNo ) = 0;
+    virtual ::css::accessibility::TextSegment SAL_CALL getTextAtLineWithCaret() = 0;
+    virtual ::sal_Int32 SAL_CALL getNumberOfLineWithCaret() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAccessibleMultiLineText() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::XAccessibleMultiLineText const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::accessibility::XAccessibleMultiLineText > *);
+
+#endif

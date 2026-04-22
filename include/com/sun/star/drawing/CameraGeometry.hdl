@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_CAMERAGEOMETRY_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_CAMERAGEOMETRY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/drawing/Direction3D.hdl"
+#include "com/sun/star/drawing/Position3D.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED CameraGeometry {
+    inline CameraGeometry();
+
+    inline CameraGeometry(const ::css::drawing::Position3D& vrp_, const ::css::drawing::Direction3D& vpn_, const ::css::drawing::Direction3D& vup_);
+
+    ::css::drawing::Position3D vrp;
+    ::css::drawing::Direction3D vpn;
+    ::css::drawing::Direction3D vup;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::CameraGeometry const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::CameraGeometry *);
+
+#endif

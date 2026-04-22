@@ -1,0 +1,24 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_SQLFILTEROPERATOR_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_SQLFILTEROPERATOR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace SQLFilterOperator {
+
+static const ::sal_Int32 EQUAL = (sal_Int32)1;
+static const ::sal_Int32 GREATER = (sal_Int32)4;
+static const ::sal_Int32 GREATER_EQUAL = (sal_Int32)6;
+static const ::sal_Int32 LESS = (sal_Int32)3;
+static const ::sal_Int32 LESS_EQUAL = (sal_Int32)5;
+static const ::sal_Int32 LIKE = (sal_Int32)7;
+static const ::sal_Int32 NOT_EQUAL = (sal_Int32)2;
+static const ::sal_Int32 NOT_LIKE = (sal_Int32)8;
+static const ::sal_Int32 NOT_SQLNULL = (sal_Int32)10;
+static const ::sal_Int32 SQLNULL = (sal_Int32)9;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDB_SQLFILTEROPERATOR_HDL

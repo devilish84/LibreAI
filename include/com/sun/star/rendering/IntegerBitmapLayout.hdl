@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_INTEGERBITMAPLAYOUT_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_INTEGERBITMAPLAYOUT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { class XBitmapPalette; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XIntegerBitmapColorSpace; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI IntegerBitmapLayout {
+    inline IntegerBitmapLayout();
+
+    inline IntegerBitmapLayout(const ::sal_Int32& ScanLines_, const ::sal_Int32& ScanLineBytes_, const ::sal_Int32& ScanLineStride_, const ::sal_Int32& PlaneStride_, const ::css::uno::Reference< ::css::rendering::XIntegerBitmapColorSpace >& ColorSpace_, const ::css::uno::Reference< ::css::rendering::XBitmapPalette >& Palette_, const ::sal_Bool& IsMsbFirst_);
+
+    ::sal_Int32 ScanLines;
+    ::sal_Int32 ScanLineBytes;
+    ::sal_Int32 ScanLineStride;
+    ::sal_Int32 PlaneStride;
+    ::css::uno::Reference< ::css::rendering::XIntegerBitmapColorSpace > ColorSpace;
+    ::css::uno::Reference< ::css::rendering::XBitmapPalette > Palette;
+    ::sal_Bool IsMsbFirst;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::IntegerBitmapLayout const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::rendering::IntegerBitmapLayout *);
+
+#endif

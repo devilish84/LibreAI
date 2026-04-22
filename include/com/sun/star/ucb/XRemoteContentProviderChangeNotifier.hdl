@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XREMOTECONTENTPROVIDERCHANGENOTIFIER_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XREMOTECONTENTPROVIDERCHANGENOTIFIER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace ucb { class XRemoteContentProviderChangeListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRemoteContentProviderChangeNotifier : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRemoteContentProviderChangeNotifier() = default;
+    XRemoteContentProviderChangeNotifier(XRemoteContentProviderChangeNotifier const &) = default;
+    XRemoteContentProviderChangeNotifier(XRemoteContentProviderChangeNotifier &&) = default;
+    XRemoteContentProviderChangeNotifier & operator =(XRemoteContentProviderChangeNotifier const &) = default;
+    XRemoteContentProviderChangeNotifier & operator =(XRemoteContentProviderChangeNotifier &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addRemoteContentProviderChangeListener( const ::css::uno::Reference< ::css::ucb::XRemoteContentProviderChangeListener >& Listener ) = 0;
+    virtual void SAL_CALL removeRemoteContentProviderChangeListener( const ::css::uno::Reference< ::css::ucb::XRemoteContentProviderChangeListener >& Listener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRemoteContentProviderChangeNotifier() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XRemoteContentProviderChangeNotifier const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XRemoteContentProviderChangeNotifier > *);
+
+#endif

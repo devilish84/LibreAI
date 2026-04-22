@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { class XSpreadsheets; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSpreadsheetDocument : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSpreadsheetDocument() = default;
+    XSpreadsheetDocument(XSpreadsheetDocument const &) = default;
+    XSpreadsheetDocument(XSpreadsheetDocument &&) = default;
+    XSpreadsheetDocument & operator =(XSpreadsheetDocument const &) = default;
+    XSpreadsheetDocument & operator =(XSpreadsheetDocument &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::sheet::XSpreadsheets > SAL_CALL getSheets() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSpreadsheetDocument() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XSpreadsheetDocument const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XSpreadsheetDocument > *);
+
+#endif

@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_INTERACTIVEFILEIOEXCEPTION_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_INTERACTIVEFILEIOEXCEPTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/InteractiveIOException.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED InteractiveFileIOException : public ::css::ucb::InteractiveIOException
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE InteractiveFileIOException(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE InteractiveFileIOException(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::css::task::InteractionClassification& Classification_, const ::css::ucb::IOErrorCode& Code_, const ::rtl::OUString& FileName_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE InteractiveFileIOException(InteractiveFileIOException const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~InteractiveFileIOException();
+
+    inline CPPU_GCC_DLLPRIVATE InteractiveFileIOException & operator =(InteractiveFileIOException const &);
+#endif
+
+    ::rtl::OUString FileName CPPU_GCC3_ALIGN( ::css::ucb::InteractiveIOException );
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::InteractiveFileIOException const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::InteractiveFileIOException *);
+
+#endif

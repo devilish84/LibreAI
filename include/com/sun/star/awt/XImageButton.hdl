@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XIMAGEBUTTON_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XIMAGEBUTTON_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XActionListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XImageButton : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XImageButton() = default;
+    XImageButton(XImageButton const &) = default;
+    XImageButton(XImageButton &&) = default;
+    XImageButton & operator =(XImageButton const &) = default;
+    XImageButton & operator =(XImageButton &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addActionListener( const ::css::uno::Reference< ::css::awt::XActionListener >& l ) = 0;
+    virtual void SAL_CALL removeActionListener( const ::css::uno::Reference< ::css::awt::XActionListener >& l ) = 0;
+    virtual void SAL_CALL setActionCommand( const ::rtl::OUString& Command ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XImageButton() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XImageButton const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XImageButton > *);
+
+#endif

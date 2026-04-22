@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XPARAMETRICPOLYPOLYGON2D_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XPARAMETRICPOLYPOLYGON2D_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/geometry/RealPoint2D.hdl"
+#include "com/sun/star/rendering/ColorComponent.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XColorSpace; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XPolyPolygon2D; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XParametricPolyPolygon2D : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XParametricPolyPolygon2D() = default;
+    XParametricPolyPolygon2D(XParametricPolyPolygon2D const &) = default;
+    XParametricPolyPolygon2D(XParametricPolyPolygon2D &&) = default;
+    XParametricPolyPolygon2D & operator =(XParametricPolyPolygon2D const &) = default;
+    XParametricPolyPolygon2D & operator =(XParametricPolyPolygon2D &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::rendering::XPolyPolygon2D > SAL_CALL getOutline( double t ) = 0;
+    virtual ::css::uno::Sequence< double > SAL_CALL getColor( double t ) = 0;
+    virtual ::css::uno::Sequence< double > SAL_CALL getPointColor( const ::css::geometry::RealPoint2D& point ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XColorSpace > SAL_CALL getColorSpace() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XParametricPolyPolygon2D() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XParametricPolyPolygon2D const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XParametricPolyPolygon2D > *);
+
+#endif

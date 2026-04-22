@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_VERBDESCRIPTOR_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_VERBDESCRIPTOR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED VerbDescriptor {
+    inline VerbDescriptor();
+
+    inline VerbDescriptor(const ::sal_Int32& VerbID_, const ::rtl::OUString& VerbName_, const ::sal_Int32& VerbFlags_, const ::sal_Int32& VerbAttributes_);
+
+    ::sal_Int32 VerbID;
+    ::rtl::OUString VerbName;
+    ::sal_Int32 VerbFlags;
+    ::sal_Int32 VerbAttributes;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::VerbDescriptor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::embed::VerbDescriptor *);
+
+#endif

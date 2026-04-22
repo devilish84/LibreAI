@@ -1,0 +1,62 @@
+#ifndef INCLUDED_COM_SUN_STAR_PRESENTATION_CLICKACTION_HDL
+#define INCLUDED_COM_SUN_STAR_PRESENTATION_CLICKACTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace presentation {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ClickAction
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ClickAction
+{
+
+#endif
+    ClickAction_NONE = 0,
+    ClickAction_PREVPAGE = 1,
+    ClickAction_NEXTPAGE = 2,
+    ClickAction_FIRSTPAGE = 3,
+    ClickAction_LASTPAGE = 4,
+    ClickAction_BOOKMARK = 5,
+    ClickAction_DOCUMENT = 6,
+    ClickAction_INVISIBLE = 7,
+    ClickAction_SOUND = 8,
+    ClickAction_VERB = 9,
+    ClickAction_VANISH = 10,
+    ClickAction_PROGRAM = 11,
+    ClickAction_MACRO = 12,
+    ClickAction_STOPPRESENTATION = 13,
+    ClickAction_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ClickAction_NONE = ClickAction::ClickAction_NONE;
+constexpr auto ClickAction_PREVPAGE = ClickAction::ClickAction_PREVPAGE;
+constexpr auto ClickAction_NEXTPAGE = ClickAction::ClickAction_NEXTPAGE;
+constexpr auto ClickAction_FIRSTPAGE = ClickAction::ClickAction_FIRSTPAGE;
+constexpr auto ClickAction_LASTPAGE = ClickAction::ClickAction_LASTPAGE;
+constexpr auto ClickAction_BOOKMARK = ClickAction::ClickAction_BOOKMARK;
+constexpr auto ClickAction_DOCUMENT = ClickAction::ClickAction_DOCUMENT;
+constexpr auto ClickAction_INVISIBLE = ClickAction::ClickAction_INVISIBLE;
+constexpr auto ClickAction_SOUND = ClickAction::ClickAction_SOUND;
+constexpr auto ClickAction_VERB = ClickAction::ClickAction_VERB;
+constexpr auto ClickAction_VANISH = ClickAction::ClickAction_VANISH;
+constexpr auto ClickAction_PROGRAM = ClickAction::ClickAction_PROGRAM;
+constexpr auto ClickAction_MACRO = ClickAction::ClickAction_MACRO;
+constexpr auto ClickAction_STOPPRESENTATION = ClickAction::ClickAction_STOPPRESENTATION;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::presentation::ClickAction const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::presentation::ClickAction *);
+
+#endif

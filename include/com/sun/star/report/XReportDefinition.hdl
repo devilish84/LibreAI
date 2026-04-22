@@ -1,0 +1,98 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_XREPORTDEFINITION_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_XREPORTDEFINITION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/document/XDocumentSubStorageSupplier.hdl"
+namespace com { namespace sun { namespace star { namespace document { class XEventBroadcaster; } } } }
+#include "com/sun/star/document/XStorageBasedDocument.hdl"
+#include "com/sun/star/document/XViewDataSupplier.hdl"
+#include "com/sun/star/embed/XVisualObject.hdl"
+#include "com/sun/star/frame/XLoadable.hdl"
+#include "com/sun/star/frame/XModel.hdl"
+#include "com/sun/star/report/XFunctionsSupplier.hdl"
+namespace com { namespace sun { namespace star { namespace report { class XGroups; } } } }
+#include "com/sun/star/report/XReportComponent.hdl"
+namespace com { namespace sun { namespace star { namespace report { class XSection; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XConnection; } } } }
+#include "com/sun/star/style/XStyleFamiliesSupplier.hdl"
+#include "com/sun/star/ui/XUIConfigurationManagerSupplier.hdl"
+#include "com/sun/star/util/XCloseable.hdl"
+#include "com/sun/star/util/XModifiable2.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XReportDefinition : public ::css::frame::XModel, public ::css::frame::XLoadable, public ::css::embed::XVisualObject, public ::css::document::XStorageBasedDocument, public ::css::document::XViewDataSupplier, public ::css::util::XCloseable, public ::css::ui::XUIConfigurationManagerSupplier, public ::css::document::XDocumentSubStorageSupplier, public ::css::style::XStyleFamiliesSupplier, public ::css::util::XModifiable2, public ::css::report::XReportComponent, public ::css::report::XFunctionsSupplier
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XReportDefinition() = default;
+    XReportDefinition(XReportDefinition const &) = default;
+    XReportDefinition(XReportDefinition &&) = default;
+    XReportDefinition & operator =(XReportDefinition const &) = default;
+    XReportDefinition & operator =(XReportDefinition &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getMimeType() = 0;
+    virtual void SAL_CALL setMimeType( const ::rtl::OUString& _mimetype ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCaption() = 0;
+    virtual void SAL_CALL setCaption( const ::rtl::OUString& _caption ) = 0;
+    virtual ::sal_Int16 SAL_CALL getGroupKeepTogether() = 0;
+    virtual void SAL_CALL setGroupKeepTogether( ::sal_Int16 _groupkeeptogether ) = 0;
+    virtual ::sal_Int16 SAL_CALL getPageHeaderOption() = 0;
+    virtual void SAL_CALL setPageHeaderOption( ::sal_Int16 _pageheaderoption ) = 0;
+    virtual ::sal_Int16 SAL_CALL getPageFooterOption() = 0;
+    virtual void SAL_CALL setPageFooterOption( ::sal_Int16 _pagefooteroption ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCommand() = 0;
+    virtual void SAL_CALL setCommand( const ::rtl::OUString& _command ) = 0;
+    virtual ::sal_Int32 SAL_CALL getCommandType() = 0;
+    virtual void SAL_CALL setCommandType( ::sal_Int32 _commandtype ) = 0;
+    virtual ::rtl::OUString SAL_CALL getFilter() = 0;
+    virtual void SAL_CALL setFilter( const ::rtl::OUString& _filter ) = 0;
+    virtual ::sal_Bool SAL_CALL getEscapeProcessing() = 0;
+    virtual void SAL_CALL setEscapeProcessing( ::sal_Bool _escapeprocessing ) = 0;
+    virtual ::css::uno::Reference< ::css::sdbc::XConnection > SAL_CALL getActiveConnection() = 0;
+    virtual void SAL_CALL setActiveConnection( const ::css::uno::Reference< ::css::sdbc::XConnection >& _activeconnection ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDataSourceName() = 0;
+    virtual void SAL_CALL setDataSourceName( const ::rtl::OUString& _datasourcename ) = 0;
+    virtual ::sal_Bool SAL_CALL getReportHeaderOn() = 0;
+    virtual void SAL_CALL setReportHeaderOn( ::sal_Bool _reportheaderon ) = 0;
+    virtual ::sal_Bool SAL_CALL getReportFooterOn() = 0;
+    virtual void SAL_CALL setReportFooterOn( ::sal_Bool _reportfooteron ) = 0;
+    virtual ::sal_Bool SAL_CALL getPageHeaderOn() = 0;
+    virtual void SAL_CALL setPageHeaderOn( ::sal_Bool _pageheaderon ) = 0;
+    virtual ::sal_Bool SAL_CALL getPageFooterOn() = 0;
+    virtual void SAL_CALL setPageFooterOn( ::sal_Bool _pagefooteron ) = 0;
+    virtual ::css::uno::Reference< ::css::report::XGroups > SAL_CALL getGroups() = 0;
+    virtual ::css::uno::Reference< ::css::report::XSection > SAL_CALL getReportHeader() = 0;
+    virtual ::css::uno::Reference< ::css::report::XSection > SAL_CALL getPageHeader() = 0;
+    virtual ::css::uno::Reference< ::css::report::XSection > SAL_CALL getDetail() = 0;
+    virtual ::css::uno::Reference< ::css::report::XSection > SAL_CALL getPageFooter() = 0;
+    virtual ::css::uno::Reference< ::css::report::XSection > SAL_CALL getReportFooter() = 0;
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::document::XEventBroadcaster > SAL_CALL getEventBroadcaster() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getAvailableMimeTypes() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XReportDefinition() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::XReportDefinition const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::XReportDefinition > *);
+
+#endif

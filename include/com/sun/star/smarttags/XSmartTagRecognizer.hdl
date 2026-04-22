@@ -1,0 +1,57 @@
+#ifndef INCLUDED_COM_SUN_STAR_SMARTTAGS_XSMARTTAGRECOGNIZER_HDL
+#define INCLUDED_COM_SUN_STAR_SMARTTAGS_XSMARTTAGRECOGNIZER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace frame { class XController; } } } }
+namespace com { namespace sun { namespace star { namespace i18n { class XBreakIterator; } } } }
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/lang/XInitialization.hdl"
+#include "com/sun/star/smarttags/SmartTagRecognizerMode.hdl"
+namespace com { namespace sun { namespace star { namespace text { class XTextMarkup; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace smarttags {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSmartTagRecognizer : public ::css::lang::XInitialization
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSmartTagRecognizer() = default;
+    XSmartTagRecognizer(XSmartTagRecognizer const &) = default;
+    XSmartTagRecognizer(XSmartTagRecognizer &&) = default;
+    XSmartTagRecognizer & operator =(XSmartTagRecognizer const &) = default;
+    XSmartTagRecognizer & operator =(XSmartTagRecognizer &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int32 SAL_CALL getSmartTagCount() = 0;
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getName( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDescription( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::rtl::OUString SAL_CALL getSmartTagName( ::sal_Int32 nSmartTagIndex ) = 0;
+    virtual ::rtl::OUString SAL_CALL getSmartTagDownloadURL( ::sal_Int32 nSmartTagIndex ) = 0;
+    virtual void SAL_CALL recognize( const ::rtl::OUString& aText, ::sal_Int32 nStart, ::sal_Int32 nLength, ::css::smarttags::SmartTagRecognizerMode eDataType, const ::css::lang::Locale& aLocale, const ::css::uno::Reference< ::css::text::XTextMarkup >& xTextMarkup, const ::rtl::OUString& aApplicationName, const ::css::uno::Reference< ::css::frame::XController >& xController, const ::css::uno::Reference< ::css::i18n::XBreakIterator >& xTokenizer ) = 0;
+    virtual ::sal_Bool SAL_CALL hasPropertyPage( ::sal_Int32 nSmartTagIndex, const ::css::lang::Locale& aLocale ) = 0;
+    virtual void SAL_CALL displayPropertyPage( ::sal_Int32 nSmartTagIndex, const ::css::lang::Locale& aLocale ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSmartTagRecognizer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::smarttags::XSmartTagRecognizer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::smarttags::XSmartTagRecognizer > *);
+
+#endif

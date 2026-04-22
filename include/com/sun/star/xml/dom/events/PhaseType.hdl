@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_PHASETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_PHASETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace events {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI PhaseType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI PhaseType
+{
+
+#endif
+    PhaseType_CAPTURING_PHASE = 0,
+    PhaseType_AT_TARGET = 1,
+    PhaseType_BUBBLING_PHASE = 2,
+    PhaseType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto PhaseType_CAPTURING_PHASE = PhaseType::PhaseType_CAPTURING_PHASE;
+constexpr auto PhaseType_AT_TARGET = PhaseType::PhaseType_AT_TARGET;
+constexpr auto PhaseType_BUBBLING_PHASE = PhaseType::PhaseType_BUBBLING_PHASE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::events::PhaseType const *);
+} } } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::xml::dom::events::PhaseType *);
+
+#endif

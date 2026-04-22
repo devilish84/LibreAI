@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_XDOCKINGAREAACCEPTOR_HDL
+#define INCLUDED_COM_SUN_STAR_UI_XDOCKINGAREAACCEPTOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+namespace com { namespace sun { namespace star { namespace awt { class XWindow; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDockingAreaAcceptor : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDockingAreaAcceptor() = default;
+    XDockingAreaAcceptor(XDockingAreaAcceptor const &) = default;
+    XDockingAreaAcceptor(XDockingAreaAcceptor &&) = default;
+    XDockingAreaAcceptor & operator =(XDockingAreaAcceptor const &) = default;
+    XDockingAreaAcceptor & operator =(XDockingAreaAcceptor &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::awt::XWindow > SAL_CALL getContainerWindow() = 0;
+    virtual ::sal_Bool SAL_CALL requestDockingAreaSpace( const ::css::awt::Rectangle& RequestedSpace ) = 0;
+    virtual void SAL_CALL setDockingAreaSpace( const ::css::awt::Rectangle& BorderSpace ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDockingAreaAcceptor() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::XDockingAreaAcceptor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::XDockingAreaAcceptor > *);
+
+#endif

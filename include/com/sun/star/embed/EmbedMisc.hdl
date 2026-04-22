@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_EMBEDMISC_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_EMBEDMISC_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace embed { namespace EmbedMisc {
+
+static const ::sal_Int64 EMBED_ACTIVATEIMMEDIATELY = (sal_Int64) SAL_CONST_INT64(4294967296);
+static const ::sal_Int64 EMBED_NEEDSSIZEONLOAD = (sal_Int64) SAL_CONST_INT64(17179869184);
+static const ::sal_Int64 EMBED_NEVERRESIZE = (sal_Int64) SAL_CONST_INT64(8589934592);
+static const ::sal_Int64 MS_EMBED_ACTIVATEWHENVISIBLE = (sal_Int64) SAL_CONST_INT64(256);
+static const ::sal_Int64 MS_EMBED_ACTSLIKEBUTTON = (sal_Int64) SAL_CONST_INT64(4096);
+static const ::sal_Int64 MS_EMBED_ACTSLIKELABEL = (sal_Int64) SAL_CONST_INT64(8192);
+static const ::sal_Int64 MS_EMBED_ALIGNABLE = (sal_Int64) SAL_CONST_INT64(32768);
+static const ::sal_Int64 MS_EMBED_ALWAYSRUN = (sal_Int64) SAL_CONST_INT64(2048);
+static const ::sal_Int64 MS_EMBED_CANLINKBYOLE1 = (sal_Int64) SAL_CONST_INT64(32);
+static const ::sal_Int64 MS_EMBED_CANTLINKINSIDE = (sal_Int64) SAL_CONST_INT64(16);
+static const ::sal_Int64 MS_EMBED_IGNOREACTIVATEWHENVISIBLE = (sal_Int64) SAL_CONST_INT64(524288);
+static const ::sal_Int64 MS_EMBED_IMEMODE = (sal_Int64) SAL_CONST_INT64(262144);
+static const ::sal_Int64 MS_EMBED_INSERTNOTREPLACE = (sal_Int64) SAL_CONST_INT64(4);
+static const ::sal_Int64 MS_EMBED_INSIDEOUT = (sal_Int64) SAL_CONST_INT64(128);
+static const ::sal_Int64 MS_EMBED_INVISIBLEATRUNTIME = (sal_Int64) SAL_CONST_INT64(1024);
+static const ::sal_Int64 MS_EMBED_ISLINKOBJECT = (sal_Int64) SAL_CONST_INT64(64);
+static const ::sal_Int64 MS_EMBED_NOUIACTIVATE = (sal_Int64) SAL_CONST_INT64(16384);
+static const ::sal_Int64 MS_EMBED_ONLYICONIC = (sal_Int64) SAL_CONST_INT64(2);
+static const ::sal_Int64 MS_EMBED_RECOMPOSEONRESIZE = (sal_Int64) SAL_CONST_INT64(1);
+static const ::sal_Int64 MS_EMBED_RENDERINGISDEVICEINDEPENDENT = (sal_Int64) SAL_CONST_INT64(512);
+static const ::sal_Int64 MS_EMBED_SETCLIENTSITEFIRST = (sal_Int64) SAL_CONST_INT64(131072);
+static const ::sal_Int64 MS_EMBED_SIMPLEFRAME = (sal_Int64) SAL_CONST_INT64(65536);
+static const ::sal_Int64 MS_EMBED_STATIC = (sal_Int64) SAL_CONST_INT64(8);
+static const ::sal_Int64 MS_EMBED_SUPPORTSMULTILEVELUNDO = (sal_Int64) SAL_CONST_INT64(2097152);
+static const ::sal_Int64 MS_EMBED_WANTSTOMENUMERGE = (sal_Int64) SAL_CONST_INT64(1048576);
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_EMBED_EMBEDMISC_HDL

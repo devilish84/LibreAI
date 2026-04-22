@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_CLIPBOARD_RENDERINGCAPABILITIES_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_CLIPBOARD_RENDERINGCAPABILITIES_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace datatransfer { namespace clipboard { namespace RenderingCapabilities {
+
+static const ::sal_Int8 Delayed = (sal_Int8)1;
+static const ::sal_Int8 Persistant = (sal_Int8)2;
+static const ::sal_Int8 Persistent = (sal_Int8)2;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_DATATRANSFER_CLIPBOARD_RENDERINGCAPABILITIES_HDL

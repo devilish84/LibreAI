@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_VALIDATIONALERTSTYLE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_VALIDATIONALERTSTYLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ValidationAlertStyle
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ValidationAlertStyle
+{
+
+#endif
+    ValidationAlertStyle_STOP = 0,
+    ValidationAlertStyle_WARNING = 1,
+    ValidationAlertStyle_INFO = 2,
+    ValidationAlertStyle_MACRO = 3,
+    ValidationAlertStyle_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ValidationAlertStyle_STOP = ValidationAlertStyle::ValidationAlertStyle_STOP;
+constexpr auto ValidationAlertStyle_WARNING = ValidationAlertStyle::ValidationAlertStyle_WARNING;
+constexpr auto ValidationAlertStyle_INFO = ValidationAlertStyle::ValidationAlertStyle_INFO;
+constexpr auto ValidationAlertStyle_MACRO = ValidationAlertStyle::ValidationAlertStyle_MACRO;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::ValidationAlertStyle const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::ValidationAlertStyle *);
+
+#endif

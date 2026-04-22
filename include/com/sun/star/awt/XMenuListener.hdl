@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XMENULISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XMENULISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/MenuEvent.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMenuListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMenuListener() = default;
+    XMenuListener(XMenuListener const &) = default;
+    XMenuListener(XMenuListener &&) = default;
+    XMenuListener & operator =(XMenuListener const &) = default;
+    XMenuListener & operator =(XMenuListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL itemHighlighted( const ::css::awt::MenuEvent& aEvent ) = 0;
+    virtual void SAL_CALL itemSelected( const ::css::awt::MenuEvent& aEvent ) = 0;
+    virtual void SAL_CALL itemActivated( const ::css::awt::MenuEvent& aEvent ) = 0;
+    virtual void SAL_CALL itemDeactivated( const ::css::awt::MenuEvent& aEvent ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMenuListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XMenuListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XMenuListener > *);
+
+#endif

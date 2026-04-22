@@ -1,0 +1,54 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XCHARACTERCLASSIFICATION_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XCHARACTERCLASSIFICATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/ParseResult.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCharacterClassification : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCharacterClassification() = default;
+    XCharacterClassification(XCharacterClassification const &) = default;
+    XCharacterClassification(XCharacterClassification &&) = default;
+    XCharacterClassification & operator =(XCharacterClassification const &) = default;
+    XCharacterClassification & operator =(XCharacterClassification &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL toUpper( const ::rtl::OUString& aText, ::sal_Int32 nPos, ::sal_Int32 nCount, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::rtl::OUString SAL_CALL toLower( const ::rtl::OUString& aText, ::sal_Int32 nPos, ::sal_Int32 nCount, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::rtl::OUString SAL_CALL toTitle( const ::rtl::OUString& aText, ::sal_Int32 nPos, ::sal_Int32 nCount, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::sal_Int16 SAL_CALL getType( const ::rtl::OUString& aText, ::sal_Int32 nPos ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharacterDirection( const ::rtl::OUString& aText, ::sal_Int32 nPos ) = 0;
+    virtual ::sal_Int16 SAL_CALL getScript( const ::rtl::OUString& aText, ::sal_Int32 nPos ) = 0;
+    virtual ::sal_Int32 SAL_CALL getCharacterType( const ::rtl::OUString& aText, ::sal_Int32 nPos, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::sal_Int32 SAL_CALL getStringType( const ::rtl::OUString& aText, ::sal_Int32 nPos, ::sal_Int32 nCount, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::i18n::ParseResult SAL_CALL parseAnyToken( const ::rtl::OUString& aText, ::sal_Int32 nPos, const ::css::lang::Locale& aLocale, ::sal_Int32 nStartCharFlags, const ::rtl::OUString& aUserDefinedCharactersStart, ::sal_Int32 nContCharFlags, const ::rtl::OUString& aUserDefinedCharactersCont ) = 0;
+    virtual ::css::i18n::ParseResult SAL_CALL parsePredefinedToken( ::sal_Int32 nTokenType, const ::rtl::OUString& aText, ::sal_Int32 nPos, const ::css::lang::Locale& aLocale, ::sal_Int32 nStartCharFlags, const ::rtl::OUString& aUserDefinedCharactersStart, ::sal_Int32 nContCharFlags, const ::rtl::OUString& aUserDefinedCharactersCont ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCharacterClassification() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XCharacterClassification const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XCharacterClassification > *);
+
+#endif

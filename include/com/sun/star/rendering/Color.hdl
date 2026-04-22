@@ -1,0 +1,15 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_COLOR_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_COLOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/rendering/ColorComponent.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+typedef ::css::uno::Sequence< double > Color;
+
+} } } }
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_COLOR_HDL

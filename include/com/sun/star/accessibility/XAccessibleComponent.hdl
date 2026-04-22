@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECOMPONENT_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLECOMPONENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace accessibility { class XAccessible; } } } }
+#include "com/sun/star/awt/Point.hdl"
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/awt/Size.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/Color.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAccessibleComponent : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAccessibleComponent() = default;
+    XAccessibleComponent(XAccessibleComponent const &) = default;
+    XAccessibleComponent(XAccessibleComponent &&) = default;
+    XAccessibleComponent & operator =(XAccessibleComponent const &) = default;
+    XAccessibleComponent & operator =(XAccessibleComponent &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL containsPoint( const ::css::awt::Point& Point ) = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessible > SAL_CALL getAccessibleAtPoint( const ::css::awt::Point& Point ) = 0;
+    virtual ::css::awt::Rectangle SAL_CALL getBounds() = 0;
+    virtual ::css::awt::Point SAL_CALL getLocation() = 0;
+    virtual ::css::awt::Point SAL_CALL getLocationOnScreen() = 0;
+    virtual ::css::awt::Size SAL_CALL getSize() = 0;
+    virtual void SAL_CALL grabFocus() = 0;
+    virtual ::sal_Int32 SAL_CALL getForeground() = 0;
+    virtual ::sal_Int32 SAL_CALL getBackground() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAccessibleComponent() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::XAccessibleComponent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::accessibility::XAccessibleComponent > *);
+
+#endif

@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XENCRYPTIONPROTECTEDSTORAGE_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XENCRYPTIONPROTECTEDSTORAGE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/NamedValue.hdl"
+#include "com/sun/star/embed/XEncryptionProtectedSource2.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XEncryptionProtectedStorage : public ::css::embed::XEncryptionProtectedSource2
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XEncryptionProtectedStorage() = default;
+    XEncryptionProtectedStorage(XEncryptionProtectedStorage const &) = default;
+    XEncryptionProtectedStorage(XEncryptionProtectedStorage &&) = default;
+    XEncryptionProtectedStorage & operator =(XEncryptionProtectedStorage const &) = default;
+    XEncryptionProtectedStorage & operator =(XEncryptionProtectedStorage &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setEncryptionAlgorithms( const ::css::uno::Sequence< ::css::beans::NamedValue >& aAlgorithms ) = 0;
+    virtual ::css::uno::Sequence< ::css::beans::NamedValue > SAL_CALL getEncryptionAlgorithms() = 0;
+    virtual void SAL_CALL setGpgProperties( const ::css::uno::Sequence< ::css::uno::Sequence< ::css::beans::NamedValue > >& aProps ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XEncryptionProtectedStorage() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XEncryptionProtectedStorage const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XEncryptionProtectedStorage > *);
+
+#endif

@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_OPENCOMMANDARGUMENT_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_OPENCOMMANDARGUMENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/Property.hdl"
+namespace com { namespace sun { namespace star { namespace uno { class XInterface; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI OpenCommandArgument {
+    inline OpenCommandArgument();
+
+    inline OpenCommandArgument(const ::sal_Int32& Mode_, const ::sal_Int32& Priority_, const ::css::uno::Reference< ::css::uno::XInterface >& Sink_, const ::css::uno::Sequence< ::css::beans::Property >& Properties_);
+
+    ::sal_Int32 Mode;
+    ::sal_Int32 Priority;
+    ::css::uno::Reference< ::css::uno::XInterface > Sink;
+    ::css::uno::Sequence< ::css::beans::Property > Properties;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::OpenCommandArgument const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::OpenCommandArgument *);
+
+#endif

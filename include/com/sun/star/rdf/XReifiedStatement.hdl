@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_RDF_XREIFIEDSTATEMENT_HDL
+#define INCLUDED_COM_SUN_STAR_RDF_XREIFIEDSTATEMENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/rdf/Statement.hdl"
+#include "com/sun/star/rdf/XResource.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rdf {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XReifiedStatement : public ::css::rdf::XResource
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XReifiedStatement() = default;
+    XReifiedStatement(XReifiedStatement const &) = default;
+    XReifiedStatement(XReifiedStatement &&) = default;
+    XReifiedStatement & operator =(XReifiedStatement const &) = default;
+    XReifiedStatement & operator =(XReifiedStatement &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::rdf::Statement SAL_CALL getStatement() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XReifiedStatement() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rdf::XReifiedStatement const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rdf::XReifiedStatement > *);
+
+#endif

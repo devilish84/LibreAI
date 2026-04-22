@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_BEZIERPOINT_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_BEZIERPOINT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Point.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED BezierPoint {
+    inline BezierPoint();
+
+    inline BezierPoint(const ::css::awt::Point& Position_, const ::css::awt::Point& ControlPoint1_, const ::css::awt::Point& ControlPoint2_);
+
+    ::css::awt::Point Position;
+    ::css::awt::Point ControlPoint1;
+    ::css::awt::Point ControlPoint2;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::BezierPoint const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::BezierPoint *);
+
+#endif

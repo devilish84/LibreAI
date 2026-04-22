@@ -1,0 +1,64 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XSIMPLEFILEACCESS_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XSIMPLEFILEACCESS_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XOutputStream; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XStream; } } } }
+namespace com { namespace sun { namespace star { namespace task { class XInteractionHandler; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/DateTime.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSimpleFileAccess : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSimpleFileAccess() = default;
+    XSimpleFileAccess(XSimpleFileAccess const &) = default;
+    XSimpleFileAccess(XSimpleFileAccess &&) = default;
+    XSimpleFileAccess & operator =(XSimpleFileAccess const &) = default;
+    XSimpleFileAccess & operator =(XSimpleFileAccess &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL copy( const ::rtl::OUString& SourceURL, const ::rtl::OUString& DestURL ) = 0;
+    virtual void SAL_CALL move( const ::rtl::OUString& SourceURL, const ::rtl::OUString& DestURL ) = 0;
+    virtual void SAL_CALL kill( const ::rtl::OUString& FileURL ) = 0;
+    virtual ::sal_Bool SAL_CALL isFolder( const ::rtl::OUString& FileURL ) = 0;
+    virtual ::sal_Bool SAL_CALL isReadOnly( const ::rtl::OUString& FileURL ) = 0;
+    virtual void SAL_CALL setReadOnly( const ::rtl::OUString& FileURL, ::sal_Bool bReadOnly ) = 0;
+    virtual void SAL_CALL createFolder( const ::rtl::OUString& NewFolderURL ) = 0;
+    virtual ::sal_Int32 SAL_CALL getSize( const ::rtl::OUString& FileURL ) = 0;
+    virtual ::rtl::OUString SAL_CALL getContentType( const ::rtl::OUString& FileURL ) = 0;
+    virtual ::css::util::DateTime SAL_CALL getDateTimeModified( const ::rtl::OUString& FileURL ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getFolderContents( const ::rtl::OUString& FolderURL, ::sal_Bool bIncludeFolders ) = 0;
+    virtual ::sal_Bool SAL_CALL exists( const ::rtl::OUString& FileURL ) = 0;
+    virtual ::css::uno::Reference< ::css::io::XInputStream > SAL_CALL openFileRead( const ::rtl::OUString& FileURL ) = 0;
+    virtual ::css::uno::Reference< ::css::io::XOutputStream > SAL_CALL openFileWrite( const ::rtl::OUString& FileURL ) = 0;
+    virtual ::css::uno::Reference< ::css::io::XStream > SAL_CALL openFileReadWrite( const ::rtl::OUString& FileURL ) = 0;
+    virtual void SAL_CALL setInteractionHandler( const ::css::uno::Reference< ::css::task::XInteractionHandler >& Handler ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSimpleFileAccess() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XSimpleFileAccess const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XSimpleFileAccess > *);
+
+#endif

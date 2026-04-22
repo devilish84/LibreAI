@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCANNER_SCANERROR_HDL
+#define INCLUDED_COM_SUN_STAR_SCANNER_SCANERROR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace scanner {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ScanError
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ScanError
+{
+
+#endif
+    ScanError_ScanErrorNone = 0,
+    ScanError_ScannerNotAvailable = 1,
+    ScanError_ScanFailed = 2,
+    ScanError_ScanInProgress = 3,
+    ScanError_ScanCanceled = 4,
+    ScanError_InvalidContext = 5,
+    ScanError_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ScanError_ScanErrorNone = ScanError::ScanError_ScanErrorNone;
+constexpr auto ScanError_ScannerNotAvailable = ScanError::ScanError_ScannerNotAvailable;
+constexpr auto ScanError_ScanFailed = ScanError::ScanError_ScanFailed;
+constexpr auto ScanError_ScanInProgress = ScanError::ScanError_ScanInProgress;
+constexpr auto ScanError_ScanCanceled = ScanError::ScanError_ScanCanceled;
+constexpr auto ScanError_InvalidContext = ScanError::ScanError_InvalidContext;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::scanner::ScanError const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::scanner::ScanError *);
+
+#endif

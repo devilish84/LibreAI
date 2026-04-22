@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XPARAGRAPHCURSOR_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XPARAGRAPHCURSOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/text/XTextCursor.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XParagraphCursor : public ::css::text::XTextCursor
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XParagraphCursor() = default;
+    XParagraphCursor(XParagraphCursor const &) = default;
+    XParagraphCursor(XParagraphCursor &&) = default;
+    XParagraphCursor & operator =(XParagraphCursor const &) = default;
+    XParagraphCursor & operator =(XParagraphCursor &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isStartOfParagraph() = 0;
+    virtual ::sal_Bool SAL_CALL isEndOfParagraph() = 0;
+    virtual ::sal_Bool SAL_CALL gotoStartOfParagraph( ::sal_Bool bExpand ) = 0;
+    virtual ::sal_Bool SAL_CALL gotoEndOfParagraph( ::sal_Bool bExpand ) = 0;
+    virtual ::sal_Bool SAL_CALL gotoNextParagraph( ::sal_Bool bExpand ) = 0;
+    virtual ::sal_Bool SAL_CALL gotoPreviousParagraph( ::sal_Bool bExpand ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XParagraphCursor() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XParagraphCursor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XParagraphCursor > *);
+
+#endif

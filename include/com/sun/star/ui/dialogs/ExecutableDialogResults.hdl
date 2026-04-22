@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_EXECUTABLEDIALOGRESULTS_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_EXECUTABLEDIALOGRESULTS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs { namespace ExecutableDialogResults {
+
+static const ::sal_Int16 CANCEL = (sal_Int16)0;
+static const ::sal_Int16 OK = (sal_Int16)1;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UI_DIALOGS_EXECUTABLEDIALOGRESULTS_HDL

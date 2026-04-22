@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XLANGUAGEGUESSING_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XLANGUAGEGUESSING_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLanguageGuessing : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLanguageGuessing() = default;
+    XLanguageGuessing(XLanguageGuessing const &) = default;
+    XLanguageGuessing(XLanguageGuessing &&) = default;
+    XLanguageGuessing & operator =(XLanguageGuessing const &) = default;
+    XLanguageGuessing & operator =(XLanguageGuessing &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::lang::Locale SAL_CALL guessPrimaryLanguage( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, ::sal_Int32 nLen ) = 0;
+    virtual void SAL_CALL disableLanguages( const ::css::uno::Sequence< ::css::lang::Locale >& aLanguages ) = 0;
+    virtual void SAL_CALL enableLanguages( const ::css::uno::Sequence< ::css::lang::Locale >& aLanguages ) = 0;
+    virtual ::css::uno::Sequence< ::css::lang::Locale > SAL_CALL getAvailableLanguages() = 0;
+    virtual ::css::uno::Sequence< ::css::lang::Locale > SAL_CALL getEnabledLanguages() = 0;
+    virtual ::css::uno::Sequence< ::css::lang::Locale > SAL_CALL getDisabledLanguages() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLanguageGuessing() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XLanguageGuessing const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XLanguageGuessing > *);
+
+#endif

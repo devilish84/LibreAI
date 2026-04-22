@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_PROOFREADINGRESULT_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_PROOFREADINGRESULT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/linguistic2/SingleProofreadingError.hdl"
+namespace com { namespace sun { namespace star { namespace linguistic2 { class XProofreader; } } } }
+namespace com { namespace sun { namespace star { namespace text { class XFlatParagraph; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI ProofreadingResult {
+    inline ProofreadingResult();
+
+    inline ProofreadingResult(const ::rtl::OUString& aDocumentIdentifier_, const ::css::uno::Reference< ::css::text::XFlatParagraph >& xFlatParagraph_, const ::rtl::OUString& aText_, const ::css::lang::Locale& aLocale_, const ::sal_Int32& nStartOfSentencePosition_, const ::sal_Int32& nBehindEndOfSentencePosition_, const ::sal_Int32& nStartOfNextSentencePosition_, const ::css::uno::Sequence< ::css::linguistic2::SingleProofreadingError >& aErrors_, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aProperties_, const ::css::uno::Reference< ::css::linguistic2::XProofreader >& xProofreader_);
+
+    ::rtl::OUString aDocumentIdentifier;
+    ::css::uno::Reference< ::css::text::XFlatParagraph > xFlatParagraph;
+    ::rtl::OUString aText;
+    ::css::lang::Locale aLocale;
+    ::sal_Int32 nStartOfSentencePosition;
+    ::sal_Int32 nBehindEndOfSentencePosition;
+    ::sal_Int32 nStartOfNextSentencePosition;
+    ::css::uno::Sequence< ::css::linguistic2::SingleProofreadingError > aErrors;
+    ::css::uno::Sequence< ::css::beans::PropertyValue > aProperties;
+    ::css::uno::Reference< ::css::linguistic2::XProofreader > xProofreader;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::ProofreadingResult const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::linguistic2::ProofreadingResult *);
+
+#endif

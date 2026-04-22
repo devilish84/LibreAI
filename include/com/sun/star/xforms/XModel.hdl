@@ -1,0 +1,68 @@
+#ifndef INCLUDED_COM_SUN_STAR_XFORMS_XMODEL_HDL
+#define INCLUDED_COM_SUN_STAR_XFORMS_XMODEL_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace beans { class XPropertySet; } } } }
+namespace com { namespace sun { namespace star { namespace container { class XSet; } } } }
+namespace com { namespace sun { namespace star { namespace task { class XInteractionHandler; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xforms { class XDataTypeRepository; } } } }
+namespace com { namespace sun { namespace star { namespace xforms { class XSubmission; } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XDocument; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xforms {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XModel : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XModel() = default;
+    XModel(XModel const &) = default;
+    XModel(XModel &&) = default;
+    XModel & operator =(XModel const &) = default;
+    XModel & operator =(XModel &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getID() = 0;
+    virtual void SAL_CALL setID( const ::rtl::OUString& id ) = 0;
+    virtual void SAL_CALL initialize() = 0;
+    virtual void SAL_CALL rebuild() = 0;
+    virtual void SAL_CALL recalculate() = 0;
+    virtual void SAL_CALL revalidate() = 0;
+    virtual void SAL_CALL refresh() = 0;
+    virtual void SAL_CALL submit( const ::rtl::OUString& id ) = 0;
+    virtual void SAL_CALL submitWithInteraction( const ::rtl::OUString& id, const ::css::uno::Reference< ::css::task::XInteractionHandler >& aHandler ) = 0;
+    virtual ::css::uno::Reference< ::css::xforms::XDataTypeRepository > SAL_CALL getDataTypeRepository() = 0;
+    virtual ::css::uno::Reference< ::css::container::XSet > SAL_CALL getInstances() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XDocument > SAL_CALL getInstanceDocument( const ::rtl::OUString& id ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XDocument > SAL_CALL getDefaultInstance() = 0;
+    virtual ::css::uno::Reference< ::css::beans::XPropertySet > SAL_CALL createBinding() = 0;
+    virtual ::css::uno::Reference< ::css::beans::XPropertySet > SAL_CALL cloneBinding( const ::css::uno::Reference< ::css::beans::XPropertySet >& binding ) = 0;
+    virtual ::css::uno::Reference< ::css::beans::XPropertySet > SAL_CALL getBinding( const ::rtl::OUString& id ) = 0;
+    virtual ::css::uno::Reference< ::css::container::XSet > SAL_CALL getBindings() = 0;
+    virtual ::css::uno::Reference< ::css::xforms::XSubmission > SAL_CALL createSubmission() = 0;
+    virtual ::css::uno::Reference< ::css::xforms::XSubmission > SAL_CALL cloneSubmission( const ::css::uno::Reference< ::css::beans::XPropertySet >& submission ) = 0;
+    virtual ::css::uno::Reference< ::css::xforms::XSubmission > SAL_CALL getSubmission( const ::rtl::OUString& id ) = 0;
+    virtual ::css::uno::Reference< ::css::container::XSet > SAL_CALL getSubmissions() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XModel() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xforms::XModel const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xforms::XModel > *);
+
+#endif

@@ -1,0 +1,28 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_DATALABELPLACEMENT_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_DATALABELPLACEMENT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace chart { namespace DataLabelPlacement {
+
+static const ::sal_Int32 AVOID_OVERLAP = (sal_Int32)0;
+static const ::sal_Int32 BOTTOM = (sal_Int32)6;
+static const ::sal_Int32 BOTTOM_LEFT = (sal_Int32)5;
+static const ::sal_Int32 BOTTOM_RIGHT = (sal_Int32)7;
+static const ::sal_Int32 CENTER = (sal_Int32)1;
+static const ::sal_Int32 CUSTOM = (sal_Int32)13;
+static const ::sal_Int32 INSIDE = (sal_Int32)10;
+static const ::sal_Int32 LEFT = (sal_Int32)4;
+static const ::sal_Int32 NEAR_ORIGIN = (sal_Int32)12;
+static const ::sal_Int32 OUTSIDE = (sal_Int32)11;
+static const ::sal_Int32 RIGHT = (sal_Int32)8;
+static const ::sal_Int32 TOP = (sal_Int32)2;
+static const ::sal_Int32 TOP_LEFT = (sal_Int32)3;
+static const ::sal_Int32 TOP_RIGHT = (sal_Int32)9;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_CHART_DATALABELPLACEMENT_HDL

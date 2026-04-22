@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XALLLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XALLLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/script/AllEventObject.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAllListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAllListener() = default;
+    XAllListener(XAllListener const &) = default;
+    XAllListener(XAllListener &&) = default;
+    XAllListener & operator =(XAllListener const &) = default;
+    XAllListener & operator =(XAllListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL firing( const ::css::script::AllEventObject& iaEvent ) = 0;
+    virtual ::css::uno::Any SAL_CALL approveFiring( const ::css::script::AllEventObject& aEvent ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAllListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XAllListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XAllListener > *);
+
+#endif

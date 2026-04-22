@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_TEXTFITTOSIZETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_TEXTFITTOSIZETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TextFitToSizeType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TextFitToSizeType
+{
+
+#endif
+    TextFitToSizeType_NONE = 0,
+    TextFitToSizeType_PROPORTIONAL = 1,
+    TextFitToSizeType_ALLLINES = 2,
+    TextFitToSizeType_AUTOFIT = 3,
+    TextFitToSizeType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TextFitToSizeType_NONE = TextFitToSizeType::TextFitToSizeType_NONE;
+constexpr auto TextFitToSizeType_PROPORTIONAL = TextFitToSizeType::TextFitToSizeType_PROPORTIONAL;
+constexpr auto TextFitToSizeType_ALLLINES = TextFitToSizeType::TextFitToSizeType_ALLLINES;
+constexpr auto TextFitToSizeType_AUTOFIT = TextFitToSizeType::TextFitToSizeType_AUTOFIT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::TextFitToSizeType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::TextFitToSizeType *);
+
+#endif

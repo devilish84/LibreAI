@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_PROJECTIONMODE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_PROJECTIONMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ProjectionMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ProjectionMode
+{
+
+#endif
+    ProjectionMode_PARALLEL = 0,
+    ProjectionMode_PERSPECTIVE = 1,
+    ProjectionMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ProjectionMode_PARALLEL = ProjectionMode::ProjectionMode_PARALLEL;
+constexpr auto ProjectionMode_PERSPECTIVE = ProjectionMode::ProjectionMode_PERSPECTIVE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::ProjectionMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::ProjectionMode *);
+
+#endif

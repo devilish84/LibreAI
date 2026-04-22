@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XFRAME2_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XFRAME2_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XNameContainer; } } } }
+#include "com/sun/star/frame/XDispatchInformationProvider.hdl"
+#include "com/sun/star/frame/XDispatchProvider.hdl"
+#include "com/sun/star/frame/XDispatchProviderInterception.hdl"
+namespace com { namespace sun { namespace star { namespace frame { class XDispatchRecorderSupplier; } } } }
+#include "com/sun/star/frame/XFramesSupplier.hdl"
+#include "com/sun/star/task/XStatusIndicatorFactory.hdl"
+namespace com { namespace sun { namespace star { namespace uno { class XInterface; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFrame2 : public ::css::frame::XDispatchProvider, public ::css::frame::XDispatchInformationProvider, public ::css::frame::XDispatchProviderInterception, public ::css::frame::XFramesSupplier, public ::css::task::XStatusIndicatorFactory
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFrame2() = default;
+    XFrame2(XFrame2 const &) = default;
+    XFrame2(XFrame2 &&) = default;
+    XFrame2 & operator =(XFrame2 const &) = default;
+    XFrame2 & operator =(XFrame2 &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Reference< ::css::container::XNameContainer > SAL_CALL getUserDefinedAttributes() = 0;
+    virtual ::rtl::OUString SAL_CALL getTitle() = 0;
+    virtual void SAL_CALL setTitle( const ::rtl::OUString& _title ) = 0;
+    virtual ::css::uno::Reference< ::css::frame::XDispatchRecorderSupplier > SAL_CALL getDispatchRecorderSupplier() = 0;
+    virtual void SAL_CALL setDispatchRecorderSupplier( const ::css::uno::Reference< ::css::frame::XDispatchRecorderSupplier >& _dispatchrecordersupplier ) = 0;
+    virtual ::css::uno::Reference< ::css::uno::XInterface > SAL_CALL getLayoutManager() = 0;
+    virtual void SAL_CALL setLayoutManager( const ::css::uno::Reference< ::css::uno::XInterface >& _layoutmanager ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFrame2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XFrame2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XFrame2 > *);
+
+#endif

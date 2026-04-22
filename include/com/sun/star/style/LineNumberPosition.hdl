@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_LINENUMBERPOSITION_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_LINENUMBERPOSITION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace style { namespace LineNumberPosition {
+
+static const ::sal_Int16 INSIDE = (sal_Int16)2;
+static const ::sal_Int16 LEFT = (sal_Int16)0;
+static const ::sal_Int16 OUTSIDE = (sal_Int16)3;
+static const ::sal_Int16 RIGHT = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_STYLE_LINENUMBERPOSITION_HDL

@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_TREE_XMUTABLETREENODE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_TREE_XMUTABLETREENODE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace tree { class XMutableTreeNode; } } } } }
+#include "com/sun/star/awt/tree/XTreeNode.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt { namespace tree {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMutableTreeNode : public ::css::awt::tree::XTreeNode
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMutableTreeNode() = default;
+    XMutableTreeNode(XMutableTreeNode const &) = default;
+    XMutableTreeNode(XMutableTreeNode &&) = default;
+    XMutableTreeNode & operator =(XMutableTreeNode const &) = default;
+    XMutableTreeNode & operator =(XMutableTreeNode &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Any SAL_CALL getDataValue() = 0;
+    virtual void SAL_CALL setDataValue( const ::css::uno::Any& _datavalue ) = 0;
+
+    // Methods
+    virtual void SAL_CALL appendChild( const ::css::uno::Reference< ::css::awt::tree::XMutableTreeNode >& ChildNode ) = 0;
+    virtual void SAL_CALL insertChildByIndex( ::sal_Int32 Index, const ::css::uno::Reference< ::css::awt::tree::XMutableTreeNode >& ChildNode ) = 0;
+    virtual void SAL_CALL removeChildByIndex( ::sal_Int32 Index ) = 0;
+    virtual void SAL_CALL setHasChildrenOnDemand( ::sal_Bool ChildrenOnDemand ) = 0;
+    virtual void SAL_CALL setDisplayValue( const ::css::uno::Any& Value ) = 0;
+    virtual void SAL_CALL setNodeGraphicURL( const ::rtl::OUString& URL ) = 0;
+    virtual void SAL_CALL setExpandedGraphicURL( const ::rtl::OUString& URL ) = 0;
+    virtual void SAL_CALL setCollapsedGraphicURL( const ::rtl::OUString& URL ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMutableTreeNode() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::tree::XMutableTreeNode const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::tree::XMutableTreeNode > *);
+
+#endif

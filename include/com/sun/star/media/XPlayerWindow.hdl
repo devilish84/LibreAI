@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_MEDIA_XPLAYERWINDOW_HDL
+#define INCLUDED_COM_SUN_STAR_MEDIA_XPLAYERWINDOW_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/XWindow.hdl"
+#include "com/sun/star/media/ZoomLevel.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace media {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPlayerWindow : public ::css::awt::XWindow
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPlayerWindow() = default;
+    XPlayerWindow(XPlayerWindow const &) = default;
+    XPlayerWindow(XPlayerWindow &&) = default;
+    XPlayerWindow & operator =(XPlayerWindow const &) = default;
+    XPlayerWindow & operator =(XPlayerWindow &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL update() = 0;
+    virtual ::sal_Bool SAL_CALL setZoomLevel( ::css::media::ZoomLevel ZoomLevel ) = 0;
+    virtual ::css::media::ZoomLevel SAL_CALL getZoomLevel() = 0;
+    virtual void SAL_CALL setPointerType( ::sal_Int32 SystemPointerType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPlayerWindow() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::media::XPlayerWindow const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::media::XPlayerWindow > *);
+
+#endif

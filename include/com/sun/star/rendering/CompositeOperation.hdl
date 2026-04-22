@@ -1,0 +1,28 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_COMPOSITEOPERATION_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_COMPOSITEOPERATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace CompositeOperation {
+
+static const ::sal_Int8 ADD = (sal_Int8)12;
+static const ::sal_Int8 ATOP = (sal_Int8)9;
+static const ::sal_Int8 ATOP_REVERSE = (sal_Int8)10;
+static const ::sal_Int8 CLEAR = (sal_Int8)0;
+static const ::sal_Int8 DESTINATION = (sal_Int8)2;
+static const ::sal_Int8 INSIDE = (sal_Int8)5;
+static const ::sal_Int8 INSIDE_REVERSE = (sal_Int8)6;
+static const ::sal_Int8 OUTSIDE = (sal_Int8)7;
+static const ::sal_Int8 OUTSIDE_REVERSE = (sal_Int8)8;
+static const ::sal_Int8 OVER = (sal_Int8)3;
+static const ::sal_Int8 SATURATE = (sal_Int8)13;
+static const ::sal_Int8 SOURCE = (sal_Int8)1;
+static const ::sal_Int8 UNDER = (sal_Int8)4;
+static const ::sal_Int8 XOR = (sal_Int8)11;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_COMPOSITEOPERATION_HDL

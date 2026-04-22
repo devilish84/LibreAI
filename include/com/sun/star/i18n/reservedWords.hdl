@@ -1,0 +1,27 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_RESERVEDWORDS_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_RESERVEDWORDS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace reservedWords {
+
+static const ::sal_Int16 ABOVE_WORD = (sal_Int16)6;
+static const ::sal_Int16 BELOW_WORD = (sal_Int16)7;
+static const ::sal_Int16 COUNT = (sal_Int16)12;
+static const ::sal_Int16 FALSE_WORD = (sal_Int16)1;
+static const ::sal_Int16 QUARTER1_ABBREVIATION = (sal_Int16)8;
+static const ::sal_Int16 QUARTER1_WORD = (sal_Int16)2;
+static const ::sal_Int16 QUARTER2_ABBREVIATION = (sal_Int16)9;
+static const ::sal_Int16 QUARTER2_WORD = (sal_Int16)3;
+static const ::sal_Int16 QUARTER3_ABBREVIATION = (sal_Int16)10;
+static const ::sal_Int16 QUARTER3_WORD = (sal_Int16)4;
+static const ::sal_Int16 QUARTER4_ABBREVIATION = (sal_Int16)11;
+static const ::sal_Int16 QUARTER4_WORD = (sal_Int16)5;
+static const ::sal_Int16 TRUE_WORD = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_RESERVEDWORDS_HDL

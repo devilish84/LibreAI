@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XIEEEFLOATREADONLYBITMAP_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XIEEEFLOATREADONLYBITMAP_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/geometry/IntegerPoint2D.hdl"
+#include "com/sun/star/geometry/IntegerRectangle2D.hdl"
+#include "com/sun/star/rendering/FloatingPointBitmapLayout.hdl"
+#include "com/sun/star/rendering/XBitmap.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XIeeeFloatReadOnlyBitmap : public ::css::rendering::XBitmap
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XIeeeFloatReadOnlyBitmap() = default;
+    XIeeeFloatReadOnlyBitmap(XIeeeFloatReadOnlyBitmap const &) = default;
+    XIeeeFloatReadOnlyBitmap(XIeeeFloatReadOnlyBitmap &&) = default;
+    XIeeeFloatReadOnlyBitmap & operator =(XIeeeFloatReadOnlyBitmap const &) = default;
+    XIeeeFloatReadOnlyBitmap & operator =(XIeeeFloatReadOnlyBitmap &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< float > SAL_CALL getData( ::css::rendering::FloatingPointBitmapLayout& bitmapLayout, const ::css::geometry::IntegerRectangle2D& rect ) = 0;
+    virtual ::css::uno::Sequence< float > SAL_CALL getPixel( ::css::rendering::FloatingPointBitmapLayout& bitmapLayout, const ::css::geometry::IntegerPoint2D& pos ) = 0;
+    virtual ::css::rendering::FloatingPointBitmapLayout SAL_CALL getMemoryLayout() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XIeeeFloatReadOnlyBitmap() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XIeeeFloatReadOnlyBitmap const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XIeeeFloatReadOnlyBitmap > *);
+
+#endif

@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XSPINVALUE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XSPINVALUE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XAdjustmentListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSpinValue : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSpinValue() = default;
+    XSpinValue(XSpinValue const &) = default;
+    XSpinValue(XSpinValue &&) = default;
+    XSpinValue & operator =(XSpinValue const &) = default;
+    XSpinValue & operator =(XSpinValue &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addAdjustmentListener( const ::css::uno::Reference< ::css::awt::XAdjustmentListener >& listener ) = 0;
+    virtual void SAL_CALL removeAdjustmentListener( const ::css::uno::Reference< ::css::awt::XAdjustmentListener >& listener ) = 0;
+    virtual void SAL_CALL setValue( ::sal_Int32 value ) = 0;
+    virtual void SAL_CALL setValues( ::sal_Int32 minValue, ::sal_Int32 maxValue, ::sal_Int32 currentValue ) = 0;
+    virtual ::sal_Int32 SAL_CALL getValue() = 0;
+    virtual void SAL_CALL setMinimum( ::sal_Int32 minValue ) = 0;
+    virtual void SAL_CALL setMaximum( ::sal_Int32 maxValue ) = 0;
+    virtual ::sal_Int32 SAL_CALL getMinimum() = 0;
+    virtual ::sal_Int32 SAL_CALL getMaximum() = 0;
+    virtual void SAL_CALL setSpinIncrement( ::sal_Int32 spinIncrement ) = 0;
+    virtual ::sal_Int32 SAL_CALL getSpinIncrement() = 0;
+    virtual void SAL_CALL setOrientation( ::sal_Int32 orientation ) = 0;
+    virtual ::sal_Int32 SAL_CALL getOrientation() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSpinValue() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XSpinValue const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XSpinValue > *);
+
+#endif

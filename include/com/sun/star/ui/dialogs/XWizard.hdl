@@ -1,0 +1,59 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_XWIZARD_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_XWIZARD_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XWindow; } } } }
+#include "com/sun/star/ui/dialogs/XExecutableDialog.hdl"
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs { class XWizardPage; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XWizard : public ::css::ui::dialogs::XExecutableDialog
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XWizard() = default;
+    XWizard(XWizard const &) = default;
+    XWizard(XWizard &&) = default;
+    XWizard & operator =(XWizard const &) = default;
+    XWizard & operator =(XWizard &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getHelpURL() = 0;
+    virtual void SAL_CALL setHelpURL( const ::rtl::OUString& _helpurl ) = 0;
+    virtual ::css::uno::Reference< ::css::awt::XWindow > SAL_CALL getDialogWindow() = 0;
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::ui::dialogs::XWizardPage > SAL_CALL getCurrentPage() = 0;
+    virtual void SAL_CALL enableButton( ::sal_Int16 WizardButton, ::sal_Bool Enable ) = 0;
+    virtual void SAL_CALL setDefaultButton( ::sal_Int16 WizardButton ) = 0;
+    virtual ::sal_Bool SAL_CALL travelNext() = 0;
+    virtual ::sal_Bool SAL_CALL travelPrevious() = 0;
+    virtual void SAL_CALL enablePage( ::sal_Int16 PageID, ::sal_Bool Enable ) = 0;
+    virtual void SAL_CALL updateTravelUI() = 0;
+    virtual ::sal_Bool SAL_CALL advanceTo( ::sal_Int16 PageId ) = 0;
+    virtual ::sal_Bool SAL_CALL goBackTo( ::sal_Int16 PageId ) = 0;
+    virtual void SAL_CALL activatePath( ::sal_Int16 PathIndex, ::sal_Bool Final ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XWizard() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::dialogs::XWizard const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::dialogs::XWizard > *);
+
+#endif

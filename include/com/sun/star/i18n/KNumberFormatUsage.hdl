@@ -1,0 +1,22 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_KNUMBERFORMATUSAGE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_KNUMBERFORMATUSAGE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace KNumberFormatUsage {
+
+static const ::sal_Int16 CURRENCY = (sal_Int16)8;
+static const ::sal_Int16 DATE = (sal_Int16)1;
+static const ::sal_Int16 DATE_TIME = (sal_Int16)3;
+static const ::sal_Int16 FIXED_NUMBER = (sal_Int16)4;
+static const ::sal_Int16 FRACTION_NUMBER = (sal_Int16)5;
+static const ::sal_Int16 PERCENT_NUMBER = (sal_Int16)6;
+static const ::sal_Int16 SCIENTIFIC_NUMBER = (sal_Int16)7;
+static const ::sal_Int16 TIME = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_KNUMBERFORMATUSAGE_HDL

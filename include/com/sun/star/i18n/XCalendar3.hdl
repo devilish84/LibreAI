@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XCALENDAR3_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XCALENDAR3_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/Calendar2.hdl"
+#include "com/sun/star/i18n/CalendarItem2.hdl"
+#include "com/sun/star/i18n/XExtendedCalendar.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCalendar3 : public ::css::i18n::XExtendedCalendar
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCalendar3() = default;
+    XCalendar3(XCalendar3 const &) = default;
+    XCalendar3(XCalendar3 &&) = default;
+    XCalendar3 & operator =(XCalendar3 const &) = default;
+    XCalendar3 & operator =(XCalendar3 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::i18n::Calendar2 SAL_CALL getLoadedCalendar2() = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::CalendarItem2 > SAL_CALL getDays2() = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::CalendarItem2 > SAL_CALL getMonths2() = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::CalendarItem2 > SAL_CALL getGenitiveMonths2() = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::CalendarItem2 > SAL_CALL getPartitiveMonths2() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCalendar3() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XCalendar3 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XCalendar3 > *);
+
+#endif

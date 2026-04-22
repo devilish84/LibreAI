@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XDATAPILOTTABLE2_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XDATAPILOTTABLE2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/DataPilotTablePositionData.hdl"
+#include "com/sun/star/sheet/XDataPilotTable.hdl"
+#include "com/sun/star/table/CellAddress.hdl"
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDataPilotTable2 : public ::css::sheet::XDataPilotTable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDataPilotTable2() = default;
+    XDataPilotTable2(XDataPilotTable2 const &) = default;
+    XDataPilotTable2(XDataPilotTable2 &&) = default;
+    XDataPilotTable2 & operator =(XDataPilotTable2 const &) = default;
+    XDataPilotTable2 & operator =(XDataPilotTable2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::uno::Sequence< ::css::uno::Any > > SAL_CALL getDrillDownData( const ::css::table::CellAddress& aAddr ) = 0;
+    virtual ::css::sheet::DataPilotTablePositionData SAL_CALL getPositionData( const ::css::table::CellAddress& aAddr ) = 0;
+    virtual void SAL_CALL insertDrillDownSheet( const ::css::table::CellAddress& aAddr ) = 0;
+    virtual ::css::table::CellRangeAddress SAL_CALL getOutputRangeByType( ::sal_Int32 nType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDataPilotTable2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XDataPilotTable2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XDataPilotTable2 > *);
+
+#endif

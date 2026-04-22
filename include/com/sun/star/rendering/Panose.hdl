@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_PANOSE_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_PANOSE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED Panose {
+    inline Panose();
+
+    inline Panose(const ::sal_Int8& FamilyType_, const ::sal_Int8& SerifStyle_, const ::sal_Int8& Weight_, const ::sal_Int8& Proportion_, const ::sal_Int8& Contrast_, const ::sal_Int8& StrokeVariation_, const ::sal_Int8& ArmStyle_, const ::sal_Int8& Letterform_, const ::sal_Int8& Midline_, const ::sal_Int8& XHeight_);
+
+    ::sal_Int8 FamilyType;
+    ::sal_Int8 SerifStyle;
+    ::sal_Int8 Weight;
+    ::sal_Int8 Proportion;
+    ::sal_Int8 Contrast;
+    ::sal_Int8 StrokeVariation;
+    ::sal_Int8 ArmStyle;
+    ::sal_Int8 Letterform;
+    ::sal_Int8 Midline;
+    ::sal_Int8 XHeight;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::Panose const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::rendering::Panose *);
+
+#endif

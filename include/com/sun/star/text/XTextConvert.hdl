@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XTEXTCONVERT_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XTEXTCONVERT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValues.hdl"
+namespace com { namespace sun { namespace star { namespace text { class XTextContent; } } } }
+namespace com { namespace sun { namespace star { namespace text { class XTextRange; } } } }
+namespace com { namespace sun { namespace star { namespace text { class XTextTable; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTextConvert : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTextConvert() = default;
+    XTextConvert(XTextConvert const &) = default;
+    XTextConvert(XTextConvert &&) = default;
+    XTextConvert & operator =(XTextConvert const &) = default;
+    XTextConvert & operator =(XTextConvert &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::text::XTextContent > SAL_CALL convertToTextFrame( const ::css::uno::Reference< ::css::text::XTextRange >& Start, const ::css::uno::Reference< ::css::text::XTextRange >& End, const ::css::uno::Sequence< ::css::beans::PropertyValue >& FrameProperties ) = 0;
+    virtual ::css::uno::Reference< ::css::text::XTextTable > SAL_CALL convertToTable( const ::css::uno::Sequence< ::css::uno::Sequence< ::css::uno::Sequence< ::css::uno::Reference< ::css::text::XTextRange > > > >& TableRanges, const ::css::uno::Sequence< ::css::uno::Sequence< ::css::uno::Sequence< ::css::beans::PropertyValue > > >& CellProperties, const ::css::uno::Sequence< ::css::uno::Sequence< ::css::beans::PropertyValue > >& RowProperties, const ::css::uno::Sequence< ::css::beans::PropertyValue >& TableProperties ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTextConvert() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XTextConvert const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XTextConvert > *);
+
+#endif

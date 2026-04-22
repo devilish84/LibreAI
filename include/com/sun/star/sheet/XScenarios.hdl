@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XSCENARIOS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XSCENARIOS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XNameAccess.hdl"
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XScenarios : public ::css::container::XNameAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XScenarios() = default;
+    XScenarios(XScenarios const &) = default;
+    XScenarios(XScenarios &&) = default;
+    XScenarios & operator =(XScenarios const &) = default;
+    XScenarios & operator =(XScenarios &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addNewByName( const ::rtl::OUString& aName, const ::css::uno::Sequence< ::css::table::CellRangeAddress >& aRanges, const ::rtl::OUString& aComment ) = 0;
+    virtual void SAL_CALL removeByName( const ::rtl::OUString& aName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XScenarios() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XScenarios const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XScenarios > *);
+
+#endif

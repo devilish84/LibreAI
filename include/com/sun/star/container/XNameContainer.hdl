@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XNameReplace.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace container {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XNameContainer : public ::css::container::XNameReplace
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XNameContainer() = default;
+    XNameContainer(XNameContainer const &) = default;
+    XNameContainer(XNameContainer &&) = default;
+    XNameContainer & operator =(XNameContainer const &) = default;
+    XNameContainer & operator =(XNameContainer &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL insertByName( const ::rtl::OUString& aName, const ::css::uno::Any& aElement ) = 0;
+    virtual void SAL_CALL removeByName( const ::rtl::OUString& Name ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XNameContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::container::XNameContainer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::container::XNameContainer > *);
+
+#endif

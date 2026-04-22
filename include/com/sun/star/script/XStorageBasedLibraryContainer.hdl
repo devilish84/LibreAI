@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XSTORAGEBASEDLIBRARYCONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XSTORAGEBASEDLIBRARYCONTAINER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+#include "com/sun/star/script/XPersistentLibraryContainer.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStorageBasedLibraryContainer : public ::css::script::XPersistentLibraryContainer
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStorageBasedLibraryContainer() = default;
+    XStorageBasedLibraryContainer(XStorageBasedLibraryContainer const &) = default;
+    XStorageBasedLibraryContainer(XStorageBasedLibraryContainer &&) = default;
+    XStorageBasedLibraryContainer & operator =(XStorageBasedLibraryContainer const &) = default;
+    XStorageBasedLibraryContainer & operator =(XStorageBasedLibraryContainer &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Reference< ::css::embed::XStorage > SAL_CALL getRootStorage() = 0;
+    virtual void SAL_CALL setRootStorage( const ::css::uno::Reference< ::css::embed::XStorage >& _rootstorage ) = 0;
+
+    // Methods
+    virtual void SAL_CALL storeLibrariesToStorage( const ::css::uno::Reference< ::css::embed::XStorage >& RootStorage ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStorageBasedLibraryContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XStorageBasedLibraryContainer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XStorageBasedLibraryContainer > *);
+
+#endif

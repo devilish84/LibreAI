@@ -1,0 +1,162 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_TRANSLITERATIONMODULESNEW_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_TRANSLITERATIONMODULESNEW_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TransliterationModulesNew
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TransliterationModulesNew
+{
+
+#endif
+    TransliterationModulesNew_UPPERCASE_LOWERCASE = 1,
+    TransliterationModulesNew_LOWERCASE_UPPERCASE = 2,
+    TransliterationModulesNew_HALFWIDTH_FULLWIDTH = 3,
+    TransliterationModulesNew_FULLWIDTH_HALFWIDTH = 4,
+    TransliterationModulesNew_KATAKANA_HIRAGANA = 5,
+    TransliterationModulesNew_HIRAGANA_KATAKANA = 6,
+    TransliterationModulesNew_IGNORE_CASE = 7,
+    TransliterationModulesNew_IGNORE_KANA = 8,
+    TransliterationModulesNew_IGNORE_WIDTH = 9,
+    TransliterationModulesNew_IgnoreTraditionalKanji_ja_JP = 10,
+    TransliterationModulesNew_IgnoreTraditionalKana_ja_JP = 11,
+    TransliterationModulesNew_IgnoreMinusSign_ja_JP = 12,
+    TransliterationModulesNew_IgnoreIterationMark_ja_JP = 13,
+    TransliterationModulesNew_IgnoreSeparator_ja_JP = 14,
+    TransliterationModulesNew_IgnoreZiZu_ja_JP = 15,
+    TransliterationModulesNew_IgnoreBaFa_ja_JP = 16,
+    TransliterationModulesNew_IgnoreTiJi_ja_JP = 17,
+    TransliterationModulesNew_IgnoreHyuByu_ja_JP = 18,
+    TransliterationModulesNew_IgnoreSeZe_ja_JP = 19,
+    TransliterationModulesNew_IgnoreIandEfollowedByYa_ja_JP = 20,
+    TransliterationModulesNew_IgnoreKiKuFollowedBySa_ja_JP = 21,
+    TransliterationModulesNew_IgnoreSize_ja_JP = 22,
+    TransliterationModulesNew_IgnoreProlongedSoundMark_ja_JP = 23,
+    TransliterationModulesNew_IgnoreMiddleDot_ja_JP = 24,
+    TransliterationModulesNew_IgnoreSpace_ja_JP = 25,
+    TransliterationModulesNew_SmallToLarge_ja_JP = 26,
+    TransliterationModulesNew_LargeToSmall_ja_JP = 27,
+    TransliterationModulesNew_NumToTextLower_zh_CN = 28,
+    TransliterationModulesNew_NumToTextUpper_zh_CN = 29,
+    TransliterationModulesNew_NumToTextLower_zh_TW = 30,
+    TransliterationModulesNew_NumToTextUpper_zh_TW = 31,
+    TransliterationModulesNew_NumToTextFormalHangul_ko = 32,
+    TransliterationModulesNew_NumToTextFormalLower_ko = 33,
+    TransliterationModulesNew_NumToTextFormalUpper_ko = 34,
+    TransliterationModulesNew_NumToTextInformalHangul_ko = 35,
+    TransliterationModulesNew_NumToTextInformalLower_ko = 36,
+    TransliterationModulesNew_NumToTextInformalUpper_ko = 37,
+    TransliterationModulesNew_NumToCharLower_zh_CN = 38,
+    TransliterationModulesNew_NumToCharUpper_zh_CN = 39,
+    TransliterationModulesNew_NumToCharLower_zh_TW = 40,
+    TransliterationModulesNew_NumToCharUpper_zh_TW = 41,
+    TransliterationModulesNew_NumToCharHangul_ko = 42,
+    TransliterationModulesNew_NumToCharLower_ko = 43,
+    TransliterationModulesNew_NumToCharUpper_ko = 44,
+    TransliterationModulesNew_NumToCharFullwidth = 45,
+    TransliterationModulesNew_NumToCharKanjiShort_ja_JP = 46,
+    TransliterationModulesNew_TextToNumLower_zh_CN = 47,
+    TransliterationModulesNew_TextToNumUpper_zh_CN = 48,
+    TransliterationModulesNew_TextToNumLower_zh_TW = 49,
+    TransliterationModulesNew_TextToNumUpper_zh_TW = 50,
+    TransliterationModulesNew_TextToNumFormalHangul_ko = 51,
+    TransliterationModulesNew_TextToNumFormalLower_ko = 52,
+    TransliterationModulesNew_TextToNumFormalUpper_ko = 53,
+    TransliterationModulesNew_TextToNumInformalHangul_ko = 54,
+    TransliterationModulesNew_TextToNumInformalLower_ko = 55,
+    TransliterationModulesNew_TextToNumInformalUpper_ko = 56,
+    TransliterationModulesNew_CharToNumLower_zh_CN = 59,
+    TransliterationModulesNew_CharToNumUpper_zh_CN = 60,
+    TransliterationModulesNew_CharToNumLower_zh_TW = 61,
+    TransliterationModulesNew_CharToNumUpper_zh_TW = 62,
+    TransliterationModulesNew_CharToNumHangul_ko = 63,
+    TransliterationModulesNew_CharToNumLower_ko = 64,
+    TransliterationModulesNew_CharToNumUpper_ko = 65,
+    TransliterationModulesNew_END_OF_MODULE = 0,
+    TransliterationModulesNew_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TransliterationModulesNew_UPPERCASE_LOWERCASE = TransliterationModulesNew::TransliterationModulesNew_UPPERCASE_LOWERCASE;
+constexpr auto TransliterationModulesNew_LOWERCASE_UPPERCASE = TransliterationModulesNew::TransliterationModulesNew_LOWERCASE_UPPERCASE;
+constexpr auto TransliterationModulesNew_HALFWIDTH_FULLWIDTH = TransliterationModulesNew::TransliterationModulesNew_HALFWIDTH_FULLWIDTH;
+constexpr auto TransliterationModulesNew_FULLWIDTH_HALFWIDTH = TransliterationModulesNew::TransliterationModulesNew_FULLWIDTH_HALFWIDTH;
+constexpr auto TransliterationModulesNew_KATAKANA_HIRAGANA = TransliterationModulesNew::TransliterationModulesNew_KATAKANA_HIRAGANA;
+constexpr auto TransliterationModulesNew_HIRAGANA_KATAKANA = TransliterationModulesNew::TransliterationModulesNew_HIRAGANA_KATAKANA;
+constexpr auto TransliterationModulesNew_IGNORE_CASE = TransliterationModulesNew::TransliterationModulesNew_IGNORE_CASE;
+constexpr auto TransliterationModulesNew_IGNORE_KANA = TransliterationModulesNew::TransliterationModulesNew_IGNORE_KANA;
+constexpr auto TransliterationModulesNew_IGNORE_WIDTH = TransliterationModulesNew::TransliterationModulesNew_IGNORE_WIDTH;
+constexpr auto TransliterationModulesNew_IgnoreTraditionalKanji_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreTraditionalKanji_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreTraditionalKana_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreTraditionalKana_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreMinusSign_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreMinusSign_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreIterationMark_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreIterationMark_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreSeparator_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreSeparator_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreZiZu_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreZiZu_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreBaFa_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreBaFa_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreTiJi_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreTiJi_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreHyuByu_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreHyuByu_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreSeZe_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreSeZe_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreIandEfollowedByYa_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreIandEfollowedByYa_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreKiKuFollowedBySa_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreKiKuFollowedBySa_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreSize_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreSize_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreProlongedSoundMark_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreProlongedSoundMark_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreMiddleDot_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreMiddleDot_ja_JP;
+constexpr auto TransliterationModulesNew_IgnoreSpace_ja_JP = TransliterationModulesNew::TransliterationModulesNew_IgnoreSpace_ja_JP;
+constexpr auto TransliterationModulesNew_SmallToLarge_ja_JP = TransliterationModulesNew::TransliterationModulesNew_SmallToLarge_ja_JP;
+constexpr auto TransliterationModulesNew_LargeToSmall_ja_JP = TransliterationModulesNew::TransliterationModulesNew_LargeToSmall_ja_JP;
+constexpr auto TransliterationModulesNew_NumToTextLower_zh_CN = TransliterationModulesNew::TransliterationModulesNew_NumToTextLower_zh_CN;
+constexpr auto TransliterationModulesNew_NumToTextUpper_zh_CN = TransliterationModulesNew::TransliterationModulesNew_NumToTextUpper_zh_CN;
+constexpr auto TransliterationModulesNew_NumToTextLower_zh_TW = TransliterationModulesNew::TransliterationModulesNew_NumToTextLower_zh_TW;
+constexpr auto TransliterationModulesNew_NumToTextUpper_zh_TW = TransliterationModulesNew::TransliterationModulesNew_NumToTextUpper_zh_TW;
+constexpr auto TransliterationModulesNew_NumToTextFormalHangul_ko = TransliterationModulesNew::TransliterationModulesNew_NumToTextFormalHangul_ko;
+constexpr auto TransliterationModulesNew_NumToTextFormalLower_ko = TransliterationModulesNew::TransliterationModulesNew_NumToTextFormalLower_ko;
+constexpr auto TransliterationModulesNew_NumToTextFormalUpper_ko = TransliterationModulesNew::TransliterationModulesNew_NumToTextFormalUpper_ko;
+constexpr auto TransliterationModulesNew_NumToTextInformalHangul_ko = TransliterationModulesNew::TransliterationModulesNew_NumToTextInformalHangul_ko;
+constexpr auto TransliterationModulesNew_NumToTextInformalLower_ko = TransliterationModulesNew::TransliterationModulesNew_NumToTextInformalLower_ko;
+constexpr auto TransliterationModulesNew_NumToTextInformalUpper_ko = TransliterationModulesNew::TransliterationModulesNew_NumToTextInformalUpper_ko;
+constexpr auto TransliterationModulesNew_NumToCharLower_zh_CN = TransliterationModulesNew::TransliterationModulesNew_NumToCharLower_zh_CN;
+constexpr auto TransliterationModulesNew_NumToCharUpper_zh_CN = TransliterationModulesNew::TransliterationModulesNew_NumToCharUpper_zh_CN;
+constexpr auto TransliterationModulesNew_NumToCharLower_zh_TW = TransliterationModulesNew::TransliterationModulesNew_NumToCharLower_zh_TW;
+constexpr auto TransliterationModulesNew_NumToCharUpper_zh_TW = TransliterationModulesNew::TransliterationModulesNew_NumToCharUpper_zh_TW;
+constexpr auto TransliterationModulesNew_NumToCharHangul_ko = TransliterationModulesNew::TransliterationModulesNew_NumToCharHangul_ko;
+constexpr auto TransliterationModulesNew_NumToCharLower_ko = TransliterationModulesNew::TransliterationModulesNew_NumToCharLower_ko;
+constexpr auto TransliterationModulesNew_NumToCharUpper_ko = TransliterationModulesNew::TransliterationModulesNew_NumToCharUpper_ko;
+constexpr auto TransliterationModulesNew_NumToCharFullwidth = TransliterationModulesNew::TransliterationModulesNew_NumToCharFullwidth;
+constexpr auto TransliterationModulesNew_NumToCharKanjiShort_ja_JP = TransliterationModulesNew::TransliterationModulesNew_NumToCharKanjiShort_ja_JP;
+constexpr auto TransliterationModulesNew_TextToNumLower_zh_CN = TransliterationModulesNew::TransliterationModulesNew_TextToNumLower_zh_CN;
+constexpr auto TransliterationModulesNew_TextToNumUpper_zh_CN = TransliterationModulesNew::TransliterationModulesNew_TextToNumUpper_zh_CN;
+constexpr auto TransliterationModulesNew_TextToNumLower_zh_TW = TransliterationModulesNew::TransliterationModulesNew_TextToNumLower_zh_TW;
+constexpr auto TransliterationModulesNew_TextToNumUpper_zh_TW = TransliterationModulesNew::TransliterationModulesNew_TextToNumUpper_zh_TW;
+constexpr auto TransliterationModulesNew_TextToNumFormalHangul_ko = TransliterationModulesNew::TransliterationModulesNew_TextToNumFormalHangul_ko;
+constexpr auto TransliterationModulesNew_TextToNumFormalLower_ko = TransliterationModulesNew::TransliterationModulesNew_TextToNumFormalLower_ko;
+constexpr auto TransliterationModulesNew_TextToNumFormalUpper_ko = TransliterationModulesNew::TransliterationModulesNew_TextToNumFormalUpper_ko;
+constexpr auto TransliterationModulesNew_TextToNumInformalHangul_ko = TransliterationModulesNew::TransliterationModulesNew_TextToNumInformalHangul_ko;
+constexpr auto TransliterationModulesNew_TextToNumInformalLower_ko = TransliterationModulesNew::TransliterationModulesNew_TextToNumInformalLower_ko;
+constexpr auto TransliterationModulesNew_TextToNumInformalUpper_ko = TransliterationModulesNew::TransliterationModulesNew_TextToNumInformalUpper_ko;
+constexpr auto TransliterationModulesNew_CharToNumLower_zh_CN = TransliterationModulesNew::TransliterationModulesNew_CharToNumLower_zh_CN;
+constexpr auto TransliterationModulesNew_CharToNumUpper_zh_CN = TransliterationModulesNew::TransliterationModulesNew_CharToNumUpper_zh_CN;
+constexpr auto TransliterationModulesNew_CharToNumLower_zh_TW = TransliterationModulesNew::TransliterationModulesNew_CharToNumLower_zh_TW;
+constexpr auto TransliterationModulesNew_CharToNumUpper_zh_TW = TransliterationModulesNew::TransliterationModulesNew_CharToNumUpper_zh_TW;
+constexpr auto TransliterationModulesNew_CharToNumHangul_ko = TransliterationModulesNew::TransliterationModulesNew_CharToNumHangul_ko;
+constexpr auto TransliterationModulesNew_CharToNumLower_ko = TransliterationModulesNew::TransliterationModulesNew_CharToNumLower_ko;
+constexpr auto TransliterationModulesNew_CharToNumUpper_ko = TransliterationModulesNew::TransliterationModulesNew_CharToNumUpper_ko;
+constexpr auto TransliterationModulesNew_END_OF_MODULE = TransliterationModulesNew::TransliterationModulesNew_END_OF_MODULE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::TransliterationModulesNew const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::i18n::TransliterationModulesNew *);
+
+#endif

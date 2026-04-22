@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace DocumentStatistic {
+
+static const ::sal_Int16 CHARS = (sal_Int16)3;
+static const ::sal_Int16 PAGES = (sal_Int16)0;
+static const ::sal_Int16 PARAS = (sal_Int16)1;
+static const ::sal_Int16 WORDS = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HDL

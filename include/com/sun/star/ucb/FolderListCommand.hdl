@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_FOLDERLISTCOMMAND_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_FOLDERLISTCOMMAND_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FolderListCommand
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FolderListCommand
+{
+
+#endif
+    FolderListCommand_GET = 0,
+    FolderListCommand_GET_SUBSCRIBED = 1,
+    FolderListCommand_SET = 2,
+    FolderListCommand_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FolderListCommand_GET = FolderListCommand::FolderListCommand_GET;
+constexpr auto FolderListCommand_GET_SUBSCRIBED = FolderListCommand::FolderListCommand_GET_SUBSCRIBED;
+constexpr auto FolderListCommand_SET = FolderListCommand::FolderListCommand_SET;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::FolderListCommand const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::FolderListCommand *);
+
+#endif

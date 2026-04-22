@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_SCHEMAATTRIBUTE_HDL
+#define INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_SCHEMAATTRIBUTE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend { namespace SchemaAttribute {
+
+static const ::sal_Int16 EXTENSIBLE = (sal_Int16)4;
+static const ::sal_Int16 LOCALIZED = (sal_Int16)2;
+static const ::sal_Int16 MASK = (sal_Int16)255;
+static const ::sal_Int16 REQUIRED = (sal_Int16)1;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_SCHEMAATTRIBUTE_HDL

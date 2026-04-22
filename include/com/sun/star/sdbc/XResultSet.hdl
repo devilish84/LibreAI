@@ -1,0 +1,59 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_XRESULTSET_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_XRESULTSET_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XResultSet : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XResultSet() = default;
+    XResultSet(XResultSet const &) = default;
+    XResultSet(XResultSet &&) = default;
+    XResultSet & operator =(XResultSet const &) = default;
+    XResultSet & operator =(XResultSet &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL next() = 0;
+    virtual ::sal_Bool SAL_CALL isBeforeFirst() = 0;
+    virtual ::sal_Bool SAL_CALL isAfterLast() = 0;
+    virtual ::sal_Bool SAL_CALL isFirst() = 0;
+    virtual ::sal_Bool SAL_CALL isLast() = 0;
+    virtual void SAL_CALL beforeFirst() = 0;
+    virtual void SAL_CALL afterLast() = 0;
+    virtual ::sal_Bool SAL_CALL first() = 0;
+    virtual ::sal_Bool SAL_CALL last() = 0;
+    virtual ::sal_Int32 SAL_CALL getRow() = 0;
+    virtual ::sal_Bool SAL_CALL absolute( ::sal_Int32 row ) = 0;
+    virtual ::sal_Bool SAL_CALL relative( ::sal_Int32 rows ) = 0;
+    virtual ::sal_Bool SAL_CALL previous() = 0;
+    virtual void SAL_CALL refreshRow() = 0;
+    virtual ::sal_Bool SAL_CALL rowUpdated() = 0;
+    virtual ::sal_Bool SAL_CALL rowInserted() = 0;
+    virtual ::sal_Bool SAL_CALL rowDeleted() = 0;
+    virtual ::css::uno::Reference< ::css::uno::XInterface > SAL_CALL getStatement() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XResultSet() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::XResultSet const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbc::XResultSet > *);
+
+#endif

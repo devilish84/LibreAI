@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XEXTENDEDTOOLKIT_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XEXTENDEDTOOLKIT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XFocusListener; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XKeyHandler; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XTopWindow; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XTopWindowListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XExtendedToolkit : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XExtendedToolkit() = default;
+    XExtendedToolkit(XExtendedToolkit const &) = default;
+    XExtendedToolkit(XExtendedToolkit &&) = default;
+    XExtendedToolkit & operator =(XExtendedToolkit const &) = default;
+    XExtendedToolkit & operator =(XExtendedToolkit &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Int32 SAL_CALL getTopWindowCount() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::awt::XTopWindow > SAL_CALL getTopWindow( ::sal_Int32 nIndex ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::awt::XTopWindow > SAL_CALL getActiveTopWindow() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL addTopWindowListener( const ::css::uno::Reference< ::css::awt::XTopWindowListener >& xListener ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL removeTopWindowListener( const ::css::uno::Reference< ::css::awt::XTopWindowListener >& xListener ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL addKeyHandler( const ::css::uno::Reference< ::css::awt::XKeyHandler >& xHandler ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL removeKeyHandler( const ::css::uno::Reference< ::css::awt::XKeyHandler >& xHandler ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL addFocusListener( const ::css::uno::Reference< ::css::awt::XFocusListener >& xListener ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL removeFocusListener( const ::css::uno::Reference< ::css::awt::XFocusListener >& xListener ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL fireFocusGained( const ::css::uno::Reference< ::css::uno::XInterface >& source ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL fireFocusLost( const ::css::uno::Reference< ::css::uno::XInterface >& source ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XExtendedToolkit() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XExtendedToolkit const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XExtendedToolkit > *);
+
+#endif

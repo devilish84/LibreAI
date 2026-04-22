@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_DEPLOYMENT_XUPDATEINFORMATIONPROVIDER_HDL
+#define INCLUDED_COM_SUN_STAR_DEPLOYMENT_XUPDATEINFORMATIONPROVIDER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XEnumeration; } } } }
+namespace com { namespace sun { namespace star { namespace task { class XInteractionHandler; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XElement; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace deployment {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUpdateInformationProvider : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUpdateInformationProvider() = default;
+    XUpdateInformationProvider(XUpdateInformationProvider const &) = default;
+    XUpdateInformationProvider(XUpdateInformationProvider &&) = default;
+    XUpdateInformationProvider & operator =(XUpdateInformationProvider const &) = default;
+    XUpdateInformationProvider & operator =(XUpdateInformationProvider &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::xml::dom::XElement > > SAL_CALL getUpdateInformation( const ::css::uno::Sequence< ::rtl::OUString >& repositories, const ::rtl::OUString& extensionId ) = 0;
+    virtual void SAL_CALL cancel() = 0;
+    virtual void SAL_CALL setInteractionHandler( const ::css::uno::Reference< ::css::task::XInteractionHandler >& handler ) = 0;
+    virtual ::css::uno::Reference< ::css::container::XEnumeration > SAL_CALL getUpdateInformationEnumeration( const ::css::uno::Sequence< ::rtl::OUString >& repositories, const ::rtl::OUString& extensionId ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUpdateInformationProvider() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::deployment::XUpdateInformationProvider const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::deployment::XUpdateInformationProvider > *);
+
+#endif

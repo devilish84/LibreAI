@@ -1,0 +1,63 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_APPLICATION_XDATABASEDOCUMENTUI_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_APPLICATION_XDATABASEDOCUMENTUI_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XWindow; } } } }
+#include "com/sun/star/beans/Pair.hdl"
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace lang { class XComponent; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XConnection; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XDataSource; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace application {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDatabaseDocumentUI : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDatabaseDocumentUI() = default;
+    XDatabaseDocumentUI(XDatabaseDocumentUI const &) = default;
+    XDatabaseDocumentUI(XDatabaseDocumentUI &&) = default;
+    XDatabaseDocumentUI & operator =(XDatabaseDocumentUI const &) = default;
+    XDatabaseDocumentUI & operator =(XDatabaseDocumentUI &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Reference< ::css::sdbc::XDataSource > SAL_CALL getDataSource() = 0;
+    virtual ::css::uno::Reference< ::css::awt::XWindow > SAL_CALL getApplicationMainWindow() = 0;
+    virtual ::css::uno::Reference< ::css::sdbc::XConnection > SAL_CALL getActiveConnection() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::lang::XComponent > > SAL_CALL getSubComponents() = 0;
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isConnected() = 0;
+    virtual void SAL_CALL connect() = 0;
+    virtual ::css::beans::Pair< ::sal_Int32, ::rtl::OUString > SAL_CALL identifySubComponent( const ::css::uno::Reference< ::css::lang::XComponent >& SubComponent ) = 0;
+    virtual ::sal_Bool SAL_CALL closeSubComponents() = 0;
+    virtual ::css::uno::Reference< ::css::lang::XComponent > SAL_CALL loadComponent( ::sal_Int32 ObjectType, const ::rtl::OUString& ObjectName, ::sal_Bool ForEditing ) = 0;
+    virtual ::css::uno::Reference< ::css::lang::XComponent > SAL_CALL loadComponentWithArguments( ::sal_Int32 ObjectType, const ::rtl::OUString& ObjectName, ::sal_Bool ForEditing, const ::css::uno::Sequence< ::css::beans::PropertyValue >& Arguments ) = 0;
+    virtual ::css::uno::Reference< ::css::lang::XComponent > SAL_CALL createComponent( ::sal_Int32 ObjectType, ::css::uno::Reference< ::css::lang::XComponent >& DocumentDefinition ) = 0;
+    virtual ::css::uno::Reference< ::css::lang::XComponent > SAL_CALL createComponentWithArguments( ::sal_Int32 ObjectType, const ::css::uno::Sequence< ::css::beans::PropertyValue >& Arguments, ::css::uno::Reference< ::css::lang::XComponent >& DocumentDefinition ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDatabaseDocumentUI() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdb::application::XDatabaseDocumentUI const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdb::application::XDatabaseDocumentUI > *);
+
+#endif

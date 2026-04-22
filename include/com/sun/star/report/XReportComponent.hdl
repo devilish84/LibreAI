@@ -1,0 +1,71 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_XREPORTCOMPONENT_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_XREPORTCOMPONENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XPropertySet.hdl"
+#include "com/sun/star/container/XChild.hdl"
+#include "com/sun/star/drawing/XShape.hdl"
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace report { class XSection; } } } }
+#include "com/sun/star/util/XCloneable.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XReportComponent : public ::css::util::XCloneable, public ::css::container::XChild, public ::css::lang::XComponent, public ::css::drawing::XShape, public ::css::beans::XPropertySet
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XReportComponent() = default;
+    XReportComponent(XReportComponent const &) = default;
+    XReportComponent(XReportComponent &&) = default;
+    XReportComponent & operator =(XReportComponent const &) = default;
+    XReportComponent & operator =(XReportComponent &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getName() = 0;
+    virtual void SAL_CALL setName( const ::rtl::OUString& _name ) = 0;
+    virtual ::sal_Int32 SAL_CALL getHeight() = 0;
+    virtual void SAL_CALL setHeight( ::sal_Int32 _height ) = 0;
+    virtual ::sal_Int32 SAL_CALL getPositionX() = 0;
+    virtual void SAL_CALL setPositionX( ::sal_Int32 _positionx ) = 0;
+    virtual ::sal_Int32 SAL_CALL getPositionY() = 0;
+    virtual void SAL_CALL setPositionY( ::sal_Int32 _positiony ) = 0;
+    virtual ::sal_Int32 SAL_CALL getWidth() = 0;
+    virtual void SAL_CALL setWidth( ::sal_Int32 _width ) = 0;
+    virtual ::sal_Bool SAL_CALL getAutoGrow() = 0;
+    virtual void SAL_CALL setAutoGrow( ::sal_Bool _autogrow ) = 0;
+    virtual ::sal_Int16 SAL_CALL getControlBorder() = 0;
+    virtual void SAL_CALL setControlBorder( ::sal_Int16 _controlborder ) = 0;
+    virtual ::sal_Int32 SAL_CALL getControlBorderColor() = 0;
+    virtual void SAL_CALL setControlBorderColor( ::sal_Int32 _controlbordercolor ) = 0;
+    virtual ::sal_Bool SAL_CALL getPrintRepeatedValues() = 0;
+    virtual void SAL_CALL setPrintRepeatedValues( ::sal_Bool _printrepeatedvalues ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getMasterFields() = 0;
+    virtual void SAL_CALL setMasterFields( const ::css::uno::Sequence< ::rtl::OUString >& _masterfields ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getDetailFields() = 0;
+    virtual void SAL_CALL setDetailFields( const ::css::uno::Sequence< ::rtl::OUString >& _detailfields ) = 0;
+    virtual ::css::uno::Reference< ::css::report::XSection > SAL_CALL getSection() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XReportComponent() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::XReportComponent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::XReportComponent > *);
+
+#endif

@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_PROPERTYCONCEPT_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_PROPERTYCONCEPT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace beans { namespace PropertyConcept {
+
+static const ::sal_Int32 ALL = (sal_Int32)-1;
+static const ::sal_Int32 ATTRIBUTES = (sal_Int32)4;
+static const ::sal_Int32 DANGEROUS = (sal_Int32)1;
+static const ::sal_Int32 METHODS = (sal_Int32)8;
+static const ::sal_Int32 PROPERTYSET = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_BEANS_PROPERTYCONCEPT_HDL

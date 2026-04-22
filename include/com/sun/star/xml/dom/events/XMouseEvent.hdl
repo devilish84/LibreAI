@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_XMOUSEEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_XMOUSEEVENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace events { class XEventTarget; } } } } } }
+#include "com/sun/star/xml/dom/events/XUIEvent.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace views { class XAbstractView; } } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace events {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMouseEvent : public ::css::xml::dom::events::XUIEvent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMouseEvent() = default;
+    XMouseEvent(XMouseEvent const &) = default;
+    XMouseEvent(XMouseEvent &&) = default;
+    XMouseEvent & operator =(XMouseEvent const &) = default;
+    XMouseEvent & operator =(XMouseEvent &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getScreenX() = 0;
+    virtual ::sal_Int32 SAL_CALL getScreenY() = 0;
+    virtual ::sal_Int32 SAL_CALL getClientX() = 0;
+    virtual ::sal_Int32 SAL_CALL getClientY() = 0;
+    virtual ::sal_Bool SAL_CALL getCtrlKey() = 0;
+    virtual ::sal_Bool SAL_CALL getShiftKey() = 0;
+    virtual ::sal_Bool SAL_CALL getAltKey() = 0;
+    virtual ::sal_Bool SAL_CALL getMetaKey() = 0;
+    virtual ::sal_Int16 SAL_CALL getButton() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::events::XEventTarget > SAL_CALL getRelatedTarget() = 0;
+    virtual void SAL_CALL initMouseEvent( const ::rtl::OUString& typeArg, ::sal_Bool canBubbleArg, ::sal_Bool cancelableArg, const ::css::uno::Reference< ::css::xml::dom::views::XAbstractView >& viewArg, ::sal_Int32 detailArg, ::sal_Int32 screenXArg, ::sal_Int32 screenYArg, ::sal_Int32 clientXArg, ::sal_Int32 clientYArg, ::sal_Bool ctrlKeyArg, ::sal_Bool altKeyArg, ::sal_Bool shiftKeyArg, ::sal_Bool metaKeyArg, ::sal_Int16 buttonArg, const ::css::uno::Reference< ::css::xml::dom::events::XEventTarget >& relatedTargetArg ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMouseEvent() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::events::XMouseEvent const *);
+} } } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::events::XMouseEvent > *);
+
+#endif

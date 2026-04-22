@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEEVENTID_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEEVENTID_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace accessibility { namespace AccessibleEventId {
+
+static const ::sal_Int16 ACTION_CHANGED = (sal_Int16)3;
+static const ::sal_Int16 ACTIVE_DESCENDANT_CHANGED = (sal_Int16)5;
+static const ::sal_Int16 ACTIVE_DESCENDANT_CHANGED_NOFOCUS = (sal_Int16)34;
+static const ::sal_Int16 BOUNDRECT_CHANGED = (sal_Int16)6;
+static const ::sal_Int16 CARET_CHANGED = (sal_Int16)20;
+static const ::sal_Int16 CHILD = (sal_Int16)7;
+static const ::sal_Int16 COLUMN_CHANGED = (sal_Int16)40;
+static const ::sal_Int16 CONTENT_FLOWS_FROM_RELATION_CHANGED = (sal_Int16)12;
+static const ::sal_Int16 CONTENT_FLOWS_TO_RELATION_CHANGED = (sal_Int16)13;
+static const ::sal_Int16 CONTROLLED_BY_RELATION_CHANGED = (sal_Int16)14;
+static const ::sal_Int16 CONTROLLER_FOR_RELATION_CHANGED = (sal_Int16)15;
+static const ::sal_Int16 DESCRIPTION_CHANGED = (sal_Int16)2;
+static const ::sal_Int16 HYPERTEXT_CHANGED = (sal_Int16)24;
+static const ::sal_Int16 INVALIDATE_ALL_CHILDREN = (sal_Int16)8;
+static const ::sal_Int16 LABELED_BY_RELATION_CHANGED = (sal_Int16)17;
+static const ::sal_Int16 LABEL_FOR_RELATION_CHANGED = (sal_Int16)16;
+static const ::sal_Int16 LISTBOX_ENTRY_COLLAPSED = (sal_Int16)33;
+static const ::sal_Int16 LISTBOX_ENTRY_EXPANDED = (sal_Int16)32;
+static const ::sal_Int16 MEMBER_OF_RELATION_CHANGED = (sal_Int16)18;
+static const ::sal_Int16 NAME_CHANGED = (sal_Int16)1;
+static const ::sal_Int16 PAGE_CHANGED = (sal_Int16)38;
+static const ::sal_Int16 ROLE_CHANGED = (sal_Int16)41;
+static const ::sal_Int16 SECTION_CHANGED = (sal_Int16)39;
+static const ::sal_Int16 SELECTION_CHANGED = (sal_Int16)9;
+static const ::sal_Int16 SELECTION_CHANGED_ADD = (sal_Int16)35;
+static const ::sal_Int16 SELECTION_CHANGED_REMOVE = (sal_Int16)36;
+static const ::sal_Int16 SELECTION_CHANGED_WITHIN = (sal_Int16)37;
+static const ::sal_Int16 STATE_CHANGED = (sal_Int16)4;
+static const ::sal_Int16 SUB_WINDOW_OF_RELATION_CHANGED = (sal_Int16)19;
+static const ::sal_Int16 TABLE_CAPTION_CHANGED = (sal_Int16)25;
+static const ::sal_Int16 TABLE_COLUMN_DESCRIPTION_CHANGED = (sal_Int16)26;
+static const ::sal_Int16 TABLE_COLUMN_HEADER_CHANGED = (sal_Int16)27;
+static const ::sal_Int16 TABLE_MODEL_CHANGED = (sal_Int16)28;
+static const ::sal_Int16 TABLE_ROW_DESCRIPTION_CHANGED = (sal_Int16)29;
+static const ::sal_Int16 TABLE_ROW_HEADER_CHANGED = (sal_Int16)30;
+static const ::sal_Int16 TABLE_SUMMARY_CHANGED = (sal_Int16)31;
+static const ::sal_Int16 TEXT_ATTRIBUTE_CHANGED = (sal_Int16)23;
+static const ::sal_Int16 TEXT_CHANGED = (sal_Int16)22;
+static const ::sal_Int16 TEXT_SELECTION_CHANGED = (sal_Int16)21;
+static const ::sal_Int16 VALUE_CHANGED = (sal_Int16)11;
+static const ::sal_Int16 VISIBLE_DATA_CHANGED = (sal_Int16)10;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEEVENTID_HDL

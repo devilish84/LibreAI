@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_VIEW_PAPERFORMAT_HDL
+#define INCLUDED_COM_SUN_STAR_VIEW_PAPERFORMAT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace view {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI PaperFormat
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI PaperFormat
+{
+
+#endif
+    PaperFormat_A3 = 0,
+    PaperFormat_A4 = 1,
+    PaperFormat_A5 = 2,
+    PaperFormat_B4 = 3,
+    PaperFormat_B5 = 4,
+    PaperFormat_LETTER = 5,
+    PaperFormat_LEGAL = 6,
+    PaperFormat_TABLOID = 7,
+    PaperFormat_USER = 8,
+    PaperFormat_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto PaperFormat_A3 = PaperFormat::PaperFormat_A3;
+constexpr auto PaperFormat_A4 = PaperFormat::PaperFormat_A4;
+constexpr auto PaperFormat_A5 = PaperFormat::PaperFormat_A5;
+constexpr auto PaperFormat_B4 = PaperFormat::PaperFormat_B4;
+constexpr auto PaperFormat_B5 = PaperFormat::PaperFormat_B5;
+constexpr auto PaperFormat_LETTER = PaperFormat::PaperFormat_LETTER;
+constexpr auto PaperFormat_LEGAL = PaperFormat::PaperFormat_LEGAL;
+constexpr auto PaperFormat_TABLOID = PaperFormat::PaperFormat_TABLOID;
+constexpr auto PaperFormat_USER = PaperFormat::PaperFormat_USER;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::view::PaperFormat const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::view::PaperFormat *);
+
+#endif

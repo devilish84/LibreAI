@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_PROVIDER_XSCRIPTPROVIDERSUPPLIER_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_PROVIDER_XSCRIPTPROVIDERSUPPLIER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace script { namespace provider { class XScriptProvider; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script { namespace provider {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XScriptProviderSupplier : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XScriptProviderSupplier() = default;
+    XScriptProviderSupplier(XScriptProviderSupplier const &) = default;
+    XScriptProviderSupplier(XScriptProviderSupplier &&) = default;
+    XScriptProviderSupplier & operator =(XScriptProviderSupplier const &) = default;
+    XScriptProviderSupplier & operator =(XScriptProviderSupplier &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::script::provider::XScriptProvider > SAL_CALL getScriptProvider() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XScriptProviderSupplier() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::provider::XScriptProviderSupplier const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::provider::XScriptProviderSupplier > *);
+
+#endif

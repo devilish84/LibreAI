@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_TABLEBORDER2_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_TABLEBORDER2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/table/BorderLine2.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED TableBorder2 {
+    inline TableBorder2();
+
+    inline TableBorder2(const ::css::table::BorderLine2& TopLine_, const ::sal_Bool& IsTopLineValid_, const ::css::table::BorderLine2& BottomLine_, const ::sal_Bool& IsBottomLineValid_, const ::css::table::BorderLine2& LeftLine_, const ::sal_Bool& IsLeftLineValid_, const ::css::table::BorderLine2& RightLine_, const ::sal_Bool& IsRightLineValid_, const ::css::table::BorderLine2& HorizontalLine_, const ::sal_Bool& IsHorizontalLineValid_, const ::css::table::BorderLine2& VerticalLine_, const ::sal_Bool& IsVerticalLineValid_, const ::sal_Int16& Distance_, const ::sal_Bool& IsDistanceValid_);
+
+    ::css::table::BorderLine2 TopLine;
+    ::sal_Bool IsTopLineValid;
+    ::css::table::BorderLine2 BottomLine;
+    ::sal_Bool IsBottomLineValid;
+    ::css::table::BorderLine2 LeftLine;
+    ::sal_Bool IsLeftLineValid;
+    ::css::table::BorderLine2 RightLine;
+    ::sal_Bool IsRightLineValid;
+    ::css::table::BorderLine2 HorizontalLine;
+    ::sal_Bool IsHorizontalLineValid;
+    ::css::table::BorderLine2 VerticalLine;
+    ::sal_Bool IsVerticalLineValid;
+    ::sal_Int16 Distance;
+    ::sal_Bool IsDistanceValid;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::TableBorder2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::table::TableBorder2 *);
+
+#endif

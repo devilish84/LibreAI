@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_XNUMBERFORMATS_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_XNUMBERFORMATS_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace beans { class XPropertySet; } } } }
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XNumberFormats : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XNumberFormats() = default;
+    XNumberFormats(XNumberFormats const &) = default;
+    XNumberFormats(XNumberFormats &&) = default;
+    XNumberFormats & operator =(XNumberFormats const &) = default;
+    XNumberFormats & operator =(XNumberFormats &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::beans::XPropertySet > SAL_CALL getByKey( ::sal_Int32 nKey ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int32 > SAL_CALL queryKeys( ::sal_Int16 nType, const ::css::lang::Locale& nLocale, ::sal_Bool bCreate ) = 0;
+    virtual ::sal_Int32 SAL_CALL queryKey( const ::rtl::OUString& aFormat, const ::css::lang::Locale& nLocale, ::sal_Bool bScan ) = 0;
+    virtual ::sal_Int32 SAL_CALL addNew( const ::rtl::OUString& aFormat, const ::css::lang::Locale& nLocale ) = 0;
+    virtual ::sal_Int32 SAL_CALL addNewConverted( const ::rtl::OUString& aFormat, const ::css::lang::Locale& nLocale, const ::css::lang::Locale& nNewLocale ) = 0;
+    virtual void SAL_CALL removeByKey( ::sal_Int32 nKey ) = 0;
+    virtual ::rtl::OUString SAL_CALL generateFormat( ::sal_Int32 nBaseKey, const ::css::lang::Locale& nLocale, ::sal_Bool bThousands, ::sal_Bool bRed, ::sal_Int16 nDecimals, ::sal_Int16 nLeading ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XNumberFormats() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::XNumberFormats const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::util::XNumberFormats > *);
+
+#endif

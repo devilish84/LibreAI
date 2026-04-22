@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XCONTROLLER_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XCONTROLLER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace frame { class XFrame; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XModel; } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XController : public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XController() = default;
+    XController(XController const &) = default;
+    XController(XController &&) = default;
+    XController & operator =(XController const &) = default;
+    XController & operator =(XController &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL attachFrame( const ::css::uno::Reference< ::css::frame::XFrame >& Frame ) = 0;
+    virtual ::sal_Bool SAL_CALL attachModel( const ::css::uno::Reference< ::css::frame::XModel >& Model ) = 0;
+    virtual ::sal_Bool SAL_CALL suspend( ::sal_Bool Suspend ) = 0;
+    virtual ::css::uno::Any SAL_CALL getViewData() = 0;
+    virtual void SAL_CALL restoreViewData( const ::css::uno::Any& Data ) = 0;
+    virtual ::css::uno::Reference< ::css::frame::XModel > SAL_CALL getModel() = 0;
+    virtual ::css::uno::Reference< ::css::frame::XFrame > SAL_CALL getFrame() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XController() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XController const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XController > *);
+
+#endif

@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XMEANING_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XMEANING_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMeaning : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMeaning() = default;
+    XMeaning(XMeaning const &) = default;
+    XMeaning(XMeaning &&) = default;
+    XMeaning & operator =(XMeaning const &) = default;
+    XMeaning & operator =(XMeaning &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getMeaning() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL querySynonyms() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMeaning() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XMeaning const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XMeaning > *);
+
+#endif

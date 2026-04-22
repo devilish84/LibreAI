@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBCX_PRIVILEGE_HDL
+#define INCLUDED_COM_SUN_STAR_SDBCX_PRIVILEGE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbcx { namespace Privilege {
+
+static const ::sal_Int32 ALTER = (sal_Int32)64;
+static const ::sal_Int32 CREATE = (sal_Int32)32;
+static const ::sal_Int32 DELETE = (sal_Int32)8;
+static const ::sal_Int32 DROP = (sal_Int32)256;
+static const ::sal_Int32 INSERT = (sal_Int32)2;
+static const ::sal_Int32 READ = (sal_Int32)16;
+static const ::sal_Int32 REFERENCE = (sal_Int32)128;
+static const ::sal_Int32 SELECT = (sal_Int32)1;
+static const ::sal_Int32 UPDATE = (sal_Int32)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBCX_PRIVILEGE_HDL

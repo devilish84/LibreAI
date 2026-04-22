@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_SAX_XFASTATTRIBUTELIST_HDL
+#define INCLUDED_COM_SUN_STAR_XML_SAX_XFASTATTRIBUTELIST_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/xml/Attribute.hdl"
+#include "com/sun/star/xml/FastAttribute.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace sax {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFastAttributeList : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFastAttributeList() = default;
+    XFastAttributeList(XFastAttributeList const &) = default;
+    XFastAttributeList(XFastAttributeList &&) = default;
+    XFastAttributeList & operator =(XFastAttributeList const &) = default;
+    XFastAttributeList & operator =(XFastAttributeList &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL hasAttribute( ::sal_Int32 Token ) = 0;
+    virtual ::sal_Int32 SAL_CALL getValueToken( ::sal_Int32 Token ) = 0;
+    virtual ::sal_Int32 SAL_CALL getOptionalValueToken( ::sal_Int32 Token, ::sal_Int32 Default ) = 0;
+    virtual ::rtl::OUString SAL_CALL getValue( ::sal_Int32 Token ) = 0;
+    virtual ::rtl::OUString SAL_CALL getOptionalValue( ::sal_Int32 Token ) = 0;
+    virtual ::css::uno::Sequence< ::css::xml::Attribute > SAL_CALL getUnknownAttributes() = 0;
+    virtual ::css::uno::Sequence< ::css::xml::FastAttribute > SAL_CALL getFastAttributes() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFastAttributeList() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::sax::XFastAttributeList const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::sax::XFastAttributeList > *);
+
+#endif

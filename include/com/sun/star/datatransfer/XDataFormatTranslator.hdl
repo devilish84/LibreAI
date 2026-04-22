@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_XDATAFORMATTRANSLATOR_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_XDATAFORMATTRANSLATOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/datatransfer/DataFlavor.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace datatransfer {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDataFormatTranslator : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDataFormatTranslator() = default;
+    XDataFormatTranslator(XDataFormatTranslator const &) = default;
+    XDataFormatTranslator(XDataFormatTranslator &&) = default;
+    XDataFormatTranslator & operator =(XDataFormatTranslator const &) = default;
+    XDataFormatTranslator & operator =(XDataFormatTranslator &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Any SAL_CALL getSystemDataTypeFromDataFlavor( const ::css::datatransfer::DataFlavor& aDataFlavor ) = 0;
+    virtual ::css::datatransfer::DataFlavor SAL_CALL getDataFlavorFromSystemDataType( const ::css::uno::Any& aSysDataType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDataFormatTranslator() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::datatransfer::XDataFormatTranslator const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::datatransfer::XDataFormatTranslator > *);
+
+#endif

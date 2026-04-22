@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_REFLECTION_XIDLMETHOD_HDL
+#define INCLUDED_COM_SUN_STAR_REFLECTION_XIDLMETHOD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/reflection/MethodMode.hdl"
+#include "com/sun/star/reflection/ParamInfo.hdl"
+namespace com { namespace sun { namespace star { namespace reflection { class XIdlClass; } } } }
+#include "com/sun/star/reflection/XIdlMember.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace reflection {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XIdlMethod : public ::css::reflection::XIdlMember
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XIdlMethod() = default;
+    XIdlMethod(XIdlMethod const &) = default;
+    XIdlMethod(XIdlMethod &&) = default;
+    XIdlMethod & operator =(XIdlMethod const &) = default;
+    XIdlMethod & operator =(XIdlMethod &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::reflection::XIdlClass > SAL_CALL getReturnType() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::reflection::XIdlClass > > SAL_CALL getParameterTypes() = 0;
+    virtual ::css::uno::Sequence< ::css::reflection::ParamInfo > SAL_CALL getParameterInfos() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::reflection::XIdlClass > > SAL_CALL getExceptionTypes() = 0;
+    virtual ::css::reflection::MethodMode SAL_CALL getMode() = 0;
+    virtual ::css::uno::Any SAL_CALL invoke( const ::css::uno::Any& obj, ::css::uno::Sequence< ::css::uno::Any >& args ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XIdlMethod() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::reflection::XIdlMethod const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::reflection::XIdlMethod > *);
+
+#endif

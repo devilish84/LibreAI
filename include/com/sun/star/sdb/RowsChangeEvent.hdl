@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_ROWSCHANGEEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_ROWSCHANGEEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sdb/RowChangeEvent.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI RowsChangeEvent: public ::css::sdb::RowChangeEvent {
+    inline RowsChangeEvent();
+
+    inline RowsChangeEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::sal_Int32& Action_, const ::sal_Int32& Rows_, const ::css::uno::Sequence< ::css::uno::Any >& Bookmarks_);
+
+    ::css::uno::Sequence< ::css::uno::Any > Bookmarks CPPU_GCC3_ALIGN(::css::sdb::RowChangeEvent);
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdb::RowsChangeEvent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sdb::RowsChangeEvent *);
+
+#endif

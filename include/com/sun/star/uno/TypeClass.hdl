@@ -1,0 +1,98 @@
+#ifndef INCLUDED_COM_SUN_STAR_UNO_TYPECLASS_HDL
+#define INCLUDED_COM_SUN_STAR_UNO_TYPECLASS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace uno {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TypeClass
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TypeClass
+{
+
+#endif
+    TypeClass_VOID = 0,
+    TypeClass_CHAR = 1,
+    TypeClass_BOOLEAN = 2,
+    TypeClass_BYTE = 3,
+    TypeClass_SHORT = 4,
+    TypeClass_UNSIGNED_SHORT = 5,
+    TypeClass_LONG = 6,
+    TypeClass_UNSIGNED_LONG = 7,
+    TypeClass_HYPER = 8,
+    TypeClass_UNSIGNED_HYPER = 9,
+    TypeClass_FLOAT = 10,
+    TypeClass_DOUBLE = 11,
+    TypeClass_STRING = 12,
+    TypeClass_TYPE = 13,
+    TypeClass_ANY = 14,
+    TypeClass_ENUM = 15,
+    TypeClass_TYPEDEF = 16,
+    TypeClass_STRUCT = 17,
+    TypeClass_UNION = 18,
+    TypeClass_EXCEPTION = 19,
+    TypeClass_SEQUENCE = 20,
+    TypeClass_ARRAY = 21,
+    TypeClass_INTERFACE = 22,
+    TypeClass_SERVICE = 23,
+    TypeClass_MODULE = 24,
+    TypeClass_INTERFACE_METHOD = 25,
+    TypeClass_INTERFACE_ATTRIBUTE = 26,
+    TypeClass_UNKNOWN = 27,
+    TypeClass_PROPERTY = 28,
+    TypeClass_CONSTANT = 29,
+    TypeClass_CONSTANTS = 30,
+    TypeClass_SINGLETON = 31,
+    TypeClass_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TypeClass_VOID = TypeClass::TypeClass_VOID;
+constexpr auto TypeClass_CHAR = TypeClass::TypeClass_CHAR;
+constexpr auto TypeClass_BOOLEAN = TypeClass::TypeClass_BOOLEAN;
+constexpr auto TypeClass_BYTE = TypeClass::TypeClass_BYTE;
+constexpr auto TypeClass_SHORT = TypeClass::TypeClass_SHORT;
+constexpr auto TypeClass_UNSIGNED_SHORT = TypeClass::TypeClass_UNSIGNED_SHORT;
+constexpr auto TypeClass_LONG = TypeClass::TypeClass_LONG;
+constexpr auto TypeClass_UNSIGNED_LONG = TypeClass::TypeClass_UNSIGNED_LONG;
+constexpr auto TypeClass_HYPER = TypeClass::TypeClass_HYPER;
+constexpr auto TypeClass_UNSIGNED_HYPER = TypeClass::TypeClass_UNSIGNED_HYPER;
+constexpr auto TypeClass_FLOAT = TypeClass::TypeClass_FLOAT;
+constexpr auto TypeClass_DOUBLE = TypeClass::TypeClass_DOUBLE;
+constexpr auto TypeClass_STRING = TypeClass::TypeClass_STRING;
+constexpr auto TypeClass_TYPE = TypeClass::TypeClass_TYPE;
+constexpr auto TypeClass_ANY = TypeClass::TypeClass_ANY;
+constexpr auto TypeClass_ENUM = TypeClass::TypeClass_ENUM;
+constexpr auto TypeClass_TYPEDEF = TypeClass::TypeClass_TYPEDEF;
+constexpr auto TypeClass_STRUCT = TypeClass::TypeClass_STRUCT;
+constexpr auto TypeClass_UNION = TypeClass::TypeClass_UNION;
+constexpr auto TypeClass_EXCEPTION = TypeClass::TypeClass_EXCEPTION;
+constexpr auto TypeClass_SEQUENCE = TypeClass::TypeClass_SEQUENCE;
+constexpr auto TypeClass_ARRAY = TypeClass::TypeClass_ARRAY;
+constexpr auto TypeClass_INTERFACE = TypeClass::TypeClass_INTERFACE;
+constexpr auto TypeClass_SERVICE = TypeClass::TypeClass_SERVICE;
+constexpr auto TypeClass_MODULE = TypeClass::TypeClass_MODULE;
+constexpr auto TypeClass_INTERFACE_METHOD = TypeClass::TypeClass_INTERFACE_METHOD;
+constexpr auto TypeClass_INTERFACE_ATTRIBUTE = TypeClass::TypeClass_INTERFACE_ATTRIBUTE;
+constexpr auto TypeClass_UNKNOWN = TypeClass::TypeClass_UNKNOWN;
+constexpr auto TypeClass_PROPERTY = TypeClass::TypeClass_PROPERTY;
+constexpr auto TypeClass_CONSTANT = TypeClass::TypeClass_CONSTANT;
+constexpr auto TypeClass_CONSTANTS = TypeClass::TypeClass_CONSTANTS;
+constexpr auto TypeClass_SINGLETON = TypeClass::TypeClass_SINGLETON;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::uno::TypeClass const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::TypeClass *);
+
+#endif

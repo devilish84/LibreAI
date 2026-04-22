@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_SYNCHRONIZEPOLICY_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_SYNCHRONIZEPOLICY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI SynchronizePolicy
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI SynchronizePolicy
+{
+
+#endif
+    SynchronizePolicy_SERVER_IS_MASTER = 0,
+    SynchronizePolicy_CLIENT_IS_MASTER = 1,
+    SynchronizePolicy_NONE_IS_MASTER = 2,
+    SynchronizePolicy_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto SynchronizePolicy_SERVER_IS_MASTER = SynchronizePolicy::SynchronizePolicy_SERVER_IS_MASTER;
+constexpr auto SynchronizePolicy_CLIENT_IS_MASTER = SynchronizePolicy::SynchronizePolicy_CLIENT_IS_MASTER;
+constexpr auto SynchronizePolicy_NONE_IS_MASTER = SynchronizePolicy::SynchronizePolicy_NONE_IS_MASTER;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::SynchronizePolicy const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::SynchronizePolicy *);
+
+#endif

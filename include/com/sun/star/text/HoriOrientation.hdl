@@ -1,0 +1,22 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_HORIORIENTATION_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_HORIORIENTATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace HoriOrientation {
+
+static const ::sal_Int16 CENTER = (sal_Int16)2;
+static const ::sal_Int16 FULL = (sal_Int16)6;
+static const ::sal_Int16 INSIDE = (sal_Int16)4;
+static const ::sal_Int16 LEFT = (sal_Int16)3;
+static const ::sal_Int16 LEFT_AND_WIDTH = (sal_Int16)7;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+static const ::sal_Int16 OUTSIDE = (sal_Int16)5;
+static const ::sal_Int16 RIGHT = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_HORIORIENTATION_HDL

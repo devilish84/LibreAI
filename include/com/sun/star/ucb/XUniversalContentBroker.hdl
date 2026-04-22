@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XUNIVERSALCONTENTBROKER_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XUNIVERSALCONTENTBROKER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/ucb/XCommandProcessor2.hdl"
+#include "com/sun/star/ucb/XContentIdentifierFactory.hdl"
+#include "com/sun/star/ucb/XContentProvider.hdl"
+#include "com/sun/star/ucb/XContentProviderManager.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUniversalContentBroker : public ::css::lang::XComponent, public ::css::ucb::XContentProvider, public ::css::ucb::XContentProviderManager, public ::css::ucb::XContentIdentifierFactory, public ::css::ucb::XCommandProcessor2
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUniversalContentBroker() = default;
+    XUniversalContentBroker(XUniversalContentBroker const &) = default;
+    XUniversalContentBroker(XUniversalContentBroker &&) = default;
+    XUniversalContentBroker & operator =(XUniversalContentBroker const &) = default;
+    XUniversalContentBroker & operator =(XUniversalContentBroker &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUniversalContentBroker() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XUniversalContentBroker const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XUniversalContentBroker > *);
+
+#endif

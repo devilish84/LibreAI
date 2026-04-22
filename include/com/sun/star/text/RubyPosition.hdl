@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_RUBYPOSITION_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_RUBYPOSITION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace RubyPosition {
+
+static const ::sal_Int16 ABOVE = (sal_Int16)0;
+static const ::sal_Int16 BELOW = (sal_Int16)1;
+static const ::sal_Int16 INTER_CHARACTER = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_RUBYPOSITION_HDL

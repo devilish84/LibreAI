@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_TEXTUREPROJECTIONMODE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_TEXTUREPROJECTIONMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TextureProjectionMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TextureProjectionMode
+{
+
+#endif
+    TextureProjectionMode_OBJECTSPECIFIC = 0,
+    TextureProjectionMode_PARALLEL = 1,
+    TextureProjectionMode_SPHERE = 2,
+    TextureProjectionMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TextureProjectionMode_OBJECTSPECIFIC = TextureProjectionMode::TextureProjectionMode_OBJECTSPECIFIC;
+constexpr auto TextureProjectionMode_PARALLEL = TextureProjectionMode::TextureProjectionMode_PARALLEL;
+constexpr auto TextureProjectionMode_SPHERE = TextureProjectionMode::TextureProjectionMode_SPHERE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::TextureProjectionMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::TextureProjectionMode *);
+
+#endif

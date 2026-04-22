@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_NOTEPRINTMODE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_NOTEPRINTMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI NotePrintMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI NotePrintMode
+{
+
+#endif
+    NotePrintMode_NOT = 0,
+    NotePrintMode_ONLY = 1,
+    NotePrintMode_DOC_END = 2,
+    NotePrintMode_PAGE_END = 3,
+    NotePrintMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto NotePrintMode_NOT = NotePrintMode::NotePrintMode_NOT;
+constexpr auto NotePrintMode_ONLY = NotePrintMode::NotePrintMode_ONLY;
+constexpr auto NotePrintMode_DOC_END = NotePrintMode::NotePrintMode_DOC_END;
+constexpr auto NotePrintMode_PAGE_END = NotePrintMode::NotePrintMode_PAGE_END;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::NotePrintMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::text::NotePrintMode *);
+
+#endif

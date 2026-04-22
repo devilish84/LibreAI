@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_LINEENDFORMAT_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_LINEENDFORMAT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace LineEndFormat {
+
+static const ::sal_Int16 CARRIAGE_RETURN = (sal_Int16)0;
+static const ::sal_Int16 CARRIAGE_RETURN_LINE_FEED = (sal_Int16)2;
+static const ::sal_Int16 LINE_FEED = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_LINEENDFORMAT_HDL

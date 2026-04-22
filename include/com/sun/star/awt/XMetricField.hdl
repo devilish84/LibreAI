@@ -1,0 +1,59 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XMETRICFIELD_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XMETRICFIELD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMetricField : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMetricField() = default;
+    XMetricField(XMetricField const &) = default;
+    XMetricField(XMetricField &&) = default;
+    XMetricField & operator =(XMetricField const &) = default;
+    XMetricField & operator =(XMetricField &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setValue( ::sal_Int64 Value, ::sal_Int16 FieldUnit ) = 0;
+    virtual void SAL_CALL setUserValue( ::sal_Int64 Value, ::sal_Int16 FieldUnit ) = 0;
+    virtual ::sal_Int64 SAL_CALL getValue( ::sal_Int16 FieldUnit ) = 0;
+    virtual ::sal_Int64 SAL_CALL getCorrectedValue( ::sal_Int16 FieldUnit ) = 0;
+    virtual void SAL_CALL setMin( ::sal_Int64 Value, ::sal_Int16 FieldUnit ) = 0;
+    virtual ::sal_Int64 SAL_CALL getMin( ::sal_Int16 FieldUnit ) = 0;
+    virtual void SAL_CALL setMax( ::sal_Int64 Value, ::sal_Int16 FieldUnit ) = 0;
+    virtual ::sal_Int64 SAL_CALL getMax( ::sal_Int16 FieldUnit ) = 0;
+    virtual void SAL_CALL setFirst( ::sal_Int64 Value, ::sal_Int16 FieldUnit ) = 0;
+    virtual ::sal_Int64 SAL_CALL getFirst( ::sal_Int16 FieldUnit ) = 0;
+    virtual void SAL_CALL setLast( ::sal_Int64 Value, ::sal_Int16 FieldUnit ) = 0;
+    virtual ::sal_Int64 SAL_CALL getLast( ::sal_Int16 FieldUnit ) = 0;
+    virtual void SAL_CALL setSpinSize( ::sal_Int64 Value ) = 0;
+    virtual ::sal_Int64 SAL_CALL getSpinSize() = 0;
+    virtual void SAL_CALL setDecimalDigits( ::sal_Int16 nDigits ) = 0;
+    virtual ::sal_Int16 SAL_CALL getDecimalDigits() = 0;
+    virtual void SAL_CALL setStrictFormat( ::sal_Bool bStrict ) = 0;
+    virtual ::sal_Bool SAL_CALL isStrictFormat() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMetricField() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XMetricField const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XMetricField > *);
+
+#endif

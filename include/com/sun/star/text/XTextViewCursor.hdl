@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XTEXTVIEWCURSOR_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XTEXTVIEWCURSOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Point.hdl"
+#include "com/sun/star/text/XTextCursor.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTextViewCursor : public ::css::text::XTextCursor
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTextViewCursor() = default;
+    XTextViewCursor(XTextViewCursor const &) = default;
+    XTextViewCursor(XTextViewCursor &&) = default;
+    XTextViewCursor & operator =(XTextViewCursor const &) = default;
+    XTextViewCursor & operator =(XTextViewCursor &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isVisible() = 0;
+    virtual void SAL_CALL setVisible( ::sal_Bool bVisible ) = 0;
+    virtual ::css::awt::Point SAL_CALL getPosition() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTextViewCursor() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XTextViewCursor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XTextViewCursor > *);
+
+#endif

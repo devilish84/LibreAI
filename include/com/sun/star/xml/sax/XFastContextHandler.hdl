@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_SAX_XFASTCONTEXTHANDLER_HDL
+#define INCLUDED_COM_SUN_STAR_XML_SAX_XFASTCONTEXTHANDLER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { class XFastAttributeList; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { class XFastContextHandler; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace sax {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFastContextHandler : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFastContextHandler() = default;
+    XFastContextHandler(XFastContextHandler const &) = default;
+    XFastContextHandler(XFastContextHandler &&) = default;
+    XFastContextHandler & operator =(XFastContextHandler const &) = default;
+    XFastContextHandler & operator =(XFastContextHandler &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL startFastElement( ::sal_Int32 Element, const ::css::uno::Reference< ::css::xml::sax::XFastAttributeList >& Attribs ) = 0;
+    virtual void SAL_CALL startUnknownElement( const ::rtl::OUString& Namespace, const ::rtl::OUString& Name, const ::css::uno::Reference< ::css::xml::sax::XFastAttributeList >& Attribs ) = 0;
+    virtual void SAL_CALL endFastElement( ::sal_Int32 Element ) = 0;
+    virtual void SAL_CALL endUnknownElement( const ::rtl::OUString& Namespace, const ::rtl::OUString& Name ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::sax::XFastContextHandler > SAL_CALL createFastChildContext( ::sal_Int32 Element, const ::css::uno::Reference< ::css::xml::sax::XFastAttributeList >& Attribs ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::sax::XFastContextHandler > SAL_CALL createUnknownChildContext( const ::rtl::OUString& Namespace, const ::rtl::OUString& Name, const ::css::uno::Reference< ::css::xml::sax::XFastAttributeList >& Attribs ) = 0;
+    virtual void SAL_CALL characters( const ::rtl::OUString& aChars ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFastContextHandler() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::sax::XFastContextHandler const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::sax::XFastContextHandler > *);
+
+#endif

@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XXMLBASICEXPORTER_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XXMLBASICEXPORTER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/document/XExporter.hdl"
+#include "com/sun/star/document/XFilter.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XXMLBasicExporter : public ::css::document::XExporter, public ::css::document::XFilter
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XXMLBasicExporter() = default;
+    XXMLBasicExporter(XXMLBasicExporter const &) = default;
+    XXMLBasicExporter(XXMLBasicExporter &&) = default;
+    XXMLBasicExporter & operator =(XXMLBasicExporter const &) = default;
+    XXMLBasicExporter & operator =(XXMLBasicExporter &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XXMLBasicExporter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XXMLBasicExporter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XXMLBasicExporter > *);
+
+#endif

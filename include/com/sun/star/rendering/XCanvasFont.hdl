@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XCANVASFONT_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XCANVASFONT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/rendering/FontMetrics.hdl"
+#include "com/sun/star/rendering/FontRequest.hdl"
+#include "com/sun/star/rendering/StringContext.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XTextLayout; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCanvasFont : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCanvasFont() = default;
+    XCanvasFont(XCanvasFont const &) = default;
+    XCanvasFont(XCanvasFont &&) = default;
+    XCanvasFont & operator =(XCanvasFont const &) = default;
+    XCanvasFont & operator =(XCanvasFont &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::rendering::XTextLayout > SAL_CALL createTextLayout( const ::css::rendering::StringContext& aText, ::sal_Int8 nDirection, ::sal_Int64 nRandomSeed ) = 0;
+    virtual ::css::rendering::FontRequest SAL_CALL getFontRequest() = 0;
+    virtual ::css::rendering::FontMetrics SAL_CALL getFontMetrics() = 0;
+    virtual ::css::uno::Sequence< double > SAL_CALL getAvailableSizes() = 0;
+    virtual ::css::uno::Sequence< ::css::beans::PropertyValue > SAL_CALL getExtraFontProperties() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCanvasFont() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XCanvasFont const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XCanvasFont > *);
+
+#endif

@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_XLOADABLE_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_XLOADABLE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace form { class XLoadListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLoadable : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLoadable() = default;
+    XLoadable(XLoadable const &) = default;
+    XLoadable(XLoadable &&) = default;
+    XLoadable & operator =(XLoadable const &) = default;
+    XLoadable & operator =(XLoadable &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL load() = 0;
+    virtual void SAL_CALL unload() = 0;
+    virtual void SAL_CALL reload() = 0;
+    virtual ::sal_Bool SAL_CALL isLoaded() = 0;
+    virtual void SAL_CALL addLoadListener( const ::css::uno::Reference< ::css::form::XLoadListener >& aListener ) = 0;
+    virtual void SAL_CALL removeLoadListener( const ::css::uno::Reference< ::css::form::XLoadListener >& aListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLoadable() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::XLoadable const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::form::XLoadable > *);
+
+#endif

@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_TEXTCONVERSIONRESULT_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_TEXTCONVERSIONRESULT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/Boundary.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED TextConversionResult {
+    inline TextConversionResult();
+
+    inline TextConversionResult(const ::css::i18n::Boundary& Boundary_, const ::css::uno::Sequence< ::rtl::OUString >& Candidates_);
+
+    ::css::i18n::Boundary Boundary;
+    ::css::uno::Sequence< ::rtl::OUString > Candidates;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::TextConversionResult const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::i18n::TextConversionResult *);
+
+#endif

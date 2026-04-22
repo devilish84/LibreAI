@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_XDECK_HDL
+#define INCLUDED_COM_SUN_STAR_UI_XDECK_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace ui { class XPanels; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDeck : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDeck() = default;
+    XDeck(XDeck const &) = default;
+    XDeck(XDeck &&) = default;
+    XDeck & operator =(XDeck const &) = default;
+    XDeck & operator =(XDeck &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getId() = 0;
+    virtual ::rtl::OUString SAL_CALL getTitle() = 0;
+    virtual void SAL_CALL setTitle( const ::rtl::OUString& newTitle ) = 0;
+    virtual ::sal_Bool SAL_CALL isActive() = 0;
+    virtual void SAL_CALL activate( ::sal_Bool bActivate ) = 0;
+    virtual ::sal_Int32 SAL_CALL getOrderIndex() = 0;
+    virtual void SAL_CALL setOrderIndex( ::sal_Int32 newOrderIndex ) = 0;
+    virtual void SAL_CALL moveFirst() = 0;
+    virtual void SAL_CALL moveLast() = 0;
+    virtual void SAL_CALL moveUp() = 0;
+    virtual void SAL_CALL moveDown() = 0;
+    virtual ::css::uno::Reference< ::css::ui::XPanels > SAL_CALL getPanels() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDeck() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::XDeck const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::XDeck > *);
+
+#endif

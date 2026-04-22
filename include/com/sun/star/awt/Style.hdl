@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_STYLE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_STYLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace Style {
+
+static const ::sal_Int16 DIALOG = (sal_Int16)1;
+static const ::sal_Int16 FRAME = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_STYLE_HDL

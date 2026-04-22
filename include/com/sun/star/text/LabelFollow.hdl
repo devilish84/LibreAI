@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_LABELFOLLOW_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_LABELFOLLOW_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace LabelFollow {
+
+static const ::sal_Int16 LISTTAB = (sal_Int16)0;
+static const ::sal_Int16 NEWLINE = (sal_Int16)3;
+static const ::sal_Int16 NOTHING = (sal_Int16)2;
+static const ::sal_Int16 SPACE = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_LABELFOLLOW_HDL

@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XActionLockable : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XActionLockable() = default;
+    XActionLockable(XActionLockable const &) = default;
+    XActionLockable(XActionLockable &&) = default;
+    XActionLockable & operator =(XActionLockable const &) = default;
+    XActionLockable & operator =(XActionLockable &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isActionLocked() = 0;
+    virtual void SAL_CALL addActionLock() = 0;
+    virtual void SAL_CALL removeActionLock() = 0;
+    virtual void SAL_CALL setActionLocks( ::sal_Int16 nLock ) = 0;
+    virtual ::sal_Int16 SAL_CALL resetActionLocks() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XActionLockable() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XActionLockable const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XActionLockable > *);
+
+#endif

@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBCX_PRIVILEGEOBJECT_HDL
+#define INCLUDED_COM_SUN_STAR_SDBCX_PRIVILEGEOBJECT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbcx { namespace PrivilegeObject {
+
+static const ::sal_Int32 COLUMN = (sal_Int32)2;
+static const ::sal_Int32 TABLE = (sal_Int32)0;
+static const ::sal_Int32 VIEW = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBCX_PRIVILEGEOBJECT_HDL

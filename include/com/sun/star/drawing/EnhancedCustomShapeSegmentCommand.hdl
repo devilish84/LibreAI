@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPESEGMENTCOMMAND_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPESEGMENTCOMMAND_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace EnhancedCustomShapeSegmentCommand {
+
+static const ::sal_Int16 ANGLEELLIPSE = (sal_Int16)9;
+static const ::sal_Int16 ANGLEELLIPSETO = (sal_Int16)8;
+static const ::sal_Int16 ARC = (sal_Int16)11;
+static const ::sal_Int16 ARCANGLETO = (sal_Int16)17;
+static const ::sal_Int16 ARCTO = (sal_Int16)10;
+static const ::sal_Int16 CLOCKWISEARC = (sal_Int16)13;
+static const ::sal_Int16 CLOCKWISEARCTO = (sal_Int16)12;
+static const ::sal_Int16 CLOSESUBPATH = (sal_Int16)4;
+static const ::sal_Int16 CURVETO = (sal_Int16)3;
+static const ::sal_Int16 DARKEN = (sal_Int16)18;
+static const ::sal_Int16 DARKENLESS = (sal_Int16)19;
+static const ::sal_Int16 ELLIPTICALQUADRANTX = (sal_Int16)14;
+static const ::sal_Int16 ELLIPTICALQUADRANTY = (sal_Int16)15;
+static const ::sal_Int16 ENDSUBPATH = (sal_Int16)5;
+static const ::sal_Int16 LIGHTEN = (sal_Int16)20;
+static const ::sal_Int16 LIGHTENLESS = (sal_Int16)21;
+static const ::sal_Int16 LINETO = (sal_Int16)2;
+static const ::sal_Int16 MOVETO = (sal_Int16)1;
+static const ::sal_Int16 NOFILL = (sal_Int16)6;
+static const ::sal_Int16 NOSTROKE = (sal_Int16)7;
+static const ::sal_Int16 QUADRATICCURVETO = (sal_Int16)16;
+static const ::sal_Int16 UNKNOWN = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPESEGMENTCOMMAND_HDL

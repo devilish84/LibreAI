@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONTAINER_XIDENTIFIERCONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_CONTAINER_XIDENTIFIERCONTAINER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XIdentifierReplace.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace container {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XIdentifierContainer : public ::css::container::XIdentifierReplace
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XIdentifierContainer() = default;
+    XIdentifierContainer(XIdentifierContainer const &) = default;
+    XIdentifierContainer(XIdentifierContainer &&) = default;
+    XIdentifierContainer & operator =(XIdentifierContainer const &) = default;
+    XIdentifierContainer & operator =(XIdentifierContainer &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL insert( const ::css::uno::Any& aElement ) = 0;
+    virtual void SAL_CALL removeByIdentifier( ::sal_Int32 Identifier ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XIdentifierContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::container::XIdentifierContainer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::container::XIdentifierContainer > *);
+
+#endif

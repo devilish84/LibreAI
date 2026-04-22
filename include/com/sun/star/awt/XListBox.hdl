@@ -1,0 +1,67 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XLISTBOX_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XLISTBOX_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XActionListener; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XItemListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XListBox : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XListBox() = default;
+    XListBox(XListBox const &) = default;
+    XListBox(XListBox &&) = default;
+    XListBox & operator =(XListBox const &) = default;
+    XListBox & operator =(XListBox &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addItemListener( const ::css::uno::Reference< ::css::awt::XItemListener >& l ) = 0;
+    virtual void SAL_CALL removeItemListener( const ::css::uno::Reference< ::css::awt::XItemListener >& l ) = 0;
+    virtual void SAL_CALL addActionListener( const ::css::uno::Reference< ::css::awt::XActionListener >& l ) = 0;
+    virtual void SAL_CALL removeActionListener( const ::css::uno::Reference< ::css::awt::XActionListener >& l ) = 0;
+    virtual void SAL_CALL addItem( const ::rtl::OUString& aItem, ::sal_Int16 nPos ) = 0;
+    virtual void SAL_CALL addItems( const ::css::uno::Sequence< ::rtl::OUString >& aItems, ::sal_Int16 nPos ) = 0;
+    virtual void SAL_CALL removeItems( ::sal_Int16 nPos, ::sal_Int16 nCount ) = 0;
+    virtual ::sal_Int16 SAL_CALL getItemCount() = 0;
+    virtual ::rtl::OUString SAL_CALL getItem( ::sal_Int16 nPos ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getItems() = 0;
+    virtual ::sal_Int16 SAL_CALL getSelectedItemPos() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int16 > SAL_CALL getSelectedItemsPos() = 0;
+    virtual ::rtl::OUString SAL_CALL getSelectedItem() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getSelectedItems() = 0;
+    virtual void SAL_CALL selectItemPos( ::sal_Int16 nPos, ::sal_Bool bSelect ) = 0;
+    virtual void SAL_CALL selectItemsPos( const ::css::uno::Sequence< ::sal_Int16 >& aPositions, ::sal_Bool bSelect ) = 0;
+    virtual void SAL_CALL selectItem( const ::rtl::OUString& aItem, ::sal_Bool bSelect ) = 0;
+    virtual ::sal_Bool SAL_CALL isMutipleMode() = 0;
+    virtual void SAL_CALL setMultipleMode( ::sal_Bool bMulti ) = 0;
+    virtual ::sal_Int16 SAL_CALL getDropDownLineCount() = 0;
+    virtual void SAL_CALL setDropDownLineCount( ::sal_Int16 nLines ) = 0;
+    virtual void SAL_CALL makeVisible( ::sal_Int16 nEntry ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XListBox() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XListBox const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XListBox > *);
+
+#endif

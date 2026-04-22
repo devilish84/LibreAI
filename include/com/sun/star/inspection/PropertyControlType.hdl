@@ -1,0 +1,27 @@
+#ifndef INCLUDED_COM_SUN_STAR_INSPECTION_PROPERTYCONTROLTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_INSPECTION_PROPERTYCONTROLTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace inspection { namespace PropertyControlType {
+
+static const ::sal_Int16 CharacterField = (sal_Int16)5;
+static const ::sal_Int16 ColorListBox = (sal_Int16)7;
+static const ::sal_Int16 ComboBox = (sal_Int16)2;
+static const ::sal_Int16 DateField = (sal_Int16)9;
+static const ::sal_Int16 DateTimeField = (sal_Int16)11;
+static const ::sal_Int16 HyperlinkField = (sal_Int16)12;
+static const ::sal_Int16 ListBox = (sal_Int16)1;
+static const ::sal_Int16 MultiLineTextField = (sal_Int16)4;
+static const ::sal_Int16 NumericField = (sal_Int16)8;
+static const ::sal_Int16 StringListField = (sal_Int16)6;
+static const ::sal_Int16 TextField = (sal_Int16)3;
+static const ::sal_Int16 TimeField = (sal_Int16)10;
+static const ::sal_Int16 Unknown = (sal_Int16)13;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_INSPECTION_PROPERTYCONTROLTYPE_HDL

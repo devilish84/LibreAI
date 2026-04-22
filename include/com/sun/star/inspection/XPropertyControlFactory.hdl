@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_INSPECTION_XPROPERTYCONTROLFACTORY_HDL
+#define INCLUDED_COM_SUN_STAR_INSPECTION_XPROPERTYCONTROLFACTORY_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace inspection { class XPropertyControl; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace inspection {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPropertyControlFactory : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPropertyControlFactory() = default;
+    XPropertyControlFactory(XPropertyControlFactory const &) = default;
+    XPropertyControlFactory(XPropertyControlFactory &&) = default;
+    XPropertyControlFactory & operator =(XPropertyControlFactory const &) = default;
+    XPropertyControlFactory & operator =(XPropertyControlFactory &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::inspection::XPropertyControl > SAL_CALL createPropertyControl( ::sal_Int16 ControlType, ::sal_Bool CreateReadOnly ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPropertyControlFactory() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::inspection::XPropertyControlFactory const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::inspection::XPropertyControlFactory > *);
+
+#endif

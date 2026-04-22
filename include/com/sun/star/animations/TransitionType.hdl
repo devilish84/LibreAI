@@ -1,0 +1,57 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_TRANSITIONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_TRANSITIONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace animations { namespace TransitionType {
+
+static const ::sal_Int16 ARROWHEADWIPE = (sal_Int16)14;
+static const ::sal_Int16 BARNDOORWIPE = (sal_Int16)4;
+static const ::sal_Int16 BARNVEEWIPE = (sal_Int16)9;
+static const ::sal_Int16 BARNZIGZAGWIPE = (sal_Int16)11;
+static const ::sal_Int16 BARWIPE = (sal_Int16)1;
+static const ::sal_Int16 BLINDSWIPE = (sal_Int16)41;
+static const ::sal_Int16 BOWTIEWIPE = (sal_Int16)6;
+static const ::sal_Int16 BOXSNAKESWIPE = (sal_Int16)33;
+static const ::sal_Int16 BOXWIPE = (sal_Int16)2;
+static const ::sal_Int16 CHECKERBOARDWIPE = (sal_Int16)39;
+static const ::sal_Int16 CLOCKWIPE = (sal_Int16)22;
+static const ::sal_Int16 DIAGONALWIPE = (sal_Int16)5;
+static const ::sal_Int16 DISSOLVE = (sal_Int16)40;
+static const ::sal_Int16 DOUBLEFANWIPE = (sal_Int16)26;
+static const ::sal_Int16 DOUBLESWEEPWIPE = (sal_Int16)27;
+static const ::sal_Int16 ELLIPSEWIPE = (sal_Int16)17;
+static const ::sal_Int16 EYEWIPE = (sal_Int16)18;
+static const ::sal_Int16 FADE = (sal_Int16)37;
+static const ::sal_Int16 FANWIPE = (sal_Int16)25;
+static const ::sal_Int16 FOURBOXWIPE = (sal_Int16)3;
+static const ::sal_Int16 HEXAGONWIPE = (sal_Int16)16;
+static const ::sal_Int16 IRISWIPE = (sal_Int16)12;
+static const ::sal_Int16 MISCDIAGONALWIPE = (sal_Int16)7;
+static const ::sal_Int16 MISCSHAPEWIPE = (sal_Int16)21;
+static const ::sal_Int16 PARALLELSNAKESWIPE = (sal_Int16)32;
+static const ::sal_Int16 PENTAGONWIPE = (sal_Int16)15;
+static const ::sal_Int16 PINWHEELWIPE = (sal_Int16)23;
+static const ::sal_Int16 PUSHWIPE = (sal_Int16)35;
+static const ::sal_Int16 RANDOM = (sal_Int16)42;
+static const ::sal_Int16 RANDOMBARWIPE = (sal_Int16)38;
+static const ::sal_Int16 ROUNDRECTWIPE = (sal_Int16)19;
+static const ::sal_Int16 SALOONDOORWIPE = (sal_Int16)28;
+static const ::sal_Int16 SINGLESWEEPWIPE = (sal_Int16)24;
+static const ::sal_Int16 SLIDEWIPE = (sal_Int16)36;
+static const ::sal_Int16 SNAKEWIPE = (sal_Int16)30;
+static const ::sal_Int16 SPIRALWIPE = (sal_Int16)31;
+static const ::sal_Int16 STARWIPE = (sal_Int16)20;
+static const ::sal_Int16 TRIANGLEWIPE = (sal_Int16)13;
+static const ::sal_Int16 VEEWIPE = (sal_Int16)8;
+static const ::sal_Int16 WATERFALLWIPE = (sal_Int16)34;
+static const ::sal_Int16 WINDSHIELDWIPE = (sal_Int16)29;
+static const ::sal_Int16 ZIGZAGWIPE = (sal_Int16)10;
+static const ::sal_Int16 ZOOM = (sal_Int16)43;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_ANIMATIONS_TRANSITIONTYPE_HDL

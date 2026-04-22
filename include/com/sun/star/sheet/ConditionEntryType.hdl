@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_CONDITIONENTRYTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_CONDITIONENTRYTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace ConditionEntryType {
+
+static const ::sal_Int32 COLORSCALE = (sal_Int32)1;
+static const ::sal_Int32 CONDITION = (sal_Int32)0;
+static const ::sal_Int32 DATABAR = (sal_Int32)2;
+static const ::sal_Int32 DATE = (sal_Int32)4;
+static const ::sal_Int32 ICONSET = (sal_Int32)3;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_CONDITIONENTRYTYPE_HDL

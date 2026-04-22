@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_XDRAWPAGES_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_XDRAWPAGES_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XIndexAccess.hdl"
+namespace com { namespace sun { namespace star { namespace drawing { class XDrawPage; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDrawPages : public ::css::container::XIndexAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDrawPages() = default;
+    XDrawPages(XDrawPages const &) = default;
+    XDrawPages(XDrawPages &&) = default;
+    XDrawPages & operator =(XDrawPages const &) = default;
+    XDrawPages & operator =(XDrawPages &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::drawing::XDrawPage > SAL_CALL insertNewByIndex( ::sal_Int32 nIndex ) = 0;
+    virtual void SAL_CALL remove( const ::css::uno::Reference< ::css::drawing::XDrawPage >& xPage ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDrawPages() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::XDrawPages const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::XDrawPages > *);
+
+#endif

@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_XOUTPARAMETERS_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_XOUTPARAMETERS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XOutParameters : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XOutParameters() = default;
+    XOutParameters(XOutParameters const &) = default;
+    XOutParameters(XOutParameters &&) = default;
+    XOutParameters & operator =(XOutParameters const &) = default;
+    XOutParameters & operator =(XOutParameters &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL registerOutParameter( ::sal_Int32 parameterIndex, ::sal_Int32 sqlType, const ::rtl::OUString& typeName ) = 0;
+    virtual void SAL_CALL registerNumericOutParameter( ::sal_Int32 parameterIndex, ::sal_Int32 sqlType, ::sal_Int32 scale ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XOutParameters() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::XOutParameters const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbc::XOutParameters > *);
+
+#endif

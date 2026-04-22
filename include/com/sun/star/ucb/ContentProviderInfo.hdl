@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_CONTENTPROVIDERINFO_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_CONTENTPROVIDERINFO_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace ucb { class XContentProvider; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI ContentProviderInfo {
+    inline ContentProviderInfo();
+
+    inline ContentProviderInfo(const ::css::uno::Reference< ::css::ucb::XContentProvider >& ContentProvider_, const ::rtl::OUString& Scheme_);
+
+    ::css::uno::Reference< ::css::ucb::XContentProvider > ContentProvider;
+    ::rtl::OUString Scheme;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::ContentProviderInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::ContentProviderInfo *);
+
+#endif

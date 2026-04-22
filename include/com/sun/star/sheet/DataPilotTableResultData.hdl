@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTTABLERESULTDATA_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTTABLERESULTDATA_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/DataPilotFieldFilter.hdl"
+#include "com/sun/star/sheet/DataResult.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DataPilotTableResultData {
+    inline DataPilotTableResultData();
+
+    inline DataPilotTableResultData(const ::css::uno::Sequence< ::css::sheet::DataPilotFieldFilter >& FieldFilters_, const ::sal_Int32& DataFieldIndex_, const ::css::sheet::DataResult& Result_);
+
+    ::css::uno::Sequence< ::css::sheet::DataPilotFieldFilter > FieldFilters;
+    ::sal_Int32 DataFieldIndex;
+    ::css::sheet::DataResult Result;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::DataPilotTableResultData const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::DataPilotTableResultData *);
+
+#endif

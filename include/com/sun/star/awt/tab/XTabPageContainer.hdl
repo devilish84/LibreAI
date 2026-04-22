@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_TAB_XTABPAGECONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_TAB_XTABPAGECONTAINER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace tab { class XTabPage; } } } } }
+namespace com { namespace sun { namespace star { namespace awt { namespace tab { class XTabPageContainerListener; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt { namespace tab {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTabPageContainer : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTabPageContainer() = default;
+    XTabPageContainer(XTabPageContainer const &) = default;
+    XTabPageContainer(XTabPageContainer &&) = default;
+    XTabPageContainer & operator =(XTabPageContainer const &) = default;
+    XTabPageContainer & operator =(XTabPageContainer &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int16 SAL_CALL getActiveTabPageID() = 0;
+    virtual void SAL_CALL setActiveTabPageID( ::sal_Int16 _activetabpageid ) = 0;
+
+    // Methods
+    virtual ::sal_Int16 SAL_CALL getTabPageCount() = 0;
+    virtual ::sal_Bool SAL_CALL isTabPageActive( ::sal_Int16 tabPageIndex ) = 0;
+    virtual ::css::uno::Reference< ::css::awt::tab::XTabPage > SAL_CALL getTabPage( ::sal_Int16 tabPageIndex ) = 0;
+    virtual ::css::uno::Reference< ::css::awt::tab::XTabPage > SAL_CALL getTabPageByID( ::sal_Int16 tabPageID ) = 0;
+    virtual void SAL_CALL addTabPageContainerListener( const ::css::uno::Reference< ::css::awt::tab::XTabPageContainerListener >& listener ) = 0;
+    virtual void SAL_CALL removeTabPageContainerListener( const ::css::uno::Reference< ::css::awt::tab::XTabPageContainerListener >& listener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTabPageContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::tab::XTabPageContainer const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::tab::XTabPageContainer > *);
+
+#endif

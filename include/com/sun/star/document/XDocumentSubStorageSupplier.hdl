@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XDOCUMENTSUBSTORAGESUPPLIER_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XDOCUMENTSUBSTORAGESUPPLIER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDocumentSubStorageSupplier : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDocumentSubStorageSupplier() = default;
+    XDocumentSubStorageSupplier(XDocumentSubStorageSupplier const &) = default;
+    XDocumentSubStorageSupplier(XDocumentSubStorageSupplier &&) = default;
+    XDocumentSubStorageSupplier & operator =(XDocumentSubStorageSupplier const &) = default;
+    XDocumentSubStorageSupplier & operator =(XDocumentSubStorageSupplier &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::embed::XStorage > SAL_CALL getDocumentSubStorage( const ::rtl::OUString& StorageName, ::sal_Int32 nMode ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getDocumentSubStoragesNames() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDocumentSubStorageSupplier() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XDocumentSubStorageSupplier const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XDocumentSubStorageSupplier > *);
+
+#endif

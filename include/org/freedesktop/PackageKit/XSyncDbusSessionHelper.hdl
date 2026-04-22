@@ -1,0 +1,39 @@
+#ifndef INCLUDED_ORG_FREEDESKTOP_PACKAGEKIT_XSYNCDBUSSESSIONHELPER_HDL
+#define INCLUDED_ORG_FREEDESKTOP_PACKAGEKIT_XSYNCDBUSSESSIONHELPER_HDL
+
+#include "sal/config.h"
+
+#include "org/freedesktop/PackageKit/XModify.hdl"
+#include "org/freedesktop/PackageKit/XQuery.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace org { namespace freedesktop { namespace PackageKit {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSyncDbusSessionHelper : public ::org::freedesktop::PackageKit::XModify, public ::org::freedesktop::PackageKit::XQuery
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSyncDbusSessionHelper() = default;
+    XSyncDbusSessionHelper(XSyncDbusSessionHelper const &) = default;
+    XSyncDbusSessionHelper(XSyncDbusSessionHelper &&) = default;
+    XSyncDbusSessionHelper & operator =(XSyncDbusSessionHelper const &) = default;
+    XSyncDbusSessionHelper & operator =(XSyncDbusSessionHelper &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSyncDbusSessionHelper() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::org::freedesktop::PackageKit::XSyncDbusSessionHelper const *);
+} } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::org::freedesktop::PackageKit::XSyncDbusSessionHelper > *);
+
+#endif

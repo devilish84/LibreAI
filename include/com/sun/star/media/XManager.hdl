@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_MEDIA_XMANAGER_HDL
+#define INCLUDED_COM_SUN_STAR_MEDIA_XMANAGER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace media { class XPlayer; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace media {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XManager : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XManager() = default;
+    XManager(XManager const &) = default;
+    XManager(XManager &&) = default;
+    XManager & operator =(XManager const &) = default;
+    XManager & operator =(XManager &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::media::XPlayer > SAL_CALL createPlayer( const ::rtl::OUString& aURL ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XManager() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::media::XManager const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::media::XManager > *);
+
+#endif

@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_STATUS_LEFTRIGHTMARGINSCALE_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_STATUS_LEFTRIGHTMARGINSCALE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame { namespace status {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED LeftRightMarginScale {
+    inline LeftRightMarginScale();
+
+    inline LeftRightMarginScale(const ::sal_Int32& TextLeft_, const ::sal_Int32& Left_, const ::sal_Int32& Right_, const ::sal_Int32& FirstLine_, const ::sal_Int32& ScaleLeft_, const ::sal_Int32& ScaleRight_, const ::sal_Int32& ScaleFirstLine_, const ::sal_Bool& AutoFirstLine_);
+
+    ::sal_Int32 TextLeft;
+    ::sal_Int32 Left;
+    ::sal_Int32 Right;
+    ::sal_Int32 FirstLine;
+    ::sal_Int32 ScaleLeft;
+    ::sal_Int32 ScaleRight;
+    ::sal_Int32 ScaleFirstLine;
+    ::sal_Bool AutoFirstLine;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::status::LeftRightMarginScale const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::frame::status::LeftRightMarginScale *);
+
+#endif

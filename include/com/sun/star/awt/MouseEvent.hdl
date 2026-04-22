@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_MOUSEEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_MOUSEEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/InputEvent.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI MouseEvent: public ::css::awt::InputEvent {
+    inline MouseEvent();
+
+    inline MouseEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::sal_Int16& Modifiers_, const ::sal_Int16& Buttons_, const ::sal_Int32& X_, const ::sal_Int32& Y_, const ::sal_Int32& ClickCount_, const ::sal_Bool& PopupTrigger_);
+
+    ::sal_Int16 Buttons CPPU_GCC3_ALIGN(::css::awt::InputEvent);
+    ::sal_Int32 X;
+    ::sal_Int32 Y;
+    ::sal_Int32 ClickCount;
+    ::sal_Bool PopupTrigger;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::MouseEvent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::MouseEvent *);
+
+#endif

@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XTABCONTROLLERMODEL_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XTABCONTROLLERMODEL_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XControlModel; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTabControllerModel : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTabControllerModel() = default;
+    XTabControllerModel(XTabControllerModel const &) = default;
+    XTabControllerModel(XTabControllerModel &&) = default;
+    XTabControllerModel & operator =(XTabControllerModel const &) = default;
+    XTabControllerModel & operator =(XTabControllerModel &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL getGroupControl() = 0;
+    virtual void SAL_CALL setGroupControl( ::sal_Bool GroupControl ) = 0;
+    virtual void SAL_CALL setControlModels( const ::css::uno::Sequence< ::css::uno::Reference< ::css::awt::XControlModel > >& Controls ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::awt::XControlModel > > SAL_CALL getControlModels() = 0;
+    virtual void SAL_CALL setGroup( const ::css::uno::Sequence< ::css::uno::Reference< ::css::awt::XControlModel > >& Group, const ::rtl::OUString& GroupName ) = 0;
+    virtual ::sal_Int32 SAL_CALL getGroupCount() = 0;
+    virtual void SAL_CALL getGroup( ::sal_Int32 nGroup, ::css::uno::Sequence< ::css::uno::Reference< ::css::awt::XControlModel > >& Group, ::rtl::OUString& Name ) = 0;
+    virtual void SAL_CALL getGroupByName( const ::rtl::OUString& Name, ::css::uno::Sequence< ::css::uno::Reference< ::css::awt::XControlModel > >& Group ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTabControllerModel() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XTabControllerModel const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XTabControllerModel > *);
+
+#endif

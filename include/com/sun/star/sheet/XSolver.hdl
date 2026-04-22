@@ -1,0 +1,61 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XSOLVER_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XSOLVER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/SolverConstraint.hdl"
+namespace com { namespace sun { namespace star { namespace sheet { class XSpreadsheetDocument; } } } }
+#include "com/sun/star/table/CellAddress.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSolver : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSolver() = default;
+    XSolver(XSolver const &) = default;
+    XSolver(XSolver &&) = default;
+    XSolver & operator =(XSolver const &) = default;
+    XSolver & operator =(XSolver &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Reference< ::css::sheet::XSpreadsheetDocument > SAL_CALL getDocument() = 0;
+    virtual void SAL_CALL setDocument( const ::css::uno::Reference< ::css::sheet::XSpreadsheetDocument >& _document ) = 0;
+    virtual ::css::table::CellAddress SAL_CALL getObjective() = 0;
+    virtual void SAL_CALL setObjective( const ::css::table::CellAddress& _objective ) = 0;
+    virtual ::css::uno::Sequence< ::css::table::CellAddress > SAL_CALL getVariables() = 0;
+    virtual void SAL_CALL setVariables( const ::css::uno::Sequence< ::css::table::CellAddress >& _variables ) = 0;
+    virtual ::css::uno::Sequence< ::css::sheet::SolverConstraint > SAL_CALL getConstraints() = 0;
+    virtual void SAL_CALL setConstraints( const ::css::uno::Sequence< ::css::sheet::SolverConstraint >& _constraints ) = 0;
+    virtual ::sal_Bool SAL_CALL getMaximize() = 0;
+    virtual void SAL_CALL setMaximize( ::sal_Bool _maximize ) = 0;
+    virtual ::sal_Bool SAL_CALL getSuccess() = 0;
+    virtual double SAL_CALL getResultValue() = 0;
+    virtual ::css::uno::Sequence< double > SAL_CALL getSolution() = 0;
+
+    // Methods
+    virtual void SAL_CALL solve() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSolver() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XSolver const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XSolver > *);
+
+#endif

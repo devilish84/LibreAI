@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_SINGLEPROOFREADINGERROR_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_SINGLEPROOFREADINGERROR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SingleProofreadingError {
+    inline SingleProofreadingError();
+
+    inline SingleProofreadingError(const ::sal_Int32& nErrorStart_, const ::sal_Int32& nErrorLength_, const ::sal_Int32& nErrorType_, const ::rtl::OUString& aRuleIdentifier_, const ::rtl::OUString& aShortComment_, const ::rtl::OUString& aFullComment_, const ::css::uno::Sequence< ::rtl::OUString >& aSuggestions_, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aProperties_);
+
+    ::sal_Int32 nErrorStart;
+    ::sal_Int32 nErrorLength;
+    ::sal_Int32 nErrorType;
+    ::rtl::OUString aRuleIdentifier;
+    ::rtl::OUString aShortComment;
+    ::rtl::OUString aFullComment;
+    ::css::uno::Sequence< ::rtl::OUString > aSuggestions;
+    ::css::uno::Sequence< ::css::beans::PropertyValue > aProperties;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::SingleProofreadingError const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::linguistic2::SingleProofreadingError *);
+
+#endif

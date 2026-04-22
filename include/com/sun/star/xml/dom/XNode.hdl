@@ -1,0 +1,72 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_XNODE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_XNODE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/xml/dom/NodeType.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XDocument; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XNamedNodeMap; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XNode; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XNodeList; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XNode : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XNode() = default;
+    XNode(XNode const &) = default;
+    XNode(XNode &&) = default;
+    XNode & operator =(XNode const &) = default;
+    XNode & operator =(XNode &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL appendChild( const ::css::uno::Reference< ::css::xml::dom::XNode >& newChild ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL cloneNode( ::sal_Bool deep ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNamedNodeMap > SAL_CALL getAttributes() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNodeList > SAL_CALL getChildNodes() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL getFirstChild() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL getLastChild() = 0;
+    virtual ::rtl::OUString SAL_CALL getLocalName() = 0;
+    virtual ::rtl::OUString SAL_CALL getNamespaceURI() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL getNextSibling() = 0;
+    virtual ::rtl::OUString SAL_CALL getNodeName() = 0;
+    virtual ::css::xml::dom::NodeType SAL_CALL getNodeType() = 0;
+    virtual ::rtl::OUString SAL_CALL getNodeValue() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XDocument > SAL_CALL getOwnerDocument() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL getParentNode() = 0;
+    virtual ::rtl::OUString SAL_CALL getPrefix() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL getPreviousSibling() = 0;
+    virtual ::sal_Bool SAL_CALL hasAttributes() = 0;
+    virtual ::sal_Bool SAL_CALL hasChildNodes() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL insertBefore( const ::css::uno::Reference< ::css::xml::dom::XNode >& newChild, const ::css::uno::Reference< ::css::xml::dom::XNode >& refChild ) = 0;
+    virtual ::sal_Bool SAL_CALL isSupported( const ::rtl::OUString& feature, const ::rtl::OUString& ver ) = 0;
+    virtual void SAL_CALL normalize() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL removeChild( const ::css::uno::Reference< ::css::xml::dom::XNode >& oldChild ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNode > SAL_CALL replaceChild( const ::css::uno::Reference< ::css::xml::dom::XNode >& newChild, const ::css::uno::Reference< ::css::xml::dom::XNode >& oldChild ) = 0;
+    virtual void SAL_CALL setNodeValue( const ::rtl::OUString& nodeValue ) = 0;
+    virtual void SAL_CALL setPrefix( const ::rtl::OUString& prefix ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XNode() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::XNode const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::XNode > *);
+
+#endif

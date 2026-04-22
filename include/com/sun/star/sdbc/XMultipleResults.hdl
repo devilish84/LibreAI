@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_XMULTIPLERESULTS_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_XMULTIPLERESULTS_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace sdbc { class XResultSet; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMultipleResults : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMultipleResults() = default;
+    XMultipleResults(XMultipleResults const &) = default;
+    XMultipleResults(XMultipleResults &&) = default;
+    XMultipleResults & operator =(XMultipleResults const &) = default;
+    XMultipleResults & operator =(XMultipleResults &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::sdbc::XResultSet > SAL_CALL getResultSet() = 0;
+    virtual ::sal_Int32 SAL_CALL getUpdateCount() = 0;
+    virtual ::sal_Bool SAL_CALL getMoreResults() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMultipleResults() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::XMultipleResults const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbc::XMultipleResults > *);
+
+#endif

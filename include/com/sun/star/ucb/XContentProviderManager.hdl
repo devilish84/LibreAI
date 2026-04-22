@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XCONTENTPROVIDERMANAGER_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XCONTENTPROVIDERMANAGER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/ContentProviderInfo.hdl"
+namespace com { namespace sun { namespace star { namespace ucb { class XContentProvider; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XContentProviderManager : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XContentProviderManager() = default;
+    XContentProviderManager(XContentProviderManager const &) = default;
+    XContentProviderManager(XContentProviderManager &&) = default;
+    XContentProviderManager & operator =(XContentProviderManager const &) = default;
+    XContentProviderManager & operator =(XContentProviderManager &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::ucb::XContentProvider > SAL_CALL registerContentProvider( const ::css::uno::Reference< ::css::ucb::XContentProvider >& Provider, const ::rtl::OUString& Scheme, ::sal_Bool ReplaceExisting ) = 0;
+    virtual void SAL_CALL deregisterContentProvider( const ::css::uno::Reference< ::css::ucb::XContentProvider >& Provider, const ::rtl::OUString& Scheme ) = 0;
+    virtual ::css::uno::Sequence< ::css::ucb::ContentProviderInfo > SAL_CALL queryContentProviders() = 0;
+    virtual ::css::uno::Reference< ::css::ucb::XContentProvider > SAL_CALL queryContentProvider( const ::rtl::OUString& Identifier ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XContentProviderManager() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XContentProviderManager const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XContentProviderManager > *);
+
+#endif

@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_TIMEUNIT_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_TIMEUNIT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace chart { namespace TimeUnit {
+
+static const ::sal_Int32 DAY = (sal_Int32)0;
+static const ::sal_Int32 MONTH = (sal_Int32)1;
+static const ::sal_Int32 YEAR = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_CHART_TIMEUNIT_HDL

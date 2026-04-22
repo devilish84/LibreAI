@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XNUMBERFORMATCODE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XNUMBERFORMATCODE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/NumberFormatCode.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XNumberFormatCode : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XNumberFormatCode() = default;
+    XNumberFormatCode(XNumberFormatCode const &) = default;
+    XNumberFormatCode(XNumberFormatCode &&) = default;
+    XNumberFormatCode & operator =(XNumberFormatCode const &) = default;
+    XNumberFormatCode & operator =(XNumberFormatCode &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::i18n::NumberFormatCode SAL_CALL getDefault( ::sal_Int16 nFormatType, ::sal_Int16 nFormatUsage, const ::css::lang::Locale& rLocale ) = 0;
+    virtual ::css::i18n::NumberFormatCode SAL_CALL getFormatCode( ::sal_Int16 nFormatIndex, const ::css::lang::Locale& rLocale ) = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::NumberFormatCode > SAL_CALL getAllFormatCode( ::sal_Int16 nFormatUsage, const ::css::lang::Locale& rLocale ) = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::NumberFormatCode > SAL_CALL getAllFormatCodes( const ::css::lang::Locale& rLocale ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XNumberFormatCode() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XNumberFormatCode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XNumberFormatCode > *);
+
+#endif

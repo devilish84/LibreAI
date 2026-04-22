@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_RDF_FILEFORMAT_HPP
+#define INCLUDED_COM_SUN_STAR_RDF_FILEFORMAT_HPP
+
+#include "com/sun/star/rdf/FileFormat.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_RDF_FILEFORMAT_HPP

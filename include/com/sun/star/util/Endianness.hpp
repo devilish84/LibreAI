@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_ENDIANNESS_HPP
+#define INCLUDED_COM_SUN_STAR_UTIL_ENDIANNESS_HPP
+
+#include "com/sun/star/util/Endianness.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_UTIL_ENDIANNESS_HPP

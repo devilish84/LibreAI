@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_CRYPTO_XXMLSIGNATURE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_CRYPTO_XXMLSIGNATURE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto { class XSecurityEnvironment; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto { class XXMLSecurityContext; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto { class XXMLSignatureTemplate; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XXMLSignature : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XXMLSignature() = default;
+    XXMLSignature(XXMLSignature const &) = default;
+    XXMLSignature(XXMLSignature &&) = default;
+    XXMLSignature & operator =(XXMLSignature const &) = default;
+    XXMLSignature & operator =(XXMLSignature &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::xml::crypto::XXMLSignatureTemplate > SAL_CALL generate( const ::css::uno::Reference< ::css::xml::crypto::XXMLSignatureTemplate >& aTemplate, const ::css::uno::Reference< ::css::xml::crypto::XSecurityEnvironment >& aEnvironment ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::crypto::XXMLSignatureTemplate > SAL_CALL validate( const ::css::uno::Reference< ::css::xml::crypto::XXMLSignatureTemplate >& aTemplate, const ::css::uno::Reference< ::css::xml::crypto::XXMLSecurityContext >& aContext ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XXMLSignature() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::crypto::XXMLSignature const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::crypto::XXMLSignature > *);
+
+#endif

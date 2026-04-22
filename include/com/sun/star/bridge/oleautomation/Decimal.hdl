@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_BRIDGE_OLEAUTOMATION_DECIMAL_HDL
+#define INCLUDED_COM_SUN_STAR_BRIDGE_OLEAUTOMATION_DECIMAL_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace bridge { namespace oleautomation {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED Decimal {
+    inline Decimal();
+
+    inline Decimal(const ::sal_Int8& Scale_, const ::sal_Int8& Sign_, const ::sal_uInt32& LowValue_, const ::sal_uInt32& MiddleValue_, const ::sal_uInt32& HighValue_);
+
+    ::sal_Int8 Scale;
+    ::sal_Int8 Sign;
+    ::sal_uInt32 LowValue;
+    ::sal_uInt32 MiddleValue;
+    ::sal_uInt32 HighValue;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::bridge::oleautomation::Decimal const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::bridge::oleautomation::Decimal *);
+
+#endif

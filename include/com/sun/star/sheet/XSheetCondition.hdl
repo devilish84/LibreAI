@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XSHEETCONDITION_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XSHEETCONDITION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/ConditionOperator.hdl"
+#include "com/sun/star/table/CellAddress.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSheetCondition : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSheetCondition() = default;
+    XSheetCondition(XSheetCondition const &) = default;
+    XSheetCondition(XSheetCondition &&) = default;
+    XSheetCondition & operator =(XSheetCondition const &) = default;
+    XSheetCondition & operator =(XSheetCondition &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::sheet::ConditionOperator SAL_CALL getOperator() = 0;
+    virtual void SAL_CALL setOperator( ::css::sheet::ConditionOperator nOperator ) = 0;
+    virtual ::rtl::OUString SAL_CALL getFormula1() = 0;
+    virtual void SAL_CALL setFormula1( const ::rtl::OUString& aFormula1 ) = 0;
+    virtual ::rtl::OUString SAL_CALL getFormula2() = 0;
+    virtual void SAL_CALL setFormula2( const ::rtl::OUString& aFormula2 ) = 0;
+    virtual ::css::table::CellAddress SAL_CALL getSourcePosition() = 0;
+    virtual void SAL_CALL setSourcePosition( const ::css::table::CellAddress& aSourcePosition ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSheetCondition() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XSheetCondition const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XSheetCondition > *);
+
+#endif

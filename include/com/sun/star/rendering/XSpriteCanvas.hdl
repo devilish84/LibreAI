@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XSPRITECANVAS_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XSPRITECANVAS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/geometry/RealSize2D.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XAnimatedSprite; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XAnimation; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XBitmap; } } } }
+#include "com/sun/star/rendering/XCanvas.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XCustomSprite; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XSprite; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSpriteCanvas : public ::css::rendering::XCanvas
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSpriteCanvas() = default;
+    XSpriteCanvas(XSpriteCanvas const &) = default;
+    XSpriteCanvas(XSpriteCanvas &&) = default;
+    XSpriteCanvas & operator =(XSpriteCanvas const &) = default;
+    XSpriteCanvas & operator =(XSpriteCanvas &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::rendering::XAnimatedSprite > SAL_CALL createSpriteFromAnimation( const ::css::uno::Reference< ::css::rendering::XAnimation >& animation ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XAnimatedSprite > SAL_CALL createSpriteFromBitmaps( const ::css::uno::Sequence< ::css::uno::Reference< ::css::rendering::XBitmap > >& animationBitmaps, ::sal_Int8 interpolationMode ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCustomSprite > SAL_CALL createCustomSprite( const ::css::geometry::RealSize2D& spriteSize ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XSprite > SAL_CALL createClonedSprite( const ::css::uno::Reference< ::css::rendering::XSprite >& original ) = 0;
+    virtual ::sal_Bool SAL_CALL updateScreen( ::sal_Bool bUpdateAll ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSpriteCanvas() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XSpriteCanvas const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XSpriteCanvas > *);
+
+#endif

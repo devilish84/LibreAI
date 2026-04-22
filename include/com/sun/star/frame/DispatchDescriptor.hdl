@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_DISPATCHDESCRIPTOR_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_DISPATCHDESCRIPTOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/util/URL.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DispatchDescriptor {
+    inline DispatchDescriptor();
+
+    inline DispatchDescriptor(const ::css::util::URL& FeatureURL_, const ::rtl::OUString& FrameName_, const ::sal_Int32& SearchFlags_);
+
+    ::css::util::URL FeatureURL;
+    ::rtl::OUString FrameName;
+    ::sal_Int32 SearchFlags;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::DispatchDescriptor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::frame::DispatchDescriptor *);
+
+#endif

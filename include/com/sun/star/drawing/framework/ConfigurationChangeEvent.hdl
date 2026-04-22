@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_CONFIGURATIONCHANGEEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_CONFIGURATIONCHANGEEVENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework { class XConfiguration; } } } } }
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework { class XResourceId; } } } } }
+#include "com/sun/star/lang/EventObject.hdl"
+namespace com { namespace sun { namespace star { namespace uno { class XInterface; } } } }
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI ConfigurationChangeEvent: public ::css::lang::EventObject {
+    inline ConfigurationChangeEvent();
+
+    inline ConfigurationChangeEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::rtl::OUString& Type_, const ::css::uno::Reference< ::css::drawing::framework::XConfiguration >& Configuration_, const ::css::uno::Reference< ::css::drawing::framework::XResourceId >& ResourceId_, const ::css::uno::Reference< ::css::uno::XInterface >& ResourceObject_, const ::css::uno::Any& UserData_);
+
+    ::rtl::OUString Type CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::css::uno::Reference< ::css::drawing::framework::XConfiguration > Configuration;
+    ::css::uno::Reference< ::css::drawing::framework::XResourceId > ResourceId;
+    ::css::uno::Reference< ::css::uno::XInterface > ResourceObject;
+    ::css::uno::Any UserData;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::framework::ConfigurationChangeEvent const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::framework::ConfigurationChangeEvent *);
+
+#endif

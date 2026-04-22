@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_RECTANGLEPOINT_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_RECTANGLEPOINT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI RectanglePoint
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI RectanglePoint
+{
+
+#endif
+    RectanglePoint_LEFT_TOP = 0,
+    RectanglePoint_MIDDLE_TOP = 1,
+    RectanglePoint_RIGHT_TOP = 2,
+    RectanglePoint_LEFT_MIDDLE = 3,
+    RectanglePoint_MIDDLE_MIDDLE = 4,
+    RectanglePoint_RIGHT_MIDDLE = 5,
+    RectanglePoint_LEFT_BOTTOM = 6,
+    RectanglePoint_MIDDLE_BOTTOM = 7,
+    RectanglePoint_RIGHT_BOTTOM = 8,
+    RectanglePoint_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto RectanglePoint_LEFT_TOP = RectanglePoint::RectanglePoint_LEFT_TOP;
+constexpr auto RectanglePoint_MIDDLE_TOP = RectanglePoint::RectanglePoint_MIDDLE_TOP;
+constexpr auto RectanglePoint_RIGHT_TOP = RectanglePoint::RectanglePoint_RIGHT_TOP;
+constexpr auto RectanglePoint_LEFT_MIDDLE = RectanglePoint::RectanglePoint_LEFT_MIDDLE;
+constexpr auto RectanglePoint_MIDDLE_MIDDLE = RectanglePoint::RectanglePoint_MIDDLE_MIDDLE;
+constexpr auto RectanglePoint_RIGHT_MIDDLE = RectanglePoint::RectanglePoint_RIGHT_MIDDLE;
+constexpr auto RectanglePoint_LEFT_BOTTOM = RectanglePoint::RectanglePoint_LEFT_BOTTOM;
+constexpr auto RectanglePoint_MIDDLE_BOTTOM = RectanglePoint::RectanglePoint_MIDDLE_BOTTOM;
+constexpr auto RectanglePoint_RIGHT_BOTTOM = RectanglePoint::RectanglePoint_RIGHT_BOTTOM;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::RectanglePoint const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::RectanglePoint *);
+
+#endif

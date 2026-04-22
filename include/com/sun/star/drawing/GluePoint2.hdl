@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_GLUEPOINT2_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_GLUEPOINT2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Point.hdl"
+#include "com/sun/star/drawing/Alignment.hdl"
+#include "com/sun/star/drawing/EscapeDirection.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED GluePoint2 {
+    inline GluePoint2();
+
+    inline GluePoint2(const ::css::awt::Point& Position_, const ::sal_Bool& IsRelative_, const ::css::drawing::Alignment& PositionAlignment_, const ::css::drawing::EscapeDirection& Escape_, const ::sal_Bool& IsUserDefined_);
+
+    ::css::awt::Point Position;
+    ::sal_Bool IsRelative;
+    ::css::drawing::Alignment PositionAlignment;
+    ::css::drawing::EscapeDirection Escape;
+    ::sal_Bool IsUserDefined;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::GluePoint2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::GluePoint2 *);
+
+#endif

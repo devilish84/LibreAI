@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_ANCHORBINDINGMODE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_ANCHORBINDINGMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI AnchorBindingMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI AnchorBindingMode
+{
+
+#endif
+    AnchorBindingMode_DIRECT = 0,
+    AnchorBindingMode_INDIRECT = 1,
+    AnchorBindingMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto AnchorBindingMode_DIRECT = AnchorBindingMode::AnchorBindingMode_DIRECT;
+constexpr auto AnchorBindingMode_INDIRECT = AnchorBindingMode::AnchorBindingMode_INDIRECT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::framework::AnchorBindingMode const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::framework::AnchorBindingMode *);
+
+#endif

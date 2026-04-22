@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_FOOTNOTENUMBERING_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_FOOTNOTENUMBERING_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace FootnoteNumbering {
+
+static const ::sal_Int16 PER_CHAPTER = (sal_Int16)1;
+static const ::sal_Int16 PER_DOCUMENT = (sal_Int16)2;
+static const ::sal_Int16 PER_PAGE = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_FOOTNOTENUMBERING_HDL

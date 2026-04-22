@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_VBA_XVBASCRIPTLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_VBA_XVBASCRIPTLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/script/vba/VBAScriptEvent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script { namespace vba {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XVBAScriptListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XVBAScriptListener() = default;
+    XVBAScriptListener(XVBAScriptListener const &) = default;
+    XVBAScriptListener(XVBAScriptListener &&) = default;
+    XVBAScriptListener & operator =(XVBAScriptListener const &) = default;
+    XVBAScriptListener & operator =(XVBAScriptListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL notifyVBAScriptEvent( const ::css::script::vba::VBAScriptEvent& Event ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XVBAScriptListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::vba::XVBAScriptListener const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::vba::XVBAScriptListener > *);
+
+#endif

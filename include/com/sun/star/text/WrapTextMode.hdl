@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_WRAPTEXTMODE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_WRAPTEXTMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI WrapTextMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI WrapTextMode
+{
+
+#endif
+    WrapTextMode_NONE = 0,
+    WrapTextMode_THROUGH = 1,
+    WrapTextMode_THROUGHT = 1,
+    WrapTextMode_PARALLEL = 2,
+    WrapTextMode_DYNAMIC = 3,
+    WrapTextMode_LEFT = 4,
+    WrapTextMode_RIGHT = 5,
+    WrapTextMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto WrapTextMode_NONE = WrapTextMode::WrapTextMode_NONE;
+constexpr auto WrapTextMode_THROUGH = WrapTextMode::WrapTextMode_THROUGH;
+constexpr auto WrapTextMode_THROUGHT = WrapTextMode::WrapTextMode_THROUGHT;
+constexpr auto WrapTextMode_PARALLEL = WrapTextMode::WrapTextMode_PARALLEL;
+constexpr auto WrapTextMode_DYNAMIC = WrapTextMode::WrapTextMode_DYNAMIC;
+constexpr auto WrapTextMode_LEFT = WrapTextMode::WrapTextMode_LEFT;
+constexpr auto WrapTextMode_RIGHT = WrapTextMode::WrapTextMode_RIGHT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::WrapTextMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::text::WrapTextMode *);
+
+#endif

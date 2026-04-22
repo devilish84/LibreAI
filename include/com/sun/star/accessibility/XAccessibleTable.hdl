@@ -1,0 +1,64 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLETABLE_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLETABLE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace accessibility { class XAccessible; } } } }
+namespace com { namespace sun { namespace star { namespace accessibility { class XAccessibleTable; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAccessibleTable : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAccessibleTable() = default;
+    XAccessibleTable(XAccessibleTable const &) = default;
+    XAccessibleTable(XAccessibleTable &&) = default;
+    XAccessibleTable & operator =(XAccessibleTable const &) = default;
+    XAccessibleTable & operator =(XAccessibleTable &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getAccessibleRowCount() = 0;
+    virtual ::sal_Int32 SAL_CALL getAccessibleColumnCount() = 0;
+    virtual ::rtl::OUString SAL_CALL getAccessibleRowDescription( ::sal_Int32 nRow ) = 0;
+    virtual ::rtl::OUString SAL_CALL getAccessibleColumnDescription( ::sal_Int32 nColumn ) = 0;
+    virtual ::sal_Int32 SAL_CALL getAccessibleRowExtentAt( ::sal_Int32 nRow, ::sal_Int32 nColumn ) = 0;
+    virtual ::sal_Int32 SAL_CALL getAccessibleColumnExtentAt( ::sal_Int32 nRow, ::sal_Int32 nColumn ) = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessibleTable > SAL_CALL getAccessibleRowHeaders() = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessibleTable > SAL_CALL getAccessibleColumnHeaders() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int32 > SAL_CALL getSelectedAccessibleRows() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int32 > SAL_CALL getSelectedAccessibleColumns() = 0;
+    virtual ::sal_Bool SAL_CALL isAccessibleRowSelected( ::sal_Int32 nRow ) = 0;
+    virtual ::sal_Bool SAL_CALL isAccessibleColumnSelected( ::sal_Int32 nColumn ) = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessible > SAL_CALL getAccessibleCellAt( ::sal_Int32 nRow, ::sal_Int32 nColumn ) = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessible > SAL_CALL getAccessibleCaption() = 0;
+    virtual ::css::uno::Reference< ::css::accessibility::XAccessible > SAL_CALL getAccessibleSummary() = 0;
+    virtual ::sal_Bool SAL_CALL isAccessibleSelected( ::sal_Int32 nRow, ::sal_Int32 nColumn ) = 0;
+    virtual ::sal_Int32 SAL_CALL getAccessibleIndex( ::sal_Int32 nRow, ::sal_Int32 nColumn ) = 0;
+    virtual ::sal_Int32 SAL_CALL getAccessibleRow( ::sal_Int32 nChildIndex ) = 0;
+    virtual ::sal_Int32 SAL_CALL getAccessibleColumn( ::sal_Int32 nChildIndex ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAccessibleTable() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::XAccessibleTable const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::accessibility::XAccessibleTable > *);
+
+#endif

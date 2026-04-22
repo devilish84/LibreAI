@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_GEOMETRY_ELLIPTICALARC_HDL
+#define INCLUDED_COM_SUN_STAR_GEOMETRY_ELLIPTICALARC_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/geometry/RealPoint2D.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace geometry {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED EllipticalArc {
+    inline EllipticalArc();
+
+    inline EllipticalArc(const ::css::geometry::RealPoint2D& StartPosition_, const ::css::geometry::RealPoint2D& EndPosition_, const double& RadiusX_, const double& RadiusY_, const double& XAxisRotation_, const ::sal_Bool& IsLargeArc_, const ::sal_Bool& IsClockwiseSweep_);
+
+    ::css::geometry::RealPoint2D StartPosition;
+    ::css::geometry::RealPoint2D EndPosition;
+    double RadiusX;
+    double RadiusY;
+    double XAxisRotation;
+    ::sal_Bool IsLargeArc;
+    ::sal_Bool IsClockwiseSweep;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::geometry::EllipticalArc const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::geometry::EllipticalArc *);
+
+#endif

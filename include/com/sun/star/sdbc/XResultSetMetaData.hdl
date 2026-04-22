@@ -1,0 +1,63 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_XRESULTSETMETADATA_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_XRESULTSETMETADATA_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XResultSetMetaData : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XResultSetMetaData() = default;
+    XResultSetMetaData(XResultSetMetaData const &) = default;
+    XResultSetMetaData(XResultSetMetaData &&) = default;
+    XResultSetMetaData & operator =(XResultSetMetaData const &) = default;
+    XResultSetMetaData & operator =(XResultSetMetaData &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getColumnCount() = 0;
+    virtual ::sal_Bool SAL_CALL isAutoIncrement( ::sal_Int32 column ) = 0;
+    virtual ::sal_Bool SAL_CALL isCaseSensitive( ::sal_Int32 column ) = 0;
+    virtual ::sal_Bool SAL_CALL isSearchable( ::sal_Int32 column ) = 0;
+    virtual ::sal_Bool SAL_CALL isCurrency( ::sal_Int32 column ) = 0;
+    virtual ::sal_Int32 SAL_CALL isNullable( ::sal_Int32 column ) = 0;
+    virtual ::sal_Bool SAL_CALL isSigned( ::sal_Int32 column ) = 0;
+    virtual ::sal_Int32 SAL_CALL getColumnDisplaySize( ::sal_Int32 column ) = 0;
+    virtual ::rtl::OUString SAL_CALL getColumnLabel( ::sal_Int32 column ) = 0;
+    virtual ::rtl::OUString SAL_CALL getColumnName( ::sal_Int32 column ) = 0;
+    virtual ::rtl::OUString SAL_CALL getSchemaName( ::sal_Int32 column ) = 0;
+    virtual ::sal_Int32 SAL_CALL getPrecision( ::sal_Int32 column ) = 0;
+    virtual ::sal_Int32 SAL_CALL getScale( ::sal_Int32 column ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTableName( ::sal_Int32 column ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCatalogName( ::sal_Int32 column ) = 0;
+    virtual ::sal_Int32 SAL_CALL getColumnType( ::sal_Int32 column ) = 0;
+    virtual ::rtl::OUString SAL_CALL getColumnTypeName( ::sal_Int32 column ) = 0;
+    virtual ::sal_Bool SAL_CALL isReadOnly( ::sal_Int32 column ) = 0;
+    virtual ::sal_Bool SAL_CALL isWritable( ::sal_Int32 column ) = 0;
+    virtual ::sal_Bool SAL_CALL isDefinitelyWritable( ::sal_Int32 column ) = 0;
+    virtual ::rtl::OUString SAL_CALL getColumnServiceName( ::sal_Int32 column ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XResultSetMetaData() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::XResultSetMetaData const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbc::XResultSetMetaData > *);
+
+#endif

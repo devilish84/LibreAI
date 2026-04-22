@@ -1,0 +1,27 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_EVENTTRIGGER_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_EVENTTRIGGER_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace animations { namespace EventTrigger {
+
+static const ::sal_Int16 BEGIN_EVENT = (sal_Int16)3;
+static const ::sal_Int16 END_EVENT = (sal_Int16)4;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+static const ::sal_Int16 ON_BEGIN = (sal_Int16)1;
+static const ::sal_Int16 ON_CLICK = (sal_Int16)5;
+static const ::sal_Int16 ON_DBL_CLICK = (sal_Int16)6;
+static const ::sal_Int16 ON_END = (sal_Int16)2;
+static const ::sal_Int16 ON_MOUSE_ENTER = (sal_Int16)7;
+static const ::sal_Int16 ON_MOUSE_LEAVE = (sal_Int16)8;
+static const ::sal_Int16 ON_NEXT = (sal_Int16)9;
+static const ::sal_Int16 ON_PREV = (sal_Int16)10;
+static const ::sal_Int16 ON_STOP_AUDIO = (sal_Int16)11;
+static const ::sal_Int16 REPEAT = (sal_Int16)12;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_ANIMATIONS_EVENTTRIGGER_HDL

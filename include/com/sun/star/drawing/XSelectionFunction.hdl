@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_XSELECTIONFUNCTION_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_XSELECTIONFUNCTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/XKeyHandler.hdl"
+#include "com/sun/star/awt/XMouseClickHandler.hdl"
+#include "com/sun/star/awt/XMouseMotionHandler.hdl"
+#include "com/sun/star/frame/XDispatch.hdl"
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/lang/XServiceInfo.hdl"
+#include "com/sun/star/view/XSelectionChangeListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSelectionFunction : public ::css::lang::XComponent, public ::css::lang::XServiceInfo, public ::css::frame::XDispatch, public ::css::awt::XKeyHandler, public ::css::awt::XMouseClickHandler, public ::css::awt::XMouseMotionHandler, public ::css::view::XSelectionChangeListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSelectionFunction() = default;
+    XSelectionFunction(XSelectionFunction const &) = default;
+    XSelectionFunction(XSelectionFunction &&) = default;
+    XSelectionFunction & operator =(XSelectionFunction const &) = default;
+    XSelectionFunction & operator =(XSelectionFunction &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSelectionFunction() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::XSelectionFunction const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::XSelectionFunction > *);
+
+#endif

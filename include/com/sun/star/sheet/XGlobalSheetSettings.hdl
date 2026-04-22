@@ -1,0 +1,79 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XGLOBALSHEETSETTINGS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XGLOBALSHEETSETTINGS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XGlobalSheetSettings : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XGlobalSheetSettings() = default;
+    XGlobalSheetSettings(XGlobalSheetSettings const &) = default;
+    XGlobalSheetSettings(XGlobalSheetSettings &&) = default;
+    XGlobalSheetSettings & operator =(XGlobalSheetSettings const &) = default;
+    XGlobalSheetSettings & operator =(XGlobalSheetSettings &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Bool SAL_CALL getMoveSelection() = 0;
+    virtual void SAL_CALL setMoveSelection( ::sal_Bool _moveselection ) = 0;
+    virtual ::sal_Int16 SAL_CALL getMoveDirection() = 0;
+    virtual void SAL_CALL setMoveDirection( ::sal_Int16 _movedirection ) = 0;
+    virtual ::sal_Bool SAL_CALL getEnterEdit() = 0;
+    virtual void SAL_CALL setEnterEdit( ::sal_Bool _enteredit ) = 0;
+    virtual ::sal_Bool SAL_CALL getExtendFormat() = 0;
+    virtual void SAL_CALL setExtendFormat( ::sal_Bool _extendformat ) = 0;
+    virtual ::sal_Bool SAL_CALL getRangeFinder() = 0;
+    virtual void SAL_CALL setRangeFinder( ::sal_Bool _rangefinder ) = 0;
+    virtual ::sal_Bool SAL_CALL getExpandReferences() = 0;
+    virtual void SAL_CALL setExpandReferences( ::sal_Bool _expandreferences ) = 0;
+    virtual ::sal_Bool SAL_CALL getMarkHeader() = 0;
+    virtual void SAL_CALL setMarkHeader( ::sal_Bool _markheader ) = 0;
+    virtual ::sal_Bool SAL_CALL getUseTabCol() = 0;
+    virtual void SAL_CALL setUseTabCol( ::sal_Bool _usetabcol ) = 0;
+    virtual ::sal_Int16 SAL_CALL getMetric() = 0;
+    virtual void SAL_CALL setMetric( ::sal_Int16 _metric ) = 0;
+    virtual ::sal_Int16 SAL_CALL getScale() = 0;
+    virtual void SAL_CALL setScale( ::sal_Int16 _scale ) = 0;
+    virtual ::sal_Bool SAL_CALL getDoAutoComplete() = 0;
+    virtual void SAL_CALL setDoAutoComplete( ::sal_Bool _doautocomplete ) = 0;
+    virtual ::sal_Int16 SAL_CALL getStatusBarFunction() = 0;
+    virtual void SAL_CALL setStatusBarFunction( ::sal_Int16 _statusbarfunction ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getUserLists() = 0;
+    virtual void SAL_CALL setUserLists( const ::css::uno::Sequence< ::rtl::OUString >& _userlists ) = 0;
+    virtual ::sal_Int16 SAL_CALL getLinkUpdateMode() = 0;
+    virtual void SAL_CALL setLinkUpdateMode( ::sal_Int16 _linkupdatemode ) = 0;
+    virtual ::sal_Bool SAL_CALL getPrintAllSheets() = 0;
+    virtual void SAL_CALL setPrintAllSheets( ::sal_Bool _printallsheets ) = 0;
+    virtual ::sal_Bool SAL_CALL getPrintEmptyPages() = 0;
+    virtual void SAL_CALL setPrintEmptyPages( ::sal_Bool _printemptypages ) = 0;
+    virtual ::sal_Bool SAL_CALL getUsePrinterMetrics() = 0;
+    virtual void SAL_CALL setUsePrinterMetrics( ::sal_Bool _useprintermetrics ) = 0;
+    virtual ::sal_Bool SAL_CALL getReplaceCellsWarning() = 0;
+    virtual void SAL_CALL setReplaceCellsWarning( ::sal_Bool _replacecellswarning ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XGlobalSheetSettings() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XGlobalSheetSettings const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XGlobalSheetSettings > *);
+
+#endif

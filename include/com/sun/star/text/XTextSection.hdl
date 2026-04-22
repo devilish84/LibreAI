@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XTEXTSECTION_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XTEXTSECTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/text/XTextContent.hdl"
+namespace com { namespace sun { namespace star { namespace text { class XTextSection; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTextSection : public ::css::text::XTextContent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTextSection() = default;
+    XTextSection(XTextSection const &) = default;
+    XTextSection(XTextSection &&) = default;
+    XTextSection & operator =(XTextSection const &) = default;
+    XTextSection & operator =(XTextSection &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::text::XTextSection > SAL_CALL getParentSection() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::text::XTextSection > > SAL_CALL getChildSections() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTextSection() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XTextSection const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XTextSection > *);
+
+#endif

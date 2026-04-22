@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_INSPECTION_XPROPERTYCONTROLOBSERVER_HDL
+#define INCLUDED_COM_SUN_STAR_INSPECTION_XPROPERTYCONTROLOBSERVER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace inspection { class XPropertyControl; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace inspection {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPropertyControlObserver : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPropertyControlObserver() = default;
+    XPropertyControlObserver(XPropertyControlObserver const &) = default;
+    XPropertyControlObserver(XPropertyControlObserver &&) = default;
+    XPropertyControlObserver & operator =(XPropertyControlObserver const &) = default;
+    XPropertyControlObserver & operator =(XPropertyControlObserver &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL focusGained( const ::css::uno::Reference< ::css::inspection::XPropertyControl >& Control ) = 0;
+    virtual void SAL_CALL valueChanged( const ::css::uno::Reference< ::css::inspection::XPropertyControl >& Control ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPropertyControlObserver() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::inspection::XPropertyControlObserver const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::inspection::XPropertyControlObserver > *);
+
+#endif

@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XMOUSELISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XMOUSELISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/MouseEvent.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMouseListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMouseListener() = default;
+    XMouseListener(XMouseListener const &) = default;
+    XMouseListener(XMouseListener &&) = default;
+    XMouseListener & operator =(XMouseListener const &) = default;
+    XMouseListener & operator =(XMouseListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL mousePressed( const ::css::awt::MouseEvent& e ) = 0;
+    virtual void SAL_CALL mouseReleased( const ::css::awt::MouseEvent& e ) = 0;
+    virtual void SAL_CALL mouseEntered( const ::css::awt::MouseEvent& e ) = 0;
+    virtual void SAL_CALL mouseExited( const ::css::awt::MouseEvent& e ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMouseListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XMouseListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XMouseListener > *);
+
+#endif

@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_INVOCATIONINFO_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_INVOCATIONINFO_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/reflection/ParamMode.hdl"
+#include "com/sun/star/script/MemberType.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "com/sun/star/uno/Type.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED InvocationInfo {
+    inline InvocationInfo();
+
+    inline InvocationInfo(const ::rtl::OUString& aName_, const ::css::script::MemberType& eMemberType_, const ::sal_Int16& PropertyAttribute_, const ::css::uno::Type& aType_, const ::css::uno::Sequence< ::css::uno::Type >& aParamTypes_, const ::css::uno::Sequence< ::css::reflection::ParamMode >& aParamModes_);
+
+    ::rtl::OUString aName;
+    ::css::script::MemberType eMemberType;
+    ::sal_Int16 PropertyAttribute;
+    ::css::uno::Type aType;
+    ::css::uno::Sequence< ::css::uno::Type > aParamTypes;
+    ::css::uno::Sequence< ::css::reflection::ParamMode > aParamModes;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::InvocationInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::script::InvocationInfo *);
+
+#endif

@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DOCKINGAREA_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DOCKINGAREA_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI DockingArea
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI DockingArea
+{
+
+#endif
+    DockingArea_DOCKINGAREA_TOP = 0,
+    DockingArea_DOCKINGAREA_BOTTOM = 1,
+    DockingArea_DOCKINGAREA_LEFT = 2,
+    DockingArea_DOCKINGAREA_RIGHT = 3,
+    DockingArea_DOCKINGAREA_DEFAULT = 4,
+    DockingArea_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto DockingArea_DOCKINGAREA_TOP = DockingArea::DockingArea_DOCKINGAREA_TOP;
+constexpr auto DockingArea_DOCKINGAREA_BOTTOM = DockingArea::DockingArea_DOCKINGAREA_BOTTOM;
+constexpr auto DockingArea_DOCKINGAREA_LEFT = DockingArea::DockingArea_DOCKINGAREA_LEFT;
+constexpr auto DockingArea_DOCKINGAREA_RIGHT = DockingArea::DockingArea_DOCKINGAREA_RIGHT;
+constexpr auto DockingArea_DOCKINGAREA_DEFAULT = DockingArea::DockingArea_DOCKINGAREA_DEFAULT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::DockingArea const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ui::DockingArea *);
+
+#endif

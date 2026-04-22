@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_URLAUTHENTICATIONREQUEST_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_URLAUTHENTICATIONREQUEST_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/AuthenticationRequest.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED URLAuthenticationRequest : public ::css::ucb::AuthenticationRequest
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE URLAuthenticationRequest(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE URLAuthenticationRequest(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::css::task::InteractionClassification& Classification_, const ::rtl::OUString& ServerName_, const ::rtl::OUString& Diagnostic_, const ::sal_Bool& HasRealm_, const ::rtl::OUString& Realm_, const ::sal_Bool& HasUserName_, const ::rtl::OUString& UserName_, const ::sal_Bool& HasPassword_, const ::rtl::OUString& Password_, const ::sal_Bool& HasAccount_, const ::rtl::OUString& Account_, const ::rtl::OUString& URL_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE URLAuthenticationRequest(URLAuthenticationRequest const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~URLAuthenticationRequest();
+
+    inline CPPU_GCC_DLLPRIVATE URLAuthenticationRequest & operator =(URLAuthenticationRequest const &);
+#endif
+
+    ::rtl::OUString URL CPPU_GCC3_ALIGN( ::css::ucb::AuthenticationRequest );
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::URLAuthenticationRequest const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::URLAuthenticationRequest *);
+
+#endif

@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XSTATECHANGEBROADCASTER_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XSTATECHANGEBROADCASTER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace embed { class XStateChangeListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStateChangeBroadcaster : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStateChangeBroadcaster() = default;
+    XStateChangeBroadcaster(XStateChangeBroadcaster const &) = default;
+    XStateChangeBroadcaster(XStateChangeBroadcaster &&) = default;
+    XStateChangeBroadcaster & operator =(XStateChangeBroadcaster const &) = default;
+    XStateChangeBroadcaster & operator =(XStateChangeBroadcaster &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addStateChangeListener( const ::css::uno::Reference< ::css::embed::XStateChangeListener >& xListener ) = 0;
+    virtual void SAL_CALL removeStateChangeListener( const ::css::uno::Reference< ::css::embed::XStateChangeListener >& xListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStateChangeBroadcaster() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XStateChangeBroadcaster const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XStateChangeBroadcaster > *);
+
+#endif

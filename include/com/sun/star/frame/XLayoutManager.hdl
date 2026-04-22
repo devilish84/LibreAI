@@ -1,0 +1,81 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XLAYOUTMANAGER_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XLAYOUTMANAGER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Point.hdl"
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/awt/Size.hdl"
+namespace com { namespace sun { namespace star { namespace frame { class XFrame; } } } }
+#include "com/sun/star/ui/DockingArea.hdl"
+namespace com { namespace sun { namespace star { namespace ui { class XDockingAreaAcceptor; } } } }
+namespace com { namespace sun { namespace star { namespace ui { class XUIElement; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLayoutManager : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLayoutManager() = default;
+    XLayoutManager(XLayoutManager const &) = default;
+    XLayoutManager(XLayoutManager &&) = default;
+    XLayoutManager & operator =(XLayoutManager const &) = default;
+    XLayoutManager & operator =(XLayoutManager &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL attachFrame( const ::css::uno::Reference< ::css::frame::XFrame >& Frame ) = 0;
+    virtual void SAL_CALL reset() = 0;
+    virtual ::css::awt::Rectangle SAL_CALL getCurrentDockingArea() = 0;
+    virtual ::css::uno::Reference< ::css::ui::XDockingAreaAcceptor > SAL_CALL getDockingAreaAcceptor() = 0;
+    virtual void SAL_CALL setDockingAreaAcceptor( const ::css::uno::Reference< ::css::ui::XDockingAreaAcceptor >& xDockingAreaAcceptor ) = 0;
+    virtual void SAL_CALL createElement( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual void SAL_CALL destroyElement( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::sal_Bool SAL_CALL requestElement( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::css::uno::Reference< ::css::ui::XUIElement > SAL_CALL getElement( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::ui::XUIElement > > SAL_CALL getElements() = 0;
+    virtual ::sal_Bool SAL_CALL showElement( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::sal_Bool SAL_CALL hideElement( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::sal_Bool SAL_CALL dockWindow( const ::rtl::OUString& ResourceURL, ::css::ui::DockingArea DockingArea, const ::css::awt::Point& Pos ) = 0;
+    virtual ::sal_Bool SAL_CALL dockAllWindows( ::sal_Int16 nElementType ) = 0;
+    virtual ::sal_Bool SAL_CALL floatWindow( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::sal_Bool SAL_CALL lockWindow( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::sal_Bool SAL_CALL unlockWindow( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual void SAL_CALL setElementSize( const ::rtl::OUString& ResourceURL, const ::css::awt::Size& Size ) = 0;
+    virtual void SAL_CALL setElementPos( const ::rtl::OUString& ResourceURL, const ::css::awt::Point& Pos ) = 0;
+    virtual void SAL_CALL setElementPosSize( const ::rtl::OUString& ResourceURL, const ::css::awt::Point& Pos, const ::css::awt::Size& Size ) = 0;
+    virtual ::sal_Bool SAL_CALL isElementVisible( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::sal_Bool SAL_CALL isElementFloating( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::sal_Bool SAL_CALL isElementDocked( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::sal_Bool SAL_CALL isElementLocked( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::css::awt::Size SAL_CALL getElementSize( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual ::css::awt::Point SAL_CALL getElementPos( const ::rtl::OUString& ResourceURL ) = 0;
+    virtual void SAL_CALL lock() = 0;
+    virtual void SAL_CALL unlock() = 0;
+    virtual void SAL_CALL doLayout() = 0;
+    virtual void SAL_CALL setVisible( ::sal_Bool Visible ) = 0;
+    virtual ::sal_Bool SAL_CALL isVisible() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLayoutManager() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XLayoutManager const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XLayoutManager > *);
+
+#endif

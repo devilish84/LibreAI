@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_NAMECLASH_HPP
+#define INCLUDED_COM_SUN_STAR_UCB_NAMECLASH_HPP
+
+#include "com/sun/star/ucb/NameClash.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_UCB_NAMECLASH_HPP

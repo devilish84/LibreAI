@@ -1,0 +1,26 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_CONDITIONOPERATOR2_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_CONDITIONOPERATOR2_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace ConditionOperator2 {
+
+static const ::sal_Int32 BETWEEN = (sal_Int32)7;
+static const ::sal_Int32 DUPLICATE = (sal_Int32)10;
+static const ::sal_Int32 EQUAL = (sal_Int32)1;
+static const ::sal_Int32 FORMULA = (sal_Int32)9;
+static const ::sal_Int32 GREATER = (sal_Int32)3;
+static const ::sal_Int32 GREATER_EQUAL = (sal_Int32)4;
+static const ::sal_Int32 LESS = (sal_Int32)5;
+static const ::sal_Int32 LESS_EQUAL = (sal_Int32)6;
+static const ::sal_Int32 NONE = (sal_Int32)0;
+static const ::sal_Int32 NOT_BETWEEN = (sal_Int32)8;
+static const ::sal_Int32 NOT_DUPLICATE = (sal_Int32)11;
+static const ::sal_Int32 NOT_EQUAL = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_CONDITIONOPERATOR2_HDL

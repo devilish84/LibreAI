@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_XDRAGSOURCECONTEXT_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_XDRAGSOURCECONTEXT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace datatransfer { namespace dnd {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDragSourceContext : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDragSourceContext() = default;
+    XDragSourceContext(XDragSourceContext const &) = default;
+    XDragSourceContext(XDragSourceContext &&) = default;
+    XDragSourceContext & operator =(XDragSourceContext const &) = default;
+    XDragSourceContext & operator =(XDragSourceContext &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getCurrentCursor() = 0;
+    virtual void SAL_CALL setCursor( ::sal_Int32 cursorId ) = 0;
+    virtual void SAL_CALL setImage( ::sal_Int32 imageId ) = 0;
+    virtual void SAL_CALL transferablesFlavorsChanged() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDragSourceContext() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::datatransfer::dnd::XDragSourceContext const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::datatransfer::dnd::XDragSourceContext > *);
+
+#endif

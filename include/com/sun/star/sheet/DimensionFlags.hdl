@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DIMENSIONFLAGS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DIMENSIONFLAGS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace DimensionFlags {
+
+static const ::sal_Int32 NO_COLUMN_ORIENTATION = (sal_Int32)1;
+static const ::sal_Int32 NO_DATA_ORIENTATION = (sal_Int32)8;
+static const ::sal_Int32 NO_PAGE_ORIENTATION = (sal_Int32)4;
+static const ::sal_Int32 NO_ROW_ORIENTATION = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_DIMENSIONFLAGS_HDL

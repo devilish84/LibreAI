@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_XFORMS_XFORMSEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_XFORMS_XFORMSEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/xml/dom/events/XEvent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xforms {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFormsEvent : public ::css::xml::dom::events::XEvent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFormsEvent() = default;
+    XFormsEvent(XFormsEvent const &) = default;
+    XFormsEvent(XFormsEvent &&) = default;
+    XFormsEvent & operator =(XFormsEvent const &) = default;
+    XFormsEvent & operator =(XFormsEvent &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL initXFormsEvent( const ::rtl::OUString& typeArg, ::sal_Bool canBubbleArg, ::sal_Bool cancelableArg ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFormsEvent() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xforms::XFormsEvent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xforms::XFormsEvent > *);
+
+#endif

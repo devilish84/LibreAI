@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_ITEMTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_UI_ITEMTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ui { namespace ItemType {
+
+static const ::sal_Int16 DEFAULT = (sal_Int16)0;
+static const ::sal_Int16 SEPARATOR_LINE = (sal_Int16)1;
+static const ::sal_Int16 SEPARATOR_LINEBREAK = (sal_Int16)3;
+static const ::sal_Int16 SEPARATOR_SPACE = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UI_ITEMTYPE_HDL

@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_DNDCONSTANTS_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_DNDCONSTANTS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace datatransfer { namespace dnd { namespace DNDConstants {
+
+static const ::sal_Int8 ACTION_COPY = (sal_Int8)1;
+static const ::sal_Int8 ACTION_COPY_OR_MOVE = (sal_Int8)3;
+static const ::sal_Int8 ACTION_DEFAULT = (sal_Int8)-128;
+static const ::sal_Int8 ACTION_LINK = (sal_Int8)4;
+static const ::sal_Int8 ACTION_MOVE = (sal_Int8)2;
+static const ::sal_Int8 ACTION_NONE = (sal_Int8)0;
+static const ::sal_Int8 ACTION_REFERENCE = (sal_Int8)4;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_DNDCONSTANTS_HDL

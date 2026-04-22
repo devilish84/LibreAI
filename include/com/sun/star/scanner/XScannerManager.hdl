@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCANNER_XSCANNERMANAGER_HDL
+#define INCLUDED_COM_SUN_STAR_SCANNER_XSCANNERMANAGER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XBitmap; } } } }
+namespace com { namespace sun { namespace star { namespace lang { class XEventListener; } } } }
+#include "com/sun/star/scanner/ScanError.hdl"
+#include "com/sun/star/scanner/ScannerContext.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace scanner {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XScannerManager : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XScannerManager() = default;
+    XScannerManager(XScannerManager const &) = default;
+    XScannerManager(XScannerManager &&) = default;
+    XScannerManager & operator =(XScannerManager const &) = default;
+    XScannerManager & operator =(XScannerManager &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::scanner::ScannerContext > SAL_CALL getAvailableScanners() = 0;
+    virtual ::sal_Bool SAL_CALL configureScanner( ::css::scanner::ScannerContext& scannerContext ) = 0;
+    virtual void SAL_CALL startScan( const ::css::scanner::ScannerContext& scannerContext, const ::css::uno::Reference< ::css::lang::XEventListener >& listener ) = 0;
+    virtual ::css::scanner::ScanError SAL_CALL getError( const ::css::scanner::ScannerContext& scannerContext ) = 0;
+    virtual ::css::uno::Reference< ::css::awt::XBitmap > SAL_CALL getBitmap( const ::css::scanner::ScannerContext& scannerContext ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XScannerManager() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::scanner::XScannerManager const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::scanner::XScannerManager > *);
+
+#endif

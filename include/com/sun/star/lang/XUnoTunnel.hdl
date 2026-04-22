@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_LANG_XUNOTUNNEL_HDL
+#define INCLUDED_COM_SUN_STAR_LANG_XUNOTUNNEL_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace lang {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUnoTunnel : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUnoTunnel() = default;
+    XUnoTunnel(XUnoTunnel const &) = default;
+    XUnoTunnel(XUnoTunnel &&) = default;
+    XUnoTunnel & operator =(XUnoTunnel const &) = default;
+    XUnoTunnel & operator =(XUnoTunnel &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int64 SAL_CALL getSomething( const ::css::uno::Sequence< ::sal_Int8 >& aIdentifier ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUnoTunnel() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::lang::XUnoTunnel const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::lang::XUnoTunnel > *);
+
+#endif

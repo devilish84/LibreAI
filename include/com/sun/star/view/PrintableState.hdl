@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_VIEW_PRINTABLESTATE_HDL
+#define INCLUDED_COM_SUN_STAR_VIEW_PRINTABLESTATE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace view {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI PrintableState
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI PrintableState
+{
+
+#endif
+    PrintableState_JOB_STARTED = 0,
+    PrintableState_JOB_COMPLETED = 1,
+    PrintableState_JOB_SPOOLED = 2,
+    PrintableState_JOB_ABORTED = 3,
+    PrintableState_JOB_FAILED = 4,
+    PrintableState_JOB_SPOOLING_FAILED = 5,
+    PrintableState_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto PrintableState_JOB_STARTED = PrintableState::PrintableState_JOB_STARTED;
+constexpr auto PrintableState_JOB_COMPLETED = PrintableState::PrintableState_JOB_COMPLETED;
+constexpr auto PrintableState_JOB_SPOOLED = PrintableState::PrintableState_JOB_SPOOLED;
+constexpr auto PrintableState_JOB_ABORTED = PrintableState::PrintableState_JOB_ABORTED;
+constexpr auto PrintableState_JOB_FAILED = PrintableState::PrintableState_JOB_FAILED;
+constexpr auto PrintableState_JOB_SPOOLING_FAILED = PrintableState::PrintableState_JOB_SPOOLING_FAILED;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::view::PrintableState const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::view::PrintableState *);
+
+#endif

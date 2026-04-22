@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_INTERRUPTREASON_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_INTERRUPTREASON_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI InterruptReason
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI InterruptReason
+{
+
+#endif
+    InterruptReason_Cancel = 0,
+    InterruptReason_RuntimeError = 1,
+    InterruptReason_CompileError = 2,
+    InterruptReason_BreakPoint = 3,
+    InterruptReason_Step = 4,
+    InterruptReason_StepOver = 5,
+    InterruptReason_StepOut = 6,
+    InterruptReason_StepStatement = 7,
+    InterruptReason_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto InterruptReason_Cancel = InterruptReason::InterruptReason_Cancel;
+constexpr auto InterruptReason_RuntimeError = InterruptReason::InterruptReason_RuntimeError;
+constexpr auto InterruptReason_CompileError = InterruptReason::InterruptReason_CompileError;
+constexpr auto InterruptReason_BreakPoint = InterruptReason::InterruptReason_BreakPoint;
+constexpr auto InterruptReason_Step = InterruptReason::InterruptReason_Step;
+constexpr auto InterruptReason_StepOver = InterruptReason::InterruptReason_StepOver;
+constexpr auto InterruptReason_StepOut = InterruptReason::InterruptReason_StepOut;
+constexpr auto InterruptReason_StepStatement = InterruptReason::InterruptReason_StepStatement;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::InterruptReason const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::script::InterruptReason *);
+
+#endif

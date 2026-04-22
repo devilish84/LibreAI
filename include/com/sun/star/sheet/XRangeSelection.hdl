@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XRANGESELECTION_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XRANGESELECTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace sheet { class XRangeSelectionChangeListener; } } } }
+namespace com { namespace sun { namespace star { namespace sheet { class XRangeSelectionListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRangeSelection : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRangeSelection() = default;
+    XRangeSelection(XRangeSelection const &) = default;
+    XRangeSelection(XRangeSelection &&) = default;
+    XRangeSelection & operator =(XRangeSelection const &) = default;
+    XRangeSelection & operator =(XRangeSelection &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL startRangeSelection( const ::css::uno::Sequence< ::css::beans::PropertyValue >& aArguments ) = 0;
+    virtual void SAL_CALL abortRangeSelection() = 0;
+    virtual void SAL_CALL addRangeSelectionListener( const ::css::uno::Reference< ::css::sheet::XRangeSelectionListener >& aListener ) = 0;
+    virtual void SAL_CALL removeRangeSelectionListener( const ::css::uno::Reference< ::css::sheet::XRangeSelectionListener >& aListener ) = 0;
+    virtual void SAL_CALL addRangeSelectionChangeListener( const ::css::uno::Reference< ::css::sheet::XRangeSelectionChangeListener >& aListener ) = 0;
+    virtual void SAL_CALL removeRangeSelectionChangeListener( const ::css::uno::Reference< ::css::sheet::XRangeSelectionChangeListener >& aListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRangeSelection() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XRangeSelection const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XRangeSelection > *);
+
+#endif

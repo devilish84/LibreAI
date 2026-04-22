@@ -1,0 +1,58 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_NODETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_NODETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI NodeType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI NodeType
+{
+
+#endif
+    NodeType_ATTRIBUTE_NODE = 0,
+    NodeType_CDATA_SECTION_NODE = 1,
+    NodeType_COMMENT_NODE = 2,
+    NodeType_DOCUMENT_FRAGMENT_NODE = 3,
+    NodeType_DOCUMENT_NODE = 4,
+    NodeType_DOCUMENT_TYPE_NODE = 5,
+    NodeType_ELEMENT_NODE = 6,
+    NodeType_ENTITY_NODE = 7,
+    NodeType_ENTITY_REFERENCE_NODE = 8,
+    NodeType_NOTATION_NODE = 9,
+    NodeType_PROCESSING_INSTRUCTION_NODE = 10,
+    NodeType_TEXT_NODE = 11,
+    NodeType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto NodeType_ATTRIBUTE_NODE = NodeType::NodeType_ATTRIBUTE_NODE;
+constexpr auto NodeType_CDATA_SECTION_NODE = NodeType::NodeType_CDATA_SECTION_NODE;
+constexpr auto NodeType_COMMENT_NODE = NodeType::NodeType_COMMENT_NODE;
+constexpr auto NodeType_DOCUMENT_FRAGMENT_NODE = NodeType::NodeType_DOCUMENT_FRAGMENT_NODE;
+constexpr auto NodeType_DOCUMENT_NODE = NodeType::NodeType_DOCUMENT_NODE;
+constexpr auto NodeType_DOCUMENT_TYPE_NODE = NodeType::NodeType_DOCUMENT_TYPE_NODE;
+constexpr auto NodeType_ELEMENT_NODE = NodeType::NodeType_ELEMENT_NODE;
+constexpr auto NodeType_ENTITY_NODE = NodeType::NodeType_ENTITY_NODE;
+constexpr auto NodeType_ENTITY_REFERENCE_NODE = NodeType::NodeType_ENTITY_REFERENCE_NODE;
+constexpr auto NodeType_NOTATION_NODE = NodeType::NodeType_NOTATION_NODE;
+constexpr auto NodeType_PROCESSING_INSTRUCTION_NODE = NodeType::NodeType_PROCESSING_INSTRUCTION_NODE;
+constexpr auto NodeType_TEXT_NODE = NodeType::NodeType_TEXT_NODE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::NodeType const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::xml::dom::NodeType *);
+
+#endif

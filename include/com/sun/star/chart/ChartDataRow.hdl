@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTDATAROW_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTDATAROW_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/chart/ChartDataValue.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED ChartDataRow {
+    inline ChartDataRow();
+
+    inline ChartDataRow(const ::rtl::OUString& Name_, const ::css::uno::Sequence< ::css::uno::Sequence< ::css::chart::ChartDataValue > >& Points_);
+
+    ::rtl::OUString Name;
+    ::css::uno::Sequence< ::css::uno::Sequence< ::css::chart::ChartDataValue > > Points;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::ChartDataRow const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart::ChartDataRow *);
+
+#endif

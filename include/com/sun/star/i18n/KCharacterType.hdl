@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_KCHARACTERTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_KCHARACTERTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace KCharacterType {
+
+static const ::sal_Int32 ALPHA = (sal_Int32)14;
+static const ::sal_Int32 BASE_FORM = (sal_Int32)64;
+static const ::sal_Int32 CONTROL = (sal_Int32)16;
+static const ::sal_Int32 DIGIT = (sal_Int32)1;
+static const ::sal_Int32 LETTER = (sal_Int32)128;
+static const ::sal_Int32 LOWER = (sal_Int32)4;
+static const ::sal_Int32 PRINTABLE = (sal_Int32)32;
+static const ::sal_Int32 TITLE_CASE = (sal_Int32)8;
+static const ::sal_Int32 UPPER = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_KCHARACTERTYPE_HDL

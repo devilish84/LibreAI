@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_TEXTCONVERSIONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_TEXTCONVERSIONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace TextConversionType {
+
+static const ::sal_Int16 TO_HANGUL = (sal_Int16)1;
+static const ::sal_Int16 TO_HANJA = (sal_Int16)2;
+static const ::sal_Int16 TO_SCHINESE = (sal_Int16)3;
+static const ::sal_Int16 TO_TCHINESE = (sal_Int16)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_TEXTCONVERSIONTYPE_HDL

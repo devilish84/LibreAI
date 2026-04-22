@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_XUIELEMENTFACTORYREGISTRATION_HDL
+#define INCLUDED_COM_SUN_STAR_UI_XUIELEMENTFACTORYREGISTRATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace ui { class XUIElementFactory; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUIElementFactoryRegistration : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUIElementFactoryRegistration() = default;
+    XUIElementFactoryRegistration(XUIElementFactoryRegistration const &) = default;
+    XUIElementFactoryRegistration(XUIElementFactoryRegistration &&) = default;
+    XUIElementFactoryRegistration & operator =(XUIElementFactoryRegistration const &) = default;
+    XUIElementFactoryRegistration & operator =(XUIElementFactoryRegistration &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::uno::Sequence< ::css::beans::PropertyValue > > SAL_CALL getRegisteredFactories() = 0;
+    virtual ::css::uno::Reference< ::css::ui::XUIElementFactory > SAL_CALL getFactory( const ::rtl::OUString& ResourceURL, const ::rtl::OUString& ModuleIdentifier ) = 0;
+    virtual void SAL_CALL registerFactory( const ::rtl::OUString& aType, const ::rtl::OUString& aName, const ::rtl::OUString& aModuleIdentifier, const ::rtl::OUString& aFactoryImplementationName ) = 0;
+    virtual void SAL_CALL deregisterFactory( const ::rtl::OUString& aType, const ::rtl::OUString& aName, const ::rtl::OUString& ModuleIdentifier ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUIElementFactoryRegistration() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::XUIElementFactoryRegistration const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::XUIElementFactoryRegistration > *);
+
+#endif

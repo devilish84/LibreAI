@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FOCUSCHANGEREASON_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_FOCUSCHANGEREASON_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace FocusChangeReason {
+
+static const ::sal_Int32 AROUND = (sal_Int32)64;
+static const ::sal_Int32 BACKWARD = (sal_Int32)32;
+static const ::sal_Int32 CURSOR = (sal_Int32)2;
+static const ::sal_Int32 FORWARD = (sal_Int32)16;
+static const ::sal_Int32 MNEMONIC = (sal_Int32)4;
+static const ::sal_Int32 TAB = (sal_Int32)1;
+static const ::sal_Int32 UNIQUEMNEMONIC = (sal_Int32)256;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FOCUSCHANGEREASON_HDL

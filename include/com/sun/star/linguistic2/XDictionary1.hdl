@@ -1,0 +1,61 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XDICTIONARY1_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XDICTIONARY1_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XNamed.hdl"
+#include "com/sun/star/linguistic2/DictionaryType.hdl"
+namespace com { namespace sun { namespace star { namespace linguistic2 { class XDictionaryEntry; } } } }
+namespace com { namespace sun { namespace star { namespace linguistic2 { class XDictionaryEventListener; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDictionary1 : public ::css::container::XNamed
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDictionary1() = default;
+    XDictionary1(XDictionary1 const &) = default;
+    XDictionary1(XDictionary1 &&) = default;
+    XDictionary1 & operator =(XDictionary1 const &) = default;
+    XDictionary1 & operator =(XDictionary1 &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::linguistic2::DictionaryType SAL_CALL getDictionaryType() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setActive( ::sal_Bool bActivate ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL isActive() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Int16 SAL_CALL getCount() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Int16 SAL_CALL getLanguage() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setLanguage( ::sal_Int16 nLang ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::linguistic2::XDictionaryEntry > SAL_CALL getEntry( const ::rtl::OUString& aWord ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL addEntry( const ::css::uno::Reference< ::css::linguistic2::XDictionaryEntry >& xDicEntry ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL add( const ::rtl::OUString& aWord, ::sal_Bool bIsNegative, const ::rtl::OUString& aRplcText ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL remove( const ::rtl::OUString& aWord ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL isFull() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::linguistic2::XDictionaryEntry > > SAL_CALL getEntries() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL clear() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL addDictionaryEventListener( const ::css::uno::Reference< ::css::linguistic2::XDictionaryEventListener >& xListener ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL removeDictionaryEventListener( const ::css::uno::Reference< ::css::linguistic2::XDictionaryEventListener >& xListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDictionary1() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XDictionary1 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XDictionary1 > *);
+
+#endif

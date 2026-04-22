@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XREGION_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XREGION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+namespace com { namespace sun { namespace star { namespace awt { class XRegion; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRegion : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRegion() = default;
+    XRegion(XRegion const &) = default;
+    XRegion(XRegion &&) = default;
+    XRegion & operator =(XRegion const &) = default;
+    XRegion & operator =(XRegion &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::awt::Rectangle SAL_CALL getBounds() = 0;
+    virtual void SAL_CALL clear() = 0;
+    virtual void SAL_CALL move( ::sal_Int32 nHorzMove, ::sal_Int32 nVertMove ) = 0;
+    virtual void SAL_CALL unionRectangle( const ::css::awt::Rectangle& Rect ) = 0;
+    virtual void SAL_CALL intersectRectangle( const ::css::awt::Rectangle& Region ) = 0;
+    virtual void SAL_CALL excludeRectangle( const ::css::awt::Rectangle& Rect ) = 0;
+    virtual void SAL_CALL xOrRectangle( const ::css::awt::Rectangle& Rect ) = 0;
+    virtual void SAL_CALL unionRegion( const ::css::uno::Reference< ::css::awt::XRegion >& Region ) = 0;
+    virtual void SAL_CALL intersectRegion( const ::css::uno::Reference< ::css::awt::XRegion >& Region ) = 0;
+    virtual void SAL_CALL excludeRegion( const ::css::uno::Reference< ::css::awt::XRegion >& Region ) = 0;
+    virtual void SAL_CALL xOrRegion( const ::css::uno::Reference< ::css::awt::XRegion >& Region ) = 0;
+    virtual ::css::uno::Sequence< ::css::awt::Rectangle > SAL_CALL getRectangles() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRegion() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XRegion const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XRegion > *);
+
+#endif

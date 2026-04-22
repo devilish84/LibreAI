@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_SAX_XFASTSAXSERIALIZABLE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_SAX_XFASTSAXSERIALIZABLE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/Pair.hdl"
+#include "com/sun/star/beans/StringPair.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { class XFastDocumentHandler; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { class XFastTokenHandler; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace sax {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFastSAXSerializable : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFastSAXSerializable() = default;
+    XFastSAXSerializable(XFastSAXSerializable const &) = default;
+    XFastSAXSerializable(XFastSAXSerializable &&) = default;
+    XFastSAXSerializable & operator =(XFastSAXSerializable const &) = default;
+    XFastSAXSerializable & operator =(XFastSAXSerializable &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL fastSerialize( const ::css::uno::Reference< ::css::xml::sax::XFastDocumentHandler >& handler, const ::css::uno::Reference< ::css::xml::sax::XFastTokenHandler >& tokenHandler, const ::css::uno::Sequence< ::css::beans::StringPair >& namespaces, const ::css::uno::Sequence< ::css::beans::Pair< ::rtl::OUString, ::sal_Int32 > >& registerNamespaces ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFastSAXSerializable() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::sax::XFastSAXSerializable const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::sax::XFastSAXSerializable > *);
+
+#endif

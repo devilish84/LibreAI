@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_DICTIONARYEVENTFLAGS_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_DICTIONARYEVENTFLAGS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace linguistic2 { namespace DictionaryEventFlags {
+
+static const ::sal_Int16 ACTIVATE_DIC = (sal_Int16)32;
+static const ::sal_Int16 ADD_ENTRY = (sal_Int16)1;
+static const ::sal_Int16 CHG_LANGUAGE = (sal_Int16)8;
+static const ::sal_Int16 CHG_NAME = (sal_Int16)4;
+static const ::sal_Int16 DEACTIVATE_DIC = (sal_Int16)64;
+static const ::sal_Int16 DEL_ENTRY = (sal_Int16)2;
+static const ::sal_Int16 ENTRIES_CLEARED = (sal_Int16)16;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_LINGUISTIC2_DICTIONARYEVENTFLAGS_HDL

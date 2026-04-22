@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_CELLINSERTMODE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_CELLINSERTMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI CellInsertMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI CellInsertMode
+{
+
+#endif
+    CellInsertMode_NONE = 0,
+    CellInsertMode_DOWN = 1,
+    CellInsertMode_RIGHT = 2,
+    CellInsertMode_ROWS = 3,
+    CellInsertMode_COLUMNS = 4,
+    CellInsertMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto CellInsertMode_NONE = CellInsertMode::CellInsertMode_NONE;
+constexpr auto CellInsertMode_DOWN = CellInsertMode::CellInsertMode_DOWN;
+constexpr auto CellInsertMode_RIGHT = CellInsertMode::CellInsertMode_RIGHT;
+constexpr auto CellInsertMode_ROWS = CellInsertMode::CellInsertMode_ROWS;
+constexpr auto CellInsertMode_COLUMNS = CellInsertMode::CellInsertMode_COLUMNS;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::CellInsertMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::CellInsertMode *);
+
+#endif

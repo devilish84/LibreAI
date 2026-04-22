@@ -1,0 +1,41 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_DRIVERPROPERTYINFO_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_DRIVERPROPERTYINFO_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DriverPropertyInfo {
+    inline DriverPropertyInfo();
+
+    inline DriverPropertyInfo(const ::rtl::OUString& Name_, const ::rtl::OUString& Description_, const ::sal_Bool& IsRequired_, const ::rtl::OUString& Value_, const ::css::uno::Sequence< ::rtl::OUString >& Choices_);
+
+    ::rtl::OUString Name;
+    ::rtl::OUString Description;
+    ::sal_Bool IsRequired;
+    ::rtl::OUString Value;
+    ::css::uno::Sequence< ::rtl::OUString > Choices;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::DriverPropertyInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sdbc::DriverPropertyInfo *);
+
+#endif

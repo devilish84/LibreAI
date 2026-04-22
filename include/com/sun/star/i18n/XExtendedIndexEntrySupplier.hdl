@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XEXTENDEDINDEXENTRYSUPPLIER_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XEXTENDEDINDEXENTRYSUPPLIER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/XIndexEntrySupplier.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XExtendedIndexEntrySupplier : public ::css::i18n::XIndexEntrySupplier
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XExtendedIndexEntrySupplier() = default;
+    XExtendedIndexEntrySupplier(XExtendedIndexEntrySupplier const &) = default;
+    XExtendedIndexEntrySupplier(XExtendedIndexEntrySupplier &&) = default;
+    XExtendedIndexEntrySupplier & operator =(XExtendedIndexEntrySupplier const &) = default;
+    XExtendedIndexEntrySupplier & operator =(XExtendedIndexEntrySupplier &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::lang::Locale > SAL_CALL getLocaleList() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getAlgorithmList( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::sal_Bool SAL_CALL usePhoneticEntry( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::rtl::OUString SAL_CALL getPhoneticCandidate( const ::rtl::OUString& aIndexEntry, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::sal_Bool SAL_CALL loadAlgorithm( const ::css::lang::Locale& aLocale, const ::rtl::OUString& aIndexAlgorithm, ::sal_Int32 nCollatorOptions ) = 0;
+    virtual ::rtl::OUString SAL_CALL getIndexKey( const ::rtl::OUString& aIndexEntry, const ::rtl::OUString& aPhoneticEntry, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::sal_Int16 SAL_CALL compareIndexEntry( const ::rtl::OUString& aIndexEntry1, const ::rtl::OUString& aPhoneticEntry1, const ::css::lang::Locale& aLocale1, const ::rtl::OUString& aIndexEntry2, const ::rtl::OUString& aPhoneticEntry2, const ::css::lang::Locale& aLocale2 ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XExtendedIndexEntrySupplier() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XExtendedIndexEntrySupplier const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XExtendedIndexEntrySupplier > *);
+
+#endif

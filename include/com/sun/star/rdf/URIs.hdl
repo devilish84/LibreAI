@@ -1,0 +1,143 @@
+#ifndef INCLUDED_COM_SUN_STAR_RDF_URIS_HDL
+#define INCLUDED_COM_SUN_STAR_RDF_URIS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rdf { namespace URIs {
+
+static const ::sal_Int16 LO_EXT_SHADING = (sal_Int16)2106;
+static const ::sal_Int16 ODF_CONTENTFILE = (sal_Int16)2103;
+static const ::sal_Int16 ODF_ELEMENT = (sal_Int16)2102;
+static const ::sal_Int16 ODF_PREFIX = (sal_Int16)2100;
+static const ::sal_Int16 ODF_STYLESFILE = (sal_Int16)2104;
+static const ::sal_Int16 ODF_SUFFIX = (sal_Int16)2101;
+static const ::sal_Int16 OWL_ALLDIFFERENT = (sal_Int16)1211;
+static const ::sal_Int16 OWL_ALLVALUESFROM = (sal_Int16)1219;
+static const ::sal_Int16 OWL_ANNOTATIONPROPERTY = (sal_Int16)1232;
+static const ::sal_Int16 OWL_BACKWARDCOMPATIBLEWITH = (sal_Int16)1228;
+static const ::sal_Int16 OWL_CARDINALITY = (sal_Int16)1223;
+static const ::sal_Int16 OWL_CLASS = (sal_Int16)1200;
+static const ::sal_Int16 OWL_COMPLEMENTOF = (sal_Int16)1238;
+static const ::sal_Int16 OWL_DATARANGE = (sal_Int16)1235;
+static const ::sal_Int16 OWL_DATATYPEPROPERTY = (sal_Int16)1202;
+static const ::sal_Int16 OWL_DEPRECATEDCLASS = (sal_Int16)1230;
+static const ::sal_Int16 OWL_DEPRECATEDPROPERTY = (sal_Int16)1231;
+static const ::sal_Int16 OWL_DIFFERENTFROM = (sal_Int16)1210;
+static const ::sal_Int16 OWL_DISJOINTWITH = (sal_Int16)1236;
+static const ::sal_Int16 OWL_DISTINCTMEMBERS = (sal_Int16)1212;
+static const ::sal_Int16 OWL_EQUIVALENTCLASS = (sal_Int16)1207;
+static const ::sal_Int16 OWL_EQUIVALENTPROPERTY = (sal_Int16)1208;
+static const ::sal_Int16 OWL_FUNCTIONALPROPERTY = (sal_Int16)1203;
+static const ::sal_Int16 OWL_HASVALUE = (sal_Int16)1240;
+static const ::sal_Int16 OWL_IMPORTS = (sal_Int16)1225;
+static const ::sal_Int16 OWL_INCOMPATIBLEWITH = (sal_Int16)1229;
+static const ::sal_Int16 OWL_INDIVIDUAL = (sal_Int16)1206;
+static const ::sal_Int16 OWL_INTERSECTIONOF = (sal_Int16)1239;
+static const ::sal_Int16 OWL_INVERSEFUNCTIONALPROPERTY = (sal_Int16)1216;
+static const ::sal_Int16 OWL_INVERSEOF = (sal_Int16)1213;
+static const ::sal_Int16 OWL_MAXCARDINALITY = (sal_Int16)1222;
+static const ::sal_Int16 OWL_MINCARDINALITY = (sal_Int16)1221;
+static const ::sal_Int16 OWL_NOTHING = (sal_Int16)1205;
+static const ::sal_Int16 OWL_OBJECTPROPERTY = (sal_Int16)1201;
+static const ::sal_Int16 OWL_ONEOF = (sal_Int16)1234;
+static const ::sal_Int16 OWL_ONPROPERTY = (sal_Int16)1218;
+static const ::sal_Int16 OWL_ONTOLOGY = (sal_Int16)1224;
+static const ::sal_Int16 OWL_ONTOLOGYPROPERTY = (sal_Int16)1233;
+static const ::sal_Int16 OWL_PRIORVERSION = (sal_Int16)1227;
+static const ::sal_Int16 OWL_RESTRICTION = (sal_Int16)1217;
+static const ::sal_Int16 OWL_SAMEAS = (sal_Int16)1209;
+static const ::sal_Int16 OWL_SOMEVALUESFROM = (sal_Int16)1220;
+static const ::sal_Int16 OWL_SYMMETRICPROPERTY = (sal_Int16)1215;
+static const ::sal_Int16 OWL_THING = (sal_Int16)1204;
+static const ::sal_Int16 OWL_TRANSITIVEPROPERTY = (sal_Int16)1214;
+static const ::sal_Int16 OWL_UNIONOF = (sal_Int16)1237;
+static const ::sal_Int16 OWL_VERSIONINFO = (sal_Int16)1226;
+static const ::sal_Int16 PKG_DOCUMENT = (sal_Int16)2008;
+static const ::sal_Int16 PKG_ELEMENT = (sal_Int16)2005;
+static const ::sal_Int16 PKG_FILE = (sal_Int16)2006;
+static const ::sal_Int16 PKG_HASPART = (sal_Int16)2000;
+static const ::sal_Int16 PKG_METADATAFILE = (sal_Int16)2007;
+static const ::sal_Int16 PKG_MIMETYPE = (sal_Int16)2003;
+static const ::sal_Int16 PKG_PACKAGE = (sal_Int16)2004;
+static const ::sal_Int16 RDFS_CLASS = (sal_Int16)1111;
+static const ::sal_Int16 RDFS_COMMENT = (sal_Int16)1100;
+static const ::sal_Int16 RDFS_CONTAINER = (sal_Int16)1113;
+static const ::sal_Int16 RDFS_CONTAINERMEMBERSHIPPROPERTY = (sal_Int16)1114;
+static const ::sal_Int16 RDFS_DATATYPE = (sal_Int16)1112;
+static const ::sal_Int16 RDFS_DOMAIN = (sal_Int16)1102;
+static const ::sal_Int16 RDFS_ISDEFINEDBY = (sal_Int16)1108;
+static const ::sal_Int16 RDFS_LABEL = (sal_Int16)1101;
+static const ::sal_Int16 RDFS_LITERAL = (sal_Int16)1105;
+static const ::sal_Int16 RDFS_MEMBER = (sal_Int16)1106;
+static const ::sal_Int16 RDFS_RANGE = (sal_Int16)1103;
+static const ::sal_Int16 RDFS_RESOURCE = (sal_Int16)1110;
+static const ::sal_Int16 RDFS_SEEALSO = (sal_Int16)1109;
+static const ::sal_Int16 RDFS_SUBCLASSOF = (sal_Int16)1104;
+static const ::sal_Int16 RDFS_SUBPROPERTYOF = (sal_Int16)1107;
+static const ::sal_Int16 RDF_1 = (sal_Int16)1015;
+static const ::sal_Int16 RDF_ALT = (sal_Int16)1011;
+static const ::sal_Int16 RDF_BAG = (sal_Int16)1012;
+static const ::sal_Int16 RDF_FIRST = (sal_Int16)1007;
+static const ::sal_Int16 RDF_LIST = (sal_Int16)1013;
+static const ::sal_Int16 RDF_NIL = (sal_Int16)1009;
+static const ::sal_Int16 RDF_OBJECT = (sal_Int16)1003;
+static const ::sal_Int16 RDF_PREDICATE = (sal_Int16)1002;
+static const ::sal_Int16 RDF_PROPERTY = (sal_Int16)1004;
+static const ::sal_Int16 RDF_REST = (sal_Int16)1008;
+static const ::sal_Int16 RDF_SEQ = (sal_Int16)1014;
+static const ::sal_Int16 RDF_STATEMENT = (sal_Int16)1005;
+static const ::sal_Int16 RDF_SUBJECT = (sal_Int16)1001;
+static const ::sal_Int16 RDF_TYPE = (sal_Int16)1000;
+static const ::sal_Int16 RDF_VALUE = (sal_Int16)1006;
+static const ::sal_Int16 RDF_XMLLITERAL = (sal_Int16)1010;
+static const ::sal_Int16 XSD_ANYURI = (sal_Int16)31;
+static const ::sal_Int16 XSD_BASE64BINARY = (sal_Int16)22;
+static const ::sal_Int16 XSD_BOOLEAN = (sal_Int16)4;
+static const ::sal_Int16 XSD_BYTE = (sal_Int16)16;
+static const ::sal_Int16 XSD_DATE = (sal_Int16)25;
+static const ::sal_Int16 XSD_DATETIME = (sal_Int16)23;
+static const ::sal_Int16 XSD_DECIMAL = (sal_Int16)5;
+static const ::sal_Int16 XSD_DOUBLE = (sal_Int16)7;
+static const ::sal_Int16 XSD_DURATION = (sal_Int16)36;
+static const ::sal_Int16 XSD_ENTITIES = (sal_Int16)44;
+static const ::sal_Int16 XSD_ENTITY = (sal_Int16)43;
+static const ::sal_Int16 XSD_FLOAT = (sal_Int16)6;
+static const ::sal_Int16 XSD_GDAY = (sal_Int16)29;
+static const ::sal_Int16 XSD_GMONTH = (sal_Int16)30;
+static const ::sal_Int16 XSD_GMONTHDAY = (sal_Int16)28;
+static const ::sal_Int16 XSD_GYEAR = (sal_Int16)27;
+static const ::sal_Int16 XSD_GYEARMONTH = (sal_Int16)26;
+static const ::sal_Int16 XSD_HEXBINARY = (sal_Int16)21;
+static const ::sal_Int16 XSD_ID = (sal_Int16)40;
+static const ::sal_Int16 XSD_IDREF = (sal_Int16)41;
+static const ::sal_Int16 XSD_IDREFS = (sal_Int16)42;
+static const ::sal_Int16 XSD_INT = (sal_Int16)14;
+static const ::sal_Int16 XSD_INTEGER = (sal_Int16)8;
+static const ::sal_Int16 XSD_LANGUAGE = (sal_Int16)33;
+static const ::sal_Int16 XSD_LONG = (sal_Int16)13;
+static const ::sal_Int16 XSD_NAME = (sal_Int16)35;
+static const ::sal_Int16 XSD_NCNAME = (sal_Int16)1;
+static const ::sal_Int16 XSD_NEGATIVEINTEGER = (sal_Int16)12;
+static const ::sal_Int16 XSD_NMTOKEN = (sal_Int16)34;
+static const ::sal_Int16 XSD_NMTOKENS = (sal_Int16)39;
+static const ::sal_Int16 XSD_NONNEGATIVEINTEGER = (sal_Int16)9;
+static const ::sal_Int16 XSD_NONPOSITIVEINTEGER = (sal_Int16)11;
+static const ::sal_Int16 XSD_NORMALIZEDSTRING = (sal_Int16)3;
+static const ::sal_Int16 XSD_NOTATION = (sal_Int16)38;
+static const ::sal_Int16 XSD_POSITIVEINTEGER = (sal_Int16)10;
+static const ::sal_Int16 XSD_QNAME = (sal_Int16)37;
+static const ::sal_Int16 XSD_SHORT = (sal_Int16)15;
+static const ::sal_Int16 XSD_STRING = (sal_Int16)2;
+static const ::sal_Int16 XSD_TIME = (sal_Int16)24;
+static const ::sal_Int16 XSD_TOKEN = (sal_Int16)32;
+static const ::sal_Int16 XSD_UNSIGNEDBYTE = (sal_Int16)20;
+static const ::sal_Int16 XSD_UNSIGNEDINT = (sal_Int16)18;
+static const ::sal_Int16 XSD_UNSIGNEDLONG = (sal_Int16)17;
+static const ::sal_Int16 XSD_UNSIGNEDSHORT = (sal_Int16)19;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RDF_URIS_HDL

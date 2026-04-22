@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_DIALOGCLOSEDEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_DIALOGCLOSEDEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI DialogClosedEvent: public ::css::lang::EventObject {
+    inline DialogClosedEvent();
+
+    inline DialogClosedEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::sal_Int16& DialogResult_);
+
+    ::sal_Int16 DialogResult CPPU_GCC3_ALIGN(::css::lang::EventObject);
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::dialogs::DialogClosedEvent const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ui::dialogs::DialogClosedEvent *);
+
+#endif

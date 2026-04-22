@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_RESOURCE_XSTRINGRESOURCEPERSISTENCE_HDL
+#define INCLUDED_COM_SUN_STAR_RESOURCE_XSTRINGRESOURCEPERSISTENCE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+#include "com/sun/star/resource/XStringResourceManager.hdl"
+namespace com { namespace sun { namespace star { namespace task { class XInteractionHandler; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace resource {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStringResourcePersistence : public ::css::resource::XStringResourceManager
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStringResourcePersistence() = default;
+    XStringResourcePersistence(XStringResourcePersistence const &) = default;
+    XStringResourcePersistence(XStringResourcePersistence &&) = default;
+    XStringResourcePersistence & operator =(XStringResourcePersistence const &) = default;
+    XStringResourcePersistence & operator =(XStringResourcePersistence &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL store() = 0;
+    virtual ::sal_Bool SAL_CALL isModified() = 0;
+    virtual void SAL_CALL setComment( const ::rtl::OUString& Comment ) = 0;
+    virtual void SAL_CALL storeToStorage( const ::css::uno::Reference< ::css::embed::XStorage >& Storage, const ::rtl::OUString& BaseName, const ::rtl::OUString& Comment ) = 0;
+    virtual void SAL_CALL storeToURL( const ::rtl::OUString& URL, const ::rtl::OUString& BaseName, const ::rtl::OUString& Comment, const ::css::uno::Reference< ::css::task::XInteractionHandler >& Handler ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL exportBinary() = 0;
+    virtual void SAL_CALL importBinary( const ::css::uno::Sequence< ::sal_Int8 >& Data ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStringResourcePersistence() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::resource::XStringResourcePersistence const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::resource::XStringResourcePersistence > *);
+
+#endif

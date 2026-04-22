@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBCX_KEYTYPE_HPP
+#define INCLUDED_COM_SUN_STAR_SDBCX_KEYTYPE_HPP
+
+#include "com/sun/star/sdbcx/KeyType.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_SDBCX_KEYTYPE_HPP

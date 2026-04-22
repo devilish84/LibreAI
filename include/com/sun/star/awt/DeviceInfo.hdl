@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_DEVICEINFO_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_DEVICEINFO_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DeviceInfo {
+    inline DeviceInfo();
+
+    inline DeviceInfo(const ::sal_Int32& Width_, const ::sal_Int32& Height_, const ::sal_Int32& LeftInset_, const ::sal_Int32& TopInset_, const ::sal_Int32& RightInset_, const ::sal_Int32& BottomInset_, const double& PixelPerMeterX_, const double& PixelPerMeterY_, const ::sal_Int16& BitsPerPixel_, const ::sal_Int32& Capabilities_);
+
+    ::sal_Int32 Width;
+    ::sal_Int32 Height;
+    ::sal_Int32 LeftInset;
+    ::sal_Int32 TopInset;
+    ::sal_Int32 RightInset;
+    ::sal_Int32 BottomInset;
+    double PixelPerMeterX;
+    double PixelPerMeterY;
+    ::sal_Int16 BitsPerPixel;
+    ::sal_Int32 Capabilities;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::DeviceInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::DeviceInfo *);
+
+#endif

@@ -1,0 +1,54 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XRELATIONSHIPACCESS_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XRELATIONSHIPACCESS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/StringPair.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRelationshipAccess : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRelationshipAccess() = default;
+    XRelationshipAccess(XRelationshipAccess const &) = default;
+    XRelationshipAccess(XRelationshipAccess &&) = default;
+    XRelationshipAccess & operator =(XRelationshipAccess const &) = default;
+    XRelationshipAccess & operator =(XRelationshipAccess &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL hasByID( const ::rtl::OUString& sID ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTargetByID( const ::rtl::OUString& sID ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTypeByID( const ::rtl::OUString& sID ) = 0;
+    virtual ::css::uno::Sequence< ::css::beans::StringPair > SAL_CALL getRelationshipByID( const ::rtl::OUString& sID ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Sequence< ::css::beans::StringPair > > SAL_CALL getRelationshipsByType( const ::rtl::OUString& sType ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Sequence< ::css::beans::StringPair > > SAL_CALL getAllRelationships() = 0;
+    virtual void SAL_CALL insertRelationshipByID( const ::rtl::OUString& sID, const ::css::uno::Sequence< ::css::beans::StringPair >& aEntry, ::sal_Bool bReplace ) = 0;
+    virtual void SAL_CALL removeRelationshipByID( const ::rtl::OUString& sID ) = 0;
+    virtual void SAL_CALL insertRelationships( const ::css::uno::Sequence< ::css::uno::Sequence< ::css::beans::StringPair > >& aEntries, ::sal_Bool bReplace ) = 0;
+    virtual void SAL_CALL clearRelationships() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRelationshipAccess() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XRelationshipAccess const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XRelationshipAccess > *);
+
+#endif

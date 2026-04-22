@@ -1,0 +1,22 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_ERRORBARSTYLE_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_ERRORBARSTYLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace chart { namespace ErrorBarStyle {
+
+static const ::sal_Int32 ABSOLUTE = (sal_Int32)3;
+static const ::sal_Int32 ERROR_MARGIN = (sal_Int32)5;
+static const ::sal_Int32 FROM_DATA = (sal_Int32)7;
+static const ::sal_Int32 NONE = (sal_Int32)0;
+static const ::sal_Int32 RELATIVE = (sal_Int32)4;
+static const ::sal_Int32 STANDARD_DEVIATION = (sal_Int32)2;
+static const ::sal_Int32 STANDARD_ERROR = (sal_Int32)6;
+static const ::sal_Int32 VARIANCE = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_CHART_ERRORBARSTYLE_HDL

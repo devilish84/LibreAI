@@ -1,0 +1,57 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_GRID_XMUTABLEGRIDDATAMODEL_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_GRID_XMUTABLEGRIDDATAMODEL_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace grid { class XGridDataListener; } } } } }
+#include "com/sun/star/awt/grid/XGridDataModel.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt { namespace grid {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMutableGridDataModel : public ::css::awt::grid::XGridDataModel
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMutableGridDataModel() = default;
+    XMutableGridDataModel(XMutableGridDataModel const &) = default;
+    XMutableGridDataModel(XMutableGridDataModel &&) = default;
+    XMutableGridDataModel & operator =(XMutableGridDataModel const &) = default;
+    XMutableGridDataModel & operator =(XMutableGridDataModel &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addRow( const ::css::uno::Any& Heading, const ::css::uno::Sequence< ::css::uno::Any >& Data ) = 0;
+    virtual void SAL_CALL addRows( const ::css::uno::Sequence< ::css::uno::Any >& Headings, const ::css::uno::Sequence< ::css::uno::Sequence< ::css::uno::Any > >& Data ) = 0;
+    virtual void SAL_CALL insertRow( ::sal_Int32 Index, const ::css::uno::Any& Heading, const ::css::uno::Sequence< ::css::uno::Any >& Data ) = 0;
+    virtual void SAL_CALL insertRows( ::sal_Int32 Index, const ::css::uno::Sequence< ::css::uno::Any >& Headings, const ::css::uno::Sequence< ::css::uno::Sequence< ::css::uno::Any > >& Data ) = 0;
+    virtual void SAL_CALL removeRow( ::sal_Int32 RowIndex ) = 0;
+    virtual void SAL_CALL removeAllRows() = 0;
+    virtual void SAL_CALL updateCellData( ::sal_Int32 ColumnIndex, ::sal_Int32 RowIndex, const ::css::uno::Any& Value ) = 0;
+    virtual void SAL_CALL updateRowData( const ::css::uno::Sequence< ::sal_Int32 >& ColumnIndexes, ::sal_Int32 RowIndex, const ::css::uno::Sequence< ::css::uno::Any >& Values ) = 0;
+    virtual void SAL_CALL updateRowHeading( ::sal_Int32 RowIndex, const ::css::uno::Any& Heading ) = 0;
+    virtual void SAL_CALL updateCellToolTip( ::sal_Int32 ColumnIndex, ::sal_Int32 RowIndex, const ::css::uno::Any& Value ) = 0;
+    virtual void SAL_CALL updateRowToolTip( ::sal_Int32 RowIndex, const ::css::uno::Any& Value ) = 0;
+    virtual void SAL_CALL addGridDataListener( const ::css::uno::Reference< ::css::awt::grid::XGridDataListener >& Listener ) = 0;
+    virtual void SAL_CALL removeGridDataListener( const ::css::uno::Reference< ::css::awt::grid::XGridDataListener >& Listener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMutableGridDataModel() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::grid::XMutableGridDataModel const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::grid::XMutableGridDataModel > *);
+
+#endif

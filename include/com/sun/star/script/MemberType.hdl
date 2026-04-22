@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_MEMBERTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_MEMBERTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI MemberType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI MemberType
+{
+
+#endif
+    MemberType_METHOD = 0,
+    MemberType_PROPERTY = 1,
+    MemberType_UNKNOWN = 2,
+    MemberType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto MemberType_METHOD = MemberType::MemberType_METHOD;
+constexpr auto MemberType_PROPERTY = MemberType::MemberType_PROPERTY;
+constexpr auto MemberType_UNKNOWN = MemberType::MemberType_UNKNOWN;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::MemberType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::script::MemberType *);
+
+#endif

@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XAREALINKS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XAREALINKS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XIndexAccess.hdl"
+#include "com/sun/star/table/CellAddress.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAreaLinks : public ::css::container::XIndexAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAreaLinks() = default;
+    XAreaLinks(XAreaLinks const &) = default;
+    XAreaLinks(XAreaLinks &&) = default;
+    XAreaLinks & operator =(XAreaLinks const &) = default;
+    XAreaLinks & operator =(XAreaLinks &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL insertAtPosition( const ::css::table::CellAddress& aDestPos, const ::rtl::OUString& aFileName, const ::rtl::OUString& aSourceArea, const ::rtl::OUString& aFilter, const ::rtl::OUString& aFilterOptions ) = 0;
+    virtual void SAL_CALL removeByIndex( ::sal_Int32 nIndex ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAreaLinks() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XAreaLinks const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XAreaLinks > *);
+
+#endif

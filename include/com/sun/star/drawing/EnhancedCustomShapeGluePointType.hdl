@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPEGLUEPOINTTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPEGLUEPOINTTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace EnhancedCustomShapeGluePointType {
+
+static const ::sal_Int16 CUSTOM = (sal_Int16)2;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+static const ::sal_Int16 RECT = (sal_Int16)3;
+static const ::sal_Int16 SEGMENTS = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPEGLUEPOINTTYPE_HDL

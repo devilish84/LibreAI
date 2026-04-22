@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_COLUMNTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_COLUMNTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbc { namespace ColumnType {
+
+static const ::sal_Int32 NOT_PSEUDO = (sal_Int32)1;
+static const ::sal_Int32 PSEUDO = (sal_Int32)2;
+static const ::sal_Int32 UNKNOWN = (sal_Int32)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBC_COLUMNTYPE_HDL

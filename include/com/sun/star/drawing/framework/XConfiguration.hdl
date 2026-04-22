@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_XCONFIGURATION_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_XCONFIGURATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/drawing/framework/AnchorBindingMode.hdl"
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework { class XResourceId; } } } } }
+#include "com/sun/star/util/XCloneable.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XConfiguration : public ::css::util::XCloneable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XConfiguration() = default;
+    XConfiguration(XConfiguration const &) = default;
+    XConfiguration(XConfiguration &&) = default;
+    XConfiguration & operator =(XConfiguration const &) = default;
+    XConfiguration & operator =(XConfiguration &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::drawing::framework::XResourceId > > SAL_CALL getResources( const ::css::uno::Reference< ::css::drawing::framework::XResourceId >& xAnchorId, const ::rtl::OUString& sTargetURLPrefix, ::css::drawing::framework::AnchorBindingMode eSearchMode ) = 0;
+    virtual ::sal_Bool SAL_CALL hasResource( const ::css::uno::Reference< ::css::drawing::framework::XResourceId >& xResourceId ) = 0;
+    virtual void SAL_CALL addResource( const ::css::uno::Reference< ::css::drawing::framework::XResourceId >& xResourceId ) = 0;
+    virtual void SAL_CALL removeResource( const ::css::uno::Reference< ::css::drawing::framework::XResourceId >& xResourceId ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XConfiguration() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::framework::XConfiguration const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::framework::XConfiguration > *);
+
+#endif

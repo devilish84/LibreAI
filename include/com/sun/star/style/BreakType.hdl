@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_BREAKTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_BREAKTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace style {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI BreakType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI BreakType
+{
+
+#endif
+    BreakType_NONE = 0,
+    BreakType_COLUMN_BEFORE = 1,
+    BreakType_COLUMN_AFTER = 2,
+    BreakType_COLUMN_BOTH = 3,
+    BreakType_PAGE_BEFORE = 4,
+    BreakType_PAGE_AFTER = 5,
+    BreakType_PAGE_BOTH = 6,
+    BreakType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto BreakType_NONE = BreakType::BreakType_NONE;
+constexpr auto BreakType_COLUMN_BEFORE = BreakType::BreakType_COLUMN_BEFORE;
+constexpr auto BreakType_COLUMN_AFTER = BreakType::BreakType_COLUMN_AFTER;
+constexpr auto BreakType_COLUMN_BOTH = BreakType::BreakType_COLUMN_BOTH;
+constexpr auto BreakType_PAGE_BEFORE = BreakType::BreakType_PAGE_BEFORE;
+constexpr auto BreakType_PAGE_AFTER = BreakType::BreakType_PAGE_AFTER;
+constexpr auto BreakType_PAGE_BOTH = BreakType::BreakType_PAGE_BOTH;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::style::BreakType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::style::BreakType *);
+
+#endif

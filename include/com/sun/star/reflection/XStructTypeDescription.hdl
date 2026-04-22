@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_REFLECTION_XSTRUCTTYPEDESCRIPTION_HDL
+#define INCLUDED_COM_SUN_STAR_REFLECTION_XSTRUCTTYPEDESCRIPTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/reflection/XCompoundTypeDescription.hdl"
+namespace com { namespace sun { namespace star { namespace reflection { class XTypeDescription; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace reflection {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStructTypeDescription : public ::css::reflection::XCompoundTypeDescription
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStructTypeDescription() = default;
+    XStructTypeDescription(XStructTypeDescription const &) = default;
+    XStructTypeDescription(XStructTypeDescription &&) = default;
+    XStructTypeDescription & operator =(XStructTypeDescription const &) = default;
+    XStructTypeDescription & operator =(XStructTypeDescription &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getTypeParameters() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::reflection::XTypeDescription > > SAL_CALL getTypeArguments() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStructTypeDescription() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::reflection::XStructTypeDescription const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::reflection::XStructTypeDescription > *);
+
+#endif

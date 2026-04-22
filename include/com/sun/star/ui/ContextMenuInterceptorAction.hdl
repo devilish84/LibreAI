@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_CONTEXTMENUINTERCEPTORACTION_HDL
+#define INCLUDED_COM_SUN_STAR_UI_CONTEXTMENUINTERCEPTORACTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ContextMenuInterceptorAction
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ContextMenuInterceptorAction
+{
+
+#endif
+    ContextMenuInterceptorAction_IGNORED = 0,
+    ContextMenuInterceptorAction_CANCELLED = 1,
+    ContextMenuInterceptorAction_EXECUTE_MODIFIED = 2,
+    ContextMenuInterceptorAction_CONTINUE_MODIFIED = 3,
+    ContextMenuInterceptorAction_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ContextMenuInterceptorAction_IGNORED = ContextMenuInterceptorAction::ContextMenuInterceptorAction_IGNORED;
+constexpr auto ContextMenuInterceptorAction_CANCELLED = ContextMenuInterceptorAction::ContextMenuInterceptorAction_CANCELLED;
+constexpr auto ContextMenuInterceptorAction_EXECUTE_MODIFIED = ContextMenuInterceptorAction::ContextMenuInterceptorAction_EXECUTE_MODIFIED;
+constexpr auto ContextMenuInterceptorAction_CONTINUE_MODIFIED = ContextMenuInterceptorAction::ContextMenuInterceptorAction_CONTINUE_MODIFIED;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::ContextMenuInterceptorAction const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ui::ContextMenuInterceptorAction *);
+
+#endif

@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XSPREADSHEET_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XSPREADSHEET_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { class XSheetCellCursor; } } } }
+#include "com/sun/star/sheet/XSheetCellRange.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSpreadsheet : public ::css::sheet::XSheetCellRange
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSpreadsheet() = default;
+    XSpreadsheet(XSpreadsheet const &) = default;
+    XSpreadsheet(XSpreadsheet &&) = default;
+    XSpreadsheet & operator =(XSpreadsheet const &) = default;
+    XSpreadsheet & operator =(XSpreadsheet &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::sheet::XSheetCellCursor > SAL_CALL createCursor() = 0;
+    virtual ::css::uno::Reference< ::css::sheet::XSheetCellCursor > SAL_CALL createCursorByRange( const ::css::uno::Reference< ::css::sheet::XSheetCellRange >& aRange ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSpreadsheet() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XSpreadsheet const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XSpreadsheet > *);
+
+#endif

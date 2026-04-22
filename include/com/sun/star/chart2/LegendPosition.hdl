@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_LEGENDPOSITION_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_LEGENDPOSITION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI LegendPosition
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI LegendPosition
+{
+
+#endif
+    LegendPosition_LINE_START = 0,
+    LegendPosition_LINE_END = 1,
+    LegendPosition_PAGE_START = 2,
+    LegendPosition_PAGE_END = 3,
+    LegendPosition_CUSTOM = 4,
+    LegendPosition_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto LegendPosition_LINE_START = LegendPosition::LegendPosition_LINE_START;
+constexpr auto LegendPosition_LINE_END = LegendPosition::LegendPosition_LINE_END;
+constexpr auto LegendPosition_PAGE_START = LegendPosition::LegendPosition_PAGE_START;
+constexpr auto LegendPosition_PAGE_END = LegendPosition::LegendPosition_PAGE_END;
+constexpr auto LegendPosition_CUSTOM = LegendPosition::LegendPosition_CUSTOM;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::LegendPosition const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart2::LegendPosition *);
+
+#endif

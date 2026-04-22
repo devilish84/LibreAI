@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XFORMULATOKENS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XFORMULATOKENS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/FormulaToken.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFormulaTokens : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFormulaTokens() = default;
+    XFormulaTokens(XFormulaTokens const &) = default;
+    XFormulaTokens(XFormulaTokens &&) = default;
+    XFormulaTokens & operator =(XFormulaTokens const &) = default;
+    XFormulaTokens & operator =(XFormulaTokens &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::sheet::FormulaToken > SAL_CALL getTokens() = 0;
+    virtual void SAL_CALL setTokens( const ::css::uno::Sequence< ::css::sheet::FormulaToken >& aTokens ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFormulaTokens() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XFormulaTokens const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XFormulaTokens > *);
+
+#endif

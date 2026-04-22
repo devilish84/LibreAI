@@ -1,0 +1,20 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_CRYPTO_DIGESTID_HDL
+#define INCLUDED_COM_SUN_STAR_XML_CRYPTO_DIGESTID_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto { namespace DigestID {
+
+static const ::sal_Int32 SHA1 = (sal_Int32)1;
+static const ::sal_Int32 SHA1_1K = (sal_Int32)3;
+static const ::sal_Int32 SHA256 = (sal_Int32)2;
+static const ::sal_Int32 SHA256_1K = (sal_Int32)4;
+static const ::sal_Int32 SHA512 = (sal_Int32)5;
+static const ::sal_Int32 SHA512_1K = (sal_Int32)6;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_XML_CRYPTO_DIGESTID_HDL

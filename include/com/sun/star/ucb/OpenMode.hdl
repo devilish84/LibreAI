@@ -1,0 +1,20 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_OPENMODE_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_OPENMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ucb { namespace OpenMode {
+
+static const ::sal_Int16 ALL = (sal_Int16)0;
+static const ::sal_Int16 DOCUMENT = (sal_Int16)2;
+static const ::sal_Int16 DOCUMENTS = (sal_Int16)3;
+static const ::sal_Int16 DOCUMENT_SHARE_DENY_NONE = (sal_Int16)4;
+static const ::sal_Int16 DOCUMENT_SHARE_DENY_WRITE = (sal_Int16)5;
+static const ::sal_Int16 FOLDERS = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UCB_OPENMODE_HDL

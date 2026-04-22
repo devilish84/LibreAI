@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_SOLVERCONSTRAINT_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_SOLVERCONSTRAINT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/SolverConstraintOperator.hdl"
+#include "com/sun/star/table/CellAddress.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SolverConstraint {
+    inline SolverConstraint();
+
+    inline SolverConstraint(const ::css::table::CellAddress& Left_, const ::css::sheet::SolverConstraintOperator& Operator_, const ::css::uno::Any& Right_);
+
+    ::css::table::CellAddress Left;
+    ::css::sheet::SolverConstraintOperator Operator;
+    ::css::uno::Any Right;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::SolverConstraint const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::SolverConstraint *);
+
+#endif

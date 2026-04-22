@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_FONTINFO_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_FONTINFO_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/rendering/Panose.hdl"
+#include "com/sun/star/util/TriState.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED FontInfo {
+    inline FontInfo();
+
+    inline FontInfo(const ::css::rendering::Panose& FontDescription_, const ::rtl::OUString& FamilyName_, const ::rtl::OUString& StyleName_, const ::sal_Int32& UnicodeRanges0_, const ::sal_Int32& UnicodeRanges1_, const ::sal_Int32& UnicodeRanges2_, const ::sal_Int32& UnicodeRanges3_, const ::css::util::TriState& IsSymbolFont_, const ::css::util::TriState& IsVertical_);
+
+    ::css::rendering::Panose FontDescription;
+    ::rtl::OUString FamilyName;
+    ::rtl::OUString StyleName;
+    ::sal_Int32 UnicodeRanges0;
+    ::sal_Int32 UnicodeRanges1;
+    ::sal_Int32 UnicodeRanges2;
+    ::sal_Int32 UnicodeRanges3;
+    ::css::util::TriState IsSymbolFont;
+    ::css::util::TriState IsVertical;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::FontInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::rendering::FontInfo *);
+
+#endif

@@ -1,0 +1,22 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_PANOSEXHEIGHT_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_PANOSEXHEIGHT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace PanoseXHeight {
+
+static const ::sal_Int8 ANYTHING = (sal_Int8)0;
+static const ::sal_Int8 CONSTANT_LARGE = (sal_Int8)4;
+static const ::sal_Int8 CONSTANT_SMALL = (sal_Int8)2;
+static const ::sal_Int8 CONSTANT_STANDARD = (sal_Int8)3;
+static const ::sal_Int8 DUCKING_LARGE = (sal_Int8)7;
+static const ::sal_Int8 DUCKING_SMALL = (sal_Int8)5;
+static const ::sal_Int8 DUCKING_STANDARD = (sal_Int8)6;
+static const ::sal_Int8 NO_FIT = (sal_Int8)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_PANOSEXHEIGHT_HDL

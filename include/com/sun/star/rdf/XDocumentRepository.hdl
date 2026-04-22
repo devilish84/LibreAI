@@ -1,0 +1,54 @@
+#ifndef INCLUDED_COM_SUN_STAR_RDF_XDOCUMENTREPOSITORY_HDL
+#define INCLUDED_COM_SUN_STAR_RDF_XDOCUMENTREPOSITORY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/Pair.hdl"
+namespace com { namespace sun { namespace star { namespace container { class XEnumeration; } } } }
+#include "com/sun/star/rdf/Statement.hdl"
+namespace com { namespace sun { namespace star { namespace rdf { class XMetadatable; } } } }
+namespace com { namespace sun { namespace star { namespace rdf { class XNode; } } } }
+#include "com/sun/star/rdf/XRepository.hdl"
+namespace com { namespace sun { namespace star { namespace rdf { class XResource; } } } }
+namespace com { namespace sun { namespace star { namespace rdf { class XURI; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rdf {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDocumentRepository : public ::css::rdf::XRepository
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDocumentRepository() = default;
+    XDocumentRepository(XDocumentRepository const &) = default;
+    XDocumentRepository(XDocumentRepository &&) = default;
+    XDocumentRepository & operator =(XDocumentRepository const &) = default;
+    XDocumentRepository & operator =(XDocumentRepository &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setStatementRDFa( const ::css::uno::Reference< ::css::rdf::XResource >& Subject, const ::css::uno::Sequence< ::css::uno::Reference< ::css::rdf::XURI > >& Predicates, const ::css::uno::Reference< ::css::rdf::XMetadatable >& Object, const ::rtl::OUString& RDFaContent, const ::css::uno::Reference< ::css::rdf::XURI >& RDFaDatatype ) = 0;
+    virtual void SAL_CALL removeStatementRDFa( const ::css::uno::Reference< ::css::rdf::XMetadatable >& Element ) = 0;
+    virtual ::css::beans::Pair< ::css::uno::Sequence< ::css::rdf::Statement >, ::sal_Bool > SAL_CALL getStatementRDFa( const ::css::uno::Reference< ::css::rdf::XMetadatable >& Element ) = 0;
+    virtual ::css::uno::Reference< ::css::container::XEnumeration > SAL_CALL getStatementsRDFa( const ::css::uno::Reference< ::css::rdf::XResource >& Subject, const ::css::uno::Reference< ::css::rdf::XURI >& Predicate, const ::css::uno::Reference< ::css::rdf::XNode >& Object ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDocumentRepository() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rdf::XDocumentRepository const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rdf::XDocumentRepository > *);
+
+#endif

@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_FORMULAMAPGROUP_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_FORMULAMAPGROUP_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace FormulaMapGroup {
+
+static const ::sal_Int32 ALL_EXCEPT_SPECIAL = (sal_Int32)2147483647;
+static const ::sal_Int32 ARRAY_SEPARATORS = (sal_Int32)2;
+static const ::sal_Int32 BINARY_OPERATORS = (sal_Int32)8;
+static const ::sal_Int32 FUNCTIONS = (sal_Int32)16;
+static const ::sal_Int32 SEPARATORS = (sal_Int32)1;
+static const ::sal_Int32 SPECIAL = (sal_Int32)0;
+static const ::sal_Int32 UNARY_OPERATORS = (sal_Int32)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_FORMULAMAPGROUP_HDL

@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_TABLEFILTERFIELD_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_TABLEFILTERFIELD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/FilterConnection.hdl"
+#include "com/sun/star/sheet/FilterOperator.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED TableFilterField {
+    inline TableFilterField();
+
+    inline TableFilterField(const ::css::sheet::FilterConnection& Connection_, const ::sal_Int32& Field_, const ::css::sheet::FilterOperator& Operator_, const ::sal_Bool& IsNumeric_, const double& NumericValue_, const ::rtl::OUString& StringValue_);
+
+    ::css::sheet::FilterConnection Connection;
+    ::sal_Int32 Field;
+    ::css::sheet::FilterOperator Operator;
+    ::sal_Bool IsNumeric;
+    double NumericValue;
+    ::rtl::OUString StringValue;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::TableFilterField const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::TableFilterField *);
+
+#endif

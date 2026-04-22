@@ -1,0 +1,34 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_LOCALEITEM_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_LOCALEITEM_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace LocaleItem {
+
+static const ::sal_Int16 COUNT = (sal_Int16)17;
+static const ::sal_Int16 COUNT2 = (sal_Int16)18;
+static const ::sal_Int16 DATE_SEPARATOR = (sal_Int16)0;
+static const ::sal_Int16 DECIMAL_SEPARATOR = (sal_Int16)2;
+static const ::sal_Int16 DECIMAL_SEPARATOR_ALTERNATIVE = (sal_Int16)17;
+static const ::sal_Int16 DOUBLE_QUOTATION_END = (sal_Int16)9;
+static const ::sal_Int16 DOUBLE_QUOTATION_START = (sal_Int16)8;
+static const ::sal_Int16 LIST_SEPARATOR = (sal_Int16)5;
+static const ::sal_Int16 LONG_DATE_DAY_OF_WEEK_SEPARATOR = (sal_Int16)13;
+static const ::sal_Int16 LONG_DATE_DAY_SEPARATOR = (sal_Int16)14;
+static const ::sal_Int16 LONG_DATE_MONTH_SEPARATOR = (sal_Int16)15;
+static const ::sal_Int16 LONG_DATE_YEAR_SEPARATOR = (sal_Int16)16;
+static const ::sal_Int16 MEASUREMENT_SYSTEM = (sal_Int16)10;
+static const ::sal_Int16 SINGLE_QUOTATION_END = (sal_Int16)7;
+static const ::sal_Int16 SINGLE_QUOTATION_START = (sal_Int16)6;
+static const ::sal_Int16 THOUSAND_SEPARATOR = (sal_Int16)1;
+static const ::sal_Int16 TIME_100SEC_SEPARATOR = (sal_Int16)4;
+static const ::sal_Int16 TIME_AM = (sal_Int16)11;
+static const ::sal_Int16 TIME_PM = (sal_Int16)12;
+static const ::sal_Int16 TIME_SEPARATOR = (sal_Int16)3;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_LOCALEITEM_HDL

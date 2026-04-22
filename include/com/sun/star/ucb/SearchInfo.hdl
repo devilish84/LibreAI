@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_SEARCHINFO_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_SEARCHINFO_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/SearchCriterium.hdl"
+#include "com/sun/star/ucb/SearchRecursion.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SearchInfo {
+    inline SearchInfo();
+
+    inline SearchInfo(const ::css::uno::Sequence< ::css::ucb::SearchCriterium >& Criteria_, const ::css::ucb::SearchRecursion& Recursion_, const ::sal_Bool& IncludeBase_, const ::sal_Bool& RespectFolderViewRestrictions_, const ::sal_Bool& RespectDocViewRestrictions_, const ::sal_Bool& FollowIndirections_);
+
+    ::css::uno::Sequence< ::css::ucb::SearchCriterium > Criteria;
+    ::css::ucb::SearchRecursion Recursion;
+    ::sal_Bool IncludeBase;
+    ::sal_Bool RespectFolderViewRestrictions;
+    ::sal_Bool RespectDocViewRestrictions;
+    ::sal_Bool FollowIndirections;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::SearchInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::SearchInfo *);
+
+#endif

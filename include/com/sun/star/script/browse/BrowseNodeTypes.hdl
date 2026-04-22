@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_BROWSE_BROWSENODETYPES_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_BROWSE_BROWSENODETYPES_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace script { namespace browse { namespace BrowseNodeTypes {
+
+static const ::sal_Int16 CONTAINER = (sal_Int16)1;
+static const ::sal_Int16 ROOT = (sal_Int16)2;
+static const ::sal_Int16 SCRIPT = (sal_Int16)0;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SCRIPT_BROWSE_BROWSENODETYPES_HDL

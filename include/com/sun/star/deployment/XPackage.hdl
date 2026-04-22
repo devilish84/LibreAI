@@ -1,0 +1,75 @@
+#ifndef INCLUDED_COM_SUN_STAR_DEPLOYMENT_XPACKAGE_HDL
+#define INCLUDED_COM_SUN_STAR_DEPLOYMENT_XPACKAGE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/Ambiguous.hdl"
+#include "com/sun/star/beans/Optional.hdl"
+#include "com/sun/star/beans/StringPair.hdl"
+namespace com { namespace sun { namespace star { namespace deployment { class XPackage; } } } }
+namespace com { namespace sun { namespace star { namespace deployment { class XPackageTypeInfo; } } } }
+namespace com { namespace sun { namespace star { namespace graphic { class XGraphic; } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace task { class XAbortChannel; } } } }
+namespace com { namespace sun { namespace star { namespace ucb { class XCommandEnvironment; } } } }
+#include "com/sun/star/util/XModifyBroadcaster.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace deployment {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPackage : public ::css::lang::XComponent, public ::css::util::XModifyBroadcaster
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPackage() = default;
+    XPackage(XPackage const &) = default;
+    XPackage(XPackage &&) = default;
+    XPackage & operator =(XPackage const &) = default;
+    XPackage & operator =(XPackage &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::task::XAbortChannel > SAL_CALL createAbortChannel() = 0;
+    virtual ::sal_Int32 SAL_CALL checkPrerequisites( const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv, ::sal_Bool alreadyInstalled ) = 0;
+    virtual ::sal_Bool SAL_CALL checkDependencies( const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::css::beans::Optional< ::css::beans::Ambiguous< ::sal_Bool > > SAL_CALL isRegistered( const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual void SAL_CALL registerPackage( ::sal_Bool startup, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual void SAL_CALL revokePackage( ::sal_Bool startup, const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::sal_Bool SAL_CALL isBundle() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::deployment::XPackage > > SAL_CALL getBundle( const ::css::uno::Reference< ::css::task::XAbortChannel >& xAbortChannel, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::rtl::OUString SAL_CALL getName() = 0;
+    virtual ::css::beans::Optional< ::rtl::OUString > SAL_CALL getIdentifier() = 0;
+    virtual ::rtl::OUString SAL_CALL getVersion() = 0;
+    virtual ::rtl::OUString SAL_CALL getURL() = 0;
+    virtual ::rtl::OUString SAL_CALL getDisplayName() = 0;
+    virtual ::rtl::OUString SAL_CALL getDescription() = 0;
+    virtual ::rtl::OUString SAL_CALL getLicenseText() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getUpdateInformationURLs() = 0;
+    virtual ::css::beans::StringPair SAL_CALL getPublisherInfo() = 0;
+    virtual ::css::uno::Reference< ::css::deployment::XPackageTypeInfo > SAL_CALL getPackageType() = 0;
+    virtual void SAL_CALL exportTo( const ::rtl::OUString& destFolderURL, const ::rtl::OUString& newTitle, ::sal_Int32 nameClashAction, const ::css::uno::Reference< ::css::ucb::XCommandEnvironment >& xCmdEnv ) = 0;
+    virtual ::css::uno::Reference< ::css::graphic::XGraphic > SAL_CALL getIcon( ::sal_Bool highContrast ) = 0;
+    virtual ::rtl::OUString SAL_CALL getRepositoryName() = 0;
+    virtual ::css::beans::Optional< ::rtl::OUString > SAL_CALL getRegistrationDataURL() = 0;
+    virtual ::sal_Bool SAL_CALL isRemoved() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPackage() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::deployment::XPackage const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::deployment::XPackage > *);
+
+#endif

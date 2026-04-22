@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_GRAPHIC_GRAPHICCOLORMODE_HDL
+#define INCLUDED_COM_SUN_STAR_GRAPHIC_GRAPHICCOLORMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace graphic { namespace GraphicColorMode {
+
+static const ::sal_Int32 HIGH_CONTRAST = (sal_Int32)1;
+static const ::sal_Int32 NORMAL = (sal_Int32)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_GRAPHIC_GRAPHICCOLORMODE_HDL

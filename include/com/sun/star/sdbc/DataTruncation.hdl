@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_DATATRUNCATION_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_DATATRUNCATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sdbc/SQLWarning.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED DataTruncation : public ::css::sdbc::SQLWarning
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE DataTruncation(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE DataTruncation(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::rtl::OUString& SQLState_, const ::sal_Int32& ErrorCode_, const ::css::uno::Any& NextException_, const ::sal_Int32& Index_, const ::sal_Bool& IsParameter_, const ::sal_Bool& DuringRead_, const ::sal_Int32& DataSize_, const ::sal_Int32& TransferSize_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE DataTruncation(DataTruncation const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~DataTruncation();
+
+    inline CPPU_GCC_DLLPRIVATE DataTruncation & operator =(DataTruncation const &);
+#endif
+
+    ::sal_Int32 Index CPPU_GCC3_ALIGN( ::css::sdbc::SQLWarning );
+    ::sal_Bool IsParameter;
+    ::sal_Bool DuringRead;
+    ::sal_Int32 DataSize;
+    ::sal_Int32 TransferSize;
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::DataTruncation const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sdbc::DataTruncation *);
+
+#endif

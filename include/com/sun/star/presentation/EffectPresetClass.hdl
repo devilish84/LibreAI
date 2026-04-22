@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_PRESENTATION_EFFECTPRESETCLASS_HDL
+#define INCLUDED_COM_SUN_STAR_PRESENTATION_EFFECTPRESETCLASS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace presentation { namespace EffectPresetClass {
+
+static const ::sal_Int16 CUSTOM = (sal_Int16)0;
+static const ::sal_Int16 EMPHASIS = (sal_Int16)3;
+static const ::sal_Int16 ENTRANCE = (sal_Int16)1;
+static const ::sal_Int16 EXIT = (sal_Int16)2;
+static const ::sal_Int16 MEDIACALL = (sal_Int16)6;
+static const ::sal_Int16 MOTIONPATH = (sal_Int16)4;
+static const ::sal_Int16 OLEACTION = (sal_Int16)5;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_PRESENTATION_EFFECTPRESETCLASS_HDL

@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATAFIELD_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATAFIELD_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace BibliographyDataField {
+
+static const ::sal_Int16 ADDRESS = (sal_Int16)2;
+static const ::sal_Int16 ANNOTE = (sal_Int16)3;
+static const ::sal_Int16 AUTHOR = (sal_Int16)4;
+static const ::sal_Int16 BIBILIOGRAPHIC_TYPE = (sal_Int16)1;
+static const ::sal_Int16 BOOKTITLE = (sal_Int16)5;
+static const ::sal_Int16 CHAPTER = (sal_Int16)6;
+static const ::sal_Int16 CUSTOM1 = (sal_Int16)25;
+static const ::sal_Int16 CUSTOM2 = (sal_Int16)26;
+static const ::sal_Int16 CUSTOM3 = (sal_Int16)27;
+static const ::sal_Int16 CUSTOM4 = (sal_Int16)28;
+static const ::sal_Int16 CUSTOM5 = (sal_Int16)29;
+static const ::sal_Int16 EDITION = (sal_Int16)7;
+static const ::sal_Int16 EDITOR = (sal_Int16)8;
+static const ::sal_Int16 HOWPUBLISHED = (sal_Int16)9;
+static const ::sal_Int16 IDENTIFIER = (sal_Int16)0;
+static const ::sal_Int16 INSTITUTION = (sal_Int16)10;
+static const ::sal_Int16 ISBN = (sal_Int16)30;
+static const ::sal_Int16 JOURNAL = (sal_Int16)11;
+static const ::sal_Int16 LOCAL_URL = (sal_Int16)31;
+static const ::sal_Int16 MONTH = (sal_Int16)12;
+static const ::sal_Int16 NOTE = (sal_Int16)13;
+static const ::sal_Int16 NUMBER = (sal_Int16)14;
+static const ::sal_Int16 ORGANIZATIONS = (sal_Int16)15;
+static const ::sal_Int16 PAGES = (sal_Int16)16;
+static const ::sal_Int16 PUBLISHER = (sal_Int16)17;
+static const ::sal_Int16 REPORT_TYPE = (sal_Int16)21;
+static const ::sal_Int16 SCHOOL = (sal_Int16)18;
+static const ::sal_Int16 SERIES = (sal_Int16)19;
+static const ::sal_Int16 TITLE = (sal_Int16)20;
+static const ::sal_Int16 URL = (sal_Int16)24;
+static const ::sal_Int16 VOLUME = (sal_Int16)22;
+static const ::sal_Int16 YEAR = (sal_Int16)23;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATAFIELD_HDL

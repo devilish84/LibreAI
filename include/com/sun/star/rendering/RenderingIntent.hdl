@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_RENDERINGINTENT_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_RENDERINGINTENT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace RenderingIntent {
+
+static const ::sal_Int8 ABSOLUTE_COLORIMETRIC = (sal_Int8)3;
+static const ::sal_Int8 PERCEPTUAL = (sal_Int8)0;
+static const ::sal_Int8 RELATIVE_COLORIMETRIC = (sal_Int8)2;
+static const ::sal_Int8 SATURATION = (sal_Int8)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_RENDERINGINTENT_HDL

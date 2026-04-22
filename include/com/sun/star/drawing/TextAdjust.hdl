@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_TEXTADJUST_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_TEXTADJUST_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TextAdjust
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TextAdjust
+{
+
+#endif
+    TextAdjust_LEFT = 0,
+    TextAdjust_CENTER = 1,
+    TextAdjust_RIGHT = 2,
+    TextAdjust_BLOCK = 3,
+    TextAdjust_STRETCH = 4,
+    TextAdjust_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TextAdjust_LEFT = TextAdjust::TextAdjust_LEFT;
+constexpr auto TextAdjust_CENTER = TextAdjust::TextAdjust_CENTER;
+constexpr auto TextAdjust_RIGHT = TextAdjust::TextAdjust_RIGHT;
+constexpr auto TextAdjust_BLOCK = TextAdjust::TextAdjust_BLOCK;
+constexpr auto TextAdjust_STRETCH = TextAdjust::TextAdjust_STRETCH;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::TextAdjust const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::TextAdjust *);
+
+#endif

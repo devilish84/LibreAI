@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_SECURITY_CERTIFICATECHARACTERS_HDL
+#define INCLUDED_COM_SUN_STAR_SECURITY_CERTIFICATECHARACTERS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace security { namespace CertificateCharacters {
+
+static const ::sal_Int32 HAS_PRIVATE_KEY = (sal_Int32)4;
+static const ::sal_Int32 SELF_SIGNED = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SECURITY_CERTIFICATECHARACTERS_HDL

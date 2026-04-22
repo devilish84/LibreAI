@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_CRYPTO_CIPHERID_HDL
+#define INCLUDED_COM_SUN_STAR_XML_CRYPTO_CIPHERID_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto { namespace CipherID {
+
+static const ::sal_Int32 AES_CBC_W3C_PADDING = (sal_Int32)1;
+static const ::sal_Int32 BLOWFISH_CFB_8 = (sal_Int32)2;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_XML_CRYPTO_CIPHERID_HDL

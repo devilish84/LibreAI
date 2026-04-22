@@ -1,0 +1,54 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XFLATPARAGRAPH_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XFLATPARAGRAPH_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/text/XTextMarkup.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFlatParagraph : public ::css::text::XTextMarkup
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFlatParagraph() = default;
+    XFlatParagraph(XFlatParagraph const &) = default;
+    XFlatParagraph(XFlatParagraph &&) = default;
+    XFlatParagraph & operator =(XFlatParagraph const &) = default;
+    XFlatParagraph & operator =(XFlatParagraph &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getText() = 0;
+    virtual ::sal_Bool SAL_CALL isModified() = 0;
+    virtual void SAL_CALL setChecked( ::sal_Int32 nType, ::sal_Bool bVal ) = 0;
+    virtual ::sal_Bool SAL_CALL isChecked( ::sal_Int32 nType ) = 0;
+    virtual ::css::lang::Locale SAL_CALL getLanguageOfText( ::sal_Int32 nPos, ::sal_Int32 nLen ) = 0;
+    virtual ::css::lang::Locale SAL_CALL getPrimaryLanguageOfText( ::sal_Int32 nPos, ::sal_Int32 nLen ) = 0;
+    virtual void SAL_CALL changeText( ::sal_Int32 nPos, ::sal_Int32 nLen, const ::rtl::OUString& NewText, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aAttributes ) = 0;
+    virtual void SAL_CALL changeAttributes( ::sal_Int32 nPos, ::sal_Int32 nLen, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aAttributes ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int32 > SAL_CALL getLanguagePortions() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFlatParagraph() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XFlatParagraph const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XFlatParagraph > *);
+
+#endif

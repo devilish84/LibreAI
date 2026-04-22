@@ -1,0 +1,57 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XCURRENCYFIELD_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XCURRENCYFIELD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCurrencyField : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCurrencyField() = default;
+    XCurrencyField(XCurrencyField const &) = default;
+    XCurrencyField(XCurrencyField &&) = default;
+    XCurrencyField & operator =(XCurrencyField const &) = default;
+    XCurrencyField & operator =(XCurrencyField &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setValue( double Value ) = 0;
+    virtual double SAL_CALL getValue() = 0;
+    virtual void SAL_CALL setMin( double Value ) = 0;
+    virtual double SAL_CALL getMin() = 0;
+    virtual void SAL_CALL setMax( double Value ) = 0;
+    virtual double SAL_CALL getMax() = 0;
+    virtual void SAL_CALL setFirst( double Value ) = 0;
+    virtual double SAL_CALL getFirst() = 0;
+    virtual void SAL_CALL setLast( double Value ) = 0;
+    virtual double SAL_CALL getLast() = 0;
+    virtual void SAL_CALL setSpinSize( double Value ) = 0;
+    virtual double SAL_CALL getSpinSize() = 0;
+    virtual void SAL_CALL setDecimalDigits( ::sal_Int16 nDigits ) = 0;
+    virtual ::sal_Int16 SAL_CALL getDecimalDigits() = 0;
+    virtual void SAL_CALL setStrictFormat( ::sal_Bool bStrict ) = 0;
+    virtual ::sal_Bool SAL_CALL isStrictFormat() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCurrencyField() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XCurrencyField const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XCurrencyField > *);
+
+#endif

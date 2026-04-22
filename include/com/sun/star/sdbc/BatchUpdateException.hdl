@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_BATCHUPDATEEXCEPTION_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_BATCHUPDATEEXCEPTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sdbc/SQLException.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED BatchUpdateException : public ::css::sdbc::SQLException
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE BatchUpdateException(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE BatchUpdateException(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::rtl::OUString& SQLState_, const ::sal_Int32& ErrorCode_, const ::css::uno::Any& NextException_, const ::css::uno::Sequence< ::sal_Int32 >& UpdateCounts_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE BatchUpdateException(BatchUpdateException const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~BatchUpdateException();
+
+    inline CPPU_GCC_DLLPRIVATE BatchUpdateException & operator =(BatchUpdateException const &);
+#endif
+
+    ::css::uno::Sequence< ::sal_Int32 > UpdateCounts CPPU_GCC3_ALIGN( ::css::sdbc::SQLException );
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::BatchUpdateException const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sdbc::BatchUpdateException *);
+
+#endif

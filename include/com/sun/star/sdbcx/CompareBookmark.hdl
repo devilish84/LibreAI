@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBCX_COMPAREBOOKMARK_HDL
+#define INCLUDED_COM_SUN_STAR_SDBCX_COMPAREBOOKMARK_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbcx { namespace CompareBookmark {
+
+static const ::sal_Int32 EQUAL = (sal_Int32)0;
+static const ::sal_Int32 GREATER = (sal_Int32)1;
+static const ::sal_Int32 LESS = (sal_Int32)-1;
+static const ::sal_Int32 NOT_COMPARABLE = (sal_Int32)3;
+static const ::sal_Int32 NOT_EQUAL = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBCX_COMPAREBOOKMARK_HDL

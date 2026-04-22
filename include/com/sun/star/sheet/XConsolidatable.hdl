@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XCONSOLIDATABLE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XCONSOLIDATABLE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { class XConsolidationDescriptor; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XConsolidatable : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XConsolidatable() = default;
+    XConsolidatable(XConsolidatable const &) = default;
+    XConsolidatable(XConsolidatable &&) = default;
+    XConsolidatable & operator =(XConsolidatable const &) = default;
+    XConsolidatable & operator =(XConsolidatable &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::sheet::XConsolidationDescriptor > SAL_CALL createConsolidationDescriptor( ::sal_Bool bEmpty ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL consolidate( const ::css::uno::Reference< ::css::sheet::XConsolidationDescriptor >& xDescriptor ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XConsolidatable() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XConsolidatable const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XConsolidatable > *);
+
+#endif

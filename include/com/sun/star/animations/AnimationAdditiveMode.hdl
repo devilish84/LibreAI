@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONADDITIVEMODE_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONADDITIVEMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace animations { namespace AnimationAdditiveMode {
+
+static const ::sal_Int16 BASE = (sal_Int16)0;
+static const ::sal_Int16 MULTIPLY = (sal_Int16)3;
+static const ::sal_Int16 NONE = (sal_Int16)4;
+static const ::sal_Int16 REPLACE = (sal_Int16)2;
+static const ::sal_Int16 SUM = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONADDITIVEMODE_HDL

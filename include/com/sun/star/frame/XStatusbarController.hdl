@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XSTATUSBARCONTROLLER_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XSTATUSBARCONTROLLER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/MouseEvent.hdl"
+#include "com/sun/star/awt/Point.hdl"
+#include "com/sun/star/awt/Rectangle.hdl"
+namespace com { namespace sun { namespace star { namespace awt { class XGraphics; } } } }
+#include "com/sun/star/frame/XStatusListener.hdl"
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/lang/XInitialization.hdl"
+#include "com/sun/star/util/XUpdatable.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStatusbarController : public ::css::lang::XComponent, public ::css::lang::XInitialization, public ::css::frame::XStatusListener, public ::css::util::XUpdatable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStatusbarController() = default;
+    XStatusbarController(XStatusbarController const &) = default;
+    XStatusbarController(XStatusbarController &&) = default;
+    XStatusbarController & operator =(XStatusbarController const &) = default;
+    XStatusbarController & operator =(XStatusbarController &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL mouseButtonDown( const ::css::awt::MouseEvent& aMouseEvent ) = 0;
+    virtual ::sal_Bool SAL_CALL mouseMove( const ::css::awt::MouseEvent& aMouseEvent ) = 0;
+    virtual ::sal_Bool SAL_CALL mouseButtonUp( const ::css::awt::MouseEvent& aMouseEvent ) = 0;
+    virtual void SAL_CALL command( const ::css::awt::Point& aPos, ::sal_Int32 nCommand, ::sal_Bool bMouseEvent, const ::css::uno::Any& aData ) = 0;
+    virtual void SAL_CALL paint( const ::css::uno::Reference< ::css::awt::XGraphics >& xGraphics, const ::css::awt::Rectangle& OutputRectangle, ::sal_Int32 nStyle ) = 0;
+    virtual void SAL_CALL click( const ::css::awt::Point& aPos ) = 0;
+    virtual void SAL_CALL doubleClick( const ::css::awt::Point& aPos ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStatusbarController() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XStatusbarController const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XStatusbarController > *);
+
+#endif

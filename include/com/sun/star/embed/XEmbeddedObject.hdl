@@ -1,0 +1,61 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XEMBEDDEDOBJECT_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XEMBEDDEDOBJECT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/document/XEventBroadcaster.hdl"
+#include "com/sun/star/embed/VerbDescriptor.hdl"
+#include "com/sun/star/embed/XClassifiedObject.hdl"
+#include "com/sun/star/embed/XComponentSupplier.hdl"
+namespace com { namespace sun { namespace star { namespace embed { class XEmbeddedClient; } } } }
+#include "com/sun/star/embed/XStateChangeBroadcaster.hdl"
+#include "com/sun/star/embed/XVisualObject.hdl"
+#include "com/sun/star/util/XCloseable.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XEmbeddedObject : public ::css::embed::XVisualObject, public ::css::embed::XClassifiedObject, public ::css::embed::XComponentSupplier, public ::css::embed::XStateChangeBroadcaster, public ::css::document::XEventBroadcaster, public ::css::util::XCloseable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XEmbeddedObject() = default;
+    XEmbeddedObject(XEmbeddedObject const &) = default;
+    XEmbeddedObject(XEmbeddedObject &&) = default;
+    XEmbeddedObject & operator =(XEmbeddedObject const &) = default;
+    XEmbeddedObject & operator =(XEmbeddedObject &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL changeState( ::sal_Int32 nNewState ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int32 > SAL_CALL getReachableStates() = 0;
+    virtual ::sal_Int32 SAL_CALL getCurrentState() = 0;
+    virtual void SAL_CALL doVerb( ::sal_Int32 nVerbID ) = 0;
+    virtual ::css::uno::Sequence< ::css::embed::VerbDescriptor > SAL_CALL getSupportedVerbs() = 0;
+    virtual void SAL_CALL setClientSite( const ::css::uno::Reference< ::css::embed::XEmbeddedClient >& xClient ) = 0;
+    virtual ::css::uno::Reference< ::css::embed::XEmbeddedClient > SAL_CALL getClientSite() = 0;
+    virtual void SAL_CALL update() = 0;
+    virtual void SAL_CALL setUpdateMode( ::sal_Int32 nMode ) = 0;
+    virtual ::sal_Int64 SAL_CALL getStatus( ::sal_Int64 nAspect ) = 0;
+    virtual void SAL_CALL setContainerName( const ::rtl::OUString& sName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XEmbeddedObject() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XEmbeddedObject const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XEmbeddedObject > *);
+
+#endif

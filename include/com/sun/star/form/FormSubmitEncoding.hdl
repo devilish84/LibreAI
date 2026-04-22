@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_FORMSUBMITENCODING_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_FORMSUBMITENCODING_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FormSubmitEncoding
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FormSubmitEncoding
+{
+
+#endif
+    FormSubmitEncoding_URL = 0,
+    FormSubmitEncoding_MULTIPART = 1,
+    FormSubmitEncoding_TEXT = 2,
+    FormSubmitEncoding_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FormSubmitEncoding_URL = FormSubmitEncoding::FormSubmitEncoding_URL;
+constexpr auto FormSubmitEncoding_MULTIPART = FormSubmitEncoding::FormSubmitEncoding_MULTIPART;
+constexpr auto FormSubmitEncoding_TEXT = FormSubmitEncoding::FormSubmitEncoding_TEXT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::FormSubmitEncoding const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::form::FormSubmitEncoding *);
+
+#endif

@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_APPLICATION_DATABASEOBJECTCONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_APPLICATION_DATABASEOBJECTCONTAINER_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace application { namespace DatabaseObjectContainer {
+
+static const ::sal_Int32 CATALOG = (sal_Int32)1005;
+static const ::sal_Int32 DATA_SOURCE = (sal_Int32)1004;
+static const ::sal_Int32 FORMS = (sal_Int32)1002;
+static const ::sal_Int32 FORMS_FOLDER = (sal_Int32)1007;
+static const ::sal_Int32 QUERIES = (sal_Int32)1001;
+static const ::sal_Int32 REPORTS = (sal_Int32)1003;
+static const ::sal_Int32 REPORTS_FOLDER = (sal_Int32)1008;
+static const ::sal_Int32 SCHEMA = (sal_Int32)1006;
+static const ::sal_Int32 TABLES = (sal_Int32)1000;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDB_APPLICATION_DATABASEOBJECTCONTAINER_HDL

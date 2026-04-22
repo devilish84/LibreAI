@@ -1,0 +1,14 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_COORDINATESYSTEMTYPEID_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_COORDINATESYSTEMTYPEID_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace chart2 {
+
+typedef ::rtl::OUString CoordinateSystemTypeID;
+
+} } } }
+#endif // INCLUDED_COM_SUN_STAR_CHART2_COORDINATESYSTEMTYPEID_HDL

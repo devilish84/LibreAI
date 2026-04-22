@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XENGINELISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XENGINELISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/script/FinishEngineEvent.hdl"
+#include "com/sun/star/script/InterruptEngineEvent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XEngineListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XEngineListener() = default;
+    XEngineListener(XEngineListener const &) = default;
+    XEngineListener(XEngineListener &&) = default;
+    XEngineListener & operator =(XEngineListener const &) = default;
+    XEngineListener & operator =(XEngineListener &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL interrupt( const ::css::script::InterruptEngineEvent& Evt ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL running( const ::css::lang::EventObject& Evt ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL finished( const ::css::script::FinishEngineEvent& Evt ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XEngineListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XEngineListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XEngineListener > *);
+
+#endif

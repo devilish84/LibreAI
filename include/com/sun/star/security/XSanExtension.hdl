@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_SECURITY_XSANEXTENSION_HDL
+#define INCLUDED_COM_SUN_STAR_SECURITY_XSANEXTENSION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/security/CertAltNameEntry.hdl"
+#include "com/sun/star/security/XCertificateExtension.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace security {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSanExtension : public ::css::security::XCertificateExtension
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSanExtension() = default;
+    XSanExtension(XSanExtension const &) = default;
+    XSanExtension(XSanExtension &&) = default;
+    XSanExtension & operator =(XSanExtension const &) = default;
+    XSanExtension & operator =(XSanExtension &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Sequence< ::css::security::CertAltNameEntry > SAL_CALL getAlternativeNames() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSanExtension() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::security::XSanExtension const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::security::XSanExtension > *);
+
+#endif

@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_DROPTARGETEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_DROPTARGETEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace datatransfer { namespace dnd {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI DropTargetEvent: public ::css::lang::EventObject {
+    inline DropTargetEvent();
+
+    inline DropTargetEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::sal_Int8& Dummy_);
+
+    ::sal_Int8 Dummy CPPU_GCC3_ALIGN(::css::lang::EventObject);
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::datatransfer::dnd::DropTargetEvent const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::datatransfer::dnd::DropTargetEvent *);
+
+#endif

@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XDATAPILOTDESCRIPTOR_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XDATAPILOTDESCRIPTOR_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XIndexAccess; } } } }
+#include "com/sun/star/container/XNamed.hdl"
+namespace com { namespace sun { namespace star { namespace sheet { class XSheetFilterDescriptor; } } } }
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDataPilotDescriptor : public ::css::container::XNamed
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDataPilotDescriptor() = default;
+    XDataPilotDescriptor(XDataPilotDescriptor const &) = default;
+    XDataPilotDescriptor(XDataPilotDescriptor &&) = default;
+    XDataPilotDescriptor & operator =(XDataPilotDescriptor const &) = default;
+    XDataPilotDescriptor & operator =(XDataPilotDescriptor &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getTag() = 0;
+    virtual void SAL_CALL setTag( const ::rtl::OUString& aTag ) = 0;
+    virtual ::css::table::CellRangeAddress SAL_CALL getSourceRange() = 0;
+    virtual void SAL_CALL setSourceRange( const ::css::table::CellRangeAddress& aSourceRange ) = 0;
+    virtual ::css::uno::Reference< ::css::sheet::XSheetFilterDescriptor > SAL_CALL getFilterDescriptor() = 0;
+    virtual ::css::uno::Reference< ::css::container::XIndexAccess > SAL_CALL getDataPilotFields() = 0;
+    virtual ::css::uno::Reference< ::css::container::XIndexAccess > SAL_CALL getColumnFields() = 0;
+    virtual ::css::uno::Reference< ::css::container::XIndexAccess > SAL_CALL getRowFields() = 0;
+    virtual ::css::uno::Reference< ::css::container::XIndexAccess > SAL_CALL getPageFields() = 0;
+    virtual ::css::uno::Reference< ::css::container::XIndexAccess > SAL_CALL getDataFields() = 0;
+    virtual ::css::uno::Reference< ::css::container::XIndexAccess > SAL_CALL getHiddenFields() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDataPilotDescriptor() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XDataPilotDescriptor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XDataPilotDescriptor > *);
+
+#endif

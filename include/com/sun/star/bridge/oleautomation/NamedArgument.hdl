@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_BRIDGE_OLEAUTOMATION_NAMEDARGUMENT_HDL
+#define INCLUDED_COM_SUN_STAR_BRIDGE_OLEAUTOMATION_NAMEDARGUMENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace bridge { namespace oleautomation {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI NamedArgument {
+    inline NamedArgument();
+
+    inline NamedArgument(const ::rtl::OUString& Name_, const ::css::uno::Any& Value_);
+
+    ::rtl::OUString Name;
+    ::css::uno::Any Value;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::bridge::oleautomation::NamedArgument const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::bridge::oleautomation::NamedArgument *);
+
+#endif

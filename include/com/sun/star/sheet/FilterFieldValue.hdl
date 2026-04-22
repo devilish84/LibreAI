@@ -1,0 +1,41 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_FILTERFIELDVALUE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_FILTERFIELDVALUE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/util/Color.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED FilterFieldValue {
+    inline FilterFieldValue();
+
+    inline FilterFieldValue(const ::sal_Bool& IsNumeric_, const double& NumericValue_, const ::rtl::OUString& StringValue_, const ::sal_Int32& FilterType_, const ::sal_Int32& ColorValue_);
+
+    ::sal_Bool IsNumeric;
+    double NumericValue;
+    ::rtl::OUString StringValue;
+    ::sal_Int32 FilterType;
+    ::sal_Int32 ColorValue;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::FilterFieldValue const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::FilterFieldValue *);
+
+#endif

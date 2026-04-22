@@ -1,0 +1,76 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XSIMPLECANVAS_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XSIMPLECANVAS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/geometry/AffineMatrix2D.hdl"
+#include "com/sun/star/geometry/RealPoint2D.hdl"
+#include "com/sun/star/geometry/RealRectangle2D.hdl"
+#include "com/sun/star/rendering/FontMetrics.hdl"
+#include "com/sun/star/rendering/RenderState.hdl"
+#include "com/sun/star/rendering/StringContext.hdl"
+#include "com/sun/star/rendering/ViewState.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XBitmap; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XCanvas; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XCanvasFont; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XGraphicDevice; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XPolyPolygon2D; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/Color.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSimpleCanvas : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSimpleCanvas() = default;
+    XSimpleCanvas(XSimpleCanvas const &) = default;
+    XSimpleCanvas(XSimpleCanvas &&) = default;
+    XSimpleCanvas & operator =(XSimpleCanvas const &) = default;
+    XSimpleCanvas & operator =(XSimpleCanvas &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL selectFont( const ::rtl::OUString& sFontName, double size, ::sal_Bool bold, ::sal_Bool italic ) = 0;
+    virtual void SAL_CALL setPenColor( ::sal_Int32 nsRgbaColor ) = 0;
+    virtual void SAL_CALL setFillColor( ::sal_Int32 nsRgbaColor ) = 0;
+    virtual void SAL_CALL setRectClip( const ::css::geometry::RealRectangle2D& aRect ) = 0;
+    virtual void SAL_CALL setTransformation( const ::css::geometry::AffineMatrix2D& aTransform ) = 0;
+    virtual void SAL_CALL drawPixel( const ::css::geometry::RealPoint2D& aPoint ) = 0;
+    virtual void SAL_CALL drawLine( const ::css::geometry::RealPoint2D& aStartPoint, const ::css::geometry::RealPoint2D& aEndPoint ) = 0;
+    virtual void SAL_CALL drawRect( const ::css::geometry::RealRectangle2D& aRect ) = 0;
+    virtual void SAL_CALL drawPolyPolygon( const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D >& xPolyPolygon ) = 0;
+    virtual void SAL_CALL drawText( const ::css::rendering::StringContext& aText, const ::css::geometry::RealPoint2D& aOutPos, ::sal_Int8 nTextDirection ) = 0;
+    virtual void SAL_CALL drawBitmap( const ::css::uno::Reference< ::css::rendering::XBitmap >& xBitmap, const ::css::geometry::RealPoint2D& aLeftTop ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XGraphicDevice > SAL_CALL getDevice() = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCanvas > SAL_CALL getCanvas() = 0;
+    virtual ::css::rendering::FontMetrics SAL_CALL getFontMetrics() = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCanvasFont > SAL_CALL getCurrentFont() = 0;
+    virtual ::sal_Int32 SAL_CALL getCurrentPenColor() = 0;
+    virtual ::sal_Int32 SAL_CALL getCurrentFillColor() = 0;
+    virtual ::css::geometry::RealRectangle2D SAL_CALL getCurrentClipRect() = 0;
+    virtual ::css::geometry::AffineMatrix2D SAL_CALL getCurrentTransformation() = 0;
+    virtual ::css::rendering::ViewState SAL_CALL getCurrentViewState() = 0;
+    virtual ::css::rendering::RenderState SAL_CALL getCurrentRenderState( ::sal_Bool bUseFillColor ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSimpleCanvas() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XSimpleCanvas const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XSimpleCanvas > *);
+
+#endif

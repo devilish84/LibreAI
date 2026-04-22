@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_PROVIDER_XSCRIPTCONTEXT_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_PROVIDER_XSCRIPTCONTEXT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace document { class XScriptInvocationContext; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XDesktop; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XModel; } } } }
+namespace com { namespace sun { namespace star { namespace uno { class XComponentContext; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script { namespace provider {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XScriptContext : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XScriptContext() = default;
+    XScriptContext(XScriptContext const &) = default;
+    XScriptContext(XScriptContext &&) = default;
+    XScriptContext & operator =(XScriptContext const &) = default;
+    XScriptContext & operator =(XScriptContext &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::frame::XModel > SAL_CALL getDocument() = 0;
+    virtual ::css::uno::Reference< ::css::document::XScriptInvocationContext > SAL_CALL getInvocationContext() = 0;
+    virtual ::css::uno::Reference< ::css::frame::XDesktop > SAL_CALL getDesktop() = 0;
+    virtual ::css::uno::Reference< ::css::uno::XComponentContext > SAL_CALL getComponentContext() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XScriptContext() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::provider::XScriptContext const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::provider::XScriptContext > *);
+
+#endif

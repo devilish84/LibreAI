@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTTYPE_HPP
+#define INCLUDED_COM_SUN_STAR_AWT_FONTTYPE_HPP
+
+#include "com/sun/star/awt/FontType.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FONTTYPE_HPP

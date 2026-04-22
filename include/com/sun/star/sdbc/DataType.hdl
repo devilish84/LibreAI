@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_DATATYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_DATATYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbc { namespace DataType {
+
+static const ::sal_Int32 ARRAY = (sal_Int32)2003;
+static const ::sal_Int32 BIGINT = (sal_Int32)-5;
+static const ::sal_Int32 BINARY = (sal_Int32)-2;
+static const ::sal_Int32 BIT = (sal_Int32)-7;
+static const ::sal_Int32 BLOB = (sal_Int32)2004;
+static const ::sal_Int32 BOOLEAN = (sal_Int32)16;
+static const ::sal_Int32 CHAR = (sal_Int32)1;
+static const ::sal_Int32 CLOB = (sal_Int32)2005;
+static const ::sal_Int32 DATE = (sal_Int32)91;
+static const ::sal_Int32 DECIMAL = (sal_Int32)3;
+static const ::sal_Int32 DISTINCT = (sal_Int32)2001;
+static const ::sal_Int32 DOUBLE = (sal_Int32)8;
+static const ::sal_Int32 FLOAT = (sal_Int32)6;
+static const ::sal_Int32 INTEGER = (sal_Int32)4;
+static const ::sal_Int32 LONGVARBINARY = (sal_Int32)-4;
+static const ::sal_Int32 LONGVARCHAR = (sal_Int32)-1;
+static const ::sal_Int32 NUMERIC = (sal_Int32)2;
+static const ::sal_Int32 OBJECT = (sal_Int32)2000;
+static const ::sal_Int32 OTHER = (sal_Int32)1111;
+static const ::sal_Int32 REAL = (sal_Int32)7;
+static const ::sal_Int32 REF = (sal_Int32)2006;
+static const ::sal_Int32 SMALLINT = (sal_Int32)5;
+static const ::sal_Int32 SQLNULL = (sal_Int32)0;
+static const ::sal_Int32 STRUCT = (sal_Int32)2002;
+static const ::sal_Int32 TIME = (sal_Int32)92;
+static const ::sal_Int32 TIMESTAMP = (sal_Int32)93;
+static const ::sal_Int32 TINYINT = (sal_Int32)-6;
+static const ::sal_Int32 VARBINARY = (sal_Int32)-3;
+static const ::sal_Int32 VARCHAR = (sal_Int32)12;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBC_DATATYPE_HDL

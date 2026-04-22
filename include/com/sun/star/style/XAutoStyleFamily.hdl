@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_XAUTOSTYLEFAMILY_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_XAUTOSTYLEFAMILY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValues.hdl"
+#include "com/sun/star/container/XEnumerationAccess.hdl"
+namespace com { namespace sun { namespace star { namespace style { class XAutoStyle; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace style {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAutoStyleFamily : public ::css::container::XEnumerationAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAutoStyleFamily() = default;
+    XAutoStyleFamily(XAutoStyleFamily const &) = default;
+    XAutoStyleFamily(XAutoStyleFamily &&) = default;
+    XAutoStyleFamily & operator =(XAutoStyleFamily const &) = default;
+    XAutoStyleFamily & operator =(XAutoStyleFamily &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::style::XAutoStyle > SAL_CALL insertStyle( const ::css::uno::Sequence< ::css::beans::PropertyValue >& Values ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAutoStyleFamily() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::style::XAutoStyleFamily const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::style::XAutoStyleFamily > *);
+
+#endif

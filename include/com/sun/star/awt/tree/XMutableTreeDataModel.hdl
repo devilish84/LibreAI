@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_TREE_XMUTABLETREEDATAMODEL_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_TREE_XMUTABLETREEDATAMODEL_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace tree { class XMutableTreeNode; } } } } }
+#include "com/sun/star/awt/tree/XTreeDataModel.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt { namespace tree {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMutableTreeDataModel : public ::css::awt::tree::XTreeDataModel
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMutableTreeDataModel() = default;
+    XMutableTreeDataModel(XMutableTreeDataModel const &) = default;
+    XMutableTreeDataModel(XMutableTreeDataModel &&) = default;
+    XMutableTreeDataModel & operator =(XMutableTreeDataModel const &) = default;
+    XMutableTreeDataModel & operator =(XMutableTreeDataModel &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::awt::tree::XMutableTreeNode > SAL_CALL createNode( const ::css::uno::Any& DisplayValue, ::sal_Bool ChildrenOnDemand ) = 0;
+    virtual void SAL_CALL setRoot( const ::css::uno::Reference< ::css::awt::tree::XMutableTreeNode >& RootNode ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMutableTreeDataModel() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::tree::XMutableTreeDataModel const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::tree::XMutableTreeDataModel > *);
+
+#endif

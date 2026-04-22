@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_MEASURETEXTHORZPOS_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_MEASURETEXTHORZPOS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI MeasureTextHorzPos
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI MeasureTextHorzPos
+{
+
+#endif
+    MeasureTextHorzPos_AUTO = 0,
+    MeasureTextHorzPos_LEFTOUTSIDE = 1,
+    MeasureTextHorzPos_INSIDE = 2,
+    MeasureTextHorzPos_RIGHTOUTSIDE = 3,
+    MeasureTextHorzPos_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto MeasureTextHorzPos_AUTO = MeasureTextHorzPos::MeasureTextHorzPos_AUTO;
+constexpr auto MeasureTextHorzPos_LEFTOUTSIDE = MeasureTextHorzPos::MeasureTextHorzPos_LEFTOUTSIDE;
+constexpr auto MeasureTextHorzPos_INSIDE = MeasureTextHorzPos::MeasureTextHorzPos_INSIDE;
+constexpr auto MeasureTextHorzPos_RIGHTOUTSIDE = MeasureTextHorzPos::MeasureTextHorzPos_RIGHTOUTSIDE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::MeasureTextHorzPos const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::MeasureTextHorzPos *);
+
+#endif

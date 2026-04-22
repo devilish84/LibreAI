@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_XCONFIGURATIONCONTROLLERBROADCASTER_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_XCONFIGURATIONCONTROLLERBROADCASTER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/drawing/framework/ConfigurationChangeEvent.hdl"
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework { class XConfigurationChangeListener; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XConfigurationControllerBroadcaster : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XConfigurationControllerBroadcaster() = default;
+    XConfigurationControllerBroadcaster(XConfigurationControllerBroadcaster const &) = default;
+    XConfigurationControllerBroadcaster(XConfigurationControllerBroadcaster &&) = default;
+    XConfigurationControllerBroadcaster & operator =(XConfigurationControllerBroadcaster const &) = default;
+    XConfigurationControllerBroadcaster & operator =(XConfigurationControllerBroadcaster &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addConfigurationChangeListener( const ::css::uno::Reference< ::css::drawing::framework::XConfigurationChangeListener >& xListener, const ::rtl::OUString& sEventType, const ::css::uno::Any& aUserData ) = 0;
+    virtual void SAL_CALL removeConfigurationChangeListener( const ::css::uno::Reference< ::css::drawing::framework::XConfigurationChangeListener >& xListener ) = 0;
+    virtual void SAL_CALL notifyEvent( const ::css::drawing::framework::ConfigurationChangeEvent& aEvent ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XConfigurationControllerBroadcaster() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::framework::XConfigurationControllerBroadcaster const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::framework::XConfigurationControllerBroadcaster > *);
+
+#endif

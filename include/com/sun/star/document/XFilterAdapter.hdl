@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XFILTERADAPTER_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XFILTERADAPTER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XOutputStream; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFilterAdapter : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFilterAdapter() = default;
+    XFilterAdapter(XFilterAdapter const &) = default;
+    XFilterAdapter(XFilterAdapter &&) = default;
+    XFilterAdapter & operator =(XFilterAdapter const &) = default;
+    XFilterAdapter & operator =(XFilterAdapter &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL convert( const ::css::uno::Reference< ::css::io::XInputStream >& xml, const ::css::uno::Reference< ::css::io::XOutputStream >& device, ::sal_Bool convertToOffice, const ::rtl::OUString& pluginUrl, const ::rtl::OUString& fileName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFilterAdapter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XFilterAdapter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XFilterAdapter > *);
+
+#endif

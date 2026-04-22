@@ -1,0 +1,25 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_CHARSET_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_CHARSET_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace CharSet {
+
+static const ::sal_Int16 ANSI = (sal_Int16)1;
+static const ::sal_Int16 DONTKNOW = (sal_Int16)0;
+static const ::sal_Int16 IBMPC_437 = (sal_Int16)3;
+static const ::sal_Int16 IBMPC_850 = (sal_Int16)4;
+static const ::sal_Int16 IBMPC_860 = (sal_Int16)5;
+static const ::sal_Int16 IBMPC_861 = (sal_Int16)6;
+static const ::sal_Int16 IBMPC_863 = (sal_Int16)7;
+static const ::sal_Int16 IBMPC_865 = (sal_Int16)8;
+static const ::sal_Int16 MAC = (sal_Int16)2;
+static const ::sal_Int16 SYMBOL = (sal_Int16)10;
+static const ::sal_Int16 SYSTEM = (sal_Int16)9;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_CHARSET_HDL

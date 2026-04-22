@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTRELIEF_HPP
+#define INCLUDED_COM_SUN_STAR_AWT_FONTRELIEF_HPP
+
+#include "com/sun/star/awt/FontRelief.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FONTRELIEF_HPP

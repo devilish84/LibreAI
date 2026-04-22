@@ -1,0 +1,25 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_EMBEDMAPUNITS_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_EMBEDMAPUNITS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace embed { namespace EmbedMapUnits {
+
+static const ::sal_Int32 ONE_1000TH_INCH = (sal_Int32)4;
+static const ::sal_Int32 ONE_100TH_INCH = (sal_Int32)5;
+static const ::sal_Int32 ONE_100TH_MM = (sal_Int32)0;
+static const ::sal_Int32 ONE_10TH_INCH = (sal_Int32)6;
+static const ::sal_Int32 ONE_10TH_MM = (sal_Int32)1;
+static const ::sal_Int32 ONE_CM = (sal_Int32)3;
+static const ::sal_Int32 ONE_INCH = (sal_Int32)7;
+static const ::sal_Int32 ONE_MM = (sal_Int32)2;
+static const ::sal_Int32 PIXEL = (sal_Int32)10;
+static const ::sal_Int32 POINT = (sal_Int32)8;
+static const ::sal_Int32 TWIP = (sal_Int32)9;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_EMBED_EMBEDMAPUNITS_HDL

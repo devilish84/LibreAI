@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XCACHEDDYNAMICRESULTSETSTUBFACTORY_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XCACHEDDYNAMICRESULTSETSTUBFACTORY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/NumberedSortingInfo.hdl"
+namespace com { namespace sun { namespace star { namespace ucb { class XAnyCompareFactory; } } } }
+namespace com { namespace sun { namespace star { namespace ucb { class XDynamicResultSet; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCachedDynamicResultSetStubFactory : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCachedDynamicResultSetStubFactory() = default;
+    XCachedDynamicResultSetStubFactory(XCachedDynamicResultSetStubFactory const &) = default;
+    XCachedDynamicResultSetStubFactory(XCachedDynamicResultSetStubFactory &&) = default;
+    XCachedDynamicResultSetStubFactory & operator =(XCachedDynamicResultSetStubFactory const &) = default;
+    XCachedDynamicResultSetStubFactory & operator =(XCachedDynamicResultSetStubFactory &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::ucb::XDynamicResultSet > SAL_CALL createCachedDynamicResultSetStub( const ::css::uno::Reference< ::css::ucb::XDynamicResultSet >& Source ) = 0;
+    virtual void SAL_CALL connectToCache( const ::css::uno::Reference< ::css::ucb::XDynamicResultSet >& Source, const ::css::uno::Reference< ::css::ucb::XDynamicResultSet >& TargetCache, const ::css::uno::Sequence< ::css::ucb::NumberedSortingInfo >& SortingInfo, const ::css::uno::Reference< ::css::ucb::XAnyCompareFactory >& CompareFactory ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCachedDynamicResultSetStubFactory() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XCachedDynamicResultSetStubFactory const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XCachedDynamicResultSetStubFactory > *);
+
+#endif

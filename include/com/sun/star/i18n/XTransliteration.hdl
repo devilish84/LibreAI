@@ -1,0 +1,59 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XTRANSLITERATION_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XTRANSLITERATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/TransliterationModules.hdl"
+#include "com/sun/star/i18n/TransliterationModulesNew.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTransliteration : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTransliteration() = default;
+    XTransliteration(XTransliteration const &) = default;
+    XTransliteration(XTransliteration &&) = default;
+    XTransliteration & operator =(XTransliteration const &) = default;
+    XTransliteration & operator =(XTransliteration &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getName() = 0;
+    virtual ::sal_Int16 SAL_CALL getType() = 0;
+    virtual void SAL_CALL loadModule( ::css::i18n::TransliterationModules eModType, const ::css::lang::Locale& aLocale ) = 0;
+    virtual void SAL_CALL loadModuleNew( const ::css::uno::Sequence< ::css::i18n::TransliterationModulesNew >& aModType, const ::css::lang::Locale& aLocale ) = 0;
+    virtual void SAL_CALL loadModuleByImplName( const ::rtl::OUString& aImplName, const ::css::lang::Locale& aLocale ) = 0;
+    virtual void SAL_CALL loadModulesByImplNames( const ::css::uno::Sequence< ::rtl::OUString >& aImplNameList, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getAvailableModules( const ::css::lang::Locale& aLocale, ::sal_Int16 nType ) = 0;
+    virtual ::rtl::OUString SAL_CALL transliterate( const ::rtl::OUString& aInStr, ::sal_Int32 nStartPos, ::sal_Int32 nCount, ::css::uno::Sequence< ::sal_Int32 >& rOffset ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL folding( const ::rtl::OUString& aInStr, ::sal_Int32 nStartPos, ::sal_Int32 nCount, ::css::uno::Sequence< ::sal_Int32 >& rOffset ) = 0;
+    virtual ::sal_Bool SAL_CALL equals( const ::rtl::OUString& aStr1, ::sal_Int32 nPos1, ::sal_Int32 nCount1, ::sal_Int32& rMatch1, const ::rtl::OUString& aStr2, ::sal_Int32 nPos2, ::sal_Int32 nCount2, ::sal_Int32& rMatch2 ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL transliterateRange( const ::rtl::OUString& aStr1, const ::rtl::OUString& aStr2 ) = 0;
+    virtual ::sal_Int32 SAL_CALL compareSubstring( const ::rtl::OUString& aStr1, ::sal_Int32 nOff1, ::sal_Int32 nLen1, const ::rtl::OUString& aStr2, ::sal_Int32 nOff2, ::sal_Int32 nLen2 ) = 0;
+    virtual ::sal_Int32 SAL_CALL compareString( const ::rtl::OUString& aStr1, const ::rtl::OUString& aStr2 ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTransliteration() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XTransliteration const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XTransliteration > *);
+
+#endif

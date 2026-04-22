@@ -1,0 +1,99 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XDOCUMENTPROPERTIES_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XDOCUMENTPROPERTIES_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/NamedValue.hdl"
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace beans { class XPropertyContainer; } } } }
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/DateTime.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDocumentProperties : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDocumentProperties() = default;
+    XDocumentProperties(XDocumentProperties const &) = default;
+    XDocumentProperties(XDocumentProperties &&) = default;
+    XDocumentProperties & operator =(XDocumentProperties const &) = default;
+    XDocumentProperties & operator =(XDocumentProperties &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getAuthor() = 0;
+    virtual void SAL_CALL setAuthor( const ::rtl::OUString& _author ) = 0;
+    virtual ::rtl::OUString SAL_CALL getGenerator() = 0;
+    virtual void SAL_CALL setGenerator( const ::rtl::OUString& _generator ) = 0;
+    virtual ::css::util::DateTime SAL_CALL getCreationDate() = 0;
+    virtual void SAL_CALL setCreationDate( const ::css::util::DateTime& _creationdate ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTitle() = 0;
+    virtual void SAL_CALL setTitle( const ::rtl::OUString& _title ) = 0;
+    virtual ::rtl::OUString SAL_CALL getSubject() = 0;
+    virtual void SAL_CALL setSubject( const ::rtl::OUString& _subject ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDescription() = 0;
+    virtual void SAL_CALL setDescription( const ::rtl::OUString& _description ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getKeywords() = 0;
+    virtual void SAL_CALL setKeywords( const ::css::uno::Sequence< ::rtl::OUString >& _keywords ) = 0;
+    virtual ::css::lang::Locale SAL_CALL getLanguage() = 0;
+    virtual void SAL_CALL setLanguage( const ::css::lang::Locale& _language ) = 0;
+    virtual ::rtl::OUString SAL_CALL getModifiedBy() = 0;
+    virtual void SAL_CALL setModifiedBy( const ::rtl::OUString& _modifiedby ) = 0;
+    virtual ::css::util::DateTime SAL_CALL getModificationDate() = 0;
+    virtual void SAL_CALL setModificationDate( const ::css::util::DateTime& _modificationdate ) = 0;
+    virtual ::rtl::OUString SAL_CALL getPrintedBy() = 0;
+    virtual void SAL_CALL setPrintedBy( const ::rtl::OUString& _printedby ) = 0;
+    virtual ::css::util::DateTime SAL_CALL getPrintDate() = 0;
+    virtual void SAL_CALL setPrintDate( const ::css::util::DateTime& _printdate ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTemplateName() = 0;
+    virtual void SAL_CALL setTemplateName( const ::rtl::OUString& _templatename ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTemplateURL() = 0;
+    virtual void SAL_CALL setTemplateURL( const ::rtl::OUString& _templateurl ) = 0;
+    virtual ::css::util::DateTime SAL_CALL getTemplateDate() = 0;
+    virtual void SAL_CALL setTemplateDate( const ::css::util::DateTime& _templatedate ) = 0;
+    virtual ::rtl::OUString SAL_CALL getAutoloadURL() = 0;
+    virtual void SAL_CALL setAutoloadURL( const ::rtl::OUString& _autoloadurl ) = 0;
+    virtual ::sal_Int32 SAL_CALL getAutoloadSecs() = 0;
+    virtual void SAL_CALL setAutoloadSecs( ::sal_Int32 _autoloadsecs ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDefaultTarget() = 0;
+    virtual void SAL_CALL setDefaultTarget( const ::rtl::OUString& _defaulttarget ) = 0;
+    virtual ::css::uno::Sequence< ::css::beans::NamedValue > SAL_CALL getDocumentStatistics() = 0;
+    virtual void SAL_CALL setDocumentStatistics( const ::css::uno::Sequence< ::css::beans::NamedValue >& _documentstatistics ) = 0;
+    virtual ::sal_Int16 SAL_CALL getEditingCycles() = 0;
+    virtual void SAL_CALL setEditingCycles( ::sal_Int16 _editingcycles ) = 0;
+    virtual ::sal_Int32 SAL_CALL getEditingDuration() = 0;
+    virtual void SAL_CALL setEditingDuration( ::sal_Int32 _editingduration ) = 0;
+
+    // Methods
+    virtual void SAL_CALL resetUserData( const ::rtl::OUString& Author ) = 0;
+    virtual ::css::uno::Reference< ::css::beans::XPropertyContainer > SAL_CALL getUserDefinedProperties() = 0;
+    virtual void SAL_CALL loadFromStorage( const ::css::uno::Reference< ::css::embed::XStorage >& Storage, const ::css::uno::Sequence< ::css::beans::PropertyValue >& Medium ) = 0;
+    virtual void SAL_CALL loadFromMedium( const ::rtl::OUString& URL, const ::css::uno::Sequence< ::css::beans::PropertyValue >& Medium ) = 0;
+    virtual void SAL_CALL storeToStorage( const ::css::uno::Reference< ::css::embed::XStorage >& Storage, const ::css::uno::Sequence< ::css::beans::PropertyValue >& Medium ) = 0;
+    virtual void SAL_CALL storeToMedium( const ::rtl::OUString& URL, const ::css::uno::Sequence< ::css::beans::PropertyValue >& Medium ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDocumentProperties() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XDocumentProperties const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XDocumentProperties > *);
+
+#endif

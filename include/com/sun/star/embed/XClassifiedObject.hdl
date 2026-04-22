@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XCLASSIFIEDOBJECT_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XCLASSIFIEDOBJECT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XClassifiedObject : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XClassifiedObject() = default;
+    XClassifiedObject(XClassifiedObject const &) = default;
+    XClassifiedObject(XClassifiedObject &&) = default;
+    XClassifiedObject & operator =(XClassifiedObject const &) = default;
+    XClassifiedObject & operator =(XClassifiedObject &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getClassID() = 0;
+    virtual ::rtl::OUString SAL_CALL getClassName() = 0;
+    virtual void SAL_CALL setClassInfo( const ::css::uno::Sequence< ::sal_Int8 >& aClassID, const ::rtl::OUString& sClassName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XClassifiedObject() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XClassifiedObject const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XClassifiedObject > *);
+
+#endif

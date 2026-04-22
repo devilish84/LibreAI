@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_LOGGING_XCSVLOGFORMATTER_HDL
+#define INCLUDED_COM_SUN_STAR_LOGGING_XCSVLOGFORMATTER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/logging/XLogFormatter.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace logging {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCsvLogFormatter : public ::css::logging::XLogFormatter
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCsvLogFormatter() = default;
+    XCsvLogFormatter(XCsvLogFormatter const &) = default;
+    XCsvLogFormatter(XCsvLogFormatter &&) = default;
+    XCsvLogFormatter & operator =(XCsvLogFormatter const &) = default;
+    XCsvLogFormatter & operator =(XCsvLogFormatter &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Bool SAL_CALL getLogEventNo() = 0;
+    virtual void SAL_CALL setLogEventNo( ::sal_Bool _logeventno ) = 0;
+    virtual ::sal_Bool SAL_CALL getLogThread() = 0;
+    virtual void SAL_CALL setLogThread( ::sal_Bool _logthread ) = 0;
+    virtual ::sal_Bool SAL_CALL getLogTimestamp() = 0;
+    virtual void SAL_CALL setLogTimestamp( ::sal_Bool _logtimestamp ) = 0;
+    virtual ::sal_Bool SAL_CALL getLogSource() = 0;
+    virtual void SAL_CALL setLogSource( ::sal_Bool _logsource ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getColumnnames() = 0;
+    virtual void SAL_CALL setColumnnames( const ::css::uno::Sequence< ::rtl::OUString >& _columnnames ) = 0;
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL formatMultiColumn( const ::css::uno::Sequence< ::rtl::OUString >& columnData ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCsvLogFormatter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::logging::XCsvLogFormatter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::logging::XCsvLogFormatter > *);
+
+#endif

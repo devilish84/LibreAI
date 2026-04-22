@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_EMBEDVERBS_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_EMBEDVERBS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace embed { namespace EmbedVerbs {
+
+static const ::sal_Int32 MS_OLEVERB_DISCARDUNDOSTATE = (sal_Int32)-6;
+static const ::sal_Int32 MS_OLEVERB_HIDE = (sal_Int32)-3;
+static const ::sal_Int32 MS_OLEVERB_IPACTIVATE = (sal_Int32)-5;
+static const ::sal_Int32 MS_OLEVERB_OPEN = (sal_Int32)-2;
+static const ::sal_Int32 MS_OLEVERB_PRIMARY = (sal_Int32)0;
+static const ::sal_Int32 MS_OLEVERB_SHOW = (sal_Int32)-1;
+static const ::sal_Int32 MS_OLEVERB_UIACTIVATE = (sal_Int32)-4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_EMBED_EMBEDVERBS_HDL

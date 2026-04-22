@@ -1,0 +1,258 @@
+#ifndef INCLUDED_COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HDL
+#define INCLUDED_COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace presentation {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI AnimationEffect
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI AnimationEffect
+{
+
+#endif
+    AnimationEffect_NONE = 0,
+    AnimationEffect_FADE_FROM_LEFT = 1,
+    AnimationEffect_FADE_FROM_TOP = 2,
+    AnimationEffect_FADE_FROM_RIGHT = 3,
+    AnimationEffect_FADE_FROM_BOTTOM = 4,
+    AnimationEffect_FADE_TO_CENTER = 5,
+    AnimationEffect_FADE_FROM_CENTER = 6,
+    AnimationEffect_MOVE_FROM_LEFT = 7,
+    AnimationEffect_MOVE_FROM_TOP = 8,
+    AnimationEffect_MOVE_FROM_RIGHT = 9,
+    AnimationEffect_MOVE_FROM_BOTTOM = 10,
+    AnimationEffect_VERTICAL_STRIPES = 11,
+    AnimationEffect_HORIZONTAL_STRIPES = 12,
+    AnimationEffect_CLOCKWISE = 13,
+    AnimationEffect_COUNTERCLOCKWISE = 14,
+    AnimationEffect_FADE_FROM_UPPERLEFT = 15,
+    AnimationEffect_FADE_FROM_UPPERRIGHT = 16,
+    AnimationEffect_FADE_FROM_LOWERLEFT = 17,
+    AnimationEffect_FADE_FROM_LOWERRIGHT = 18,
+    AnimationEffect_CLOSE_VERTICAL = 19,
+    AnimationEffect_CLOSE_HORIZONTAL = 20,
+    AnimationEffect_OPEN_VERTICAL = 21,
+    AnimationEffect_OPEN_HORIZONTAL = 22,
+    AnimationEffect_PATH = 23,
+    AnimationEffect_MOVE_TO_LEFT = 24,
+    AnimationEffect_MOVE_TO_TOP = 25,
+    AnimationEffect_MOVE_TO_RIGHT = 26,
+    AnimationEffect_MOVE_TO_BOTTOM = 27,
+    AnimationEffect_SPIRALIN_LEFT = 28,
+    AnimationEffect_SPIRALIN_RIGHT = 29,
+    AnimationEffect_SPIRALOUT_LEFT = 30,
+    AnimationEffect_SPIRALOUT_RIGHT = 31,
+    AnimationEffect_DISSOLVE = 32,
+    AnimationEffect_WAVYLINE_FROM_LEFT = 33,
+    AnimationEffect_WAVYLINE_FROM_TOP = 34,
+    AnimationEffect_WAVYLINE_FROM_RIGHT = 35,
+    AnimationEffect_WAVYLINE_FROM_BOTTOM = 36,
+    AnimationEffect_RANDOM = 37,
+    AnimationEffect_VERTICAL_LINES = 38,
+    AnimationEffect_HORIZONTAL_LINES = 39,
+    AnimationEffect_LASER_FROM_LEFT = 40,
+    AnimationEffect_LASER_FROM_TOP = 41,
+    AnimationEffect_LASER_FROM_RIGHT = 42,
+    AnimationEffect_LASER_FROM_BOTTOM = 43,
+    AnimationEffect_LASER_FROM_UPPERLEFT = 44,
+    AnimationEffect_LASER_FROM_UPPERRIGHT = 45,
+    AnimationEffect_LASER_FROM_LOWERLEFT = 46,
+    AnimationEffect_LASER_FROM_LOWERRIGHT = 47,
+    AnimationEffect_APPEAR = 48,
+    AnimationEffect_HIDE = 49,
+    AnimationEffect_MOVE_FROM_UPPERLEFT = 50,
+    AnimationEffect_MOVE_FROM_UPPERRIGHT = 51,
+    AnimationEffect_MOVE_FROM_LOWERRIGHT = 52,
+    AnimationEffect_MOVE_FROM_LOWERLEFT = 53,
+    AnimationEffect_MOVE_TO_UPPERLEFT = 54,
+    AnimationEffect_MOVE_TO_UPPERRIGHT = 55,
+    AnimationEffect_MOVE_TO_LOWERRIGHT = 56,
+    AnimationEffect_MOVE_TO_LOWERLEFT = 57,
+    AnimationEffect_MOVE_SHORT_FROM_LEFT = 58,
+    AnimationEffect_MOVE_SHORT_FROM_UPPERLEFT = 59,
+    AnimationEffect_MOVE_SHORT_FROM_TOP = 60,
+    AnimationEffect_MOVE_SHORT_FROM_UPPERRIGHT = 61,
+    AnimationEffect_MOVE_SHORT_FROM_RIGHT = 62,
+    AnimationEffect_MOVE_SHORT_FROM_LOWERRIGHT = 63,
+    AnimationEffect_MOVE_SHORT_FROM_BOTTOM = 64,
+    AnimationEffect_MOVE_SHORT_FROM_LOWERLEFT = 65,
+    AnimationEffect_MOVE_SHORT_TO_LEFT = 66,
+    AnimationEffect_MOVE_SHORT_TO_UPPERLEFT = 67,
+    AnimationEffect_MOVE_SHORT_TO_TOP = 68,
+    AnimationEffect_MOVE_SHORT_TO_UPPERRIGHT = 69,
+    AnimationEffect_MOVE_SHORT_TO_RIGHT = 70,
+    AnimationEffect_MOVE_SHORT_TO_LOWERRIGHT = 71,
+    AnimationEffect_MOVE_SHORT_TO_BOTTOM = 72,
+    AnimationEffect_MOVE_SHORT_TO_LOWERLEFT = 73,
+    AnimationEffect_VERTICAL_CHECKERBOARD = 74,
+    AnimationEffect_HORIZONTAL_CHECKERBOARD = 75,
+    AnimationEffect_HORIZONTAL_ROTATE = 76,
+    AnimationEffect_VERTICAL_ROTATE = 77,
+    AnimationEffect_HORIZONTAL_STRETCH = 78,
+    AnimationEffect_VERTICAL_STRETCH = 79,
+    AnimationEffect_STRETCH_FROM_LEFT = 80,
+    AnimationEffect_STRETCH_FROM_UPPERLEFT = 81,
+    AnimationEffect_STRETCH_FROM_TOP = 82,
+    AnimationEffect_STRETCH_FROM_UPPERRIGHT = 83,
+    AnimationEffect_STRETCH_FROM_RIGHT = 84,
+    AnimationEffect_STRETCH_FROM_LOWERRIGHT = 85,
+    AnimationEffect_STRETCH_FROM_BOTTOM = 86,
+    AnimationEffect_STRETCH_FROM_LOWERLEFT = 87,
+    AnimationEffect_ZOOM_IN = 88,
+    AnimationEffect_ZOOM_IN_SMALL = 89,
+    AnimationEffect_ZOOM_IN_SPIRAL = 90,
+    AnimationEffect_ZOOM_OUT = 91,
+    AnimationEffect_ZOOM_OUT_SMALL = 92,
+    AnimationEffect_ZOOM_OUT_SPIRAL = 93,
+    AnimationEffect_ZOOM_IN_FROM_LEFT = 94,
+    AnimationEffect_ZOOM_IN_FROM_UPPERLEFT = 95,
+    AnimationEffect_ZOOM_IN_FROM_TOP = 96,
+    AnimationEffect_ZOOM_IN_FROM_UPPERRIGHT = 97,
+    AnimationEffect_ZOOM_IN_FROM_RIGHT = 98,
+    AnimationEffect_ZOOM_IN_FROM_LOWERRIGHT = 99,
+    AnimationEffect_ZOOM_IN_FROM_BOTTOM = 100,
+    AnimationEffect_ZOOM_IN_FROM_LOWERLEFT = 101,
+    AnimationEffect_ZOOM_IN_FROM_CENTER = 102,
+    AnimationEffect_ZOOM_OUT_FROM_LEFT = 103,
+    AnimationEffect_ZOOM_OUT_FROM_UPPERLEFT = 104,
+    AnimationEffect_ZOOM_OUT_FROM_TOP = 105,
+    AnimationEffect_ZOOM_OUT_FROM_UPPERRIGHT = 106,
+    AnimationEffect_ZOOM_OUT_FROM_RIGHT = 107,
+    AnimationEffect_ZOOM_OUT_FROM_LOWERRIGHT = 108,
+    AnimationEffect_ZOOM_OUT_FROM_BOTTOM = 109,
+    AnimationEffect_ZOOM_OUT_FROM_LOWERLEFT = 110,
+    AnimationEffect_ZOOM_OUT_FROM_CENTER = 111,
+    AnimationEffect_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto AnimationEffect_NONE = AnimationEffect::AnimationEffect_NONE;
+constexpr auto AnimationEffect_FADE_FROM_LEFT = AnimationEffect::AnimationEffect_FADE_FROM_LEFT;
+constexpr auto AnimationEffect_FADE_FROM_TOP = AnimationEffect::AnimationEffect_FADE_FROM_TOP;
+constexpr auto AnimationEffect_FADE_FROM_RIGHT = AnimationEffect::AnimationEffect_FADE_FROM_RIGHT;
+constexpr auto AnimationEffect_FADE_FROM_BOTTOM = AnimationEffect::AnimationEffect_FADE_FROM_BOTTOM;
+constexpr auto AnimationEffect_FADE_TO_CENTER = AnimationEffect::AnimationEffect_FADE_TO_CENTER;
+constexpr auto AnimationEffect_FADE_FROM_CENTER = AnimationEffect::AnimationEffect_FADE_FROM_CENTER;
+constexpr auto AnimationEffect_MOVE_FROM_LEFT = AnimationEffect::AnimationEffect_MOVE_FROM_LEFT;
+constexpr auto AnimationEffect_MOVE_FROM_TOP = AnimationEffect::AnimationEffect_MOVE_FROM_TOP;
+constexpr auto AnimationEffect_MOVE_FROM_RIGHT = AnimationEffect::AnimationEffect_MOVE_FROM_RIGHT;
+constexpr auto AnimationEffect_MOVE_FROM_BOTTOM = AnimationEffect::AnimationEffect_MOVE_FROM_BOTTOM;
+constexpr auto AnimationEffect_VERTICAL_STRIPES = AnimationEffect::AnimationEffect_VERTICAL_STRIPES;
+constexpr auto AnimationEffect_HORIZONTAL_STRIPES = AnimationEffect::AnimationEffect_HORIZONTAL_STRIPES;
+constexpr auto AnimationEffect_CLOCKWISE = AnimationEffect::AnimationEffect_CLOCKWISE;
+constexpr auto AnimationEffect_COUNTERCLOCKWISE = AnimationEffect::AnimationEffect_COUNTERCLOCKWISE;
+constexpr auto AnimationEffect_FADE_FROM_UPPERLEFT = AnimationEffect::AnimationEffect_FADE_FROM_UPPERLEFT;
+constexpr auto AnimationEffect_FADE_FROM_UPPERRIGHT = AnimationEffect::AnimationEffect_FADE_FROM_UPPERRIGHT;
+constexpr auto AnimationEffect_FADE_FROM_LOWERLEFT = AnimationEffect::AnimationEffect_FADE_FROM_LOWERLEFT;
+constexpr auto AnimationEffect_FADE_FROM_LOWERRIGHT = AnimationEffect::AnimationEffect_FADE_FROM_LOWERRIGHT;
+constexpr auto AnimationEffect_CLOSE_VERTICAL = AnimationEffect::AnimationEffect_CLOSE_VERTICAL;
+constexpr auto AnimationEffect_CLOSE_HORIZONTAL = AnimationEffect::AnimationEffect_CLOSE_HORIZONTAL;
+constexpr auto AnimationEffect_OPEN_VERTICAL = AnimationEffect::AnimationEffect_OPEN_VERTICAL;
+constexpr auto AnimationEffect_OPEN_HORIZONTAL = AnimationEffect::AnimationEffect_OPEN_HORIZONTAL;
+constexpr auto AnimationEffect_PATH = AnimationEffect::AnimationEffect_PATH;
+constexpr auto AnimationEffect_MOVE_TO_LEFT = AnimationEffect::AnimationEffect_MOVE_TO_LEFT;
+constexpr auto AnimationEffect_MOVE_TO_TOP = AnimationEffect::AnimationEffect_MOVE_TO_TOP;
+constexpr auto AnimationEffect_MOVE_TO_RIGHT = AnimationEffect::AnimationEffect_MOVE_TO_RIGHT;
+constexpr auto AnimationEffect_MOVE_TO_BOTTOM = AnimationEffect::AnimationEffect_MOVE_TO_BOTTOM;
+constexpr auto AnimationEffect_SPIRALIN_LEFT = AnimationEffect::AnimationEffect_SPIRALIN_LEFT;
+constexpr auto AnimationEffect_SPIRALIN_RIGHT = AnimationEffect::AnimationEffect_SPIRALIN_RIGHT;
+constexpr auto AnimationEffect_SPIRALOUT_LEFT = AnimationEffect::AnimationEffect_SPIRALOUT_LEFT;
+constexpr auto AnimationEffect_SPIRALOUT_RIGHT = AnimationEffect::AnimationEffect_SPIRALOUT_RIGHT;
+constexpr auto AnimationEffect_DISSOLVE = AnimationEffect::AnimationEffect_DISSOLVE;
+constexpr auto AnimationEffect_WAVYLINE_FROM_LEFT = AnimationEffect::AnimationEffect_WAVYLINE_FROM_LEFT;
+constexpr auto AnimationEffect_WAVYLINE_FROM_TOP = AnimationEffect::AnimationEffect_WAVYLINE_FROM_TOP;
+constexpr auto AnimationEffect_WAVYLINE_FROM_RIGHT = AnimationEffect::AnimationEffect_WAVYLINE_FROM_RIGHT;
+constexpr auto AnimationEffect_WAVYLINE_FROM_BOTTOM = AnimationEffect::AnimationEffect_WAVYLINE_FROM_BOTTOM;
+constexpr auto AnimationEffect_RANDOM = AnimationEffect::AnimationEffect_RANDOM;
+constexpr auto AnimationEffect_VERTICAL_LINES = AnimationEffect::AnimationEffect_VERTICAL_LINES;
+constexpr auto AnimationEffect_HORIZONTAL_LINES = AnimationEffect::AnimationEffect_HORIZONTAL_LINES;
+constexpr auto AnimationEffect_LASER_FROM_LEFT = AnimationEffect::AnimationEffect_LASER_FROM_LEFT;
+constexpr auto AnimationEffect_LASER_FROM_TOP = AnimationEffect::AnimationEffect_LASER_FROM_TOP;
+constexpr auto AnimationEffect_LASER_FROM_RIGHT = AnimationEffect::AnimationEffect_LASER_FROM_RIGHT;
+constexpr auto AnimationEffect_LASER_FROM_BOTTOM = AnimationEffect::AnimationEffect_LASER_FROM_BOTTOM;
+constexpr auto AnimationEffect_LASER_FROM_UPPERLEFT = AnimationEffect::AnimationEffect_LASER_FROM_UPPERLEFT;
+constexpr auto AnimationEffect_LASER_FROM_UPPERRIGHT = AnimationEffect::AnimationEffect_LASER_FROM_UPPERRIGHT;
+constexpr auto AnimationEffect_LASER_FROM_LOWERLEFT = AnimationEffect::AnimationEffect_LASER_FROM_LOWERLEFT;
+constexpr auto AnimationEffect_LASER_FROM_LOWERRIGHT = AnimationEffect::AnimationEffect_LASER_FROM_LOWERRIGHT;
+constexpr auto AnimationEffect_APPEAR = AnimationEffect::AnimationEffect_APPEAR;
+constexpr auto AnimationEffect_HIDE = AnimationEffect::AnimationEffect_HIDE;
+constexpr auto AnimationEffect_MOVE_FROM_UPPERLEFT = AnimationEffect::AnimationEffect_MOVE_FROM_UPPERLEFT;
+constexpr auto AnimationEffect_MOVE_FROM_UPPERRIGHT = AnimationEffect::AnimationEffect_MOVE_FROM_UPPERRIGHT;
+constexpr auto AnimationEffect_MOVE_FROM_LOWERRIGHT = AnimationEffect::AnimationEffect_MOVE_FROM_LOWERRIGHT;
+constexpr auto AnimationEffect_MOVE_FROM_LOWERLEFT = AnimationEffect::AnimationEffect_MOVE_FROM_LOWERLEFT;
+constexpr auto AnimationEffect_MOVE_TO_UPPERLEFT = AnimationEffect::AnimationEffect_MOVE_TO_UPPERLEFT;
+constexpr auto AnimationEffect_MOVE_TO_UPPERRIGHT = AnimationEffect::AnimationEffect_MOVE_TO_UPPERRIGHT;
+constexpr auto AnimationEffect_MOVE_TO_LOWERRIGHT = AnimationEffect::AnimationEffect_MOVE_TO_LOWERRIGHT;
+constexpr auto AnimationEffect_MOVE_TO_LOWERLEFT = AnimationEffect::AnimationEffect_MOVE_TO_LOWERLEFT;
+constexpr auto AnimationEffect_MOVE_SHORT_FROM_LEFT = AnimationEffect::AnimationEffect_MOVE_SHORT_FROM_LEFT;
+constexpr auto AnimationEffect_MOVE_SHORT_FROM_UPPERLEFT = AnimationEffect::AnimationEffect_MOVE_SHORT_FROM_UPPERLEFT;
+constexpr auto AnimationEffect_MOVE_SHORT_FROM_TOP = AnimationEffect::AnimationEffect_MOVE_SHORT_FROM_TOP;
+constexpr auto AnimationEffect_MOVE_SHORT_FROM_UPPERRIGHT = AnimationEffect::AnimationEffect_MOVE_SHORT_FROM_UPPERRIGHT;
+constexpr auto AnimationEffect_MOVE_SHORT_FROM_RIGHT = AnimationEffect::AnimationEffect_MOVE_SHORT_FROM_RIGHT;
+constexpr auto AnimationEffect_MOVE_SHORT_FROM_LOWERRIGHT = AnimationEffect::AnimationEffect_MOVE_SHORT_FROM_LOWERRIGHT;
+constexpr auto AnimationEffect_MOVE_SHORT_FROM_BOTTOM = AnimationEffect::AnimationEffect_MOVE_SHORT_FROM_BOTTOM;
+constexpr auto AnimationEffect_MOVE_SHORT_FROM_LOWERLEFT = AnimationEffect::AnimationEffect_MOVE_SHORT_FROM_LOWERLEFT;
+constexpr auto AnimationEffect_MOVE_SHORT_TO_LEFT = AnimationEffect::AnimationEffect_MOVE_SHORT_TO_LEFT;
+constexpr auto AnimationEffect_MOVE_SHORT_TO_UPPERLEFT = AnimationEffect::AnimationEffect_MOVE_SHORT_TO_UPPERLEFT;
+constexpr auto AnimationEffect_MOVE_SHORT_TO_TOP = AnimationEffect::AnimationEffect_MOVE_SHORT_TO_TOP;
+constexpr auto AnimationEffect_MOVE_SHORT_TO_UPPERRIGHT = AnimationEffect::AnimationEffect_MOVE_SHORT_TO_UPPERRIGHT;
+constexpr auto AnimationEffect_MOVE_SHORT_TO_RIGHT = AnimationEffect::AnimationEffect_MOVE_SHORT_TO_RIGHT;
+constexpr auto AnimationEffect_MOVE_SHORT_TO_LOWERRIGHT = AnimationEffect::AnimationEffect_MOVE_SHORT_TO_LOWERRIGHT;
+constexpr auto AnimationEffect_MOVE_SHORT_TO_BOTTOM = AnimationEffect::AnimationEffect_MOVE_SHORT_TO_BOTTOM;
+constexpr auto AnimationEffect_MOVE_SHORT_TO_LOWERLEFT = AnimationEffect::AnimationEffect_MOVE_SHORT_TO_LOWERLEFT;
+constexpr auto AnimationEffect_VERTICAL_CHECKERBOARD = AnimationEffect::AnimationEffect_VERTICAL_CHECKERBOARD;
+constexpr auto AnimationEffect_HORIZONTAL_CHECKERBOARD = AnimationEffect::AnimationEffect_HORIZONTAL_CHECKERBOARD;
+constexpr auto AnimationEffect_HORIZONTAL_ROTATE = AnimationEffect::AnimationEffect_HORIZONTAL_ROTATE;
+constexpr auto AnimationEffect_VERTICAL_ROTATE = AnimationEffect::AnimationEffect_VERTICAL_ROTATE;
+constexpr auto AnimationEffect_HORIZONTAL_STRETCH = AnimationEffect::AnimationEffect_HORIZONTAL_STRETCH;
+constexpr auto AnimationEffect_VERTICAL_STRETCH = AnimationEffect::AnimationEffect_VERTICAL_STRETCH;
+constexpr auto AnimationEffect_STRETCH_FROM_LEFT = AnimationEffect::AnimationEffect_STRETCH_FROM_LEFT;
+constexpr auto AnimationEffect_STRETCH_FROM_UPPERLEFT = AnimationEffect::AnimationEffect_STRETCH_FROM_UPPERLEFT;
+constexpr auto AnimationEffect_STRETCH_FROM_TOP = AnimationEffect::AnimationEffect_STRETCH_FROM_TOP;
+constexpr auto AnimationEffect_STRETCH_FROM_UPPERRIGHT = AnimationEffect::AnimationEffect_STRETCH_FROM_UPPERRIGHT;
+constexpr auto AnimationEffect_STRETCH_FROM_RIGHT = AnimationEffect::AnimationEffect_STRETCH_FROM_RIGHT;
+constexpr auto AnimationEffect_STRETCH_FROM_LOWERRIGHT = AnimationEffect::AnimationEffect_STRETCH_FROM_LOWERRIGHT;
+constexpr auto AnimationEffect_STRETCH_FROM_BOTTOM = AnimationEffect::AnimationEffect_STRETCH_FROM_BOTTOM;
+constexpr auto AnimationEffect_STRETCH_FROM_LOWERLEFT = AnimationEffect::AnimationEffect_STRETCH_FROM_LOWERLEFT;
+constexpr auto AnimationEffect_ZOOM_IN = AnimationEffect::AnimationEffect_ZOOM_IN;
+constexpr auto AnimationEffect_ZOOM_IN_SMALL = AnimationEffect::AnimationEffect_ZOOM_IN_SMALL;
+constexpr auto AnimationEffect_ZOOM_IN_SPIRAL = AnimationEffect::AnimationEffect_ZOOM_IN_SPIRAL;
+constexpr auto AnimationEffect_ZOOM_OUT = AnimationEffect::AnimationEffect_ZOOM_OUT;
+constexpr auto AnimationEffect_ZOOM_OUT_SMALL = AnimationEffect::AnimationEffect_ZOOM_OUT_SMALL;
+constexpr auto AnimationEffect_ZOOM_OUT_SPIRAL = AnimationEffect::AnimationEffect_ZOOM_OUT_SPIRAL;
+constexpr auto AnimationEffect_ZOOM_IN_FROM_LEFT = AnimationEffect::AnimationEffect_ZOOM_IN_FROM_LEFT;
+constexpr auto AnimationEffect_ZOOM_IN_FROM_UPPERLEFT = AnimationEffect::AnimationEffect_ZOOM_IN_FROM_UPPERLEFT;
+constexpr auto AnimationEffect_ZOOM_IN_FROM_TOP = AnimationEffect::AnimationEffect_ZOOM_IN_FROM_TOP;
+constexpr auto AnimationEffect_ZOOM_IN_FROM_UPPERRIGHT = AnimationEffect::AnimationEffect_ZOOM_IN_FROM_UPPERRIGHT;
+constexpr auto AnimationEffect_ZOOM_IN_FROM_RIGHT = AnimationEffect::AnimationEffect_ZOOM_IN_FROM_RIGHT;
+constexpr auto AnimationEffect_ZOOM_IN_FROM_LOWERRIGHT = AnimationEffect::AnimationEffect_ZOOM_IN_FROM_LOWERRIGHT;
+constexpr auto AnimationEffect_ZOOM_IN_FROM_BOTTOM = AnimationEffect::AnimationEffect_ZOOM_IN_FROM_BOTTOM;
+constexpr auto AnimationEffect_ZOOM_IN_FROM_LOWERLEFT = AnimationEffect::AnimationEffect_ZOOM_IN_FROM_LOWERLEFT;
+constexpr auto AnimationEffect_ZOOM_IN_FROM_CENTER = AnimationEffect::AnimationEffect_ZOOM_IN_FROM_CENTER;
+constexpr auto AnimationEffect_ZOOM_OUT_FROM_LEFT = AnimationEffect::AnimationEffect_ZOOM_OUT_FROM_LEFT;
+constexpr auto AnimationEffect_ZOOM_OUT_FROM_UPPERLEFT = AnimationEffect::AnimationEffect_ZOOM_OUT_FROM_UPPERLEFT;
+constexpr auto AnimationEffect_ZOOM_OUT_FROM_TOP = AnimationEffect::AnimationEffect_ZOOM_OUT_FROM_TOP;
+constexpr auto AnimationEffect_ZOOM_OUT_FROM_UPPERRIGHT = AnimationEffect::AnimationEffect_ZOOM_OUT_FROM_UPPERRIGHT;
+constexpr auto AnimationEffect_ZOOM_OUT_FROM_RIGHT = AnimationEffect::AnimationEffect_ZOOM_OUT_FROM_RIGHT;
+constexpr auto AnimationEffect_ZOOM_OUT_FROM_LOWERRIGHT = AnimationEffect::AnimationEffect_ZOOM_OUT_FROM_LOWERRIGHT;
+constexpr auto AnimationEffect_ZOOM_OUT_FROM_BOTTOM = AnimationEffect::AnimationEffect_ZOOM_OUT_FROM_BOTTOM;
+constexpr auto AnimationEffect_ZOOM_OUT_FROM_LOWERLEFT = AnimationEffect::AnimationEffect_ZOOM_OUT_FROM_LOWERLEFT;
+constexpr auto AnimationEffect_ZOOM_OUT_FROM_CENTER = AnimationEffect::AnimationEffect_ZOOM_OUT_FROM_CENTER;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::presentation::AnimationEffect const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::presentation::AnimationEffect *);
+
+#endif

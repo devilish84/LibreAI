@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XTYPECONVERTER_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XTYPECONVERTER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/TypeClass.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Type.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTypeConverter : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTypeConverter() = default;
+    XTypeConverter(XTypeConverter const &) = default;
+    XTypeConverter(XTypeConverter &&) = default;
+    XTypeConverter & operator =(XTypeConverter const &) = default;
+    XTypeConverter & operator =(XTypeConverter &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Any SAL_CALL convertTo( const ::css::uno::Any& aFrom, const ::css::uno::Type& xDestinationType ) = 0;
+    virtual ::css::uno::Any SAL_CALL convertToSimpleType( const ::css::uno::Any& aFrom, ::css::uno::TypeClass aDestinationType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTypeConverter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XTypeConverter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XTypeConverter > *);
+
+#endif

@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_TASK_XURLCONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_TASK_XURLCONTAINER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace task {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUrlContainer : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUrlContainer() = default;
+    XUrlContainer(XUrlContainer const &) = default;
+    XUrlContainer(XUrlContainer &&) = default;
+    XUrlContainer & operator =(XUrlContainer const &) = default;
+    XUrlContainer & operator =(XUrlContainer &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addUrl( const ::rtl::OUString& Url, ::sal_Bool MakePersistent ) = 0;
+    virtual ::rtl::OUString SAL_CALL findUrl( const ::rtl::OUString& Url ) = 0;
+    virtual void SAL_CALL removeUrl( const ::rtl::OUString& Url ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getUrls( ::sal_Bool OnlyPersistent ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUrlContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::task::XUrlContainer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::task::XUrlContainer > *);
+
+#endif

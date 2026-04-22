@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_HORIZONTALADJUST_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_HORIZONTALADJUST_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI HorizontalAdjust
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI HorizontalAdjust
+{
+
+#endif
+    HorizontalAdjust_LEFT = 0,
+    HorizontalAdjust_CENTER = 1,
+    HorizontalAdjust_RIGHT = 2,
+    HorizontalAdjust_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto HorizontalAdjust_LEFT = HorizontalAdjust::HorizontalAdjust_LEFT;
+constexpr auto HorizontalAdjust_CENTER = HorizontalAdjust::HorizontalAdjust_CENTER;
+constexpr auto HorizontalAdjust_RIGHT = HorizontalAdjust::HorizontalAdjust_RIGHT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::HorizontalAdjust const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::text::HorizontalAdjust *);
+
+#endif

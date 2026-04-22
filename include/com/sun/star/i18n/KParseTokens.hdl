@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_KPARSETOKENS_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_KPARSETOKENS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace KParseTokens {
+
+static const ::sal_Int32 ANY_ALNUM = (sal_Int32)61447;
+static const ::sal_Int32 ANY_ALPHA = (sal_Int32)45059;
+static const ::sal_Int32 ANY_DIGIT = (sal_Int32)16388;
+static const ::sal_Int32 ANY_LETTER = (sal_Int32)241667;
+static const ::sal_Int32 ANY_LETTER_OR_NUMBER = (sal_Int32)1044487;
+static const ::sal_Int32 ANY_NUMBER = (sal_Int32)802820;
+static const ::sal_Int32 ASC_ALNUM = (sal_Int32)7;
+static const ::sal_Int32 ASC_ALPHA = (sal_Int32)3;
+static const ::sal_Int32 ASC_ANY_BUT_CONTROL = (sal_Int32)1024;
+static const ::sal_Int32 ASC_COLON = (sal_Int32)64;
+static const ::sal_Int32 ASC_CONTROL = (sal_Int32)512;
+static const ::sal_Int32 ASC_DIGIT = (sal_Int32)4;
+static const ::sal_Int32 ASC_DOLLAR = (sal_Int32)16;
+static const ::sal_Int32 ASC_DOT = (sal_Int32)32;
+static const ::sal_Int32 ASC_LOALPHA = (sal_Int32)2;
+static const ::sal_Int32 ASC_OTHER = (sal_Int32)2048;
+static const ::sal_Int32 ASC_UNDERSCORE = (sal_Int32)8;
+static const ::sal_Int32 ASC_UPALPHA = (sal_Int32)1;
+static const ::sal_Int32 GROUP_SEPARATOR_IN_NUMBER = (sal_Int32)134217728;
+static const ::sal_Int32 IGNORE_LEADING_WS = (sal_Int32)1073741824;
+static const ::sal_Int32 TWO_DOUBLE_QUOTES_BREAK_STRING = (sal_Int32)268435456;
+static const ::sal_Int32 UNI_ALNUM = (sal_Int32)61440;
+static const ::sal_Int32 UNI_ALPHA = (sal_Int32)45056;
+static const ::sal_Int32 UNI_DIGIT = (sal_Int32)16384;
+static const ::sal_Int32 UNI_LETTER = (sal_Int32)241664;
+static const ::sal_Int32 UNI_LETTER_NUMBER = (sal_Int32)262144;
+static const ::sal_Int32 UNI_LOALPHA = (sal_Int32)8192;
+static const ::sal_Int32 UNI_MODIFIER_LETTER = (sal_Int32)65536;
+static const ::sal_Int32 UNI_NUMBER = (sal_Int32)802816;
+static const ::sal_Int32 UNI_OTHER = (sal_Int32)536870912;
+static const ::sal_Int32 UNI_OTHER_LETTER = (sal_Int32)131072;
+static const ::sal_Int32 UNI_OTHER_NUMBER = (sal_Int32)524288;
+static const ::sal_Int32 UNI_TITLE_ALPHA = (sal_Int32)32768;
+static const ::sal_Int32 UNI_UPALPHA = (sal_Int32)4096;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_KPARSETOKENS_HDL

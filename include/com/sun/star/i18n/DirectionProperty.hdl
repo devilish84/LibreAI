@@ -1,0 +1,72 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_DIRECTIONPROPERTY_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_DIRECTIONPROPERTY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI DirectionProperty
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI DirectionProperty
+{
+
+#endif
+    DirectionProperty_LEFT_TO_RIGHT = 0,
+    DirectionProperty_RIGHT_TO_LEFT = 1,
+    DirectionProperty_EUROPEAN_NUMBER = 2,
+    DirectionProperty_EUROPEAN_NUMBER_SEPARATOR = 3,
+    DirectionProperty_EUROPEAN_NUMBER_TERMINATOR = 4,
+    DirectionProperty_ARABIC_NUMBER = 5,
+    DirectionProperty_COMMON_NUMBER_SEPARATOR = 6,
+    DirectionProperty_BLOCK_SEPARATOR = 7,
+    DirectionProperty_SEGMENT_SEPARATOR = 8,
+    DirectionProperty_WHITE_SPACE_NEUTRAL = 9,
+    DirectionProperty_OTHER_NEUTRAL = 10,
+    DirectionProperty_LEFT_TO_RIGHT_EMBEDDING = 11,
+    DirectionProperty_LEFT_TO_RIGHT_OVERRIDE = 12,
+    DirectionProperty_RIGHT_TO_LEFT_ARABIC = 13,
+    DirectionProperty_RIGHT_TO_LEFT_EMBEDDING = 14,
+    DirectionProperty_RIGHT_TO_LEFT_OVERRIDE = 15,
+    DirectionProperty_POP_DIRECTIONAL_FORMAT = 16,
+    DirectionProperty_DIR_NON_SPACING_MARK = 17,
+    DirectionProperty_BOUNDARY_NEUTRAL = 18,
+    DirectionProperty_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto DirectionProperty_LEFT_TO_RIGHT = DirectionProperty::DirectionProperty_LEFT_TO_RIGHT;
+constexpr auto DirectionProperty_RIGHT_TO_LEFT = DirectionProperty::DirectionProperty_RIGHT_TO_LEFT;
+constexpr auto DirectionProperty_EUROPEAN_NUMBER = DirectionProperty::DirectionProperty_EUROPEAN_NUMBER;
+constexpr auto DirectionProperty_EUROPEAN_NUMBER_SEPARATOR = DirectionProperty::DirectionProperty_EUROPEAN_NUMBER_SEPARATOR;
+constexpr auto DirectionProperty_EUROPEAN_NUMBER_TERMINATOR = DirectionProperty::DirectionProperty_EUROPEAN_NUMBER_TERMINATOR;
+constexpr auto DirectionProperty_ARABIC_NUMBER = DirectionProperty::DirectionProperty_ARABIC_NUMBER;
+constexpr auto DirectionProperty_COMMON_NUMBER_SEPARATOR = DirectionProperty::DirectionProperty_COMMON_NUMBER_SEPARATOR;
+constexpr auto DirectionProperty_BLOCK_SEPARATOR = DirectionProperty::DirectionProperty_BLOCK_SEPARATOR;
+constexpr auto DirectionProperty_SEGMENT_SEPARATOR = DirectionProperty::DirectionProperty_SEGMENT_SEPARATOR;
+constexpr auto DirectionProperty_WHITE_SPACE_NEUTRAL = DirectionProperty::DirectionProperty_WHITE_SPACE_NEUTRAL;
+constexpr auto DirectionProperty_OTHER_NEUTRAL = DirectionProperty::DirectionProperty_OTHER_NEUTRAL;
+constexpr auto DirectionProperty_LEFT_TO_RIGHT_EMBEDDING = DirectionProperty::DirectionProperty_LEFT_TO_RIGHT_EMBEDDING;
+constexpr auto DirectionProperty_LEFT_TO_RIGHT_OVERRIDE = DirectionProperty::DirectionProperty_LEFT_TO_RIGHT_OVERRIDE;
+constexpr auto DirectionProperty_RIGHT_TO_LEFT_ARABIC = DirectionProperty::DirectionProperty_RIGHT_TO_LEFT_ARABIC;
+constexpr auto DirectionProperty_RIGHT_TO_LEFT_EMBEDDING = DirectionProperty::DirectionProperty_RIGHT_TO_LEFT_EMBEDDING;
+constexpr auto DirectionProperty_RIGHT_TO_LEFT_OVERRIDE = DirectionProperty::DirectionProperty_RIGHT_TO_LEFT_OVERRIDE;
+constexpr auto DirectionProperty_POP_DIRECTIONAL_FORMAT = DirectionProperty::DirectionProperty_POP_DIRECTIONAL_FORMAT;
+constexpr auto DirectionProperty_DIR_NON_SPACING_MARK = DirectionProperty::DirectionProperty_DIR_NON_SPACING_MARK;
+constexpr auto DirectionProperty_BOUNDARY_NEUTRAL = DirectionProperty::DirectionProperty_BOUNDARY_NEUTRAL;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::DirectionProperty const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::i18n::DirectionProperty *);
+
+#endif

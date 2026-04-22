@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDFILTER_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDFILTER_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DataPilotFieldFilter {
+    inline DataPilotFieldFilter();
+
+    inline DataPilotFieldFilter(const ::rtl::OUString& FieldName_, const ::rtl::OUString& MatchValueName_, const ::rtl::OUString& MatchValue_);
+
+    ::rtl::OUString FieldName;
+    ::rtl::OUString MatchValueName;
+    ::rtl::OUString MatchValue;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::DataPilotFieldFilter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::DataPilotFieldFilter *);
+
+#endif

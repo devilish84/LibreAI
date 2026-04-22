@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_BARCODEERRORCORRECTION_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_BARCODEERRORCORRECTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace BarCodeErrorCorrection {
+
+static const ::sal_Int32 HIGH = (sal_Int32)4;
+static const ::sal_Int32 LOW = (sal_Int32)1;
+static const ::sal_Int32 MEDIUM = (sal_Int32)2;
+static const ::sal_Int32 QUARTILE = (sal_Int32)3;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_DRAWING_BARCODEERRORCORRECTION_HDL

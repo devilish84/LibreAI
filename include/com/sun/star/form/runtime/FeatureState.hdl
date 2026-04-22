@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_RUNTIME_FEATURESTATE_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_RUNTIME_FEATURESTATE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form { namespace runtime {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI FeatureState {
+    inline FeatureState();
+
+    inline FeatureState(const ::sal_Bool& Enabled_, const ::css::uno::Any& State_);
+
+    ::sal_Bool Enabled;
+    ::css::uno::Any State;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::runtime::FeatureState const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::form::runtime::FeatureState *);
+
+#endif

@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_GRID_GRIDDATAEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_GRID_GRIDDATAEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt { namespace grid {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI GridDataEvent: public ::css::lang::EventObject {
+    inline GridDataEvent();
+
+    inline GridDataEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::sal_Int32& FirstColumn_, const ::sal_Int32& LastColumn_, const ::sal_Int32& FirstRow_, const ::sal_Int32& LastRow_);
+
+    ::sal_Int32 FirstColumn CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::sal_Int32 LastColumn;
+    ::sal_Int32 FirstRow;
+    ::sal_Int32 LastRow;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::grid::GridDataEvent const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::grid::GridDataEvent *);
+
+#endif

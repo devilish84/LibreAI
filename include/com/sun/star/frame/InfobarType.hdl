@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_INFOBARTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_INFOBARTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace frame { namespace InfobarType {
+
+static const ::sal_Int32 DANGER = (sal_Int32)3;
+static const ::sal_Int32 INFO = (sal_Int32)0;
+static const ::sal_Int32 SUCCESS = (sal_Int32)1;
+static const ::sal_Int32 WARNING = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_FRAME_INFOBARTYPE_HDL

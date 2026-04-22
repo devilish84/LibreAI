@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_MOZILLA_MOZILLAPRODUCTTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_MOZILLA_MOZILLAPRODUCTTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace mozilla {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI MozillaProductType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI MozillaProductType
+{
+
+#endif
+    MozillaProductType_Default = 0,
+    MozillaProductType_Mozilla = 1,
+    MozillaProductType_Firefox = 2,
+    MozillaProductType_Thunderbird = 3,
+    MozillaProductType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto MozillaProductType_Default = MozillaProductType::MozillaProductType_Default;
+constexpr auto MozillaProductType_Mozilla = MozillaProductType::MozillaProductType_Mozilla;
+constexpr auto MozillaProductType_Firefox = MozillaProductType::MozillaProductType_Firefox;
+constexpr auto MozillaProductType_Thunderbird = MozillaProductType::MozillaProductType_Thunderbird;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::mozilla::MozillaProductType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::mozilla::MozillaProductType *);
+
+#endif

@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_CAPTIONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_CAPTIONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace CaptionType {
+
+static const ::sal_Int16 angled = (sal_Int16)1;
+static const ::sal_Int16 connector = (sal_Int16)2;
+static const ::sal_Int16 straight = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_DRAWING_CAPTIONTYPE_HDL

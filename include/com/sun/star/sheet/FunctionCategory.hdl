@@ -1,0 +1,25 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_FUNCTIONCATEGORY_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_FUNCTIONCATEGORY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace FunctionCategory {
+
+static const ::sal_Int32 ADDIN = (sal_Int32)11;
+static const ::sal_Int32 DATABASE = (sal_Int32)1;
+static const ::sal_Int32 DATETIME = (sal_Int32)2;
+static const ::sal_Int32 FINANCIAL = (sal_Int32)3;
+static const ::sal_Int32 INFORMATION = (sal_Int32)4;
+static const ::sal_Int32 LOGICAL = (sal_Int32)5;
+static const ::sal_Int32 MATHEMATICAL = (sal_Int32)6;
+static const ::sal_Int32 MATRIX = (sal_Int32)7;
+static const ::sal_Int32 SPREADSHEET = (sal_Int32)9;
+static const ::sal_Int32 STATISTICAL = (sal_Int32)8;
+static const ::sal_Int32 TEXT = (sal_Int32)10;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_FUNCTIONCATEGORY_HDL

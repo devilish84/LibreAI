@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_TOOLS_XCONNECTIONTOOLS_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_TOOLS_XCONNECTIONTOOLS_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XNameAccess; } } } }
+namespace com { namespace sun { namespace star { namespace lang { class XComponent; } } } }
+namespace com { namespace sun { namespace star { namespace sdb { class XSingleSelectQueryComposer; } } } }
+namespace com { namespace sun { namespace star { namespace sdb { namespace tools { class XDataSourceMetaData; } } } } }
+namespace com { namespace sun { namespace star { namespace sdb { namespace tools { class XObjectNames; } } } } }
+namespace com { namespace sun { namespace star { namespace sdb { namespace tools { class XTableName; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace tools {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XConnectionTools : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XConnectionTools() = default;
+    XConnectionTools(XConnectionTools const &) = default;
+    XConnectionTools(XConnectionTools &&) = default;
+    XConnectionTools & operator =(XConnectionTools const &) = default;
+    XConnectionTools & operator =(XConnectionTools &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::sdb::tools::XTableName > SAL_CALL createTableName() = 0;
+    virtual ::css::uno::Reference< ::css::sdb::tools::XObjectNames > SAL_CALL getObjectNames() = 0;
+    virtual ::css::uno::Reference< ::css::sdb::tools::XDataSourceMetaData > SAL_CALL getDataSourceMetaData() = 0;
+    virtual ::css::uno::Reference< ::css::container::XNameAccess > SAL_CALL getFieldsByCommandDescriptor( ::sal_Int32 commandType, const ::rtl::OUString& command, ::css::uno::Reference< ::css::lang::XComponent >& keepFieldsAlive ) = 0;
+    virtual ::css::uno::Reference< ::css::sdb::XSingleSelectQueryComposer > SAL_CALL getComposer( ::sal_Int32 commandType, const ::rtl::OUString& command ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XConnectionTools() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdb::tools::XConnectionTools const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdb::tools::XConnectionTools > *);
+
+#endif

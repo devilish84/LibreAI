@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_CELLVERTJUSTIFY_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_CELLVERTJUSTIFY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI CellVertJustify
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI CellVertJustify
+{
+
+#endif
+    CellVertJustify_STANDARD = 0,
+    CellVertJustify_TOP = 1,
+    CellVertJustify_CENTER = 2,
+    CellVertJustify_BOTTOM = 3,
+    CellVertJustify_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto CellVertJustify_STANDARD = CellVertJustify::CellVertJustify_STANDARD;
+constexpr auto CellVertJustify_TOP = CellVertJustify::CellVertJustify_TOP;
+constexpr auto CellVertJustify_CENTER = CellVertJustify::CellVertJustify_CENTER;
+constexpr auto CellVertJustify_BOTTOM = CellVertJustify::CellVertJustify_BOTTOM;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::CellVertJustify const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::table::CellVertJustify *);
+
+#endif

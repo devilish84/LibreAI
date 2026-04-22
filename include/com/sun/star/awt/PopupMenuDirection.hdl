@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_POPUPMENUDIRECTION_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_POPUPMENUDIRECTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace PopupMenuDirection {
+
+static const ::sal_Int16 EXECUTE_DEFAULT = (sal_Int16)0;
+static const ::sal_Int16 EXECUTE_DOWN = (sal_Int16)1;
+static const ::sal_Int16 EXECUTE_LEFT = (sal_Int16)4;
+static const ::sal_Int16 EXECUTE_RIGHT = (sal_Int16)8;
+static const ::sal_Int16 EXECUTE_UP = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_POPUPMENUDIRECTION_HDL

@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTWEIGHT_HPP
+#define INCLUDED_COM_SUN_STAR_AWT_FONTWEIGHT_HPP
+
+#include "com/sun/star/awt/FontWeight.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FONTWEIGHT_HPP

@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBCX_XALTERTABLE_HDL
+#define INCLUDED_COM_SUN_STAR_SDBCX_XALTERTABLE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace beans { class XPropertySet; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbcx {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAlterTable : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAlterTable() = default;
+    XAlterTable(XAlterTable const &) = default;
+    XAlterTable(XAlterTable &&) = default;
+    XAlterTable & operator =(XAlterTable const &) = default;
+    XAlterTable & operator =(XAlterTable &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL alterColumnByName( const ::rtl::OUString& colName, const ::css::uno::Reference< ::css::beans::XPropertySet >& descriptor ) = 0;
+    virtual void SAL_CALL alterColumnByIndex( ::sal_Int32 index, const ::css::uno::Reference< ::css::beans::XPropertySet >& descriptor ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAlterTable() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbcx::XAlterTable const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbcx::XAlterTable > *);
+
+#endif

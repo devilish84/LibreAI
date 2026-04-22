@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_REFLECTION_XSERVICECONSTRUCTORDESCRIPTION_HDL
+#define INCLUDED_COM_SUN_STAR_REFLECTION_XSERVICECONSTRUCTORDESCRIPTION_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace reflection { class XCompoundTypeDescription; } } } }
+namespace com { namespace sun { namespace star { namespace reflection { class XParameter; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace reflection {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XServiceConstructorDescription : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XServiceConstructorDescription() = default;
+    XServiceConstructorDescription(XServiceConstructorDescription const &) = default;
+    XServiceConstructorDescription(XServiceConstructorDescription &&) = default;
+    XServiceConstructorDescription & operator =(XServiceConstructorDescription const &) = default;
+    XServiceConstructorDescription & operator =(XServiceConstructorDescription &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isDefaultConstructor() = 0;
+    virtual ::rtl::OUString SAL_CALL getName() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::reflection::XParameter > > SAL_CALL getParameters() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::reflection::XCompoundTypeDescription > > SAL_CALL getExceptions() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XServiceConstructorDescription() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::reflection::XServiceConstructorDescription const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::reflection::XServiceConstructorDescription > *);
+
+#endif

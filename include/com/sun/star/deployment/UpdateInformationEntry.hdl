@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_DEPLOYMENT_UPDATEINFORMATIONENTRY_HDL
+#define INCLUDED_COM_SUN_STAR_DEPLOYMENT_UPDATEINFORMATIONENTRY_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XElement; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace deployment {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI UpdateInformationEntry {
+    inline UpdateInformationEntry();
+
+    inline UpdateInformationEntry(const ::css::uno::Reference< ::css::xml::dom::XElement >& UpdateDocument_, const ::rtl::OUString& Description_);
+
+    ::css::uno::Reference< ::css::xml::dom::XElement > UpdateDocument;
+    ::rtl::OUString Description;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::deployment::UpdateInformationEntry const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::deployment::UpdateInformationEntry *);
+
+#endif

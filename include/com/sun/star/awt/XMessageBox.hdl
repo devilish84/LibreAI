@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XMESSAGEBOX_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XMESSAGEBOX_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMessageBox : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMessageBox() = default;
+    XMessageBox(XMessageBox const &) = default;
+    XMessageBox(XMessageBox &&) = default;
+    XMessageBox & operator =(XMessageBox const &) = default;
+    XMessageBox & operator =(XMessageBox &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getCaptionText() = 0;
+    virtual void SAL_CALL setCaptionText( const ::rtl::OUString& _captiontext ) = 0;
+    virtual ::rtl::OUString SAL_CALL getMessageText() = 0;
+    virtual void SAL_CALL setMessageText( const ::rtl::OUString& _messagetext ) = 0;
+
+    // Methods
+    virtual ::sal_Int16 SAL_CALL execute() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMessageBox() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XMessageBox const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XMessageBox > *);
+
+#endif

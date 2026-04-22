@@ -1,0 +1,169 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_XREPORTCONTROLFORMAT_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_XREPORTCONTROLFORMAT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/FontDescriptor.hdl"
+#include "com/sun/star/awt/FontSlant.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/style/VerticalAlignment.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/Color.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XReportControlFormat : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XReportControlFormat() = default;
+    XReportControlFormat(XReportControlFormat const &) = default;
+    XReportControlFormat(XReportControlFormat &&) = default;
+    XReportControlFormat & operator =(XReportControlFormat const &) = default;
+    XReportControlFormat & operator =(XReportControlFormat &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int32 SAL_CALL getControlBackground() = 0;
+    virtual void SAL_CALL setControlBackground( ::sal_Int32 _controlbackground ) = 0;
+    virtual ::sal_Bool SAL_CALL getControlBackgroundTransparent() = 0;
+    virtual void SAL_CALL setControlBackgroundTransparent( ::sal_Bool _controlbackgroundtransparent ) = 0;
+    virtual ::sal_Int16 SAL_CALL getParaAdjust() = 0;
+    virtual void SAL_CALL setParaAdjust( ::sal_Int16 _paraadjust ) = 0;
+    virtual ::css::awt::FontDescriptor SAL_CALL getFontDescriptor() = 0;
+    virtual void SAL_CALL setFontDescriptor( const ::css::awt::FontDescriptor& _fontdescriptor ) = 0;
+    virtual ::css::awt::FontDescriptor SAL_CALL getFontDescriptorAsian() = 0;
+    virtual void SAL_CALL setFontDescriptorAsian( const ::css::awt::FontDescriptor& _fontdescriptorasian ) = 0;
+    virtual ::css::awt::FontDescriptor SAL_CALL getFontDescriptorComplex() = 0;
+    virtual void SAL_CALL setFontDescriptorComplex( const ::css::awt::FontDescriptor& _fontdescriptorcomplex ) = 0;
+    virtual ::sal_Int16 SAL_CALL getControlTextEmphasis() = 0;
+    virtual void SAL_CALL setControlTextEmphasis( ::sal_Int16 _controltextemphasis ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharEmphasis() = 0;
+    virtual void SAL_CALL setCharEmphasis( ::sal_Int16 _charemphasis ) = 0;
+    virtual ::sal_Bool SAL_CALL getCharCombineIsOn() = 0;
+    virtual void SAL_CALL setCharCombineIsOn( ::sal_Bool _charcombineison ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCharCombinePrefix() = 0;
+    virtual void SAL_CALL setCharCombinePrefix( const ::rtl::OUString& _charcombineprefix ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCharCombineSuffix() = 0;
+    virtual void SAL_CALL setCharCombineSuffix( const ::rtl::OUString& _charcombinesuffix ) = 0;
+    virtual ::sal_Bool SAL_CALL getCharHidden() = 0;
+    virtual void SAL_CALL setCharHidden( ::sal_Bool _charhidden ) = 0;
+    virtual ::sal_Bool SAL_CALL getCharShadowed() = 0;
+    virtual void SAL_CALL setCharShadowed( ::sal_Bool _charshadowed ) = 0;
+    virtual ::sal_Bool SAL_CALL getCharContoured() = 0;
+    virtual void SAL_CALL setCharContoured( ::sal_Bool _charcontoured ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharCaseMap() = 0;
+    virtual void SAL_CALL setCharCaseMap( ::sal_Int16 _charcasemap ) = 0;
+    virtual ::css::lang::Locale SAL_CALL getCharLocale() = 0;
+    virtual void SAL_CALL setCharLocale( const ::css::lang::Locale& _charlocale ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharEscapement() = 0;
+    virtual void SAL_CALL setCharEscapement( ::sal_Int16 _charescapement ) = 0;
+    virtual ::sal_Int8 SAL_CALL getCharEscapementHeight() = 0;
+    virtual void SAL_CALL setCharEscapementHeight( ::sal_Int8 _charescapementheight ) = 0;
+    virtual ::sal_Bool SAL_CALL getCharAutoKerning() = 0;
+    virtual void SAL_CALL setCharAutoKerning( ::sal_Bool _charautokerning ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharKerning() = 0;
+    virtual void SAL_CALL setCharKerning( ::sal_Int16 _charkerning ) = 0;
+    virtual ::sal_Bool SAL_CALL getCharFlash() = 0;
+    virtual void SAL_CALL setCharFlash( ::sal_Bool _charflash ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharRelief() = 0;
+    virtual void SAL_CALL setCharRelief( ::sal_Int16 _charrelief ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCharFontName() = 0;
+    virtual void SAL_CALL setCharFontName( const ::rtl::OUString& _charfontname ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCharFontStyleName() = 0;
+    virtual void SAL_CALL setCharFontStyleName( const ::rtl::OUString& _charfontstylename ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharFontFamily() = 0;
+    virtual void SAL_CALL setCharFontFamily( ::sal_Int16 _charfontfamily ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharFontCharSet() = 0;
+    virtual void SAL_CALL setCharFontCharSet( ::sal_Int16 _charfontcharset ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharFontPitch() = 0;
+    virtual void SAL_CALL setCharFontPitch( ::sal_Int16 _charfontpitch ) = 0;
+    virtual ::sal_Int32 SAL_CALL getCharColor() = 0;
+    virtual void SAL_CALL setCharColor( ::sal_Int32 _charcolor ) = 0;
+    virtual ::sal_Int32 SAL_CALL getCharUnderlineColor() = 0;
+    virtual void SAL_CALL setCharUnderlineColor( ::sal_Int32 _charunderlinecolor ) = 0;
+    virtual float SAL_CALL getCharHeight() = 0;
+    virtual void SAL_CALL setCharHeight( float _charheight ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharUnderline() = 0;
+    virtual void SAL_CALL setCharUnderline( ::sal_Int16 _charunderline ) = 0;
+    virtual float SAL_CALL getCharWeight() = 0;
+    virtual void SAL_CALL setCharWeight( float _charweight ) = 0;
+    virtual ::css::awt::FontSlant SAL_CALL getCharPosture() = 0;
+    virtual void SAL_CALL setCharPosture( ::css::awt::FontSlant _charposture ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharStrikeout() = 0;
+    virtual void SAL_CALL setCharStrikeout( ::sal_Int16 _charstrikeout ) = 0;
+    virtual ::sal_Bool SAL_CALL getCharWordMode() = 0;
+    virtual void SAL_CALL setCharWordMode( ::sal_Bool _charwordmode ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharRotation() = 0;
+    virtual void SAL_CALL setCharRotation( ::sal_Int16 _charrotation ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharScaleWidth() = 0;
+    virtual void SAL_CALL setCharScaleWidth( ::sal_Int16 _charscalewidth ) = 0;
+    virtual ::css::style::VerticalAlignment SAL_CALL getVerticalAlign() = 0;
+    virtual void SAL_CALL setVerticalAlign( ::css::style::VerticalAlignment _verticalalign ) = 0;
+    virtual ::rtl::OUString SAL_CALL getHyperLinkURL() = 0;
+    virtual void SAL_CALL setHyperLinkURL( const ::rtl::OUString& _hyperlinkurl ) = 0;
+    virtual ::rtl::OUString SAL_CALL getHyperLinkTarget() = 0;
+    virtual void SAL_CALL setHyperLinkTarget( const ::rtl::OUString& _hyperlinktarget ) = 0;
+    virtual ::rtl::OUString SAL_CALL getHyperLinkName() = 0;
+    virtual void SAL_CALL setHyperLinkName( const ::rtl::OUString& _hyperlinkname ) = 0;
+    virtual ::rtl::OUString SAL_CALL getVisitedCharStyleName() = 0;
+    virtual void SAL_CALL setVisitedCharStyleName( const ::rtl::OUString& _visitedcharstylename ) = 0;
+    virtual ::rtl::OUString SAL_CALL getUnvisitedCharStyleName() = 0;
+    virtual void SAL_CALL setUnvisitedCharStyleName( const ::rtl::OUString& _unvisitedcharstylename ) = 0;
+    virtual float SAL_CALL getCharHeightAsian() = 0;
+    virtual void SAL_CALL setCharHeightAsian( float _charheightasian ) = 0;
+    virtual float SAL_CALL getCharWeightAsian() = 0;
+    virtual void SAL_CALL setCharWeightAsian( float _charweightasian ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCharFontNameAsian() = 0;
+    virtual void SAL_CALL setCharFontNameAsian( const ::rtl::OUString& _charfontnameasian ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCharFontStyleNameAsian() = 0;
+    virtual void SAL_CALL setCharFontStyleNameAsian( const ::rtl::OUString& _charfontstylenameasian ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharFontFamilyAsian() = 0;
+    virtual void SAL_CALL setCharFontFamilyAsian( ::sal_Int16 _charfontfamilyasian ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharFontCharSetAsian() = 0;
+    virtual void SAL_CALL setCharFontCharSetAsian( ::sal_Int16 _charfontcharsetasian ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharFontPitchAsian() = 0;
+    virtual void SAL_CALL setCharFontPitchAsian( ::sal_Int16 _charfontpitchasian ) = 0;
+    virtual ::css::awt::FontSlant SAL_CALL getCharPostureAsian() = 0;
+    virtual void SAL_CALL setCharPostureAsian( ::css::awt::FontSlant _charpostureasian ) = 0;
+    virtual ::css::lang::Locale SAL_CALL getCharLocaleAsian() = 0;
+    virtual void SAL_CALL setCharLocaleAsian( const ::css::lang::Locale& _charlocaleasian ) = 0;
+    virtual float SAL_CALL getCharHeightComplex() = 0;
+    virtual void SAL_CALL setCharHeightComplex( float _charheightcomplex ) = 0;
+    virtual float SAL_CALL getCharWeightComplex() = 0;
+    virtual void SAL_CALL setCharWeightComplex( float _charweightcomplex ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCharFontNameComplex() = 0;
+    virtual void SAL_CALL setCharFontNameComplex( const ::rtl::OUString& _charfontnamecomplex ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCharFontStyleNameComplex() = 0;
+    virtual void SAL_CALL setCharFontStyleNameComplex( const ::rtl::OUString& _charfontstylenamecomplex ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharFontFamilyComplex() = 0;
+    virtual void SAL_CALL setCharFontFamilyComplex( ::sal_Int16 _charfontfamilycomplex ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharFontCharSetComplex() = 0;
+    virtual void SAL_CALL setCharFontCharSetComplex( ::sal_Int16 _charfontcharsetcomplex ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCharFontPitchComplex() = 0;
+    virtual void SAL_CALL setCharFontPitchComplex( ::sal_Int16 _charfontpitchcomplex ) = 0;
+    virtual ::css::awt::FontSlant SAL_CALL getCharPostureComplex() = 0;
+    virtual void SAL_CALL setCharPostureComplex( ::css::awt::FontSlant _charposturecomplex ) = 0;
+    virtual ::css::lang::Locale SAL_CALL getCharLocaleComplex() = 0;
+    virtual void SAL_CALL setCharLocaleComplex( const ::css::lang::Locale& _charlocalecomplex ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XReportControlFormat() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::XReportControlFormat const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::XReportControlFormat > *);
+
+#endif

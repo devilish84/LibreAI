@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_TEXTUREKIND_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_TEXTUREKIND_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TextureKind
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TextureKind
+{
+
+#endif
+    TextureKind_LUMINANCE = 0,
+    TextureKind_COLOR = 1,
+    TextureKind_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TextureKind_LUMINANCE = TextureKind::TextureKind_LUMINANCE;
+constexpr auto TextureKind_COLOR = TextureKind::TextureKind_COLOR;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::TextureKind const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::TextureKind *);
+
+#endif

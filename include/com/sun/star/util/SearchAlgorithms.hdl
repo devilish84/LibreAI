@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_SEARCHALGORITHMS_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_SEARCHALGORITHMS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI SearchAlgorithms
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI SearchAlgorithms
+{
+
+#endif
+    SearchAlgorithms_ABSOLUTE = 0,
+    SearchAlgorithms_REGEXP = 1,
+    SearchAlgorithms_APPROXIMATE = 2,
+    SearchAlgorithms_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto SearchAlgorithms_ABSOLUTE = SearchAlgorithms::SearchAlgorithms_ABSOLUTE;
+constexpr auto SearchAlgorithms_REGEXP = SearchAlgorithms::SearchAlgorithms_REGEXP;
+constexpr auto SearchAlgorithms_APPROXIMATE = SearchAlgorithms::SearchAlgorithms_APPROXIMATE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::SearchAlgorithms const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::util::SearchAlgorithms *);
+
+#endif

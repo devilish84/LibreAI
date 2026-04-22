@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_WRITINGMODE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_WRITINGMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI WritingMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI WritingMode
+{
+
+#endif
+    WritingMode_LR_TB = 0,
+    WritingMode_RL_TB = 1,
+    WritingMode_TB_RL = 2,
+    WritingMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto WritingMode_LR_TB = WritingMode::WritingMode_LR_TB;
+constexpr auto WritingMode_RL_TB = WritingMode::WritingMode_RL_TB;
+constexpr auto WritingMode_TB_RL = WritingMode::WritingMode_TB_RL;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::WritingMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::text::WritingMode *);
+
+#endif

@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_XFUNCTIONS_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_XFUNCTIONS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XChild.hdl"
+#include "com/sun/star/container/XContainer.hdl"
+#include "com/sun/star/container/XIndexContainer.hdl"
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace report { class XFunction; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFunctions : public ::css::container::XContainer, public ::css::container::XIndexContainer, public ::css::container::XChild, public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFunctions() = default;
+    XFunctions(XFunctions const &) = default;
+    XFunctions(XFunctions &&) = default;
+    XFunctions & operator =(XFunctions const &) = default;
+    XFunctions & operator =(XFunctions &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::report::XFunction > SAL_CALL createFunction() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFunctions() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::XFunctions const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::XFunctions > *);
+
+#endif

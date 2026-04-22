@@ -1,0 +1,24 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_FAILREASON_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_FAILREASON_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace script { namespace FailReason {
+
+static const ::sal_Int32 INVALID = (sal_Int32)8;
+static const ::sal_Int32 IS_NOT_BOOL = (sal_Int32)4;
+static const ::sal_Int32 IS_NOT_ENUM = (sal_Int32)3;
+static const ::sal_Int32 IS_NOT_NUMBER = (sal_Int32)2;
+static const ::sal_Int32 NO_DEFAULT_AVAILABLE = (sal_Int32)9;
+static const ::sal_Int32 NO_SUCH_INTERFACE = (sal_Int32)5;
+static const ::sal_Int32 OUT_OF_RANGE = (sal_Int32)1;
+static const ::sal_Int32 SOURCE_IS_NO_DERIVED_TYPE = (sal_Int32)6;
+static const ::sal_Int32 TYPE_NOT_SUPPORTED = (sal_Int32)7;
+static const ::sal_Int32 UNKNOWN = (sal_Int32)10;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SCRIPT_FAILREASON_HDL

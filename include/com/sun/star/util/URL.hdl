@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_URL_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_URL_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED URL {
+    inline URL();
+
+    inline URL(const ::rtl::OUString& Complete_, const ::rtl::OUString& Main_, const ::rtl::OUString& Protocol_, const ::rtl::OUString& User_, const ::rtl::OUString& Password_, const ::rtl::OUString& Server_, const ::sal_Int16& Port_, const ::rtl::OUString& Path_, const ::rtl::OUString& Name_, const ::rtl::OUString& Arguments_, const ::rtl::OUString& Mark_);
+
+    ::rtl::OUString Complete;
+    ::rtl::OUString Main;
+    ::rtl::OUString Protocol;
+    ::rtl::OUString User;
+    ::rtl::OUString Password;
+    ::rtl::OUString Server;
+    ::sal_Int16 Port;
+    ::rtl::OUString Path;
+    ::rtl::OUString Name;
+    ::rtl::OUString Arguments;
+    ::rtl::OUString Mark;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::URL const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::util::URL *);
+
+#endif

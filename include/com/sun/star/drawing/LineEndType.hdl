@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_LINEENDTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_LINEENDTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI LineEndType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI LineEndType
+{
+
+#endif
+    LineEndType_NONE = 0,
+    LineEndType_ARROW = 1,
+    LineEndType_CIRCLE = 2,
+    LineEndType_SQUARE = 3,
+    LineEndType_SPECIAL = 4,
+    LineEndType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto LineEndType_NONE = LineEndType::LineEndType_NONE;
+constexpr auto LineEndType_ARROW = LineEndType::LineEndType_ARROW;
+constexpr auto LineEndType_CIRCLE = LineEndType::LineEndType_CIRCLE;
+constexpr auto LineEndType_SQUARE = LineEndType::LineEndType_SQUARE;
+constexpr auto LineEndType_SPECIAL = LineEndType::LineEndType_SPECIAL;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::LineEndType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::LineEndType *);
+
+#endif

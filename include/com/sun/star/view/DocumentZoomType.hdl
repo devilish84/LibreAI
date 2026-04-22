@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_VIEW_DOCUMENTZOOMTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_VIEW_DOCUMENTZOOMTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace view { namespace DocumentZoomType {
+
+static const ::sal_Int16 BY_VALUE = (sal_Int16)3;
+static const ::sal_Int16 ENTIRE_PAGE = (sal_Int16)2;
+static const ::sal_Int16 OPTIMAL = (sal_Int16)0;
+static const ::sal_Int16 PAGE_WIDTH = (sal_Int16)1;
+static const ::sal_Int16 PAGE_WIDTH_EXACT = (sal_Int16)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_VIEW_DOCUMENTZOOMTYPE_HDL

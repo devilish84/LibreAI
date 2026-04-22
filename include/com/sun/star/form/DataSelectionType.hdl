@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_DATASELECTIONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_DATASELECTIONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI DataSelectionType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI DataSelectionType
+{
+
+#endif
+    DataSelectionType_TABLE = 0,
+    DataSelectionType_QUERY = 1,
+    DataSelectionType_SQL = 2,
+    DataSelectionType_SQLPASSTHROUGH = 3,
+    DataSelectionType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto DataSelectionType_TABLE = DataSelectionType::DataSelectionType_TABLE;
+constexpr auto DataSelectionType_QUERY = DataSelectionType::DataSelectionType_QUERY;
+constexpr auto DataSelectionType_SQL = DataSelectionType::DataSelectionType_SQL;
+constexpr auto DataSelectionType_SQLPASSTHROUGH = DataSelectionType::DataSelectionType_SQLPASSTHROUGH;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::DataSelectionType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::form::DataSelectionType *);
+
+#endif

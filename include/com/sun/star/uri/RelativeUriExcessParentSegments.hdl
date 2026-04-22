@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_URI_RELATIVEURIEXCESSPARENTSEGMENTS_HDL
+#define INCLUDED_COM_SUN_STAR_URI_RELATIVEURIEXCESSPARENTSEGMENTS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace uri {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI RelativeUriExcessParentSegments
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI RelativeUriExcessParentSegments
+{
+
+#endif
+    RelativeUriExcessParentSegments_ERROR = 0,
+    RelativeUriExcessParentSegments_RETAIN = 1,
+    RelativeUriExcessParentSegments_REMOVE = 2,
+    RelativeUriExcessParentSegments_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto RelativeUriExcessParentSegments_ERROR = RelativeUriExcessParentSegments::RelativeUriExcessParentSegments_ERROR;
+constexpr auto RelativeUriExcessParentSegments_RETAIN = RelativeUriExcessParentSegments::RelativeUriExcessParentSegments_RETAIN;
+constexpr auto RelativeUriExcessParentSegments_REMOVE = RelativeUriExcessParentSegments::RelativeUriExcessParentSegments_REMOVE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::uri::RelativeUriExcessParentSegments const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uri::RelativeUriExcessParentSegments *);
+
+#endif

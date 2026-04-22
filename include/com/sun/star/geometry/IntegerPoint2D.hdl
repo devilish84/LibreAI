@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_GEOMETRY_INTEGERPOINT2D_HDL
+#define INCLUDED_COM_SUN_STAR_GEOMETRY_INTEGERPOINT2D_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace geometry {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED IntegerPoint2D {
+    inline IntegerPoint2D();
+
+    inline IntegerPoint2D(const ::sal_Int32& X_, const ::sal_Int32& Y_);
+
+    ::sal_Int32 X;
+    ::sal_Int32 Y;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::geometry::IntegerPoint2D const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::geometry::IntegerPoint2D *);
+
+#endif

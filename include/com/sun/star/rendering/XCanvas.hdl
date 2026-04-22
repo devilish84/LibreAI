@@ -1,0 +1,79 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XCANVAS_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XCANVAS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/geometry/Matrix2D.hdl"
+#include "com/sun/star/geometry/RealBezierSegment2D.hdl"
+#include "com/sun/star/geometry/RealPoint2D.hdl"
+namespace com { namespace sun { namespace star { namespace geometry { class XMapping2D; } } } }
+#include "com/sun/star/rendering/FontInfo.hdl"
+#include "com/sun/star/rendering/FontRequest.hdl"
+#include "com/sun/star/rendering/RenderState.hdl"
+#include "com/sun/star/rendering/StringContext.hdl"
+#include "com/sun/star/rendering/StrokeAttributes.hdl"
+#include "com/sun/star/rendering/Texture.hdl"
+#include "com/sun/star/rendering/ViewState.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XBitmap; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XCachedPrimitive; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XCanvasFont; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XGraphicDevice; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XPolyPolygon2D; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XTextLayout; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCanvas : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCanvas() = default;
+    XCanvas(XCanvas const &) = default;
+    XCanvas(XCanvas &&) = default;
+    XCanvas & operator =(XCanvas const &) = default;
+    XCanvas & operator =(XCanvas &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL clear() = 0;
+    virtual void SAL_CALL drawPoint( const ::css::geometry::RealPoint2D& aPoint, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState ) = 0;
+    virtual void SAL_CALL drawLine( const ::css::geometry::RealPoint2D& aStartPoint, const ::css::geometry::RealPoint2D& aEndPoint, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState ) = 0;
+    virtual void SAL_CALL drawBezier( const ::css::geometry::RealBezierSegment2D& aBezierSegment, const ::css::geometry::RealPoint2D& aEndPoint, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCachedPrimitive > SAL_CALL drawPolyPolygon( const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D >& xPolyPolygon, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCachedPrimitive > SAL_CALL strokePolyPolygon( const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D >& xPolyPolygon, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState, const ::css::rendering::StrokeAttributes& aStrokeAttributes ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCachedPrimitive > SAL_CALL strokeTexturedPolyPolygon( const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D >& xPolyPolygon, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState, const ::css::uno::Sequence< ::css::rendering::Texture >& aTextures, const ::css::rendering::StrokeAttributes& aStrokeAttributes ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCachedPrimitive > SAL_CALL strokeTextureMappedPolyPolygon( const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D >& xPolyPolygon, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState, const ::css::uno::Sequence< ::css::rendering::Texture >& aTextures, const ::css::uno::Reference< ::css::geometry::XMapping2D >& xMapping, const ::css::rendering::StrokeAttributes& aStrokeAttributes ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XPolyPolygon2D > SAL_CALL queryStrokeShapes( const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D >& xPolyPolygon, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState, const ::css::rendering::StrokeAttributes& aStrokeAttributes ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCachedPrimitive > SAL_CALL fillPolyPolygon( const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D >& xPolyPolygon, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCachedPrimitive > SAL_CALL fillTexturedPolyPolygon( const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D >& xPolyPolygon, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState, const ::css::uno::Sequence< ::css::rendering::Texture >& xTextures ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCachedPrimitive > SAL_CALL fillTextureMappedPolyPolygon( const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D >& xPolyPolygon, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState, const ::css::uno::Sequence< ::css::rendering::Texture >& xTextures, const ::css::uno::Reference< ::css::geometry::XMapping2D >& xMapping ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCanvasFont > SAL_CALL createFont( const ::css::rendering::FontRequest& aFontRequest, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aExtraFontProperties, const ::css::geometry::Matrix2D& aFontMatrix ) = 0;
+    virtual ::css::uno::Sequence< ::css::rendering::FontInfo > SAL_CALL queryAvailableFonts( const ::css::rendering::FontInfo& aFilter, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aFontProperties ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCachedPrimitive > SAL_CALL drawText( const ::css::rendering::StringContext& aText, const ::css::uno::Reference< ::css::rendering::XCanvasFont >& xFont, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState, ::sal_Int8 nTextDirection ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCachedPrimitive > SAL_CALL drawTextLayout( const ::css::uno::Reference< ::css::rendering::XTextLayout >& xLayoutetText, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCachedPrimitive > SAL_CALL drawBitmap( const ::css::uno::Reference< ::css::rendering::XBitmap >& xBitmap, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCachedPrimitive > SAL_CALL drawBitmapModulated( const ::css::uno::Reference< ::css::rendering::XBitmap >& xBitmap, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XGraphicDevice > SAL_CALL getDevice() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCanvas() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XCanvas const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XCanvas > *);
+
+#endif

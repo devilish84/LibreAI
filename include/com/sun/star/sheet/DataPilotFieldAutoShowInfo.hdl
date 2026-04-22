@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDAUTOSHOWINFO_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDAUTOSHOWINFO_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DataPilotFieldAutoShowInfo {
+    inline DataPilotFieldAutoShowInfo();
+
+    inline DataPilotFieldAutoShowInfo(const ::sal_Bool& IsEnabled_, const ::sal_Int32& ShowItemsMode_, const ::sal_Int32& ItemCount_, const ::rtl::OUString& DataField_);
+
+    ::sal_Bool IsEnabled;
+    ::sal_Int32 ShowItemsMode;
+    ::sal_Int32 ItemCount;
+    ::rtl::OUString DataField;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::DataPilotFieldAutoShowInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::DataPilotFieldAutoShowInfo *);
+
+#endif

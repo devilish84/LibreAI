@@ -19,13 +19,6 @@ jobs:
             libreoffice-dev \
             zip
 
-      - name: Generate UNO headers
-        run: |
-          mkdir -p include
-          /usr/lib/libreoffice/sdk/bin/cppumaker -O include \
-            /usr/lib/libreoffice/program/types.rdb \
-            /usr/lib/libreoffice/program/types/offapi.rdb
-
       - name: Build
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-fvisibility=hidden" -Wno-dev
@@ -55,27 +48,17 @@ jobs:
           $url = "https://download.documentfoundation.org/libreoffice/stable/25.8.6/win/x86_64/LibreOffice_25.8.6_Win_x86-64_sdk.msi"
           Invoke-WebRequest $url -OutFile lo_sdk.msi -MaximumRedirection 5
           Start-Process msiexec.exe -ArgumentList '/i', 'lo_sdk.msi', '/quiet', '/norestart' -Wait
-          # Find installed SDK path
-          $sdkPath = Get-ChildItem "C:\Program Files\LibreOffice*" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
+          $sdkPath = Get-ChildItem "C:\Program Files\LibreOffice*SDK*" -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty FullName
           echo "SDK_PATH=$sdkPath" >> $env:GITHUB_ENV
           echo "LO SDK installed at $sdkPath"
-
-      - name: Generate UNO headers
-        shell: pwsh
-        run: |
-          $cppumaker = "$env:SDK_PATH\sdk\bin\cppumaker.exe"
-          $types     = "$env:SDK_PATH\program\types.rdb"
-          $offapi    = "$env:SDK_PATH\program\types\offapi.rdb"
-          New-Item -ItemType Directory -Force -Path include
-          & $cppumaker -O include $types $offapi
 
       - name: Build
         shell: pwsh
         run: |
           cmake -S . -B build `
             -DCMAKE_BUILD_TYPE=Release `
-            -DLO_INCLUDE="$env:SDK_PATH\sdk\include" `
-            -DLO_SDK_LIB="$env:SDK_PATH\sdk\lib"
+            -DLO_INCLUDE="$env:SDK_PATH\include" `
+            -DLO_SDK_LIB="$env:SDK_PATH\lib"
           cmake --build build --config Release --parallel $env:NUMBER_OF_PROCESSORS
 
       - name: Upload Windows binary

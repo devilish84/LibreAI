@@ -1,0 +1,75 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_XPARAMETERS_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_XPARAMETERS_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XArray; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XBlob; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XClob; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XRef; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/Date.hdl"
+#include "com/sun/star/util/DateTime.hdl"
+#include "com/sun/star/util/Time.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XParameters : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XParameters() = default;
+    XParameters(XParameters const &) = default;
+    XParameters(XParameters &&) = default;
+    XParameters & operator =(XParameters const &) = default;
+    XParameters & operator =(XParameters &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setNull( ::sal_Int32 parameterIndex, ::sal_Int32 sqlType ) = 0;
+    virtual void SAL_CALL setObjectNull( ::sal_Int32 parameterIndex, ::sal_Int32 sqlType, const ::rtl::OUString& typeName ) = 0;
+    virtual void SAL_CALL setBoolean( ::sal_Int32 parameterIndex, ::sal_Bool x ) = 0;
+    virtual void SAL_CALL setByte( ::sal_Int32 parameterIndex, ::sal_Int8 x ) = 0;
+    virtual void SAL_CALL setShort( ::sal_Int32 parameterIndex, ::sal_Int16 x ) = 0;
+    virtual void SAL_CALL setInt( ::sal_Int32 parameterIndex, ::sal_Int32 x ) = 0;
+    virtual void SAL_CALL setLong( ::sal_Int32 parameterIndex, ::sal_Int64 x ) = 0;
+    virtual void SAL_CALL setFloat( ::sal_Int32 parameterIndex, float x ) = 0;
+    virtual void SAL_CALL setDouble( ::sal_Int32 parameterIndex, double x ) = 0;
+    virtual void SAL_CALL setString( ::sal_Int32 parameterIndex, const ::rtl::OUString& x ) = 0;
+    virtual void SAL_CALL setBytes( ::sal_Int32 parameterIndex, const ::css::uno::Sequence< ::sal_Int8 >& x ) = 0;
+    virtual void SAL_CALL setDate( ::sal_Int32 parameterIndex, const ::css::util::Date& x ) = 0;
+    virtual void SAL_CALL setTime( ::sal_Int32 parameterIndex, const ::css::util::Time& x ) = 0;
+    virtual void SAL_CALL setTimestamp( ::sal_Int32 parameterIndex, const ::css::util::DateTime& x ) = 0;
+    virtual void SAL_CALL setBinaryStream( ::sal_Int32 parameterIndex, const ::css::uno::Reference< ::css::io::XInputStream >& x, ::sal_Int32 length ) = 0;
+    virtual void SAL_CALL setCharacterStream( ::sal_Int32 parameterIndex, const ::css::uno::Reference< ::css::io::XInputStream >& x, ::sal_Int32 length ) = 0;
+    virtual void SAL_CALL setObject( ::sal_Int32 parameterIndex, const ::css::uno::Any& x ) = 0;
+    virtual void SAL_CALL setObjectWithInfo( ::sal_Int32 parameterIndex, const ::css::uno::Any& x, ::sal_Int32 targetSqlType, ::sal_Int32 scale ) = 0;
+    virtual void SAL_CALL setRef( ::sal_Int32 parameterIndex, const ::css::uno::Reference< ::css::sdbc::XRef >& x ) = 0;
+    virtual void SAL_CALL setBlob( ::sal_Int32 parameterIndex, const ::css::uno::Reference< ::css::sdbc::XBlob >& x ) = 0;
+    virtual void SAL_CALL setClob( ::sal_Int32 parameterIndex, const ::css::uno::Reference< ::css::sdbc::XClob >& x ) = 0;
+    virtual void SAL_CALL setArray( ::sal_Int32 parameterIndex, const ::css::uno::Reference< ::css::sdbc::XArray >& x ) = 0;
+    virtual void SAL_CALL clearParameters() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XParameters() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::XParameters const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbc::XParameters > *);
+
+#endif

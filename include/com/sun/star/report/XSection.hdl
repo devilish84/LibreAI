@@ -1,0 +1,76 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_XSECTION_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_XSECTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XPropertySet.hdl"
+#include "com/sun/star/container/XChild.hdl"
+#include "com/sun/star/container/XContainer.hdl"
+#include "com/sun/star/container/XEnumerationAccess.hdl"
+#include "com/sun/star/drawing/XShapes.hdl"
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace report { class XGroup; } } } }
+namespace com { namespace sun { namespace star { namespace report { class XReportDefinition; } } } }
+#include "com/sun/star/util/Color.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSection : public ::css::container::XChild, public ::css::container::XContainer, public ::css::drawing::XShapes, public ::css::container::XEnumerationAccess, public ::css::beans::XPropertySet, public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSection() = default;
+    XSection(XSection const &) = default;
+    XSection(XSection &&) = default;
+    XSection & operator =(XSection const &) = default;
+    XSection & operator =(XSection &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Bool SAL_CALL getVisible() = 0;
+    virtual void SAL_CALL setVisible( ::sal_Bool _visible ) = 0;
+    virtual ::rtl::OUString SAL_CALL getName() = 0;
+    virtual void SAL_CALL setName( const ::rtl::OUString& _name ) = 0;
+    virtual ::sal_uInt32 SAL_CALL getHeight() = 0;
+    virtual void SAL_CALL setHeight( ::sal_uInt32 _height ) = 0;
+    virtual ::sal_Int32 SAL_CALL getBackColor() = 0;
+    virtual void SAL_CALL setBackColor( ::sal_Int32 _backcolor ) = 0;
+    virtual ::sal_Bool SAL_CALL getBackTransparent() = 0;
+    virtual void SAL_CALL setBackTransparent( ::sal_Bool _backtransparent ) = 0;
+    virtual ::rtl::OUString SAL_CALL getConditionalPrintExpression() = 0;
+    virtual void SAL_CALL setConditionalPrintExpression( const ::rtl::OUString& _conditionalprintexpression ) = 0;
+    virtual ::sal_Int16 SAL_CALL getForceNewPage() = 0;
+    virtual void SAL_CALL setForceNewPage( ::sal_Int16 _forcenewpage ) = 0;
+    virtual ::sal_Int16 SAL_CALL getNewRowOrCol() = 0;
+    virtual void SAL_CALL setNewRowOrCol( ::sal_Int16 _newroworcol ) = 0;
+    virtual ::sal_Bool SAL_CALL getKeepTogether() = 0;
+    virtual void SAL_CALL setKeepTogether( ::sal_Bool _keeptogether ) = 0;
+    virtual ::sal_Bool SAL_CALL getCanGrow() = 0;
+    virtual void SAL_CALL setCanGrow( ::sal_Bool _cangrow ) = 0;
+    virtual ::sal_Bool SAL_CALL getCanShrink() = 0;
+    virtual void SAL_CALL setCanShrink( ::sal_Bool _canshrink ) = 0;
+    virtual ::sal_Bool SAL_CALL getRepeatSection() = 0;
+    virtual void SAL_CALL setRepeatSection( ::sal_Bool _repeatsection ) = 0;
+    virtual ::css::uno::Reference< ::css::report::XGroup > SAL_CALL getGroup() = 0;
+    virtual ::css::uno::Reference< ::css::report::XReportDefinition > SAL_CALL getReportDefinition() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSection() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::XSection const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::XSection > *);
+
+#endif

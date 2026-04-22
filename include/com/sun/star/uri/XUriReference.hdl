@@ -1,0 +1,59 @@
+#ifndef INCLUDED_COM_SUN_STAR_URI_XURIREFERENCE_HDL
+#define INCLUDED_COM_SUN_STAR_URI_XURIREFERENCE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace uri {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUriReference : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUriReference() = default;
+    XUriReference(XUriReference const &) = default;
+    XUriReference(XUriReference &&) = default;
+    XUriReference & operator =(XUriReference const &) = default;
+    XUriReference & operator =(XUriReference &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getUriReference() = 0;
+    virtual ::sal_Bool SAL_CALL isAbsolute() = 0;
+    virtual ::rtl::OUString SAL_CALL getScheme() = 0;
+    virtual ::rtl::OUString SAL_CALL getSchemeSpecificPart() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL isHierarchical() = 0;
+    virtual ::sal_Bool SAL_CALL hasAuthority() = 0;
+    virtual ::rtl::OUString SAL_CALL getAuthority() = 0;
+    virtual ::rtl::OUString SAL_CALL getPath() = 0;
+    virtual ::sal_Bool SAL_CALL hasRelativePath() = 0;
+    virtual ::sal_Int32 SAL_CALL getPathSegmentCount() = 0;
+    virtual ::rtl::OUString SAL_CALL getPathSegment( ::sal_Int32 index ) = 0;
+    virtual ::sal_Bool SAL_CALL hasQuery() = 0;
+    virtual ::rtl::OUString SAL_CALL getQuery() = 0;
+    virtual ::sal_Bool SAL_CALL hasFragment() = 0;
+    virtual ::rtl::OUString SAL_CALL getFragment() = 0;
+    virtual void SAL_CALL setFragment( const ::rtl::OUString& fragment ) = 0;
+    virtual void SAL_CALL clearFragment() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUriReference() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::uri::XUriReference const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::uri::XUriReference > *);
+
+#endif

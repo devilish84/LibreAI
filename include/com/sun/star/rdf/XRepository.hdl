@@ -1,0 +1,63 @@
+#ifndef INCLUDED_COM_SUN_STAR_RDF_XREPOSITORY_HDL
+#define INCLUDED_COM_SUN_STAR_RDF_XREPOSITORY_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XEnumeration; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XOutputStream; } } } }
+namespace com { namespace sun { namespace star { namespace rdf { class XBlankNode; } } } }
+namespace com { namespace sun { namespace star { namespace rdf { class XNamedGraph; } } } }
+namespace com { namespace sun { namespace star { namespace rdf { class XNode; } } } }
+namespace com { namespace sun { namespace star { namespace rdf { class XQuerySelectResult; } } } }
+namespace com { namespace sun { namespace star { namespace rdf { class XResource; } } } }
+namespace com { namespace sun { namespace star { namespace rdf { class XURI; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rdf {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRepository : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRepository() = default;
+    XRepository(XRepository const &) = default;
+    XRepository(XRepository &&) = default;
+    XRepository & operator =(XRepository const &) = default;
+    XRepository & operator =(XRepository &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::rdf::XBlankNode > SAL_CALL createBlankNode() = 0;
+    virtual ::css::uno::Reference< ::css::rdf::XNamedGraph > SAL_CALL importGraph( ::sal_Int16 Format, const ::css::uno::Reference< ::css::io::XInputStream >& InStream, const ::css::uno::Reference< ::css::rdf::XURI >& GraphName, const ::css::uno::Reference< ::css::rdf::XURI >& BaseURI ) = 0;
+    virtual void SAL_CALL exportGraph( ::sal_Int16 Format, const ::css::uno::Reference< ::css::io::XOutputStream >& OutStream, const ::css::uno::Reference< ::css::rdf::XURI >& GraphName, const ::css::uno::Reference< ::css::rdf::XURI >& BaseURI ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::rdf::XURI > > SAL_CALL getGraphNames() = 0;
+    virtual ::css::uno::Reference< ::css::rdf::XNamedGraph > SAL_CALL getGraph( const ::css::uno::Reference< ::css::rdf::XURI >& GraphName ) = 0;
+    virtual ::css::uno::Reference< ::css::rdf::XNamedGraph > SAL_CALL createGraph( const ::css::uno::Reference< ::css::rdf::XURI >& GraphName ) = 0;
+    virtual void SAL_CALL destroyGraph( const ::css::uno::Reference< ::css::rdf::XURI >& GraphName ) = 0;
+    virtual ::css::uno::Reference< ::css::container::XEnumeration > SAL_CALL getStatements( const ::css::uno::Reference< ::css::rdf::XResource >& Subject, const ::css::uno::Reference< ::css::rdf::XURI >& Predicate, const ::css::uno::Reference< ::css::rdf::XNode >& Object ) = 0;
+    virtual ::css::uno::Reference< ::css::rdf::XQuerySelectResult > SAL_CALL querySelect( const ::rtl::OUString& Query ) = 0;
+    virtual ::css::uno::Reference< ::css::container::XEnumeration > SAL_CALL queryConstruct( const ::rtl::OUString& Query ) = 0;
+    virtual ::sal_Bool SAL_CALL queryAsk( const ::rtl::OUString& Query ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRepository() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rdf::XRepository const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rdf::XRepository > *);
+
+#endif

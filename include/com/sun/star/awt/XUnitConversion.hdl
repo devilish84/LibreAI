@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XUNITCONVERSION_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XUNITCONVERSION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Point.hdl"
+#include "com/sun/star/awt/Size.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUnitConversion : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUnitConversion() = default;
+    XUnitConversion(XUnitConversion const &) = default;
+    XUnitConversion(XUnitConversion &&) = default;
+    XUnitConversion & operator =(XUnitConversion const &) = default;
+    XUnitConversion & operator =(XUnitConversion &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::awt::Point SAL_CALL convertPointToLogic( const ::css::awt::Point& Point, ::sal_Int16 TargetUnit ) = 0;
+    virtual ::css::awt::Point SAL_CALL convertPointToPixel( const ::css::awt::Point& Point, ::sal_Int16 SourceUnit ) = 0;
+    virtual ::css::awt::Size SAL_CALL convertSizeToLogic( const ::css::awt::Size& Size, ::sal_Int16 TargetUnit ) = 0;
+    virtual ::css::awt::Size SAL_CALL convertSizeToPixel( const ::css::awt::Size& Size, ::sal_Int16 SourceUnit ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUnitConversion() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XUnitConversion const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XUnitConversion > *);
+
+#endif

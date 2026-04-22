@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_XPRESENTERHELPER_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_XPRESENTERHELPER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+namespace com { namespace sun { namespace star { namespace awt { class XWindow; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XBitmap; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XCanvas; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XSpriteCanvas; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPresenterHelper : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPresenterHelper() = default;
+    XPresenterHelper(XPresenterHelper const &) = default;
+    XPresenterHelper(XPresenterHelper &&) = default;
+    XPresenterHelper & operator =(XPresenterHelper const &) = default;
+    XPresenterHelper & operator =(XPresenterHelper &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::awt::XWindow > SAL_CALL createWindow( const ::css::uno::Reference< ::css::awt::XWindow >& xParentWindow, ::sal_Bool bCreateSystemChildWindow, ::sal_Bool bInitiallyVisible, ::sal_Bool bEnableChildTransparentMode, ::sal_Bool bEnableParentClip ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCanvas > SAL_CALL createSharedCanvas( const ::css::uno::Reference< ::css::rendering::XSpriteCanvas >& xUpdateCanvas, const ::css::uno::Reference< ::css::awt::XWindow >& xUpdateWindow, const ::css::uno::Reference< ::css::rendering::XCanvas >& xSharedCanvas, const ::css::uno::Reference< ::css::awt::XWindow >& xSharedWindow, const ::css::uno::Reference< ::css::awt::XWindow >& xWindow ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCanvas > SAL_CALL createCanvas( const ::css::uno::Reference< ::css::awt::XWindow >& xWindow, ::sal_Int16 nRequestedCanvasFeatureList, const ::rtl::OUString& sOptionalCanvasServiceName ) = 0;
+    virtual void SAL_CALL toTop( const ::css::uno::Reference< ::css::awt::XWindow >& xWindow ) = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XBitmap > SAL_CALL loadBitmap( const ::rtl::OUString& id, const ::css::uno::Reference< ::css::rendering::XCanvas >& xCanvas ) = 0;
+    virtual void SAL_CALL captureMouse( const ::css::uno::Reference< ::css::awt::XWindow >& xWindow ) = 0;
+    virtual void SAL_CALL releaseMouse( const ::css::uno::Reference< ::css::awt::XWindow >& xWindow ) = 0;
+    virtual ::css::awt::Rectangle SAL_CALL getWindowExtentsRelative( const ::css::uno::Reference< ::css::awt::XWindow >& xChildWindow, const ::css::uno::Reference< ::css::awt::XWindow >& xParentWindow ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPresenterHelper() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::XPresenterHelper const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::XPresenterHelper > *);
+
+#endif

@@ -1,0 +1,58 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_FILTEROPERATOR_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_FILTEROPERATOR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FilterOperator
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FilterOperator
+{
+
+#endif
+    FilterOperator_EMPTY = 0,
+    FilterOperator_NOT_EMPTY = 1,
+    FilterOperator_EQUAL = 2,
+    FilterOperator_NOT_EQUAL = 3,
+    FilterOperator_GREATER = 4,
+    FilterOperator_GREATER_EQUAL = 5,
+    FilterOperator_LESS = 6,
+    FilterOperator_LESS_EQUAL = 7,
+    FilterOperator_TOP_VALUES = 8,
+    FilterOperator_TOP_PERCENT = 9,
+    FilterOperator_BOTTOM_VALUES = 10,
+    FilterOperator_BOTTOM_PERCENT = 11,
+    FilterOperator_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FilterOperator_EMPTY = FilterOperator::FilterOperator_EMPTY;
+constexpr auto FilterOperator_NOT_EMPTY = FilterOperator::FilterOperator_NOT_EMPTY;
+constexpr auto FilterOperator_EQUAL = FilterOperator::FilterOperator_EQUAL;
+constexpr auto FilterOperator_NOT_EQUAL = FilterOperator::FilterOperator_NOT_EQUAL;
+constexpr auto FilterOperator_GREATER = FilterOperator::FilterOperator_GREATER;
+constexpr auto FilterOperator_GREATER_EQUAL = FilterOperator::FilterOperator_GREATER_EQUAL;
+constexpr auto FilterOperator_LESS = FilterOperator::FilterOperator_LESS;
+constexpr auto FilterOperator_LESS_EQUAL = FilterOperator::FilterOperator_LESS_EQUAL;
+constexpr auto FilterOperator_TOP_VALUES = FilterOperator::FilterOperator_TOP_VALUES;
+constexpr auto FilterOperator_TOP_PERCENT = FilterOperator::FilterOperator_TOP_PERCENT;
+constexpr auto FilterOperator_BOTTOM_VALUES = FilterOperator::FilterOperator_BOTTOM_VALUES;
+constexpr auto FilterOperator_BOTTOM_PERCENT = FilterOperator::FilterOperator_BOTTOM_PERCENT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::FilterOperator const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::FilterOperator *);
+
+#endif

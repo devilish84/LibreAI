@@ -1,0 +1,34 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_OPTIONAL_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_OPTIONAL_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace beans {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+template< typename typeparam_T > struct SAL_DLLPUBLIC_RTTI Optional {
+    inline Optional();
+
+    inline Optional(const ::sal_Bool& IsPresent_, typeparam_T const & Value_);
+
+    ::sal_Bool IsPresent;
+    typeparam_T Value;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+} } } }
+
+template< typename typeparam_T > SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::beans::Optional< typeparam_T > *);
+
+#endif

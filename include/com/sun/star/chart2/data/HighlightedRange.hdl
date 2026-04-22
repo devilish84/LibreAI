@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_DATA_HIGHLIGHTEDRANGE_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_DATA_HIGHLIGHTEDRANGE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 { namespace data {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED HighlightedRange {
+    inline HighlightedRange();
+
+    inline HighlightedRange(const ::rtl::OUString& RangeRepresentation_, const ::sal_Int32& Index_, const ::sal_Int32& PreferredColor_, const ::sal_Bool& AllowMerginigWithOtherRanges_);
+
+    ::rtl::OUString RangeRepresentation;
+    ::sal_Int32 Index;
+    ::sal_Int32 PreferredColor;
+    ::sal_Bool AllowMerginigWithOtherRanges;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::data::HighlightedRange const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart2::data::HighlightedRange *);
+
+#endif

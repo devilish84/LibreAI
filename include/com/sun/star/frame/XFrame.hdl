@@ -1,0 +1,64 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XFRAME_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XFRAME_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XWindow; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XController; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XFrame; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XFrameActionListener; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XFramesSupplier; } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFrame : public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFrame() = default;
+    XFrame(XFrame const &) = default;
+    XFrame(XFrame &&) = default;
+    XFrame & operator =(XFrame const &) = default;
+    XFrame & operator =(XFrame &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL initialize( const ::css::uno::Reference< ::css::awt::XWindow >& xWindow ) = 0;
+    virtual ::css::uno::Reference< ::css::awt::XWindow > SAL_CALL getContainerWindow() = 0;
+    virtual void SAL_CALL setCreator( const ::css::uno::Reference< ::css::frame::XFramesSupplier >& Creator ) = 0;
+    virtual ::css::uno::Reference< ::css::frame::XFramesSupplier > SAL_CALL getCreator() = 0;
+    virtual ::rtl::OUString SAL_CALL getName() = 0;
+    virtual void SAL_CALL setName( const ::rtl::OUString& aName ) = 0;
+    virtual ::css::uno::Reference< ::css::frame::XFrame > SAL_CALL findFrame( const ::rtl::OUString& aTargetFrameName, ::sal_Int32 nSearchFlags ) = 0;
+    virtual ::sal_Bool SAL_CALL isTop() = 0;
+    virtual void SAL_CALL activate() = 0;
+    virtual void SAL_CALL deactivate() = 0;
+    virtual ::sal_Bool SAL_CALL isActive() = 0;
+    virtual ::sal_Bool SAL_CALL setComponent( const ::css::uno::Reference< ::css::awt::XWindow >& xComponentWindow, const ::css::uno::Reference< ::css::frame::XController >& xController ) = 0;
+    virtual ::css::uno::Reference< ::css::awt::XWindow > SAL_CALL getComponentWindow() = 0;
+    virtual ::css::uno::Reference< ::css::frame::XController > SAL_CALL getController() = 0;
+    virtual void SAL_CALL contextChanged() = 0;
+    virtual void SAL_CALL addFrameActionListener( const ::css::uno::Reference< ::css::frame::XFrameActionListener >& xListener ) = 0;
+    virtual void SAL_CALL removeFrameActionListener( const ::css::uno::Reference< ::css::frame::XFrameActionListener >& xListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFrame() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XFrame const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XFrame > *);
+
+#endif

@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTERRORINDICATORTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTERRORINDICATORTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ChartErrorIndicatorType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ChartErrorIndicatorType
+{
+
+#endif
+    ChartErrorIndicatorType_NONE = 0,
+    ChartErrorIndicatorType_TOP_AND_BOTTOM = 1,
+    ChartErrorIndicatorType_UPPER = 2,
+    ChartErrorIndicatorType_LOWER = 3,
+    ChartErrorIndicatorType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ChartErrorIndicatorType_NONE = ChartErrorIndicatorType::ChartErrorIndicatorType_NONE;
+constexpr auto ChartErrorIndicatorType_TOP_AND_BOTTOM = ChartErrorIndicatorType::ChartErrorIndicatorType_TOP_AND_BOTTOM;
+constexpr auto ChartErrorIndicatorType_UPPER = ChartErrorIndicatorType::ChartErrorIndicatorType_UPPER;
+constexpr auto ChartErrorIndicatorType_LOWER = ChartErrorIndicatorType::ChartErrorIndicatorType_LOWER;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::ChartErrorIndicatorType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart::ChartErrorIndicatorType *);
+
+#endif

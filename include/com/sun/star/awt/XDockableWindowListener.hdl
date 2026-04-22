@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XDOCKABLEWINDOWLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XDOCKABLEWINDOWLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/DockingData.hdl"
+#include "com/sun/star/awt/DockingEvent.hdl"
+#include "com/sun/star/awt/EndDockingEvent.hdl"
+#include "com/sun/star/awt/EndPopupModeEvent.hdl"
+#include "com/sun/star/lang/EventObject.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDockableWindowListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDockableWindowListener() = default;
+    XDockableWindowListener(XDockableWindowListener const &) = default;
+    XDockableWindowListener(XDockableWindowListener &&) = default;
+    XDockableWindowListener & operator =(XDockableWindowListener const &) = default;
+    XDockableWindowListener & operator =(XDockableWindowListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL startDocking( const ::css::awt::DockingEvent& e ) = 0;
+    virtual ::css::awt::DockingData SAL_CALL docking( const ::css::awt::DockingEvent& e ) = 0;
+    virtual void SAL_CALL endDocking( const ::css::awt::EndDockingEvent& e ) = 0;
+    virtual ::sal_Bool SAL_CALL prepareToggleFloatingMode( const ::css::lang::EventObject& e ) = 0;
+    virtual void SAL_CALL toggleFloatingMode( const ::css::lang::EventObject& e ) = 0;
+    virtual void SAL_CALL closed( const ::css::lang::EventObject& e ) = 0;
+    virtual void SAL_CALL endPopupMode( const ::css::awt::EndPopupModeEvent& e ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDockableWindowListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XDockableWindowListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XDockableWindowListener > *);
+
+#endif

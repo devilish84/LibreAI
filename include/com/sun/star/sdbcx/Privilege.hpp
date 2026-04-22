@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBCX_PRIVILEGE_HPP
+#define INCLUDED_COM_SUN_STAR_SDBCX_PRIVILEGE_HPP
+
+#include "com/sun/star/sdbcx/Privilege.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_SDBCX_PRIVILEGE_HPP

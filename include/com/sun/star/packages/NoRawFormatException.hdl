@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_PACKAGES_NORAWFORMATEXCEPTION_HDL
+#define INCLUDED_COM_SUN_STAR_PACKAGES_NORAWFORMATEXCEPTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/io/IOException.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace packages {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED NoRawFormatException : public ::css::io::IOException
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE NoRawFormatException(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE NoRawFormatException(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_ = ::css::uno::Reference< ::css::uno::XInterface >()
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE NoRawFormatException(NoRawFormatException const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~NoRawFormatException();
+
+    inline CPPU_GCC_DLLPRIVATE NoRawFormatException & operator =(NoRawFormatException const &);
+#endif
+
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::packages::NoRawFormatException const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::packages::NoRawFormatException *);
+
+#endif

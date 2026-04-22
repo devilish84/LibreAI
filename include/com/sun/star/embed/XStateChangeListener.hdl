@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XSTATECHANGELISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XSTATECHANGELISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStateChangeListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStateChangeListener() = default;
+    XStateChangeListener(XStateChangeListener const &) = default;
+    XStateChangeListener(XStateChangeListener &&) = default;
+    XStateChangeListener & operator =(XStateChangeListener const &) = default;
+    XStateChangeListener & operator =(XStateChangeListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL changingState( const ::css::lang::EventObject& aEvent, ::sal_Int32 nOldState, ::sal_Int32 nNewState ) = 0;
+    virtual void SAL_CALL stateChanged( const ::css::lang::EventObject& aEvent, ::sal_Int32 nOldState, ::sal_Int32 nNewState ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStateChangeListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XStateChangeListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XStateChangeListener > *);
+
+#endif

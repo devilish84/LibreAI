@@ -1,0 +1,33 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTUNDERLINE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_FONTUNDERLINE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace FontUnderline {
+
+static const ::sal_Int16 BOLD = (sal_Int16)12;
+static const ::sal_Int16 BOLDDASH = (sal_Int16)14;
+static const ::sal_Int16 BOLDDASHDOT = (sal_Int16)16;
+static const ::sal_Int16 BOLDDASHDOTDOT = (sal_Int16)17;
+static const ::sal_Int16 BOLDDOTTED = (sal_Int16)13;
+static const ::sal_Int16 BOLDLONGDASH = (sal_Int16)15;
+static const ::sal_Int16 BOLDWAVE = (sal_Int16)18;
+static const ::sal_Int16 DASH = (sal_Int16)5;
+static const ::sal_Int16 DASHDOT = (sal_Int16)7;
+static const ::sal_Int16 DASHDOTDOT = (sal_Int16)8;
+static const ::sal_Int16 DONTKNOW = (sal_Int16)4;
+static const ::sal_Int16 DOTTED = (sal_Int16)3;
+static const ::sal_Int16 DOUBLE = (sal_Int16)2;
+static const ::sal_Int16 DOUBLEWAVE = (sal_Int16)11;
+static const ::sal_Int16 LONGDASH = (sal_Int16)6;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+static const ::sal_Int16 SINGLE = (sal_Int16)1;
+static const ::sal_Int16 SMALLWAVE = (sal_Int16)9;
+static const ::sal_Int16 WAVE = (sal_Int16)10;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FONTUNDERLINE_HDL

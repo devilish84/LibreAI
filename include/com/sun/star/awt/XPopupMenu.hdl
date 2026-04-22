@@ -1,0 +1,57 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XPOPUPMENU_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XPOPUPMENU_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/KeyEvent.hdl"
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/awt/XMenu.hdl"
+namespace com { namespace sun { namespace star { namespace awt { class XWindowPeer; } } } }
+namespace com { namespace sun { namespace star { namespace graphic { class XGraphic; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPopupMenu : public ::css::awt::XMenu
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPopupMenu() = default;
+    XPopupMenu(XPopupMenu const &) = default;
+    XPopupMenu(XPopupMenu &&) = default;
+    XPopupMenu & operator =(XPopupMenu const &) = default;
+    XPopupMenu & operator =(XPopupMenu &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL insertSeparator( ::sal_Int16 nItemPos ) = 0;
+    virtual void SAL_CALL setDefaultItem( ::sal_Int16 nItemId ) = 0;
+    virtual ::sal_Int16 SAL_CALL getDefaultItem() = 0;
+    virtual void SAL_CALL checkItem( ::sal_Int16 nItemId, ::sal_Bool bCheck ) = 0;
+    virtual ::sal_Bool SAL_CALL isItemChecked( ::sal_Int16 nItemId ) = 0;
+    virtual ::sal_Int16 SAL_CALL execute( const ::css::uno::Reference< ::css::awt::XWindowPeer >& Parent, const ::css::awt::Rectangle& Position, ::sal_Int16 Direction ) = 0;
+    virtual ::sal_Bool SAL_CALL isInExecute() = 0;
+    virtual void SAL_CALL endExecute() = 0;
+    virtual void SAL_CALL setAcceleratorKeyEvent( ::sal_Int16 nItemId, const ::css::awt::KeyEvent& aKeyEvent ) = 0;
+    virtual ::css::awt::KeyEvent SAL_CALL getAcceleratorKeyEvent( ::sal_Int16 nItemId ) = 0;
+    virtual void SAL_CALL setItemImage( ::sal_Int16 nItemId, const ::css::uno::Reference< ::css::graphic::XGraphic >& xGraphic, ::sal_Bool bScale ) = 0;
+    virtual ::css::uno::Reference< ::css::graphic::XGraphic > SAL_CALL getItemImage( ::sal_Int16 nItemId ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPopupMenu() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XPopupMenu const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XPopupMenu > *);
+
+#endif

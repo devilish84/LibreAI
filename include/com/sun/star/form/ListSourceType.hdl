@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_LISTSOURCETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_LISTSOURCETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ListSourceType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ListSourceType
+{
+
+#endif
+    ListSourceType_VALUELIST = 0,
+    ListSourceType_TABLE = 1,
+    ListSourceType_QUERY = 2,
+    ListSourceType_SQL = 3,
+    ListSourceType_SQLPASSTHROUGH = 4,
+    ListSourceType_TABLEFIELDS = 5,
+    ListSourceType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ListSourceType_VALUELIST = ListSourceType::ListSourceType_VALUELIST;
+constexpr auto ListSourceType_TABLE = ListSourceType::ListSourceType_TABLE;
+constexpr auto ListSourceType_QUERY = ListSourceType::ListSourceType_QUERY;
+constexpr auto ListSourceType_SQL = ListSourceType::ListSourceType_SQL;
+constexpr auto ListSourceType_SQLPASSTHROUGH = ListSourceType::ListSourceType_SQLPASSTHROUGH;
+constexpr auto ListSourceType_TABLEFIELDS = ListSourceType::ListSourceType_TABLEFIELDS;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::ListSourceType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::form::ListSourceType *);
+
+#endif

@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_IMAGETYPE_HPP
+#define INCLUDED_COM_SUN_STAR_UI_IMAGETYPE_HPP
+
+#include "com/sun/star/ui/ImageType.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_UI_IMAGETYPE_HPP

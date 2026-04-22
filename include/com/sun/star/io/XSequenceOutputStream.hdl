@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_IO_XSEQUENCEOUTPUTSTREAM_HDL
+#define INCLUDED_COM_SUN_STAR_IO_XSEQUENCEOUTPUTSTREAM_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/io/XOutputStream.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace io {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSequenceOutputStream : public ::css::io::XOutputStream
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSequenceOutputStream() = default;
+    XSequenceOutputStream(XSequenceOutputStream const &) = default;
+    XSequenceOutputStream(XSequenceOutputStream &&) = default;
+    XSequenceOutputStream & operator =(XSequenceOutputStream const &) = default;
+    XSequenceOutputStream & operator =(XSequenceOutputStream &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getWrittenBytes() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSequenceOutputStream() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::io::XSequenceOutputStream const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::io::XSequenceOutputStream > *);
+
+#endif

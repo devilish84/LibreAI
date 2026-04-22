@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_SECTIONPAGEBREAK_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_SECTIONPAGEBREAK_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace report { namespace SectionPageBreak {
+
+static const ::sal_Int16 AUTO = (sal_Int16)2;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+static const ::sal_Int16 SECTION = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_REPORT_SECTIONPAGEBREAK_HDL

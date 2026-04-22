@@ -1,0 +1,41 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_FOLDERLISTENTRY_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_FOLDERLISTENTRY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED FolderListEntry {
+    inline FolderListEntry();
+
+    inline FolderListEntry(const ::rtl::OUString& Title_, const ::rtl::OUString& ID_, const ::sal_Bool& Subscribed_, const ::sal_Bool& New_, const ::sal_Bool& Removed_, const ::sal_Bool& Purge_);
+
+    ::rtl::OUString Title;
+    ::rtl::OUString ID;
+    ::sal_Bool Subscribed;
+    ::sal_Bool New;
+    ::sal_Bool Removed;
+    ::sal_Bool Purge;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::FolderListEntry const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::FolderListEntry *);
+
+#endif

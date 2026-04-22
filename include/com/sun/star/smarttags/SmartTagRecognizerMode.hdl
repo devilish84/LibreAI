@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SMARTTAGS_SMARTTAGRECOGNIZERMODE_HDL
+#define INCLUDED_COM_SUN_STAR_SMARTTAGS_SMARTTAGRECOGNIZERMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace smarttags {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI SmartTagRecognizerMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI SmartTagRecognizerMode
+{
+
+#endif
+    SmartTagRecognizerMode_CHAR = 0,
+    SmartTagRecognizerMode_SINGLE_WORD = 1,
+    SmartTagRecognizerMode_PARAGRAPH = 2,
+    SmartTagRecognizerMode_CELL = 3,
+    SmartTagRecognizerMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto SmartTagRecognizerMode_CHAR = SmartTagRecognizerMode::SmartTagRecognizerMode_CHAR;
+constexpr auto SmartTagRecognizerMode_SINGLE_WORD = SmartTagRecognizerMode::SmartTagRecognizerMode_SINGLE_WORD;
+constexpr auto SmartTagRecognizerMode_PARAGRAPH = SmartTagRecognizerMode::SmartTagRecognizerMode_PARAGRAPH;
+constexpr auto SmartTagRecognizerMode_CELL = SmartTagRecognizerMode::SmartTagRecognizerMode_CELL;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::smarttags::SmartTagRecognizerMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::smarttags::SmartTagRecognizerMode *);
+
+#endif

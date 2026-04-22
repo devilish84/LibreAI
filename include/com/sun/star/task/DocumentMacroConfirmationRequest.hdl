@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_TASK_DOCUMENTMACROCONFIRMATIONREQUEST_HDL
+#define INCLUDED_COM_SUN_STAR_TASK_DOCUMENTMACROCONFIRMATIONREQUEST_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+#include "com/sun/star/security/DocumentSignatureInformation.hdl"
+#include "com/sun/star/task/ClassifiedInteractionRequest.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace task {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED DocumentMacroConfirmationRequest : public ::css::task::ClassifiedInteractionRequest
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE DocumentMacroConfirmationRequest(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE DocumentMacroConfirmationRequest(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::css::task::InteractionClassification& Classification_, const ::rtl::OUString& DocumentURL_, const ::css::uno::Reference< ::css::embed::XStorage >& DocumentStorage_, const ::rtl::OUString& DocumentVersion_, const ::css::uno::Sequence< ::css::security::DocumentSignatureInformation >& DocumentSignatureInformation_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE DocumentMacroConfirmationRequest(DocumentMacroConfirmationRequest const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~DocumentMacroConfirmationRequest();
+
+    inline CPPU_GCC_DLLPRIVATE DocumentMacroConfirmationRequest & operator =(DocumentMacroConfirmationRequest const &);
+#endif
+
+    ::rtl::OUString DocumentURL CPPU_GCC3_ALIGN( ::css::task::ClassifiedInteractionRequest );
+    ::css::uno::Reference< ::css::embed::XStorage > DocumentStorage;
+    ::rtl::OUString DocumentVersion;
+    ::css::uno::Sequence< ::css::security::DocumentSignatureInformation > DocumentSignatureInformation;
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::task::DocumentMacroConfirmationRequest const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::task::DocumentMacroConfirmationRequest *);
+
+#endif

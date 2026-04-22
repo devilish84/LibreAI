@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_XTOLERANTMULTIPROPERTYSET_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_XTOLERANTMULTIPROPERTYSET_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/GetDirectPropertyTolerantResult.hdl"
+#include "com/sun/star/beans/GetPropertyTolerantResult.hdl"
+#include "com/sun/star/beans/SetPropertyTolerantFailed.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace beans {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTolerantMultiPropertySet : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTolerantMultiPropertySet() = default;
+    XTolerantMultiPropertySet(XTolerantMultiPropertySet const &) = default;
+    XTolerantMultiPropertySet(XTolerantMultiPropertySet &&) = default;
+    XTolerantMultiPropertySet & operator =(XTolerantMultiPropertySet const &) = default;
+    XTolerantMultiPropertySet & operator =(XTolerantMultiPropertySet &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::beans::SetPropertyTolerantFailed > SAL_CALL setPropertyValuesTolerant( const ::css::uno::Sequence< ::rtl::OUString >& aPropertyNames, const ::css::uno::Sequence< ::css::uno::Any >& aValues ) = 0;
+    virtual ::css::uno::Sequence< ::css::beans::GetPropertyTolerantResult > SAL_CALL getPropertyValuesTolerant( const ::css::uno::Sequence< ::rtl::OUString >& aPropertyNames ) = 0;
+    virtual ::css::uno::Sequence< ::css::beans::GetDirectPropertyTolerantResult > SAL_CALL getDirectPropertyValuesTolerant( const ::css::uno::Sequence< ::rtl::OUString >& aPropertyNames ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTolerantMultiPropertySet() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::beans::XTolerantMultiPropertySet const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::beans::XTolerantMultiPropertySet > *);
+
+#endif

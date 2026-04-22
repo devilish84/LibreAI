@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_CASEMAP_HPP
+#define INCLUDED_COM_SUN_STAR_STYLE_CASEMAP_HPP
+
+#include "com/sun/star/style/CaseMap.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_STYLE_CASEMAP_HPP

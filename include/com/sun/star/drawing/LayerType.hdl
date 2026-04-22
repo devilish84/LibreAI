@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_LAYERTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_LAYERTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI LayerType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI LayerType
+{
+
+#endif
+    LayerType_LAYOUT = 0,
+    LayerType_CONTROLSA = 1,
+    LayerType_DIMENSIONIANG_LINES = 2,
+    LayerType_USER_DEFINED = 3,
+    LayerType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto LayerType_LAYOUT = LayerType::LayerType_LAYOUT;
+constexpr auto LayerType_CONTROLSA = LayerType::LayerType_CONTROLSA;
+constexpr auto LayerType_DIMENSIONIANG_LINES = LayerType::LayerType_DIMENSIONIANG_LINES;
+constexpr auto LayerType_USER_DEFINED = LayerType::LayerType_USER_DEFINED;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::LayerType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::LayerType *);
+
+#endif

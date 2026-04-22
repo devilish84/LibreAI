@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_COMPONENTCHANGEEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_COMPONENTCHANGEEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI ComponentChangeEvent: public ::css::lang::EventObject {
+    inline ComponentChangeEvent();
+
+    inline ComponentChangeEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::rtl::OUString& Component_);
+
+    ::rtl::OUString Component CPPU_GCC3_ALIGN(::css::lang::EventObject);
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::configuration::backend::ComponentChangeEvent const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::configuration::backend::ComponentChangeEvent *);
+
+#endif

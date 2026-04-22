@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_DOCUMENTSTOREMODE_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_DOCUMENTSTOREMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI DocumentStoreMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI DocumentStoreMode
+{
+
+#endif
+    DocumentStoreMode_REMOTE = 0,
+    DocumentStoreMode_LOCAL = 1,
+    DocumentStoreMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto DocumentStoreMode_REMOTE = DocumentStoreMode::DocumentStoreMode_REMOTE;
+constexpr auto DocumentStoreMode_LOCAL = DocumentStoreMode::DocumentStoreMode_LOCAL;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::DocumentStoreMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::DocumentStoreMode *);
+
+#endif

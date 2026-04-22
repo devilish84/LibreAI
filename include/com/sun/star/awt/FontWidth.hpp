@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTWIDTH_HPP
+#define INCLUDED_COM_SUN_STAR_AWT_FONTWIDTH_HPP
+
+#include "com/sun/star/awt/FontWidth.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FONTWIDTH_HPP

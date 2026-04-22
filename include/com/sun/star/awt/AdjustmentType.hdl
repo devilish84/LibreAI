@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_ADJUSTMENTTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_ADJUSTMENTTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI AdjustmentType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI AdjustmentType
+{
+
+#endif
+    AdjustmentType_ADJUST_LINE = 0,
+    AdjustmentType_ADJUST_PAGE = 1,
+    AdjustmentType_ADJUST_ABS = 2,
+    AdjustmentType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto AdjustmentType_ADJUST_LINE = AdjustmentType::AdjustmentType_ADJUST_LINE;
+constexpr auto AdjustmentType_ADJUST_PAGE = AdjustmentType::AdjustmentType_ADJUST_PAGE;
+constexpr auto AdjustmentType_ADJUST_ABS = AdjustmentType::AdjustmentType_ADJUST_ABS;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::AdjustmentType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::AdjustmentType *);
+
+#endif

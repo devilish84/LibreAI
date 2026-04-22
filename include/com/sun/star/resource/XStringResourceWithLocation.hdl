@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_RESOURCE_XSTRINGRESOURCEWITHLOCATION_HDL
+#define INCLUDED_COM_SUN_STAR_RESOURCE_XSTRINGRESOURCEWITHLOCATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/resource/XStringResourcePersistence.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace resource {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStringResourceWithLocation : public ::css::resource::XStringResourcePersistence
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStringResourceWithLocation() = default;
+    XStringResourceWithLocation(XStringResourceWithLocation const &) = default;
+    XStringResourceWithLocation(XStringResourceWithLocation &&) = default;
+    XStringResourceWithLocation & operator =(XStringResourceWithLocation const &) = default;
+    XStringResourceWithLocation & operator =(XStringResourceWithLocation &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL storeAsURL( const ::rtl::OUString& URL ) = 0;
+    virtual void SAL_CALL setURL( const ::rtl::OUString& URL ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStringResourceWithLocation() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::resource::XStringResourceWithLocation const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::resource::XStringResourceWithLocation > *);
+
+#endif

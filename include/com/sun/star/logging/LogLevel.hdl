@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_LOGGING_LOGLEVEL_HDL
+#define INCLUDED_COM_SUN_STAR_LOGGING_LOGLEVEL_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace logging { namespace LogLevel {
+
+static const ::sal_Int32 ALL = SAL_MIN_INT32;
+static const ::sal_Int32 CONFIG = (sal_Int32)700;
+static const ::sal_Int32 FINE = (sal_Int32)500;
+static const ::sal_Int32 FINER = (sal_Int32)400;
+static const ::sal_Int32 FINEST = (sal_Int32)300;
+static const ::sal_Int32 INFO = (sal_Int32)800;
+static const ::sal_Int32 OFF = (sal_Int32)2147483647;
+static const ::sal_Int32 SEVERE = (sal_Int32)1000;
+static const ::sal_Int32 WARNING = (sal_Int32)900;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_LOGGING_LOGLEVEL_HDL

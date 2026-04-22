@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_DATAFLAVOR_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_DATAFLAVOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Type.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace datatransfer {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DataFlavor {
+    inline DataFlavor();
+
+    inline DataFlavor(const ::rtl::OUString& MimeType_, const ::rtl::OUString& HumanPresentableName_, const ::css::uno::Type& DataType_);
+
+    ::rtl::OUString MimeType;
+    ::rtl::OUString HumanPresentableName;
+    ::css::uno::Type DataType;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::datatransfer::DataFlavor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::datatransfer::DataFlavor *);
+
+#endif

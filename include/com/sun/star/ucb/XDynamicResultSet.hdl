@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XDYNAMICRESULTSET_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XDYNAMICRESULTSET_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace sdbc { class XResultSet; } } } }
+namespace com { namespace sun { namespace star { namespace ucb { class XDynamicResultSet; } } } }
+namespace com { namespace sun { namespace star { namespace ucb { class XDynamicResultSetListener; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDynamicResultSet : public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDynamicResultSet() = default;
+    XDynamicResultSet(XDynamicResultSet const &) = default;
+    XDynamicResultSet(XDynamicResultSet &&) = default;
+    XDynamicResultSet & operator =(XDynamicResultSet const &) = default;
+    XDynamicResultSet & operator =(XDynamicResultSet &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::sdbc::XResultSet > SAL_CALL getStaticResultSet() = 0;
+    virtual void SAL_CALL setListener( const ::css::uno::Reference< ::css::ucb::XDynamicResultSetListener >& Listener ) = 0;
+    virtual void SAL_CALL connectToCache( const ::css::uno::Reference< ::css::ucb::XDynamicResultSet >& Cache ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCapabilities() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDynamicResultSet() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XDynamicResultSet const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XDynamicResultSet > *);
+
+#endif

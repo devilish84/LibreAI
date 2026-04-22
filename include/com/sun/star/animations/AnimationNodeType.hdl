@@ -1,0 +1,27 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONNODETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONNODETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace animations { namespace AnimationNodeType {
+
+static const ::sal_Int16 ANIMATE = (sal_Int16)4;
+static const ::sal_Int16 ANIMATECOLOR = (sal_Int16)7;
+static const ::sal_Int16 ANIMATEMOTION = (sal_Int16)6;
+static const ::sal_Int16 ANIMATEPHYSICS = (sal_Int16)12;
+static const ::sal_Int16 ANIMATETRANSFORM = (sal_Int16)8;
+static const ::sal_Int16 AUDIO = (sal_Int16)10;
+static const ::sal_Int16 COMMAND = (sal_Int16)11;
+static const ::sal_Int16 CUSTOM = (sal_Int16)0;
+static const ::sal_Int16 ITERATE = (sal_Int16)3;
+static const ::sal_Int16 PAR = (sal_Int16)1;
+static const ::sal_Int16 SEQ = (sal_Int16)2;
+static const ::sal_Int16 SET = (sal_Int16)5;
+static const ::sal_Int16 TRANSITIONFILTER = (sal_Int16)9;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONNODETYPE_HDL

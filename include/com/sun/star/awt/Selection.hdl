@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_SELECTION_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_SELECTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED Selection {
+    inline Selection();
+
+    inline Selection(const ::sal_Int32& Min_, const ::sal_Int32& Max_);
+
+    ::sal_Int32 Min;
+    ::sal_Int32 Max;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::Selection const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::Selection *);
+
+#endif

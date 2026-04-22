@@ -1,0 +1,66 @@
+#ifndef INCLUDED_COM_SUN_STAR_SECURITY_XCERTIFICATE_HDL
+#define INCLUDED_COM_SUN_STAR_SECURITY_XCERTIFICATE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/security/CertificateKind.hdl"
+namespace com { namespace sun { namespace star { namespace security { class XCertificateExtension; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/DateTime.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace security {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCertificate : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCertificate() = default;
+    XCertificate(XCertificate const &) = default;
+    XCertificate(XCertificate &&) = default;
+    XCertificate & operator =(XCertificate const &) = default;
+    XCertificate & operator =(XCertificate &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int16 SAL_CALL getVersion() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getSerialNumber() = 0;
+    virtual ::rtl::OUString SAL_CALL getIssuerName() = 0;
+    virtual ::rtl::OUString SAL_CALL getSubjectName() = 0;
+    virtual ::css::util::DateTime SAL_CALL getNotValidBefore() = 0;
+    virtual ::css::util::DateTime SAL_CALL getNotValidAfter() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getIssuerUniqueID() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getSubjectUniqueID() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::security::XCertificateExtension > > SAL_CALL getExtensions() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getEncoded() = 0;
+    virtual ::rtl::OUString SAL_CALL getSubjectPublicKeyAlgorithm() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getSubjectPublicKeyValue() = 0;
+    virtual ::rtl::OUString SAL_CALL getSignatureAlgorithm() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getSHA1Thumbprint() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getMD5Thumbprint() = 0;
+    virtual ::css::security::CertificateKind SAL_CALL getCertificateKind() = 0;
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::security::XCertificateExtension > SAL_CALL findCertificateExtension( const ::css::uno::Sequence< ::sal_Int8 >& oid ) = 0;
+    virtual ::sal_Int32 SAL_CALL getCertificateUsage() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCertificate() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::security::XCertificate const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::security::XCertificate > *);
+
+#endif

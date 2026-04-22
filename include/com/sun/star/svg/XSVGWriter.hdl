@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_SVG_XSVGWRITER_HDL
+#define INCLUDED_COM_SUN_STAR_SVG_XSVGWRITER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { class XDocumentHandler; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace svg {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSVGWriter : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSVGWriter() = default;
+    XSVGWriter(XSVGWriter const &) = default;
+    XSVGWriter(XSVGWriter &&) = default;
+    XSVGWriter & operator =(XSVGWriter const &) = default;
+    XSVGWriter & operator =(XSVGWriter &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL write( const ::css::uno::Reference< ::css::xml::sax::XDocumentHandler >& aHandler, const ::css::uno::Sequence< ::sal_Int8 >& aMtf ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSVGWriter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::svg::XSVGWriter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::svg::XSVGWriter > *);
+
+#endif

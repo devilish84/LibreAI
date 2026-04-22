@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DATAIMPORTMODE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DATAIMPORTMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI DataImportMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI DataImportMode
+{
+
+#endif
+    DataImportMode_NONE = 0,
+    DataImportMode_SQL = 1,
+    DataImportMode_TABLE = 2,
+    DataImportMode_QUERY = 3,
+    DataImportMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto DataImportMode_NONE = DataImportMode::DataImportMode_NONE;
+constexpr auto DataImportMode_SQL = DataImportMode::DataImportMode_SQL;
+constexpr auto DataImportMode_TABLE = DataImportMode::DataImportMode_TABLE;
+constexpr auto DataImportMode_QUERY = DataImportMode::DataImportMode_QUERY;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::DataImportMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::DataImportMode *);
+
+#endif

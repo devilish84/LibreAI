@@ -1,0 +1,14 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_DATA_DATASEQUENCEROLE_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_DATA_DATASEQUENCEROLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace chart2 { namespace data {
+
+typedef ::rtl::OUString DataSequenceRole;
+
+} } } } }
+#endif // INCLUDED_COM_SUN_STAR_CHART2_DATA_DATASEQUENCEROLE_HDL

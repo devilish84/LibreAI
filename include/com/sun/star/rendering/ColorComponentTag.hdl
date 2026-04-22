@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_COLORCOMPONENTTAG_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_COLORCOMPONENTTAG_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace ColorComponentTag {
+
+static const ::sal_Int8 ALPHA = (sal_Int8)12;
+static const ::sal_Int8 CIELAB_A = (sal_Int8)19;
+static const ::sal_Int8 CIELAB_B = (sal_Int8)20;
+static const ::sal_Int8 CIELAB_L = (sal_Int8)18;
+static const ::sal_Int8 CIEXYZ_X = (sal_Int8)15;
+static const ::sal_Int8 CIEXYZ_Y = (sal_Int8)16;
+static const ::sal_Int8 CIEXYZ_Z = (sal_Int8)17;
+static const ::sal_Int8 CMYKOG_GREEN = (sal_Int8)9;
+static const ::sal_Int8 CMYKOG_ORANGE = (sal_Int8)8;
+static const ::sal_Int8 CMYK_BLACK = (sal_Int8)7;
+static const ::sal_Int8 CMYK_CYAN = (sal_Int8)4;
+static const ::sal_Int8 CMYK_MAGENTA = (sal_Int8)5;
+static const ::sal_Int8 CMYK_YELLOW = (sal_Int8)6;
+static const ::sal_Int8 DEVICE = (sal_Int8)0;
+static const ::sal_Int8 GREY = (sal_Int8)13;
+static const ::sal_Int8 HSL_H = (sal_Int8)24;
+static const ::sal_Int8 HSL_L = (sal_Int8)26;
+static const ::sal_Int8 HSL_S = (sal_Int8)25;
+static const ::sal_Int8 HSV_H = (sal_Int8)21;
+static const ::sal_Int8 HSV_S = (sal_Int8)22;
+static const ::sal_Int8 HSV_V = (sal_Int8)23;
+static const ::sal_Int8 INDEX = (sal_Int8)11;
+static const ::sal_Int8 PREMULTIPLIED_ALPHA = (sal_Int8)14;
+static const ::sal_Int8 RGB_BLUE = (sal_Int8)3;
+static const ::sal_Int8 RGB_GREEN = (sal_Int8)2;
+static const ::sal_Int8 RGB_RED = (sal_Int8)1;
+static const ::sal_Int8 SPOT = (sal_Int8)10;
+static const ::sal_Int8 YCBCR_CB = (sal_Int8)28;
+static const ::sal_Int8 YCBCR_CR = (sal_Int8)29;
+static const ::sal_Int8 YCBCR_Y = (sal_Int8)27;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_COLORCOMPONENTTAG_HDL

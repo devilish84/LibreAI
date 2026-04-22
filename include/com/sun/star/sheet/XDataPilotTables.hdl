@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XDATAPILOTTABLES_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XDATAPILOTTABLES_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XNameAccess.hdl"
+namespace com { namespace sun { namespace star { namespace sheet { class XDataPilotDescriptor; } } } }
+#include "com/sun/star/table/CellAddress.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDataPilotTables : public ::css::container::XNameAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDataPilotTables() = default;
+    XDataPilotTables(XDataPilotTables const &) = default;
+    XDataPilotTables(XDataPilotTables &&) = default;
+    XDataPilotTables & operator =(XDataPilotTables const &) = default;
+    XDataPilotTables & operator =(XDataPilotTables &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::sheet::XDataPilotDescriptor > SAL_CALL createDataPilotDescriptor() = 0;
+    virtual void SAL_CALL insertNewByName( const ::rtl::OUString& aName, const ::css::table::CellAddress& OutputAddress, const ::css::uno::Reference< ::css::sheet::XDataPilotDescriptor >& xDescriptor ) = 0;
+    virtual void SAL_CALL removeByName( const ::rtl::OUString& aName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDataPilotTables() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XDataPilotTables const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XDataPilotTables > *);
+
+#endif

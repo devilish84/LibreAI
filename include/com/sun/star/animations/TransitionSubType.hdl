@@ -1,0 +1,130 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_TRANSITIONSUBTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_TRANSITIONSUBTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace animations { namespace TransitionSubType {
+
+static const ::sal_Int16 ACROSS = (sal_Int16)108;
+static const ::sal_Int16 BOTTOM = (sal_Int16)52;
+static const ::sal_Int16 BOTTOMCENTER = (sal_Int16)9;
+static const ::sal_Int16 BOTTOMLEFT = (sal_Int16)6;
+static const ::sal_Int16 BOTTOMLEFTCLOCKWISE = (sal_Int16)72;
+static const ::sal_Int16 BOTTOMLEFTCOUNTERCLOCKWISE = (sal_Int16)76;
+static const ::sal_Int16 BOTTOMLEFTDIAGONAL = (sal_Int16)68;
+static const ::sal_Int16 BOTTOMRIGHT = (sal_Int16)5;
+static const ::sal_Int16 BOTTOMRIGHTCLOCKWISE = (sal_Int16)71;
+static const ::sal_Int16 BOTTOMRIGHTCOUNTERCLOCKWISE = (sal_Int16)75;
+static const ::sal_Int16 BOTTOMRIGHTDIAGONAL = (sal_Int16)67;
+static const ::sal_Int16 CENTERRIGHT = (sal_Int16)49;
+static const ::sal_Int16 CENTERTOP = (sal_Int16)48;
+static const ::sal_Int16 CIRCLE = (sal_Int16)27;
+static const ::sal_Int16 CLOCKWISEBOTTOM = (sal_Int16)42;
+static const ::sal_Int16 CLOCKWISEBOTTOMRIGHT = (sal_Int16)46;
+static const ::sal_Int16 CLOCKWISELEFT = (sal_Int16)43;
+static const ::sal_Int16 CLOCKWISENINE = (sal_Int16)36;
+static const ::sal_Int16 CLOCKWISERIGHT = (sal_Int16)41;
+static const ::sal_Int16 CLOCKWISESIX = (sal_Int16)35;
+static const ::sal_Int16 CLOCKWISETHREE = (sal_Int16)34;
+static const ::sal_Int16 CLOCKWISETOP = (sal_Int16)40;
+static const ::sal_Int16 CLOCKWISETOPLEFT = (sal_Int16)44;
+static const ::sal_Int16 CLOCKWISETWELVE = (sal_Int16)33;
+static const ::sal_Int16 COMBHORIZONTAL = (sal_Int16)110;
+static const ::sal_Int16 COMBVERTICAL = (sal_Int16)111;
+static const ::sal_Int16 CORNERSIN = (sal_Int16)11;
+static const ::sal_Int16 CORNERSOUT = (sal_Int16)12;
+static const ::sal_Int16 COUNTERCLOCKWISEBOTTOMLEFT = (sal_Int16)45;
+static const ::sal_Int16 COUNTERCLOCKWISETOPRIGHT = (sal_Int16)47;
+static const ::sal_Int16 CROSSFADE = (sal_Int16)101;
+static const ::sal_Int16 DEFAULT = (sal_Int16)0;
+static const ::sal_Int16 DIAGONALBOTTOMLEFT = (sal_Int16)15;
+static const ::sal_Int16 DIAGONALBOTTOMLEFTOPPOSITE = (sal_Int16)85;
+static const ::sal_Int16 DIAGONALTOPLEFT = (sal_Int16)16;
+static const ::sal_Int16 DIAGONALTOPLEFTOPPOSITE = (sal_Int16)86;
+static const ::sal_Int16 DIAMOND = (sal_Int16)26;
+static const ::sal_Int16 DOUBLEBARNDOOR = (sal_Int16)17;
+static const ::sal_Int16 DOUBLEDIAMOND = (sal_Int16)18;
+static const ::sal_Int16 DOWN = (sal_Int16)19;
+static const ::sal_Int16 EIGHTBLADE = (sal_Int16)106;
+static const ::sal_Int16 FADEFROMCOLOR = (sal_Int16)103;
+static const ::sal_Int16 FADEOVERCOLOR = (sal_Int16)104;
+static const ::sal_Int16 FADETOCOLOR = (sal_Int16)102;
+static const ::sal_Int16 FANINHORIZONTAL = (sal_Int16)57;
+static const ::sal_Int16 FANINVERTICAL = (sal_Int16)56;
+static const ::sal_Int16 FANOUTHORIZONTAL = (sal_Int16)55;
+static const ::sal_Int16 FANOUTVERTICAL = (sal_Int16)54;
+static const ::sal_Int16 FIVEPOINT = (sal_Int16)29;
+static const ::sal_Int16 FOURBLADE = (sal_Int16)39;
+static const ::sal_Int16 FOURBOXHORIZONTAL = (sal_Int16)92;
+static const ::sal_Int16 FOURBOXVERTICAL = (sal_Int16)91;
+static const ::sal_Int16 FOURPOINT = (sal_Int16)28;
+static const ::sal_Int16 FROMBOTTOM = (sal_Int16)100;
+static const ::sal_Int16 FROMBOTTOMLEFT = (sal_Int16)118;
+static const ::sal_Int16 FROMBOTTOMRIGHT = (sal_Int16)119;
+static const ::sal_Int16 FROMLEFT = (sal_Int16)97;
+static const ::sal_Int16 FROMRIGHT = (sal_Int16)99;
+static const ::sal_Int16 FROMTOP = (sal_Int16)98;
+static const ::sal_Int16 FROMTOPLEFT = (sal_Int16)116;
+static const ::sal_Int16 FROMTOPRIGHT = (sal_Int16)117;
+static const ::sal_Int16 HEART = (sal_Int16)31;
+static const ::sal_Int16 HORIZONTAL = (sal_Int16)14;
+static const ::sal_Int16 HORIZONTALLEFT = (sal_Int16)95;
+static const ::sal_Int16 HORIZONTALLEFTSAME = (sal_Int16)81;
+static const ::sal_Int16 HORIZONTALRIGHT = (sal_Int16)96;
+static const ::sal_Int16 HORIZONTALRIGHTSAME = (sal_Int16)82;
+static const ::sal_Int16 HORIZONTALTOPLEFTOPPOSITE = (sal_Int16)83;
+static const ::sal_Int16 HORIZONTALTOPRIGHTOPPOSITE = (sal_Int16)84;
+static const ::sal_Int16 IN = (sal_Int16)112;
+static const ::sal_Int16 KEYHOLE = (sal_Int16)32;
+static const ::sal_Int16 LEFT = (sal_Int16)20;
+static const ::sal_Int16 LEFTCENTER = (sal_Int16)10;
+static const ::sal_Int16 LEFTTORIGHT = (sal_Int16)1;
+static const ::sal_Int16 ONEBLADE = (sal_Int16)107;
+static const ::sal_Int16 OPPOSITEHORIZONTAL = (sal_Int16)61;
+static const ::sal_Int16 OPPOSITEVERTICAL = (sal_Int16)60;
+static const ::sal_Int16 OUT = (sal_Int16)113;
+static const ::sal_Int16 PARALLELDIAGONAL = (sal_Int16)59;
+static const ::sal_Int16 PARALLELDIAGONALBOTTOMLEFT = (sal_Int16)63;
+static const ::sal_Int16 PARALLELDIAGONALTOPLEFT = (sal_Int16)62;
+static const ::sal_Int16 PARALLELVERTICAL = (sal_Int16)58;
+static const ::sal_Int16 RECTANGLE = (sal_Int16)25;
+static const ::sal_Int16 RIGHT = (sal_Int16)22;
+static const ::sal_Int16 RIGHTCENTER = (sal_Int16)8;
+static const ::sal_Int16 ROTATEIN = (sal_Int16)114;
+static const ::sal_Int16 ROTATEOUT = (sal_Int16)115;
+static const ::sal_Int16 SIXPOINT = (sal_Int16)30;
+static const ::sal_Int16 THREEBLADE = (sal_Int16)105;
+static const ::sal_Int16 TOP = (sal_Int16)50;
+static const ::sal_Int16 TOPCENTER = (sal_Int16)7;
+static const ::sal_Int16 TOPLEFT = (sal_Int16)3;
+static const ::sal_Int16 TOPLEFTCLOCKWISE = (sal_Int16)69;
+static const ::sal_Int16 TOPLEFTCOUNTERCLOCKWISE = (sal_Int16)73;
+static const ::sal_Int16 TOPLEFTDIAGONAL = (sal_Int16)65;
+static const ::sal_Int16 TOPLEFTHORIZONTAL = (sal_Int16)64;
+static const ::sal_Int16 TOPLEFTVERTICAL = (sal_Int16)109;
+static const ::sal_Int16 TOPRIGHT = (sal_Int16)4;
+static const ::sal_Int16 TOPRIGHTCLOCKWISE = (sal_Int16)70;
+static const ::sal_Int16 TOPRIGHTCOUNTERCLOCKWISE = (sal_Int16)74;
+static const ::sal_Int16 TOPRIGHTDIAGONAL = (sal_Int16)66;
+static const ::sal_Int16 TOPTOBOTTOM = (sal_Int16)2;
+static const ::sal_Int16 TWOBLADEHORIZONTAL = (sal_Int16)38;
+static const ::sal_Int16 TWOBLADEVERTICAL = (sal_Int16)37;
+static const ::sal_Int16 TWOBOXBOTTOM = (sal_Int16)88;
+static const ::sal_Int16 TWOBOXLEFT = (sal_Int16)89;
+static const ::sal_Int16 TWOBOXRIGHT = (sal_Int16)90;
+static const ::sal_Int16 TWOBOXTOP = (sal_Int16)87;
+static const ::sal_Int16 UP = (sal_Int16)21;
+static const ::sal_Int16 VERTICAL = (sal_Int16)13;
+static const ::sal_Int16 VERTICALBOTTOMLEFTOPPOSITE = (sal_Int16)80;
+static const ::sal_Int16 VERTICALBOTTOMSAME = (sal_Int16)78;
+static const ::sal_Int16 VERTICALLEFT = (sal_Int16)93;
+static const ::sal_Int16 VERTICALRIGHT = (sal_Int16)94;
+static const ::sal_Int16 VERTICALTOPLEFTOPPOSITE = (sal_Int16)79;
+static const ::sal_Int16 VERTICALTOPSAME = (sal_Int16)77;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_ANIMATIONS_TRANSITIONSUBTYPE_HDL

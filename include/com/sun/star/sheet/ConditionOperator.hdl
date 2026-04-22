@@ -1,0 +1,54 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_CONDITIONOPERATOR_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_CONDITIONOPERATOR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ConditionOperator
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ConditionOperator
+{
+
+#endif
+    ConditionOperator_NONE = 0,
+    ConditionOperator_EQUAL = 1,
+    ConditionOperator_NOT_EQUAL = 2,
+    ConditionOperator_GREATER = 3,
+    ConditionOperator_GREATER_EQUAL = 4,
+    ConditionOperator_LESS = 5,
+    ConditionOperator_LESS_EQUAL = 6,
+    ConditionOperator_BETWEEN = 7,
+    ConditionOperator_NOT_BETWEEN = 8,
+    ConditionOperator_FORMULA = 9,
+    ConditionOperator_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ConditionOperator_NONE = ConditionOperator::ConditionOperator_NONE;
+constexpr auto ConditionOperator_EQUAL = ConditionOperator::ConditionOperator_EQUAL;
+constexpr auto ConditionOperator_NOT_EQUAL = ConditionOperator::ConditionOperator_NOT_EQUAL;
+constexpr auto ConditionOperator_GREATER = ConditionOperator::ConditionOperator_GREATER;
+constexpr auto ConditionOperator_GREATER_EQUAL = ConditionOperator::ConditionOperator_GREATER_EQUAL;
+constexpr auto ConditionOperator_LESS = ConditionOperator::ConditionOperator_LESS;
+constexpr auto ConditionOperator_LESS_EQUAL = ConditionOperator::ConditionOperator_LESS_EQUAL;
+constexpr auto ConditionOperator_BETWEEN = ConditionOperator::ConditionOperator_BETWEEN;
+constexpr auto ConditionOperator_NOT_BETWEEN = ConditionOperator::ConditionOperator_NOT_BETWEEN;
+constexpr auto ConditionOperator_FORMULA = ConditionOperator::ConditionOperator_FORMULA;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::ConditionOperator const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::ConditionOperator *);
+
+#endif

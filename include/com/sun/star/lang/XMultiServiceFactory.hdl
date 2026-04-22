@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HDL
+#define INCLUDED_COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace lang {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMultiServiceFactory : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMultiServiceFactory() = default;
+    XMultiServiceFactory(XMultiServiceFactory const &) = default;
+    XMultiServiceFactory(XMultiServiceFactory &&) = default;
+    XMultiServiceFactory & operator =(XMultiServiceFactory const &) = default;
+    XMultiServiceFactory & operator =(XMultiServiceFactory &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::uno::XInterface > SAL_CALL createInstance( const ::rtl::OUString& aServiceSpecifier ) = 0;
+    virtual ::css::uno::Reference< ::css::uno::XInterface > SAL_CALL createInstanceWithArguments( const ::rtl::OUString& ServiceSpecifier, const ::css::uno::Sequence< ::css::uno::Any >& Arguments ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getAvailableServiceNames() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMultiServiceFactory() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::lang::XMultiServiceFactory const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::lang::XMultiServiceFactory > *);
+
+#endif

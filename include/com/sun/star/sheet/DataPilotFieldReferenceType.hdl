@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDREFERENCETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDREFERENCETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace DataPilotFieldReferenceType {
+
+static const ::sal_Int32 COLUMN_PERCENTAGE = (sal_Int32)6;
+static const ::sal_Int32 INDEX = (sal_Int32)8;
+static const ::sal_Int32 ITEM_DIFFERENCE = (sal_Int32)1;
+static const ::sal_Int32 ITEM_PERCENTAGE = (sal_Int32)2;
+static const ::sal_Int32 ITEM_PERCENTAGE_DIFFERENCE = (sal_Int32)3;
+static const ::sal_Int32 NONE = (sal_Int32)0;
+static const ::sal_Int32 ROW_PERCENTAGE = (sal_Int32)5;
+static const ::sal_Int32 RUNNING_TOTAL = (sal_Int32)4;
+static const ::sal_Int32 TOTAL_PERCENTAGE = (sal_Int32)7;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDREFERENCETYPE_HDL

@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_LAYOUTSIZE_HDL
+#define INCLUDED_COM_SUN_STAR_UI_LAYOUTSIZE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED LayoutSize {
+    inline LayoutSize();
+
+    inline LayoutSize(const ::sal_Int32& Minimum_, const ::sal_Int32& Maximum_, const ::sal_Int32& Preferred_);
+
+    ::sal_Int32 Minimum;
+    ::sal_Int32 Maximum;
+    ::sal_Int32 Preferred;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::LayoutSize const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ui::LayoutSize *);
+
+#endif

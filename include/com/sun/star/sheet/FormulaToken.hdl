@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_FORMULATOKEN_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_FORMULATOKEN_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI FormulaToken {
+    inline FormulaToken();
+
+    inline FormulaToken(const ::sal_Int32& OpCode_, const ::css::uno::Any& Data_);
+
+    ::sal_Int32 OpCode;
+    ::css::uno::Any Data;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::FormulaToken const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::FormulaToken *);
+
+#endif

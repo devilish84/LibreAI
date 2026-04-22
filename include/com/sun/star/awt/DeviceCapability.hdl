@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_DEVICECAPABILITY_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_DEVICECAPABILITY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace DeviceCapability {
+
+static const ::sal_Int32 GETBITS = (sal_Int32)2;
+static const ::sal_Int32 RASTEROPERATIONS = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_DEVICECAPABILITY_HDL

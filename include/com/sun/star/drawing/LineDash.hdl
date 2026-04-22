@@ -1,0 +1,41 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_LINEDASH_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_LINEDASH_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/drawing/DashStyle.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED LineDash {
+    inline LineDash();
+
+    inline LineDash(const ::css::drawing::DashStyle& Style_, const ::sal_Int16& Dots_, const ::sal_Int32& DotLen_, const ::sal_Int16& Dashes_, const ::sal_Int32& DashLen_, const ::sal_Int32& Distance_);
+
+    ::css::drawing::DashStyle Style;
+    ::sal_Int16 Dots;
+    ::sal_Int32 DotLen;
+    ::sal_Int16 Dashes;
+    ::sal_Int32 DashLen;
+    ::sal_Int32 Distance;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::LineDash const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::LineDash *);
+
+#endif

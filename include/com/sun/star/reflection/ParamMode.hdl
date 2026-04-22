@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_REFLECTION_PARAMMODE_HDL
+#define INCLUDED_COM_SUN_STAR_REFLECTION_PARAMMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace reflection {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ParamMode
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ParamMode
+{
+
+#endif
+    ParamMode_IN = 0,
+    ParamMode_OUT = 1,
+    ParamMode_INOUT = 2,
+    ParamMode_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ParamMode_IN = ParamMode::ParamMode_IN;
+constexpr auto ParamMode_OUT = ParamMode::ParamMode_OUT;
+constexpr auto ParamMode_INOUT = ParamMode::ParamMode_INOUT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::reflection::ParamMode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::reflection::ParamMode *);
+
+#endif

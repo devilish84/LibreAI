@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_REGISTRY_REGISTRYVALUETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_REGISTRY_REGISTRYVALUETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace registry {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI RegistryValueType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI RegistryValueType
+{
+
+#endif
+    RegistryValueType_NOT_DEFINED = 0,
+    RegistryValueType_LONG = 1,
+    RegistryValueType_ASCII = 2,
+    RegistryValueType_STRING = 3,
+    RegistryValueType_BINARY = 4,
+    RegistryValueType_LONGLIST = 5,
+    RegistryValueType_ASCIILIST = 6,
+    RegistryValueType_STRINGLIST = 7,
+    RegistryValueType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto RegistryValueType_NOT_DEFINED = RegistryValueType::RegistryValueType_NOT_DEFINED;
+constexpr auto RegistryValueType_LONG = RegistryValueType::RegistryValueType_LONG;
+constexpr auto RegistryValueType_ASCII = RegistryValueType::RegistryValueType_ASCII;
+constexpr auto RegistryValueType_STRING = RegistryValueType::RegistryValueType_STRING;
+constexpr auto RegistryValueType_BINARY = RegistryValueType::RegistryValueType_BINARY;
+constexpr auto RegistryValueType_LONGLIST = RegistryValueType::RegistryValueType_LONGLIST;
+constexpr auto RegistryValueType_ASCIILIST = RegistryValueType::RegistryValueType_ASCIILIST;
+constexpr auto RegistryValueType_STRINGLIST = RegistryValueType::RegistryValueType_STRINGLIST;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::registry::RegistryValueType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::registry::RegistryValueType *);
+
+#endif

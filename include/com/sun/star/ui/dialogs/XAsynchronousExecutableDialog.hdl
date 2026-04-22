@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_XASYNCHRONOUSEXECUTABLEDIALOG_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_XASYNCHRONOUSEXECUTABLEDIALOG_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs { class XDialogClosedListener; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAsynchronousExecutableDialog : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAsynchronousExecutableDialog() = default;
+    XAsynchronousExecutableDialog(XAsynchronousExecutableDialog const &) = default;
+    XAsynchronousExecutableDialog(XAsynchronousExecutableDialog &&) = default;
+    XAsynchronousExecutableDialog & operator =(XAsynchronousExecutableDialog const &) = default;
+    XAsynchronousExecutableDialog & operator =(XAsynchronousExecutableDialog &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setDialogTitle( const ::rtl::OUString& aTitle ) = 0;
+    virtual void SAL_CALL startExecuteModal( const ::css::uno::Reference< ::css::ui::dialogs::XDialogClosedListener >& xListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAsynchronousExecutableDialog() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::dialogs::XAsynchronousExecutableDialog const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::dialogs::XAsynchronousExecutableDialog > *);
+
+#endif

@@ -1,0 +1,29 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_ITEMSTYLE_HDL
+#define INCLUDED_COM_SUN_STAR_UI_ITEMSTYLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ui { namespace ItemStyle {
+
+static const ::sal_Int16 ALIGN_CENTER = (sal_Int16)2;
+static const ::sal_Int16 ALIGN_LEFT = (sal_Int16)1;
+static const ::sal_Int16 ALIGN_RIGHT = (sal_Int16)3;
+static const ::sal_Int16 AUTO_SIZE = (sal_Int16)32;
+static const ::sal_Int16 DRAW_FLAT = (sal_Int16)12;
+static const ::sal_Int16 DRAW_IN3D = (sal_Int16)8;
+static const ::sal_Int16 DRAW_OUT3D = (sal_Int16)4;
+static const ::sal_Int16 DROPDOWN_ONLY = (sal_Int16)1024;
+static const ::sal_Int16 DROP_DOWN = (sal_Int16)256;
+static const ::sal_Int16 ICON = (sal_Int16)128;
+static const ::sal_Int16 MANDATORY = (sal_Int16)4096;
+static const ::sal_Int16 OWNER_DRAW = (sal_Int16)16;
+static const ::sal_Int16 RADIO_CHECK = (sal_Int16)64;
+static const ::sal_Int16 REPEAT = (sal_Int16)512;
+static const ::sal_Int16 TEXT = (sal_Int16)2048;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UI_ITEMSTYLE_HDL

@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HDL
+#define INCLUDED_COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/xml/sax/XDocumentHandler.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace sax {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XExtendedDocumentHandler : public ::css::xml::sax::XDocumentHandler
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XExtendedDocumentHandler() = default;
+    XExtendedDocumentHandler(XExtendedDocumentHandler const &) = default;
+    XExtendedDocumentHandler(XExtendedDocumentHandler &&) = default;
+    XExtendedDocumentHandler & operator =(XExtendedDocumentHandler const &) = default;
+    XExtendedDocumentHandler & operator =(XExtendedDocumentHandler &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL startCDATA() = 0;
+    virtual void SAL_CALL endCDATA() = 0;
+    virtual void SAL_CALL comment( const ::rtl::OUString& sComment ) = 0;
+    virtual void SAL_CALL allowLineBreak() = 0;
+    virtual void SAL_CALL unknown( const ::rtl::OUString& sString ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XExtendedDocumentHandler() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::sax::XExtendedDocumentHandler const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::sax::XExtendedDocumentHandler > *);
+
+#endif

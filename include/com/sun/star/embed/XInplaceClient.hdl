@@ -1,0 +1,59 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XINPLACECLIENT_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XINPLACECLIENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/KeyEvent.hdl"
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/awt/Size.hdl"
+namespace com { namespace sun { namespace star { namespace frame { class XDispatchProvider; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XLayoutManager; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XInplaceClient : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XInplaceClient() = default;
+    XInplaceClient(XInplaceClient const &) = default;
+    XInplaceClient(XInplaceClient &&) = default;
+    XInplaceClient & operator =(XInplaceClient const &) = default;
+    XInplaceClient & operator =(XInplaceClient &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL canInplaceActivate() = 0;
+    virtual void SAL_CALL activatingInplace() = 0;
+    virtual void SAL_CALL activatingUI() = 0;
+    virtual void SAL_CALL deactivatedInplace() = 0;
+    virtual void SAL_CALL deactivatedUI() = 0;
+    virtual ::css::uno::Reference< ::css::frame::XLayoutManager > SAL_CALL getLayoutManager() = 0;
+    virtual ::css::uno::Reference< ::css::frame::XDispatchProvider > SAL_CALL getInplaceDispatchProvider() = 0;
+    virtual ::css::awt::Rectangle SAL_CALL getPlacement() = 0;
+    virtual ::css::awt::Rectangle SAL_CALL getClipRectangle() = 0;
+    virtual void SAL_CALL translateAccelerators( const ::css::uno::Sequence< ::css::awt::KeyEvent >& aKeys ) = 0;
+    virtual void SAL_CALL scrollObject( const ::css::awt::Size& aOffset ) = 0;
+    virtual void SAL_CALL changedPlacement( const ::css::awt::Rectangle& aPosRect ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XInplaceClient() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XInplaceClient const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XInplaceClient > *);
+
+#endif

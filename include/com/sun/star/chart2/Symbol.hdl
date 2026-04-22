@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_SYMBOL_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_SYMBOL_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Size.hdl"
+#include "com/sun/star/chart2/SymbolStyle.hdl"
+#include "com/sun/star/drawing/PolyPolygonBezierCoords.hdl"
+namespace com { namespace sun { namespace star { namespace graphic { class XGraphic; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI Symbol {
+    inline Symbol();
+
+    inline Symbol(const ::css::chart2::SymbolStyle& Style_, const ::css::drawing::PolyPolygonBezierCoords& PolygonCoords_, const ::sal_Int32& StandardSymbol_, const ::css::uno::Reference< ::css::graphic::XGraphic >& Graphic_, const ::css::awt::Size& Size_, const ::sal_Int32& BorderColor_, const ::sal_Int32& FillColor_);
+
+    ::css::chart2::SymbolStyle Style;
+    ::css::drawing::PolyPolygonBezierCoords PolygonCoords;
+    ::sal_Int32 StandardSymbol;
+    ::css::uno::Reference< ::css::graphic::XGraphic > Graphic;
+    ::css::awt::Size Size;
+    ::sal_Int32 BorderColor;
+    ::sal_Int32 FillColor;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::Symbol const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart2::Symbol *);
+
+#endif

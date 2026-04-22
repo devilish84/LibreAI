@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLETEXTSELECTION_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLETEXTSELECTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Point.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAccessibleTextSelection : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAccessibleTextSelection() = default;
+    XAccessibleTextSelection(XAccessibleTextSelection const &) = default;
+    XAccessibleTextSelection(XAccessibleTextSelection &&) = default;
+    XAccessibleTextSelection & operator =(XAccessibleTextSelection const &) = default;
+    XAccessibleTextSelection & operator =(XAccessibleTextSelection &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL scrollToPosition( const ::css::awt::Point& aPoint, ::sal_Bool isLeftTop ) = 0;
+    virtual ::sal_Int32 SAL_CALL getSelectedPortionCount() = 0;
+    virtual ::sal_Int32 SAL_CALL getSeletedPositionStart( ::sal_Int32 nSelectedPortionIndex ) = 0;
+    virtual ::sal_Int32 SAL_CALL getSeletedPositionEnd( ::sal_Int32 nSelectedPortionIndex ) = 0;
+    virtual ::sal_Int32 SAL_CALL addSelection( ::sal_Int32 selectionIndex, ::sal_Int32 startOffset, ::sal_Int32 endOffset ) = 0;
+    virtual ::sal_Bool SAL_CALL removeSelection( ::sal_Int32 selectionIndex ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAccessibleTextSelection() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::XAccessibleTextSelection const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::accessibility::XAccessibleTextSelection > *);
+
+#endif

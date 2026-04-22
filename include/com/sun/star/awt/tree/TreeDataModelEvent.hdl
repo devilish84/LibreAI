@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_TREE_TREEDATAMODELEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_TREE_TREEDATAMODELEVENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace tree { class XTreeNode; } } } } }
+#include "com/sun/star/lang/EventObject.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt { namespace tree {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI TreeDataModelEvent: public ::css::lang::EventObject {
+    inline TreeDataModelEvent();
+
+    inline TreeDataModelEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::css::uno::Sequence< ::css::uno::Reference< ::css::awt::tree::XTreeNode > >& Nodes_, const ::css::uno::Reference< ::css::awt::tree::XTreeNode >& ParentNode_);
+
+    ::css::uno::Sequence< ::css::uno::Reference< ::css::awt::tree::XTreeNode > > Nodes CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::css::uno::Reference< ::css::awt::tree::XTreeNode > ParentNode;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::tree::TreeDataModelEvent const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::tree::TreeDataModelEvent *);
+
+#endif

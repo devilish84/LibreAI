@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_GEOMETRY_AFFINEMATRIX3D_HDL
+#define INCLUDED_COM_SUN_STAR_GEOMETRY_AFFINEMATRIX3D_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace geometry {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED AffineMatrix3D {
+    inline AffineMatrix3D();
+
+    inline AffineMatrix3D(const double& m00_, const double& m01_, const double& m02_, const double& m03_, const double& m10_, const double& m11_, const double& m12_, const double& m13_, const double& m20_, const double& m21_, const double& m22_, const double& m23_);
+
+    double m00;
+    double m01;
+    double m02;
+    double m03;
+    double m10;
+    double m11;
+    double m12;
+    double m13;
+    double m20;
+    double m21;
+    double m22;
+    double m23;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::geometry::AffineMatrix3D const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::geometry::AffineMatrix3D *);
+
+#endif

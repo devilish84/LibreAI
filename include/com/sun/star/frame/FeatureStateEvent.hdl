@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_FEATURESTATEEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_FEATURESTATEEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "com/sun/star/util/URL.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI FeatureStateEvent: public ::css::lang::EventObject {
+    inline FeatureStateEvent();
+
+    inline FeatureStateEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::css::util::URL& FeatureURL_, const ::rtl::OUString& FeatureDescriptor_, const ::sal_Bool& IsEnabled_, const ::sal_Bool& Requery_, const ::css::uno::Any& State_);
+
+    ::css::util::URL FeatureURL CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::rtl::OUString FeatureDescriptor;
+    ::sal_Bool IsEnabled;
+    ::sal_Bool Requery;
+    ::css::uno::Any State;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::FeatureStateEvent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::frame::FeatureStateEvent *);
+
+#endif

@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_GRAPHIC_XPRIMITIVE2DRENDERER_HDL
+#define INCLUDED_COM_SUN_STAR_GRAPHIC_XPRIMITIVE2DRENDERER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/geometry/RealRectangle2D.hdl"
+namespace com { namespace sun { namespace star { namespace graphic { class XPrimitive2D; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XBitmap; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace graphic {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPrimitive2DRenderer : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPrimitive2DRenderer() = default;
+    XPrimitive2DRenderer(XPrimitive2DRenderer const &) = default;
+    XPrimitive2DRenderer(XPrimitive2DRenderer &&) = default;
+    XPrimitive2DRenderer & operator =(XPrimitive2DRenderer const &) = default;
+    XPrimitive2DRenderer & operator =(XPrimitive2DRenderer &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::rendering::XBitmap > SAL_CALL rasterize( const ::css::uno::Sequence< ::css::uno::Reference< ::css::graphic::XPrimitive2D > >& Primitive2DSequence, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aViewInformationSequence, ::sal_uInt32 DPI_X, ::sal_uInt32 DPI_Y, const ::css::geometry::RealRectangle2D& Range, ::sal_uInt32 MaximumQuadraticPixels ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPrimitive2DRenderer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::graphic::XPrimitive2DRenderer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::graphic::XPrimitive2DRenderer > *);
+
+#endif

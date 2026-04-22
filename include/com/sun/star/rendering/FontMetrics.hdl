@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_FONTMETRICS_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_FONTMETRICS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED FontMetrics {
+    inline FontMetrics();
+
+    inline FontMetrics(const double& Ascent_, const double& Descent_, const double& InternalLeading_, const double& ExternalLeading_, const double& ReferenceCharSize_, const double& UnderlineOffset_, const double& StrikeThroughOffset_);
+
+    double Ascent;
+    double Descent;
+    double InternalLeading;
+    double ExternalLeading;
+    double ReferenceCharSize;
+    double UnderlineOffset;
+    double StrikeThroughOffset;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::FontMetrics const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::rendering::FontMetrics *);
+
+#endif

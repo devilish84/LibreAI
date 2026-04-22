@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_XFORM_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_XFORM_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/form/XFormComponent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XForm : public ::css::form::XFormComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XForm() = default;
+    XForm(XForm const &) = default;
+    XForm(XForm &&) = default;
+    XForm & operator =(XForm const &) = default;
+    XForm & operator =(XForm &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XForm() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::XForm const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::form::XForm > *);
+
+#endif

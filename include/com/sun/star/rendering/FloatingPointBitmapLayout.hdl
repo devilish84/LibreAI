@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_FLOATINGPOINTBITMAPLAYOUT_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_FLOATINGPOINTBITMAPLAYOUT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { class XColorSpace; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI FloatingPointBitmapLayout {
+    inline FloatingPointBitmapLayout();
+
+    inline FloatingPointBitmapLayout(const ::sal_Int32& ScanLines_, const ::sal_Int32& ScanLineBytes_, const ::sal_Int32& ScanLineStride_, const ::sal_Int32& PlaneStride_, const ::css::uno::Reference< ::css::rendering::XColorSpace >& ColorSpace_, const ::sal_Int32& NumComponents_, const ::sal_Int8& Endianness_, const ::sal_Int8& Format_);
+
+    ::sal_Int32 ScanLines;
+    ::sal_Int32 ScanLineBytes;
+    ::sal_Int32 ScanLineStride;
+    ::sal_Int32 PlaneStride;
+    ::css::uno::Reference< ::css::rendering::XColorSpace > ColorSpace;
+    ::sal_Int32 NumComponents;
+    ::sal_Int8 Endianness;
+    ::sal_Int8 Format;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::FloatingPointBitmapLayout const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::rendering::FloatingPointBitmapLayout *);
+
+#endif

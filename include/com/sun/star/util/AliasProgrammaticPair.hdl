@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_ALIASPROGRAMMATICPAIR_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_ALIASPROGRAMMATICPAIR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED AliasProgrammaticPair {
+    inline AliasProgrammaticPair();
+
+    inline AliasProgrammaticPair(const ::rtl::OUString& Alias_, const ::rtl::OUString& ProgrammaticName_);
+
+    ::rtl::OUString Alias;
+    ::rtl::OUString ProgrammaticName;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::AliasProgrammaticPair const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::util::AliasProgrammaticPair *);
+
+#endif

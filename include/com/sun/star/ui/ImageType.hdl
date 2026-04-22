@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_IMAGETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_UI_IMAGETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ui { namespace ImageType {
+
+static const ::sal_Int16 COLOR_HIGHCONTRAST = (sal_Int16)4;
+static const ::sal_Int16 COLOR_NORMAL = (sal_Int16)0;
+static const ::sal_Int16 SIZE_32 = (sal_Int16)2;
+static const ::sal_Int16 SIZE_DEFAULT = (sal_Int16)0;
+static const ::sal_Int16 SIZE_LARGE = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UI_IMAGETYPE_HDL

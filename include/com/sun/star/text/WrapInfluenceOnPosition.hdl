@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_WRAPINFLUENCEONPOSITION_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_WRAPINFLUENCEONPOSITION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace WrapInfluenceOnPosition {
+
+static const ::sal_Int16 ITERATIVE = (sal_Int16)3;
+static const ::sal_Int16 ONCE_CONCURRENT = (sal_Int16)2;
+static const ::sal_Int16 ONCE_SUCCESSIVE = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_WRAPINFLUENCEONPOSITION_HDL

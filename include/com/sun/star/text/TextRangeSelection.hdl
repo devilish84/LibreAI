@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_TEXTRANGESELECTION_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_TEXTRANGESELECTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/text/TextPosition.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED TextRangeSelection {
+    inline TextRangeSelection();
+
+    inline TextRangeSelection(const ::css::text::TextPosition& Start_, const ::css::text::TextPosition& End_);
+
+    ::css::text::TextPosition Start;
+    ::css::text::TextPosition End;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::TextRangeSelection const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::text::TextRangeSelection *);
+
+#endif

@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_XMIMECONTENTTYPEFACTORY_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_XMIMECONTENTTYPEFACTORY_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace datatransfer { class XMimeContentType; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace datatransfer {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMimeContentTypeFactory : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMimeContentTypeFactory() = default;
+    XMimeContentTypeFactory(XMimeContentTypeFactory const &) = default;
+    XMimeContentTypeFactory(XMimeContentTypeFactory &&) = default;
+    XMimeContentTypeFactory & operator =(XMimeContentTypeFactory const &) = default;
+    XMimeContentTypeFactory & operator =(XMimeContentTypeFactory &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::datatransfer::XMimeContentType > SAL_CALL createMimeContentType( const ::rtl::OUString& aContentType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMimeContentTypeFactory() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::datatransfer::XMimeContentTypeFactory const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::datatransfer::XMimeContentTypeFactory > *);
+
+#endif

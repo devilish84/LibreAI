@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_META_XFUNCTIONMANAGER_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_META_XFUNCTIONMANAGER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XIndexAccess.hdl"
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace report { namespace meta { class XFunctionCategory; } } } } }
+namespace com { namespace sun { namespace star { namespace report { namespace meta { class XFunctionDescription; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report { namespace meta {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFunctionManager : public ::css::lang::XComponent, public ::css::container::XIndexAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFunctionManager() = default;
+    XFunctionManager(XFunctionManager const &) = default;
+    XFunctionManager(XFunctionManager &&) = default;
+    XFunctionManager & operator =(XFunctionManager const &) = default;
+    XFunctionManager & operator =(XFunctionManager &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::report::meta::XFunctionCategory > SAL_CALL getCategory( ::sal_Int32 position ) = 0;
+    virtual ::css::uno::Reference< ::css::report::meta::XFunctionDescription > SAL_CALL getFunctionByName( const ::rtl::OUString& name ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFunctionManager() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::meta::XFunctionManager const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::meta::XFunctionManager > *);
+
+#endif

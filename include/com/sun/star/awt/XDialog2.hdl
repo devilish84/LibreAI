@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XDIALOG2_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XDIALOG2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/XDialog.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDialog2 : public ::css::awt::XDialog
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDialog2() = default;
+    XDialog2(XDialog2 const &) = default;
+    XDialog2(XDialog2 &&) = default;
+    XDialog2 & operator =(XDialog2 const &) = default;
+    XDialog2 & operator =(XDialog2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL endDialog( ::sal_Int32 Result ) = 0;
+    virtual void SAL_CALL setHelpId( const ::rtl::OUString& Id ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDialog2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XDialog2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XDialog2 > *);
+
+#endif

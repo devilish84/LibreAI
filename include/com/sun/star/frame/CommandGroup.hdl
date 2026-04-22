@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_COMMANDGROUP_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_COMMANDGROUP_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace frame { namespace CommandGroup {
+
+static const ::sal_Int16 APPLICATION = (sal_Int16)1;
+static const ::sal_Int16 CHART = (sal_Int16)20;
+static const ::sal_Int16 CONNECTOR = (sal_Int16)22;
+static const ::sal_Int16 CONTROLS = (sal_Int16)25;
+static const ::sal_Int16 DATA = (sal_Int16)17;
+static const ::sal_Int16 DOCUMENT = (sal_Int16)3;
+static const ::sal_Int16 DRAWING = (sal_Int16)24;
+static const ::sal_Int16 EDIT = (sal_Int16)4;
+static const ::sal_Int16 ENUMERATION = (sal_Int16)16;
+static const ::sal_Int16 EXPLORER = (sal_Int16)21;
+static const ::sal_Int16 FORMAT = (sal_Int16)10;
+static const ::sal_Int16 FRAME = (sal_Int16)13;
+static const ::sal_Int16 GRAPHIC = (sal_Int16)14;
+static const ::sal_Int16 IMAGE = (sal_Int16)19;
+static const ::sal_Int16 INSERT = (sal_Int16)9;
+static const ::sal_Int16 INTERNAL = (sal_Int16)0;
+static const ::sal_Int16 MACRO = (sal_Int16)5;
+static const ::sal_Int16 MATH = (sal_Int16)7;
+static const ::sal_Int16 MODIFY = (sal_Int16)23;
+static const ::sal_Int16 NAVIGATOR = (sal_Int16)8;
+static const ::sal_Int16 OPTIONS = (sal_Int16)6;
+static const ::sal_Int16 SPECIAL = (sal_Int16)18;
+static const ::sal_Int16 TABLE = (sal_Int16)15;
+static const ::sal_Int16 TEMPLATE = (sal_Int16)11;
+static const ::sal_Int16 TEXT = (sal_Int16)12;
+static const ::sal_Int16 VIEW = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_FRAME_COMMANDGROUP_HDL

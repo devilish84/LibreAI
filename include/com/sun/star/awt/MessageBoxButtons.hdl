@@ -1,0 +1,26 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_MESSAGEBOXBUTTONS_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_MESSAGEBOXBUTTONS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace MessageBoxButtons {
+
+static const ::sal_Int32 BUTTONS_ABORT_IGNORE_RETRY = (sal_Int32)6;
+static const ::sal_Int32 BUTTONS_OK = (sal_Int32)1;
+static const ::sal_Int32 BUTTONS_OK_CANCEL = (sal_Int32)2;
+static const ::sal_Int32 BUTTONS_RETRY_CANCEL = (sal_Int32)5;
+static const ::sal_Int32 BUTTONS_YES_NO = (sal_Int32)3;
+static const ::sal_Int32 BUTTONS_YES_NO_CANCEL = (sal_Int32)4;
+static const ::sal_Int32 DEFAULT_BUTTON_CANCEL = (sal_Int32)131072;
+static const ::sal_Int32 DEFAULT_BUTTON_IGNORE = (sal_Int32)393216;
+static const ::sal_Int32 DEFAULT_BUTTON_NO = (sal_Int32)327680;
+static const ::sal_Int32 DEFAULT_BUTTON_OK = (sal_Int32)65536;
+static const ::sal_Int32 DEFAULT_BUTTON_RETRY = (sal_Int32)196608;
+static const ::sal_Int32 DEFAULT_BUTTON_YES = (sal_Int32)262144;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_MESSAGEBOXBUTTONS_HDL

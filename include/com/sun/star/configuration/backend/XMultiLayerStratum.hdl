@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_XMULTILAYERSTRATUM_HDL
+#define INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_XMULTILAYERSTRATUM_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend { class XLayer; } } } } }
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend { class XUpdatableLayer; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMultiLayerStratum : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMultiLayerStratum() = default;
+    XMultiLayerStratum(XMultiLayerStratum const &) = default;
+    XMultiLayerStratum(XMultiLayerStratum &&) = default;
+    XMultiLayerStratum & operator =(XMultiLayerStratum const &) = default;
+    XMultiLayerStratum & operator =(XMultiLayerStratum &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL listLayerIds( const ::rtl::OUString& aComponent, const ::rtl::OUString& aEntity ) = 0;
+    virtual ::rtl::OUString SAL_CALL getUpdateLayerId( const ::rtl::OUString& aComponent, const ::rtl::OUString& aEntity ) = 0;
+    virtual ::css::uno::Reference< ::css::configuration::backend::XLayer > SAL_CALL getLayer( const ::rtl::OUString& aLayerId, const ::rtl::OUString& aTimestamp ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::configuration::backend::XLayer > > SAL_CALL getLayers( const ::css::uno::Sequence< ::rtl::OUString >& aLayerIds, const ::rtl::OUString& aTimestamp ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::configuration::backend::XLayer > > SAL_CALL getMultipleLayers( const ::css::uno::Sequence< ::rtl::OUString >& aLayerIds, const ::css::uno::Sequence< ::rtl::OUString >& aTimestamps ) = 0;
+    virtual ::css::uno::Reference< ::css::configuration::backend::XUpdatableLayer > SAL_CALL getUpdatableLayer( const ::rtl::OUString& aLayerId ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMultiLayerStratum() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::configuration::backend::XMultiLayerStratum const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::configuration::backend::XMultiLayerStratum > *);
+
+#endif

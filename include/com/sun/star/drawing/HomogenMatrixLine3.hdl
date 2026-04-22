@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_HOMOGENMATRIXLINE3_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_HOMOGENMATRIXLINE3_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED HomogenMatrixLine3 {
+    inline HomogenMatrixLine3();
+
+    inline HomogenMatrixLine3(const double& Column1_, const double& Column2_, const double& Column3_);
+
+    double Column1;
+    double Column2;
+    double Column3;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::HomogenMatrixLine3 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::HomogenMatrixLine3 *);
+
+#endif

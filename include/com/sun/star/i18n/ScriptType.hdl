@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_SCRIPTTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_SCRIPTTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace ScriptType {
+
+static const ::sal_Int16 ASIAN = (sal_Int16)2;
+static const ::sal_Int16 COMPLEX = (sal_Int16)3;
+static const ::sal_Int16 LATIN = (sal_Int16)1;
+static const ::sal_Int16 WEAK = (sal_Int16)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_SCRIPTTYPE_HDL

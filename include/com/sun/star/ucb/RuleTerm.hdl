@@ -1,0 +1,41 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_RULETERM_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_RULETERM_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI RuleTerm {
+    inline RuleTerm();
+
+    inline RuleTerm(const ::rtl::OUString& Property_, const ::css::uno::Any& Operand_, const ::sal_Int16& Operator_, const ::sal_Bool& CaseSensitive_, const ::sal_Bool& RegularExpression_);
+
+    ::rtl::OUString Property;
+    ::css::uno::Any Operand;
+    ::sal_Int16 Operator;
+    ::sal_Bool CaseSensitive;
+    ::sal_Bool RegularExpression;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::RuleTerm const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::RuleTerm *);
+
+#endif

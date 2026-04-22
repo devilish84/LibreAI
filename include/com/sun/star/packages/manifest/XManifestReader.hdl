@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_PACKAGES_MANIFEST_XMANIFESTREADER_HDL
+#define INCLUDED_COM_SUN_STAR_PACKAGES_MANIFEST_XMANIFESTREADER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace packages { namespace manifest {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XManifestReader : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XManifestReader() = default;
+    XManifestReader(XManifestReader const &) = default;
+    XManifestReader(XManifestReader &&) = default;
+    XManifestReader & operator =(XManifestReader const &) = default;
+    XManifestReader & operator =(XManifestReader &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::uno::Sequence< ::css::beans::PropertyValue > > SAL_CALL readManifestSequence( const ::css::uno::Reference< ::css::io::XInputStream >& rStream ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XManifestReader() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::packages::manifest::XManifestReader const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::packages::manifest::XManifestReader > *);
+
+#endif

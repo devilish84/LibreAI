@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XLOADERFACTORY_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XLOADERFACTORY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XContainerQuery.hdl"
+#include "com/sun/star/container/XNameAccess.hdl"
+#include "com/sun/star/lang/XMultiServiceFactory.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLoaderFactory : public ::css::lang::XMultiServiceFactory, public ::css::container::XNameAccess, public ::css::container::XContainerQuery
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLoaderFactory() = default;
+    XLoaderFactory(XLoaderFactory const &) = default;
+    XLoaderFactory(XLoaderFactory &&) = default;
+    XLoaderFactory & operator =(XLoaderFactory const &) = default;
+    XLoaderFactory & operator =(XLoaderFactory &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLoaderFactory() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XLoaderFactory const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XLoaderFactory > *);
+
+#endif

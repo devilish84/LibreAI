@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XBINARYSTREAMRESOLVER_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XBINARYSTREAMRESOLVER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XOutputStream; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XBinaryStreamResolver : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XBinaryStreamResolver() = default;
+    XBinaryStreamResolver(XBinaryStreamResolver const &) = default;
+    XBinaryStreamResolver(XBinaryStreamResolver &&) = default;
+    XBinaryStreamResolver & operator =(XBinaryStreamResolver const &) = default;
+    XBinaryStreamResolver & operator =(XBinaryStreamResolver &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::io::XInputStream > SAL_CALL getInputStream( const ::rtl::OUString& aURL ) = 0;
+    virtual ::css::uno::Reference< ::css::io::XOutputStream > SAL_CALL createOutputStream() = 0;
+    virtual ::rtl::OUString SAL_CALL resolveOutputStream( const ::css::uno::Reference< ::css::io::XOutputStream >& aBinaryStream ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XBinaryStreamResolver() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XBinaryStreamResolver const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XBinaryStreamResolver > *);
+
+#endif

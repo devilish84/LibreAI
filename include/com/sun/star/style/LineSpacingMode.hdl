@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_LINESPACINGMODE_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_LINESPACINGMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace style { namespace LineSpacingMode {
+
+static const ::sal_Int16 FIX = (sal_Int16)3;
+static const ::sal_Int16 LEADING = (sal_Int16)2;
+static const ::sal_Int16 MINIMUM = (sal_Int16)1;
+static const ::sal_Int16 PROP = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_STYLE_LINESPACINGMODE_HDL

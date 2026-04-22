@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XAUTOTEXTGROUP_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XAUTOTEXTGROUP_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XNameAccess.hdl"
+namespace com { namespace sun { namespace star { namespace text { class XAutoTextEntry; } } } }
+namespace com { namespace sun { namespace star { namespace text { class XTextRange; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAutoTextGroup : public ::css::container::XNameAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAutoTextGroup() = default;
+    XAutoTextGroup(XAutoTextGroup const &) = default;
+    XAutoTextGroup(XAutoTextGroup &&) = default;
+    XAutoTextGroup & operator =(XAutoTextGroup const &) = default;
+    XAutoTextGroup & operator =(XAutoTextGroup &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getTitles() = 0;
+    virtual void SAL_CALL renameByName( const ::rtl::OUString& aElementName, const ::rtl::OUString& aNewElementName, const ::rtl::OUString& aNewElementTitle ) = 0;
+    virtual ::css::uno::Reference< ::css::text::XAutoTextEntry > SAL_CALL insertNewByName( const ::rtl::OUString& aName, const ::rtl::OUString& aTitle, const ::css::uno::Reference< ::css::text::XTextRange >& xTextRange ) = 0;
+    virtual void SAL_CALL removeByName( const ::rtl::OUString& aEntryName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAutoTextGroup() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XAutoTextGroup const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XAutoTextGroup > *);
+
+#endif

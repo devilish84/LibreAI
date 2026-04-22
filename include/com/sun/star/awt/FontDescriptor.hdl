@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTDESCRIPTOR_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_FONTDESCRIPTOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/FontSlant.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED FontDescriptor {
+    inline FontDescriptor();
+
+    inline FontDescriptor(const ::rtl::OUString& Name_, const ::sal_Int16& Height_, const ::sal_Int16& Width_, const ::rtl::OUString& StyleName_, const ::sal_Int16& Family_, const ::sal_Int16& CharSet_, const ::sal_Int16& Pitch_, const float& CharacterWidth_, const float& Weight_, const ::css::awt::FontSlant& Slant_, const ::sal_Int16& Underline_, const ::sal_Int16& Strikeout_, const float& Orientation_, const ::sal_Bool& Kerning_, const ::sal_Bool& WordLineMode_, const ::sal_Int16& Type_);
+
+    ::rtl::OUString Name;
+    ::sal_Int16 Height;
+    ::sal_Int16 Width;
+    ::rtl::OUString StyleName;
+    ::sal_Int16 Family;
+    ::sal_Int16 CharSet;
+    ::sal_Int16 Pitch;
+    float CharacterWidth;
+    float Weight;
+    ::css::awt::FontSlant Slant;
+    ::sal_Int16 Underline;
+    ::sal_Int16 Strikeout;
+    float Orientation;
+    ::sal_Bool Kerning;
+    ::sal_Bool WordLineMode;
+    ::sal_Int16 Type;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::FontDescriptor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::FontDescriptor *);
+
+#endif

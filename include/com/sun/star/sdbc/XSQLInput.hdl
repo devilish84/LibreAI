@@ -1,0 +1,72 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_XSQLINPUT_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_XSQLINPUT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XArray; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XBlob; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XClob; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XRef; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/Date.hdl"
+#include "com/sun/star/util/DateTime.hdl"
+#include "com/sun/star/util/Time.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSQLInput : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSQLInput() = default;
+    XSQLInput(XSQLInput const &) = default;
+    XSQLInput(XSQLInput &&) = default;
+    XSQLInput & operator =(XSQLInput const &) = default;
+    XSQLInput & operator =(XSQLInput &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL readString() = 0;
+    virtual ::sal_Bool SAL_CALL readBoolean() = 0;
+    virtual ::sal_Int8 SAL_CALL readByte() = 0;
+    virtual ::sal_Int16 SAL_CALL readShort() = 0;
+    virtual ::sal_Int32 SAL_CALL readInt() = 0;
+    virtual ::sal_Int64 SAL_CALL readLong() = 0;
+    virtual float SAL_CALL readFloat() = 0;
+    virtual double SAL_CALL readDouble() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL readBytes() = 0;
+    virtual ::css::util::Date SAL_CALL readDate() = 0;
+    virtual ::css::util::Time SAL_CALL readTime() = 0;
+    virtual ::css::util::DateTime SAL_CALL readTimestamp() = 0;
+    virtual ::css::uno::Reference< ::css::io::XInputStream > SAL_CALL readBinaryStream() = 0;
+    virtual ::css::uno::Reference< ::css::io::XInputStream > SAL_CALL readCharacterStream() = 0;
+    virtual ::css::uno::Any SAL_CALL readObject() = 0;
+    virtual ::css::uno::Reference< ::css::sdbc::XRef > SAL_CALL readRef() = 0;
+    virtual ::css::uno::Reference< ::css::sdbc::XBlob > SAL_CALL readBlob() = 0;
+    virtual ::css::uno::Reference< ::css::sdbc::XClob > SAL_CALL readClob() = 0;
+    virtual ::css::uno::Reference< ::css::sdbc::XArray > SAL_CALL readArray() = 0;
+    virtual ::sal_Bool SAL_CALL wasNull() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSQLInput() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::XSQLInput const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbc::XSQLInput > *);
+
+#endif

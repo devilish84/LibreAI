@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_PUSHBUTTONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_PUSHBUTTONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI PushButtonType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI PushButtonType
+{
+
+#endif
+    PushButtonType_STANDARD = 0,
+    PushButtonType_OK = 1,
+    PushButtonType_CANCEL = 2,
+    PushButtonType_HELP = 3,
+    PushButtonType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto PushButtonType_STANDARD = PushButtonType::PushButtonType_STANDARD;
+constexpr auto PushButtonType_OK = PushButtonType::PushButtonType_OK;
+constexpr auto PushButtonType_CANCEL = PushButtonType::PushButtonType_CANCEL;
+constexpr auto PushButtonType_HELP = PushButtonType::PushButtonType_HELP;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::PushButtonType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::PushButtonType *);
+
+#endif

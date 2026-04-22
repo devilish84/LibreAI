@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_IO_XINPUTSTREAM_HDL
+#define INCLUDED_COM_SUN_STAR_IO_XINPUTSTREAM_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace io {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XInputStream : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XInputStream() = default;
+    XInputStream(XInputStream const &) = default;
+    XInputStream(XInputStream &&) = default;
+    XInputStream & operator =(XInputStream const &) = default;
+    XInputStream & operator =(XInputStream &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL readBytes( ::css::uno::Sequence< ::sal_Int8 >& aData, ::sal_Int32 nBytesToRead ) = 0;
+    virtual ::sal_Int32 SAL_CALL readSomeBytes( ::css::uno::Sequence< ::sal_Int8 >& aData, ::sal_Int32 nMaxBytesToRead ) = 0;
+    virtual void SAL_CALL skipBytes( ::sal_Int32 nBytesToSkip ) = 0;
+    virtual ::sal_Int32 SAL_CALL available() = 0;
+    virtual void SAL_CALL closeInput() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XInputStream() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::io::XInputStream const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::io::XInputStream > *);
+
+#endif

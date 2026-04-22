@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBCX_XROWLOCATE_HDL
+#define INCLUDED_COM_SUN_STAR_SDBCX_XROWLOCATE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbcx {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRowLocate : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRowLocate() = default;
+    XRowLocate(XRowLocate const &) = default;
+    XRowLocate(XRowLocate &&) = default;
+    XRowLocate & operator =(XRowLocate const &) = default;
+    XRowLocate & operator =(XRowLocate &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Any SAL_CALL getBookmark() = 0;
+    virtual ::sal_Bool SAL_CALL moveToBookmark( const ::css::uno::Any& bookmark ) = 0;
+    virtual ::sal_Bool SAL_CALL moveRelativeToBookmark( const ::css::uno::Any& bookmark, ::sal_Int32 rows ) = 0;
+    virtual ::sal_Int32 SAL_CALL compareBookmarks( const ::css::uno::Any& first, const ::css::uno::Any& second ) = 0;
+    virtual ::sal_Bool SAL_CALL hasOrderedBookmarks() = 0;
+    virtual ::sal_Int32 SAL_CALL hashBookmark( const ::css::uno::Any& bookmark ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRowLocate() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbcx::XRowLocate const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbcx::XRowLocate > *);
+
+#endif

@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_TIMEDISPLAYFORMAT_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_TIMEDISPLAYFORMAT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace TimeDisplayFormat {
+
+static const ::sal_Int16 HHMM = (sal_Int16)1;
+static const ::sal_Int16 HHMMAMPM = (sal_Int16)4;
+static const ::sal_Int16 HHMMSS = (sal_Int16)2;
+static const ::sal_Int16 HHMMSS00 = (sal_Int16)3;
+static const ::sal_Int16 HHMMSS00AMPM = (sal_Int16)6;
+static const ::sal_Int16 HHMMSSAMPM = (sal_Int16)5;
+static const ::sal_Int16 STANDARD = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_TIMEDISPLAYFORMAT_HDL

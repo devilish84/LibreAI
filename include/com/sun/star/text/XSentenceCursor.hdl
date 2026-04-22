@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XSENTENCECURSOR_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XSENTENCECURSOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/text/XTextCursor.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSentenceCursor : public ::css::text::XTextCursor
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSentenceCursor() = default;
+    XSentenceCursor(XSentenceCursor const &) = default;
+    XSentenceCursor(XSentenceCursor &&) = default;
+    XSentenceCursor & operator =(XSentenceCursor const &) = default;
+    XSentenceCursor & operator =(XSentenceCursor &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isStartOfSentence() = 0;
+    virtual ::sal_Bool SAL_CALL isEndOfSentence() = 0;
+    virtual ::sal_Bool SAL_CALL gotoNextSentence( ::sal_Bool Expand ) = 0;
+    virtual ::sal_Bool SAL_CALL gotoPreviousSentence( ::sal_Bool Expand ) = 0;
+    virtual ::sal_Bool SAL_CALL gotoStartOfSentence( ::sal_Bool Expand ) = 0;
+    virtual ::sal_Bool SAL_CALL gotoEndOfSentence( ::sal_Bool Expand ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSentenceCursor() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XSentenceCursor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XSentenceCursor > *);
+
+#endif

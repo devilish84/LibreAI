@@ -1,0 +1,81 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_NUMBERFORMATINDEX_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_NUMBERFORMATINDEX_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace NumberFormatIndex {
+
+static const ::sal_Int16 BOOLEAN = (sal_Int16)48;
+static const ::sal_Int16 CURRENCY_1000DEC2 = (sal_Int16)13;
+static const ::sal_Int16 CURRENCY_1000DEC2_CCC = (sal_Int16)16;
+static const ::sal_Int16 CURRENCY_1000DEC2_DASHED = (sal_Int16)17;
+static const ::sal_Int16 CURRENCY_1000DEC2_RED = (sal_Int16)15;
+static const ::sal_Int16 CURRENCY_1000INT = (sal_Int16)12;
+static const ::sal_Int16 CURRENCY_1000INT_RED = (sal_Int16)14;
+static const ::sal_Int16 CURRENCY_END = (sal_Int16)17;
+static const ::sal_Int16 CURRENCY_START = (sal_Int16)12;
+static const ::sal_Int16 DATETIME_END = (sal_Int16)47;
+static const ::sal_Int16 DATETIME_START = (sal_Int16)46;
+static const ::sal_Int16 DATETIME_SYSTEM_SHORT_HHMM = (sal_Int16)46;
+static const ::sal_Int16 DATETIME_SYS_DDMMYYYY_HHMMSS = (sal_Int16)47;
+static const ::sal_Int16 DATE_DEF_NNDDMMMYY = (sal_Int16)28;
+static const ::sal_Int16 DATE_DIN_DMMMMYYYY = (sal_Int16)26;
+static const ::sal_Int16 DATE_DIN_DMMMYYYY = (sal_Int16)24;
+static const ::sal_Int16 DATE_DIN_MMDD = (sal_Int16)31;
+static const ::sal_Int16 DATE_DIN_YYMMDD = (sal_Int16)32;
+static const ::sal_Int16 DATE_DIN_YYYYMMDD = (sal_Int16)33;
+static const ::sal_Int16 DATE_END = (sal_Int16)38;
+static const ::sal_Int16 DATE_MMMM = (sal_Int16)36;
+static const ::sal_Int16 DATE_QQJJ = (sal_Int16)37;
+static const ::sal_Int16 DATE_START = (sal_Int16)18;
+static const ::sal_Int16 DATE_SYSTEM_LONG = (sal_Int16)19;
+static const ::sal_Int16 DATE_SYSTEM_SHORT = (sal_Int16)18;
+static const ::sal_Int16 DATE_SYS_DDMMM = (sal_Int16)35;
+static const ::sal_Int16 DATE_SYS_DDMMYY = (sal_Int16)20;
+static const ::sal_Int16 DATE_SYS_DDMMYYYY = (sal_Int16)21;
+static const ::sal_Int16 DATE_SYS_DMMMMYYYY = (sal_Int16)25;
+static const ::sal_Int16 DATE_SYS_DMMMYY = (sal_Int16)22;
+static const ::sal_Int16 DATE_SYS_DMMMYYYY = (sal_Int16)23;
+static const ::sal_Int16 DATE_SYS_MMYY = (sal_Int16)34;
+static const ::sal_Int16 DATE_SYS_NNDMMMMYYYY = (sal_Int16)29;
+static const ::sal_Int16 DATE_SYS_NNDMMMYY = (sal_Int16)27;
+static const ::sal_Int16 DATE_SYS_NNNNDMMMMYYYY = (sal_Int16)30;
+static const ::sal_Int16 DATE_WW = (sal_Int16)38;
+static const ::sal_Int16 FRACTION_1 = (sal_Int16)10;
+static const ::sal_Int16 FRACTION_2 = (sal_Int16)11;
+static const ::sal_Int16 FRACTION_END = (sal_Int16)11;
+static const ::sal_Int16 FRACTION_START = (sal_Int16)10;
+static const ::sal_Int16 INDEX_TABLE_ENTRIES = (sal_Int16)50;
+static const ::sal_Int16 NUMBER_1000DEC2 = (sal_Int16)4;
+static const ::sal_Int16 NUMBER_1000INT = (sal_Int16)3;
+static const ::sal_Int16 NUMBER_DEC2 = (sal_Int16)2;
+static const ::sal_Int16 NUMBER_END = (sal_Int16)5;
+static const ::sal_Int16 NUMBER_INT = (sal_Int16)1;
+static const ::sal_Int16 NUMBER_STANDARD = (sal_Int16)0;
+static const ::sal_Int16 NUMBER_START = (sal_Int16)0;
+static const ::sal_Int16 NUMBER_SYSTEM = (sal_Int16)5;
+static const ::sal_Int16 PERCENT_DEC2 = (sal_Int16)9;
+static const ::sal_Int16 PERCENT_END = (sal_Int16)9;
+static const ::sal_Int16 PERCENT_INT = (sal_Int16)8;
+static const ::sal_Int16 PERCENT_START = (sal_Int16)8;
+static const ::sal_Int16 SCIENTIFIC_000E00 = (sal_Int16)7;
+static const ::sal_Int16 SCIENTIFIC_000E000 = (sal_Int16)6;
+static const ::sal_Int16 SCIENTIFIC_END = (sal_Int16)7;
+static const ::sal_Int16 SCIENTIFIC_START = (sal_Int16)6;
+static const ::sal_Int16 TEXT = (sal_Int16)49;
+static const ::sal_Int16 TIME_END = (sal_Int16)45;
+static const ::sal_Int16 TIME_HHMM = (sal_Int16)39;
+static const ::sal_Int16 TIME_HHMMAMPM = (sal_Int16)41;
+static const ::sal_Int16 TIME_HHMMSS = (sal_Int16)40;
+static const ::sal_Int16 TIME_HHMMSSAMPM = (sal_Int16)42;
+static const ::sal_Int16 TIME_HH_MMSS = (sal_Int16)43;
+static const ::sal_Int16 TIME_HH_MMSS00 = (sal_Int16)45;
+static const ::sal_Int16 TIME_MMSS00 = (sal_Int16)44;
+static const ::sal_Int16 TIME_START = (sal_Int16)39;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_NUMBERFORMATINDEX_HDL

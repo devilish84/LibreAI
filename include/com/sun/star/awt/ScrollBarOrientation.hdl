@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_SCROLLBARORIENTATION_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_SCROLLBARORIENTATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace ScrollBarOrientation {
+
+static const ::sal_Int32 HORIZONTAL = (sal_Int32)0;
+static const ::sal_Int32 VERTICAL = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_SCROLLBARORIENTATION_HDL

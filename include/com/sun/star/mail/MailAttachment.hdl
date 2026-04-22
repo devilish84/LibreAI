@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_MAIL_MAILATTACHMENT_HDL
+#define INCLUDED_COM_SUN_STAR_MAIL_MAILATTACHMENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace datatransfer { class XTransferable; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace mail {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI MailAttachment {
+    inline MailAttachment();
+
+    inline MailAttachment(const ::css::uno::Reference< ::css::datatransfer::XTransferable >& Data_, const ::rtl::OUString& ReadableName_);
+
+    ::css::uno::Reference< ::css::datatransfer::XTransferable > Data;
+    ::rtl::OUString ReadableName;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::mail::MailAttachment const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::mail::MailAttachment *);
+
+#endif

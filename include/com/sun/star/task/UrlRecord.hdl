@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_TASK_URLRECORD_HDL
+#define INCLUDED_COM_SUN_STAR_TASK_URLRECORD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/task/UserRecord.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace task {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED UrlRecord {
+    inline UrlRecord();
+
+    inline UrlRecord(const ::rtl::OUString& Url_, const ::css::uno::Sequence< ::css::task::UserRecord >& UserList_);
+
+    ::rtl::OUString Url;
+    ::css::uno::Sequence< ::css::task::UserRecord > UserList;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::task::UrlRecord const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::task::UrlRecord *);
+
+#endif

@@ -1,0 +1,27 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_IMAGEPOSITION_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_IMAGEPOSITION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace ImagePosition {
+
+static const ::sal_Int16 AboveCenter = (sal_Int16)7;
+static const ::sal_Int16 AboveLeft = (sal_Int16)6;
+static const ::sal_Int16 AboveRight = (sal_Int16)8;
+static const ::sal_Int16 BelowCenter = (sal_Int16)10;
+static const ::sal_Int16 BelowLeft = (sal_Int16)9;
+static const ::sal_Int16 BelowRight = (sal_Int16)11;
+static const ::sal_Int16 Centered = (sal_Int16)12;
+static const ::sal_Int16 LeftBottom = (sal_Int16)2;
+static const ::sal_Int16 LeftCenter = (sal_Int16)1;
+static const ::sal_Int16 LeftTop = (sal_Int16)0;
+static const ::sal_Int16 RightBottom = (sal_Int16)5;
+static const ::sal_Int16 RightCenter = (sal_Int16)4;
+static const ::sal_Int16 RightTop = (sal_Int16)3;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_IMAGEPOSITION_HDL

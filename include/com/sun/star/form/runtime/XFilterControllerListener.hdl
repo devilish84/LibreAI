@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_RUNTIME_XFILTERCONTROLLERLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_RUNTIME_XFILTERCONTROLLERLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/form/runtime/FilterEvent.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form { namespace runtime {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFilterControllerListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFilterControllerListener() = default;
+    XFilterControllerListener(XFilterControllerListener const &) = default;
+    XFilterControllerListener(XFilterControllerListener &&) = default;
+    XFilterControllerListener & operator =(XFilterControllerListener const &) = default;
+    XFilterControllerListener & operator =(XFilterControllerListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL predicateExpressionChanged( const ::css::form::runtime::FilterEvent& Event ) = 0;
+    virtual void SAL_CALL disjunctiveTermRemoved( const ::css::form::runtime::FilterEvent& Event ) = 0;
+    virtual void SAL_CALL disjunctiveTermAdded( const ::css::form::runtime::FilterEvent& Event ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFilterControllerListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::runtime::XFilterControllerListener const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::form::runtime::XFilterControllerListener > *);
+
+#endif

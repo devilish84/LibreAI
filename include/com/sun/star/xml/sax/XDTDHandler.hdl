@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_SAX_XDTDHANDLER_HDL
+#define INCLUDED_COM_SUN_STAR_XML_SAX_XDTDHANDLER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace sax {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDTDHandler : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDTDHandler() = default;
+    XDTDHandler(XDTDHandler const &) = default;
+    XDTDHandler(XDTDHandler &&) = default;
+    XDTDHandler & operator =(XDTDHandler const &) = default;
+    XDTDHandler & operator =(XDTDHandler &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL notationDecl( const ::rtl::OUString& sName, const ::rtl::OUString& sPublicId, const ::rtl::OUString& sSystemId ) = 0;
+    virtual void SAL_CALL unparsedEntityDecl( const ::rtl::OUString& sName, const ::rtl::OUString& sPublicId, const ::rtl::OUString& sSystemId, const ::rtl::OUString& sNotationName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDTDHandler() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::sax::XDTDHandler const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::sax::XDTDHandler > *);
+
+#endif

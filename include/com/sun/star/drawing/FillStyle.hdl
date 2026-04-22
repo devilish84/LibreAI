@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_FILLSTYLE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_FILLSTYLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FillStyle
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FillStyle
+{
+
+#endif
+    FillStyle_NONE = 0,
+    FillStyle_SOLID = 1,
+    FillStyle_GRADIENT = 2,
+    FillStyle_HATCH = 3,
+    FillStyle_BITMAP = 4,
+    FillStyle_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FillStyle_NONE = FillStyle::FillStyle_NONE;
+constexpr auto FillStyle_SOLID = FillStyle::FillStyle_SOLID;
+constexpr auto FillStyle_GRADIENT = FillStyle::FillStyle_GRADIENT;
+constexpr auto FillStyle_HATCH = FillStyle::FillStyle_HATCH;
+constexpr auto FillStyle_BITMAP = FillStyle::FillStyle_BITMAP;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::FillStyle const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::FillStyle *);
+
+#endif

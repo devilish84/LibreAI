@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_GRID_XSORTABLEGRIDDATA_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_GRID_XSORTABLEGRIDDATA_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/Pair.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt { namespace grid {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSortableGridData : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSortableGridData() = default;
+    XSortableGridData(XSortableGridData const &) = default;
+    XSortableGridData(XSortableGridData &&) = default;
+    XSortableGridData & operator =(XSortableGridData const &) = default;
+    XSortableGridData & operator =(XSortableGridData &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL sortByColumn( ::sal_Int32 ColumnIndex, ::sal_Bool SortAscending ) = 0;
+    virtual void SAL_CALL removeColumnSort() = 0;
+    virtual ::css::beans::Pair< ::sal_Int32, ::sal_Bool > SAL_CALL getCurrentSortOrder() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSortableGridData() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::grid::XSortableGridData const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::grid::XSortableGridData > *);
+
+#endif

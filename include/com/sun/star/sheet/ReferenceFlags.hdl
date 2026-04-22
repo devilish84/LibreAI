@@ -1,0 +1,22 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_REFERENCEFLAGS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_REFERENCEFLAGS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace ReferenceFlags {
+
+static const ::sal_Int32 COLUMN_DELETED = (sal_Int32)2;
+static const ::sal_Int32 COLUMN_RELATIVE = (sal_Int32)1;
+static const ::sal_Int32 RELATIVE_NAME = (sal_Int32)128;
+static const ::sal_Int32 ROW_DELETED = (sal_Int32)8;
+static const ::sal_Int32 ROW_RELATIVE = (sal_Int32)4;
+static const ::sal_Int32 SHEET_3D = (sal_Int32)64;
+static const ::sal_Int32 SHEET_DELETED = (sal_Int32)32;
+static const ::sal_Int32 SHEET_RELATIVE = (sal_Int32)16;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_REFERENCEFLAGS_HDL

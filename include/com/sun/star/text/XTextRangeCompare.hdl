@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XTEXTRANGECOMPARE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XTEXTRANGECOMPARE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace text { class XTextRange; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTextRangeCompare : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTextRangeCompare() = default;
+    XTextRangeCompare(XTextRangeCompare const &) = default;
+    XTextRangeCompare(XTextRangeCompare &&) = default;
+    XTextRangeCompare & operator =(XTextRangeCompare const &) = default;
+    XTextRangeCompare & operator =(XTextRangeCompare &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int16 SAL_CALL compareRegionStarts( const ::css::uno::Reference< ::css::text::XTextRange >& xR1, const ::css::uno::Reference< ::css::text::XTextRange >& xR2 ) = 0;
+    virtual ::sal_Int16 SAL_CALL compareRegionEnds( const ::css::uno::Reference< ::css::text::XTextRange >& xR1, const ::css::uno::Reference< ::css::text::XTextRange >& xR2 ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTextRangeCompare() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XTextRangeCompare const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XTextRangeCompare > *);
+
+#endif

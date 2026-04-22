@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XTABCONTROLLER_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XTABCONTROLLER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XControl; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XControlContainer; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XTabControllerModel; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTabController : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTabController() = default;
+    XTabController(XTabController const &) = default;
+    XTabController(XTabController &&) = default;
+    XTabController & operator =(XTabController const &) = default;
+    XTabController & operator =(XTabController &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setModel( const ::css::uno::Reference< ::css::awt::XTabControllerModel >& Model ) = 0;
+    virtual ::css::uno::Reference< ::css::awt::XTabControllerModel > SAL_CALL getModel() = 0;
+    virtual void SAL_CALL setContainer( const ::css::uno::Reference< ::css::awt::XControlContainer >& Container ) = 0;
+    virtual ::css::uno::Reference< ::css::awt::XControlContainer > SAL_CALL getContainer() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::awt::XControl > > SAL_CALL getControls() = 0;
+    virtual void SAL_CALL autoTabOrder() = 0;
+    virtual void SAL_CALL activateTabOrder() = 0;
+    virtual void SAL_CALL activateFirst() = 0;
+    virtual void SAL_CALL activateLast() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTabController() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XTabController const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XTabController > *);
+
+#endif

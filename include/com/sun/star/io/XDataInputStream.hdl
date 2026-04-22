@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_IO_XDATAINPUTSTREAM_HDL
+#define INCLUDED_COM_SUN_STAR_IO_XDATAINPUTSTREAM_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/io/XInputStream.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace io {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDataInputStream : public ::css::io::XInputStream
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDataInputStream() = default;
+    XDataInputStream(XDataInputStream const &) = default;
+    XDataInputStream(XDataInputStream &&) = default;
+    XDataInputStream & operator =(XDataInputStream const &) = default;
+    XDataInputStream & operator =(XDataInputStream &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int8 SAL_CALL readBoolean() = 0;
+    virtual ::sal_Int8 SAL_CALL readByte() = 0;
+    virtual ::sal_Unicode SAL_CALL readChar() = 0;
+    virtual ::sal_Int16 SAL_CALL readShort() = 0;
+    virtual ::sal_Int32 SAL_CALL readLong() = 0;
+    virtual ::sal_Int64 SAL_CALL readHyper() = 0;
+    virtual float SAL_CALL readFloat() = 0;
+    virtual double SAL_CALL readDouble() = 0;
+    virtual ::rtl::OUString SAL_CALL readUTF() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDataInputStream() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::io::XDataInputStream const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::io::XDataInputStream > *);
+
+#endif

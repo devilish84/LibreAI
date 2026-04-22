@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_KEYRULE_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_KEYRULE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbc { namespace KeyRule {
+
+static const ::sal_Int32 CASCADE = (sal_Int32)0;
+static const ::sal_Int32 NO_ACTION = (sal_Int32)3;
+static const ::sal_Int32 RESTRICT = (sal_Int32)1;
+static const ::sal_Int32 SET_DEFAULT = (sal_Int32)4;
+static const ::sal_Int32 SET_NULL = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBC_KEYRULE_HDL

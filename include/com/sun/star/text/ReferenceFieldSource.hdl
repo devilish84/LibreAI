@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_REFERENCEFIELDSOURCE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_REFERENCEFIELDSOURCE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace ReferenceFieldSource {
+
+static const ::sal_Int16 BOOKMARK = (sal_Int16)2;
+static const ::sal_Int16 ENDNOTE = (sal_Int16)4;
+static const ::sal_Int16 FOOTNOTE = (sal_Int16)3;
+static const ::sal_Int16 REFERENCE_MARK = (sal_Int16)0;
+static const ::sal_Int16 SEQUENCE_FIELD = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_REFERENCEFIELDSOURCE_HDL

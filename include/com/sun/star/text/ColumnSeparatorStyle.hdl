@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_COLUMNSEPARATORSTYLE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_COLUMNSEPARATORSTYLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace ColumnSeparatorStyle {
+
+static const ::sal_Int16 DASHED = (sal_Int16)3;
+static const ::sal_Int16 DOTTED = (sal_Int16)2;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+static const ::sal_Int16 SOLID = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_COLUMNSEPARATORSTYLE_HDL

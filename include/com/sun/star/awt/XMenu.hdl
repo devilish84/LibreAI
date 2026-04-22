@@ -1,0 +1,71 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XMENU_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XMENU_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/MenuItemType.hdl"
+namespace com { namespace sun { namespace star { namespace awt { class XMenuListener; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XPopupMenu; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMenu : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMenu() = default;
+    XMenu(XMenu const &) = default;
+    XMenu(XMenu &&) = default;
+    XMenu & operator =(XMenu const &) = default;
+    XMenu & operator =(XMenu &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addMenuListener( const ::css::uno::Reference< ::css::awt::XMenuListener >& xListener ) = 0;
+    virtual void SAL_CALL removeMenuListener( const ::css::uno::Reference< ::css::awt::XMenuListener >& xListener ) = 0;
+    virtual void SAL_CALL insertItem( ::sal_Int16 nItemId, const ::rtl::OUString& aText, ::sal_Int16 nItemStyle, ::sal_Int16 nItemPos ) = 0;
+    virtual void SAL_CALL removeItem( ::sal_Int16 nItemPos, ::sal_Int16 nCount ) = 0;
+    virtual void SAL_CALL clear() = 0;
+    virtual ::sal_Int16 SAL_CALL getItemCount() = 0;
+    virtual ::sal_Int16 SAL_CALL getItemId( ::sal_Int16 nItemPos ) = 0;
+    virtual ::sal_Int16 SAL_CALL getItemPos( ::sal_Int16 nItemId ) = 0;
+    virtual ::css::awt::MenuItemType SAL_CALL getItemType( ::sal_Int16 nItemPos ) = 0;
+    virtual void SAL_CALL enableItem( ::sal_Int16 nItemId, ::sal_Bool bEnable ) = 0;
+    virtual ::sal_Bool SAL_CALL isItemEnabled( ::sal_Int16 nItemId ) = 0;
+    virtual void SAL_CALL hideDisabledEntries( ::sal_Bool bHide ) = 0;
+    virtual void SAL_CALL enableAutoMnemonics( ::sal_Bool bEnable ) = 0;
+    virtual void SAL_CALL setItemText( ::sal_Int16 nItemId, const ::rtl::OUString& aText ) = 0;
+    virtual ::rtl::OUString SAL_CALL getItemText( ::sal_Int16 nItemId ) = 0;
+    virtual void SAL_CALL setCommand( ::sal_Int16 nItemId, const ::rtl::OUString& aCommand ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCommand( ::sal_Int16 nItemId ) = 0;
+    virtual void SAL_CALL setHelpCommand( ::sal_Int16 nItemId, const ::rtl::OUString& aCommand ) = 0;
+    virtual ::rtl::OUString SAL_CALL getHelpCommand( ::sal_Int16 nItemId ) = 0;
+    virtual void SAL_CALL setHelpText( ::sal_Int16 nItemId, const ::rtl::OUString& sHelpText ) = 0;
+    virtual ::rtl::OUString SAL_CALL getHelpText( ::sal_Int16 nItemId ) = 0;
+    virtual void SAL_CALL setTipHelpText( ::sal_Int16 nItemId, const ::rtl::OUString& sTipHelpText ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTipHelpText( ::sal_Int16 nItemId ) = 0;
+    virtual ::sal_Bool SAL_CALL isPopupMenu() = 0;
+    virtual void SAL_CALL setPopupMenu( ::sal_Int16 nItemId, const ::css::uno::Reference< ::css::awt::XPopupMenu >& aPopupMenu ) = 0;
+    virtual ::css::uno::Reference< ::css::awt::XPopupMenu > SAL_CALL getPopupMenu( ::sal_Int16 nItemId ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMenu() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XMenu const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XMenu > *);
+
+#endif

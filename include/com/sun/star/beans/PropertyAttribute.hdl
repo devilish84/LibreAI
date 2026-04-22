@@ -1,0 +1,24 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace beans { namespace PropertyAttribute {
+
+static const ::sal_Int16 BOUND = (sal_Int16)2;
+static const ::sal_Int16 CONSTRAINED = (sal_Int16)4;
+static const ::sal_Int16 MAYBEAMBIGUOUS = (sal_Int16)32;
+static const ::sal_Int16 MAYBEDEFAULT = (sal_Int16)64;
+static const ::sal_Int16 MAYBEVOID = (sal_Int16)1;
+static const ::sal_Int16 OPTIONAL = (sal_Int16)256;
+static const ::sal_Int16 READONLY = (sal_Int16)16;
+static const ::sal_Int16 REMOVABLE = (sal_Int16)128;
+static const ::sal_Int16 REMOVEABLE = (sal_Int16)128;
+static const ::sal_Int16 TRANSIENT = (sal_Int16)8;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HDL

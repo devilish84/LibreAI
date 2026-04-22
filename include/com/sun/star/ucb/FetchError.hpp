@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_FETCHERROR_HPP
+#define INCLUDED_COM_SUN_STAR_UCB_FETCHERROR_HPP
+
+#include "com/sun/star/ucb/FetchError.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_UCB_FETCHERROR_HPP

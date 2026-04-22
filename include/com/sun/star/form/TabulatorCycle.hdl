@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_TABULATORCYCLE_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_TABULATORCYCLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TabulatorCycle
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TabulatorCycle
+{
+
+#endif
+    TabulatorCycle_RECORDS = 0,
+    TabulatorCycle_CURRENT = 1,
+    TabulatorCycle_PAGE = 2,
+    TabulatorCycle_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TabulatorCycle_RECORDS = TabulatorCycle::TabulatorCycle_RECORDS;
+constexpr auto TabulatorCycle_CURRENT = TabulatorCycle::TabulatorCycle_CURRENT;
+constexpr auto TabulatorCycle_PAGE = TabulatorCycle::TabulatorCycle_PAGE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::TabulatorCycle const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::form::TabulatorCycle *);
+
+#endif

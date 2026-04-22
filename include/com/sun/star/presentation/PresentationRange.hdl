@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_PRESENTATION_PRESENTATIONRANGE_HDL
+#define INCLUDED_COM_SUN_STAR_PRESENTATION_PRESENTATIONRANGE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace presentation {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI PresentationRange
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI PresentationRange
+{
+
+#endif
+    PresentationRange_PRESENTATIONRANGE_ALL = 0,
+    PresentationRange_PRESENTATIONRANGE_FROM_PAGE = 1,
+    PresentationRange_PRESENTATIONRANGE_INDIVIDUAL = 2,
+    PresentationRange_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto PresentationRange_PRESENTATIONRANGE_ALL = PresentationRange::PresentationRange_PRESENTATIONRANGE_ALL;
+constexpr auto PresentationRange_PRESENTATIONRANGE_FROM_PAGE = PresentationRange::PresentationRange_PRESENTATIONRANGE_FROM_PAGE;
+constexpr auto PresentationRange_PRESENTATIONRANGE_INDIVIDUAL = PresentationRange::PresentationRange_PRESENTATIONRANGE_INDIVIDUAL;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::presentation::PresentationRange const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::presentation::PresentationRange *);
+
+#endif

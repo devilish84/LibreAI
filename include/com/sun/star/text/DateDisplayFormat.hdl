@@ -1,0 +1,22 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_DATEDISPLAYFORMAT_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_DATEDISPLAYFORMAT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace DateDisplayFormat {
+
+static const ::sal_Int16 DDMMMMYYYY = (sal_Int16)5;
+static const ::sal_Int16 DDMMMYYYY = (sal_Int16)4;
+static const ::sal_Int16 MMDDYY = (sal_Int16)2;
+static const ::sal_Int16 MMDDYYYY = (sal_Int16)3;
+static const ::sal_Int16 NNDDMMMMYYYY = (sal_Int16)6;
+static const ::sal_Int16 NNNNDDMMMMYYYY = (sal_Int16)7;
+static const ::sal_Int16 STANDARD_LONG = (sal_Int16)1;
+static const ::sal_Int16 STANDARD_SHORT = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_DATEDISPLAYFORMAT_HDL

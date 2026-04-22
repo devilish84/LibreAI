@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTLEGENDEXPANSION_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTLEGENDEXPANSION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ChartLegendExpansion
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ChartLegendExpansion
+{
+
+#endif
+    ChartLegendExpansion_WIDE = 0,
+    ChartLegendExpansion_HIGH = 1,
+    ChartLegendExpansion_BALANCED = 2,
+    ChartLegendExpansion_CUSTOM = 3,
+    ChartLegendExpansion_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ChartLegendExpansion_WIDE = ChartLegendExpansion::ChartLegendExpansion_WIDE;
+constexpr auto ChartLegendExpansion_HIGH = ChartLegendExpansion::ChartLegendExpansion_HIGH;
+constexpr auto ChartLegendExpansion_BALANCED = ChartLegendExpansion::ChartLegendExpansion_BALANCED;
+constexpr auto ChartLegendExpansion_CUSTOM = ChartLegendExpansion::ChartLegendExpansion_CUSTOM;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::ChartLegendExpansion const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart::ChartLegendExpansion *);
+
+#endif

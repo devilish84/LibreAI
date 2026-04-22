@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_PROPERTYINFO_HDL
+#define INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_PROPERTYINFO_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI PropertyInfo {
+    inline PropertyInfo();
+
+    inline PropertyInfo(const ::rtl::OUString& Name_, const ::rtl::OUString& Type_, const ::css::uno::Any& Value_, const ::sal_Bool& Protected_);
+
+    ::rtl::OUString Name;
+    ::rtl::OUString Type;
+    ::css::uno::Any Value;
+    ::sal_Bool Protected;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::configuration::backend::PropertyInfo const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::configuration::backend::PropertyInfo *);
+
+#endif

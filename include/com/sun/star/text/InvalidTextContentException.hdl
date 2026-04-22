@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_INVALIDTEXTCONTENTEXCEPTION_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_INVALIDTEXTCONTENTEXCEPTION_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace text { class XTextContent; } } } }
+#include "com/sun/star/uno/Exception.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED InvalidTextContentException : public ::css::uno::Exception
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE InvalidTextContentException(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE InvalidTextContentException(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::css::uno::Reference< ::css::text::XTextContent >& TextContent_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE InvalidTextContentException(InvalidTextContentException const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~InvalidTextContentException();
+
+    inline CPPU_GCC_DLLPRIVATE InvalidTextContentException & operator =(InvalidTextContentException const &);
+#endif
+
+    ::css::uno::Reference< ::css::text::XTextContent > TextContent CPPU_GCC3_ALIGN( ::css::uno::Exception );
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::InvalidTextContentException const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::text::InvalidTextContentException *);
+
+#endif

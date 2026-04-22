@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_ICONSETFORMATENTRY_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_ICONSETFORMATENTRY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace IconSetFormatEntry {
+
+static const ::sal_Int32 ICONSET_FORMULA = (sal_Int32)4;
+static const ::sal_Int32 ICONSET_MIN = (sal_Int32)0;
+static const ::sal_Int32 ICONSET_PERCENT = (sal_Int32)3;
+static const ::sal_Int32 ICONSET_PERCENTILE = (sal_Int32)1;
+static const ::sal_Int32 ICONSET_VALUE = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_ICONSETFORMATENTRY_HDL

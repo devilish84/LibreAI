@@ -1,0 +1,32 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs { namespace ExtendedFilePickerElementIds {
+
+static const ::sal_Int16 CHECKBOX_AUTOEXTENSION = (sal_Int16)100;
+static const ::sal_Int16 CHECKBOX_FILTEROPTIONS = (sal_Int16)102;
+static const ::sal_Int16 CHECKBOX_GPGENCRYPTION = (sal_Int16)211;
+static const ::sal_Int16 CHECKBOX_LINK = (sal_Int16)104;
+static const ::sal_Int16 CHECKBOX_PASSWORD = (sal_Int16)101;
+static const ::sal_Int16 CHECKBOX_PREVIEW = (sal_Int16)105;
+static const ::sal_Int16 CHECKBOX_READONLY = (sal_Int16)103;
+static const ::sal_Int16 CHECKBOX_SELECTION = (sal_Int16)110;
+static const ::sal_Int16 LISTBOX_FILTER_SELECTOR = (sal_Int16)210;
+static const ::sal_Int16 LISTBOX_IMAGE_ANCHOR = (sal_Int16)212;
+static const ::sal_Int16 LISTBOX_IMAGE_ANCHOR_LABEL = (sal_Int16)213;
+static const ::sal_Int16 LISTBOX_IMAGE_TEMPLATE = (sal_Int16)109;
+static const ::sal_Int16 LISTBOX_IMAGE_TEMPLATE_LABEL = (sal_Int16)209;
+static const ::sal_Int16 LISTBOX_TEMPLATE = (sal_Int16)108;
+static const ::sal_Int16 LISTBOX_TEMPLATE_LABEL = (sal_Int16)208;
+static const ::sal_Int16 LISTBOX_VERSION = (sal_Int16)107;
+static const ::sal_Int16 LISTBOX_VERSION_LABEL = (sal_Int16)207;
+static const ::sal_Int16 PUSHBUTTON_PLAY = (sal_Int16)106;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HDL

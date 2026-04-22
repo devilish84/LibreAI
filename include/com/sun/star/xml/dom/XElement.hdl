@@ -1,0 +1,60 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_XELEMENT_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_XELEMENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XAttr; } } } } }
+#include "com/sun/star/xml/dom/XNode.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XNodeList; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XElement : public ::css::xml::dom::XNode
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XElement() = default;
+    XElement(XElement const &) = default;
+    XElement(XElement &&) = default;
+    XElement & operator =(XElement const &) = default;
+    XElement & operator =(XElement &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getAttribute( const ::rtl::OUString& name ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XAttr > SAL_CALL getAttributeNode( const ::rtl::OUString& name ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XAttr > SAL_CALL getAttributeNodeNS( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& localName ) = 0;
+    virtual ::rtl::OUString SAL_CALL getAttributeNS( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& localName ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNodeList > SAL_CALL getElementsByTagName( const ::rtl::OUString& name ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNodeList > SAL_CALL getElementsByTagNameNS( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& localName ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTagName() = 0;
+    virtual ::sal_Bool SAL_CALL hasAttribute( const ::rtl::OUString& name ) = 0;
+    virtual ::sal_Bool SAL_CALL hasAttributeNS( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& localName ) = 0;
+    virtual void SAL_CALL removeAttribute( const ::rtl::OUString& name ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XAttr > SAL_CALL removeAttributeNode( const ::css::uno::Reference< ::css::xml::dom::XAttr >& oldAttr ) = 0;
+    virtual void SAL_CALL removeAttributeNS( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& localName ) = 0;
+    virtual void SAL_CALL setAttribute( const ::rtl::OUString& name, const ::rtl::OUString& value ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XAttr > SAL_CALL setAttributeNode( const ::css::uno::Reference< ::css::xml::dom::XAttr >& newAttr ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XAttr > SAL_CALL setAttributeNodeNS( const ::css::uno::Reference< ::css::xml::dom::XAttr >& newAttr ) = 0;
+    virtual void SAL_CALL setAttributeNS( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& qualifiedName, const ::rtl::OUString& value ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XElement() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::XElement const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::XElement > *);
+
+#endif

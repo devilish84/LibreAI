@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_RDF_XLITERAL_HDL
+#define INCLUDED_COM_SUN_STAR_RDF_XLITERAL_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/rdf/XNode.hdl"
+namespace com { namespace sun { namespace star { namespace rdf { class XURI; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rdf {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLiteral : public ::css::rdf::XNode
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLiteral() = default;
+    XLiteral(XLiteral const &) = default;
+    XLiteral(XLiteral &&) = default;
+    XLiteral & operator =(XLiteral const &) = default;
+    XLiteral & operator =(XLiteral &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getValue() = 0;
+    virtual ::rtl::OUString SAL_CALL getLanguage() = 0;
+    virtual ::css::uno::Reference< ::css::rdf::XURI > SAL_CALL getDatatype() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLiteral() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rdf::XLiteral const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rdf::XLiteral > *);
+
+#endif

@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_TASK_INTERACTIONCLASSIFICATION_HDL
+#define INCLUDED_COM_SUN_STAR_TASK_INTERACTIONCLASSIFICATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace task {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI InteractionClassification
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI InteractionClassification
+{
+
+#endif
+    InteractionClassification_ERROR = 0,
+    InteractionClassification_WARNING = 1,
+    InteractionClassification_INFO = 2,
+    InteractionClassification_QUERY = 3,
+    InteractionClassification_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto InteractionClassification_ERROR = InteractionClassification::InteractionClassification_ERROR;
+constexpr auto InteractionClassification_WARNING = InteractionClassification::InteractionClassification_WARNING;
+constexpr auto InteractionClassification_INFO = InteractionClassification::InteractionClassification_INFO;
+constexpr auto InteractionClassification_QUERY = InteractionClassification::InteractionClassification_QUERY;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::task::InteractionClassification const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::task::InteractionClassification *);
+
+#endif

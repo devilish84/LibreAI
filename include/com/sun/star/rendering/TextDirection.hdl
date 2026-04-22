@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_TEXTDIRECTION_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_TEXTDIRECTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace TextDirection {
+
+static const ::sal_Int8 STRONG_LEFT_TO_RIGHT = (sal_Int8)2;
+static const ::sal_Int8 STRONG_RIGHT_TO_LEFT = (sal_Int8)3;
+static const ::sal_Int8 WEAK_LEFT_TO_RIGHT = (sal_Int8)0;
+static const ::sal_Int8 WEAK_RIGHT_TO_LEFT = (sal_Int8)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_TEXTDIRECTION_HDL

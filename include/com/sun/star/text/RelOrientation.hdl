@@ -1,0 +1,26 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_RELORIENTATION_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_RELORIENTATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace RelOrientation {
+
+static const ::sal_Int16 CHAR = (sal_Int16)2;
+static const ::sal_Int16 FRAME = (sal_Int16)0;
+static const ::sal_Int16 FRAME_LEFT = (sal_Int16)5;
+static const ::sal_Int16 FRAME_RIGHT = (sal_Int16)6;
+static const ::sal_Int16 PAGE_FRAME = (sal_Int16)7;
+static const ::sal_Int16 PAGE_LEFT = (sal_Int16)3;
+static const ::sal_Int16 PAGE_PRINT_AREA = (sal_Int16)8;
+static const ::sal_Int16 PAGE_PRINT_AREA_BOTTOM = (sal_Int16)10;
+static const ::sal_Int16 PAGE_PRINT_AREA_TOP = (sal_Int16)11;
+static const ::sal_Int16 PAGE_RIGHT = (sal_Int16)4;
+static const ::sal_Int16 PRINT_AREA = (sal_Int16)1;
+static const ::sal_Int16 TEXT_LINE = (sal_Int16)9;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_RELORIENTATION_HDL

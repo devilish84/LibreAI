@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_USERFIELDFORMAT_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_USERFIELDFORMAT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace UserFieldFormat {
+
+static const ::sal_Int16 NUM = (sal_Int16)2;
+static const ::sal_Int16 SYSTEM = (sal_Int16)0;
+static const ::sal_Int16 TEXT = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_USERFIELDFORMAT_HDL

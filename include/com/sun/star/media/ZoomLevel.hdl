@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_MEDIA_ZOOMLEVEL_HDL
+#define INCLUDED_COM_SUN_STAR_MEDIA_ZOOMLEVEL_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace media {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ZoomLevel
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ZoomLevel
+{
+
+#endif
+    ZoomLevel_NOT_AVAILABLE = 0,
+    ZoomLevel_ORIGINAL = 1,
+    ZoomLevel_FIT_TO_WINDOW = 2,
+    ZoomLevel_FIT_TO_WINDOW_FIXED_ASPECT = 3,
+    ZoomLevel_FULLSCREEN = 4,
+    ZoomLevel_ZOOM_1_TO_4 = 5,
+    ZoomLevel_ZOOM_1_TO_2 = 6,
+    ZoomLevel_ZOOM_2_TO_1 = 7,
+    ZoomLevel_ZOOM_4_TO_1 = 8,
+    ZoomLevel_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ZoomLevel_NOT_AVAILABLE = ZoomLevel::ZoomLevel_NOT_AVAILABLE;
+constexpr auto ZoomLevel_ORIGINAL = ZoomLevel::ZoomLevel_ORIGINAL;
+constexpr auto ZoomLevel_FIT_TO_WINDOW = ZoomLevel::ZoomLevel_FIT_TO_WINDOW;
+constexpr auto ZoomLevel_FIT_TO_WINDOW_FIXED_ASPECT = ZoomLevel::ZoomLevel_FIT_TO_WINDOW_FIXED_ASPECT;
+constexpr auto ZoomLevel_FULLSCREEN = ZoomLevel::ZoomLevel_FULLSCREEN;
+constexpr auto ZoomLevel_ZOOM_1_TO_4 = ZoomLevel::ZoomLevel_ZOOM_1_TO_4;
+constexpr auto ZoomLevel_ZOOM_1_TO_2 = ZoomLevel::ZoomLevel_ZOOM_1_TO_2;
+constexpr auto ZoomLevel_ZOOM_2_TO_1 = ZoomLevel::ZoomLevel_ZOOM_2_TO_1;
+constexpr auto ZoomLevel_ZOOM_4_TO_1 = ZoomLevel::ZoomLevel_ZOOM_4_TO_1;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::media::ZoomLevel const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::media::ZoomLevel *);
+
+#endif

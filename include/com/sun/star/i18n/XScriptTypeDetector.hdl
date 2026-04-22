@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XSCRIPTTYPEDETECTOR_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XSCRIPTTYPEDETECTOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XScriptTypeDetector : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XScriptTypeDetector() = default;
+    XScriptTypeDetector(XScriptTypeDetector const &) = default;
+    XScriptTypeDetector(XScriptTypeDetector &&) = default;
+    XScriptTypeDetector & operator =(XScriptTypeDetector const &) = default;
+    XScriptTypeDetector & operator =(XScriptTypeDetector &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL beginOfScriptDirection( const ::rtl::OUString& aText, ::sal_Int32 nPos, ::sal_Int16 nScriptDirection ) = 0;
+    virtual ::sal_Int32 SAL_CALL endOfScriptDirection( const ::rtl::OUString& aText, ::sal_Int32 nPos, ::sal_Int16 nScriptDirection ) = 0;
+    virtual ::sal_Int16 SAL_CALL getScriptDirection( const ::rtl::OUString& aText, ::sal_Int32 nPos, ::sal_Int16 nDefaultScriptDirection ) = 0;
+    virtual ::sal_Int32 SAL_CALL beginOfCTLScriptType( const ::rtl::OUString& aText, ::sal_Int32 nPos ) = 0;
+    virtual ::sal_Int32 SAL_CALL endOfCTLScriptType( const ::rtl::OUString& aText, ::sal_Int32 nPos ) = 0;
+    virtual ::sal_Int16 SAL_CALL getCTLScriptType( const ::rtl::OUString& aText, ::sal_Int32 nPos ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XScriptTypeDetector() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XScriptTypeDetector const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XScriptTypeDetector > *);
+
+#endif

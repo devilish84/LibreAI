@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_MOUSEBUTTON_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_MOUSEBUTTON_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace MouseButton {
+
+static const ::sal_Int16 LEFT = (sal_Int16)1;
+static const ::sal_Int16 MIDDLE = (sal_Int16)4;
+static const ::sal_Int16 RIGHT = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_MOUSEBUTTON_HDL

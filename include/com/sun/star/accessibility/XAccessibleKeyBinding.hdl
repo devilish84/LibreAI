@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLEKEYBINDING_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLEKEYBINDING_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/KeyStroke.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAccessibleKeyBinding : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAccessibleKeyBinding() = default;
+    XAccessibleKeyBinding(XAccessibleKeyBinding const &) = default;
+    XAccessibleKeyBinding(XAccessibleKeyBinding &&) = default;
+    XAccessibleKeyBinding & operator =(XAccessibleKeyBinding const &) = default;
+    XAccessibleKeyBinding & operator =(XAccessibleKeyBinding &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getAccessibleKeyBindingCount() = 0;
+    virtual ::css::uno::Sequence< ::css::awt::KeyStroke > SAL_CALL getAccessibleKeyBinding( ::sal_Int32 nIndex ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAccessibleKeyBinding() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::XAccessibleKeyBinding const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::accessibility::XAccessibleKeyBinding > *);
+
+#endif

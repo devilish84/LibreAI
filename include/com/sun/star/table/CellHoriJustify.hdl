@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_CELLHORIJUSTIFY_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_CELLHORIJUSTIFY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI CellHoriJustify
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI CellHoriJustify
+{
+
+#endif
+    CellHoriJustify_STANDARD = 0,
+    CellHoriJustify_LEFT = 1,
+    CellHoriJustify_CENTER = 2,
+    CellHoriJustify_RIGHT = 3,
+    CellHoriJustify_BLOCK = 4,
+    CellHoriJustify_REPEAT = 5,
+    CellHoriJustify_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto CellHoriJustify_STANDARD = CellHoriJustify::CellHoriJustify_STANDARD;
+constexpr auto CellHoriJustify_LEFT = CellHoriJustify::CellHoriJustify_LEFT;
+constexpr auto CellHoriJustify_CENTER = CellHoriJustify::CellHoriJustify_CENTER;
+constexpr auto CellHoriJustify_RIGHT = CellHoriJustify::CellHoriJustify_RIGHT;
+constexpr auto CellHoriJustify_BLOCK = CellHoriJustify::CellHoriJustify_BLOCK;
+constexpr auto CellHoriJustify_REPEAT = CellHoriJustify::CellHoriJustify_REPEAT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::CellHoriJustify const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::table::CellHoriJustify *);
+
+#endif

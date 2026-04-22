@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XDOCKABLEWINDOW_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XDOCKABLEWINDOW_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+namespace com { namespace sun { namespace star { namespace awt { class XDockableWindowListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDockableWindow : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDockableWindow() = default;
+    XDockableWindow(XDockableWindow const &) = default;
+    XDockableWindow(XDockableWindow &&) = default;
+    XDockableWindow & operator =(XDockableWindow const &) = default;
+    XDockableWindow & operator =(XDockableWindow &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addDockableWindowListener( const ::css::uno::Reference< ::css::awt::XDockableWindowListener >& xListener ) = 0;
+    virtual void SAL_CALL removeDockableWindowListener( const ::css::uno::Reference< ::css::awt::XDockableWindowListener >& xListener ) = 0;
+    virtual void SAL_CALL enableDocking( ::sal_Bool bEnable ) = 0;
+    virtual ::sal_Bool SAL_CALL isFloating() = 0;
+    virtual void SAL_CALL setFloatingMode( ::sal_Bool bFloating ) = 0;
+    virtual void SAL_CALL lock() = 0;
+    virtual void SAL_CALL unlock() = 0;
+    virtual ::sal_Bool SAL_CALL isLocked() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL startPopupMode( const ::css::awt::Rectangle& WindowRect ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL isInPopupMode() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDockableWindow() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XDockableWindow const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XDockableWindow > *);
+
+#endif

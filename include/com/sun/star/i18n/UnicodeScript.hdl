@@ -1,0 +1,210 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_UNICODESCRIPT_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_UNICODESCRIPT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI UnicodeScript
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI UnicodeScript
+{
+
+#endif
+    UnicodeScript_kBasicLatin = 0,
+    UnicodeScript_kLatin1Supplement = 1,
+    UnicodeScript_kLatinExtendedA = 2,
+    UnicodeScript_kLatinExtendedB = 3,
+    UnicodeScript_kIPAExtension = 4,
+    UnicodeScript_kSpacingModifier = 5,
+    UnicodeScript_kCombiningDiacritical = 6,
+    UnicodeScript_kGreek = 7,
+    UnicodeScript_kCyrillic = 8,
+    UnicodeScript_kArmenian = 9,
+    UnicodeScript_kHebrew = 10,
+    UnicodeScript_kArabic = 11,
+    UnicodeScript_kSyriac = 12,
+    UnicodeScript_kThaana = 13,
+    UnicodeScript_kDevanagari = 14,
+    UnicodeScript_kBengali = 15,
+    UnicodeScript_kGurmukhi = 16,
+    UnicodeScript_kGujarati = 17,
+    UnicodeScript_kOriya = 18,
+    UnicodeScript_kTamil = 19,
+    UnicodeScript_kTelugu = 20,
+    UnicodeScript_kKannada = 21,
+    UnicodeScript_kMalayalam = 22,
+    UnicodeScript_kSinhala = 23,
+    UnicodeScript_kThai = 24,
+    UnicodeScript_kLao = 25,
+    UnicodeScript_kTibetan = 26,
+    UnicodeScript_kMyanmar = 27,
+    UnicodeScript_kGeorgian = 28,
+    UnicodeScript_kHangulJamo = 29,
+    UnicodeScript_kEthiopic = 30,
+    UnicodeScript_kCherokee = 31,
+    UnicodeScript_kUnifiedCanadianAboriginalSyllabics = 32,
+    UnicodeScript_kOgham = 33,
+    UnicodeScript_kRunic = 34,
+    UnicodeScript_kKhmer = 35,
+    UnicodeScript_kMongolian = 36,
+    UnicodeScript_kLatinExtendedAdditional = 37,
+    UnicodeScript_kGreekExtended = 38,
+    UnicodeScript_kGeneralPunctuation = 39,
+    UnicodeScript_kSuperSubScript = 40,
+    UnicodeScript_kCurrencySymbolScript = 41,
+    UnicodeScript_kSymbolCombiningMark = 42,
+    UnicodeScript_kLetterlikeSymbol = 43,
+    UnicodeScript_kNumberForm = 44,
+    UnicodeScript_kArrow = 45,
+    UnicodeScript_kMathOperator = 46,
+    UnicodeScript_kMiscTechnical = 47,
+    UnicodeScript_kControlPicture = 48,
+    UnicodeScript_kOpticalCharacter = 49,
+    UnicodeScript_kEnclosedAlphanumeric = 50,
+    UnicodeScript_kBoxDrawing = 51,
+    UnicodeScript_kBlockElement = 52,
+    UnicodeScript_kGeometricShape = 53,
+    UnicodeScript_kMiscSymbol = 54,
+    UnicodeScript_kDingbat = 55,
+    UnicodeScript_kBraillePatterns = 56,
+    UnicodeScript_kCJKRadicalsSupplement = 57,
+    UnicodeScript_kKangxiRadicals = 58,
+    UnicodeScript_kIdeographicDescriptionCharacters = 59,
+    UnicodeScript_kCJKSymbolPunctuation = 60,
+    UnicodeScript_kHiragana = 61,
+    UnicodeScript_kKatakana = 62,
+    UnicodeScript_kBopomofo = 63,
+    UnicodeScript_kHangulCompatibilityJamo = 64,
+    UnicodeScript_kKanbun = 65,
+    UnicodeScript_kBopomofoExtended = 66,
+    UnicodeScript_kEnclosedCJKLetterMonth = 67,
+    UnicodeScript_kCJKCompatibility = 68,
+    UnicodeScript_kCJKUnifiedIdeographsExtensionA = 69,
+    UnicodeScript_kCJKUnifiedIdeograph = 70,
+    UnicodeScript_kYiSyllables = 71,
+    UnicodeScript_kYiRadicals = 72,
+    UnicodeScript_kHangulSyllable = 73,
+    UnicodeScript_kHighSurrogate = 74,
+    UnicodeScript_kHighPrivateUseSurrogate = 75,
+    UnicodeScript_kLowSurrogate = 76,
+    UnicodeScript_kPrivateUse = 77,
+    UnicodeScript_kCJKCompatibilityIdeograph = 78,
+    UnicodeScript_kAlphabeticPresentation = 79,
+    UnicodeScript_kArabicPresentationA = 80,
+    UnicodeScript_kCombiningHalfMark = 81,
+    UnicodeScript_kCJKCompatibilityForm = 82,
+    UnicodeScript_kSmallFormVariant = 83,
+    UnicodeScript_kArabicPresentationB = 84,
+    UnicodeScript_kNoScript = 85,
+    UnicodeScript_kHalfwidthFullwidthForm = 86,
+    UnicodeScript_kScriptCount = 87,
+    UnicodeScript_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto UnicodeScript_kBasicLatin = UnicodeScript::UnicodeScript_kBasicLatin;
+constexpr auto UnicodeScript_kLatin1Supplement = UnicodeScript::UnicodeScript_kLatin1Supplement;
+constexpr auto UnicodeScript_kLatinExtendedA = UnicodeScript::UnicodeScript_kLatinExtendedA;
+constexpr auto UnicodeScript_kLatinExtendedB = UnicodeScript::UnicodeScript_kLatinExtendedB;
+constexpr auto UnicodeScript_kIPAExtension = UnicodeScript::UnicodeScript_kIPAExtension;
+constexpr auto UnicodeScript_kSpacingModifier = UnicodeScript::UnicodeScript_kSpacingModifier;
+constexpr auto UnicodeScript_kCombiningDiacritical = UnicodeScript::UnicodeScript_kCombiningDiacritical;
+constexpr auto UnicodeScript_kGreek = UnicodeScript::UnicodeScript_kGreek;
+constexpr auto UnicodeScript_kCyrillic = UnicodeScript::UnicodeScript_kCyrillic;
+constexpr auto UnicodeScript_kArmenian = UnicodeScript::UnicodeScript_kArmenian;
+constexpr auto UnicodeScript_kHebrew = UnicodeScript::UnicodeScript_kHebrew;
+constexpr auto UnicodeScript_kArabic = UnicodeScript::UnicodeScript_kArabic;
+constexpr auto UnicodeScript_kSyriac = UnicodeScript::UnicodeScript_kSyriac;
+constexpr auto UnicodeScript_kThaana = UnicodeScript::UnicodeScript_kThaana;
+constexpr auto UnicodeScript_kDevanagari = UnicodeScript::UnicodeScript_kDevanagari;
+constexpr auto UnicodeScript_kBengali = UnicodeScript::UnicodeScript_kBengali;
+constexpr auto UnicodeScript_kGurmukhi = UnicodeScript::UnicodeScript_kGurmukhi;
+constexpr auto UnicodeScript_kGujarati = UnicodeScript::UnicodeScript_kGujarati;
+constexpr auto UnicodeScript_kOriya = UnicodeScript::UnicodeScript_kOriya;
+constexpr auto UnicodeScript_kTamil = UnicodeScript::UnicodeScript_kTamil;
+constexpr auto UnicodeScript_kTelugu = UnicodeScript::UnicodeScript_kTelugu;
+constexpr auto UnicodeScript_kKannada = UnicodeScript::UnicodeScript_kKannada;
+constexpr auto UnicodeScript_kMalayalam = UnicodeScript::UnicodeScript_kMalayalam;
+constexpr auto UnicodeScript_kSinhala = UnicodeScript::UnicodeScript_kSinhala;
+constexpr auto UnicodeScript_kThai = UnicodeScript::UnicodeScript_kThai;
+constexpr auto UnicodeScript_kLao = UnicodeScript::UnicodeScript_kLao;
+constexpr auto UnicodeScript_kTibetan = UnicodeScript::UnicodeScript_kTibetan;
+constexpr auto UnicodeScript_kMyanmar = UnicodeScript::UnicodeScript_kMyanmar;
+constexpr auto UnicodeScript_kGeorgian = UnicodeScript::UnicodeScript_kGeorgian;
+constexpr auto UnicodeScript_kHangulJamo = UnicodeScript::UnicodeScript_kHangulJamo;
+constexpr auto UnicodeScript_kEthiopic = UnicodeScript::UnicodeScript_kEthiopic;
+constexpr auto UnicodeScript_kCherokee = UnicodeScript::UnicodeScript_kCherokee;
+constexpr auto UnicodeScript_kUnifiedCanadianAboriginalSyllabics = UnicodeScript::UnicodeScript_kUnifiedCanadianAboriginalSyllabics;
+constexpr auto UnicodeScript_kOgham = UnicodeScript::UnicodeScript_kOgham;
+constexpr auto UnicodeScript_kRunic = UnicodeScript::UnicodeScript_kRunic;
+constexpr auto UnicodeScript_kKhmer = UnicodeScript::UnicodeScript_kKhmer;
+constexpr auto UnicodeScript_kMongolian = UnicodeScript::UnicodeScript_kMongolian;
+constexpr auto UnicodeScript_kLatinExtendedAdditional = UnicodeScript::UnicodeScript_kLatinExtendedAdditional;
+constexpr auto UnicodeScript_kGreekExtended = UnicodeScript::UnicodeScript_kGreekExtended;
+constexpr auto UnicodeScript_kGeneralPunctuation = UnicodeScript::UnicodeScript_kGeneralPunctuation;
+constexpr auto UnicodeScript_kSuperSubScript = UnicodeScript::UnicodeScript_kSuperSubScript;
+constexpr auto UnicodeScript_kCurrencySymbolScript = UnicodeScript::UnicodeScript_kCurrencySymbolScript;
+constexpr auto UnicodeScript_kSymbolCombiningMark = UnicodeScript::UnicodeScript_kSymbolCombiningMark;
+constexpr auto UnicodeScript_kLetterlikeSymbol = UnicodeScript::UnicodeScript_kLetterlikeSymbol;
+constexpr auto UnicodeScript_kNumberForm = UnicodeScript::UnicodeScript_kNumberForm;
+constexpr auto UnicodeScript_kArrow = UnicodeScript::UnicodeScript_kArrow;
+constexpr auto UnicodeScript_kMathOperator = UnicodeScript::UnicodeScript_kMathOperator;
+constexpr auto UnicodeScript_kMiscTechnical = UnicodeScript::UnicodeScript_kMiscTechnical;
+constexpr auto UnicodeScript_kControlPicture = UnicodeScript::UnicodeScript_kControlPicture;
+constexpr auto UnicodeScript_kOpticalCharacter = UnicodeScript::UnicodeScript_kOpticalCharacter;
+constexpr auto UnicodeScript_kEnclosedAlphanumeric = UnicodeScript::UnicodeScript_kEnclosedAlphanumeric;
+constexpr auto UnicodeScript_kBoxDrawing = UnicodeScript::UnicodeScript_kBoxDrawing;
+constexpr auto UnicodeScript_kBlockElement = UnicodeScript::UnicodeScript_kBlockElement;
+constexpr auto UnicodeScript_kGeometricShape = UnicodeScript::UnicodeScript_kGeometricShape;
+constexpr auto UnicodeScript_kMiscSymbol = UnicodeScript::UnicodeScript_kMiscSymbol;
+constexpr auto UnicodeScript_kDingbat = UnicodeScript::UnicodeScript_kDingbat;
+constexpr auto UnicodeScript_kBraillePatterns = UnicodeScript::UnicodeScript_kBraillePatterns;
+constexpr auto UnicodeScript_kCJKRadicalsSupplement = UnicodeScript::UnicodeScript_kCJKRadicalsSupplement;
+constexpr auto UnicodeScript_kKangxiRadicals = UnicodeScript::UnicodeScript_kKangxiRadicals;
+constexpr auto UnicodeScript_kIdeographicDescriptionCharacters = UnicodeScript::UnicodeScript_kIdeographicDescriptionCharacters;
+constexpr auto UnicodeScript_kCJKSymbolPunctuation = UnicodeScript::UnicodeScript_kCJKSymbolPunctuation;
+constexpr auto UnicodeScript_kHiragana = UnicodeScript::UnicodeScript_kHiragana;
+constexpr auto UnicodeScript_kKatakana = UnicodeScript::UnicodeScript_kKatakana;
+constexpr auto UnicodeScript_kBopomofo = UnicodeScript::UnicodeScript_kBopomofo;
+constexpr auto UnicodeScript_kHangulCompatibilityJamo = UnicodeScript::UnicodeScript_kHangulCompatibilityJamo;
+constexpr auto UnicodeScript_kKanbun = UnicodeScript::UnicodeScript_kKanbun;
+constexpr auto UnicodeScript_kBopomofoExtended = UnicodeScript::UnicodeScript_kBopomofoExtended;
+constexpr auto UnicodeScript_kEnclosedCJKLetterMonth = UnicodeScript::UnicodeScript_kEnclosedCJKLetterMonth;
+constexpr auto UnicodeScript_kCJKCompatibility = UnicodeScript::UnicodeScript_kCJKCompatibility;
+constexpr auto UnicodeScript_kCJKUnifiedIdeographsExtensionA = UnicodeScript::UnicodeScript_kCJKUnifiedIdeographsExtensionA;
+constexpr auto UnicodeScript_kCJKUnifiedIdeograph = UnicodeScript::UnicodeScript_kCJKUnifiedIdeograph;
+constexpr auto UnicodeScript_kYiSyllables = UnicodeScript::UnicodeScript_kYiSyllables;
+constexpr auto UnicodeScript_kYiRadicals = UnicodeScript::UnicodeScript_kYiRadicals;
+constexpr auto UnicodeScript_kHangulSyllable = UnicodeScript::UnicodeScript_kHangulSyllable;
+constexpr auto UnicodeScript_kHighSurrogate = UnicodeScript::UnicodeScript_kHighSurrogate;
+constexpr auto UnicodeScript_kHighPrivateUseSurrogate = UnicodeScript::UnicodeScript_kHighPrivateUseSurrogate;
+constexpr auto UnicodeScript_kLowSurrogate = UnicodeScript::UnicodeScript_kLowSurrogate;
+constexpr auto UnicodeScript_kPrivateUse = UnicodeScript::UnicodeScript_kPrivateUse;
+constexpr auto UnicodeScript_kCJKCompatibilityIdeograph = UnicodeScript::UnicodeScript_kCJKCompatibilityIdeograph;
+constexpr auto UnicodeScript_kAlphabeticPresentation = UnicodeScript::UnicodeScript_kAlphabeticPresentation;
+constexpr auto UnicodeScript_kArabicPresentationA = UnicodeScript::UnicodeScript_kArabicPresentationA;
+constexpr auto UnicodeScript_kCombiningHalfMark = UnicodeScript::UnicodeScript_kCombiningHalfMark;
+constexpr auto UnicodeScript_kCJKCompatibilityForm = UnicodeScript::UnicodeScript_kCJKCompatibilityForm;
+constexpr auto UnicodeScript_kSmallFormVariant = UnicodeScript::UnicodeScript_kSmallFormVariant;
+constexpr auto UnicodeScript_kArabicPresentationB = UnicodeScript::UnicodeScript_kArabicPresentationB;
+constexpr auto UnicodeScript_kNoScript = UnicodeScript::UnicodeScript_kNoScript;
+constexpr auto UnicodeScript_kHalfwidthFullwidthForm = UnicodeScript::UnicodeScript_kHalfwidthFullwidthForm;
+constexpr auto UnicodeScript_kScriptCount = UnicodeScript::UnicodeScript_kScriptCount;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::UnicodeScript const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::i18n::UnicodeScript *);
+
+#endif

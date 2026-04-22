@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_SEARCHRESULT_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_SEARCHRESULT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED SearchResult {
+    inline SearchResult();
+
+    inline SearchResult(const ::sal_Int32& subRegExpressions_, const ::css::uno::Sequence< ::sal_Int32 >& startOffset_, const ::css::uno::Sequence< ::sal_Int32 >& endOffset_);
+
+    ::sal_Int32 subRegExpressions;
+    ::css::uno::Sequence< ::sal_Int32 > startOffset;
+    ::css::uno::Sequence< ::sal_Int32 > endOffset;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::SearchResult const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::util::SearchResult *);
+
+#endif

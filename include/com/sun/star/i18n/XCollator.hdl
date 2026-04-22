@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XCOLLATOR_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XCOLLATOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCollator : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCollator() = default;
+    XCollator(XCollator const &) = default;
+    XCollator(XCollator &&) = default;
+    XCollator & operator =(XCollator const &) = default;
+    XCollator & operator =(XCollator &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL compareSubstring( const ::rtl::OUString& aStr1, ::sal_Int32 nOff1, ::sal_Int32 nLen1, const ::rtl::OUString& aStr2, ::sal_Int32 nOff2, ::sal_Int32 nLen2 ) = 0;
+    virtual ::sal_Int32 SAL_CALL compareString( const ::rtl::OUString& aStr1, const ::rtl::OUString& aStr2 ) = 0;
+    virtual ::sal_Int32 SAL_CALL loadDefaultCollator( const ::css::lang::Locale& aLocale, ::sal_Int32 nCollatorOptions ) = 0;
+    virtual ::sal_Int32 SAL_CALL loadCollatorAlgorithm( const ::rtl::OUString& aAlgorithmName, const ::css::lang::Locale& aLocale, ::sal_Int32 nCollatorOptions ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL listCollatorAlgorithms( const ::css::lang::Locale& aLocale ) = 0;
+    virtual void SAL_CALL loadCollatorAlgorithmWithEndUserOption( const ::rtl::OUString& aAlgorithmName, const ::css::lang::Locale& aLocale, const ::css::uno::Sequence< ::sal_Int32 >& aCollatorOptions ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int32 > SAL_CALL listCollatorOptions( const ::rtl::OUString& aAlgorithmName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCollator() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XCollator const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XCollator > *);
+
+#endif

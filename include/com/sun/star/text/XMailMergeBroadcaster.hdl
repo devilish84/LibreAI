@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XMAILMERGEBROADCASTER_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XMAILMERGEBROADCASTER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace text { class XMailMergeListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMailMergeBroadcaster : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMailMergeBroadcaster() = default;
+    XMailMergeBroadcaster(XMailMergeBroadcaster const &) = default;
+    XMailMergeBroadcaster(XMailMergeBroadcaster &&) = default;
+    XMailMergeBroadcaster & operator =(XMailMergeBroadcaster const &) = default;
+    XMailMergeBroadcaster & operator =(XMailMergeBroadcaster &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addMailMergeEventListener( const ::css::uno::Reference< ::css::text::XMailMergeListener >& xListener ) = 0;
+    virtual void SAL_CALL removeMailMergeEventListener( const ::css::uno::Reference< ::css::text::XMailMergeListener >& xListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMailMergeBroadcaster() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XMailMergeBroadcaster const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XMailMergeBroadcaster > *);
+
+#endif

@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_XDOCUMENTTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_XDOCUMENTTYPE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XNamedNodeMap; } } } } }
+#include "com/sun/star/xml/dom/XNode.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDocumentType : public ::css::xml::dom::XNode
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDocumentType() = default;
+    XDocumentType(XDocumentType const &) = default;
+    XDocumentType(XDocumentType &&) = default;
+    XDocumentType & operator =(XDocumentType const &) = default;
+    XDocumentType & operator =(XDocumentType &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::xml::dom::XNamedNodeMap > SAL_CALL getEntities() = 0;
+    virtual ::rtl::OUString SAL_CALL getInternalSubset() = 0;
+    virtual ::rtl::OUString SAL_CALL getName() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XNamedNodeMap > SAL_CALL getNotations() = 0;
+    virtual ::rtl::OUString SAL_CALL getPublicId() = 0;
+    virtual ::rtl::OUString SAL_CALL getSystemId() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDocumentType() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::XDocumentType const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::XDocumentType > *);
+
+#endif

@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XUNNAMEDDATABASERANGES_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XUNNAMEDDATABASERANGES_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUnnamedDatabaseRanges : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUnnamedDatabaseRanges() = default;
+    XUnnamedDatabaseRanges(XUnnamedDatabaseRanges const &) = default;
+    XUnnamedDatabaseRanges(XUnnamedDatabaseRanges &&) = default;
+    XUnnamedDatabaseRanges & operator =(XUnnamedDatabaseRanges const &) = default;
+    XUnnamedDatabaseRanges & operator =(XUnnamedDatabaseRanges &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setByTable( const ::css::table::CellRangeAddress& aRange ) = 0;
+    virtual ::css::uno::Any SAL_CALL getByTable( ::sal_Int32 nTab ) = 0;
+    virtual ::sal_Bool SAL_CALL hasByTable( ::sal_Int32 nTab ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUnnamedDatabaseRanges() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XUnnamedDatabaseRanges const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XUnnamedDatabaseRanges > *);
+
+#endif

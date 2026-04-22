@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_OPENCL_OPENCLPLATFORM_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_OPENCL_OPENCLPLATFORM_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/opencl/OpenCLDevice.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace opencl {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED OpenCLPlatform {
+    inline OpenCLPlatform();
+
+    inline OpenCLPlatform(const ::rtl::OUString& Name_, const ::rtl::OUString& Vendor_, const ::css::uno::Sequence< ::css::sheet::opencl::OpenCLDevice >& Devices_);
+
+    ::rtl::OUString Name;
+    ::rtl::OUString Vendor;
+    ::css::uno::Sequence< ::css::sheet::opencl::OpenCLDevice > Devices;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::opencl::OpenCLPlatform const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::opencl::OpenCLPlatform *);
+
+#endif

@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_INPUT_XROOT_HDL
+#define INCLUDED_COM_SUN_STAR_XML_INPUT_XROOT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace input { class XAttributes; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace input { class XElement; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace input { class XNamespaceMapping; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { class XLocator; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace input {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRoot : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRoot() = default;
+    XRoot(XRoot const &) = default;
+    XRoot(XRoot &&) = default;
+    XRoot & operator =(XRoot const &) = default;
+    XRoot & operator =(XRoot &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL startDocument( const ::css::uno::Reference< ::css::xml::input::XNamespaceMapping >& xMapping ) = 0;
+    virtual void SAL_CALL endDocument() = 0;
+    virtual void SAL_CALL processingInstruction( const ::rtl::OUString& target, const ::rtl::OUString& data ) = 0;
+    virtual void SAL_CALL setDocumentLocator( const ::css::uno::Reference< ::css::xml::sax::XLocator >& locator ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::input::XElement > SAL_CALL startRootElement( ::sal_Int32 uid, const ::rtl::OUString& localName, const ::css::uno::Reference< ::css::xml::input::XAttributes >& xAttributes ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRoot() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::input::XRoot const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::input::XRoot > *);
+
+#endif

@@ -1,0 +1,73 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_XANIMATIONNODE_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_XANIMATIONNODE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/NamedValue.hdl"
+#include "com/sun/star/container/XChild.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace animations {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAnimationNode : public ::css::container::XChild
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAnimationNode() = default;
+    XAnimationNode(XAnimationNode const &) = default;
+    XAnimationNode(XAnimationNode &&) = default;
+    XAnimationNode & operator =(XAnimationNode const &) = default;
+    XAnimationNode & operator =(XAnimationNode &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int16 SAL_CALL getType() = 0;
+    virtual ::css::uno::Any SAL_CALL getBegin() = 0;
+    virtual void SAL_CALL setBegin( const ::css::uno::Any& _begin ) = 0;
+    virtual ::css::uno::Any SAL_CALL getDuration() = 0;
+    virtual void SAL_CALL setDuration( const ::css::uno::Any& _duration ) = 0;
+    virtual ::css::uno::Any SAL_CALL getEnd() = 0;
+    virtual void SAL_CALL setEnd( const ::css::uno::Any& _end ) = 0;
+    virtual ::css::uno::Any SAL_CALL getEndSync() = 0;
+    virtual void SAL_CALL setEndSync( const ::css::uno::Any& _endsync ) = 0;
+    virtual ::css::uno::Any SAL_CALL getRepeatCount() = 0;
+    virtual void SAL_CALL setRepeatCount( const ::css::uno::Any& _repeatcount ) = 0;
+    virtual ::css::uno::Any SAL_CALL getRepeatDuration() = 0;
+    virtual void SAL_CALL setRepeatDuration( const ::css::uno::Any& _repeatduration ) = 0;
+    virtual ::sal_Int16 SAL_CALL getFill() = 0;
+    virtual void SAL_CALL setFill( ::sal_Int16 _fill ) = 0;
+    virtual ::sal_Int16 SAL_CALL getFillDefault() = 0;
+    virtual void SAL_CALL setFillDefault( ::sal_Int16 _filldefault ) = 0;
+    virtual ::sal_Int16 SAL_CALL getRestart() = 0;
+    virtual void SAL_CALL setRestart( ::sal_Int16 _restart ) = 0;
+    virtual ::sal_Int16 SAL_CALL getRestartDefault() = 0;
+    virtual void SAL_CALL setRestartDefault( ::sal_Int16 _restartdefault ) = 0;
+    virtual double SAL_CALL getAcceleration() = 0;
+    virtual void SAL_CALL setAcceleration( double _acceleration ) = 0;
+    virtual double SAL_CALL getDecelerate() = 0;
+    virtual void SAL_CALL setDecelerate( double _decelerate ) = 0;
+    virtual ::sal_Bool SAL_CALL getAutoReverse() = 0;
+    virtual void SAL_CALL setAutoReverse( ::sal_Bool _autoreverse ) = 0;
+    virtual ::css::uno::Sequence< ::css::beans::NamedValue > SAL_CALL getUserData() = 0;
+    virtual void SAL_CALL setUserData( const ::css::uno::Sequence< ::css::beans::NamedValue >& _userdata ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAnimationNode() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::animations::XAnimationNode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::animations::XAnimationNode > *);
+
+#endif

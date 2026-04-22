@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_GRID_XGRIDDATAMODEL_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_GRID_XGRIDDATAMODEL_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/util/XCloneable.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt { namespace grid {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XGridDataModel : public ::css::lang::XComponent, public ::css::util::XCloneable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XGridDataModel() = default;
+    XGridDataModel(XGridDataModel const &) = default;
+    XGridDataModel(XGridDataModel &&) = default;
+    XGridDataModel & operator =(XGridDataModel const &) = default;
+    XGridDataModel & operator =(XGridDataModel &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int32 SAL_CALL getRowCount() = 0;
+    virtual ::sal_Int32 SAL_CALL getColumnCount() = 0;
+
+    // Methods
+    virtual ::css::uno::Any SAL_CALL getCellData( ::sal_Int32 Column, ::sal_Int32 RowIndex ) = 0;
+    virtual ::css::uno::Any SAL_CALL getCellToolTip( ::sal_Int32 Column, ::sal_Int32 RowIndex ) = 0;
+    virtual ::css::uno::Any SAL_CALL getRowHeading( ::sal_Int32 RowIndex ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Any > SAL_CALL getRowData( ::sal_Int32 RowIndex ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XGridDataModel() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::grid::XGridDataModel const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::grid::XGridDataModel > *);
+
+#endif

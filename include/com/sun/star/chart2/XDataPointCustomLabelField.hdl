@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_XDATAPOINTCUSTOMLABELFIELD_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_XDATAPOINTCUSTOMLABELFIELD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/chart2/DataPointCustomLabelFieldType.hdl"
+#include "com/sun/star/chart2/XFormattedString2.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDataPointCustomLabelField : public ::css::chart2::XFormattedString2
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDataPointCustomLabelField() = default;
+    XDataPointCustomLabelField(XDataPointCustomLabelField const &) = default;
+    XDataPointCustomLabelField(XDataPointCustomLabelField &&) = default;
+    XDataPointCustomLabelField & operator =(XDataPointCustomLabelField const &) = default;
+    XDataPointCustomLabelField & operator =(XDataPointCustomLabelField &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::chart2::DataPointCustomLabelFieldType SAL_CALL getFieldType() = 0;
+    virtual void SAL_CALL setFieldType( ::css::chart2::DataPointCustomLabelFieldType fieldType ) = 0;
+    virtual ::rtl::OUString SAL_CALL getGuid() = 0;
+    virtual void SAL_CALL setGuid( const ::rtl::OUString& guid ) = 0;
+    virtual ::sal_Bool SAL_CALL getDataLabelsRange() = 0;
+    virtual void SAL_CALL setDataLabelsRange( ::sal_Bool dataLabelsRange ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCellRange() = 0;
+    virtual void SAL_CALL setCellRange( const ::rtl::OUString& cellRange ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDataPointCustomLabelField() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::XDataPointCustomLabelField const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::chart2::XDataPointCustomLabelField > *);
+
+#endif

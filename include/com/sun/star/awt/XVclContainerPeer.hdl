@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XVCLCONTAINERPEER_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XVCLCONTAINERPEER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XWindow; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XVclContainerPeer : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XVclContainerPeer() = default;
+    XVclContainerPeer(XVclContainerPeer const &) = default;
+    XVclContainerPeer(XVclContainerPeer &&) = default;
+    XVclContainerPeer & operator =(XVclContainerPeer const &) = default;
+    XVclContainerPeer & operator =(XVclContainerPeer &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL enableDialogControl( ::sal_Bool bEnable ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setTabOrder( const ::css::uno::Sequence< ::css::uno::Reference< ::css::awt::XWindow > >& WindowOrder, const ::css::uno::Sequence< ::css::uno::Any >& Tabs, ::sal_Bool GroupControl ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setGroup( const ::css::uno::Sequence< ::css::uno::Reference< ::css::awt::XWindow > >& Windows ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XVclContainerPeer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XVclContainerPeer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XVclContainerPeer > *);
+
+#endif

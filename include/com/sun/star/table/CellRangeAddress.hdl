@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED CellRangeAddress {
+    inline CellRangeAddress();
+
+    inline CellRangeAddress(const ::sal_Int16& Sheet_, const ::sal_Int32& StartColumn_, const ::sal_Int32& StartRow_, const ::sal_Int32& EndColumn_, const ::sal_Int32& EndRow_);
+
+    ::sal_Int16 Sheet;
+    ::sal_Int32 StartColumn;
+    ::sal_Int32 StartRow;
+    ::sal_Int32 EndColumn;
+    ::sal_Int32 EndRow;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::CellRangeAddress const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::table::CellRangeAddress *);
+
+#endif

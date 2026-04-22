@@ -1,0 +1,101 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEROLE_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEROLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace accessibility { namespace AccessibleRole {
+
+static const ::sal_Int16 ALERT = (sal_Int16)1;
+static const ::sal_Int16 BUTTON_DROPDOWN = (sal_Int16)68;
+static const ::sal_Int16 BUTTON_MENU = (sal_Int16)69;
+static const ::sal_Int16 CANVAS = (sal_Int16)3;
+static const ::sal_Int16 CAPTION = (sal_Int16)70;
+static const ::sal_Int16 CHART = (sal_Int16)71;
+static const ::sal_Int16 CHECK_BOX = (sal_Int16)4;
+static const ::sal_Int16 CHECK_MENU_ITEM = (sal_Int16)5;
+static const ::sal_Int16 COLOR_CHOOSER = (sal_Int16)6;
+static const ::sal_Int16 COLUMN_HEADER = (sal_Int16)2;
+static const ::sal_Int16 COMBO_BOX = (sal_Int16)7;
+static const ::sal_Int16 COMMENT = (sal_Int16)81;
+static const ::sal_Int16 COMMENT_END = (sal_Int16)82;
+static const ::sal_Int16 DATE_EDITOR = (sal_Int16)8;
+static const ::sal_Int16 DESKTOP_ICON = (sal_Int16)9;
+static const ::sal_Int16 DESKTOP_PANE = (sal_Int16)10;
+static const ::sal_Int16 DIALOG = (sal_Int16)12;
+static const ::sal_Int16 DIRECTORY_PANE = (sal_Int16)11;
+static const ::sal_Int16 DOCUMENT = (sal_Int16)13;
+static const ::sal_Int16 DOCUMENT_PRESENTATION = (sal_Int16)83;
+static const ::sal_Int16 DOCUMENT_SPREADSHEET = (sal_Int16)84;
+static const ::sal_Int16 DOCUMENT_TEXT = (sal_Int16)85;
+static const ::sal_Int16 EDIT_BAR = (sal_Int16)72;
+static const ::sal_Int16 EMBEDDED_OBJECT = (sal_Int16)14;
+static const ::sal_Int16 END_NOTE = (sal_Int16)15;
+static const ::sal_Int16 FILE_CHOOSER = (sal_Int16)16;
+static const ::sal_Int16 FILLER = (sal_Int16)17;
+static const ::sal_Int16 FONT_CHOOSER = (sal_Int16)18;
+static const ::sal_Int16 FOOTER = (sal_Int16)19;
+static const ::sal_Int16 FOOTNOTE = (sal_Int16)20;
+static const ::sal_Int16 FORM = (sal_Int16)73;
+static const ::sal_Int16 FRAME = (sal_Int16)21;
+static const ::sal_Int16 GLASS_PANE = (sal_Int16)22;
+static const ::sal_Int16 GRAPHIC = (sal_Int16)23;
+static const ::sal_Int16 GROUP_BOX = (sal_Int16)24;
+static const ::sal_Int16 HEADER = (sal_Int16)25;
+static const ::sal_Int16 HEADING = (sal_Int16)26;
+static const ::sal_Int16 HYPER_LINK = (sal_Int16)27;
+static const ::sal_Int16 ICON = (sal_Int16)28;
+static const ::sal_Int16 IMAGE_MAP = (sal_Int16)74;
+static const ::sal_Int16 INTERNAL_FRAME = (sal_Int16)29;
+static const ::sal_Int16 LABEL = (sal_Int16)30;
+static const ::sal_Int16 LAYERED_PANE = (sal_Int16)31;
+static const ::sal_Int16 LIST = (sal_Int16)32;
+static const ::sal_Int16 LIST_ITEM = (sal_Int16)33;
+static const ::sal_Int16 MENU = (sal_Int16)34;
+static const ::sal_Int16 MENU_BAR = (sal_Int16)35;
+static const ::sal_Int16 MENU_ITEM = (sal_Int16)36;
+static const ::sal_Int16 NOTE = (sal_Int16)75;
+static const ::sal_Int16 OPTION_PANE = (sal_Int16)37;
+static const ::sal_Int16 PAGE = (sal_Int16)76;
+static const ::sal_Int16 PAGE_TAB = (sal_Int16)38;
+static const ::sal_Int16 PAGE_TAB_LIST = (sal_Int16)39;
+static const ::sal_Int16 PANEL = (sal_Int16)40;
+static const ::sal_Int16 PARAGRAPH = (sal_Int16)41;
+static const ::sal_Int16 PASSWORD_TEXT = (sal_Int16)42;
+static const ::sal_Int16 POPUP_MENU = (sal_Int16)43;
+static const ::sal_Int16 PROGRESS_BAR = (sal_Int16)45;
+static const ::sal_Int16 PUSH_BUTTON = (sal_Int16)44;
+static const ::sal_Int16 RADIO_BUTTON = (sal_Int16)46;
+static const ::sal_Int16 RADIO_MENU_ITEM = (sal_Int16)47;
+static const ::sal_Int16 ROOT_PANE = (sal_Int16)49;
+static const ::sal_Int16 ROW_HEADER = (sal_Int16)48;
+static const ::sal_Int16 RULER = (sal_Int16)77;
+static const ::sal_Int16 SCROLL_BAR = (sal_Int16)50;
+static const ::sal_Int16 SCROLL_PANE = (sal_Int16)51;
+static const ::sal_Int16 SECTION = (sal_Int16)78;
+static const ::sal_Int16 SEPARATOR = (sal_Int16)53;
+static const ::sal_Int16 SHAPE = (sal_Int16)52;
+static const ::sal_Int16 SLIDER = (sal_Int16)54;
+static const ::sal_Int16 SPIN_BOX = (sal_Int16)55;
+static const ::sal_Int16 SPLIT_PANE = (sal_Int16)56;
+static const ::sal_Int16 STATIC = (sal_Int16)86;
+static const ::sal_Int16 STATUS_BAR = (sal_Int16)57;
+static const ::sal_Int16 TABLE = (sal_Int16)58;
+static const ::sal_Int16 TABLE_CELL = (sal_Int16)59;
+static const ::sal_Int16 TEXT = (sal_Int16)60;
+static const ::sal_Int16 TEXT_FRAME = (sal_Int16)61;
+static const ::sal_Int16 TOGGLE_BUTTON = (sal_Int16)62;
+static const ::sal_Int16 TOOL_BAR = (sal_Int16)63;
+static const ::sal_Int16 TOOL_TIP = (sal_Int16)64;
+static const ::sal_Int16 TREE = (sal_Int16)65;
+static const ::sal_Int16 TREE_ITEM = (sal_Int16)79;
+static const ::sal_Int16 TREE_TABLE = (sal_Int16)80;
+static const ::sal_Int16 UNKNOWN = (sal_Int16)0;
+static const ::sal_Int16 VIEW_PORT = (sal_Int16)66;
+static const ::sal_Int16 WINDOW = (sal_Int16)67;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEROLE_HDL

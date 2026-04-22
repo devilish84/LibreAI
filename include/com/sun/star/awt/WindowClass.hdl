@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_WINDOWCLASS_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_WINDOWCLASS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI WindowClass
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI WindowClass
+{
+
+#endif
+    WindowClass_TOP = 0,
+    WindowClass_MODALTOP = 1,
+    WindowClass_CONTAINER = 2,
+    WindowClass_SIMPLE = 3,
+    WindowClass_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto WindowClass_TOP = WindowClass::WindowClass_TOP;
+constexpr auto WindowClass_MODALTOP = WindowClass::WindowClass_MODALTOP;
+constexpr auto WindowClass_CONTAINER = WindowClass::WindowClass_CONTAINER;
+constexpr auto WindowClass_SIMPLE = WindowClass::WindowClass_SIMPLE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::WindowClass const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::WindowClass *);
+
+#endif

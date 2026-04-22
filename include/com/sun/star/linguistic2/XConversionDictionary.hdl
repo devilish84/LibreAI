@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XCONVERSIONDICTIONARY_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XCONVERSIONDICTIONARY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/linguistic2/ConversionDirection.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XConversionDictionary : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XConversionDictionary() = default;
+    XConversionDictionary(XConversionDictionary const &) = default;
+    XConversionDictionary(XConversionDictionary &&) = default;
+    XConversionDictionary & operator =(XConversionDictionary const &) = default;
+    XConversionDictionary & operator =(XConversionDictionary &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getName() = 0;
+    virtual ::css::lang::Locale SAL_CALL getLocale() = 0;
+    virtual ::sal_Int16 SAL_CALL getConversionType() = 0;
+    virtual void SAL_CALL setActive( ::sal_Bool bActivate ) = 0;
+    virtual ::sal_Bool SAL_CALL isActive() = 0;
+    virtual void SAL_CALL clear() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getConversions( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, ::sal_Int32 nLength, ::css::linguistic2::ConversionDirection eDirection, ::sal_Int32 nTextConversionOptions ) = 0;
+    virtual void SAL_CALL addEntry( const ::rtl::OUString& aLeftText, const ::rtl::OUString& aRightText ) = 0;
+    virtual void SAL_CALL removeEntry( const ::rtl::OUString& aLeftText, const ::rtl::OUString& aRightText ) = 0;
+    virtual ::sal_Int16 SAL_CALL getMaxCharCount( ::css::linguistic2::ConversionDirection eDirection ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getConversionEntries( ::css::linguistic2::ConversionDirection eDirection ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XConversionDictionary() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XConversionDictionary const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XConversionDictionary > *);
+
+#endif

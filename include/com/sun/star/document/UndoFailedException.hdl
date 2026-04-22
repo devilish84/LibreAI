@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_UNDOFAILEDEXCEPTION_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_UNDOFAILEDEXCEPTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Exception.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED UndoFailedException : public ::css::uno::Exception
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE UndoFailedException(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE UndoFailedException(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::css::uno::Any& Reason_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE UndoFailedException(UndoFailedException const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~UndoFailedException();
+
+    inline CPPU_GCC_DLLPRIVATE UndoFailedException & operator =(UndoFailedException const &);
+#endif
+
+    ::css::uno::Any Reason CPPU_GCC3_ALIGN( ::css::uno::Exception );
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::UndoFailedException const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::document::UndoFailedException *);
+
+#endif

@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XDATACONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XDATACONTAINER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XIndexContainer.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDataContainer : public ::css::container::XIndexContainer
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDataContainer() = default;
+    XDataContainer(XDataContainer const &) = default;
+    XDataContainer(XDataContainer &&) = default;
+    XDataContainer & operator =(XDataContainer const &) = default;
+    XDataContainer & operator =(XDataContainer &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getContentType() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setContentType( const ::rtl::OUString& aType ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getData() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setData( const ::css::uno::Sequence< ::sal_Int8 >& aData ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getDataURL() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setDataURL( const ::rtl::OUString& aURL ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDataContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XDataContainer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XDataContainer > *);
+
+#endif

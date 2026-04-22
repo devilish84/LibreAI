@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_DATAPOINTLABEL_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_DATAPOINTLABEL_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DataPointLabel {
+    inline DataPointLabel();
+
+    inline DataPointLabel(const ::sal_Bool& ShowNumber_, const ::sal_Bool& ShowNumberInPercent_, const ::sal_Bool& ShowCategoryName_, const ::sal_Bool& ShowLegendSymbol_, const ::sal_Bool& ShowCustomLabel_, const ::sal_Bool& ShowSeriesName_);
+
+    ::sal_Bool ShowNumber;
+    ::sal_Bool ShowNumberInPercent;
+    ::sal_Bool ShowCategoryName;
+    ::sal_Bool ShowLegendSymbol;
+    ::sal_Bool ShowCustomLabel;
+    ::sal_Bool ShowSeriesName;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::DataPointLabel const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart2::DataPointLabel *);
+
+#endif

@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XINSERTOBJECTDIALOG_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XINSERTOBJECTDIALOG_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/embed/InsertedObjectInfo.hdl"
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XInsertObjectDialog : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XInsertObjectDialog() = default;
+    XInsertObjectDialog(XInsertObjectDialog const &) = default;
+    XInsertObjectDialog(XInsertObjectDialog &&) = default;
+    XInsertObjectDialog & operator =(XInsertObjectDialog const &) = default;
+    XInsertObjectDialog & operator =(XInsertObjectDialog &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::embed::InsertedObjectInfo SAL_CALL createInstanceByDialog( const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::rtl::OUString& sEntName, const ::css::uno::Sequence< ::css::beans::PropertyValue >& lObjArgs ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XInsertObjectDialog() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XInsertObjectDialog const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XInsertObjectDialog > *);
+
+#endif

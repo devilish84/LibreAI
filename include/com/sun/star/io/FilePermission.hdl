@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_IO_FILEPERMISSION_HDL
+#define INCLUDED_COM_SUN_STAR_IO_FILEPERMISSION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace io {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED FilePermission {
+    inline FilePermission();
+
+    inline FilePermission(const ::rtl::OUString& URL_, const ::rtl::OUString& Actions_);
+
+    ::rtl::OUString URL;
+    ::rtl::OUString Actions;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::io::FilePermission const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::io::FilePermission *);
+
+#endif

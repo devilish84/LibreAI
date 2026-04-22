@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONFIGURATION_XUPDATE_HDL
+#define INCLUDED_COM_SUN_STAR_CONFIGURATION_XUPDATE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace configuration {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUpdate : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUpdate() = default;
+    XUpdate(XUpdate const &) = default;
+    XUpdate(XUpdate &&) = default;
+    XUpdate & operator =(XUpdate const &) = default;
+    XUpdate & operator =(XUpdate &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL insertExtensionXcsFile( ::sal_Bool shared, const ::rtl::OUString& fileUri ) = 0;
+    virtual void SAL_CALL insertExtensionXcuFile( ::sal_Bool shared, const ::rtl::OUString& fileUri ) = 0;
+    virtual void SAL_CALL removeExtensionXcuFile( const ::rtl::OUString& fileUri ) = 0;
+    virtual void SAL_CALL insertModificationXcuFile( const ::rtl::OUString& fileUri, const ::css::uno::Sequence< ::rtl::OUString >& includedPaths, const ::css::uno::Sequence< ::rtl::OUString >& excludedPaths ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUpdate() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::configuration::XUpdate const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::configuration::XUpdate > *);
+
+#endif

@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_CONTENTINFO_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_CONTENTINFO_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/Property.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED ContentInfo {
+    inline ContentInfo();
+
+    inline ContentInfo(const ::rtl::OUString& Type_, const ::sal_Int32& Attributes_, const ::css::uno::Sequence< ::css::beans::Property >& Properties_);
+
+    ::rtl::OUString Type;
+    ::sal_Int32 Attributes;
+    ::css::uno::Sequence< ::css::beans::Property > Properties;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::ContentInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::ContentInfo *);
+
+#endif

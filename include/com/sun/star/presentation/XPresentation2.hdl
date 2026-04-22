@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_PRESENTATION_XPRESENTATION2_HDL
+#define INCLUDED_COM_SUN_STAR_PRESENTATION_XPRESENTATION2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/beans/XPropertySet.hdl"
+#include "com/sun/star/presentation/XPresentation.hdl"
+namespace com { namespace sun { namespace star { namespace presentation { class XSlideShowController; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace presentation {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPresentation2 : public ::css::presentation::XPresentation, public ::css::beans::XPropertySet
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPresentation2() = default;
+    XPresentation2(XPresentation2 const &) = default;
+    XPresentation2(XPresentation2 &&) = default;
+    XPresentation2 & operator =(XPresentation2 const &) = default;
+    XPresentation2 & operator =(XPresentation2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL startWithArguments( const ::css::uno::Sequence< ::css::beans::PropertyValue >& Arguments ) = 0;
+    virtual ::sal_Bool SAL_CALL isRunning() = 0;
+    virtual ::css::uno::Reference< ::css::presentation::XSlideShowController > SAL_CALL getController() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPresentation2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::presentation::XPresentation2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::presentation::XPresentation2 > *);
+
+#endif

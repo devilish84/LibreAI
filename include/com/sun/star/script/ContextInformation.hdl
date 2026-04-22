@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_CONTEXTINFORMATION_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_CONTEXTINFORMATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED ContextInformation {
+    inline ContextInformation();
+
+    inline ContextInformation(const ::rtl::OUString& Name_, const ::rtl::OUString& SourceCode_, const ::sal_Int32& StartLine_, const ::sal_Int32& StartColumn_, const ::sal_Int32& EndLine_, const ::sal_Int32& EndColumn_, const ::css::uno::Sequence< ::rtl::OUString >& LocalVariableNames_);
+
+    ::rtl::OUString Name;
+    ::rtl::OUString SourceCode;
+    ::sal_Int32 StartLine;
+    ::sal_Int32 StartColumn;
+    ::sal_Int32 EndLine;
+    ::sal_Int32 EndColumn;
+    ::css::uno::Sequence< ::rtl::OUString > LocalVariableNames;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::ContextInformation const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::script::ContextInformation *);
+
+#endif

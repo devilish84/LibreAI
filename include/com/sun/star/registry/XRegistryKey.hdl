@@ -1,0 +1,77 @@
+#ifndef INCLUDED_COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HDL
+#define INCLUDED_COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/registry/RegistryKeyType.hdl"
+#include "com/sun/star/registry/RegistryValueType.hdl"
+namespace com { namespace sun { namespace star { namespace registry { class XRegistryKey; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace registry {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRegistryKey : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRegistryKey() = default;
+    XRegistryKey(XRegistryKey const &) = default;
+    XRegistryKey(XRegistryKey &&) = default;
+    XRegistryKey & operator =(XRegistryKey const &) = default;
+    XRegistryKey & operator =(XRegistryKey &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getKeyName() = 0;
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isReadOnly() = 0;
+    virtual ::sal_Bool SAL_CALL isValid() = 0;
+    virtual ::css::registry::RegistryKeyType SAL_CALL getKeyType( const ::rtl::OUString& rKeyName ) = 0;
+    virtual ::css::registry::RegistryValueType SAL_CALL getValueType() = 0;
+    virtual ::sal_Int32 SAL_CALL getLongValue() = 0;
+    virtual void SAL_CALL setLongValue( ::sal_Int32 value ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int32 > SAL_CALL getLongListValue() = 0;
+    virtual void SAL_CALL setLongListValue( const ::css::uno::Sequence< ::sal_Int32 >& seqValue ) = 0;
+    virtual ::rtl::OUString SAL_CALL getAsciiValue() = 0;
+    virtual void SAL_CALL setAsciiValue( const ::rtl::OUString& value ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getAsciiListValue() = 0;
+    virtual void SAL_CALL setAsciiListValue( const ::css::uno::Sequence< ::rtl::OUString >& seqValue ) = 0;
+    virtual ::rtl::OUString SAL_CALL getStringValue() = 0;
+    virtual void SAL_CALL setStringValue( const ::rtl::OUString& value ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getStringListValue() = 0;
+    virtual void SAL_CALL setStringListValue( const ::css::uno::Sequence< ::rtl::OUString >& seqValue ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL getBinaryValue() = 0;
+    virtual void SAL_CALL setBinaryValue( const ::css::uno::Sequence< ::sal_Int8 >& value ) = 0;
+    virtual ::css::uno::Reference< ::css::registry::XRegistryKey > SAL_CALL openKey( const ::rtl::OUString& aKeyName ) = 0;
+    virtual ::css::uno::Reference< ::css::registry::XRegistryKey > SAL_CALL createKey( const ::rtl::OUString& aKeyName ) = 0;
+    virtual void SAL_CALL closeKey() = 0;
+    virtual void SAL_CALL deleteKey( const ::rtl::OUString& rKeyName ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::registry::XRegistryKey > > SAL_CALL openKeys() = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getKeyNames() = 0;
+    virtual ::sal_Bool SAL_CALL createLink( const ::rtl::OUString& aLinkName, const ::rtl::OUString& aLinkTarget ) = 0;
+    virtual void SAL_CALL deleteLink( const ::rtl::OUString& rLinkName ) = 0;
+    virtual ::rtl::OUString SAL_CALL getLinkTarget( const ::rtl::OUString& rLinkName ) = 0;
+    virtual ::rtl::OUString SAL_CALL getResolvedName( const ::rtl::OUString& aKeyName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRegistryKey() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::registry::XRegistryKey const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::registry::XRegistryKey > *);
+
+#endif

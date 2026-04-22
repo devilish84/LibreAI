@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_VIEW_SELECTIONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_VIEW_SELECTIONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace view {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI SelectionType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI SelectionType
+{
+
+#endif
+    SelectionType_NONE = 0,
+    SelectionType_SINGLE = 1,
+    SelectionType_MULTI = 2,
+    SelectionType_RANGE = 3,
+    SelectionType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto SelectionType_NONE = SelectionType::SelectionType_NONE;
+constexpr auto SelectionType_SINGLE = SelectionType::SelectionType_SINGLE;
+constexpr auto SelectionType_MULTI = SelectionType::SelectionType_MULTI;
+constexpr auto SelectionType_RANGE = SelectionType::SelectionType_RANGE;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::view::SelectionType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::view::SelectionType *);
+
+#endif

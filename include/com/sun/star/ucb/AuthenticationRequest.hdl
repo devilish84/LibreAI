@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_AUTHENTICATIONREQUEST_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_AUTHENTICATIONREQUEST_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/task/ClassifiedInteractionRequest.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED AuthenticationRequest : public ::css::task::ClassifiedInteractionRequest
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE AuthenticationRequest(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE AuthenticationRequest(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::css::task::InteractionClassification& Classification_, const ::rtl::OUString& ServerName_, const ::rtl::OUString& Diagnostic_, const ::sal_Bool& HasRealm_, const ::rtl::OUString& Realm_, const ::sal_Bool& HasUserName_, const ::rtl::OUString& UserName_, const ::sal_Bool& HasPassword_, const ::rtl::OUString& Password_, const ::sal_Bool& HasAccount_, const ::rtl::OUString& Account_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE AuthenticationRequest(AuthenticationRequest const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~AuthenticationRequest();
+
+    inline CPPU_GCC_DLLPRIVATE AuthenticationRequest & operator =(AuthenticationRequest const &);
+#endif
+
+    ::rtl::OUString ServerName CPPU_GCC3_ALIGN( ::css::task::ClassifiedInteractionRequest );
+    ::rtl::OUString Diagnostic;
+    ::sal_Bool HasRealm;
+    ::rtl::OUString Realm;
+    ::sal_Bool HasUserName;
+    ::rtl::OUString UserName;
+    ::sal_Bool HasPassword;
+    ::rtl::OUString Password;
+    ::sal_Bool HasAccount;
+    ::rtl::OUString Account;
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::AuthenticationRequest const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::AuthenticationRequest *);
+
+#endif

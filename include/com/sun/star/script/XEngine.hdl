@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XENGINE_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XENGINE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace script { class XEngineListener; } } } }
+namespace com { namespace sun { namespace star { namespace script { class XLibraryAccess; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XEngine : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XEngine() = default;
+    XEngine(XEngine const &) = default;
+    XEngine(XEngine &&) = default;
+    XEngine & operator =(XEngine const &) = default;
+    XEngine & operator =(XEngine &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setRoot( const ::css::uno::Reference< ::css::uno::XInterface >& xRoot ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::uno::XInterface > SAL_CALL getRoot() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setLibraryAccess( const ::css::uno::Reference< ::css::script::XLibraryAccess >& Library ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Bool SAL_CALL compile( const ::rtl::OUString& ModuleName, const ::rtl::OUString& Script, ::sal_Bool CreateDebugInfo ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Any SAL_CALL run( const ::rtl::OUString& aScript, const ::css::uno::Reference< ::css::uno::XInterface >& xThis, const ::css::uno::Sequence< ::css::uno::Any >& aArgs ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL runAsync( const ::rtl::OUString& acript, const ::css::uno::Reference< ::css::uno::XInterface >& xThis, const ::css::uno::Sequence< ::css::uno::Any >& args, const ::css::uno::Reference< ::css::script::XEngineListener >& xCallback ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL cancel() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL addEngineListener( const ::css::uno::Reference< ::css::script::XEngineListener >& Listener ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL removeEngineListener( const ::css::uno::Reference< ::css::script::XEngineListener >& Listener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XEngine() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XEngine const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XEngine > *);
+
+#endif

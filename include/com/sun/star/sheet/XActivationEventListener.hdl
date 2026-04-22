@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XACTIVATIONEVENTLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XACTIVATIONEVENTLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/sheet/ActivationEvent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XActivationEventListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XActivationEventListener() = default;
+    XActivationEventListener(XActivationEventListener const &) = default;
+    XActivationEventListener(XActivationEventListener &&) = default;
+    XActivationEventListener & operator =(XActivationEventListener const &) = default;
+    XActivationEventListener & operator =(XActivationEventListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL activeSpreadsheetChanged( const ::css::sheet::ActivationEvent& aEvent ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XActivationEventListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XActivationEventListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XActivationEventListener > *);
+
+#endif

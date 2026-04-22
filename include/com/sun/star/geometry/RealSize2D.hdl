@@ -1,0 +1,35 @@
+#ifndef INCLUDED_COM_SUN_STAR_GEOMETRY_REALSIZE2D_HDL
+#define INCLUDED_COM_SUN_STAR_GEOMETRY_REALSIZE2D_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace geometry {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED RealSize2D {
+    inline RealSize2D();
+
+    inline RealSize2D(const double& Width_, const double& Height_);
+
+    double Width;
+    double Height;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::geometry::RealSize2D const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::geometry::RealSize2D *);
+
+#endif

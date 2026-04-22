@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTAXISLABELPOSITION_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTAXISLABELPOSITION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ChartAxisLabelPosition
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ChartAxisLabelPosition
+{
+
+#endif
+    ChartAxisLabelPosition_NEAR_AXIS = 0,
+    ChartAxisLabelPosition_NEAR_AXIS_OTHER_SIDE = 1,
+    ChartAxisLabelPosition_OUTSIDE_START = 2,
+    ChartAxisLabelPosition_OUTSIDE_END = 3,
+    ChartAxisLabelPosition_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ChartAxisLabelPosition_NEAR_AXIS = ChartAxisLabelPosition::ChartAxisLabelPosition_NEAR_AXIS;
+constexpr auto ChartAxisLabelPosition_NEAR_AXIS_OTHER_SIDE = ChartAxisLabelPosition::ChartAxisLabelPosition_NEAR_AXIS_OTHER_SIDE;
+constexpr auto ChartAxisLabelPosition_OUTSIDE_START = ChartAxisLabelPosition::ChartAxisLabelPosition_OUTSIDE_START;
+constexpr auto ChartAxisLabelPosition_OUTSIDE_END = ChartAxisLabelPosition::ChartAxisLabelPosition_OUTSIDE_END;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::ChartAxisLabelPosition const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart::ChartAxisLabelPosition *);
+
+#endif

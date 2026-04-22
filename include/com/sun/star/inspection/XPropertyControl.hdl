@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_INSPECTION_XPROPERTYCONTROL_HDL
+#define INCLUDED_COM_SUN_STAR_INSPECTION_XPROPERTYCONTROL_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XWindow; } } } }
+namespace com { namespace sun { namespace star { namespace inspection { class XPropertyControlContext; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Type.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace inspection {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPropertyControl : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPropertyControl() = default;
+    XPropertyControl(XPropertyControl const &) = default;
+    XPropertyControl(XPropertyControl &&) = default;
+    XPropertyControl & operator =(XPropertyControl const &) = default;
+    XPropertyControl & operator =(XPropertyControl &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int16 SAL_CALL getControlType() = 0;
+    virtual ::css::uno::Any SAL_CALL getValue() = 0;
+    virtual void SAL_CALL setValue( const ::css::uno::Any& _value ) = 0;
+    virtual ::css::uno::Type SAL_CALL getValueType() = 0;
+    virtual ::css::uno::Reference< ::css::inspection::XPropertyControlContext > SAL_CALL getControlContext() = 0;
+    virtual void SAL_CALL setControlContext( const ::css::uno::Reference< ::css::inspection::XPropertyControlContext >& _controlcontext ) = 0;
+    virtual ::css::uno::Reference< ::css::awt::XWindow > SAL_CALL getControlWindow() = 0;
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isModified() = 0;
+    virtual void SAL_CALL notifyModifiedValue() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPropertyControl() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::inspection::XPropertyControl const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::inspection::XPropertyControl > *);
+
+#endif

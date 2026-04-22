@@ -1,0 +1,62 @@
+#ifndef INCLUDED_COM_SUN_STAR_RDF_XDOCUMENTMETADATAACCESS_HDL
+#define INCLUDED_COM_SUN_STAR_RDF_XDOCUMENTMETADATAACCESS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/beans/StringPair.hdl"
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+namespace com { namespace sun { namespace star { namespace rdf { class XMetadatable; } } } }
+#include "com/sun/star/rdf/XRepositorySupplier.hdl"
+#include "com/sun/star/rdf/XURI.hdl"
+namespace com { namespace sun { namespace star { namespace task { class XInteractionHandler; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rdf {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDocumentMetadataAccess : public ::css::rdf::XURI, public ::css::rdf::XRepositorySupplier
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDocumentMetadataAccess() = default;
+    XDocumentMetadataAccess(XDocumentMetadataAccess const &) = default;
+    XDocumentMetadataAccess(XDocumentMetadataAccess &&) = default;
+    XDocumentMetadataAccess & operator =(XDocumentMetadataAccess const &) = default;
+    XDocumentMetadataAccess & operator =(XDocumentMetadataAccess &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::rdf::XMetadatable > SAL_CALL getElementByMetadataReference( const ::css::beans::StringPair& MetadataReference ) = 0;
+    virtual ::css::uno::Reference< ::css::rdf::XMetadatable > SAL_CALL getElementByURI( const ::css::uno::Reference< ::css::rdf::XURI >& URI ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::rdf::XURI > > SAL_CALL getMetadataGraphsWithType( const ::css::uno::Reference< ::css::rdf::XURI >& Type ) = 0;
+    virtual ::css::uno::Reference< ::css::rdf::XURI > SAL_CALL addMetadataFile( const ::rtl::OUString& FileName, const ::css::uno::Sequence< ::css::uno::Reference< ::css::rdf::XURI > >& Types ) = 0;
+    virtual ::css::uno::Reference< ::css::rdf::XURI > SAL_CALL importMetadataFile( ::sal_Int16 Format, const ::css::uno::Reference< ::css::io::XInputStream >& InStream, const ::rtl::OUString& FileName, const ::css::uno::Reference< ::css::rdf::XURI >& BaseURI, const ::css::uno::Sequence< ::css::uno::Reference< ::css::rdf::XURI > >& Types ) = 0;
+    virtual void SAL_CALL removeMetadataFile( const ::css::uno::Reference< ::css::rdf::XURI >& GraphName ) = 0;
+    virtual void SAL_CALL addContentOrStylesFile( const ::rtl::OUString& FileName ) = 0;
+    virtual void SAL_CALL removeContentOrStylesFile( const ::rtl::OUString& FileName ) = 0;
+    virtual void SAL_CALL loadMetadataFromStorage( const ::css::uno::Reference< ::css::embed::XStorage >& Storage, const ::css::uno::Reference< ::css::rdf::XURI >& BaseURI, const ::css::uno::Reference< ::css::task::XInteractionHandler >& InteractionHandler ) = 0;
+    virtual void SAL_CALL storeMetadataToStorage( const ::css::uno::Reference< ::css::embed::XStorage >& Storage ) = 0;
+    virtual void SAL_CALL loadMetadataFromMedium( const ::css::uno::Sequence< ::css::beans::PropertyValue >& Medium ) = 0;
+    virtual void SAL_CALL storeMetadataToMedium( const ::css::uno::Sequence< ::css::beans::PropertyValue >& Medium ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDocumentMetadataAccess() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rdf::XDocumentMetadataAccess const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rdf::XDocumentMetadataAccess > *);
+
+#endif

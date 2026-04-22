@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XCELLADDRESSABLE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XCELLADDRESSABLE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/table/CellAddress.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCellAddressable : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCellAddressable() = default;
+    XCellAddressable(XCellAddressable const &) = default;
+    XCellAddressable(XCellAddressable &&) = default;
+    XCellAddressable & operator =(XCellAddressable const &) = default;
+    XCellAddressable & operator =(XCellAddressable &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::table::CellAddress SAL_CALL getCellAddress() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCellAddressable() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XCellAddressable const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XCellAddressable > *);
+
+#endif

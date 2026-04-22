@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_DATETIMERANGE_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_DATETIMERANGE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED DateTimeRange {
+    inline DateTimeRange();
+
+    inline DateTimeRange(const ::sal_uInt32& StartNanoSeconds_, const ::sal_uInt16& StartSeconds_, const ::sal_uInt16& StartMinutes_, const ::sal_uInt16& StartHours_, const ::sal_uInt16& StartDay_, const ::sal_uInt16& StartMonth_, const ::sal_Int16& StartYear_, const ::sal_uInt32& EndNanoSeconds_, const ::sal_uInt16& EndSeconds_, const ::sal_uInt16& EndMinutes_, const ::sal_uInt16& EndHours_, const ::sal_uInt16& EndDay_, const ::sal_uInt16& EndMonth_, const ::sal_Int16& EndYear_, const ::sal_Bool& IsUTC_);
+
+    ::sal_uInt32 StartNanoSeconds;
+    ::sal_uInt16 StartSeconds;
+    ::sal_uInt16 StartMinutes;
+    ::sal_uInt16 StartHours;
+    ::sal_uInt16 StartDay;
+    ::sal_uInt16 StartMonth;
+    ::sal_Int16 StartYear;
+    ::sal_uInt32 EndNanoSeconds;
+    ::sal_uInt16 EndSeconds;
+    ::sal_uInt16 EndMinutes;
+    ::sal_uInt16 EndHours;
+    ::sal_uInt16 EndDay;
+    ::sal_uInt16 EndMonth;
+    ::sal_Int16 EndYear;
+    ::sal_Bool IsUTC;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::DateTimeRange const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::util::DateTimeRange *);
+
+#endif

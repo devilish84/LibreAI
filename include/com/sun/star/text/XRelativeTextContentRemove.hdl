@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XRELATIVETEXTCONTENTREMOVE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XRELATIVETEXTCONTENTREMOVE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace text { class XTextContent; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRelativeTextContentRemove : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRelativeTextContentRemove() = default;
+    XRelativeTextContentRemove(XRelativeTextContentRemove const &) = default;
+    XRelativeTextContentRemove(XRelativeTextContentRemove &&) = default;
+    XRelativeTextContentRemove & operator =(XRelativeTextContentRemove const &) = default;
+    XRelativeTextContentRemove & operator =(XRelativeTextContentRemove &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL removeTextContentBefore( const ::css::uno::Reference< ::css::text::XTextContent >& xSuccessor ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL removeTextContentAfter( const ::css::uno::Reference< ::css::text::XTextContent >& xPredecessor ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRelativeTextContentRemove() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XRelativeTextContentRemove const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XRelativeTextContentRemove > *);
+
+#endif

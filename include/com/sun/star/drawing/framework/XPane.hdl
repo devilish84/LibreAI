@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_XPANE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_XPANE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XWindow; } } } }
+#include "com/sun/star/drawing/framework/XResource.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XCanvas; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPane : public ::css::drawing::framework::XResource
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPane() = default;
+    XPane(XPane const &) = default;
+    XPane(XPane &&) = default;
+    XPane & operator =(XPane const &) = default;
+    XPane & operator =(XPane &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::awt::XWindow > SAL_CALL getWindow() = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XCanvas > SAL_CALL getCanvas() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPane() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::framework::XPane const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::framework::XPane > *);
+
+#endif

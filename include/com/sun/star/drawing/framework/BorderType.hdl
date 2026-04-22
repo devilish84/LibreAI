@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_BORDERTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_BORDERTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI BorderType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI BorderType
+{
+
+#endif
+    BorderType_INNER_BORDER = 0,
+    BorderType_OUTER_BORDER = 1,
+    BorderType_TOTAL_BORDER = 2,
+    BorderType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto BorderType_INNER_BORDER = BorderType::BorderType_INNER_BORDER;
+constexpr auto BorderType_OUTER_BORDER = BorderType::BorderType_OUTER_BORDER;
+constexpr auto BorderType_TOTAL_BORDER = BorderType::BorderType_TOTAL_BORDER;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::framework::BorderType const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::framework::BorderType *);
+
+#endif

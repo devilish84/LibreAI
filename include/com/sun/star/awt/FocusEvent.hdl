@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FOCUSEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_FOCUSEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+namespace com { namespace sun { namespace star { namespace uno { class XInterface; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI FocusEvent: public ::css::lang::EventObject {
+    inline FocusEvent();
+
+    inline FocusEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::sal_Int16& FocusFlags_, const ::css::uno::Reference< ::css::uno::XInterface >& NextFocus_, const ::sal_Bool& Temporary_);
+
+    ::sal_Int16 FocusFlags CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::css::uno::Reference< ::css::uno::XInterface > NextFocus;
+    ::sal_Bool Temporary;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::FocusEvent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::FocusEvent *);
+
+#endif

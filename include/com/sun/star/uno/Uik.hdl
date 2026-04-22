@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_UNO_UIK_HDL
+#define INCLUDED_COM_SUN_STAR_UNO_UIK_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace uno {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED Uik {
+    inline Uik();
+
+    inline Uik(const ::sal_uInt32& Data1_, const ::sal_uInt16& Data2_, const ::sal_uInt16& Data3_, const ::sal_uInt32& Data4_, const ::sal_uInt32& Data5_);
+
+    ::sal_uInt32 Data1;
+    ::sal_uInt16 Data2;
+    ::sal_uInt16 Data3;
+    ::sal_uInt32 Data4;
+    ::sal_uInt32 Data5;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::uno::Uik const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Uik *);
+
+#endif

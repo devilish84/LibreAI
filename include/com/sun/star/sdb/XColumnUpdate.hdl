@@ -1,0 +1,65 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_XCOLUMNUPDATE_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_XCOLUMNUPDATE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/util/Date.hdl"
+#include "com/sun/star/util/DateTime.hdl"
+#include "com/sun/star/util/Time.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XColumnUpdate : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XColumnUpdate() = default;
+    XColumnUpdate(XColumnUpdate const &) = default;
+    XColumnUpdate(XColumnUpdate &&) = default;
+    XColumnUpdate & operator =(XColumnUpdate const &) = default;
+    XColumnUpdate & operator =(XColumnUpdate &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL updateNull() = 0;
+    virtual void SAL_CALL updateBoolean( ::sal_Bool x ) = 0;
+    virtual void SAL_CALL updateByte( ::sal_Int8 x ) = 0;
+    virtual void SAL_CALL updateShort( ::sal_Int16 x ) = 0;
+    virtual void SAL_CALL updateInt( ::sal_Int32 x ) = 0;
+    virtual void SAL_CALL updateLong( ::sal_Int64 x ) = 0;
+    virtual void SAL_CALL updateFloat( float x ) = 0;
+    virtual void SAL_CALL updateDouble( double x ) = 0;
+    virtual void SAL_CALL updateString( const ::rtl::OUString& x ) = 0;
+    virtual void SAL_CALL updateBytes( const ::css::uno::Sequence< ::sal_Int8 >& x ) = 0;
+    virtual void SAL_CALL updateDate( const ::css::util::Date& x ) = 0;
+    virtual void SAL_CALL updateTime( const ::css::util::Time& x ) = 0;
+    virtual void SAL_CALL updateTimestamp( const ::css::util::DateTime& x ) = 0;
+    virtual void SAL_CALL updateBinaryStream( const ::css::uno::Reference< ::css::io::XInputStream >& x, ::sal_Int32 length ) = 0;
+    virtual void SAL_CALL updateCharacterStream( const ::css::uno::Reference< ::css::io::XInputStream >& x, ::sal_Int32 length ) = 0;
+    virtual void SAL_CALL updateObject( const ::css::uno::Any& x ) = 0;
+    virtual void SAL_CALL updateNumericObject( const ::css::uno::Any& x, ::sal_Int32 scale ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XColumnUpdate() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdb::XColumnUpdate const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdb::XColumnUpdate > *);
+
+#endif

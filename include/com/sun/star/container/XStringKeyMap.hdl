@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONTAINER_XSTRINGKEYMAP_HDL
+#define INCLUDED_COM_SUN_STAR_CONTAINER_XSTRINGKEYMAP_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace container {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStringKeyMap : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStringKeyMap() = default;
+    XStringKeyMap(XStringKeyMap const &) = default;
+    XStringKeyMap(XStringKeyMap &&) = default;
+    XStringKeyMap & operator =(XStringKeyMap const &) = default;
+    XStringKeyMap & operator =(XStringKeyMap &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int32 SAL_CALL getCount() = 0;
+
+    // Methods
+    virtual ::css::uno::Any SAL_CALL getValue( const ::rtl::OUString& aKey ) = 0;
+    virtual ::sal_Bool SAL_CALL hasValue( const ::rtl::OUString& aKey ) = 0;
+    virtual void SAL_CALL insertValue( const ::rtl::OUString& aKey, const ::css::uno::Any& aValue ) = 0;
+    virtual ::rtl::OUString SAL_CALL getKeyByIndex( ::sal_Int32 nIndex ) = 0;
+    virtual ::css::uno::Any SAL_CALL getValueByIndex( ::sal_Int32 nIndex ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStringKeyMap() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::container::XStringKeyMap const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::container::XStringKeyMap > *);
+
+#endif

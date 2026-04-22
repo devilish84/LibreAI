@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XSYSTEMCHILDFACTORY_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XSYSTEMCHILDFACTORY_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XWindowPeer; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSystemChildFactory : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSystemChildFactory() = default;
+    XSystemChildFactory(XSystemChildFactory const &) = default;
+    XSystemChildFactory(XSystemChildFactory &&) = default;
+    XSystemChildFactory & operator =(XSystemChildFactory const &) = default;
+    XSystemChildFactory & operator =(XSystemChildFactory &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::awt::XWindowPeer > SAL_CALL createSystemChild( const ::css::uno::Any& Parent, const ::css::uno::Sequence< ::sal_Int8 >& ProcessId, ::sal_Int16 SystemType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSystemChildFactory() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XSystemChildFactory const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XSystemChildFactory > *);
+
+#endif

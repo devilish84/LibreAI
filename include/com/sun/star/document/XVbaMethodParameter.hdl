@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XVBAMETHODPARAMETER_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XVBAMETHODPARAMETER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XVbaMethodParameter : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XVbaMethodParameter() = default;
+    XVbaMethodParameter(XVbaMethodParameter const &) = default;
+    XVbaMethodParameter(XVbaMethodParameter &&) = default;
+    XVbaMethodParameter & operator =(XVbaMethodParameter const &) = default;
+    XVbaMethodParameter & operator =(XVbaMethodParameter &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setVbaMethodParameter( const ::rtl::OUString& PropertyName, const ::css::uno::Any& Value ) = 0;
+    virtual ::css::uno::Any SAL_CALL getVbaMethodParameter( const ::rtl::OUString& PropertyName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XVbaMethodParameter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XVbaMethodParameter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XVbaMethodParameter > *);
+
+#endif

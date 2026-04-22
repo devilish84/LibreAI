@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XDOCUMENTEVENTBROADCASTER_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XDOCUMENTEVENTBROADCASTER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace document { class XDocumentEventListener; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XController2; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDocumentEventBroadcaster : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDocumentEventBroadcaster() = default;
+    XDocumentEventBroadcaster(XDocumentEventBroadcaster const &) = default;
+    XDocumentEventBroadcaster(XDocumentEventBroadcaster &&) = default;
+    XDocumentEventBroadcaster & operator =(XDocumentEventBroadcaster const &) = default;
+    XDocumentEventBroadcaster & operator =(XDocumentEventBroadcaster &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addDocumentEventListener( const ::css::uno::Reference< ::css::document::XDocumentEventListener >& Listener ) = 0;
+    virtual void SAL_CALL removeDocumentEventListener( const ::css::uno::Reference< ::css::document::XDocumentEventListener >& Listener ) = 0;
+    virtual void SAL_CALL notifyDocumentEvent( const ::rtl::OUString& EventName, const ::css::uno::Reference< ::css::frame::XController2 >& ViewController, const ::css::uno::Any& Supplement ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDocumentEventBroadcaster() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XDocumentEventBroadcaster const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XDocumentEventBroadcaster > *);
+
+#endif

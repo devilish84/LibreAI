@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DATABARAXIS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DATABARAXIS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace DataBarAxis {
+
+static const ::sal_Int32 AXIS_AUTOMATIC = (sal_Int32)2;
+static const ::sal_Int32 AXIS_MIDDLE = (sal_Int32)1;
+static const ::sal_Int32 AXIS_NONE = (sal_Int32)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_DATABARAXIS_HDL

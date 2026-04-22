@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_WORDTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_WORDTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace WordType {
+
+static const ::sal_Int16 ANYWORD_IGNOREWHITESPACES = (sal_Int16)1;
+static const ::sal_Int16 ANY_WORD = (sal_Int16)0;
+static const ::sal_Int16 DICTIONARY_WORD = (sal_Int16)2;
+static const ::sal_Int16 WORD_COUNT = (sal_Int16)3;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_WORDTYPE_HDL

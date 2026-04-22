@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XCONTENTIDENTIFIERMAPPING_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XCONTENTIDENTIFIERMAPPING_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace ucb { class XContent; } } } }
+namespace com { namespace sun { namespace star { namespace ucb { class XContentIdentifier; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XContentIdentifierMapping : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XContentIdentifierMapping() = default;
+    XContentIdentifierMapping(XContentIdentifierMapping const &) = default;
+    XContentIdentifierMapping(XContentIdentifierMapping &&) = default;
+    XContentIdentifierMapping & operator =(XContentIdentifierMapping const &) = default;
+    XContentIdentifierMapping & operator =(XContentIdentifierMapping &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL mapContentIdentifierString( const ::rtl::OUString& Source ) = 0;
+    virtual ::css::uno::Reference< ::css::ucb::XContentIdentifier > SAL_CALL mapContentIdentifier( const ::css::uno::Reference< ::css::ucb::XContentIdentifier >& Source ) = 0;
+    virtual ::css::uno::Reference< ::css::ucb::XContent > SAL_CALL mapContent( const ::css::uno::Reference< ::css::ucb::XContent >& Source ) = 0;
+    virtual ::sal_Bool SAL_CALL mapRow( ::css::uno::Sequence< ::css::uno::Any >& Value ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XContentIdentifierMapping() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XContentIdentifierMapping const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XContentIdentifierMapping > *);
+
+#endif

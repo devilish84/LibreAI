@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XCONDITIONALFORMATS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XCONDITIONALFORMATS_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { class XConditionalFormat; } } } }
+namespace com { namespace sun { namespace star { namespace sheet { class XSheetCellRanges; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XConditionalFormats : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XConditionalFormats() = default;
+    XConditionalFormats(XConditionalFormats const &) = default;
+    XConditionalFormats(XConditionalFormats &&) = default;
+    XConditionalFormats & operator =(XConditionalFormats const &) = default;
+    XConditionalFormats & operator =(XConditionalFormats &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL createByRange( const ::css::uno::Reference< ::css::sheet::XSheetCellRanges >& range ) = 0;
+    virtual void SAL_CALL removeByID( ::sal_Int32 ID ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::sheet::XConditionalFormat > > SAL_CALL getConditionalFormats() = 0;
+    virtual ::sal_Int32 SAL_CALL getLength() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XConditionalFormats() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XConditionalFormats const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XConditionalFormats > *);
+
+#endif

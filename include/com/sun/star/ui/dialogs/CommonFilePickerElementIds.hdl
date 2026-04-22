@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_COMMONFILEPICKERELEMENTIDS_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_COMMONFILEPICKERELEMENTIDS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs { namespace CommonFilePickerElementIds {
+
+static const ::sal_Int16 CONTROL_FILEVIEW = (sal_Int16)4;
+static const ::sal_Int16 EDIT_FILEURL = (sal_Int16)5;
+static const ::sal_Int16 EDIT_FILEURL_LABEL = (sal_Int16)7;
+static const ::sal_Int16 LISTBOX_FILTER = (sal_Int16)3;
+static const ::sal_Int16 LISTBOX_FILTER_LABEL = (sal_Int16)6;
+static const ::sal_Int16 PUSHBUTTON_CANCEL = (sal_Int16)2;
+static const ::sal_Int16 PUSHBUTTON_OK = (sal_Int16)1;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UI_DIALOGS_COMMONFILEPICKERELEMENTIDS_HDL

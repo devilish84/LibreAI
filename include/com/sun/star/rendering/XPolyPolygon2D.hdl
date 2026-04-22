@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XPOLYPOLYGON2D_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XPOLYPOLYGON2D_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/geometry/RealPoint2D.hdl"
+#include "com/sun/star/rendering/FillRule.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XPolyPolygon2D; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPolyPolygon2D : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPolyPolygon2D() = default;
+    XPolyPolygon2D(XPolyPolygon2D const &) = default;
+    XPolyPolygon2D(XPolyPolygon2D &&) = default;
+    XPolyPolygon2D & operator =(XPolyPolygon2D const &) = default;
+    XPolyPolygon2D & operator =(XPolyPolygon2D &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addPolyPolygon( const ::css::geometry::RealPoint2D& position, const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D >& polyPolygon ) = 0;
+    virtual ::sal_Int32 SAL_CALL getNumberOfPolygons() = 0;
+    virtual ::sal_Int32 SAL_CALL getNumberOfPolygonPoints( ::sal_Int32 polygon ) = 0;
+    virtual ::css::rendering::FillRule SAL_CALL getFillRule() = 0;
+    virtual void SAL_CALL setFillRule( ::css::rendering::FillRule fillRule ) = 0;
+    virtual ::sal_Bool SAL_CALL isClosed( ::sal_Int32 index ) = 0;
+    virtual void SAL_CALL setClosed( ::sal_Int32 index, ::sal_Bool closedState ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPolyPolygon2D() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XPolyPolygon2D const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XPolyPolygon2D > *);
+
+#endif

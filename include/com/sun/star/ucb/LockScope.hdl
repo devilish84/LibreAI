@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_LOCKSCOPE_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_LOCKSCOPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI LockScope
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI LockScope
+{
+
+#endif
+    LockScope_EXCLUSIVE = 0,
+    LockScope_SHARED = 1,
+    LockScope_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto LockScope_EXCLUSIVE = LockScope::LockScope_EXCLUSIVE;
+constexpr auto LockScope_SHARED = LockScope::LockScope_SHARED;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::LockScope const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::LockScope *);
+
+#endif

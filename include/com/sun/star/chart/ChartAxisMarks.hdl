@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTAXISMARKS_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTAXISMARKS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace chart { namespace ChartAxisMarks {
+
+static const ::sal_Int32 INNER = (sal_Int32)1;
+static const ::sal_Int32 NONE = (sal_Int32)0;
+static const ::sal_Int32 OUTER = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_CHART_CHARTAXISMARKS_HDL

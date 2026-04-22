@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XTRANSACTIONBROADCASTER_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XTRANSACTIONBROADCASTER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace embed { class XTransactionListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTransactionBroadcaster : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTransactionBroadcaster() = default;
+    XTransactionBroadcaster(XTransactionBroadcaster const &) = default;
+    XTransactionBroadcaster(XTransactionBroadcaster &&) = default;
+    XTransactionBroadcaster & operator =(XTransactionBroadcaster const &) = default;
+    XTransactionBroadcaster & operator =(XTransactionBroadcaster &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addTransactionListener( const ::css::uno::Reference< ::css::embed::XTransactionListener >& aListener ) = 0;
+    virtual void SAL_CALL removeTransactionListener( const ::css::uno::Reference< ::css::embed::XTransactionListener >& aListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTransactionBroadcaster() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XTransactionBroadcaster const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XTransactionBroadcaster > *);
+
+#endif

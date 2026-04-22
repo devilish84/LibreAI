@@ -1,0 +1,22 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTDATACAPTION_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTDATACAPTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace chart { namespace ChartDataCaption {
+
+static const ::sal_Int32 CUSTOM = (sal_Int32)32;
+static const ::sal_Int32 DATA_SERIES = (sal_Int32)64;
+static const ::sal_Int32 FORMAT = (sal_Int32)8;
+static const ::sal_Int32 NONE = (sal_Int32)0;
+static const ::sal_Int32 PERCENT = (sal_Int32)2;
+static const ::sal_Int32 SYMBOL = (sal_Int32)16;
+static const ::sal_Int32 TEXT = (sal_Int32)4;
+static const ::sal_Int32 VALUE = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_CHART_CHARTDATACAPTION_HDL

@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_SEARCHCRITERIUM_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_SEARCHCRITERIUM_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/RuleTerm.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SearchCriterium {
+    inline SearchCriterium();
+
+    inline SearchCriterium(const ::css::uno::Sequence< ::css::ucb::RuleTerm >& Terms_);
+
+    ::css::uno::Sequence< ::css::ucb::RuleTerm > Terms;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::SearchCriterium const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::SearchCriterium *);
+
+#endif

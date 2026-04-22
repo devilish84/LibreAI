@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_FILESYSTEMNOTATION_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_FILESYSTEMNOTATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ucb { namespace FileSystemNotation {
+
+static const ::sal_Int32 DOS_NOTATION = (sal_Int32)2;
+static const ::sal_Int32 MAC_NOTATION = (sal_Int32)3;
+static const ::sal_Int32 UNIX_NOTATION = (sal_Int32)1;
+static const ::sal_Int32 UNKNOWN_NOTATION = (sal_Int32)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UCB_FILESYSTEMNOTATION_HDL

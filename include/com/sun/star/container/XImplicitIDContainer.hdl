@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONTAINER_XIMPLICITIDCONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_CONTAINER_XIMPLICITIDCONTAINER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XImplicitIDReplace.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace container {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XImplicitIDContainer : public ::css::container::XImplicitIDReplace
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XImplicitIDContainer() = default;
+    XImplicitIDContainer(XImplicitIDContainer const &) = default;
+    XImplicitIDContainer(XImplicitIDContainer &&) = default;
+    XImplicitIDContainer & operator =(XImplicitIDContainer const &) = default;
+    XImplicitIDContainer & operator =(XImplicitIDContainer &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL addWithImplicitID( const ::css::uno::Any& aElement ) = 0;
+    virtual void SAL_CALL removeByImplicitID( const ::rtl::OUString& ID ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XImplicitIDContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::container::XImplicitIDContainer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::container::XImplicitIDContainer > *);
+
+#endif

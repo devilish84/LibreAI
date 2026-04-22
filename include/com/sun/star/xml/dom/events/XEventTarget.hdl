@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_XEVENTTARGET_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_XEVENTTARGET_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace events { class XEvent; } } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace events { class XEventListener; } } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace events {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XEventTarget : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XEventTarget() = default;
+    XEventTarget(XEventTarget const &) = default;
+    XEventTarget(XEventTarget &&) = default;
+    XEventTarget & operator =(XEventTarget const &) = default;
+    XEventTarget & operator =(XEventTarget &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addEventListener( const ::rtl::OUString& eventType, const ::css::uno::Reference< ::css::xml::dom::events::XEventListener >& listener, ::sal_Bool useCapture ) = 0;
+    virtual void SAL_CALL removeEventListener( const ::rtl::OUString& eventType, const ::css::uno::Reference< ::css::xml::dom::events::XEventListener >& listener, ::sal_Bool useCapture ) = 0;
+    virtual ::sal_Bool SAL_CALL dispatchEvent( const ::css::uno::Reference< ::css::xml::dom::events::XEvent >& evt ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XEventTarget() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::events::XEventTarget const *);
+} } } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::events::XEventTarget > *);
+
+#endif

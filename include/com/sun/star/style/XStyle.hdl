@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_XSTYLE_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_XSTYLE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XNamed.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace style {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStyle : public ::css::container::XNamed
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStyle() = default;
+    XStyle(XStyle const &) = default;
+    XStyle(XStyle &&) = default;
+    XStyle & operator =(XStyle const &) = default;
+    XStyle & operator =(XStyle &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isUserDefined() = 0;
+    virtual ::sal_Bool SAL_CALL isInUse() = 0;
+    virtual ::rtl::OUString SAL_CALL getParentStyle() = 0;
+    virtual void SAL_CALL setParentStyle( const ::rtl::OUString& aParentStyle ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStyle() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::style::XStyle const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::style::XStyle > *);
+
+#endif

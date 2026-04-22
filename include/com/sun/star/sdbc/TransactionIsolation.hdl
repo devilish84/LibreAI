@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_TRANSACTIONISOLATION_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_TRANSACTIONISOLATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbc { namespace TransactionIsolation {
+
+static const ::sal_Int32 NONE = (sal_Int32)0;
+static const ::sal_Int32 READ_COMMITTED = (sal_Int32)2;
+static const ::sal_Int32 READ_UNCOMMITTED = (sal_Int32)1;
+static const ::sal_Int32 REPEATABLE_READ = (sal_Int32)4;
+static const ::sal_Int32 SERIALIZABLE = (sal_Int32)8;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBC_TRANSACTIONISOLATION_HDL

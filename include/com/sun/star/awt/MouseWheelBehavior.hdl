@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_MOUSEWHEELBEHAVIOR_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_MOUSEWHEELBEHAVIOR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace MouseWheelBehavior {
+
+static const ::sal_Int16 SCROLL_ALWAYS = (sal_Int16)2;
+static const ::sal_Int16 SCROLL_DISABLED = (sal_Int16)0;
+static const ::sal_Int16 SCROLL_FOCUS_ONLY = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_MOUSEWHEELBEHAVIOR_HDL

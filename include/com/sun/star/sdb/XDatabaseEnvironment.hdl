@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_XDATABASEENVIRONMENT_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_XDATABASEENVIRONMENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace sdb { class XDatabaseAccess; } } } }
+#include "com/sun/star/sdbc/XDriverManager.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDatabaseEnvironment : public ::css::sdbc::XDriverManager
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDatabaseEnvironment() = default;
+    XDatabaseEnvironment(XDatabaseEnvironment const &) = default;
+    XDatabaseEnvironment(XDatabaseEnvironment &&) = default;
+    XDatabaseEnvironment & operator =(XDatabaseEnvironment const &) = default;
+    XDatabaseEnvironment & operator =(XDatabaseEnvironment &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::sdb::XDatabaseAccess > SAL_CALL getDatabaseAccess( const ::rtl::OUString& URL ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::sdb::XDatabaseAccess > SAL_CALL createDatabaseAccess( const ::rtl::OUString& URL, const ::rtl::OUString& title ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDatabaseEnvironment() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdb::XDatabaseEnvironment const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdb::XDatabaseEnvironment > *);
+
+#endif

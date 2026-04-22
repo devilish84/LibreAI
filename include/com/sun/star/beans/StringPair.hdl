@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_STRINGPAIR_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_STRINGPAIR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace beans {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED StringPair {
+    inline StringPair();
+
+    inline StringPair(const ::rtl::OUString& First_, const ::rtl::OUString& Second_);
+
+    ::rtl::OUString First;
+    ::rtl::OUString Second;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::beans::StringPair const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::beans::StringPair *);
+
+#endif

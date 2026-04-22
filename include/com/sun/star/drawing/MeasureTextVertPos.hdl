@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_MEASURETEXTVERTPOS_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_MEASURETEXTVERTPOS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI MeasureTextVertPos
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI MeasureTextVertPos
+{
+
+#endif
+    MeasureTextVertPos_AUTO = 0,
+    MeasureTextVertPos_EAST = 1,
+    MeasureTextVertPos_BREAKEDLINE = 2,
+    MeasureTextVertPos_WEST = 3,
+    MeasureTextVertPos_CENTERED = 4,
+    MeasureTextVertPos_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto MeasureTextVertPos_AUTO = MeasureTextVertPos::MeasureTextVertPos_AUTO;
+constexpr auto MeasureTextVertPos_EAST = MeasureTextVertPos::MeasureTextVertPos_EAST;
+constexpr auto MeasureTextVertPos_BREAKEDLINE = MeasureTextVertPos::MeasureTextVertPos_BREAKEDLINE;
+constexpr auto MeasureTextVertPos_WEST = MeasureTextVertPos::MeasureTextVertPos_WEST;
+constexpr auto MeasureTextVertPos_CENTERED = MeasureTextVertPos::MeasureTextVertPos_CENTERED;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::MeasureTextVertPos const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::MeasureTextVertPos *);
+
+#endif

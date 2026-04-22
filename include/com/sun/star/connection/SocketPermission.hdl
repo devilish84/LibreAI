@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONNECTION_SOCKETPERMISSION_HDL
+#define INCLUDED_COM_SUN_STAR_CONNECTION_SOCKETPERMISSION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace connection {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED SocketPermission {
+    inline SocketPermission();
+
+    inline SocketPermission(const ::rtl::OUString& Host_, const ::rtl::OUString& Actions_);
+
+    ::rtl::OUString Host;
+    ::rtl::OUString Actions;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::connection::SocketPermission const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::connection::SocketPermission *);
+
+#endif

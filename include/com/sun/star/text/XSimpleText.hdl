@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XSIMPLETEXT_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XSIMPLETEXT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace text { class XTextCursor; } } } }
+#include "com/sun/star/text/XTextRange.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSimpleText : public ::css::text::XTextRange
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSimpleText() = default;
+    XSimpleText(XSimpleText const &) = default;
+    XSimpleText(XSimpleText &&) = default;
+    XSimpleText & operator =(XSimpleText const &) = default;
+    XSimpleText & operator =(XSimpleText &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::text::XTextCursor > SAL_CALL createTextCursor() = 0;
+    virtual ::css::uno::Reference< ::css::text::XTextCursor > SAL_CALL createTextCursorByRange( const ::css::uno::Reference< ::css::text::XTextRange >& aTextPosition ) = 0;
+    virtual void SAL_CALL insertString( const ::css::uno::Reference< ::css::text::XTextRange >& xRange, const ::rtl::OUString& aString, ::sal_Bool bAbsorb ) = 0;
+    virtual void SAL_CALL insertControlCharacter( const ::css::uno::Reference< ::css::text::XTextRange >& xRange, ::sal_Int16 nControlCharacter, ::sal_Bool bAbsorb ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSimpleText() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XSimpleText const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XSimpleText > *);
+
+#endif

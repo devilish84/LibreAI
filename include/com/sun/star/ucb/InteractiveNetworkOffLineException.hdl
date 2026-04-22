@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_INTERACTIVENETWORKOFFLINEEXCEPTION_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_INTERACTIVENETWORKOFFLINEEXCEPTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/InteractiveNetworkException.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED InteractiveNetworkOffLineException : public ::css::ucb::InteractiveNetworkException
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE InteractiveNetworkOffLineException(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE InteractiveNetworkOffLineException(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::css::task::InteractionClassification& Classification_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE InteractiveNetworkOffLineException(InteractiveNetworkOffLineException const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~InteractiveNetworkOffLineException();
+
+    inline CPPU_GCC_DLLPRIVATE InteractiveNetworkOffLineException & operator =(InteractiveNetworkOffLineException const &);
+#endif
+
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::InteractiveNetworkOffLineException const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::InteractiveNetworkOffLineException *);
+
+#endif

@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_SCRIPTDIRECTION_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_SCRIPTDIRECTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace ScriptDirection {
+
+static const ::sal_Int16 LEFT_TO_RIGHT = (sal_Int16)1;
+static const ::sal_Int16 NEUTRAL = (sal_Int16)0;
+static const ::sal_Int16 RIGHT_TO_LEFT = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_SCRIPTDIRECTION_HDL

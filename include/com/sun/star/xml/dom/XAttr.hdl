@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_XATTR_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_XATTR_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XElement; } } } } }
+#include "com/sun/star/xml/dom/XNode.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAttr : public ::css::xml::dom::XNode
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAttr() = default;
+    XAttr(XAttr const &) = default;
+    XAttr(XAttr &&) = default;
+    XAttr & operator =(XAttr const &) = default;
+    XAttr & operator =(XAttr &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getName() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XElement > SAL_CALL getOwnerElement() = 0;
+    virtual ::sal_Bool SAL_CALL getSpecified() = 0;
+    virtual ::rtl::OUString SAL_CALL getValue() = 0;
+    virtual void SAL_CALL setValue( const ::rtl::OUString& value ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAttr() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::XAttr const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::XAttr > *);
+
+#endif

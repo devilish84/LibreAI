@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_VIEWS_XABSTRACTVIEW_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_VIEWS_XABSTRACTVIEW_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace views { class XDocumentView; } } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace views {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAbstractView : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAbstractView() = default;
+    XAbstractView(XAbstractView const &) = default;
+    XAbstractView(XAbstractView &&) = default;
+    XAbstractView & operator =(XAbstractView const &) = default;
+    XAbstractView & operator =(XAbstractView &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::xml::dom::views::XDocumentView > SAL_CALL getDocument() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAbstractView() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::views::XAbstractView const *);
+} } } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::views::XAbstractView > *);
+
+#endif

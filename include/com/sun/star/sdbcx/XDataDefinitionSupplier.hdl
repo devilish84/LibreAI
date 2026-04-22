@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBCX_XDATADEFINITIONSUPPLIER_HDL
+#define INCLUDED_COM_SUN_STAR_SDBCX_XDATADEFINITIONSUPPLIER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace sdbc { class XConnection; } } } }
+namespace com { namespace sun { namespace star { namespace sdbcx { class XTablesSupplier; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbcx {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDataDefinitionSupplier : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDataDefinitionSupplier() = default;
+    XDataDefinitionSupplier(XDataDefinitionSupplier const &) = default;
+    XDataDefinitionSupplier(XDataDefinitionSupplier &&) = default;
+    XDataDefinitionSupplier & operator =(XDataDefinitionSupplier const &) = default;
+    XDataDefinitionSupplier & operator =(XDataDefinitionSupplier &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::sdbcx::XTablesSupplier > SAL_CALL getDataDefinitionByConnection( const ::css::uno::Reference< ::css::sdbc::XConnection >& connection ) = 0;
+    virtual ::css::uno::Reference< ::css::sdbcx::XTablesSupplier > SAL_CALL getDataDefinitionByURL( const ::rtl::OUString& url, const ::css::uno::Sequence< ::css::beans::PropertyValue >& info ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDataDefinitionSupplier() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbcx::XDataDefinitionSupplier const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbcx::XDataDefinitionSupplier > *);
+
+#endif

@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_VIEW_XSELECTIONSUPPLIER_HDL
+#define INCLUDED_COM_SUN_STAR_VIEW_XSELECTIONSUPPLIER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace view { class XSelectionChangeListener; } } } }
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace view {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSelectionSupplier : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSelectionSupplier() = default;
+    XSelectionSupplier(XSelectionSupplier const &) = default;
+    XSelectionSupplier(XSelectionSupplier &&) = default;
+    XSelectionSupplier & operator =(XSelectionSupplier const &) = default;
+    XSelectionSupplier & operator =(XSelectionSupplier &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL select( const ::css::uno::Any& xSelection ) = 0;
+    virtual ::css::uno::Any SAL_CALL getSelection() = 0;
+    virtual void SAL_CALL addSelectionChangeListener( const ::css::uno::Reference< ::css::view::XSelectionChangeListener >& xListener ) = 0;
+    virtual void SAL_CALL removeSelectionChangeListener( const ::css::uno::Reference< ::css::view::XSelectionChangeListener >& xListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSelectionSupplier() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::view::XSelectionSupplier const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::view::XSelectionSupplier > *);
+
+#endif

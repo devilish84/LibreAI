@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_APPLICATION_COPYTABLECONTINUATION_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_APPLICATION_COPYTABLECONTINUATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace application { namespace CopyTableContinuation {
+
+static const ::sal_Int16 AskUser = (sal_Int16)3;
+static const ::sal_Int16 CallNextHandler = (sal_Int16)1;
+static const ::sal_Int16 Cancel = (sal_Int16)2;
+static const ::sal_Int16 Proceed = (sal_Int16)0;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDB_APPLICATION_COPYTABLECONTINUATION_HDL

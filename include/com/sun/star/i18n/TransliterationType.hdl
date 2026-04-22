@@ -1,0 +1,20 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_TRANSLITERATIONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_TRANSLITERATIONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace TransliterationType {
+
+static const ::sal_Int16 CASCADE = (sal_Int16)8;
+static const ::sal_Int16 IGNORE = (sal_Int16)4;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+static const ::sal_Int16 NUMERIC = (sal_Int16)2;
+static const ::sal_Int16 ONE_TO_ONE = (sal_Int16)1;
+static const ::sal_Int16 ONE_TO_ONE_NUMERIC = (sal_Int16)3;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_TRANSLITERATIONTYPE_HDL

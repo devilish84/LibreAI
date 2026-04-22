@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_XFILEPICKER_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_XFILEPICKER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ui/dialogs/XExecutableDialog.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFilePicker : public ::css::ui::dialogs::XExecutableDialog
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFilePicker() = default;
+    XFilePicker(XFilePicker const &) = default;
+    XFilePicker(XFilePicker &&) = default;
+    XFilePicker & operator =(XFilePicker const &) = default;
+    XFilePicker & operator =(XFilePicker &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setMultiSelectionMode( ::sal_Bool bMode ) = 0;
+    virtual void SAL_CALL setDefaultName( const ::rtl::OUString& aName ) = 0;
+    virtual void SAL_CALL setDisplayDirectory( const ::rtl::OUString& aDirectory ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDisplayDirectory() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getFiles() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFilePicker() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::dialogs::XFilePicker const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::dialogs::XFilePicker > *);
+
+#endif

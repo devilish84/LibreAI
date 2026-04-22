@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_XTRANSFERDATAACCESS_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_XTRANSFERDATAACCESS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/datatransfer/DataFlavor.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace datatransfer {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTransferDataAccess : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTransferDataAccess() = default;
+    XTransferDataAccess(XTransferDataAccess const &) = default;
+    XTransferDataAccess(XTransferDataAccess &&) = default;
+    XTransferDataAccess & operator =(XTransferDataAccess const &) = default;
+    XTransferDataAccess & operator =(XTransferDataAccess &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int64 SAL_CALL queryDataSize( const ::css::uno::Sequence< ::css::datatransfer::DataFlavor >& aFlavorList ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Any > SAL_CALL getData( const ::css::uno::Sequence< ::css::datatransfer::DataFlavor >& aFlavorList ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTransferDataAccess() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::datatransfer::XTransferDataAccess const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::datatransfer::XTransferDataAccess > *);
+
+#endif

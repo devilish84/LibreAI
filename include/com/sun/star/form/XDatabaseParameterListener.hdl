@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_XDATABASEPARAMETERLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_XDATABASEPARAMETERLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/form/DatabaseParameterEvent.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDatabaseParameterListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDatabaseParameterListener() = default;
+    XDatabaseParameterListener(XDatabaseParameterListener const &) = default;
+    XDatabaseParameterListener(XDatabaseParameterListener &&) = default;
+    XDatabaseParameterListener & operator =(XDatabaseParameterListener const &) = default;
+    XDatabaseParameterListener & operator =(XDatabaseParameterListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL approveParameter( const ::css::form::DatabaseParameterEvent& aEvent ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDatabaseParameterListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::XDatabaseParameterListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::form::XDatabaseParameterListener > *);
+
+#endif

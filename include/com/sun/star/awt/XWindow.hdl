@@ -1,0 +1,65 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XWINDOW_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XWINDOW_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+namespace com { namespace sun { namespace star { namespace awt { class XFocusListener; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XKeyListener; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XMouseListener; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XMouseMotionListener; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XPaintListener; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XWindowListener; } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XWindow : public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XWindow() = default;
+    XWindow(XWindow const &) = default;
+    XWindow(XWindow &&) = default;
+    XWindow & operator =(XWindow const &) = default;
+    XWindow & operator =(XWindow &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setPosSize( ::sal_Int32 X, ::sal_Int32 Y, ::sal_Int32 Width, ::sal_Int32 Height, ::sal_Int16 Flags ) = 0;
+    virtual ::css::awt::Rectangle SAL_CALL getPosSize() = 0;
+    virtual void SAL_CALL setVisible( ::sal_Bool Visible ) = 0;
+    virtual void SAL_CALL setEnable( ::sal_Bool Enable ) = 0;
+    virtual void SAL_CALL setFocus() = 0;
+    virtual void SAL_CALL addWindowListener( const ::css::uno::Reference< ::css::awt::XWindowListener >& xListener ) = 0;
+    virtual void SAL_CALL removeWindowListener( const ::css::uno::Reference< ::css::awt::XWindowListener >& xListener ) = 0;
+    virtual void SAL_CALL addFocusListener( const ::css::uno::Reference< ::css::awt::XFocusListener >& xListener ) = 0;
+    virtual void SAL_CALL removeFocusListener( const ::css::uno::Reference< ::css::awt::XFocusListener >& xListener ) = 0;
+    virtual void SAL_CALL addKeyListener( const ::css::uno::Reference< ::css::awt::XKeyListener >& xListener ) = 0;
+    virtual void SAL_CALL removeKeyListener( const ::css::uno::Reference< ::css::awt::XKeyListener >& xListener ) = 0;
+    virtual void SAL_CALL addMouseListener( const ::css::uno::Reference< ::css::awt::XMouseListener >& xListener ) = 0;
+    virtual void SAL_CALL removeMouseListener( const ::css::uno::Reference< ::css::awt::XMouseListener >& xListener ) = 0;
+    virtual void SAL_CALL addMouseMotionListener( const ::css::uno::Reference< ::css::awt::XMouseMotionListener >& xListener ) = 0;
+    virtual void SAL_CALL removeMouseMotionListener( const ::css::uno::Reference< ::css::awt::XMouseMotionListener >& xListener ) = 0;
+    virtual void SAL_CALL addPaintListener( const ::css::uno::Reference< ::css::awt::XPaintListener >& xListener ) = 0;
+    virtual void SAL_CALL removePaintListener( const ::css::uno::Reference< ::css::awt::XPaintListener >& xListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XWindow() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XWindow const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XWindow > *);
+
+#endif

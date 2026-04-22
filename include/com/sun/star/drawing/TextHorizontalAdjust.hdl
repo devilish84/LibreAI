@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_TEXTHORIZONTALADJUST_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_TEXTHORIZONTALADJUST_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TextHorizontalAdjust
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TextHorizontalAdjust
+{
+
+#endif
+    TextHorizontalAdjust_LEFT = 0,
+    TextHorizontalAdjust_CENTER = 1,
+    TextHorizontalAdjust_RIGHT = 2,
+    TextHorizontalAdjust_BLOCK = 3,
+    TextHorizontalAdjust_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TextHorizontalAdjust_LEFT = TextHorizontalAdjust::TextHorizontalAdjust_LEFT;
+constexpr auto TextHorizontalAdjust_CENTER = TextHorizontalAdjust::TextHorizontalAdjust_CENTER;
+constexpr auto TextHorizontalAdjust_RIGHT = TextHorizontalAdjust::TextHorizontalAdjust_RIGHT;
+constexpr auto TextHorizontalAdjust_BLOCK = TextHorizontalAdjust::TextHorizontalAdjust_BLOCK;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::TextHorizontalAdjust const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::TextHorizontalAdjust *);
+
+#endif

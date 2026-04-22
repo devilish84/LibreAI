@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_MAIL_MAILSERVICETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_MAIL_MAILSERVICETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace mail {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI MailServiceType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI MailServiceType
+{
+
+#endif
+    MailServiceType_SMTP = 0,
+    MailServiceType_POP3 = 1,
+    MailServiceType_IMAP = 2,
+    MailServiceType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto MailServiceType_SMTP = MailServiceType::MailServiceType_SMTP;
+constexpr auto MailServiceType_POP3 = MailServiceType::MailServiceType_POP3;
+constexpr auto MailServiceType_IMAP = MailServiceType::MailServiceType_IMAP;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::mail::MailServiceType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::mail::MailServiceType *);
+
+#endif

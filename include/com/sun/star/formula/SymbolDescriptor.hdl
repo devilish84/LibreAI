@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORMULA_SYMBOLDESCRIPTOR_HDL
+#define INCLUDED_COM_SUN_STAR_FORMULA_SYMBOLDESCRIPTOR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace formula {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED SymbolDescriptor {
+    inline SymbolDescriptor();
+
+    inline SymbolDescriptor(const ::rtl::OUString& sName_, const ::rtl::OUString& sExportName_, const ::rtl::OUString& sSymbolSet_, const ::sal_Int32& nCharacter_, const ::rtl::OUString& sFontName_, const ::sal_Int16& nCharSet_, const ::sal_Int16& nFamily_, const ::sal_Int16& nPitch_, const ::sal_Int16& nWeight_, const ::sal_Int16& nItalic_);
+
+    ::rtl::OUString sName;
+    ::rtl::OUString sExportName;
+    ::rtl::OUString sSymbolSet;
+    ::sal_Int32 nCharacter;
+    ::rtl::OUString sFontName;
+    ::sal_Int16 nCharSet;
+    ::sal_Int16 nFamily;
+    ::sal_Int16 nPitch;
+    ::sal_Int16 nWeight;
+    ::sal_Int16 nItalic;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::formula::SymbolDescriptor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::formula::SymbolDescriptor *);
+
+#endif

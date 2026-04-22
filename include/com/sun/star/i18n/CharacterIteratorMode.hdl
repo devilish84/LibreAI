@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace CharacterIteratorMode {
+
+static const ::sal_Int16 SKIPCELL = (sal_Int16)1;
+static const ::sal_Int16 SKIPCHARACTER = (sal_Int16)0;
+static const ::sal_Int16 SKIPCONTROLCHARACTER = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL

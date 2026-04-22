@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HDL
+#define INCLUDED_COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace beans { class XPropertiesChangeListener; } } } }
+namespace com { namespace sun { namespace star { namespace beans { class XPropertySetInfo; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace beans {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMultiPropertySet : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMultiPropertySet() = default;
+    XMultiPropertySet(XMultiPropertySet const &) = default;
+    XMultiPropertySet(XMultiPropertySet &&) = default;
+    XMultiPropertySet & operator =(XMultiPropertySet const &) = default;
+    XMultiPropertySet & operator =(XMultiPropertySet &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo() = 0;
+    virtual void SAL_CALL setPropertyValues( const ::css::uno::Sequence< ::rtl::OUString >& aPropertyNames, const ::css::uno::Sequence< ::css::uno::Any >& aValues ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Any > SAL_CALL getPropertyValues( const ::css::uno::Sequence< ::rtl::OUString >& aPropertyNames ) = 0;
+    virtual void SAL_CALL addPropertiesChangeListener( const ::css::uno::Sequence< ::rtl::OUString >& aPropertyNames, const ::css::uno::Reference< ::css::beans::XPropertiesChangeListener >& xListener ) = 0;
+    virtual void SAL_CALL removePropertiesChangeListener( const ::css::uno::Reference< ::css::beans::XPropertiesChangeListener >& xListener ) = 0;
+    virtual void SAL_CALL firePropertiesChangeEvent( const ::css::uno::Sequence< ::rtl::OUString >& aPropertyNames, const ::css::uno::Reference< ::css::beans::XPropertiesChangeListener >& xListener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMultiPropertySet() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::beans::XMultiPropertySet const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::beans::XMultiPropertySet > *);
+
+#endif

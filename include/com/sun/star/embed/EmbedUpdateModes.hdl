@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_EMBEDUPDATEMODES_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_EMBEDUPDATEMODES_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace embed { namespace EmbedUpdateModes {
+
+static const ::sal_Int32 ALWAYS_UPDATE = (sal_Int32)0;
+static const ::sal_Int32 EXPLICIT_UPDATE = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_EMBED_EMBEDUPDATEMODES_HDL

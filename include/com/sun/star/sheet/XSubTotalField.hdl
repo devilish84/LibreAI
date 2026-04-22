@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XSUBTOTALFIELD_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XSUBTOTALFIELD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/SubTotalColumn.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSubTotalField : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSubTotalField() = default;
+    XSubTotalField(XSubTotalField const &) = default;
+    XSubTotalField(XSubTotalField &&) = default;
+    XSubTotalField & operator =(XSubTotalField const &) = default;
+    XSubTotalField & operator =(XSubTotalField &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getGroupColumn() = 0;
+    virtual void SAL_CALL setGroupColumn( ::sal_Int32 nGroupColumn ) = 0;
+    virtual ::css::uno::Sequence< ::css::sheet::SubTotalColumn > SAL_CALL getSubTotalColumns() = 0;
+    virtual void SAL_CALL setSubTotalColumns( const ::css::uno::Sequence< ::css::sheet::SubTotalColumn >& aSubTotalColumns ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSubTotalField() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XSubTotalField const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XSubTotalField > *);
+
+#endif

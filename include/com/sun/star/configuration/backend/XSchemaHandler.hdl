@@ -1,0 +1,60 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_XSCHEMAHANDLER_HDL
+#define INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_XSCHEMAHANDLER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/configuration/backend/TemplateIdentifier.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Type.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSchemaHandler : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSchemaHandler() = default;
+    XSchemaHandler(XSchemaHandler const &) = default;
+    XSchemaHandler(XSchemaHandler &&) = default;
+    XSchemaHandler & operator =(XSchemaHandler const &) = default;
+    XSchemaHandler & operator =(XSchemaHandler &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL startSchema() = 0;
+    virtual void SAL_CALL endSchema() = 0;
+    virtual void SAL_CALL importComponent( const ::rtl::OUString& aName ) = 0;
+    virtual void SAL_CALL startComponent( const ::rtl::OUString& aName ) = 0;
+    virtual void SAL_CALL endComponent() = 0;
+    virtual void SAL_CALL startGroupTemplate( const ::css::configuration::backend::TemplateIdentifier& aTemplate, ::sal_Int16 aAttributes ) = 0;
+    virtual void SAL_CALL startSetTemplate( const ::css::configuration::backend::TemplateIdentifier& aTemplate, ::sal_Int16 aAttributes, const ::css::configuration::backend::TemplateIdentifier& aItemType ) = 0;
+    virtual void SAL_CALL endTemplate() = 0;
+    virtual void SAL_CALL startGroup( const ::rtl::OUString& aName, ::sal_Int16 aAttributes ) = 0;
+    virtual void SAL_CALL startSet( const ::rtl::OUString& aName, ::sal_Int16 aAttributes, const ::css::configuration::backend::TemplateIdentifier& aItemType ) = 0;
+    virtual void SAL_CALL endNode() = 0;
+    virtual void SAL_CALL addProperty( const ::rtl::OUString& aName, ::sal_Int16 aAttributes, const ::css::uno::Type& aType ) = 0;
+    virtual void SAL_CALL addPropertyWithDefault( const ::rtl::OUString& aName, ::sal_Int16 aAttributes, const ::css::uno::Any& aDefaultValue ) = 0;
+    virtual void SAL_CALL addInstance( const ::rtl::OUString& aName, const ::css::configuration::backend::TemplateIdentifier& aTemplate ) = 0;
+    virtual void SAL_CALL addItemType( const ::css::configuration::backend::TemplateIdentifier& aItemType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSchemaHandler() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::configuration::backend::XSchemaHandler const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::configuration::backend::XSchemaHandler > *);
+
+#endif

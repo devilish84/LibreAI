@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTEMPHASISMARK_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_FONTEMPHASISMARK_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace FontEmphasisMark {
+
+static const ::sal_Int16 ABOVE = (sal_Int16)4096;
+static const ::sal_Int16 ACCENT = (sal_Int16)4;
+static const ::sal_Int16 BELOW = (sal_Int16)8192;
+static const ::sal_Int16 CIRCLE = (sal_Int16)2;
+static const ::sal_Int16 DISC = (sal_Int16)3;
+static const ::sal_Int16 DOT = (sal_Int16)1;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FONTEMPHASISMARK_HDL

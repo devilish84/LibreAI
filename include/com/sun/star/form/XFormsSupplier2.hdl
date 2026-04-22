@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_XFORMSSUPPLIER2_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_XFORMSSUPPLIER2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/form/XFormsSupplier.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFormsSupplier2 : public ::css::form::XFormsSupplier
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFormsSupplier2() = default;
+    XFormsSupplier2(XFormsSupplier2 const &) = default;
+    XFormsSupplier2(XFormsSupplier2 &&) = default;
+    XFormsSupplier2 & operator =(XFormsSupplier2 const &) = default;
+    XFormsSupplier2 & operator =(XFormsSupplier2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL hasForms() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFormsSupplier2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::XFormsSupplier2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::form::XFormsSupplier2 > *);
+
+#endif

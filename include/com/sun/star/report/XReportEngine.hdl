@@ -1,0 +1,62 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_XREPORTENGINE_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_XREPORTENGINE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XPropertySet.hdl"
+namespace com { namespace sun { namespace star { namespace frame { class XFrame; } } } }
+namespace com { namespace sun { namespace star { namespace frame { class XModel; } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace report { class XReportDefinition; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XConnection; } } } }
+namespace com { namespace sun { namespace star { namespace task { class XStatusIndicator; } } } }
+#include "com/sun/star/util/URL.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XReportEngine : public ::css::lang::XComponent, public ::css::beans::XPropertySet
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XReportEngine() = default;
+    XReportEngine(XReportEngine const &) = default;
+    XReportEngine(XReportEngine &&) = default;
+    XReportEngine & operator =(XReportEngine const &) = default;
+    XReportEngine & operator =(XReportEngine &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Reference< ::css::report::XReportDefinition > SAL_CALL getReportDefinition() = 0;
+    virtual void SAL_CALL setReportDefinition( const ::css::uno::Reference< ::css::report::XReportDefinition >& _reportdefinition ) = 0;
+    virtual ::css::uno::Reference< ::css::sdbc::XConnection > SAL_CALL getActiveConnection() = 0;
+    virtual void SAL_CALL setActiveConnection( const ::css::uno::Reference< ::css::sdbc::XConnection >& _activeconnection ) = 0;
+    virtual ::css::uno::Reference< ::css::task::XStatusIndicator > SAL_CALL getStatusIndicator() = 0;
+    virtual void SAL_CALL setStatusIndicator( const ::css::uno::Reference< ::css::task::XStatusIndicator >& _statusindicator ) = 0;
+    virtual ::sal_Int32 SAL_CALL getMaxRows() = 0;
+    virtual void SAL_CALL setMaxRows( ::sal_Int32 _maxrows ) = 0;
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::frame::XModel > SAL_CALL createDocumentModel() = 0;
+    virtual ::css::uno::Reference< ::css::frame::XModel > SAL_CALL createDocumentAlive( const ::css::uno::Reference< ::css::frame::XFrame >& frame ) = 0;
+    virtual ::css::util::URL SAL_CALL createDocument() = 0;
+    virtual void SAL_CALL interrupt() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XReportEngine() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::XReportEngine const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::XReportEngine > *);
+
+#endif

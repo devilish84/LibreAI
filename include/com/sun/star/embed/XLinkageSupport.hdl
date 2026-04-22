@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XLINKAGESUPPORT_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XLINKAGESUPPORT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/embed/XCommonEmbedPersist.hdl"
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLinkageSupport : public ::css::embed::XCommonEmbedPersist
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLinkageSupport() = default;
+    XLinkageSupport(XLinkageSupport const &) = default;
+    XLinkageSupport(XLinkageSupport &&) = default;
+    XLinkageSupport & operator =(XLinkageSupport const &) = default;
+    XLinkageSupport & operator =(XLinkageSupport &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL breakLink( const ::css::uno::Reference< ::css::embed::XStorage >& xStorage, const ::rtl::OUString& sEntryName ) = 0;
+    virtual ::sal_Bool SAL_CALL isLink() = 0;
+    virtual ::rtl::OUString SAL_CALL getLinkURL() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLinkageSupport() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XLinkageSupport const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XLinkageSupport > *);
+
+#endif

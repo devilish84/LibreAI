@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_INSPECTION_XSTRINGLISTCONTROL_HDL
+#define INCLUDED_COM_SUN_STAR_INSPECTION_XSTRINGLISTCONTROL_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/inspection/XPropertyControl.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace inspection {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStringListControl : public ::css::inspection::XPropertyControl
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStringListControl() = default;
+    XStringListControl(XStringListControl const &) = default;
+    XStringListControl(XStringListControl &&) = default;
+    XStringListControl & operator =(XStringListControl const &) = default;
+    XStringListControl & operator =(XStringListControl &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL clearList() = 0;
+    virtual void SAL_CALL prependListEntry( const ::rtl::OUString& NewEntry ) = 0;
+    virtual void SAL_CALL appendListEntry( const ::rtl::OUString& NewEntry ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getListEntries() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStringListControl() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::inspection::XStringListControl const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::inspection::XStringListControl > *);
+
+#endif

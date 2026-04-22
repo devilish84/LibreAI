@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XFRAMESSUPPLIER_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XFRAMESSUPPLIER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/frame/XFrame.hdl"
+namespace com { namespace sun { namespace star { namespace frame { class XFrames; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFramesSupplier : public ::css::frame::XFrame
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFramesSupplier() = default;
+    XFramesSupplier(XFramesSupplier const &) = default;
+    XFramesSupplier(XFramesSupplier &&) = default;
+    XFramesSupplier & operator =(XFramesSupplier const &) = default;
+    XFramesSupplier & operator =(XFramesSupplier &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::frame::XFrames > SAL_CALL getFrames() = 0;
+    virtual ::css::uno::Reference< ::css::frame::XFrame > SAL_CALL getActiveFrame() = 0;
+    virtual void SAL_CALL setActiveFrame( const ::css::uno::Reference< ::css::frame::XFrame >& Frame ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFramesSupplier() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XFramesSupplier const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XFramesSupplier > *);
+
+#endif

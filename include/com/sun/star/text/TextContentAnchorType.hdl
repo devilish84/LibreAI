@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TextContentAnchorType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TextContentAnchorType
+{
+
+#endif
+    TextContentAnchorType_AT_PARAGRAPH = 0,
+    TextContentAnchorType_AS_CHARACTER = 1,
+    TextContentAnchorType_AT_PAGE = 2,
+    TextContentAnchorType_AT_FRAME = 3,
+    TextContentAnchorType_AT_CHARACTER = 4,
+    TextContentAnchorType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TextContentAnchorType_AT_PARAGRAPH = TextContentAnchorType::TextContentAnchorType_AT_PARAGRAPH;
+constexpr auto TextContentAnchorType_AS_CHARACTER = TextContentAnchorType::TextContentAnchorType_AS_CHARACTER;
+constexpr auto TextContentAnchorType_AT_PAGE = TextContentAnchorType::TextContentAnchorType_AT_PAGE;
+constexpr auto TextContentAnchorType_AT_FRAME = TextContentAnchorType::TextContentAnchorType_AT_FRAME;
+constexpr auto TextContentAnchorType_AT_CHARACTER = TextContentAnchorType::TextContentAnchorType_AT_CHARACTER;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::TextContentAnchorType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::text::TextContentAnchorType *);
+
+#endif

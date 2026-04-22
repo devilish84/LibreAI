@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_RECIPIENTINFO_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_RECIPIENTINFO_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/ucb/OutgoingMessageState.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED RecipientInfo {
+    inline RecipientInfo();
+
+    inline RecipientInfo(const ::rtl::OUString& ProtocolType_, const ::css::ucb::OutgoingMessageState& State_, const ::rtl::OUString& To_, const ::rtl::OUString& CC_, const ::rtl::OUString& BCC_, const ::rtl::OUString& Newsgroups_, const ::rtl::OUString& Server_, const ::rtl::OUString& Username_, const ::rtl::OUString& Password_, const ::rtl::OUString& VIMPostOfficePath_, const ::rtl::OUString& ProtocolErrorString_, const ::sal_Int32& ProtocolErrorNumber_, const ::sal_Int32& SendTries_);
+
+    ::rtl::OUString ProtocolType;
+    ::css::ucb::OutgoingMessageState State;
+    ::rtl::OUString To;
+    ::rtl::OUString CC;
+    ::rtl::OUString BCC;
+    ::rtl::OUString Newsgroups;
+    ::rtl::OUString Server;
+    ::rtl::OUString Username;
+    ::rtl::OUString Password;
+    ::rtl::OUString VIMPostOfficePath;
+    ::rtl::OUString ProtocolErrorString;
+    ::sal_Int32 ProtocolErrorNumber;
+    ::sal_Int32 SendTries;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::RecipientInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::ucb::RecipientInfo *);
+
+#endif

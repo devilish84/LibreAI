@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_XMODIFIABLE2_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_XMODIFIABLE2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/util/XModifiable.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XModifiable2 : public ::css::util::XModifiable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XModifiable2() = default;
+    XModifiable2(XModifiable2 const &) = default;
+    XModifiable2(XModifiable2 &&) = default;
+    XModifiable2 & operator =(XModifiable2 const &) = default;
+    XModifiable2 & operator =(XModifiable2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL disableSetModified() = 0;
+    virtual ::sal_Bool SAL_CALL enableSetModified() = 0;
+    virtual ::sal_Bool SAL_CALL isSetModifiedEnabled() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XModifiable2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::XModifiable2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::util::XModifiable2 > *);
+
+#endif

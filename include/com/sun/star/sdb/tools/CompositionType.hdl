@@ -1,0 +1,20 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_TOOLS_COMPOSITIONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_TOOLS_COMPOSITIONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace tools { namespace CompositionType {
+
+static const ::sal_Int32 Complete = (sal_Int32)5;
+static const ::sal_Int32 ForDataManipulation = (sal_Int32)2;
+static const ::sal_Int32 ForIndexDefinitions = (sal_Int32)1;
+static const ::sal_Int32 ForPrivilegeDefinitions = (sal_Int32)4;
+static const ::sal_Int32 ForProcedureCalls = (sal_Int32)3;
+static const ::sal_Int32 ForTableDefinitions = (sal_Int32)0;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDB_TOOLS_COMPOSITIONTYPE_HDL

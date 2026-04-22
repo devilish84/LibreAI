@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_XANIMATIONLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_XANIMATIONLISTENER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace animations { class XAnimationNode; } } } }
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace animations {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAnimationListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAnimationListener() = default;
+    XAnimationListener(XAnimationListener const &) = default;
+    XAnimationListener(XAnimationListener &&) = default;
+    XAnimationListener & operator =(XAnimationListener const &) = default;
+    XAnimationListener & operator =(XAnimationListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL beginEvent( const ::css::uno::Reference< ::css::animations::XAnimationNode >& Node ) = 0;
+    virtual void SAL_CALL endEvent( const ::css::uno::Reference< ::css::animations::XAnimationNode >& Node ) = 0;
+    virtual void SAL_CALL repeat( const ::css::uno::Reference< ::css::animations::XAnimationNode >& Node, ::sal_Int32 Repeat ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAnimationListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::animations::XAnimationListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::animations::XAnimationListener > *);
+
+#endif

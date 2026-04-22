@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_CALENDARDISPLAYCODE_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_CALENDARDISPLAYCODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace CalendarDisplayCode {
+
+static const ::sal_Int32 LONG_DAY = (sal_Int32)2;
+static const ::sal_Int32 LONG_DAY_NAME = (sal_Int32)4;
+static const ::sal_Int32 LONG_ERA = (sal_Int32)12;
+static const ::sal_Int32 LONG_GENITIVE_MONTH_NAME = (sal_Int32)18;
+static const ::sal_Int32 LONG_MONTH = (sal_Int32)6;
+static const ::sal_Int32 LONG_MONTH_NAME = (sal_Int32)8;
+static const ::sal_Int32 LONG_PARTITIVE_MONTH_NAME = (sal_Int32)21;
+static const ::sal_Int32 LONG_QUARTER = (sal_Int32)16;
+static const ::sal_Int32 LONG_YEAR = (sal_Int32)10;
+static const ::sal_Int32 LONG_YEAR_AND_ERA = (sal_Int32)14;
+static const ::sal_Int32 NARROW_DAY_NAME = (sal_Int32)23;
+static const ::sal_Int32 NARROW_GENITIVE_MONTH_NAME = (sal_Int32)19;
+static const ::sal_Int32 NARROW_MONTH_NAME = (sal_Int32)24;
+static const ::sal_Int32 NARROW_PARTITIVE_MONTH_NAME = (sal_Int32)22;
+static const ::sal_Int32 SHORT_DAY = (sal_Int32)1;
+static const ::sal_Int32 SHORT_DAY_NAME = (sal_Int32)3;
+static const ::sal_Int32 SHORT_ERA = (sal_Int32)11;
+static const ::sal_Int32 SHORT_GENITIVE_MONTH_NAME = (sal_Int32)17;
+static const ::sal_Int32 SHORT_MONTH = (sal_Int32)5;
+static const ::sal_Int32 SHORT_MONTH_NAME = (sal_Int32)7;
+static const ::sal_Int32 SHORT_PARTITIVE_MONTH_NAME = (sal_Int32)20;
+static const ::sal_Int32 SHORT_QUARTER = (sal_Int32)15;
+static const ::sal_Int32 SHORT_YEAR = (sal_Int32)9;
+static const ::sal_Int32 SHORT_YEAR_AND_ERA = (sal_Int32)13;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_CALENDARDISPLAYCODE_HDL

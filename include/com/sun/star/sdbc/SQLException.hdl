@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_SQLEXCEPTION_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_SQLEXCEPTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Exception.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED SQLException : public ::css::uno::Exception
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE SQLException(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE SQLException(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_, const ::rtl::OUString& SQLState_, const ::sal_Int32& ErrorCode_, const ::css::uno::Any& NextException_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE SQLException(SQLException const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~SQLException();
+
+    inline CPPU_GCC_DLLPRIVATE SQLException & operator =(SQLException const &);
+#endif
+
+    ::rtl::OUString SQLState CPPU_GCC3_ALIGN( ::css::uno::Exception );
+    ::sal_Int32 ErrorCode;
+    ::css::uno::Any NextException;
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::SQLException const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sdbc::SQLException *);
+
+#endif

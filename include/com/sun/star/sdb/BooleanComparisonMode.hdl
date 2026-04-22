@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_BOOLEANCOMPARISONMODE_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_BOOLEANCOMPARISONMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace BooleanComparisonMode {
+
+static const ::sal_Int32 ACCESS_COMPAT = (sal_Int32)3;
+static const ::sal_Int32 EQUAL_INTEGER = (sal_Int32)0;
+static const ::sal_Int32 EQUAL_LITERAL = (sal_Int32)2;
+static const ::sal_Int32 IS_LITERAL = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDB_BOOLEANCOMPARISONMODE_HDL

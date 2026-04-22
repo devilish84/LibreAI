@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XTEXTTABLE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XTEXTTABLE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace table { class XCell; } } } }
+namespace com { namespace sun { namespace star { namespace table { class XTableColumns; } } } }
+namespace com { namespace sun { namespace star { namespace table { class XTableRows; } } } }
+#include "com/sun/star/text/XTextContent.hdl"
+namespace com { namespace sun { namespace star { namespace text { class XTextTableCursor; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTextTable : public ::css::text::XTextContent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTextTable() = default;
+    XTextTable(XTextTable const &) = default;
+    XTextTable(XTextTable &&) = default;
+    XTextTable & operator =(XTextTable const &) = default;
+    XTextTable & operator =(XTextTable &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL initialize( ::sal_Int32 nRows, ::sal_Int32 nColumns ) = 0;
+    virtual ::css::uno::Reference< ::css::table::XTableRows > SAL_CALL getRows() = 0;
+    virtual ::css::uno::Reference< ::css::table::XTableColumns > SAL_CALL getColumns() = 0;
+    virtual ::css::uno::Reference< ::css::table::XCell > SAL_CALL getCellByName( const ::rtl::OUString& aCellName ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getCellNames() = 0;
+    virtual ::css::uno::Reference< ::css::text::XTextTableCursor > SAL_CALL createCursorByCellName( const ::rtl::OUString& aCellName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTextTable() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XTextTable const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XTextTable > *);
+
+#endif

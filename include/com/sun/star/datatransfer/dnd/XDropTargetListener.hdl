@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_XDROPTARGETLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_XDROPTARGETLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/datatransfer/dnd/DropTargetDragEnterEvent.hdl"
+#include "com/sun/star/datatransfer/dnd/DropTargetDragEvent.hdl"
+#include "com/sun/star/datatransfer/dnd/DropTargetDropEvent.hdl"
+#include "com/sun/star/datatransfer/dnd/DropTargetEvent.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace datatransfer { namespace dnd {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDropTargetListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDropTargetListener() = default;
+    XDropTargetListener(XDropTargetListener const &) = default;
+    XDropTargetListener(XDropTargetListener &&) = default;
+    XDropTargetListener & operator =(XDropTargetListener const &) = default;
+    XDropTargetListener & operator =(XDropTargetListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL drop( const ::css::datatransfer::dnd::DropTargetDropEvent& dtde ) = 0;
+    virtual void SAL_CALL dragEnter( const ::css::datatransfer::dnd::DropTargetDragEnterEvent& dtdee ) = 0;
+    virtual void SAL_CALL dragExit( const ::css::datatransfer::dnd::DropTargetEvent& dte ) = 0;
+    virtual void SAL_CALL dragOver( const ::css::datatransfer::dnd::DropTargetDragEvent& dtde ) = 0;
+    virtual void SAL_CALL dropActionChanged( const ::css::datatransfer::dnd::DropTargetDragEvent& dtde ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDropTargetListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::datatransfer::dnd::XDropTargetListener const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::datatransfer::dnd::XDropTargetListener > *);
+
+#endif

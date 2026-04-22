@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_ALIGNMENT_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_ALIGNMENT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI Alignment
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI Alignment
+{
+
+#endif
+    Alignment_TOP_LEFT = 0,
+    Alignment_TOP = 1,
+    Alignment_TOP_RIGHT = 2,
+    Alignment_LEFT = 3,
+    Alignment_CENTER = 4,
+    Alignment_RIGHT = 5,
+    Alignment_BOTTOM_LEFT = 6,
+    Alignment_BOTTOM = 7,
+    Alignment_BOTTOM_RIGHT = 8,
+    Alignment_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto Alignment_TOP_LEFT = Alignment::Alignment_TOP_LEFT;
+constexpr auto Alignment_TOP = Alignment::Alignment_TOP;
+constexpr auto Alignment_TOP_RIGHT = Alignment::Alignment_TOP_RIGHT;
+constexpr auto Alignment_LEFT = Alignment::Alignment_LEFT;
+constexpr auto Alignment_CENTER = Alignment::Alignment_CENTER;
+constexpr auto Alignment_RIGHT = Alignment::Alignment_RIGHT;
+constexpr auto Alignment_BOTTOM_LEFT = Alignment::Alignment_BOTTOM_LEFT;
+constexpr auto Alignment_BOTTOM = Alignment::Alignment_BOTTOM;
+constexpr auto Alignment_BOTTOM_RIGHT = Alignment::Alignment_BOTTOM_RIGHT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::Alignment const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::Alignment *);
+
+#endif

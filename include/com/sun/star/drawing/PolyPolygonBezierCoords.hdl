@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/drawing/FlagSequenceSequence.hdl"
+#include "com/sun/star/drawing/PointSequenceSequence.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED PolyPolygonBezierCoords {
+    inline PolyPolygonBezierCoords();
+
+    inline PolyPolygonBezierCoords(const ::css::uno::Sequence< ::css::uno::Sequence< ::css::awt::Point > >& Coordinates_, const ::css::uno::Sequence< ::css::uno::Sequence< ::css::drawing::PolygonFlags > >& Flags_);
+
+    ::css::uno::Sequence< ::css::uno::Sequence< ::css::awt::Point > > Coordinates;
+    ::css::uno::Sequence< ::css::uno::Sequence< ::css::drawing::PolygonFlags > > Flags;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::PolyPolygonBezierCoords const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::PolyPolygonBezierCoords *);
+
+#endif

@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_TEXTURE_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_TEXTURE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/geometry/AffineMatrix2D.hdl"
+#include "com/sun/star/rendering/StrokeAttributes.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XBitmap; } } } }
+namespace com { namespace sun { namespace star { namespace rendering { class XParametricPolyPolygon2D; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI Texture {
+    inline Texture();
+
+    inline Texture(const ::css::geometry::AffineMatrix2D& AffineTransform_, const double& Alpha_, const ::sal_Int32& NumberOfHatchPolygons_, const ::css::uno::Reference< ::css::rendering::XBitmap >& Bitmap_, const ::css::uno::Reference< ::css::rendering::XParametricPolyPolygon2D >& Gradient_, const ::css::uno::Reference< ::css::rendering::XParametricPolyPolygon2D >& Hatching_, const ::css::rendering::StrokeAttributes& HatchAttributes_, const ::sal_Int8& RepeatModeX_, const ::sal_Int8& RepeatModeY_);
+
+    ::css::geometry::AffineMatrix2D AffineTransform;
+    double Alpha;
+    ::sal_Int32 NumberOfHatchPolygons;
+    ::css::uno::Reference< ::css::rendering::XBitmap > Bitmap;
+    ::css::uno::Reference< ::css::rendering::XParametricPolyPolygon2D > Gradient;
+    ::css::uno::Reference< ::css::rendering::XParametricPolyPolygon2D > Hatching;
+    ::css::rendering::StrokeAttributes HatchAttributes;
+    ::sal_Int8 RepeatModeX;
+    ::sal_Int8 RepeatModeY;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::Texture const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::rendering::Texture *);
+
+#endif

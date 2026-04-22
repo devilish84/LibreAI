@@ -1,0 +1,51 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_TAB_XTABPAGEMODEL_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_TAB_XTABPAGEMODEL_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt { namespace tab {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTabPageModel : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTabPageModel() = default;
+    XTabPageModel(XTabPageModel const &) = default;
+    XTabPageModel(XTabPageModel &&) = default;
+    XTabPageModel & operator =(XTabPageModel const &) = default;
+    XTabPageModel & operator =(XTabPageModel &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int16 SAL_CALL getTabPageID() = 0;
+    virtual ::sal_Bool SAL_CALL getEnabled() = 0;
+    virtual void SAL_CALL setEnabled( ::sal_Bool _enabled ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTitle() = 0;
+    virtual void SAL_CALL setTitle( const ::rtl::OUString& _title ) = 0;
+    virtual ::rtl::OUString SAL_CALL getImageURL() = 0;
+    virtual void SAL_CALL setImageURL( const ::rtl::OUString& _imageurl ) = 0;
+    virtual ::rtl::OUString SAL_CALL getToolTip() = 0;
+    virtual void SAL_CALL setToolTip( const ::rtl::OUString& _tooltip ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTabPageModel() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::tab::XTabPageModel const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::tab::XTabPageModel > *);
+
+#endif

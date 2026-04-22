@@ -1,0 +1,57 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XINTEGERBITMAPCOLORSPACE_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XINTEGERBITMAPCOLORSPACE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/rendering/ARGBColor.hdl"
+#include "com/sun/star/rendering/ColorComponent.hdl"
+#include "com/sun/star/rendering/RGBColor.hdl"
+#include "com/sun/star/rendering/XColorSpace.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XIntegerBitmapColorSpace; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XIntegerBitmapColorSpace : public ::css::rendering::XColorSpace
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XIntegerBitmapColorSpace() = default;
+    XIntegerBitmapColorSpace(XIntegerBitmapColorSpace const &) = default;
+    XIntegerBitmapColorSpace(XIntegerBitmapColorSpace &&) = default;
+    XIntegerBitmapColorSpace & operator =(XIntegerBitmapColorSpace const &) = default;
+    XIntegerBitmapColorSpace & operator =(XIntegerBitmapColorSpace &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL getBitsPerPixel() = 0;
+    virtual ::css::uno::Sequence< ::sal_Int32 > SAL_CALL getComponentBitCounts() = 0;
+    virtual ::sal_Int8 SAL_CALL getEndianness() = 0;
+    virtual ::css::uno::Sequence< double > SAL_CALL convertFromIntegerColorSpace( const ::css::uno::Sequence< ::sal_Int8 >& deviceColor, const ::css::uno::Reference< ::css::rendering::XColorSpace >& targetColorSpace ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL convertToIntegerColorSpace( const ::css::uno::Sequence< ::sal_Int8 >& deviceColor, const ::css::uno::Reference< ::css::rendering::XIntegerBitmapColorSpace >& targetColorSpace ) = 0;
+    virtual ::css::uno::Sequence< ::css::rendering::RGBColor > SAL_CALL convertIntegerToRGB( const ::css::uno::Sequence< ::sal_Int8 >& deviceColor ) = 0;
+    virtual ::css::uno::Sequence< ::css::rendering::ARGBColor > SAL_CALL convertIntegerToARGB( const ::css::uno::Sequence< ::sal_Int8 >& deviceColor ) = 0;
+    virtual ::css::uno::Sequence< ::css::rendering::ARGBColor > SAL_CALL convertIntegerToPARGB( const ::css::uno::Sequence< ::sal_Int8 >& deviceColor ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL convertIntegerFromRGB( const ::css::uno::Sequence< ::css::rendering::RGBColor >& rgbColor ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL convertIntegerFromARGB( const ::css::uno::Sequence< ::css::rendering::ARGBColor >& rgbColor ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL convertIntegerFromPARGB( const ::css::uno::Sequence< ::css::rendering::ARGBColor >& rgbColor ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XIntegerBitmapColorSpace() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XIntegerBitmapColorSpace const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XIntegerBitmapColorSpace > *);
+
+#endif

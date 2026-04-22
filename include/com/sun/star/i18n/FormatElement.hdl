@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_FORMATELEMENT_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_FORMATELEMENT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED FormatElement {
+    inline FormatElement();
+
+    inline FormatElement(const ::rtl::OUString& formatCode_, const ::rtl::OUString& formatName_, const ::rtl::OUString& formatKey_, const ::rtl::OUString& formatType_, const ::rtl::OUString& formatUsage_, const ::sal_Int16& formatIndex_, const ::sal_Bool& isDefault_);
+
+    ::rtl::OUString formatCode;
+    ::rtl::OUString formatName;
+    ::rtl::OUString formatKey;
+    ::rtl::OUString formatType;
+    ::rtl::OUString formatUsage;
+    ::sal_Int16 formatIndex;
+    ::sal_Bool isDefault;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::FormatElement const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::i18n::FormatElement *);
+
+#endif

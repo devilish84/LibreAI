@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_SEARCHOPTIONS_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_SEARCHOPTIONS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/util/SearchAlgorithms.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED SearchOptions {
+    inline SearchOptions();
+
+    inline SearchOptions(const ::css::util::SearchAlgorithms& algorithmType_, const ::sal_Int32& searchFlag_, const ::rtl::OUString& searchString_, const ::rtl::OUString& replaceString_, const ::css::lang::Locale& Locale_, const ::sal_Int32& changedChars_, const ::sal_Int32& deletedChars_, const ::sal_Int32& insertedChars_, const ::sal_Int32& transliterateFlags_);
+
+    ::css::util::SearchAlgorithms algorithmType;
+    ::sal_Int32 searchFlag;
+    ::rtl::OUString searchString;
+    ::rtl::OUString replaceString;
+    ::css::lang::Locale Locale;
+    ::sal_Int32 changedChars;
+    ::sal_Int32 deletedChars;
+    ::sal_Int32 insertedChars;
+    ::sal_Int32 transliterateFlags;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::SearchOptions const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::util::SearchOptions *);
+
+#endif

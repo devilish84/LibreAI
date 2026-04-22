@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_OPENCL_XOPENCLSELECTION_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_OPENCL_XOPENCLSELECTION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/opencl/OpenCLPlatform.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace opencl {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XOpenCLSelection : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XOpenCLSelection() = default;
+    XOpenCLSelection(XOpenCLSelection const &) = default;
+    XOpenCLSelection(XOpenCLSelection &&) = default;
+    XOpenCLSelection & operator =(XOpenCLSelection const &) = default;
+    XOpenCLSelection & operator =(XOpenCLSelection &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isOpenCLEnabled() = 0;
+    virtual void SAL_CALL enableOpenCL( ::sal_Bool enable ) = 0;
+    virtual void SAL_CALL enableAutomaticDeviceSelection( ::sal_Bool force ) = 0;
+    virtual void SAL_CALL disableAutomaticDeviceSelection() = 0;
+    virtual void SAL_CALL selectOpenCLDevice( ::sal_Int32 platform, ::sal_Int32 device ) = 0;
+    virtual ::sal_Int32 SAL_CALL getPlatformID() = 0;
+    virtual ::sal_Int32 SAL_CALL getDeviceID() = 0;
+    virtual ::css::uno::Sequence< ::css::sheet::opencl::OpenCLPlatform > SAL_CALL getOpenCLPlatforms() = 0;
+    virtual void SAL_CALL enableOpcodeSubsetTest() = 0;
+    virtual void SAL_CALL disableOpcodeSubsetTest() = 0;
+    virtual ::sal_Bool SAL_CALL isOpcodeSubsetTested() = 0;
+    virtual void SAL_CALL setFormulaCellNumberLimit( ::sal_Int32 number ) = 0;
+    virtual ::sal_Int32 SAL_CALL getFormulaCellNumberLimit() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XOpenCLSelection() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::opencl::XOpenCLSelection const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::opencl::XOpenCLSelection > *);
+
+#endif

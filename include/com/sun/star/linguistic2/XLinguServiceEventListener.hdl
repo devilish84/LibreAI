@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEEVENTLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEEVENTLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/linguistic2/LinguServiceEvent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLinguServiceEventListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLinguServiceEventListener() = default;
+    XLinguServiceEventListener(XLinguServiceEventListener const &) = default;
+    XLinguServiceEventListener(XLinguServiceEventListener &&) = default;
+    XLinguServiceEventListener & operator =(XLinguServiceEventListener const &) = default;
+    XLinguServiceEventListener & operator =(XLinguServiceEventListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL processLinguServiceEvent( const ::css::linguistic2::LinguServiceEvent& aLngSvcEvent ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLinguServiceEventListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XLinguServiceEventListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XLinguServiceEventListener > *);
+
+#endif

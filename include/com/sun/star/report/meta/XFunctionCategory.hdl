@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_META_XFUNCTIONCATEGORY_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_META_XFUNCTIONCATEGORY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XPropertySet.hdl"
+#include "com/sun/star/container/XIndexAccess.hdl"
+namespace com { namespace sun { namespace star { namespace report { namespace meta { class XFunctionDescription; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report { namespace meta {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFunctionCategory : public ::css::beans::XPropertySet, public ::css::container::XIndexAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFunctionCategory() = default;
+    XFunctionCategory(XFunctionCategory const &) = default;
+    XFunctionCategory(XFunctionCategory &&) = default;
+    XFunctionCategory & operator =(XFunctionCategory const &) = default;
+    XFunctionCategory & operator =(XFunctionCategory &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getName() = 0;
+    virtual ::sal_Int32 SAL_CALL getNumber() = 0;
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::report::meta::XFunctionDescription > SAL_CALL getFunction( ::sal_Int32 position ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFunctionCategory() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::meta::XFunctionCategory const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::meta::XFunctionCategory > *);
+
+#endif

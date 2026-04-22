@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONENDSYNC_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONENDSYNC_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace animations { namespace AnimationEndSync {
+
+static const ::sal_Int16 ALL = (sal_Int16)2;
+static const ::sal_Int16 FIRST = (sal_Int16)0;
+static const ::sal_Int16 LAST = (sal_Int16)1;
+static const ::sal_Int16 MEDIA = (sal_Int16)3;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_ANIMATIONS_ANIMATIONENDSYNC_HDL

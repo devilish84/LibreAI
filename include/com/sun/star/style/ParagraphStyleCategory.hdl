@@ -1,0 +1,20 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_PARAGRAPHSTYLECATEGORY_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_PARAGRAPHSTYLECATEGORY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace style { namespace ParagraphStyleCategory {
+
+static const ::sal_Int16 CHAPTER = (sal_Int16)1;
+static const ::sal_Int16 EXTRA = (sal_Int16)4;
+static const ::sal_Int16 HTML = (sal_Int16)5;
+static const ::sal_Int16 INDEX = (sal_Int16)3;
+static const ::sal_Int16 LIST = (sal_Int16)2;
+static const ::sal_Int16 TEXT = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_STYLE_PARAGRAPHSTYLECATEGORY_HDL

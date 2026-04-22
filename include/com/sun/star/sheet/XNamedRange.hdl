@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XNAMEDRANGE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XNAMEDRANGE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XNamed.hdl"
+#include "com/sun/star/table/CellAddress.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XNamedRange : public ::css::container::XNamed
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XNamedRange() = default;
+    XNamedRange(XNamedRange const &) = default;
+    XNamedRange(XNamedRange &&) = default;
+    XNamedRange & operator =(XNamedRange const &) = default;
+    XNamedRange & operator =(XNamedRange &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getContent() = 0;
+    virtual void SAL_CALL setContent( const ::rtl::OUString& aContent ) = 0;
+    virtual ::css::table::CellAddress SAL_CALL getReferencePosition() = 0;
+    virtual void SAL_CALL setReferencePosition( const ::css::table::CellAddress& aReferencePosition ) = 0;
+    virtual ::sal_Int32 SAL_CALL getType() = 0;
+    virtual void SAL_CALL setType( ::sal_Int32 nType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XNamedRange() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XNamedRange const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XNamedRange > *);
+
+#endif

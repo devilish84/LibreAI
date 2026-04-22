@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_TABLESORTFIELD_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_TABLESORTFIELD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/table/TableSortFieldType.hdl"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED TableSortField {
+    inline TableSortField();
+
+    inline TableSortField(const ::sal_Int32& Field_, const ::sal_Bool& IsAscending_, const ::sal_Bool& IsCaseSensitive_, const ::css::table::TableSortFieldType& FieldType_, const ::css::lang::Locale& CollatorLocale_, const ::rtl::OUString& CollatorAlgorithm_);
+
+    ::sal_Int32 Field;
+    ::sal_Bool IsAscending;
+    ::sal_Bool IsCaseSensitive;
+    ::css::table::TableSortFieldType FieldType;
+    ::css::lang::Locale CollatorLocale;
+    ::rtl::OUString CollatorAlgorithm;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::TableSortField const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::table::TableSortField *);
+
+#endif

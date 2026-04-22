@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_TEXTALIGN_HPP
+#define INCLUDED_COM_SUN_STAR_AWT_TEXTALIGN_HPP
+
+#include "com/sun/star/awt/TextAlign.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_TEXTALIGN_HPP

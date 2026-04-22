@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_LOGGING_XCONSOLEHANDLER_HDL
+#define INCLUDED_COM_SUN_STAR_LOGGING_XCONSOLEHANDLER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/logging/XLogHandler.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace logging {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XConsoleHandler : public ::css::logging::XLogHandler
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XConsoleHandler() = default;
+    XConsoleHandler(XConsoleHandler const &) = default;
+    XConsoleHandler(XConsoleHandler &&) = default;
+    XConsoleHandler & operator =(XConsoleHandler const &) = default;
+    XConsoleHandler & operator =(XConsoleHandler &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int32 SAL_CALL getThreshold() = 0;
+    virtual void SAL_CALL setThreshold( ::sal_Int32 _threshold ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XConsoleHandler() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::logging::XConsoleHandler const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::logging::XConsoleHandler > *);
+
+#endif

@@ -1,0 +1,14 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_LANGUAGE_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_LANGUAGE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace util {
+
+typedef ::sal_Int16 Language;
+
+} } } }
+#endif // INCLUDED_COM_SUN_STAR_UTIL_LANGUAGE_HDL

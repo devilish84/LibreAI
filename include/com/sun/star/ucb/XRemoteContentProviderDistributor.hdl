@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XREMOTECONTENTPROVIDERDISTRIBUTOR_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XREMOTECONTENTPROVIDERDISTRIBUTOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRemoteContentProviderDistributor : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRemoteContentProviderDistributor() = default;
+    XRemoteContentProviderDistributor(XRemoteContentProviderDistributor const &) = default;
+    XRemoteContentProviderDistributor(XRemoteContentProviderDistributor &&) = default;
+    XRemoteContentProviderDistributor & operator =(XRemoteContentProviderDistributor const &) = default;
+    XRemoteContentProviderDistributor & operator =(XRemoteContentProviderDistributor &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL connectToRemoteAcceptor( const ::rtl::OUString& Url, const ::rtl::OUString& Identifier ) = 0;
+    virtual ::sal_Bool SAL_CALL disconnectFromRemoteAcceptor( const ::rtl::OUString& Url ) = 0;
+    virtual void SAL_CALL disconnectFromAll() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRemoteContentProviderDistributor() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XRemoteContentProviderDistributor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XRemoteContentProviderDistributor > *);
+
+#endif

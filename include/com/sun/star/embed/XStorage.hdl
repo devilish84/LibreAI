@@ -1,0 +1,59 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XSTORAGE_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XSTORAGE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XNameAccess.hdl"
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+namespace com { namespace sun { namespace star { namespace io { class XStream; } } } }
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStorage : public ::css::container::XNameAccess, public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStorage() = default;
+    XStorage(XStorage const &) = default;
+    XStorage(XStorage &&) = default;
+    XStorage & operator =(XStorage const &) = default;
+    XStorage & operator =(XStorage &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL copyToStorage( const ::css::uno::Reference< ::css::embed::XStorage >& xDest ) = 0;
+    virtual ::css::uno::Reference< ::css::io::XStream > SAL_CALL openStreamElement( const ::rtl::OUString& sStreamName, ::sal_Int32 nOpenMode ) = 0;
+    virtual ::css::uno::Reference< ::css::io::XStream > SAL_CALL openEncryptedStreamElement( const ::rtl::OUString& sStreamName, ::sal_Int32 nOpenMode, const ::rtl::OUString& sPassword ) = 0;
+    virtual ::css::uno::Reference< ::css::embed::XStorage > SAL_CALL openStorageElement( const ::rtl::OUString& sStorName, ::sal_Int32 nOpenMode ) = 0;
+    virtual ::css::uno::Reference< ::css::io::XStream > SAL_CALL cloneStreamElement( const ::rtl::OUString& sStreamName ) = 0;
+    virtual ::css::uno::Reference< ::css::io::XStream > SAL_CALL cloneEncryptedStreamElement( const ::rtl::OUString& sStreamName, const ::rtl::OUString& sPassword ) = 0;
+    virtual void SAL_CALL copyLastCommitTo( const ::css::uno::Reference< ::css::embed::XStorage >& xTargetStorage ) = 0;
+    virtual void SAL_CALL copyStorageElementLastCommitTo( const ::rtl::OUString& sStorName, const ::css::uno::Reference< ::css::embed::XStorage >& xTargetStorage ) = 0;
+    virtual ::sal_Bool SAL_CALL isStreamElement( const ::rtl::OUString& sElementName ) = 0;
+    virtual ::sal_Bool SAL_CALL isStorageElement( const ::rtl::OUString& sElementName ) = 0;
+    virtual void SAL_CALL removeElement( const ::rtl::OUString& sElementName ) = 0;
+    virtual void SAL_CALL renameElement( const ::rtl::OUString& sElementName, const ::rtl::OUString& sNewName ) = 0;
+    virtual void SAL_CALL copyElementTo( const ::rtl::OUString& sElementName, const ::css::uno::Reference< ::css::embed::XStorage >& xDest, const ::rtl::OUString& sNewName ) = 0;
+    virtual void SAL_CALL moveElementTo( const ::rtl::OUString& sElementName, const ::css::uno::Reference< ::css::embed::XStorage >& xDest, const ::rtl::OUString& sNewName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStorage() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XStorage const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XStorage > *);
+
+#endif

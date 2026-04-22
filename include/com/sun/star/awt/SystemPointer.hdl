@@ -1,0 +1,86 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_SYSTEMPOINTER_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_SYSTEMPOINTER_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace SystemPointer {
+
+static const ::sal_Int32 ARROW = (sal_Int32)0;
+static const ::sal_Int32 CHAIN = (sal_Int32)70;
+static const ::sal_Int32 CHAIN_NOTALLOWED = (sal_Int32)71;
+static const ::sal_Int32 CHART = (sal_Int32)65;
+static const ::sal_Int32 COPYDATA = (sal_Int32)41;
+static const ::sal_Int32 COPYDATALINK = (sal_Int32)44;
+static const ::sal_Int32 COPYFILE = (sal_Int32)46;
+static const ::sal_Int32 COPYFILELINK = (sal_Int32)49;
+static const ::sal_Int32 COPYFILES = (sal_Int32)51;
+static const ::sal_Int32 CROOK = (sal_Int32)36;
+static const ::sal_Int32 CROP = (sal_Int32)37;
+static const ::sal_Int32 CROSS = (sal_Int32)5;
+static const ::sal_Int32 DETECTIVE = (sal_Int32)66;
+static const ::sal_Int32 DRAW_ARC = (sal_Int32)57;
+static const ::sal_Int32 DRAW_BEZIER = (sal_Int32)56;
+static const ::sal_Int32 DRAW_CAPTION = (sal_Int32)64;
+static const ::sal_Int32 DRAW_CIRCLECUT = (sal_Int32)59;
+static const ::sal_Int32 DRAW_CONNECT = (sal_Int32)62;
+static const ::sal_Int32 DRAW_ELLIPSE = (sal_Int32)60;
+static const ::sal_Int32 DRAW_FREEHAND = (sal_Int32)61;
+static const ::sal_Int32 DRAW_LINE = (sal_Int32)53;
+static const ::sal_Int32 DRAW_PIE = (sal_Int32)58;
+static const ::sal_Int32 DRAW_POLYGON = (sal_Int32)55;
+static const ::sal_Int32 DRAW_RECT = (sal_Int32)54;
+static const ::sal_Int32 DRAW_TEXT = (sal_Int32)63;
+static const ::sal_Int32 ESIZE = (sal_Int32)10;
+static const ::sal_Int32 FILL = (sal_Int32)31;
+static const ::sal_Int32 HAND = (sal_Int32)27;
+static const ::sal_Int32 HELP = (sal_Int32)4;
+static const ::sal_Int32 HSHEAR = (sal_Int32)33;
+static const ::sal_Int32 HSIZEBAR = (sal_Int32)25;
+static const ::sal_Int32 HSPLIT = (sal_Int32)23;
+static const ::sal_Int32 INVISIBLE = (sal_Int32)1;
+static const ::sal_Int32 LINKDATA = (sal_Int32)42;
+static const ::sal_Int32 LINKFILE = (sal_Int32)47;
+static const ::sal_Int32 MAGNIFY = (sal_Int32)30;
+static const ::sal_Int32 MIRROR = (sal_Int32)35;
+static const ::sal_Int32 MOVE = (sal_Int32)6;
+static const ::sal_Int32 MOVEBEZIERWEIGHT = (sal_Int32)39;
+static const ::sal_Int32 MOVEDATA = (sal_Int32)40;
+static const ::sal_Int32 MOVEDATALINK = (sal_Int32)43;
+static const ::sal_Int32 MOVEFILE = (sal_Int32)45;
+static const ::sal_Int32 MOVEFILELINK = (sal_Int32)48;
+static const ::sal_Int32 MOVEFILES = (sal_Int32)50;
+static const ::sal_Int32 MOVEPOINT = (sal_Int32)38;
+static const ::sal_Int32 NESIZE = (sal_Int32)12;
+static const ::sal_Int32 NOTALLOWED = (sal_Int32)52;
+static const ::sal_Int32 NSIZE = (sal_Int32)7;
+static const ::sal_Int32 NWSIZE = (sal_Int32)11;
+static const ::sal_Int32 PEN = (sal_Int32)29;
+static const ::sal_Int32 PIVOT_COL = (sal_Int32)67;
+static const ::sal_Int32 PIVOT_FIELD = (sal_Int32)69;
+static const ::sal_Int32 PIVOT_ROW = (sal_Int32)68;
+static const ::sal_Int32 REFHAND = (sal_Int32)28;
+static const ::sal_Int32 ROTATE = (sal_Int32)32;
+static const ::sal_Int32 SESIZE = (sal_Int32)14;
+static const ::sal_Int32 SSIZE = (sal_Int32)8;
+static const ::sal_Int32 SWSIZE = (sal_Int32)13;
+static const ::sal_Int32 TEXT = (sal_Int32)3;
+static const ::sal_Int32 VSHEAR = (sal_Int32)34;
+static const ::sal_Int32 VSIZEBAR = (sal_Int32)26;
+static const ::sal_Int32 VSPLIT = (sal_Int32)24;
+static const ::sal_Int32 WAIT = (sal_Int32)2;
+static const ::sal_Int32 WINDOW_ESIZE = (sal_Int32)18;
+static const ::sal_Int32 WINDOW_NESIZE = (sal_Int32)20;
+static const ::sal_Int32 WINDOW_NSIZE = (sal_Int32)15;
+static const ::sal_Int32 WINDOW_NWSIZE = (sal_Int32)19;
+static const ::sal_Int32 WINDOW_SESIZE = (sal_Int32)22;
+static const ::sal_Int32 WINDOW_SSIZE = (sal_Int32)16;
+static const ::sal_Int32 WINDOW_SWSIZE = (sal_Int32)21;
+static const ::sal_Int32 WINDOW_WSIZE = (sal_Int32)17;
+static const ::sal_Int32 WSIZE = (sal_Int32)9;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_SYSTEMPOINTER_HDL

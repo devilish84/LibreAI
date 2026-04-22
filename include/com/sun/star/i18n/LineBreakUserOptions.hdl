@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_LINEBREAKUSEROPTIONS_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_LINEBREAKUSEROPTIONS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED LineBreakUserOptions {
+    inline LineBreakUserOptions();
+
+    inline LineBreakUserOptions(const ::rtl::OUString& forbiddenBeginCharacters_, const ::rtl::OUString& forbiddenEndCharacters_, const ::sal_Bool& applyForbiddenRules_, const ::sal_Bool& allowPunctuationOutsideMargin_, const ::sal_Bool& allowHyphenateEnglish_);
+
+    ::rtl::OUString forbiddenBeginCharacters;
+    ::rtl::OUString forbiddenEndCharacters;
+    ::sal_Bool applyForbiddenRules;
+    ::sal_Bool allowPunctuationOutsideMargin;
+    ::sal_Bool allowHyphenateEnglish;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::LineBreakUserOptions const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::i18n::LineBreakUserOptions *);
+
+#endif

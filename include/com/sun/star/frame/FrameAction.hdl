@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_FRAMEACTION_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_FRAMEACTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FrameAction
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FrameAction
+{
+
+#endif
+    FrameAction_COMPONENT_ATTACHED = 0,
+    FrameAction_COMPONENT_DETACHING = 1,
+    FrameAction_COMPONENT_REATTACHED = 2,
+    FrameAction_FRAME_ACTIVATED = 3,
+    FrameAction_FRAME_DEACTIVATING = 4,
+    FrameAction_CONTEXT_CHANGED = 5,
+    FrameAction_FRAME_UI_ACTIVATED = 6,
+    FrameAction_FRAME_UI_DEACTIVATING = 7,
+    FrameAction_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FrameAction_COMPONENT_ATTACHED = FrameAction::FrameAction_COMPONENT_ATTACHED;
+constexpr auto FrameAction_COMPONENT_DETACHING = FrameAction::FrameAction_COMPONENT_DETACHING;
+constexpr auto FrameAction_COMPONENT_REATTACHED = FrameAction::FrameAction_COMPONENT_REATTACHED;
+constexpr auto FrameAction_FRAME_ACTIVATED = FrameAction::FrameAction_FRAME_ACTIVATED;
+constexpr auto FrameAction_FRAME_DEACTIVATING = FrameAction::FrameAction_FRAME_DEACTIVATING;
+constexpr auto FrameAction_CONTEXT_CHANGED = FrameAction::FrameAction_CONTEXT_CHANGED;
+constexpr auto FrameAction_FRAME_UI_ACTIVATED = FrameAction::FrameAction_FRAME_UI_ACTIVATED;
+constexpr auto FrameAction_FRAME_UI_DEACTIVATING = FrameAction::FrameAction_FRAME_UI_DEACTIVATING;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::FrameAction const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::frame::FrameAction *);
+
+#endif

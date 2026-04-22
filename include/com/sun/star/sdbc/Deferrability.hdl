@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_DEFERRABILITY_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_DEFERRABILITY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbc { namespace Deferrability {
+
+static const ::sal_Int32 INITIALLY_DEFERRED = (sal_Int32)5;
+static const ::sal_Int32 INITIALLY_IMMEDIATE = (sal_Int32)6;
+static const ::sal_Int32 NONE = (sal_Int32)7;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBC_DEFERRABILITY_HDL

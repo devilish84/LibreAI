@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_CRYPTO_SAX_XDECRYPTIONRESULTLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_XML_CRYPTO_SAX_XDECRYPTIONRESULTLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/xml/crypto/SecurityOperationStatus.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto { namespace sax {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDecryptionResultListener : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDecryptionResultListener() = default;
+    XDecryptionResultListener(XDecryptionResultListener const &) = default;
+    XDecryptionResultListener(XDecryptionResultListener &&) = default;
+    XDecryptionResultListener & operator =(XDecryptionResultListener const &) = default;
+    XDecryptionResultListener & operator =(XDecryptionResultListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL decrypted( ::sal_Int32 securityId, ::css::xml::crypto::SecurityOperationStatus decryptionResult ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDecryptionResultListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::crypto::sax::XDecryptionResultListener const *);
+} } } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::crypto::sax::XDecryptionResultListener > *);
+
+#endif

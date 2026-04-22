@@ -1,0 +1,54 @@
+#ifndef INCLUDED_COM_SUN_STAR_INSPECTION_XOBJECTINSPECTORUI_HDL
+#define INCLUDED_COM_SUN_STAR_INSPECTION_XOBJECTINSPECTORUI_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace inspection { class XPropertyControl; } } } }
+namespace com { namespace sun { namespace star { namespace inspection { class XPropertyControlObserver; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace inspection {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XObjectInspectorUI : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XObjectInspectorUI() = default;
+    XObjectInspectorUI(XObjectInspectorUI const &) = default;
+    XObjectInspectorUI(XObjectInspectorUI &&) = default;
+    XObjectInspectorUI & operator =(XObjectInspectorUI const &) = default;
+    XObjectInspectorUI & operator =(XObjectInspectorUI &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL enablePropertyUI( const ::rtl::OUString& PropertyName, ::sal_Bool Enable ) = 0;
+    virtual void SAL_CALL enablePropertyUIElements( const ::rtl::OUString& PropertyName, ::sal_Int16 Elements, ::sal_Bool Enable ) = 0;
+    virtual void SAL_CALL rebuildPropertyUI( const ::rtl::OUString& PropertyName ) = 0;
+    virtual void SAL_CALL showPropertyUI( const ::rtl::OUString& PropertyName ) = 0;
+    virtual void SAL_CALL hidePropertyUI( const ::rtl::OUString& PropertyName ) = 0;
+    virtual void SAL_CALL showCategory( const ::rtl::OUString& Category, ::sal_Bool Show ) = 0;
+    virtual ::css::uno::Reference< ::css::inspection::XPropertyControl > SAL_CALL getPropertyControl( const ::rtl::OUString& PropertyName ) = 0;
+    virtual void SAL_CALL registerControlObserver( const ::css::uno::Reference< ::css::inspection::XPropertyControlObserver >& Observer ) = 0;
+    virtual void SAL_CALL revokeControlObserver( const ::css::uno::Reference< ::css::inspection::XPropertyControlObserver >& Observer ) = 0;
+    virtual void SAL_CALL setHelpSectionText( const ::rtl::OUString& HelpText ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XObjectInspectorUI() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::inspection::XObjectInspectorUI const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::inspection::XObjectInspectorUI > *);
+
+#endif

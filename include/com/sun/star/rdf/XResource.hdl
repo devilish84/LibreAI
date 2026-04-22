@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_RDF_XRESOURCE_HDL
+#define INCLUDED_COM_SUN_STAR_RDF_XRESOURCE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/rdf/XNode.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rdf {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XResource : public ::css::rdf::XNode
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XResource() = default;
+    XResource(XResource const &) = default;
+    XResource(XResource &&) = default;
+    XResource & operator =(XResource const &) = default;
+    XResource & operator =(XResource &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XResource() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rdf::XResource const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rdf::XResource > *);
+
+#endif

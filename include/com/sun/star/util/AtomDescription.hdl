@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_ATOMDESCRIPTION_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_ATOMDESCRIPTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED AtomDescription {
+    inline AtomDescription();
+
+    inline AtomDescription(const ::sal_Int32& atom_, const ::rtl::OUString& description_);
+
+    ::sal_Int32 atom;
+    ::rtl::OUString description;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::AtomDescription const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::util::AtomDescription *);
+
+#endif

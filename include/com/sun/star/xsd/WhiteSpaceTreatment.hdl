@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_XSD_WHITESPACETREATMENT_HDL
+#define INCLUDED_COM_SUN_STAR_XSD_WHITESPACETREATMENT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace xsd { namespace WhiteSpaceTreatment {
+
+static const ::sal_Int16 Collapse = (sal_Int16)2;
+static const ::sal_Int16 Preserve = (sal_Int16)0;
+static const ::sal_Int16 Replace = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_XSD_WHITESPACETREATMENT_HDL

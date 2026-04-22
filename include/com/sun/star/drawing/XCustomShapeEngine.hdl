@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_XCUSTOMSHAPEENGINE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_XCUSTOMSHAPEENGINE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/drawing/PolyPolygonBezierCoords.hdl"
+namespace com { namespace sun { namespace star { namespace drawing { class XCustomShapeHandle; } } } }
+namespace com { namespace sun { namespace star { namespace drawing { class XShape; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCustomShapeEngine : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCustomShapeEngine() = default;
+    XCustomShapeEngine(XCustomShapeEngine const &) = default;
+    XCustomShapeEngine(XCustomShapeEngine &&) = default;
+    XCustomShapeEngine & operator =(XCustomShapeEngine const &) = default;
+    XCustomShapeEngine & operator =(XCustomShapeEngine &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::drawing::XShape > SAL_CALL render() = 0;
+    virtual ::css::awt::Rectangle SAL_CALL getTextBounds() = 0;
+    virtual ::css::drawing::PolyPolygonBezierCoords SAL_CALL getLineGeometry() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::drawing::XCustomShapeHandle > > SAL_CALL getInteraction() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCustomShapeEngine() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::XCustomShapeEngine const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::XCustomShapeEngine > *);
+
+#endif

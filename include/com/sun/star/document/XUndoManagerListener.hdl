@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_XUNDOMANAGERLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_XUNDOMANAGERLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/document/UndoManagerEvent.hdl"
+#include "com/sun/star/lang/EventObject.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUndoManagerListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUndoManagerListener() = default;
+    XUndoManagerListener(XUndoManagerListener const &) = default;
+    XUndoManagerListener(XUndoManagerListener &&) = default;
+    XUndoManagerListener & operator =(XUndoManagerListener const &) = default;
+    XUndoManagerListener & operator =(XUndoManagerListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL undoActionAdded( const ::css::document::UndoManagerEvent& iEvent ) = 0;
+    virtual void SAL_CALL actionUndone( const ::css::document::UndoManagerEvent& iEvent ) = 0;
+    virtual void SAL_CALL actionRedone( const ::css::document::UndoManagerEvent& iEvent ) = 0;
+    virtual void SAL_CALL allActionsCleared( const ::css::lang::EventObject& iEvent ) = 0;
+    virtual void SAL_CALL redoActionsCleared( const ::css::lang::EventObject& iEvent ) = 0;
+    virtual void SAL_CALL resetAll( const ::css::lang::EventObject& iEvent ) = 0;
+    virtual void SAL_CALL enteredContext( const ::css::document::UndoManagerEvent& iEvent ) = 0;
+    virtual void SAL_CALL enteredHiddenContext( const ::css::document::UndoManagerEvent& iEvent ) = 0;
+    virtual void SAL_CALL leftContext( const ::css::document::UndoManagerEvent& iEvent ) = 0;
+    virtual void SAL_CALL leftHiddenContext( const ::css::document::UndoManagerEvent& iEvent ) = 0;
+    virtual void SAL_CALL cancelledContext( const ::css::document::UndoManagerEvent& iEvent ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUndoManagerListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::XUndoManagerListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::document::XUndoManagerListener > *);
+
+#endif

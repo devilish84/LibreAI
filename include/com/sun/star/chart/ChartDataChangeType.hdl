@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_CHARTDATACHANGETYPE_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_CHARTDATACHANGETYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI ChartDataChangeType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI ChartDataChangeType
+{
+
+#endif
+    ChartDataChangeType_ALL = 0,
+    ChartDataChangeType_DATA_RANGE = 1,
+    ChartDataChangeType_COLUMN_INSERTED = 2,
+    ChartDataChangeType_ROW_INSERTED = 3,
+    ChartDataChangeType_COLUMN_DELETED = 4,
+    ChartDataChangeType_ROW_DELETED = 5,
+    ChartDataChangeType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto ChartDataChangeType_ALL = ChartDataChangeType::ChartDataChangeType_ALL;
+constexpr auto ChartDataChangeType_DATA_RANGE = ChartDataChangeType::ChartDataChangeType_DATA_RANGE;
+constexpr auto ChartDataChangeType_COLUMN_INSERTED = ChartDataChangeType::ChartDataChangeType_COLUMN_INSERTED;
+constexpr auto ChartDataChangeType_ROW_INSERTED = ChartDataChangeType::ChartDataChangeType_ROW_INSERTED;
+constexpr auto ChartDataChangeType_COLUMN_DELETED = ChartDataChangeType::ChartDataChangeType_COLUMN_DELETED;
+constexpr auto ChartDataChangeType_ROW_DELETED = ChartDataChangeType::ChartDataChangeType_ROW_DELETED;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::ChartDataChangeType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart::ChartDataChangeType *);
+
+#endif

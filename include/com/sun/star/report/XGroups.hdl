@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_XGROUPS_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_XGROUPS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XChild.hdl"
+#include "com/sun/star/container/XContainer.hdl"
+#include "com/sun/star/container/XIndexContainer.hdl"
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace report { class XGroup; } } } }
+namespace com { namespace sun { namespace star { namespace report { class XReportDefinition; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace report {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XGroups : public ::css::container::XContainer, public ::css::container::XIndexContainer, public ::css::container::XChild, public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XGroups() = default;
+    XGroups(XGroups const &) = default;
+    XGroups(XGroups &&) = default;
+    XGroups & operator =(XGroups const &) = default;
+    XGroups & operator =(XGroups &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Reference< ::css::report::XReportDefinition > SAL_CALL getReportDefinition() = 0;
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::report::XGroup > SAL_CALL createGroup() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XGroups() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::report::XGroups const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::report::XGroups > *);
+
+#endif

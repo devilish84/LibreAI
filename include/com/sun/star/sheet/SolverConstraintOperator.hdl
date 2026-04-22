@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_SOLVERCONSTRAINTOPERATOR_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_SOLVERCONSTRAINTOPERATOR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI SolverConstraintOperator
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI SolverConstraintOperator
+{
+
+#endif
+    SolverConstraintOperator_LESS_EQUAL = 0,
+    SolverConstraintOperator_EQUAL = 1,
+    SolverConstraintOperator_GREATER_EQUAL = 2,
+    SolverConstraintOperator_INTEGER = 3,
+    SolverConstraintOperator_BINARY = 4,
+    SolverConstraintOperator_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto SolverConstraintOperator_LESS_EQUAL = SolverConstraintOperator::SolverConstraintOperator_LESS_EQUAL;
+constexpr auto SolverConstraintOperator_EQUAL = SolverConstraintOperator::SolverConstraintOperator_EQUAL;
+constexpr auto SolverConstraintOperator_GREATER_EQUAL = SolverConstraintOperator::SolverConstraintOperator_GREATER_EQUAL;
+constexpr auto SolverConstraintOperator_INTEGER = SolverConstraintOperator::SolverConstraintOperator_INTEGER;
+constexpr auto SolverConstraintOperator_BINARY = SolverConstraintOperator::SolverConstraintOperator_BINARY;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::SolverConstraintOperator const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::SolverConstraintOperator *);
+
+#endif

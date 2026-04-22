@@ -1,0 +1,31 @@
+#ifndef INCLUDED_COM_SUN_STAR_SECURITY_CERTIFICATEVALIDITY_HDL
+#define INCLUDED_COM_SUN_STAR_SECURITY_CERTIFICATEVALIDITY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace security { namespace CertificateValidity {
+
+static const ::sal_Int32 CHAIN_INCOMPLETE = (sal_Int32)131072;
+static const ::sal_Int32 EXTENSION_INVALID = (sal_Int32)128;
+static const ::sal_Int32 EXTENSION_UNKNOWN = (sal_Int32)256;
+static const ::sal_Int32 INVALID = (sal_Int32)1;
+static const ::sal_Int32 ISSUER_INVALID = (sal_Int32)4096;
+static const ::sal_Int32 ISSUER_UNKNOWN = (sal_Int32)512;
+static const ::sal_Int32 ISSUER_UNTRUSTED = (sal_Int32)1024;
+static const ::sal_Int32 NOT_TIME_NESTED = (sal_Int32)8;
+static const ::sal_Int32 REVOKED = (sal_Int32)16;
+static const ::sal_Int32 ROOT_INVALID = (sal_Int32)65536;
+static const ::sal_Int32 ROOT_UNKNOWN = (sal_Int32)8192;
+static const ::sal_Int32 ROOT_UNTRUSTED = (sal_Int32)16384;
+static const ::sal_Int32 SIGNATURE_INVALID = (sal_Int32)64;
+static const ::sal_Int32 TIME_INVALID = (sal_Int32)4;
+static const ::sal_Int32 UNKNOWN_REVOKATION = (sal_Int32)32;
+static const ::sal_Int32 UNTRUSTED = (sal_Int32)2;
+static const ::sal_Int32 VALID = (sal_Int32)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SECURITY_CERTIFICATEVALIDITY_HDL

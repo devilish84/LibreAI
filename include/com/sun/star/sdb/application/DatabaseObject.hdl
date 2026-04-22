@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_APPLICATION_DATABASEOBJECT_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_APPLICATION_DATABASEOBJECT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace application { namespace DatabaseObject {
+
+static const ::sal_Int32 FORM = (sal_Int32)2;
+static const ::sal_Int32 QUERY = (sal_Int32)1;
+static const ::sal_Int32 REPORT = (sal_Int32)3;
+static const ::sal_Int32 TABLE = (sal_Int32)0;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDB_APPLICATION_DATABASEOBJECT_HDL

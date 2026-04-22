@@ -1,0 +1,76 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_DATA_XDATABASEDATAPROVIDER_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_DATA_XDATABASEDATAPROVIDER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XPropertySet.hdl"
+#include "com/sun/star/chart2/data/XDataProvider.hdl"
+#include "com/sun/star/chart2/data/XRangeXMLConversion.hdl"
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/lang/XInitialization.hdl"
+namespace com { namespace sun { namespace star { namespace sdbc { class XConnection; } } } }
+#include "com/sun/star/sdbc/XParameters.hdl"
+#include "com/sun/star/sdbc/XRowSet.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 { namespace data {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDatabaseDataProvider : public ::css::chart2::data::XDataProvider, public ::css::chart2::data::XRangeXMLConversion, public ::css::lang::XInitialization, public ::css::lang::XComponent, public ::css::beans::XPropertySet, public ::css::sdbc::XParameters, public ::css::sdbc::XRowSet
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDatabaseDataProvider() = default;
+    XDatabaseDataProvider(XDatabaseDataProvider const &) = default;
+    XDatabaseDataProvider(XDatabaseDataProvider &&) = default;
+    XDatabaseDataProvider & operator =(XDatabaseDataProvider const &) = default;
+    XDatabaseDataProvider & operator =(XDatabaseDataProvider &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getMasterFields() = 0;
+    virtual void SAL_CALL setMasterFields( const ::css::uno::Sequence< ::rtl::OUString >& _masterfields ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getDetailFields() = 0;
+    virtual void SAL_CALL setDetailFields( const ::css::uno::Sequence< ::rtl::OUString >& _detailfields ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCommand() = 0;
+    virtual void SAL_CALL setCommand( const ::rtl::OUString& _command ) = 0;
+    virtual ::sal_Int32 SAL_CALL getCommandType() = 0;
+    virtual void SAL_CALL setCommandType( ::sal_Int32 _commandtype ) = 0;
+    virtual ::rtl::OUString SAL_CALL getFilter() = 0;
+    virtual void SAL_CALL setFilter( const ::rtl::OUString& _filter ) = 0;
+    virtual ::sal_Bool SAL_CALL getApplyFilter() = 0;
+    virtual void SAL_CALL setApplyFilter( ::sal_Bool _applyfilter ) = 0;
+    virtual ::rtl::OUString SAL_CALL getHavingClause() = 0;
+    virtual void SAL_CALL setHavingClause( const ::rtl::OUString& _havingclause ) = 0;
+    virtual ::rtl::OUString SAL_CALL getGroupBy() = 0;
+    virtual void SAL_CALL setGroupBy( const ::rtl::OUString& _groupby ) = 0;
+    virtual ::rtl::OUString SAL_CALL getOrder() = 0;
+    virtual void SAL_CALL setOrder( const ::rtl::OUString& _order ) = 0;
+    virtual ::sal_Bool SAL_CALL getEscapeProcessing() = 0;
+    virtual void SAL_CALL setEscapeProcessing( ::sal_Bool _escapeprocessing ) = 0;
+    virtual ::sal_Int32 SAL_CALL getRowLimit() = 0;
+    virtual void SAL_CALL setRowLimit( ::sal_Int32 _rowlimit ) = 0;
+    virtual ::css::uno::Reference< ::css::sdbc::XConnection > SAL_CALL getActiveConnection() = 0;
+    virtual void SAL_CALL setActiveConnection( const ::css::uno::Reference< ::css::sdbc::XConnection >& _activeconnection ) = 0;
+    virtual ::rtl::OUString SAL_CALL getDataSourceName() = 0;
+    virtual void SAL_CALL setDataSourceName( const ::rtl::OUString& _datasourcename ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDatabaseDataProvider() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::data::XDatabaseDataProvider const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::chart2::data::XDatabaseDataProvider > *);
+
+#endif

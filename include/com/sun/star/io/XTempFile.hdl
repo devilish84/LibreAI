@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_IO_XTEMPFILE_HDL
+#define INCLUDED_COM_SUN_STAR_IO_XTEMPFILE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/io/XSeekable.hdl"
+#include "com/sun/star/io/XStream.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace io {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTempFile : public ::css::io::XStream, public ::css::io::XSeekable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTempFile() = default;
+    XTempFile(XTempFile const &) = default;
+    XTempFile(XTempFile &&) = default;
+    XTempFile & operator =(XTempFile const &) = default;
+    XTempFile & operator =(XTempFile &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Bool SAL_CALL getRemoveFile() = 0;
+    virtual void SAL_CALL setRemoveFile( ::sal_Bool _removefile ) = 0;
+    virtual ::rtl::OUString SAL_CALL getUri() = 0;
+    virtual ::rtl::OUString SAL_CALL getResourceName() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTempFile() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::io::XTempFile const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::io::XTempFile > *);
+
+#endif

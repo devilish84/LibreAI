@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_EXTERNALREFERENCE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_EXTERNALREFERENCE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI ExternalReference {
+    inline ExternalReference();
+
+    inline ExternalReference(const ::sal_Int32& Index_, const ::css::uno::Any& Reference_);
+
+    ::sal_Int32 Index;
+    ::css::uno::Any Reference;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::ExternalReference const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::ExternalReference *);
+
+#endif

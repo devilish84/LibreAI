@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_XFILEPICKERLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_XFILEPICKERLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/ui/dialogs/FilePickerEvent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFilePickerListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFilePickerListener() = default;
+    XFilePickerListener(XFilePickerListener const &) = default;
+    XFilePickerListener(XFilePickerListener &&) = default;
+    XFilePickerListener & operator =(XFilePickerListener const &) = default;
+    XFilePickerListener & operator =(XFilePickerListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL fileSelectionChanged( const ::css::ui::dialogs::FilePickerEvent& aEvent ) = 0;
+    virtual void SAL_CALL directoryChanged( const ::css::ui::dialogs::FilePickerEvent& aEvent ) = 0;
+    virtual ::rtl::OUString SAL_CALL helpRequested( const ::css::ui::dialogs::FilePickerEvent& aEvent ) = 0;
+    virtual void SAL_CALL controlStateChanged( const ::css::ui::dialogs::FilePickerEvent& aEvent ) = 0;
+    virtual void SAL_CALL dialogSizeChanged() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFilePickerListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::dialogs::XFilePickerListener const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::dialogs::XFilePickerListener > *);
+
+#endif

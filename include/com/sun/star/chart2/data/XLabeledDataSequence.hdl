@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_DATA_XLABELEDDATASEQUENCE_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_DATA_XLABELEDDATASEQUENCE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace chart2 { namespace data { class XDataSequence; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 { namespace data {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLabeledDataSequence : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLabeledDataSequence() = default;
+    XLabeledDataSequence(XLabeledDataSequence const &) = default;
+    XLabeledDataSequence(XLabeledDataSequence &&) = default;
+    XLabeledDataSequence & operator =(XLabeledDataSequence const &) = default;
+    XLabeledDataSequence & operator =(XLabeledDataSequence &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::chart2::data::XDataSequence > SAL_CALL getValues() = 0;
+    virtual void SAL_CALL setValues( const ::css::uno::Reference< ::css::chart2::data::XDataSequence >& xSequence ) = 0;
+    virtual ::css::uno::Reference< ::css::chart2::data::XDataSequence > SAL_CALL getLabel() = 0;
+    virtual void SAL_CALL setLabel( const ::css::uno::Reference< ::css::chart2::data::XDataSequence >& xSequence ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLabeledDataSequence() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::data::XLabeledDataSequence const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::chart2::data::XLabeledDataSequence > *);
+
+#endif

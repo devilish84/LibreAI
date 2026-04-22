@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPEPARAMETERPAIR_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPEPARAMETERPAIR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/drawing/EnhancedCustomShapeParameter.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI EnhancedCustomShapeParameterPair {
+    inline EnhancedCustomShapeParameterPair();
+
+    inline EnhancedCustomShapeParameterPair(const ::css::drawing::EnhancedCustomShapeParameter& First_, const ::css::drawing::EnhancedCustomShapeParameter& Second_);
+
+    ::css::drawing::EnhancedCustomShapeParameter First;
+    ::css::drawing::EnhancedCustomShapeParameter Second;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::EnhancedCustomShapeParameterPair const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::EnhancedCustomShapeParameterPair *);
+
+#endif

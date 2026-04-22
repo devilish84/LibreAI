@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_BARCODE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_BARCODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED BarCode {
+    inline BarCode();
+
+    inline BarCode(const ::sal_Int32& Type_, const ::rtl::OUString& Payload_, const ::sal_Int32& ErrorCorrection_, const ::sal_Int32& Border_);
+
+    ::sal_Int32 Type;
+    ::rtl::OUString Payload;
+    ::sal_Int32 ErrorCorrection;
+    ::sal_Int32 Border;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::BarCode const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::BarCode *);
+
+#endif

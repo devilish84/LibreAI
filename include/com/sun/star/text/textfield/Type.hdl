@@ -1,0 +1,31 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_TEXTFIELD_TYPE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_TEXTFIELD_TYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace textfield { namespace Type {
+
+static const ::sal_Int32 AUTHOR = (sal_Int32)8;
+static const ::sal_Int32 DATE = (sal_Int32)0;
+static const ::sal_Int32 DOCINFO_CUSTOM = (sal_Int32)15;
+static const ::sal_Int32 DOCINFO_TITLE = (sal_Int32)10;
+static const ::sal_Int32 EXTENDED_FILE = (sal_Int32)7;
+static const ::sal_Int32 EXTENDED_TIME = (sal_Int32)6;
+static const ::sal_Int32 MEASURE = (sal_Int32)9;
+static const ::sal_Int32 PAGE = (sal_Int32)2;
+static const ::sal_Int32 PAGES = (sal_Int32)3;
+static const ::sal_Int32 PAGE_NAME = (sal_Int32)14;
+static const ::sal_Int32 PRESENTATION_DATE_TIME = (sal_Int32)13;
+static const ::sal_Int32 PRESENTATION_FOOTER = (sal_Int32)12;
+static const ::sal_Int32 PRESENTATION_HEADER = (sal_Int32)11;
+static const ::sal_Int32 TABLE = (sal_Int32)5;
+static const ::sal_Int32 TIME = (sal_Int32)4;
+static const ::sal_Int32 UNSPECIFIED = (sal_Int32)-1;
+static const ::sal_Int32 URL = (sal_Int32)1;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_TEXTFIELD_TYPE_HDL

@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/ForbiddenCharacters.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XForbiddenCharacters : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XForbiddenCharacters() = default;
+    XForbiddenCharacters(XForbiddenCharacters const &) = default;
+    XForbiddenCharacters(XForbiddenCharacters &&) = default;
+    XForbiddenCharacters & operator =(XForbiddenCharacters const &) = default;
+    XForbiddenCharacters & operator =(XForbiddenCharacters &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::i18n::ForbiddenCharacters SAL_CALL getForbiddenCharacters( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::sal_Bool SAL_CALL hasForbiddenCharacters( const ::css::lang::Locale& aLocale ) = 0;
+    virtual void SAL_CALL setForbiddenCharacters( const ::css::lang::Locale& aLocale, const ::css::i18n::ForbiddenCharacters& aForbiddenCharacters ) = 0;
+    virtual void SAL_CALL removeForbiddenCharacters( const ::css::lang::Locale& aLocale ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XForbiddenCharacters() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XForbiddenCharacters const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XForbiddenCharacters > *);
+
+#endif

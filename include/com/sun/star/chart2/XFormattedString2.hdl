@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_XFORMATTEDSTRING2_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_XFORMATTEDSTRING2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XPropertySet.hdl"
+#include "com/sun/star/chart2/XFormattedString.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFormattedString2 : public ::css::beans::XPropertySet, public ::css::chart2::XFormattedString
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFormattedString2() = default;
+    XFormattedString2(XFormattedString2 const &) = default;
+    XFormattedString2(XFormattedString2 &&) = default;
+    XFormattedString2 & operator =(XFormattedString2 const &) = default;
+    XFormattedString2 & operator =(XFormattedString2 &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFormattedString2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::XFormattedString2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::chart2::XFormattedString2 > *);
+
+#endif

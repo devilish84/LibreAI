@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_SAX_FASTTOKEN_HPP
+#define INCLUDED_COM_SUN_STAR_XML_SAX_FASTTOKEN_HPP
+
+#include "com/sun/star/xml/sax/FastToken.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_XML_SAX_FASTTOKEN_HPP

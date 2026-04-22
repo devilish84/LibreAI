@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_TABSTOP_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_TABSTOP_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/style/TabAlign.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace style {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED TabStop {
+    inline TabStop();
+
+    inline TabStop(const ::sal_Int32& Position_, const ::css::style::TabAlign& Alignment_, const ::sal_Unicode& DecimalChar_, const ::sal_Unicode& FillChar_);
+
+    ::sal_Int32 Position;
+    ::css::style::TabAlign Alignment;
+    ::sal_Unicode DecimalChar;
+    ::sal_Unicode FillChar;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::style::TabStop const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::style::TabStop *);
+
+#endif

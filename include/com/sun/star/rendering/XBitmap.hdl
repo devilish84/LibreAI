@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XBITMAP_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XBITMAP_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/geometry/IntegerSize2D.hdl"
+#include "com/sun/star/geometry/RealSize2D.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XBitmap; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XBitmap : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XBitmap() = default;
+    XBitmap(XBitmap const &) = default;
+    XBitmap(XBitmap &&) = default;
+    XBitmap & operator =(XBitmap const &) = default;
+    XBitmap & operator =(XBitmap &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::geometry::IntegerSize2D SAL_CALL getSize() = 0;
+    virtual ::sal_Bool SAL_CALL hasAlpha() = 0;
+    virtual ::css::uno::Reference< ::css::rendering::XBitmap > SAL_CALL getScaledBitmap( const ::css::geometry::RealSize2D& newSize, ::sal_Bool beFast ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XBitmap() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XBitmap const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XBitmap > *);
+
+#endif

@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_ASPECTS_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_ASPECTS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace embed { namespace Aspects {
+
+static const ::sal_Int64 MSOLE_CONTENT = (sal_Int64) SAL_CONST_INT64(1);
+static const ::sal_Int64 MSOLE_DOCPRINT = (sal_Int64) SAL_CONST_INT64(8);
+static const ::sal_Int64 MSOLE_ICON = (sal_Int64) SAL_CONST_INT64(4);
+static const ::sal_Int64 MSOLE_THUMBNAIL = (sal_Int64) SAL_CONST_INT64(2);
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_EMBED_ASPECTS_HDL

@@ -1,0 +1,49 @@
+#ifndef INCLUDED_COM_SUN_STAR_VIEW_XMULTISELECTIONSUPPLIER_HDL
+#define INCLUDED_COM_SUN_STAR_VIEW_XMULTISELECTIONSUPPLIER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XEnumeration; } } } }
+#include "com/sun/star/view/XSelectionSupplier.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace view {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMultiSelectionSupplier : public ::css::view::XSelectionSupplier
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMultiSelectionSupplier() = default;
+    XMultiSelectionSupplier(XMultiSelectionSupplier const &) = default;
+    XMultiSelectionSupplier(XMultiSelectionSupplier &&) = default;
+    XMultiSelectionSupplier & operator =(XMultiSelectionSupplier const &) = default;
+    XMultiSelectionSupplier & operator =(XMultiSelectionSupplier &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL addSelection( const ::css::uno::Any& Selection ) = 0;
+    virtual void SAL_CALL removeSelection( const ::css::uno::Any& Selection ) = 0;
+    virtual void SAL_CALL clearSelection() = 0;
+    virtual ::sal_Int32 SAL_CALL getSelectionCount() = 0;
+    virtual ::css::uno::Reference< ::css::container::XEnumeration > SAL_CALL createSelectionEnumeration() = 0;
+    virtual ::css::uno::Reference< ::css::container::XEnumeration > SAL_CALL createReverseSelectionEnumeration() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMultiSelectionSupplier() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::view::XMultiSelectionSupplier const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::view::XMultiSelectionSupplier > *);
+
+#endif

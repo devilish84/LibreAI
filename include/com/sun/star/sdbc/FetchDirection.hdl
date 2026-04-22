@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_FETCHDIRECTION_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_FETCHDIRECTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbc { namespace FetchDirection {
+
+static const ::sal_Int32 FORWARD = (sal_Int32)1000;
+static const ::sal_Int32 REVERSE = (sal_Int32)1001;
+static const ::sal_Int32 UNKNOWN = (sal_Int32)1002;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBC_FETCHDIRECTION_HDL

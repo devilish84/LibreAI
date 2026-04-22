@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_BRIDGE_XBRIDGEFACTORY2_HDL
+#define INCLUDED_COM_SUN_STAR_BRIDGE_XBRIDGEFACTORY2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/bridge/XBridgeFactory.hdl"
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace bridge {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XBridgeFactory2 : public ::css::bridge::XBridgeFactory, public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XBridgeFactory2() = default;
+    XBridgeFactory2(XBridgeFactory2 const &) = default;
+    XBridgeFactory2(XBridgeFactory2 &&) = default;
+    XBridgeFactory2 & operator =(XBridgeFactory2 const &) = default;
+    XBridgeFactory2 & operator =(XBridgeFactory2 &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XBridgeFactory2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::bridge::XBridgeFactory2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::bridge::XBridgeFactory2 > *);
+
+#endif

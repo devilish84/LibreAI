@@ -1,0 +1,15 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_DOUBLESEQUENCESEQUENCE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_DOUBLESEQUENCESEQUENCE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/drawing/DoubleSequence.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+typedef ::css::uno::Sequence< ::css::uno::Sequence< double > > DoubleSequenceSequence;
+
+} } } }
+#endif // INCLUDED_COM_SUN_STAR_DRAWING_DOUBLESEQUENCESEQUENCE_HDL

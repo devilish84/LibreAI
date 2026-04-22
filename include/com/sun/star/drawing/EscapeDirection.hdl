@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_ESCAPEDIRECTION_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_ESCAPEDIRECTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI EscapeDirection
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI EscapeDirection
+{
+
+#endif
+    EscapeDirection_SMART = 0,
+    EscapeDirection_LEFT = 1,
+    EscapeDirection_RIGHT = 2,
+    EscapeDirection_UP = 3,
+    EscapeDirection_DOWN = 4,
+    EscapeDirection_HORIZONTAL = 5,
+    EscapeDirection_VERTICAL = 6,
+    EscapeDirection_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto EscapeDirection_SMART = EscapeDirection::EscapeDirection_SMART;
+constexpr auto EscapeDirection_LEFT = EscapeDirection::EscapeDirection_LEFT;
+constexpr auto EscapeDirection_RIGHT = EscapeDirection::EscapeDirection_RIGHT;
+constexpr auto EscapeDirection_UP = EscapeDirection::EscapeDirection_UP;
+constexpr auto EscapeDirection_DOWN = EscapeDirection::EscapeDirection_DOWN;
+constexpr auto EscapeDirection_HORIZONTAL = EscapeDirection::EscapeDirection_HORIZONTAL;
+constexpr auto EscapeDirection_VERTICAL = EscapeDirection::EscapeDirection_VERTICAL;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::EscapeDirection const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::EscapeDirection *);
+
+#endif

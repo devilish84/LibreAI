@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_XTRANSFERABLE2_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_XTRANSFERABLE2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/datatransfer/DataFlavor.hdl"
+#include "com/sun/star/datatransfer/XTransferable.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace datatransfer {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTransferable2 : public ::css::datatransfer::XTransferable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTransferable2() = default;
+    XTransferable2(XTransferable2 const &) = default;
+    XTransferable2(XTransferable2 &&) = default;
+    XTransferable2 & operator =(XTransferable2 const &) = default;
+    XTransferable2 & operator =(XTransferable2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Any SAL_CALL getTransferData2( const ::css::datatransfer::DataFlavor& aFlavor, const ::rtl::OUString& aDestShellID ) = 0;
+    virtual ::sal_Bool SAL_CALL isComplex() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTransferable2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::datatransfer::XTransferable2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::datatransfer::XTransferable2 > *);
+
+#endif

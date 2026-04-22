@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_ENDDOCKINGEVENT_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_ENDDOCKINGEVENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+#include "com/sun/star/lang/EventObject.hdl"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI EndDockingEvent: public ::css::lang::EventObject {
+    inline EndDockingEvent();
+
+    inline EndDockingEvent(const ::css::uno::Reference< ::css::uno::XInterface >& Source_, const ::css::awt::Rectangle& WindowRectangle_, const ::sal_Bool& bFloating_, const ::sal_Bool& bCancelled_);
+
+    ::css::awt::Rectangle WindowRectangle CPPU_GCC3_ALIGN(::css::lang::EventObject);
+    ::sal_Bool bFloating;
+    ::sal_Bool bCancelled;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::EndDockingEvent const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::EndDockingEvent *);
+
+#endif

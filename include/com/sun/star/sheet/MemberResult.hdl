@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_MEMBERRESULT_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_MEMBERRESULT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED MemberResult {
+    inline MemberResult();
+
+    inline MemberResult(const ::rtl::OUString& Name_, const ::rtl::OUString& Caption_, const ::sal_Int32& Flags_, const double& Value_);
+
+    ::rtl::OUString Name;
+    ::rtl::OUString Caption;
+    ::sal_Int32 Flags;
+    double Value;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::MemberResult const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::MemberResult *);
+
+#endif

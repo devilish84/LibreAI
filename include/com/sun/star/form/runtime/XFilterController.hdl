@@ -1,0 +1,58 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_RUNTIME_XFILTERCONTROLLER_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_RUNTIME_XFILTERCONTROLLER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XControl; } } } }
+namespace com { namespace sun { namespace star { namespace form { namespace runtime { class XFilterControllerListener; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form { namespace runtime {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFilterController : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFilterController() = default;
+    XFilterController(XFilterController const &) = default;
+    XFilterController(XFilterController &&) = default;
+    XFilterController & operator =(XFilterController const &) = default;
+    XFilterController & operator =(XFilterController &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Int32 SAL_CALL getFilterComponents() = 0;
+    virtual ::sal_Int32 SAL_CALL getDisjunctiveTerms() = 0;
+    virtual ::sal_Int32 SAL_CALL getActiveTerm() = 0;
+    virtual void SAL_CALL setActiveTerm( ::sal_Int32 _activeterm ) = 0;
+
+    // Methods
+    virtual void SAL_CALL addFilterControllerListener( const ::css::uno::Reference< ::css::form::runtime::XFilterControllerListener >& Listener ) = 0;
+    virtual void SAL_CALL removeFilterControllerListener( const ::css::uno::Reference< ::css::form::runtime::XFilterControllerListener >& Listener ) = 0;
+    virtual void SAL_CALL setPredicateExpression( ::sal_Int32 Component, ::sal_Int32 Term, const ::rtl::OUString& PredicateExpression ) = 0;
+    virtual ::css::uno::Reference< ::css::awt::XControl > SAL_CALL getFilterComponent( ::sal_Int32 Component ) = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Sequence< ::rtl::OUString > > SAL_CALL getPredicateExpressions() = 0;
+    virtual void SAL_CALL removeDisjunctiveTerm( ::sal_Int32 Term ) = 0;
+    virtual void SAL_CALL appendEmptyDisjunctiveTerm() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFilterController() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::runtime::XFilterController const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::form::runtime::XFilterController > *);
+
+#endif

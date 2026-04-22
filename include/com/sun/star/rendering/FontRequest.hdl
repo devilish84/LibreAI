@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_FONTREQUEST_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_FONTREQUEST_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/rendering/FontInfo.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED FontRequest {
+    inline FontRequest();
+
+    inline FontRequest(const ::css::rendering::FontInfo& FontDescription_, const double& CellSize_, const double& ReferenceAdvancement_, const ::css::lang::Locale& Locale_);
+
+    ::css::rendering::FontInfo FontDescription;
+    double CellSize;
+    double ReferenceAdvancement;
+    ::css::lang::Locale Locale;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::FontRequest const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::rendering::FontRequest *);
+
+#endif

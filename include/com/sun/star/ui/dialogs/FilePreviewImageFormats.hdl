@@ -1,0 +1,15 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_FILEPREVIEWIMAGEFORMATS_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_FILEPREVIEWIMAGEFORMATS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs { namespace FilePreviewImageFormats {
+
+static const ::sal_Int16 BITMAP = (sal_Int16)1;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UI_DIALOGS_FILEPREVIEWIMAGEFORMATS_HDL

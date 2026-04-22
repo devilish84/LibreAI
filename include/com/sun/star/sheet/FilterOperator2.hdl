@@ -1,0 +1,32 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_FILTEROPERATOR2_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_FILTEROPERATOR2_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace FilterOperator2 {
+
+static const ::sal_Int32 BEGINS_WITH = (sal_Int32)14;
+static const ::sal_Int32 BOTTOM_PERCENT = (sal_Int32)11;
+static const ::sal_Int32 BOTTOM_VALUES = (sal_Int32)10;
+static const ::sal_Int32 CONTAINS = (sal_Int32)12;
+static const ::sal_Int32 DOES_NOT_BEGIN_WITH = (sal_Int32)15;
+static const ::sal_Int32 DOES_NOT_CONTAIN = (sal_Int32)13;
+static const ::sal_Int32 DOES_NOT_END_WITH = (sal_Int32)17;
+static const ::sal_Int32 EMPTY = (sal_Int32)0;
+static const ::sal_Int32 ENDS_WITH = (sal_Int32)16;
+static const ::sal_Int32 EQUAL = (sal_Int32)2;
+static const ::sal_Int32 GREATER = (sal_Int32)4;
+static const ::sal_Int32 GREATER_EQUAL = (sal_Int32)5;
+static const ::sal_Int32 LESS = (sal_Int32)6;
+static const ::sal_Int32 LESS_EQUAL = (sal_Int32)7;
+static const ::sal_Int32 NOT_EMPTY = (sal_Int32)1;
+static const ::sal_Int32 NOT_EQUAL = (sal_Int32)3;
+static const ::sal_Int32 TOP_PERCENT = (sal_Int32)9;
+static const ::sal_Int32 TOP_VALUES = (sal_Int32)8;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_FILTEROPERATOR2_HDL

@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPETEXTFRAME_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_ENHANCEDCUSTOMSHAPETEXTFRAME_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/drawing/EnhancedCustomShapeParameterPair.hdl"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI EnhancedCustomShapeTextFrame {
+    inline EnhancedCustomShapeTextFrame();
+
+    inline EnhancedCustomShapeTextFrame(const ::css::drawing::EnhancedCustomShapeParameterPair& TopLeft_, const ::css::drawing::EnhancedCustomShapeParameterPair& BottomRight_);
+
+    ::css::drawing::EnhancedCustomShapeParameterPair TopLeft;
+    ::css::drawing::EnhancedCustomShapeParameterPair BottomRight;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::EnhancedCustomShapeTextFrame const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::EnhancedCustomShapeTextFrame *);
+
+#endif

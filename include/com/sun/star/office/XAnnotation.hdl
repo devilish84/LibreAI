@@ -1,0 +1,59 @@
+#ifndef INCLUDED_COM_SUN_STAR_OFFICE_XANNOTATION_HDL
+#define INCLUDED_COM_SUN_STAR_OFFICE_XANNOTATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/XPropertySet.hdl"
+#include "com/sun/star/geometry/RealPoint2D.hdl"
+#include "com/sun/star/geometry/RealSize2D.hdl"
+#include "com/sun/star/lang/XComponent.hdl"
+namespace com { namespace sun { namespace star { namespace text { class XText; } } } }
+#include "com/sun/star/util/DateTime.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace office {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAnnotation : public ::css::beans::XPropertySet, public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAnnotation() = default;
+    XAnnotation(XAnnotation const &) = default;
+    XAnnotation(XAnnotation &&) = default;
+    XAnnotation & operator =(XAnnotation const &) = default;
+    XAnnotation & operator =(XAnnotation &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Any SAL_CALL getAnchor() = 0;
+    virtual ::css::geometry::RealPoint2D SAL_CALL getPosition() = 0;
+    virtual void SAL_CALL setPosition( const ::css::geometry::RealPoint2D& _position ) = 0;
+    virtual ::css::geometry::RealSize2D SAL_CALL getSize() = 0;
+    virtual void SAL_CALL setSize( const ::css::geometry::RealSize2D& _size ) = 0;
+    virtual ::rtl::OUString SAL_CALL getAuthor() = 0;
+    virtual void SAL_CALL setAuthor( const ::rtl::OUString& _author ) = 0;
+    virtual ::rtl::OUString SAL_CALL getInitials() = 0;
+    virtual void SAL_CALL setInitials( const ::rtl::OUString& _initials ) = 0;
+    virtual ::css::util::DateTime SAL_CALL getDateTime() = 0;
+    virtual void SAL_CALL setDateTime( const ::css::util::DateTime& _datetime ) = 0;
+    virtual ::css::uno::Reference< ::css::text::XText > SAL_CALL getTextRange() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAnnotation() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::office::XAnnotation const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::office::XAnnotation > *);
+
+#endif

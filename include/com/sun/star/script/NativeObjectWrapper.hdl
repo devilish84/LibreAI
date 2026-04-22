@@ -1,0 +1,35 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_NATIVEOBJECTWRAPPER_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_NATIVEOBJECTWRAPPER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI NativeObjectWrapper {
+    inline NativeObjectWrapper();
+
+    inline NativeObjectWrapper(const ::css::uno::Any& ObjectId_);
+
+    ::css::uno::Any ObjectId;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::NativeObjectWrapper const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::script::NativeObjectWrapper *);
+
+#endif

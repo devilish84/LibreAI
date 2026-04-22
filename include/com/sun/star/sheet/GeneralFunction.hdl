@@ -1,0 +1,60 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_GENERALFUNCTION_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_GENERALFUNCTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI GeneralFunction
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI GeneralFunction
+{
+
+#endif
+    GeneralFunction_NONE = 0,
+    GeneralFunction_AUTO = 1,
+    GeneralFunction_SUM = 2,
+    GeneralFunction_COUNT = 3,
+    GeneralFunction_AVERAGE = 4,
+    GeneralFunction_MAX = 5,
+    GeneralFunction_MIN = 6,
+    GeneralFunction_PRODUCT = 7,
+    GeneralFunction_COUNTNUMS = 8,
+    GeneralFunction_STDEV = 9,
+    GeneralFunction_STDEVP = 10,
+    GeneralFunction_VAR = 11,
+    GeneralFunction_VARP = 12,
+    GeneralFunction_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto GeneralFunction_NONE = GeneralFunction::GeneralFunction_NONE;
+constexpr auto GeneralFunction_AUTO = GeneralFunction::GeneralFunction_AUTO;
+constexpr auto GeneralFunction_SUM = GeneralFunction::GeneralFunction_SUM;
+constexpr auto GeneralFunction_COUNT = GeneralFunction::GeneralFunction_COUNT;
+constexpr auto GeneralFunction_AVERAGE = GeneralFunction::GeneralFunction_AVERAGE;
+constexpr auto GeneralFunction_MAX = GeneralFunction::GeneralFunction_MAX;
+constexpr auto GeneralFunction_MIN = GeneralFunction::GeneralFunction_MIN;
+constexpr auto GeneralFunction_PRODUCT = GeneralFunction::GeneralFunction_PRODUCT;
+constexpr auto GeneralFunction_COUNTNUMS = GeneralFunction::GeneralFunction_COUNTNUMS;
+constexpr auto GeneralFunction_STDEV = GeneralFunction::GeneralFunction_STDEV;
+constexpr auto GeneralFunction_STDEVP = GeneralFunction::GeneralFunction_STDEVP;
+constexpr auto GeneralFunction_VAR = GeneralFunction::GeneralFunction_VAR;
+constexpr auto GeneralFunction_VARP = GeneralFunction::GeneralFunction_VARP;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::GeneralFunction const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::sheet::GeneralFunction *);
+
+#endif

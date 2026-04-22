@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_GRAPHIC_XGRAPHICPROVIDER_HDL
+#define INCLUDED_COM_SUN_STAR_GRAPHIC_XGRAPHICPROVIDER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValues.hdl"
+namespace com { namespace sun { namespace star { namespace beans { class XPropertySet; } } } }
+namespace com { namespace sun { namespace star { namespace graphic { class XGraphic; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace graphic {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XGraphicProvider : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XGraphicProvider() = default;
+    XGraphicProvider(XGraphicProvider const &) = default;
+    XGraphicProvider(XGraphicProvider &&) = default;
+    XGraphicProvider & operator =(XGraphicProvider const &) = default;
+    XGraphicProvider & operator =(XGraphicProvider &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::beans::XPropertySet > SAL_CALL queryGraphicDescriptor( const ::css::uno::Sequence< ::css::beans::PropertyValue >& MediaProperties ) = 0;
+    virtual ::css::uno::Reference< ::css::graphic::XGraphic > SAL_CALL queryGraphic( const ::css::uno::Sequence< ::css::beans::PropertyValue >& MediaProperties ) = 0;
+    virtual void SAL_CALL storeGraphic( const ::css::uno::Reference< ::css::graphic::XGraphic >& Graphic, const ::css::uno::Sequence< ::css::beans::PropertyValue >& MediaProperties ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XGraphicProvider() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::graphic::XGraphicProvider const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::graphic::XGraphicProvider > *);
+
+#endif

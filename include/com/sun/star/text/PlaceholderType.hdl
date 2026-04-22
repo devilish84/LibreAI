@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_PLACEHOLDERTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_PLACEHOLDERTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace PlaceholderType {
+
+static const ::sal_Int16 GRAPHIC = (sal_Int16)3;
+static const ::sal_Int16 OBJECT = (sal_Int16)4;
+static const ::sal_Int16 TABLE = (sal_Int16)1;
+static const ::sal_Int16 TEXT = (sal_Int16)0;
+static const ::sal_Int16 TEXTFRAME = (sal_Int16)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_PLACEHOLDERTYPE_HDL

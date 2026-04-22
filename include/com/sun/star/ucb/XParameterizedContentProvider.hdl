@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XPARAMETERIZEDCONTENTPROVIDER_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XPARAMETERIZEDCONTENTPROVIDER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace ucb { class XContentProvider; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XParameterizedContentProvider : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XParameterizedContentProvider() = default;
+    XParameterizedContentProvider(XParameterizedContentProvider const &) = default;
+    XParameterizedContentProvider(XParameterizedContentProvider &&) = default;
+    XParameterizedContentProvider & operator =(XParameterizedContentProvider const &) = default;
+    XParameterizedContentProvider & operator =(XParameterizedContentProvider &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::ucb::XContentProvider > SAL_CALL registerInstance( const ::rtl::OUString& Template, const ::rtl::OUString& Arguments, ::sal_Bool ReplaceExisting ) = 0;
+    virtual ::css::uno::Reference< ::css::ucb::XContentProvider > SAL_CALL deregisterInstance( const ::rtl::OUString& Template, const ::rtl::OUString& Arguments ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XParameterizedContentProvider() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XParameterizedContentProvider const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XParameterizedContentProvider > *);
+
+#endif

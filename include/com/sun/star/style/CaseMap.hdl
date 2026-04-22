@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_STYLE_CASEMAP_HDL
+#define INCLUDED_COM_SUN_STAR_STYLE_CASEMAP_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace style { namespace CaseMap {
+
+static const ::sal_Int16 LOWERCASE = (sal_Int16)2;
+static const ::sal_Int16 NONE = (sal_Int16)0;
+static const ::sal_Int16 SMALLCAPS = (sal_Int16)4;
+static const ::sal_Int16 TITLE = (sal_Int16)3;
+static const ::sal_Int16 UPPERCASE = (sal_Int16)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_STYLE_CASEMAP_HDL

@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_UTIL_XCHANGESSET_HDL
+#define INCLUDED_COM_SUN_STAR_UTIL_XCHANGESSET_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XElementAccess.hdl"
+#include "com/sun/star/util/ElementChange.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace util {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XChangesSet : public ::css::container::XElementAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XChangesSet() = default;
+    XChangesSet(XChangesSet const &) = default;
+    XChangesSet(XChangesSet &&) = default;
+    XChangesSet & operator =(XChangesSet const &) = default;
+    XChangesSet & operator =(XChangesSet &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::util::ElementChange > SAL_CALL getAllChanges() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XChangesSet() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::util::XChangesSet const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::util::XChangesSet > *);
+
+#endif

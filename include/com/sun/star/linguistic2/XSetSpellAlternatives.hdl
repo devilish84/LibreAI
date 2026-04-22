@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XSETSPELLALTERNATIVES_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XSETSPELLALTERNATIVES_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSetSpellAlternatives : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSetSpellAlternatives() = default;
+    XSetSpellAlternatives(XSetSpellAlternatives const &) = default;
+    XSetSpellAlternatives(XSetSpellAlternatives &&) = default;
+    XSetSpellAlternatives & operator =(XSetSpellAlternatives const &) = default;
+    XSetSpellAlternatives & operator =(XSetSpellAlternatives &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setAlternatives( const ::css::uno::Sequence< ::rtl::OUString >& aAlternatives ) = 0;
+    virtual void SAL_CALL setFailureType( ::sal_Int16 nFailureType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSetSpellAlternatives() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XSetSpellAlternatives const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XSetSpellAlternatives > *);
+
+#endif

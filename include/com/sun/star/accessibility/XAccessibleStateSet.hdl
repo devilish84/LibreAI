@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLESTATESET_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLESTATESET_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace accessibility {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAccessibleStateSet : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAccessibleStateSet() = default;
+    XAccessibleStateSet(XAccessibleStateSet const &) = default;
+    XAccessibleStateSet(XAccessibleStateSet &&) = default;
+    XAccessibleStateSet & operator =(XAccessibleStateSet const &) = default;
+    XAccessibleStateSet & operator =(XAccessibleStateSet &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isEmpty() = 0;
+    virtual ::sal_Bool SAL_CALL contains( ::sal_Int16 aState ) = 0;
+    virtual ::sal_Bool SAL_CALL containsAll( const ::css::uno::Sequence< ::sal_Int16 >& aStateSet ) = 0;
+    virtual ::css::uno::Sequence< ::sal_Int16 > SAL_CALL getStates() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAccessibleStateSet() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::accessibility::XAccessibleStateSet const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::accessibility::XAccessibleStateSet > *);
+
+#endif

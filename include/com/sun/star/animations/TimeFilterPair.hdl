@@ -1,0 +1,35 @@
+#ifndef INCLUDED_COM_SUN_STAR_ANIMATIONS_TIMEFILTERPAIR_HDL
+#define INCLUDED_COM_SUN_STAR_ANIMATIONS_TIMEFILTERPAIR_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace animations {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED TimeFilterPair {
+    inline TimeFilterPair();
+
+    inline TimeFilterPair(const double& Time_, const double& Progress_);
+
+    double Time;
+    double Progress;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::animations::TimeFilterPair const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::animations::TimeFilterPair *);
+
+#endif

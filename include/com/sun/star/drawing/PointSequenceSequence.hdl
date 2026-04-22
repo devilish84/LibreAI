@@ -1,0 +1,15 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_POINTSEQUENCESEQUENCE_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_POINTSEQUENCESEQUENCE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/drawing/PointSequence.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+typedef ::css::uno::Sequence< ::css::uno::Sequence< ::css::awt::Point > > PointSequenceSequence;
+
+} } } }
+#endif // INCLUDED_COM_SUN_STAR_DRAWING_POINTSEQUENCESEQUENCE_HDL

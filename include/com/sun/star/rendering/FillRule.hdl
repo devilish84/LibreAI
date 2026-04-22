@@ -1,0 +1,38 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_FILLRULE_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_FILLRULE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FillRule
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FillRule
+{
+
+#endif
+    FillRule_NON_ZERO = 0,
+    FillRule_EVEN_ODD = 1,
+    FillRule_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FillRule_NON_ZERO = FillRule::FillRule_NON_ZERO;
+constexpr auto FillRule_EVEN_ODD = FillRule::FillRule_EVEN_ODD;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::FillRule const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::rendering::FillRule *);
+
+#endif

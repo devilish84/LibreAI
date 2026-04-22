@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_ERRORCONDITION_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_ERRORCONDITION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace ErrorCondition {
+
+static const ::sal_Int32 AB_ADDRESSBOOK_NOT_FOUND = (sal_Int32)500;
+static const ::sal_Int32 DATA_CANNOT_SELECT_UNFILTERED = (sal_Int32)550;
+static const ::sal_Int32 DB_INVALID_SQL_NAME = (sal_Int32)301;
+static const ::sal_Int32 DB_NOT_CONNECTED = (sal_Int32)304;
+static const ::sal_Int32 DB_OBJECT_NAME_IS_USED = (sal_Int32)303;
+static const ::sal_Int32 DB_OBJECT_NAME_WITH_SLASHES = (sal_Int32)300;
+static const ::sal_Int32 DB_QUERY_NAME_WITH_QUOTES = (sal_Int32)302;
+static const ::sal_Int32 PARSER_CYCLIC_SUB_QUERIES = (sal_Int32)200;
+static const ::sal_Int32 ROW_SET_OPERATION_VETOED = (sal_Int32)100;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDB_ERRORCONDITION_HDL

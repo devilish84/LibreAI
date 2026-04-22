@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_AUTH_XSSOACCEPTORCONTEXT_HDL
+#define INCLUDED_COM_SUN_STAR_AUTH_XSSOACCEPTORCONTEXT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/auth/XSSOContext.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace auth {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSSOAcceptorContext : public ::css::auth::XSSOContext
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSSOAcceptorContext() = default;
+    XSSOAcceptorContext(XSSOAcceptorContext const &) = default;
+    XSSOAcceptorContext(XSSOAcceptorContext &&) = default;
+    XSSOAcceptorContext & operator =(XSSOAcceptorContext const &) = default;
+    XSSOAcceptorContext & operator =(XSSOAcceptorContext &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::sal_Int8 > SAL_CALL accept( const ::css::uno::Sequence< ::sal_Int8 >& Token ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSSOAcceptorContext() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::auth::XSSOAcceptorContext const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::auth::XSSOAcceptorContext > *);
+
+#endif

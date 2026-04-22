@@ -1,0 +1,20 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_PROCEDURECOLUMN_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_PROCEDURECOLUMN_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbc { namespace ProcedureColumn {
+
+static const ::sal_Int32 IN = (sal_Int32)1;
+static const ::sal_Int32 INOUT = (sal_Int32)2;
+static const ::sal_Int32 OUT = (sal_Int32)4;
+static const ::sal_Int32 RESULT = (sal_Int32)3;
+static const ::sal_Int32 RETURN = (sal_Int32)5;
+static const ::sal_Int32 UNKNOWN = (sal_Int32)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBC_PROCEDURECOLUMN_HDL

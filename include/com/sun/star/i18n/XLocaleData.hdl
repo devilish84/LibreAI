@@ -1,0 +1,62 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XLOCALEDATA_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XLOCALEDATA_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/Calendar.hdl"
+#include "com/sun/star/i18n/Currency.hdl"
+#include "com/sun/star/i18n/ForbiddenCharacters.hdl"
+#include "com/sun/star/i18n/FormatElement.hdl"
+#include "com/sun/star/i18n/Implementation.hdl"
+#include "com/sun/star/i18n/LanguageCountryInfo.hdl"
+#include "com/sun/star/i18n/LocaleDataItem.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLocaleData : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLocaleData() = default;
+    XLocaleData(XLocaleData const &) = default;
+    XLocaleData(XLocaleData &&) = default;
+    XLocaleData & operator =(XLocaleData const &) = default;
+    XLocaleData & operator =(XLocaleData &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::i18n::LanguageCountryInfo SAL_CALL getLanguageCountryInfo( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::i18n::LocaleDataItem SAL_CALL getLocaleItem( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::Calendar > SAL_CALL getAllCalendars( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::Currency > SAL_CALL getAllCurrencies( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::FormatElement > SAL_CALL getAllFormats( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::uno::Sequence< ::css::i18n::Implementation > SAL_CALL getCollatorImplementations( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getSearchOptions( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getCollationOptions( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getTransliterations( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::i18n::ForbiddenCharacters SAL_CALL getForbiddenCharacters( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getReservedWord( const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::uno::Sequence< ::css::lang::Locale > SAL_CALL getAllInstalledLocaleNames() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLocaleData() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XLocaleData const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XLocaleData > *);
+
+#endif

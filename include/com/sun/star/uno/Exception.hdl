@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_UNO_EXCEPTION_HDL
+#define INCLUDED_COM_SUN_STAR_UNO_EXCEPTION_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class XInterface; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#if defined LIBO_INTERNAL_ONLY && ((defined __GNUC__ && !defined __clang__) || (defined __clang__ && __clang_major__ >= 9)) && __has_include(<experimental/source_location>)
+#define LIBO_USE_SOURCE_LOCATION
+#endif
+#if defined LIBO_USE_SOURCE_LOCATION
+#include <experimental/source_location>
+#include <o3tl/runtimetooustring.hxx>
+#endif
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace uno {
+
+class CPPU_GCC_DLLPUBLIC_EXPORT SAL_WARN_UNUSED Exception
+{
+public:
+    inline CPPU_GCC_DLLPRIVATE Exception(
+#if defined LIBO_USE_SOURCE_LOCATION
+    std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+
+    );
+    inline CPPU_GCC_DLLPRIVATE Exception(const ::rtl::OUString& Message_, const ::css::uno::Reference< ::css::uno::XInterface >& Context_
+#if defined LIBO_USE_SOURCE_LOCATION
+, std::experimental::source_location location = std::experimental::source_location::current()
+#endif
+    );
+
+#if !defined LIBO_INTERNAL_ONLY
+    inline CPPU_GCC_DLLPRIVATE Exception(Exception const &);
+
+    inline CPPU_GCC_DLLPRIVATE ~Exception();
+
+    inline CPPU_GCC_DLLPRIVATE Exception & operator =(Exception const &);
+#endif
+
+    ::rtl::OUString Message;
+    ::css::uno::Reference< ::css::uno::XInterface > Context;
+};
+
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Exception *);
+
+#endif

@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART2_INTERPRETEDDATA_HDL
+#define INCLUDED_COM_SUN_STAR_CHART2_INTERPRETEDDATA_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace chart2 { class XDataSeries; } } } }
+namespace com { namespace sun { namespace star { namespace chart2 { namespace data { class XLabeledDataSequence; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart2 {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI InterpretedData {
+    inline InterpretedData();
+
+    inline InterpretedData(const ::css::uno::Sequence< ::css::uno::Sequence< ::css::uno::Reference< ::css::chart2::XDataSeries > > >& Series_, const ::css::uno::Reference< ::css::chart2::data::XLabeledDataSequence >& Categories_);
+
+    ::css::uno::Sequence< ::css::uno::Sequence< ::css::uno::Reference< ::css::chart2::XDataSeries > > > Series;
+    ::css::uno::Reference< ::css::chart2::data::XLabeledDataSequence > Categories;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart2::InterpretedData const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::chart2::InterpretedData *);
+
+#endif

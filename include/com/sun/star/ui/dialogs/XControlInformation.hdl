@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_XCONTROLINFORMATION_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_XCONTROLINFORMATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XControlInformation : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XControlInformation() = default;
+    XControlInformation(XControlInformation const &) = default;
+    XControlInformation(XControlInformation &&) = default;
+    XControlInformation & operator =(XControlInformation const &) = default;
+    XControlInformation & operator =(XControlInformation &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedControls() = 0;
+    virtual ::sal_Bool SAL_CALL isControlSupported( const ::rtl::OUString& aControlName ) = 0;
+    virtual ::css::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedControlProperties( const ::rtl::OUString& aControlName ) = 0;
+    virtual ::sal_Bool SAL_CALL isControlPropertySupported( const ::rtl::OUString& aControlName, const ::rtl::OUString& aControlProperty ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XControlInformation() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::dialogs::XControlInformation const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::dialogs::XControlInformation > *);
+
+#endif

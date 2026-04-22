@@ -1,0 +1,54 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_CRYPTO_SAX_XSAXEVENTKEEPER_HDL
+#define INCLUDED_COM_SUN_STAR_XML_CRYPTO_SAX_XSAXEVENTKEEPER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { class XDocumentHandler; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace wrapper { class XXMLElementWrapper; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace crypto { namespace sax {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSAXEventKeeper : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSAXEventKeeper() = default;
+    XSAXEventKeeper(XSAXEventKeeper const &) = default;
+    XSAXEventKeeper(XSAXEventKeeper &&) = default;
+    XSAXEventKeeper & operator =(XSAXEventKeeper const &) = default;
+    XSAXEventKeeper & operator =(XSAXEventKeeper &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL addElementCollector() = 0;
+    virtual void SAL_CALL removeElementCollector( ::sal_Int32 id ) = 0;
+    virtual ::sal_Int32 SAL_CALL addBlocker() = 0;
+    virtual void SAL_CALL removeBlocker( ::sal_Int32 id ) = 0;
+    virtual ::sal_Bool SAL_CALL isBlocking() = 0;
+    virtual ::css::uno::Reference< ::css::xml::wrapper::XXMLElementWrapper > SAL_CALL getElement( ::sal_Int32 id ) = 0;
+    virtual void SAL_CALL setElement( ::sal_Int32 id, const ::css::uno::Reference< ::css::xml::wrapper::XXMLElementWrapper >& aElement ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::sax::XDocumentHandler > SAL_CALL setNextHandler( const ::css::uno::Reference< ::css::xml::sax::XDocumentHandler >& nextHandler ) = 0;
+    virtual ::rtl::OUString SAL_CALL printBufferNodeTree() = 0;
+    virtual ::css::uno::Reference< ::css::xml::wrapper::XXMLElementWrapper > SAL_CALL getCurrentBlockingNode() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSAXEventKeeper() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::crypto::sax::XSAXEventKeeper const *);
+} } } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::crypto::sax::XSAXEventKeeper > *);
+
+#endif

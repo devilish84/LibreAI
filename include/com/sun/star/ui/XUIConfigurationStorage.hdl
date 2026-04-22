@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_XUICONFIGURATIONSTORAGE_HDL
+#define INCLUDED_COM_SUN_STAR_UI_XUICONFIGURATIONSTORAGE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace embed { class XStorage; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ui {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUIConfigurationStorage : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUIConfigurationStorage() = default;
+    XUIConfigurationStorage(XUIConfigurationStorage const &) = default;
+    XUIConfigurationStorage(XUIConfigurationStorage &&) = default;
+    XUIConfigurationStorage & operator =(XUIConfigurationStorage const &) = default;
+    XUIConfigurationStorage & operator =(XUIConfigurationStorage &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL setStorage( const ::css::uno::Reference< ::css::embed::XStorage >& Storage ) = 0;
+    virtual ::sal_Bool SAL_CALL hasStorage() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUIConfigurationStorage() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ui::XUIConfigurationStorage const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ui::XUIConfigurationStorage > *);
+
+#endif

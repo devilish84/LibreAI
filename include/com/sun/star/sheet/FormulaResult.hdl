@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_FORMULARESULT_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_FORMULARESULT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace FormulaResult {
+
+static const ::sal_Int32 ERROR = (sal_Int32)4;
+static const ::sal_Int32 STRING = (sal_Int32)2;
+static const ::sal_Int32 VALUE = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_FORMULARESULT_HDL

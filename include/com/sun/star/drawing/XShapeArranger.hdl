@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_XSHAPEARRANGER_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_XSHAPEARRANGER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/drawing/Arrangement.hdl"
+namespace com { namespace sun { namespace star { namespace drawing { class XShape; } } } }
+namespace com { namespace sun { namespace star { namespace drawing { class XShapes; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XShapeArranger : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XShapeArranger() = default;
+    XShapeArranger(XShapeArranger const &) = default;
+    XShapeArranger(XShapeArranger &&) = default;
+    XShapeArranger & operator =(XShapeArranger const &) = default;
+    XShapeArranger & operator =(XShapeArranger &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL arrange( const ::css::uno::Reference< ::css::drawing::XShapes >& xShapes, ::css::drawing::Arrangement eType ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL bringToFront( const ::css::uno::Reference< ::css::drawing::XShapes >& xShapes, ::sal_Int16 nSteps ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL sendToBack( const ::css::uno::Reference< ::css::drawing::XShapes >& xShapes, ::sal_Int16 nSteps ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setBehindShape( const ::css::uno::Reference< ::css::drawing::XShapes >& xShapes, const ::css::uno::Reference< ::css::drawing::XShape >& xShape ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL setInFrontOf( const ::css::uno::Reference< ::css::drawing::XShapes >& xShapes, const ::css::uno::Reference< ::css::drawing::XShape >& xShape ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL reverseOrder( const ::css::uno::Reference< ::css::drawing::XShapes >& xShapes ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XShapeArranger() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::XShapeArranger const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::XShapeArranger > *);
+
+#endif

@@ -1,0 +1,33 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_ICONSETTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_ICONSETTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace IconSetType {
+
+static const ::sal_Int32 ICONSET_3ARROWS = (sal_Int32)0;
+static const ::sal_Int32 ICONSET_3ARROWS_GRAY = (sal_Int32)1;
+static const ::sal_Int32 ICONSET_3COLOR_SIMILIES = (sal_Int32)9;
+static const ::sal_Int32 ICONSET_3FLAGS = (sal_Int32)2;
+static const ::sal_Int32 ICONSET_3SIGNS = (sal_Int32)5;
+static const ::sal_Int32 ICONSET_3SMILIES = (sal_Int32)8;
+static const ::sal_Int32 ICONSET_3SYMBOLS = (sal_Int32)6;
+static const ::sal_Int32 ICONSET_3SYMBOLS2 = (sal_Int32)7;
+static const ::sal_Int32 ICONSET_3TRAFFICLIGHTS1 = (sal_Int32)3;
+static const ::sal_Int32 ICONSET_3TRAFFICLIGHTS2 = (sal_Int32)4;
+static const ::sal_Int32 ICONSET_4ARROWS = (sal_Int32)10;
+static const ::sal_Int32 ICONSET_4ARROWS_GRAY = (sal_Int32)11;
+static const ::sal_Int32 ICONSET_4RATING = (sal_Int32)13;
+static const ::sal_Int32 ICONSET_4RED_TO_BLACK = (sal_Int32)12;
+static const ::sal_Int32 ICONSET_4TRAFFICLIGHTS = (sal_Int32)14;
+static const ::sal_Int32 ICONSET_5ARROWS = (sal_Int32)15;
+static const ::sal_Int32 ICONSET_5ARROWS_GRAY = (sal_Int32)16;
+static const ::sal_Int32 ICONSET_5QUARTERS = (sal_Int32)18;
+static const ::sal_Int32 ICONSET_5RATINGS = (sal_Int32)17;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_ICONSETTYPE_HDL

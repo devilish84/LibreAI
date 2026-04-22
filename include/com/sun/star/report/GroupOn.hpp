@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_GROUPON_HPP
+#define INCLUDED_COM_SUN_STAR_REPORT_GROUPON_HPP
+
+#include "com/sun/star/report/GroupOn.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_REPORT_GROUPON_HPP

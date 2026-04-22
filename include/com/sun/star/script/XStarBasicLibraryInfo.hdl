@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XSTARBASICLIBRARYINFO_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XSTARBASICLIBRARYINFO_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XNameContainer; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XStarBasicLibraryInfo : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XStarBasicLibraryInfo() = default;
+    XStarBasicLibraryInfo(XStarBasicLibraryInfo const &) = default;
+    XStarBasicLibraryInfo(XStarBasicLibraryInfo &&) = default;
+    XStarBasicLibraryInfo & operator =(XStarBasicLibraryInfo const &) = default;
+    XStarBasicLibraryInfo & operator =(XStarBasicLibraryInfo &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getName() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::container::XNameContainer > SAL_CALL getModuleContainer() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::container::XNameContainer > SAL_CALL getDialogContainer() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getPassword() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getExternalSourceURL() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::rtl::OUString SAL_CALL getLinkTargetURL() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XStarBasicLibraryInfo() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XStarBasicLibraryInfo const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XStarBasicLibraryInfo > *);
+
+#endif

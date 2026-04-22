@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_DOCUMENT_CMISPROPERTY_HDL
+#define INCLUDED_COM_SUN_STAR_DOCUMENT_CMISPROPERTY_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/Any.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace document {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI CmisProperty {
+    inline CmisProperty();
+
+    inline CmisProperty(const ::rtl::OUString& Id_, const ::rtl::OUString& Name_, const ::rtl::OUString& Type_, const ::sal_Bool& Updatable_, const ::sal_Bool& Required_, const ::sal_Bool& MultiValued_, const ::sal_Bool& OpenChoice_, const ::css::uno::Any& Choices_, const ::css::uno::Any& Value_);
+
+    ::rtl::OUString Id;
+    ::rtl::OUString Name;
+    ::rtl::OUString Type;
+    ::sal_Bool Updatable;
+    ::sal_Bool Required;
+    ::sal_Bool MultiValued;
+    ::sal_Bool OpenChoice;
+    ::css::uno::Any Choices;
+    ::css::uno::Any Value;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::document::CmisProperty const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::document::CmisProperty *);
+
+#endif

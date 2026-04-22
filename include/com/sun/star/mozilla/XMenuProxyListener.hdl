@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_MOZILLA_XMENUPROXYLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_MOZILLA_XMENUPROXYLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/mozilla/MenuMultipleChange.hdl"
+#include "com/sun/star/mozilla/MenuSingleChange.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace mozilla {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XMenuProxyListener : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XMenuProxyListener() = default;
+    XMenuProxyListener(XMenuProxyListener const &) = default;
+    XMenuProxyListener(XMenuProxyListener &&) = default;
+    XMenuProxyListener & operator =(XMenuProxyListener const &) = default;
+    XMenuProxyListener & operator =(XMenuProxyListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL menuChangedMultiple( const ::css::uno::Sequence< ::css::mozilla::MenuMultipleChange >& MenuMultipleChanges ) = 0;
+    virtual void SAL_CALL menuChangedSingle( const ::css::uno::Sequence< ::css::mozilla::MenuSingleChange >& MenuSingleChanges ) = 0;
+    virtual void SAL_CALL menuItemDeleted( ::sal_Int16 ID ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XMenuProxyListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::mozilla::XMenuProxyListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::mozilla::XMenuProxyListener > *);
+
+#endif

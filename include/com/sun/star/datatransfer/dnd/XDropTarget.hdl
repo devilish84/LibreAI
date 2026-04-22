@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_XDROPTARGET_HDL
+#define INCLUDED_COM_SUN_STAR_DATATRANSFER_DND_XDROPTARGET_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace datatransfer { namespace dnd { class XDropTargetListener; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace datatransfer { namespace dnd {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDropTarget : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDropTarget() = default;
+    XDropTarget(XDropTarget const &) = default;
+    XDropTarget(XDropTarget &&) = default;
+    XDropTarget & operator =(XDropTarget const &) = default;
+    XDropTarget & operator =(XDropTarget &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addDropTargetListener( const ::css::uno::Reference< ::css::datatransfer::dnd::XDropTargetListener >& dtl ) = 0;
+    virtual void SAL_CALL removeDropTargetListener( const ::css::uno::Reference< ::css::datatransfer::dnd::XDropTargetListener >& dtl ) = 0;
+    virtual ::sal_Bool SAL_CALL isActive() = 0;
+    virtual void SAL_CALL setActive( ::sal_Bool active ) = 0;
+    virtual ::sal_Int8 SAL_CALL getDefaultActions() = 0;
+    virtual void SAL_CALL setDefaultActions( ::sal_Int8 actions ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDropTarget() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::datatransfer::dnd::XDropTarget const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::datatransfer::dnd::XDropTarget > *);
+
+#endif

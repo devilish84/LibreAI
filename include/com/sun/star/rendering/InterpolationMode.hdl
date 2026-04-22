@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_INTERPOLATIONMODE_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_INTERPOLATIONMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace InterpolationMode {
+
+static const ::sal_Int8 BEZIERSPLINE3 = (sal_Int8)4;
+static const ::sal_Int8 BEZIERSPLINE4 = (sal_Int8)5;
+static const ::sal_Int8 CUBIC = (sal_Int8)3;
+static const ::sal_Int8 LINEAR = (sal_Int8)2;
+static const ::sal_Int8 NEAREST_NEIGHBOR = (sal_Int8)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_INTERPOLATIONMODE_HDL

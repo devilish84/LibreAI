@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_XSQLQUERYCOMPOSER_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_XSQLQUERYCOMPOSER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+namespace com { namespace sun { namespace star { namespace beans { class XPropertySet; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSQLQueryComposer : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSQLQueryComposer() = default;
+    XSQLQueryComposer(XSQLQueryComposer const &) = default;
+    XSQLQueryComposer(XSQLQueryComposer &&) = default;
+    XSQLQueryComposer & operator =(XSQLQueryComposer const &) = default;
+    XSQLQueryComposer & operator =(XSQLQueryComposer &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getQuery() = 0;
+    virtual void SAL_CALL setQuery( const ::rtl::OUString& command ) = 0;
+    virtual ::rtl::OUString SAL_CALL getComposedQuery() = 0;
+    virtual ::rtl::OUString SAL_CALL getFilter() = 0;
+    virtual ::css::uno::Sequence< ::css::uno::Sequence< ::css::beans::PropertyValue > > SAL_CALL getStructuredFilter() = 0;
+    virtual ::rtl::OUString SAL_CALL getOrder() = 0;
+    virtual void SAL_CALL appendFilterByColumn( const ::css::uno::Reference< ::css::beans::XPropertySet >& column ) = 0;
+    virtual void SAL_CALL appendOrderByColumn( const ::css::uno::Reference< ::css::beans::XPropertySet >& column, ::sal_Bool ascending ) = 0;
+    virtual void SAL_CALL setFilter( const ::rtl::OUString& filter ) = 0;
+    virtual void SAL_CALL setOrder( const ::rtl::OUString& order ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSQLQueryComposer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdb::XSQLQueryComposer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdb::XSQLQueryComposer > *);
+
+#endif

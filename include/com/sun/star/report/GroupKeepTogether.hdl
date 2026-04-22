@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_REPORT_GROUPKEEPTOGETHER_HDL
+#define INCLUDED_COM_SUN_STAR_REPORT_GROUPKEEPTOGETHER_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace report { namespace GroupKeepTogether {
+
+static const ::sal_Int16 PER_COLUMN = (sal_Int16)1;
+static const ::sal_Int16 PER_PAGE = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_REPORT_GROUPKEEPTOGETHER_HDL

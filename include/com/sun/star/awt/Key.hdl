@@ -1,0 +1,153 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_KEY_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_KEY_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace Key {
+
+static const ::sal_Int16 A = (sal_Int16)512;
+static const ::sal_Int16 ADD = (sal_Int16)1287;
+static const ::sal_Int16 B = (sal_Int16)513;
+static const ::sal_Int16 BACKSPACE = (sal_Int16)1283;
+static const ::sal_Int16 BRACKETLEFT = (sal_Int16)1315;
+static const ::sal_Int16 BRACKETRIGHT = (sal_Int16)1316;
+static const ::sal_Int16 C = (sal_Int16)514;
+static const ::sal_Int16 CAPSLOCK = (sal_Int16)1312;
+static const ::sal_Int16 COMMA = (sal_Int16)1292;
+static const ::sal_Int16 CONTEXTMENU = (sal_Int16)1305;
+static const ::sal_Int16 COPY = (sal_Int16)1298;
+static const ::sal_Int16 CUT = (sal_Int16)1297;
+static const ::sal_Int16 D = (sal_Int16)515;
+static const ::sal_Int16 DECIMAL = (sal_Int16)1309;
+static const ::sal_Int16 DELETE = (sal_Int16)1286;
+static const ::sal_Int16 DELETE_TO_BEGIN_OF_LINE = (sal_Int16)1536;
+static const ::sal_Int16 DELETE_TO_BEGIN_OF_PARAGRAPH = (sal_Int16)1538;
+static const ::sal_Int16 DELETE_TO_END_OF_LINE = (sal_Int16)1537;
+static const ::sal_Int16 DELETE_TO_END_OF_PARAGRAPH = (sal_Int16)1539;
+static const ::sal_Int16 DELETE_WORD_BACKWARD = (sal_Int16)1540;
+static const ::sal_Int16 DELETE_WORD_FORWARD = (sal_Int16)1541;
+static const ::sal_Int16 DIVIDE = (sal_Int16)1290;
+static const ::sal_Int16 DOWN = (sal_Int16)1024;
+static const ::sal_Int16 E = (sal_Int16)516;
+static const ::sal_Int16 END = (sal_Int16)1029;
+static const ::sal_Int16 EQUAL = (sal_Int16)1295;
+static const ::sal_Int16 ESCAPE = (sal_Int16)1281;
+static const ::sal_Int16 F = (sal_Int16)517;
+static const ::sal_Int16 F1 = (sal_Int16)768;
+static const ::sal_Int16 F10 = (sal_Int16)777;
+static const ::sal_Int16 F11 = (sal_Int16)778;
+static const ::sal_Int16 F12 = (sal_Int16)779;
+static const ::sal_Int16 F13 = (sal_Int16)780;
+static const ::sal_Int16 F14 = (sal_Int16)781;
+static const ::sal_Int16 F15 = (sal_Int16)782;
+static const ::sal_Int16 F16 = (sal_Int16)783;
+static const ::sal_Int16 F17 = (sal_Int16)784;
+static const ::sal_Int16 F18 = (sal_Int16)785;
+static const ::sal_Int16 F19 = (sal_Int16)786;
+static const ::sal_Int16 F2 = (sal_Int16)769;
+static const ::sal_Int16 F20 = (sal_Int16)787;
+static const ::sal_Int16 F21 = (sal_Int16)788;
+static const ::sal_Int16 F22 = (sal_Int16)789;
+static const ::sal_Int16 F23 = (sal_Int16)790;
+static const ::sal_Int16 F24 = (sal_Int16)791;
+static const ::sal_Int16 F25 = (sal_Int16)792;
+static const ::sal_Int16 F26 = (sal_Int16)793;
+static const ::sal_Int16 F3 = (sal_Int16)770;
+static const ::sal_Int16 F4 = (sal_Int16)771;
+static const ::sal_Int16 F5 = (sal_Int16)772;
+static const ::sal_Int16 F6 = (sal_Int16)773;
+static const ::sal_Int16 F7 = (sal_Int16)774;
+static const ::sal_Int16 F8 = (sal_Int16)775;
+static const ::sal_Int16 F9 = (sal_Int16)776;
+static const ::sal_Int16 FIND = (sal_Int16)1302;
+static const ::sal_Int16 FRONT = (sal_Int16)1304;
+static const ::sal_Int16 G = (sal_Int16)518;
+static const ::sal_Int16 GREATER = (sal_Int16)1294;
+static const ::sal_Int16 H = (sal_Int16)519;
+static const ::sal_Int16 HANGUL_HANJA = (sal_Int16)1308;
+static const ::sal_Int16 HELP = (sal_Int16)1306;
+static const ::sal_Int16 HOME = (sal_Int16)1028;
+static const ::sal_Int16 I = (sal_Int16)520;
+static const ::sal_Int16 INSERT = (sal_Int16)1285;
+static const ::sal_Int16 INSERT_LINEBREAK = (sal_Int16)1542;
+static const ::sal_Int16 INSERT_PARAGRAPH = (sal_Int16)1543;
+static const ::sal_Int16 J = (sal_Int16)521;
+static const ::sal_Int16 K = (sal_Int16)522;
+static const ::sal_Int16 L = (sal_Int16)523;
+static const ::sal_Int16 LEFT = (sal_Int16)1026;
+static const ::sal_Int16 LESS = (sal_Int16)1293;
+static const ::sal_Int16 M = (sal_Int16)524;
+static const ::sal_Int16 MENU = (sal_Int16)1307;
+static const ::sal_Int16 MOVE_TO_BEGIN_OF_DOCUMENT = (sal_Int16)1560;
+static const ::sal_Int16 MOVE_TO_BEGIN_OF_LINE = (sal_Int16)1546;
+static const ::sal_Int16 MOVE_TO_BEGIN_OF_PARAGRAPH = (sal_Int16)1548;
+static const ::sal_Int16 MOVE_TO_END_OF_DOCUMENT = (sal_Int16)1561;
+static const ::sal_Int16 MOVE_TO_END_OF_LINE = (sal_Int16)1547;
+static const ::sal_Int16 MOVE_TO_END_OF_PARAGRAPH = (sal_Int16)1549;
+static const ::sal_Int16 MOVE_WORD_BACKWARD = (sal_Int16)1544;
+static const ::sal_Int16 MOVE_WORD_FORWARD = (sal_Int16)1545;
+static const ::sal_Int16 MULTIPLY = (sal_Int16)1289;
+static const ::sal_Int16 N = (sal_Int16)525;
+static const ::sal_Int16 NUM0 = (sal_Int16)256;
+static const ::sal_Int16 NUM1 = (sal_Int16)257;
+static const ::sal_Int16 NUM2 = (sal_Int16)258;
+static const ::sal_Int16 NUM3 = (sal_Int16)259;
+static const ::sal_Int16 NUM4 = (sal_Int16)260;
+static const ::sal_Int16 NUM5 = (sal_Int16)261;
+static const ::sal_Int16 NUM6 = (sal_Int16)262;
+static const ::sal_Int16 NUM7 = (sal_Int16)263;
+static const ::sal_Int16 NUM8 = (sal_Int16)264;
+static const ::sal_Int16 NUM9 = (sal_Int16)265;
+static const ::sal_Int16 NUMLOCK = (sal_Int16)1313;
+static const ::sal_Int16 O = (sal_Int16)526;
+static const ::sal_Int16 OPEN = (sal_Int16)1296;
+static const ::sal_Int16 P = (sal_Int16)527;
+static const ::sal_Int16 PAGEDOWN = (sal_Int16)1031;
+static const ::sal_Int16 PAGEUP = (sal_Int16)1030;
+static const ::sal_Int16 PASTE = (sal_Int16)1299;
+static const ::sal_Int16 POINT = (sal_Int16)1291;
+static const ::sal_Int16 PROPERTIES = (sal_Int16)1303;
+static const ::sal_Int16 Q = (sal_Int16)528;
+static const ::sal_Int16 QUOTELEFT = (sal_Int16)1311;
+static const ::sal_Int16 QUOTERIGHT = (sal_Int16)1318;
+static const ::sal_Int16 R = (sal_Int16)529;
+static const ::sal_Int16 REPEAT = (sal_Int16)1301;
+static const ::sal_Int16 RETURN = (sal_Int16)1280;
+static const ::sal_Int16 RIGHT = (sal_Int16)1027;
+static const ::sal_Int16 S = (sal_Int16)530;
+static const ::sal_Int16 SCROLLLOCK = (sal_Int16)1314;
+static const ::sal_Int16 SELECT_ALL = (sal_Int16)1557;
+static const ::sal_Int16 SELECT_BACKWARD = (sal_Int16)1550;
+static const ::sal_Int16 SELECT_FORWARD = (sal_Int16)1551;
+static const ::sal_Int16 SELECT_LINE = (sal_Int16)1555;
+static const ::sal_Int16 SELECT_PARAGRAPH = (sal_Int16)1556;
+static const ::sal_Int16 SELECT_TO_BEGIN_OF_DOCUMENT = (sal_Int16)1562;
+static const ::sal_Int16 SELECT_TO_BEGIN_OF_LINE = (sal_Int16)1558;
+static const ::sal_Int16 SELECT_TO_BEGIN_OF_PARAGRAPH = (sal_Int16)1564;
+static const ::sal_Int16 SELECT_TO_END_OF_DOCUMENT = (sal_Int16)1563;
+static const ::sal_Int16 SELECT_TO_END_OF_LINE = (sal_Int16)1559;
+static const ::sal_Int16 SELECT_TO_END_OF_PARAGRAPH = (sal_Int16)1565;
+static const ::sal_Int16 SELECT_WORD = (sal_Int16)1554;
+static const ::sal_Int16 SELECT_WORD_BACKWARD = (sal_Int16)1552;
+static const ::sal_Int16 SELECT_WORD_FORWARD = (sal_Int16)1553;
+static const ::sal_Int16 SEMICOLON = (sal_Int16)1317;
+static const ::sal_Int16 SPACE = (sal_Int16)1284;
+static const ::sal_Int16 SUBTRACT = (sal_Int16)1288;
+static const ::sal_Int16 T = (sal_Int16)531;
+static const ::sal_Int16 TAB = (sal_Int16)1282;
+static const ::sal_Int16 TILDE = (sal_Int16)1310;
+static const ::sal_Int16 U = (sal_Int16)532;
+static const ::sal_Int16 UNDO = (sal_Int16)1300;
+static const ::sal_Int16 UP = (sal_Int16)1025;
+static const ::sal_Int16 V = (sal_Int16)533;
+static const ::sal_Int16 W = (sal_Int16)534;
+static const ::sal_Int16 X = (sal_Int16)535;
+static const ::sal_Int16 Y = (sal_Int16)536;
+static const ::sal_Int16 Z = (sal_Int16)537;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_KEY_HDL

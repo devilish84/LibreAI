@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XANIMATEDSPRITE_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XANIMATEDSPRITE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/geometry/RealPoint2D.hdl"
+#include "com/sun/star/rendering/RenderState.hdl"
+#include "com/sun/star/rendering/ViewState.hdl"
+#include "com/sun/star/rendering/XSprite.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XAnimatedSprite : public ::css::rendering::XSprite
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XAnimatedSprite() = default;
+    XAnimatedSprite(XAnimatedSprite const &) = default;
+    XAnimatedSprite(XAnimatedSprite &&) = default;
+    XAnimatedSprite & operator =(XAnimatedSprite const &) = default;
+    XAnimatedSprite & operator =(XAnimatedSprite &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL startAnimation( double nSpeed ) = 0;
+    virtual void SAL_CALL stopAnimation() = 0;
+    virtual void SAL_CALL resetAnimation() = 0;
+    virtual void SAL_CALL updateAnimation() = 0;
+    virtual void SAL_CALL setViewState( const ::css::rendering::ViewState& aViewState ) = 0;
+    virtual void SAL_CALL setAll( const ::css::geometry::RealPoint2D& aNewPos, const ::css::rendering::ViewState& aViewState, const ::css::rendering::RenderState& aRenderState, double nAlpha, ::sal_Bool bUpdateAnimation ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XAnimatedSprite() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XAnimatedSprite const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XAnimatedSprite > *);
+
+#endif

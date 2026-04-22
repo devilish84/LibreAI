@@ -1,0 +1,64 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_XCONNECTION_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_XCONNECTION_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace container { class XNameAccess; } } } }
+#include "com/sun/star/sdbc/XCloseable.hdl"
+namespace com { namespace sun { namespace star { namespace sdbc { class XDatabaseMetaData; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XPreparedStatement; } } } }
+namespace com { namespace sun { namespace star { namespace sdbc { class XStatement; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdbc {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XConnection : public ::css::sdbc::XCloseable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XConnection() = default;
+    XConnection(XConnection const &) = default;
+    XConnection(XConnection &&) = default;
+    XConnection & operator =(XConnection const &) = default;
+    XConnection & operator =(XConnection &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::sdbc::XStatement > SAL_CALL createStatement() = 0;
+    virtual ::css::uno::Reference< ::css::sdbc::XPreparedStatement > SAL_CALL prepareStatement( const ::rtl::OUString& sql ) = 0;
+    virtual ::css::uno::Reference< ::css::sdbc::XPreparedStatement > SAL_CALL prepareCall( const ::rtl::OUString& sql ) = 0;
+    virtual ::rtl::OUString SAL_CALL nativeSQL( const ::rtl::OUString& sql ) = 0;
+    virtual void SAL_CALL setAutoCommit( ::sal_Bool autoCommit ) = 0;
+    virtual ::sal_Bool SAL_CALL getAutoCommit() = 0;
+    virtual void SAL_CALL commit() = 0;
+    virtual void SAL_CALL rollback() = 0;
+    virtual ::sal_Bool SAL_CALL isClosed() = 0;
+    virtual ::css::uno::Reference< ::css::sdbc::XDatabaseMetaData > SAL_CALL getMetaData() = 0;
+    virtual void SAL_CALL setReadOnly( ::sal_Bool readOnly ) = 0;
+    virtual ::sal_Bool SAL_CALL isReadOnly() = 0;
+    virtual void SAL_CALL setCatalog( const ::rtl::OUString& catalog ) = 0;
+    virtual ::rtl::OUString SAL_CALL getCatalog() = 0;
+    virtual void SAL_CALL setTransactionIsolation( ::sal_Int32 level ) = 0;
+    virtual ::sal_Int32 SAL_CALL getTransactionIsolation() = 0;
+    virtual ::css::uno::Reference< ::css::container::XNameAccess > SAL_CALL getTypeMap() = 0;
+    virtual void SAL_CALL setTypeMap( const ::css::uno::Reference< ::css::container::XNameAccess >& typeMap ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XConnection() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdbc::XConnection const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdbc::XConnection > *);
+
+#endif

@@ -1,0 +1,67 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_XBREAKITERATOR_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_XBREAKITERATOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/i18n/Boundary.hdl"
+#include "com/sun/star/i18n/LineBreakHyphenationOptions.hdl"
+#include "com/sun/star/i18n/LineBreakResults.hdl"
+#include "com/sun/star/i18n/LineBreakUserOptions.hdl"
+#include "com/sun/star/lang/Locale.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XBreakIterator : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XBreakIterator() = default;
+    XBreakIterator(XBreakIterator const &) = default;
+    XBreakIterator(XBreakIterator &&) = default;
+    XBreakIterator & operator =(XBreakIterator const &) = default;
+    XBreakIterator & operator =(XBreakIterator &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Int32 SAL_CALL nextCharacters( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, const ::css::lang::Locale& aLocale, ::sal_Int16 nCharacterIteratorMode, ::sal_Int32 nCount, ::sal_Int32& nDone ) = 0;
+    virtual ::sal_Int32 SAL_CALL previousCharacters( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, const ::css::lang::Locale& aLocale, ::sal_Int16 nCharacterIteratorMode, ::sal_Int32 nCount, ::sal_Int32& nDone ) = 0;
+    virtual ::css::i18n::Boundary SAL_CALL nextWord( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, const ::css::lang::Locale& aLocale, ::sal_Int16 nWordType ) = 0;
+    virtual ::css::i18n::Boundary SAL_CALL previousWord( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, const ::css::lang::Locale& aLocale, ::sal_Int16 nWordType ) = 0;
+    virtual ::css::i18n::Boundary SAL_CALL getWordBoundary( const ::rtl::OUString& aText, ::sal_Int32 nPos, const ::css::lang::Locale& aLocale, ::sal_Int16 nWordType, ::sal_Bool bPreferForward ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::sal_Int16 SAL_CALL getWordType( const ::rtl::OUString& aText, ::sal_Int32 nPos, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::sal_Bool SAL_CALL isBeginWord( const ::rtl::OUString& aText, ::sal_Int32 nPos, const ::css::lang::Locale& aLocale, ::sal_Int16 nWordType ) = 0;
+    virtual ::sal_Bool SAL_CALL isEndWord( const ::rtl::OUString& aText, ::sal_Int32 nPos, const ::css::lang::Locale& aLocale, ::sal_Int16 nWordType ) = 0;
+    virtual ::sal_Int32 SAL_CALL beginOfSentence( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::sal_Int32 SAL_CALL endOfSentence( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, const ::css::lang::Locale& aLocale ) = 0;
+    virtual ::css::i18n::LineBreakResults SAL_CALL getLineBreak( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, const ::css::lang::Locale& aLocale, ::sal_Int32 nMinBreakPos, const ::css::i18n::LineBreakHyphenationOptions& aHyphOptions, const ::css::i18n::LineBreakUserOptions& aUserOptions ) = 0;
+    virtual ::sal_Int32 SAL_CALL beginOfScript( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, ::sal_Int16 nScriptType ) = 0;
+    virtual ::sal_Int32 SAL_CALL endOfScript( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, ::sal_Int16 nScriptType ) = 0;
+    virtual ::sal_Int32 SAL_CALL nextScript( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, ::sal_Int16 nScriptType ) = 0;
+    virtual ::sal_Int32 SAL_CALL previousScript( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, ::sal_Int16 nScriptType ) = 0;
+    virtual ::sal_Int16 SAL_CALL getScriptType( const ::rtl::OUString& aText, ::sal_Int32 nPos ) = 0;
+    virtual ::sal_Int32 SAL_CALL beginOfCharBlock( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, const ::css::lang::Locale& aLocale, ::sal_Int16 nCharType ) = 0;
+    virtual ::sal_Int32 SAL_CALL endOfCharBlock( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, const ::css::lang::Locale& aLocale, ::sal_Int16 nCharType ) = 0;
+    virtual ::sal_Int32 SAL_CALL nextCharBlock( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, const ::css::lang::Locale& aLocale, ::sal_Int16 nCharType ) = 0;
+    virtual ::sal_Int32 SAL_CALL previousCharBlock( const ::rtl::OUString& aText, ::sal_Int32 nStartPos, const ::css::lang::Locale& aLocale, ::sal_Int16 nCharType ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XBreakIterator() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::XBreakIterator const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::i18n::XBreakIterator > *);
+
+#endif

@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONTAINER_XCONTAINERAPPROVELISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_CONTAINER_XCONTAINERAPPROVELISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/ContainerEvent.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace util { class XVeto; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace container {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XContainerApproveListener : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XContainerApproveListener() = default;
+    XContainerApproveListener(XContainerApproveListener const &) = default;
+    XContainerApproveListener(XContainerApproveListener &&) = default;
+    XContainerApproveListener & operator =(XContainerApproveListener const &) = default;
+    XContainerApproveListener & operator =(XContainerApproveListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::util::XVeto > SAL_CALL approveInsertElement( const ::css::container::ContainerEvent& Event ) = 0;
+    virtual ::css::uno::Reference< ::css::util::XVeto > SAL_CALL approveReplaceElement( const ::css::container::ContainerEvent& Event ) = 0;
+    virtual ::css::uno::Reference< ::css::util::XVeto > SAL_CALL approveRemoveElement( const ::css::container::ContainerEvent& Event ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XContainerApproveListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::container::XContainerApproveListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::container::XContainerApproveListener > *);
+
+#endif

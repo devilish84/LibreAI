@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDSORTMODE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDSORTMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sheet { namespace DataPilotFieldSortMode {
+
+static const ::sal_Int32 DATA = (sal_Int32)3;
+static const ::sal_Int32 MANUAL = (sal_Int32)1;
+static const ::sal_Int32 NAME = (sal_Int32)2;
+static const ::sal_Int32 NONE = (sal_Int32)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SHEET_DATAPILOTFIELDSORTMODE_HDL

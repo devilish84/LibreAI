@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTWIDTH_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_FONTWIDTH_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace FontWidth {
+
+static const float CONDENSED = (float)75;
+static const float DONTKNOW = (float)0;
+static const float EXPANDED = (float)150;
+static const float EXTRACONDENSED = (float)60;
+static const float EXTRAEXPANDED = (float)175;
+static const float NORMAL = (float)100;
+static const float SEMICONDENSED = (float)90;
+static const float SEMIEXPANDED = (float)110;
+static const float ULTRACONDENSED = (float)50;
+static const float ULTRAEXPANDED = (float)200;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FONTWIDTH_HDL

@@ -1,0 +1,86 @@
+#ifndef INCLUDED_COM_SUN_STAR_PRESENTATION_XSLIDESHOWCONTROLLER_HDL
+#define INCLUDED_COM_SUN_STAR_PRESENTATION_XSLIDESHOWCONTROLLER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace drawing { class XDrawPage; } } } }
+namespace com { namespace sun { namespace star { namespace presentation { class XSlideShow; } } } }
+namespace com { namespace sun { namespace star { namespace presentation { class XSlideShowListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace presentation {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSlideShowController : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSlideShowController() = default;
+    XSlideShowController(XSlideShowController const &) = default;
+    XSlideShowController(XSlideShowController &&) = default;
+    XSlideShowController & operator =(XSlideShowController const &) = default;
+    XSlideShowController & operator =(XSlideShowController &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::sal_Bool SAL_CALL getAlwaysOnTop() = 0;
+    virtual void SAL_CALL setAlwaysOnTop( ::sal_Bool _alwaysontop ) = 0;
+    virtual ::sal_Bool SAL_CALL getMouseVisible() = 0;
+    virtual void SAL_CALL setMouseVisible( ::sal_Bool _mousevisible ) = 0;
+    virtual ::sal_Bool SAL_CALL getUsePen() = 0;
+    virtual void SAL_CALL setUsePen( ::sal_Bool _usepen ) = 0;
+    virtual ::sal_Int32 SAL_CALL getPenColor() = 0;
+    virtual void SAL_CALL setPenColor( ::sal_Int32 _pencolor ) = 0;
+    virtual double SAL_CALL getPenWidth() = 0;
+    virtual void SAL_CALL setPenWidth( double _penwidth ) = 0;
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isRunning() = 0;
+    virtual ::sal_Int32 SAL_CALL getSlideCount() = 0;
+    virtual ::css::uno::Reference< ::css::drawing::XDrawPage > SAL_CALL getSlideByIndex( ::sal_Int32 Index ) = 0;
+    virtual void SAL_CALL addSlideShowListener( const ::css::uno::Reference< ::css::presentation::XSlideShowListener >& Listener ) = 0;
+    virtual void SAL_CALL removeSlideShowListener( const ::css::uno::Reference< ::css::presentation::XSlideShowListener >& Listener ) = 0;
+    virtual void SAL_CALL gotoNextEffect() = 0;
+    virtual void SAL_CALL gotoPreviousEffect() = 0;
+    virtual void SAL_CALL gotoFirstSlide() = 0;
+    virtual void SAL_CALL gotoNextSlide() = 0;
+    virtual void SAL_CALL gotoPreviousSlide() = 0;
+    virtual void SAL_CALL gotoLastSlide() = 0;
+    virtual void SAL_CALL gotoBookmark( const ::rtl::OUString& Bookmark ) = 0;
+    virtual void SAL_CALL gotoSlide( const ::css::uno::Reference< ::css::drawing::XDrawPage >& Page ) = 0;
+    virtual void SAL_CALL gotoSlideIndex( ::sal_Int32 Index ) = 0;
+    virtual void SAL_CALL stopSound() = 0;
+    virtual void SAL_CALL pause() = 0;
+    virtual void SAL_CALL resume() = 0;
+    virtual ::sal_Bool SAL_CALL isPaused() = 0;
+    virtual void SAL_CALL blankScreen( ::sal_Int32 Color ) = 0;
+    virtual void SAL_CALL activate() = 0;
+    virtual void SAL_CALL deactivate() = 0;
+    virtual ::sal_Bool SAL_CALL isActive() = 0;
+    virtual ::css::uno::Reference< ::css::drawing::XDrawPage > SAL_CALL getCurrentSlide() = 0;
+    virtual ::sal_Int32 SAL_CALL getCurrentSlideIndex() = 0;
+    virtual ::sal_Int32 SAL_CALL getNextSlideIndex() = 0;
+    virtual ::sal_Bool SAL_CALL isEndless() = 0;
+    virtual ::sal_Bool SAL_CALL isFullScreen() = 0;
+    virtual void SAL_CALL setEraseAllInk( ::sal_Bool EraseAllInk ) = 0;
+    virtual ::css::uno::Reference< ::css::presentation::XSlideShow > SAL_CALL getSlideShow() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSlideShowController() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::presentation::XSlideShowController const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::presentation::XSlideShowController > *);
+
+#endif

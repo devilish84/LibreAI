@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTOR_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTOR_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/frame/XDispatchProvider.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDispatchProviderInterceptor : public ::css::frame::XDispatchProvider
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDispatchProviderInterceptor() = default;
+    XDispatchProviderInterceptor(XDispatchProviderInterceptor const &) = default;
+    XDispatchProviderInterceptor(XDispatchProviderInterceptor &&) = default;
+    XDispatchProviderInterceptor & operator =(XDispatchProviderInterceptor const &) = default;
+    XDispatchProviderInterceptor & operator =(XDispatchProviderInterceptor &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::frame::XDispatchProvider > SAL_CALL getSlaveDispatchProvider() = 0;
+    virtual void SAL_CALL setSlaveDispatchProvider( const ::css::uno::Reference< ::css::frame::XDispatchProvider >& NewDispatchProvider ) = 0;
+    virtual ::css::uno::Reference< ::css::frame::XDispatchProvider > SAL_CALL getMasterDispatchProvider() = 0;
+    virtual void SAL_CALL setMasterDispatchProvider( const ::css::uno::Reference< ::css::frame::XDispatchProvider >& NewSupplier ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDispatchProviderInterceptor() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::XDispatchProviderInterceptor const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::frame::XDispatchProviderInterceptor > *);
+
+#endif

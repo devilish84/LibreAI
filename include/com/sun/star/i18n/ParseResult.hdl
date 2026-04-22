@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_PARSERESULT_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_PARSERESULT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace i18n {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED ParseResult {
+    inline ParseResult();
+
+    inline ParseResult(const ::sal_Int32& LeadingWhiteSpace_, const ::sal_Int32& EndPos_, const ::sal_Int32& CharLen_, const double& Value_, const ::sal_Int32& TokenType_, const ::sal_Int32& StartFlags_, const ::sal_Int32& ContFlags_, const ::rtl::OUString& DequotedNameOrString_);
+
+    ::sal_Int32 LeadingWhiteSpace;
+    ::sal_Int32 EndPos;
+    ::sal_Int32 CharLen;
+    double Value;
+    ::sal_Int32 TokenType;
+    ::sal_Int32 StartFlags;
+    ::sal_Int32 ContFlags;
+    ::rtl::OUString DequotedNameOrString;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::i18n::ParseResult const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::i18n::ParseResult *);
+
+#endif

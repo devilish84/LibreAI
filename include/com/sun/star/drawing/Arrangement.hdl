@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_ARRANGEMENT_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_ARRANGEMENT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI Arrangement
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI Arrangement
+{
+
+#endif
+    Arrangement_FRONT = 0,
+    Arrangement_MORE_FRONT = 1,
+    Arrangement_MORE_BACK = 2,
+    Arrangement_BACK = 3,
+    Arrangement_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto Arrangement_FRONT = Arrangement::Arrangement_FRONT;
+constexpr auto Arrangement_MORE_FRONT = Arrangement::Arrangement_MORE_FRONT;
+constexpr auto Arrangement_MORE_BACK = Arrangement::Arrangement_MORE_BACK;
+constexpr auto Arrangement_BACK = Arrangement::Arrangement_BACK;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::Arrangement const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::Arrangement *);
+
+#endif

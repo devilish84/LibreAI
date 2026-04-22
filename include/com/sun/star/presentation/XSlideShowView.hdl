@@ -1,0 +1,63 @@
+#ifndef INCLUDED_COM_SUN_STAR_PRESENTATION_XSLIDESHOWVIEW_HDL
+#define INCLUDED_COM_SUN_STAR_PRESENTATION_XSLIDESHOWVIEW_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/Rectangle.hdl"
+namespace com { namespace sun { namespace star { namespace awt { class XMouseListener; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XMouseMotionListener; } } } }
+namespace com { namespace sun { namespace star { namespace awt { class XPaintListener; } } } }
+#include "com/sun/star/geometry/AffineMatrix2D.hdl"
+#include "com/sun/star/geometry/IntegerSize2D.hdl"
+namespace com { namespace sun { namespace star { namespace rendering { class XSpriteCanvas; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace util { class XModifyListener; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace presentation {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSlideShowView : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSlideShowView() = default;
+    XSlideShowView(XSlideShowView const &) = default;
+    XSlideShowView(XSlideShowView &&) = default;
+    XSlideShowView & operator =(XSlideShowView const &) = default;
+    XSlideShowView & operator =(XSlideShowView &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::rendering::XSpriteCanvas > SAL_CALL getCanvas() = 0;
+    virtual void SAL_CALL clear() = 0;
+    virtual ::css::geometry::AffineMatrix2D SAL_CALL getTransformation() = 0;
+    virtual ::css::geometry::IntegerSize2D SAL_CALL getTranslationOffset() = 0;
+    virtual void SAL_CALL addTransformationChangedListener( const ::css::uno::Reference< ::css::util::XModifyListener >& xListener ) = 0;
+    virtual void SAL_CALL removeTransformationChangedListener( const ::css::uno::Reference< ::css::util::XModifyListener >& xListener ) = 0;
+    virtual void SAL_CALL addPaintListener( const ::css::uno::Reference< ::css::awt::XPaintListener >& xListener ) = 0;
+    virtual void SAL_CALL removePaintListener( const ::css::uno::Reference< ::css::awt::XPaintListener >& xListener ) = 0;
+    virtual void SAL_CALL addMouseListener( const ::css::uno::Reference< ::css::awt::XMouseListener >& xListener ) = 0;
+    virtual void SAL_CALL removeMouseListener( const ::css::uno::Reference< ::css::awt::XMouseListener >& xListener ) = 0;
+    virtual void SAL_CALL addMouseMotionListener( const ::css::uno::Reference< ::css::awt::XMouseMotionListener >& xListener ) = 0;
+    virtual void SAL_CALL removeMouseMotionListener( const ::css::uno::Reference< ::css::awt::XMouseMotionListener >& xListener ) = 0;
+    virtual void SAL_CALL setMouseCursor( ::sal_Int16 nPointerShape ) = 0;
+    virtual ::css::awt::Rectangle SAL_CALL getCanvasArea() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSlideShowView() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::presentation::XSlideShowView const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::presentation::XSlideShowView > *);
+
+#endif

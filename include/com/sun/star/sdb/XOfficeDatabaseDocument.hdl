@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_XOFFICEDATABASEDOCUMENT_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_XOFFICEDATABASEDOCUMENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/document/XDocumentSubStorageSupplier.hdl"
+#include "com/sun/star/sdb/XFormDocumentsSupplier.hdl"
+#include "com/sun/star/sdb/XReportDocumentsSupplier.hdl"
+namespace com { namespace sun { namespace star { namespace sdbc { class XDataSource; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XOfficeDatabaseDocument : public ::css::sdb::XFormDocumentsSupplier, public ::css::sdb::XReportDocumentsSupplier, public ::css::document::XDocumentSubStorageSupplier
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XOfficeDatabaseDocument() = default;
+    XOfficeDatabaseDocument(XOfficeDatabaseDocument const &) = default;
+    XOfficeDatabaseDocument(XOfficeDatabaseDocument &&) = default;
+    XOfficeDatabaseDocument & operator =(XOfficeDatabaseDocument const &) = default;
+    XOfficeDatabaseDocument & operator =(XOfficeDatabaseDocument &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::css::uno::Reference< ::css::sdbc::XDataSource > SAL_CALL getDataSource() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XOfficeDatabaseDocument() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdb::XOfficeDatabaseDocument const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdb::XOfficeDatabaseDocument > *);
+
+#endif

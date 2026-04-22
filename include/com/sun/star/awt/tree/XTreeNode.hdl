@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_TREE_XTREENODE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_TREE_XTREENODE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace tree { class XTreeNode; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt { namespace tree {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTreeNode : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTreeNode() = default;
+    XTreeNode(XTreeNode const &) = default;
+    XTreeNode(XTreeNode &&) = default;
+    XTreeNode & operator =(XTreeNode const &) = default;
+    XTreeNode & operator =(XTreeNode &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::awt::tree::XTreeNode > SAL_CALL getChildAt( ::sal_Int32 Index ) = 0;
+    virtual ::sal_Int32 SAL_CALL getChildCount() = 0;
+    virtual ::css::uno::Reference< ::css::awt::tree::XTreeNode > SAL_CALL getParent() = 0;
+    virtual ::sal_Int32 SAL_CALL getIndex( const ::css::uno::Reference< ::css::awt::tree::XTreeNode >& Node ) = 0;
+    virtual ::sal_Bool SAL_CALL hasChildrenOnDemand() = 0;
+    virtual ::css::uno::Any SAL_CALL getDisplayValue() = 0;
+    virtual ::rtl::OUString SAL_CALL getNodeGraphicURL() = 0;
+    virtual ::rtl::OUString SAL_CALL getExpandedGraphicURL() = 0;
+    virtual ::rtl::OUString SAL_CALL getCollapsedGraphicURL() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTreeNode() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::tree::XTreeNode const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::tree::XTreeNode > *);
+
+#endif

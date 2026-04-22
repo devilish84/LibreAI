@@ -1,0 +1,36 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace form { namespace FormComponentType {
+
+static const ::sal_Int16 CHECKBOX = (sal_Int16)5;
+static const ::sal_Int16 COMBOBOX = (sal_Int16)7;
+static const ::sal_Int16 COMMANDBUTTON = (sal_Int16)2;
+static const ::sal_Int16 CONTROL = (sal_Int16)1;
+static const ::sal_Int16 CURRENCYFIELD = (sal_Int16)18;
+static const ::sal_Int16 DATEFIELD = (sal_Int16)15;
+static const ::sal_Int16 FILECONTROL = (sal_Int16)12;
+static const ::sal_Int16 FIXEDTEXT = (sal_Int16)10;
+static const ::sal_Int16 GRIDCONTROL = (sal_Int16)11;
+static const ::sal_Int16 GROUPBOX = (sal_Int16)8;
+static const ::sal_Int16 HIDDENCONTROL = (sal_Int16)13;
+static const ::sal_Int16 IMAGEBUTTON = (sal_Int16)4;
+static const ::sal_Int16 IMAGECONTROL = (sal_Int16)14;
+static const ::sal_Int16 LISTBOX = (sal_Int16)6;
+static const ::sal_Int16 NAVIGATIONBAR = (sal_Int16)22;
+static const ::sal_Int16 NUMERICFIELD = (sal_Int16)17;
+static const ::sal_Int16 PATTERNFIELD = (sal_Int16)19;
+static const ::sal_Int16 RADIOBUTTON = (sal_Int16)3;
+static const ::sal_Int16 SCROLLBAR = (sal_Int16)20;
+static const ::sal_Int16 SPINBUTTON = (sal_Int16)21;
+static const ::sal_Int16 TEXTFIELD = (sal_Int16)9;
+static const ::sal_Int16 TIMEFIELD = (sal_Int16)16;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HDL

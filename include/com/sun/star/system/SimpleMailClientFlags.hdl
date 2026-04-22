@@ -1,0 +1,17 @@
+#ifndef INCLUDED_COM_SUN_STAR_SYSTEM_SIMPLEMAILCLIENTFLAGS_HDL
+#define INCLUDED_COM_SUN_STAR_SYSTEM_SIMPLEMAILCLIENTFLAGS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace system { namespace SimpleMailClientFlags {
+
+static const ::sal_Int32 DEFAULTS = (sal_Int32)0;
+static const ::sal_Int32 NO_LOGON_DIALOG = (sal_Int32)2;
+static const ::sal_Int32 NO_USER_INTERFACE = (sal_Int32)1;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SYSTEM_SIMPLEMAILCLIENTFLAGS_HDL

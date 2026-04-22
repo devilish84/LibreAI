@@ -1,0 +1,66 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_EVENTTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_EVENTS_EVENTTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { namespace events {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI EventType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI EventType
+{
+
+#endif
+    EventType_DOMFocusIn = 0,
+    EventType_DOMFocusOut = 1,
+    EventType_DOMActivate = 2,
+    EventType_click = 3,
+    EventType_mousedown = 4,
+    EventType_mouseup = 5,
+    EventType_mouseover = 6,
+    EventType_mousemove = 7,
+    EventType_mouseout = 8,
+    EventType_DOMSubtreeModified = 9,
+    EventType_DOMNodeInserted = 10,
+    EventType_DOMNodeRemoved = 11,
+    EventType_DOMNodeRemovedFromDocument = 12,
+    EventType_DOMNodeInsertedIntoDocument = 13,
+    EventType_DOMAttrModified = 14,
+    EventType_DOMCharacterDataModified = 15,
+    EventType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto EventType_DOMFocusIn = EventType::EventType_DOMFocusIn;
+constexpr auto EventType_DOMFocusOut = EventType::EventType_DOMFocusOut;
+constexpr auto EventType_DOMActivate = EventType::EventType_DOMActivate;
+constexpr auto EventType_click = EventType::EventType_click;
+constexpr auto EventType_mousedown = EventType::EventType_mousedown;
+constexpr auto EventType_mouseup = EventType::EventType_mouseup;
+constexpr auto EventType_mouseover = EventType::EventType_mouseover;
+constexpr auto EventType_mousemove = EventType::EventType_mousemove;
+constexpr auto EventType_mouseout = EventType::EventType_mouseout;
+constexpr auto EventType_DOMSubtreeModified = EventType::EventType_DOMSubtreeModified;
+constexpr auto EventType_DOMNodeInserted = EventType::EventType_DOMNodeInserted;
+constexpr auto EventType_DOMNodeRemoved = EventType::EventType_DOMNodeRemoved;
+constexpr auto EventType_DOMNodeRemovedFromDocument = EventType::EventType_DOMNodeRemovedFromDocument;
+constexpr auto EventType_DOMNodeInsertedIntoDocument = EventType::EventType_DOMNodeInsertedIntoDocument;
+constexpr auto EventType_DOMAttrModified = EventType::EventType_DOMAttrModified;
+constexpr auto EventType_DOMCharacterDataModified = EventType::EventType_DOMCharacterDataModified;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::events::EventType const *);
+} } } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::xml::dom::events::EventType *);
+
+#endif

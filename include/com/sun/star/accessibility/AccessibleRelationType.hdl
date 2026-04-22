@@ -1,0 +1,25 @@
+#ifndef INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLERELATIONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLERELATIONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace accessibility { namespace AccessibleRelationType {
+
+static const ::sal_Int16 CONTENT_FLOWS_FROM = (sal_Int16)1;
+static const ::sal_Int16 CONTENT_FLOWS_TO = (sal_Int16)2;
+static const ::sal_Int16 CONTROLLED_BY = (sal_Int16)3;
+static const ::sal_Int16 CONTROLLER_FOR = (sal_Int16)4;
+static const ::sal_Int16 DESCRIBED_BY = (sal_Int16)10;
+static const ::sal_Int16 INVALID = (sal_Int16)0;
+static const ::sal_Int16 LABELED_BY = (sal_Int16)6;
+static const ::sal_Int16 LABEL_FOR = (sal_Int16)5;
+static const ::sal_Int16 MEMBER_OF = (sal_Int16)7;
+static const ::sal_Int16 NODE_CHILD_OF = (sal_Int16)9;
+static const ::sal_Int16 SUB_WINDOW_OF = (sal_Int16)8;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLERELATIONTYPE_HDL

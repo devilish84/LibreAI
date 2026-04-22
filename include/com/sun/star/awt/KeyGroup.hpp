@@ -1,0 +1,6 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_KEYGROUP_HPP
+#define INCLUDED_COM_SUN_STAR_AWT_KEYGROUP_HPP
+
+#include "com/sun/star/awt/KeyGroup.hdl"
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_KEYGROUP_HPP

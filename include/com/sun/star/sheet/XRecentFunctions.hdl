@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XRECENTFUNCTIONS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XRECENTFUNCTIONS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XRecentFunctions : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XRecentFunctions() = default;
+    XRecentFunctions(XRecentFunctions const &) = default;
+    XRecentFunctions(XRecentFunctions &&) = default;
+    XRecentFunctions & operator =(XRecentFunctions const &) = default;
+    XRecentFunctions & operator =(XRecentFunctions &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::sal_Int32 > SAL_CALL getRecentFunctionIds() = 0;
+    virtual void SAL_CALL setRecentFunctionIds( const ::css::uno::Sequence< ::sal_Int32 >& aRecentFunctionIds ) = 0;
+    virtual ::sal_Int32 SAL_CALL getMaxRecentFunctions() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XRecentFunctions() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XRecentFunctions const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XRecentFunctions > *);
+
+#endif

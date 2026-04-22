@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XEXTERNALDOCLINKS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XEXTERNALDOCLINKS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XEnumerationAccess.hdl"
+#include "com/sun/star/container/XIndexAccess.hdl"
+#include "com/sun/star/container/XNameAccess.hdl"
+namespace com { namespace sun { namespace star { namespace sheet { class XExternalDocLink; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XExternalDocLinks : public ::css::container::XNameAccess, public ::css::container::XIndexAccess, public ::css::container::XEnumerationAccess
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XExternalDocLinks() = default;
+    XExternalDocLinks(XExternalDocLinks const &) = default;
+    XExternalDocLinks(XExternalDocLinks &&) = default;
+    XExternalDocLinks & operator =(XExternalDocLinks const &) = default;
+    XExternalDocLinks & operator =(XExternalDocLinks &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::sheet::XExternalDocLink > SAL_CALL addDocLink( const ::rtl::OUString& aDocName ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XExternalDocLinks() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XExternalDocLinks const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XExternalDocLinks > *);
+
+#endif

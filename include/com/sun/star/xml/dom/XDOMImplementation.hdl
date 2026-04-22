@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_XDOMIMPLEMENTATION_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_XDOMIMPLEMENTATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XDocument; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XDocumentType; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDOMImplementation : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDOMImplementation() = default;
+    XDOMImplementation(XDOMImplementation const &) = default;
+    XDOMImplementation(XDOMImplementation &&) = default;
+    XDOMImplementation & operator =(XDOMImplementation const &) = default;
+    XDOMImplementation & operator =(XDOMImplementation &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::xml::dom::XDocument > SAL_CALL createDocument( const ::rtl::OUString& namespaceURI, const ::rtl::OUString& qualifiedName, const ::css::uno::Reference< ::css::xml::dom::XDocumentType >& doctype ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XDocumentType > SAL_CALL createDocumentType( const ::rtl::OUString& qualifiedName, const ::rtl::OUString& publicId, const ::rtl::OUString& systemId ) = 0;
+    virtual ::sal_Bool SAL_CALL hasFeature( const ::rtl::OUString& feature, const ::rtl::OUString& ver ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDOMImplementation() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::XDOMImplementation const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::XDOMImplementation > *);
+
+#endif

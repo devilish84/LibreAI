@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XSHEETCELLRANGECONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XSHEETCELLRANGECONTAINER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/XSheetCellRanges.hdl"
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSheetCellRangeContainer : public ::css::sheet::XSheetCellRanges
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSheetCellRangeContainer() = default;
+    XSheetCellRangeContainer(XSheetCellRangeContainer const &) = default;
+    XSheetCellRangeContainer(XSheetCellRangeContainer &&) = default;
+    XSheetCellRangeContainer & operator =(XSheetCellRangeContainer const &) = default;
+    XSheetCellRangeContainer & operator =(XSheetCellRangeContainer &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addRangeAddress( const ::css::table::CellRangeAddress& aCellRangeAddress, ::sal_Bool bMergeRanges ) = 0;
+    virtual void SAL_CALL removeRangeAddress( const ::css::table::CellRangeAddress& aCellRangeAddress ) = 0;
+    virtual void SAL_CALL addRangeAddresses( const ::css::uno::Sequence< ::css::table::CellRangeAddress >& aCellRangeAddresses, ::sal_Bool bMergeRanges ) = 0;
+    virtual void SAL_CALL removeRangeAddresses( const ::css::uno::Sequence< ::css::table::CellRangeAddress >& aCellRangeAddresses ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSheetCellRangeContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XSheetCellRangeContainer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XSheetCellRangeContainer > *);
+
+#endif

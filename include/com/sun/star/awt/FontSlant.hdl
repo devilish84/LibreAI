@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTSLANT_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_FONTSLANT_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI FontSlant
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI FontSlant
+{
+
+#endif
+    FontSlant_NONE = 0,
+    FontSlant_OBLIQUE = 1,
+    FontSlant_ITALIC = 2,
+    FontSlant_DONTKNOW = 3,
+    FontSlant_REVERSE_OBLIQUE = 4,
+    FontSlant_REVERSE_ITALIC = 5,
+    FontSlant_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto FontSlant_NONE = FontSlant::FontSlant_NONE;
+constexpr auto FontSlant_OBLIQUE = FontSlant::FontSlant_OBLIQUE;
+constexpr auto FontSlant_ITALIC = FontSlant::FontSlant_ITALIC;
+constexpr auto FontSlant_DONTKNOW = FontSlant::FontSlant_DONTKNOW;
+constexpr auto FontSlant_REVERSE_OBLIQUE = FontSlant::FontSlant_REVERSE_OBLIQUE;
+constexpr auto FontSlant_REVERSE_ITALIC = FontSlant::FontSlant_REVERSE_ITALIC;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::FontSlant const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::FontSlant *);
+
+#endif

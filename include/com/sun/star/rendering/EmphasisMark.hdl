@@ -1,0 +1,23 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_EMPHASISMARK_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_EMPHASISMARK_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace EmphasisMark {
+
+static const ::sal_Int8 ACCENT_ABOVE = (sal_Int8)7;
+static const ::sal_Int8 ACCENT_BELOW = (sal_Int8)8;
+static const ::sal_Int8 CIRCLE_ABOVE = (sal_Int8)3;
+static const ::sal_Int8 CIRCLE_BELOW = (sal_Int8)4;
+static const ::sal_Int8 DISC_ABOVE = (sal_Int8)5;
+static const ::sal_Int8 DISC_BELOW = (sal_Int8)6;
+static const ::sal_Int8 DOT_ABOVE = (sal_Int8)1;
+static const ::sal_Int8 DOT_BELOW = (sal_Int8)2;
+static const ::sal_Int8 NONE = (sal_Int8)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_EMPHASISMARK_HDL

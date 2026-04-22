@@ -1,0 +1,53 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XPRINTAREAS_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XPRINTAREAS_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XPrintAreas : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XPrintAreas() = default;
+    XPrintAreas(XPrintAreas const &) = default;
+    XPrintAreas(XPrintAreas &&) = default;
+    XPrintAreas & operator =(XPrintAreas const &) = default;
+    XPrintAreas & operator =(XPrintAreas &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::table::CellRangeAddress > SAL_CALL getPrintAreas() = 0;
+    virtual void SAL_CALL setPrintAreas( const ::css::uno::Sequence< ::css::table::CellRangeAddress >& aPrintAreas ) = 0;
+    virtual ::sal_Bool SAL_CALL getPrintTitleColumns() = 0;
+    virtual void SAL_CALL setPrintTitleColumns( ::sal_Bool bPrintTitleColumns ) = 0;
+    virtual ::css::table::CellRangeAddress SAL_CALL getTitleColumns() = 0;
+    virtual void SAL_CALL setTitleColumns( const ::css::table::CellRangeAddress& aTitleColumns ) = 0;
+    virtual ::sal_Bool SAL_CALL getPrintTitleRows() = 0;
+    virtual void SAL_CALL setPrintTitleRows( ::sal_Bool bPrintTitleRows ) = 0;
+    virtual ::css::table::CellRangeAddress SAL_CALL getTitleRows() = 0;
+    virtual void SAL_CALL setTitleRows( const ::css::table::CellRangeAddress& aTitleRows ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XPrintAreas() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XPrintAreas const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XPrintAreas > *);
+
+#endif

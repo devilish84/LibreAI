@@ -1,0 +1,52 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_POLYGONKIND_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_POLYGONKIND_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI PolygonKind
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI PolygonKind
+{
+
+#endif
+    PolygonKind_LINE = 0,
+    PolygonKind_POLY = 1,
+    PolygonKind_PLIN = 2,
+    PolygonKind_PATHLINE = 3,
+    PolygonKind_PATHFILL = 4,
+    PolygonKind_FREELINE = 5,
+    PolygonKind_FREEFILL = 6,
+    PolygonKind_PATHPOLY = 7,
+    PolygonKind_PATHPLIN = 8,
+    PolygonKind_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto PolygonKind_LINE = PolygonKind::PolygonKind_LINE;
+constexpr auto PolygonKind_POLY = PolygonKind::PolygonKind_POLY;
+constexpr auto PolygonKind_PLIN = PolygonKind::PolygonKind_PLIN;
+constexpr auto PolygonKind_PATHLINE = PolygonKind::PolygonKind_PATHLINE;
+constexpr auto PolygonKind_PATHFILL = PolygonKind::PolygonKind_PATHFILL;
+constexpr auto PolygonKind_FREELINE = PolygonKind::PolygonKind_FREELINE;
+constexpr auto PolygonKind_FREEFILL = PolygonKind::PolygonKind_FREEFILL;
+constexpr auto PolygonKind_PATHPOLY = PolygonKind::PolygonKind_PATHPOLY;
+constexpr auto PolygonKind_PATHPLIN = PolygonKind::PolygonKind_PATHPLIN;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::PolygonKind const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::PolygonKind *);
+
+#endif

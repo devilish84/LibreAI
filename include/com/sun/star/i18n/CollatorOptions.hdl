@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_I18N_COLLATOROPTIONS_HDL
+#define INCLUDED_COM_SUN_STAR_I18N_COLLATOROPTIONS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace i18n { namespace CollatorOptions {
+
+static const ::sal_Int16 CollatorOptions_IGNORE_CASE = (sal_Int16)1;
+static const ::sal_Int16 CollatorOptions_IGNORE_CASE_ACCENT = (sal_Int16)8;
+static const ::sal_Int16 CollatorOptions_IGNORE_KANA = (sal_Int16)2;
+static const ::sal_Int16 CollatorOptions_IGNORE_WIDTH = (sal_Int16)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_I18N_COLLATOROPTIONS_HDL

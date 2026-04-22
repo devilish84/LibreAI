@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_TABLE_CELLCONTENTTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_TABLE_CELLCONTENTTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace table {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI CellContentType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI CellContentType
+{
+
+#endif
+    CellContentType_EMPTY = 0,
+    CellContentType_VALUE = 1,
+    CellContentType_TEXT = 2,
+    CellContentType_FORMULA = 3,
+    CellContentType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto CellContentType_EMPTY = CellContentType::CellContentType_EMPTY;
+constexpr auto CellContentType_VALUE = CellContentType::CellContentType_VALUE;
+constexpr auto CellContentType_TEXT = CellContentType::CellContentType_TEXT;
+constexpr auto CellContentType_FORMULA = CellContentType::CellContentType_FORMULA;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::table::CellContentType const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::table::CellContentType *);
+
+#endif

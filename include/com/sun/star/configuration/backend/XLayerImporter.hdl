@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_XLAYERIMPORTER_HDL
+#define INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_XLAYERIMPORTER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend { class XBackend; } } } } }
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend { class XLayer; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLayerImporter : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLayerImporter() = default;
+    XLayerImporter(XLayerImporter const &) = default;
+    XLayerImporter(XLayerImporter &&) = default;
+    XLayerImporter & operator =(XLayerImporter const &) = default;
+    XLayerImporter & operator =(XLayerImporter &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::configuration::backend::XBackend > SAL_CALL getTargetBackend() = 0;
+    virtual void SAL_CALL setTargetBackend( const ::css::uno::Reference< ::css::configuration::backend::XBackend >& aBackend ) = 0;
+    virtual void SAL_CALL importLayer( const ::css::uno::Reference< ::css::configuration::backend::XLayer >& aLayer ) = 0;
+    virtual void SAL_CALL importLayerForEntity( const ::css::uno::Reference< ::css::configuration::backend::XLayer >& aLayer, const ::rtl::OUString& aEntity ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLayerImporter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::configuration::backend::XLayerImporter const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::configuration::backend::XLayerImporter > *);
+
+#endif

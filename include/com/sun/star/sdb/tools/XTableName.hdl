@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_TOOLS_XTABLENAME_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_TOOLS_XTABLENAME_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace beans { class XPropertySet; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace tools {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTableName : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTableName() = default;
+    XTableName(XTableName const &) = default;
+    XTableName(XTableName &&) = default;
+    XTableName & operator =(XTableName const &) = default;
+    XTableName & operator =(XTableName &&) = default;
+#endif
+
+
+    // Attributes
+    virtual ::rtl::OUString SAL_CALL getCatalogName() = 0;
+    virtual void SAL_CALL setCatalogName( const ::rtl::OUString& _catalogname ) = 0;
+    virtual ::rtl::OUString SAL_CALL getSchemaName() = 0;
+    virtual void SAL_CALL setSchemaName( const ::rtl::OUString& _schemaname ) = 0;
+    virtual ::rtl::OUString SAL_CALL getTableName() = 0;
+    virtual void SAL_CALL setTableName( const ::rtl::OUString& _tablename ) = 0;
+    virtual ::rtl::OUString SAL_CALL getNameForSelect() = 0;
+    virtual ::css::uno::Reference< ::css::beans::XPropertySet > SAL_CALL getTable() = 0;
+    virtual void SAL_CALL setTable( const ::css::uno::Reference< ::css::beans::XPropertySet >& _table ) = 0;
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getComposedName( ::sal_Int32 Type, ::sal_Bool Quote ) = 0;
+    virtual void SAL_CALL setComposedName( const ::rtl::OUString& ComposedName, ::sal_Int32 Type ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTableName() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sdb::tools::XTableName const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sdb::tools::XTableName > *);
+
+#endif

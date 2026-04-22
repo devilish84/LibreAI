@@ -1,0 +1,30 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_PANOSELETTERFORM_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_PANOSELETTERFORM_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { namespace PanoseLetterForm {
+
+static const ::sal_Int8 ANYTHING = (sal_Int8)0;
+static const ::sal_Int8 NORMAL_BOXED = (sal_Int8)4;
+static const ::sal_Int8 NORMAL_CONTACT = (sal_Int8)2;
+static const ::sal_Int8 NORMAL_FLATTENED = (sal_Int8)5;
+static const ::sal_Int8 NORMAL_OFF_CENTER = (sal_Int8)7;
+static const ::sal_Int8 NORMAL_ROUNDED = (sal_Int8)6;
+static const ::sal_Int8 NORMAL_SQUARE = (sal_Int8)8;
+static const ::sal_Int8 NORMAL_WEIGHTED = (sal_Int8)3;
+static const ::sal_Int8 NO_FIT = (sal_Int8)1;
+static const ::sal_Int8 OBLIQUE_BOXED = (sal_Int8)11;
+static const ::sal_Int8 OBLIQUE_CONTACT = (sal_Int8)9;
+static const ::sal_Int8 OBLIQUE_FLATTENED = (sal_Int8)12;
+static const ::sal_Int8 OBLIQUE_OFF_CENTER = (sal_Int8)14;
+static const ::sal_Int8 OBLIQUE_ROUNDED = (sal_Int8)13;
+static const ::sal_Int8 OBLIQUE_SQUARE = (sal_Int8)15;
+static const ::sal_Int8 OBLIQUE_WEIGHTED = (sal_Int8)10;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_RENDERING_PANOSELETTERFORM_HDL

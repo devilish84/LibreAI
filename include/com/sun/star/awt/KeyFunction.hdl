@@ -1,0 +1,33 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_KEYFUNCTION_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_KEYFUNCTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace KeyFunction {
+
+static const ::sal_Int16 CLOSE = (sal_Int16)6;
+static const ::sal_Int16 COPY = (sal_Int16)9;
+static const ::sal_Int16 CUT = (sal_Int16)8;
+static const ::sal_Int16 DELETE = (sal_Int16)13;
+static const ::sal_Int16 DONTKNOW = (sal_Int16)0;
+static const ::sal_Int16 FIND = (sal_Int16)15;
+static const ::sal_Int16 FINDBACKWARD = (sal_Int16)16;
+static const ::sal_Int16 FRONT = (sal_Int16)18;
+static const ::sal_Int16 NEW = (sal_Int16)1;
+static const ::sal_Int16 OPEN = (sal_Int16)2;
+static const ::sal_Int16 PASTE = (sal_Int16)10;
+static const ::sal_Int16 PRINT = (sal_Int16)5;
+static const ::sal_Int16 PROPERTIES = (sal_Int16)17;
+static const ::sal_Int16 QUIT = (sal_Int16)7;
+static const ::sal_Int16 REDO = (sal_Int16)12;
+static const ::sal_Int16 REPEAT = (sal_Int16)14;
+static const ::sal_Int16 SAVE = (sal_Int16)3;
+static const ::sal_Int16 SAVEAS = (sal_Int16)4;
+static const ::sal_Int16 UNDO = (sal_Int16)11;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_KEYFUNCTION_HDL

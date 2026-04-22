@@ -1,0 +1,50 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XSHEETOUTLINE_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XSHEETOUTLINE_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/table/TableOrientation.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XSheetOutline : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XSheetOutline() = default;
+    XSheetOutline(XSheetOutline const &) = default;
+    XSheetOutline(XSheetOutline &&) = default;
+    XSheetOutline & operator =(XSheetOutline const &) = default;
+    XSheetOutline & operator =(XSheetOutline &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL group( const ::css::table::CellRangeAddress& aRange, ::css::table::TableOrientation nOrientation ) = 0;
+    virtual void SAL_CALL ungroup( const ::css::table::CellRangeAddress& aRange, ::css::table::TableOrientation nOrientation ) = 0;
+    virtual void SAL_CALL autoOutline( const ::css::table::CellRangeAddress& aRange ) = 0;
+    virtual void SAL_CALL clearOutline() = 0;
+    virtual void SAL_CALL hideDetail( const ::css::table::CellRangeAddress& aRange ) = 0;
+    virtual void SAL_CALL showDetail( const ::css::table::CellRangeAddress& aRange ) = 0;
+    virtual void SAL_CALL showLevel( ::sal_Int16 nLevel, ::css::table::TableOrientation nOrientation ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XSheetOutline() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XSheetOutline const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XSheetOutline > *);
+
+#endif

@@ -1,0 +1,21 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_INVALIDATESTYLE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_INVALIDATESTYLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace InvalidateStyle {
+
+static const ::sal_Int16 CHILDREN = (sal_Int16)1;
+static const ::sal_Int16 NOCHILDREN = (sal_Int16)2;
+static const ::sal_Int16 NOCLIPCHILDREN = (sal_Int16)16384;
+static const ::sal_Int16 NOERASE = (sal_Int16)4;
+static const ::sal_Int16 NOTRANSPARENT = (sal_Int16)32;
+static const ::sal_Int16 TRANSPARENT = (sal_Int16)16;
+static const ::sal_Int16 UPDATE = (sal_Int16)8;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_INVALIDATESTYLE_HDL

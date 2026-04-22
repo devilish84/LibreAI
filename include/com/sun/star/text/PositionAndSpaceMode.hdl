@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_POSITIONANDSPACEMODE_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_POSITIONANDSPACEMODE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace text { namespace PositionAndSpaceMode {
+
+static const ::sal_Int16 LABEL_ALIGNMENT = (sal_Int16)1;
+static const ::sal_Int16 LABEL_WIDTH_AND_POSITION = (sal_Int16)0;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_TEXT_POSITIONANDSPACEMODE_HDL

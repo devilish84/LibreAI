@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_EMBED_XTRANSACTIONLISTENER_HDL
+#define INCLUDED_COM_SUN_STAR_EMBED_XTRANSACTIONLISTENER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/EventObject.hdl"
+#include "com/sun/star/lang/XEventListener.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace embed {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTransactionListener : public ::css::lang::XEventListener
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTransactionListener() = default;
+    XTransactionListener(XTransactionListener const &) = default;
+    XTransactionListener(XTransactionListener &&) = default;
+    XTransactionListener & operator =(XTransactionListener const &) = default;
+    XTransactionListener & operator =(XTransactionListener &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL preCommit( const ::css::lang::EventObject& aEvent ) = 0;
+    virtual void SAL_CALL commited( const ::css::lang::EventObject& aEvent ) = 0;
+    virtual void SAL_CALL preRevert( const ::css::lang::EventObject& aEvent ) = 0;
+    virtual void SAL_CALL reverted( const ::css::lang::EventObject& aEvent ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTransactionListener() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::embed::XTransactionListener const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::embed::XTransactionListener > *);
+
+#endif

@@ -1,0 +1,16 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_BROWSE_BROWSENODEFACTORYVIEWTYPES_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_BROWSE_BROWSENODEFACTORYVIEWTYPES_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace script { namespace browse { namespace BrowseNodeFactoryViewTypes {
+
+static const ::sal_Int16 MACROORGANIZER = (sal_Int16)1;
+static const ::sal_Int16 MACROSELECTOR = (sal_Int16)0;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SCRIPT_BROWSE_BROWSENODEFACTORYVIEWTYPES_HDL

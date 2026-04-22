@@ -1,0 +1,37 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_ATTRIBUTE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_ATTRIBUTE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED Attribute {
+    inline Attribute();
+
+    inline Attribute(const ::rtl::OUString& Name_, const ::rtl::OUString& NamespaceURL_, const ::rtl::OUString& Value_);
+
+    ::rtl::OUString Name;
+    ::rtl::OUString NamespaceURL;
+    ::rtl::OUString Value;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::Attribute const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::xml::Attribute *);
+
+#endif

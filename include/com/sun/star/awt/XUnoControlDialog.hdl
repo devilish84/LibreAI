@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XUNOCONTROLDIALOG_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XUNOCONTROLDIALOG_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/XControl.hdl"
+#include "com/sun/star/awt/XControlContainer.hdl"
+#include "com/sun/star/awt/XDialog2.hdl"
+#include "com/sun/star/awt/XTopWindow.hdl"
+#include "com/sun/star/awt/XWindow.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XUnoControlDialog : public ::css::awt::XControlContainer, public ::css::awt::XControl, public ::css::awt::XWindow, public ::css::awt::XTopWindow, public ::css::awt::XDialog2
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XUnoControlDialog() = default;
+    XUnoControlDialog(XUnoControlDialog const &) = default;
+    XUnoControlDialog(XUnoControlDialog &&) = default;
+    XUnoControlDialog & operator =(XUnoControlDialog const &) = default;
+    XUnoControlDialog & operator =(XUnoControlDialog &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XUnoControlDialog() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XUnoControlDialog const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XUnoControlDialog > *);
+
+#endif

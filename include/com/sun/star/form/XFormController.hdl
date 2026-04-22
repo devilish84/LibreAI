@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_XFORMCONTROLLER_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_XFORMCONTROLLER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace awt { class XControl; } } } }
+#include "com/sun/star/awt/XTabController.hdl"
+namespace com { namespace sun { namespace star { namespace form { class XFormControllerListener; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFormController : public ::css::awt::XTabController
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFormController() = default;
+    XFormController(XFormController const &) = default;
+    XFormController(XFormController &&) = default;
+    XFormController & operator =(XFormController const &) = default;
+    XFormController & operator =(XFormController &&) = default;
+#endif
+
+
+    // Methods
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual ::css::uno::Reference< ::css::awt::XControl > SAL_CALL getCurrentControl() = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL addActivateListener( const ::css::uno::Reference< ::css::form::XFormControllerListener >& l ) = 0;
+    SAL_DEPRECATED_INTERNAL("marked @deprecated in UNOIDL") virtual void SAL_CALL removeActivateListener( const ::css::uno::Reference< ::css::form::XFormControllerListener >& l ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFormController() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::XFormController const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::form::XFormController > *);
+
+#endif

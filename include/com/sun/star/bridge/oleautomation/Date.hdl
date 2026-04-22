@@ -1,0 +1,34 @@
+#ifndef INCLUDED_COM_SUN_STAR_BRIDGE_OLEAUTOMATION_DATE_HDL
+#define INCLUDED_COM_SUN_STAR_BRIDGE_OLEAUTOMATION_DATE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace bridge { namespace oleautomation {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED Date {
+    inline Date();
+
+    inline Date(const double& Value_);
+
+    double Value;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::bridge::oleautomation::Date const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::bridge::oleautomation::Date *);
+
+#endif

@@ -1,0 +1,56 @@
+#ifndef INCLUDED_COM_SUN_STAR_UCB_XINTERACTIONSUPPLYAUTHENTICATION_HDL
+#define INCLUDED_COM_SUN_STAR_UCB_XINTERACTIONSUPPLYAUTHENTICATION_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/task/XInteractionContinuation.hdl"
+#include "com/sun/star/ucb/RememberAuthentication.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace ucb {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XInteractionSupplyAuthentication : public ::css::task::XInteractionContinuation
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XInteractionSupplyAuthentication() = default;
+    XInteractionSupplyAuthentication(XInteractionSupplyAuthentication const &) = default;
+    XInteractionSupplyAuthentication(XInteractionSupplyAuthentication &&) = default;
+    XInteractionSupplyAuthentication & operator =(XInteractionSupplyAuthentication const &) = default;
+    XInteractionSupplyAuthentication & operator =(XInteractionSupplyAuthentication &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL canSetRealm() = 0;
+    virtual void SAL_CALL setRealm( const ::rtl::OUString& Realm ) = 0;
+    virtual ::sal_Bool SAL_CALL canSetUserName() = 0;
+    virtual void SAL_CALL setUserName( const ::rtl::OUString& UserName ) = 0;
+    virtual ::sal_Bool SAL_CALL canSetPassword() = 0;
+    virtual void SAL_CALL setPassword( const ::rtl::OUString& Password ) = 0;
+    virtual ::css::uno::Sequence< ::css::ucb::RememberAuthentication > SAL_CALL getRememberPasswordModes( ::css::ucb::RememberAuthentication& Default ) = 0;
+    virtual void SAL_CALL setRememberPassword( ::css::ucb::RememberAuthentication Remember ) = 0;
+    virtual ::sal_Bool SAL_CALL canSetAccount() = 0;
+    virtual void SAL_CALL setAccount( const ::rtl::OUString& Account ) = 0;
+    virtual ::css::uno::Sequence< ::css::ucb::RememberAuthentication > SAL_CALL getRememberAccountModes( ::css::ucb::RememberAuthentication& Default ) = 0;
+    virtual void SAL_CALL setRememberAccount( ::css::ucb::RememberAuthentication Remember ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XInteractionSupplyAuthentication() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::ucb::XInteractionSupplyAuthentication const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::ucb::XInteractionSupplyAuthentication > *);
+
+#endif

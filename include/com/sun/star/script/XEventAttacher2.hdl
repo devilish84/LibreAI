@@ -1,0 +1,45 @@
+#ifndef INCLUDED_COM_SUN_STAR_SCRIPT_XEVENTATTACHER2_HDL
+#define INCLUDED_COM_SUN_STAR_SCRIPT_XEVENTATTACHER2_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace lang { class XEventListener; } } } }
+#include "com/sun/star/script/EventListener.hdl"
+#include "com/sun/star/script/XEventAttacher.hdl"
+namespace com { namespace sun { namespace star { namespace uno { class XInterface; } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace script {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XEventAttacher2 : public ::css::script::XEventAttacher
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XEventAttacher2() = default;
+    XEventAttacher2(XEventAttacher2 const &) = default;
+    XEventAttacher2(XEventAttacher2 &&) = default;
+    XEventAttacher2 & operator =(XEventAttacher2 const &) = default;
+    XEventAttacher2 & operator =(XEventAttacher2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Sequence< ::css::uno::Reference< ::css::lang::XEventListener > > SAL_CALL attachMultipleEventListeners( const ::css::uno::Reference< ::css::uno::XInterface >& xTarget, const ::css::uno::Sequence< ::css::script::EventListener >& aListeners ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XEventAttacher2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::script::XEventAttacher2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::script::XEventAttacher2 > *);
+
+#endif

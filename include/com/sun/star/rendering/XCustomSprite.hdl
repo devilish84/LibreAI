@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_RENDERING_XCUSTOMSPRITE_HDL
+#define INCLUDED_COM_SUN_STAR_RENDERING_XCUSTOMSPRITE_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace rendering { class XCanvas; } } } }
+#include "com/sun/star/rendering/XSprite.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace rendering {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCustomSprite : public ::css::rendering::XSprite
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCustomSprite() = default;
+    XCustomSprite(XCustomSprite const &) = default;
+    XCustomSprite(XCustomSprite &&) = default;
+    XCustomSprite & operator =(XCustomSprite const &) = default;
+    XCustomSprite & operator =(XCustomSprite &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::rendering::XCanvas > SAL_CALL getContentCanvas() = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCustomSprite() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::rendering::XCustomSprite const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::rendering::XCustomSprite > *);
+
+#endif

@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_FRAME_DISPATCHSTATEMENT_HDL
+#define INCLUDED_COM_SUN_STAR_FRAME_DISPATCHSTATEMENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace frame {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI DispatchStatement {
+    inline DispatchStatement();
+
+    inline DispatchStatement(const ::rtl::OUString& aCommand_, const ::rtl::OUString& aTarget_, const ::css::uno::Sequence< ::css::beans::PropertyValue >& aArgs_, const ::sal_Int32& nFlags_, const ::sal_Bool& bIsComment_);
+
+    ::rtl::OUString aCommand;
+    ::rtl::OUString aTarget;
+    ::css::uno::Sequence< ::css::beans::PropertyValue > aArgs;
+    ::sal_Int32 nFlags;
+    ::sal_Bool bIsComment;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::frame::DispatchStatement const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::frame::DispatchStatement *);
+
+#endif

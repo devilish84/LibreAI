@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_XRESOURCEFACTORYMANAGER_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_FRAMEWORK_XRESOURCEFACTORYMANAGER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework { class XResourceFactory; } } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing { namespace framework {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XResourceFactoryManager : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XResourceFactoryManager() = default;
+    XResourceFactoryManager(XResourceFactoryManager const &) = default;
+    XResourceFactoryManager(XResourceFactoryManager &&) = default;
+    XResourceFactoryManager & operator =(XResourceFactoryManager const &) = default;
+    XResourceFactoryManager & operator =(XResourceFactoryManager &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addResourceFactory( const ::rtl::OUString& sResourceURL, const ::css::uno::Reference< ::css::drawing::framework::XResourceFactory >& xResourceFactory ) = 0;
+    virtual void SAL_CALL removeResourceFactoryForURL( const ::rtl::OUString& sResourceURL ) = 0;
+    virtual void SAL_CALL removeResourceFactoryForReference( const ::css::uno::Reference< ::css::drawing::framework::XResourceFactory >& xResourceFactory ) = 0;
+    virtual ::css::uno::Reference< ::css::drawing::framework::XResourceFactory > SAL_CALL getResourceFactory( const ::rtl::OUString& sResourceURL ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XResourceFactoryManager() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::framework::XResourceFactoryManager const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::drawing::framework::XResourceFactoryManager > *);
+
+#endif

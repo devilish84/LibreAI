@@ -1,0 +1,19 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_NODEATTRIBUTE_HDL
+#define INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_NODEATTRIBUTE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace configuration { namespace backend { namespace NodeAttribute {
+
+static const ::sal_Int16 FINALIZED = (sal_Int16)256;
+static const ::sal_Int16 FUSE = (sal_Int16)2048;
+static const ::sal_Int16 MANDATORY = (sal_Int16)512;
+static const ::sal_Int16 MASK = (sal_Int16)32512;
+static const ::sal_Int16 READONLY = (sal_Int16)1024;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_CONFIGURATION_BACKEND_NODEATTRIBUTE_HDL

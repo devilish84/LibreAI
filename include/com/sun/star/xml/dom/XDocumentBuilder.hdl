@@ -1,0 +1,55 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_XDOCUMENTBUILDER_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_XDOCUMENTBUILDER_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace io { class XInputStream; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XDOMImplementation; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace dom { class XDocument; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { class XEntityResolver; } } } } }
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { class XErrorHandler; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XDocumentBuilder : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XDocumentBuilder() = default;
+    XDocumentBuilder(XDocumentBuilder const &) = default;
+    XDocumentBuilder(XDocumentBuilder &&) = default;
+    XDocumentBuilder & operator =(XDocumentBuilder const &) = default;
+    XDocumentBuilder & operator =(XDocumentBuilder &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::css::uno::Reference< ::css::xml::dom::XDOMImplementation > SAL_CALL getDOMImplementation() = 0;
+    virtual ::sal_Bool SAL_CALL isNamespaceAware() = 0;
+    virtual ::sal_Bool SAL_CALL isValidating() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XDocument > SAL_CALL newDocument() = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XDocument > SAL_CALL parse( const ::css::uno::Reference< ::css::io::XInputStream >& is ) = 0;
+    virtual ::css::uno::Reference< ::css::xml::dom::XDocument > SAL_CALL parseURI( const ::rtl::OUString& uri ) = 0;
+    virtual void SAL_CALL setEntityResolver( const ::css::uno::Reference< ::css::xml::sax::XEntityResolver >& er ) = 0;
+    virtual void SAL_CALL setErrorHandler( const ::css::uno::Reference< ::css::xml::sax::XErrorHandler >& eh ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XDocumentBuilder() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::XDocumentBuilder const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::dom::XDocumentBuilder > *);
+
+#endif

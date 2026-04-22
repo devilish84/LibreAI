@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_FONTTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_FONTTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace awt { namespace FontType {
+
+static const ::sal_Int16 DEVICE = (sal_Int16)2;
+static const ::sal_Int16 DONTKNOW = (sal_Int16)0;
+static const ::sal_Int16 RASTER = (sal_Int16)1;
+static const ::sal_Int16 SCALABLE = (sal_Int16)4;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_AWT_FONTTYPE_HDL

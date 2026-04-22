@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_XFONT2_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_XFONT2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/awt/XFont.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XFont2 : public ::css::awt::XFont
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XFont2() = default;
+    XFont2(XFont2 const &) = default;
+    XFont2(XFont2 &&) = default;
+    XFont2 & operator =(XFont2 const &) = default;
+    XFont2 & operator =(XFont2 &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL hasGlyphs( const ::rtl::OUString& aText ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XFont2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::XFont2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::awt::XFont2 > *);
+
+#endif

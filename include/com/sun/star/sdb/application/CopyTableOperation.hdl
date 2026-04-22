@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDB_APPLICATION_COPYTABLEOPERATION_HDL
+#define INCLUDED_COM_SUN_STAR_SDB_APPLICATION_COPYTABLEOPERATION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdb { namespace application { namespace CopyTableOperation {
+
+static const ::sal_Int16 AppendData = (sal_Int16)3;
+static const ::sal_Int16 CopyDefinitionAndData = (sal_Int16)0;
+static const ::sal_Int16 CopyDefinitionOnly = (sal_Int16)1;
+static const ::sal_Int16 CreateAsView = (sal_Int16)2;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDB_APPLICATION_COPYTABLEOPERATION_HDL

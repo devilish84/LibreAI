@@ -1,0 +1,24 @@
+#ifndef INCLUDED_COM_SUN_STAR_UI_DIALOGS_CONTROLACTIONS_HDL
+#define INCLUDED_COM_SUN_STAR_UI_DIALOGS_CONTROLACTIONS_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace ui { namespace dialogs { namespace ControlActions {
+
+static const ::sal_Int16 ADD_ITEM = (sal_Int16)1;
+static const ::sal_Int16 ADD_ITEMS = (sal_Int16)2;
+static const ::sal_Int16 DELETE_ITEM = (sal_Int16)3;
+static const ::sal_Int16 DELETE_ITEMS = (sal_Int16)4;
+static const ::sal_Int16 GET_HELP_URL = (sal_Int16)101;
+static const ::sal_Int16 GET_ITEMS = (sal_Int16)6;
+static const ::sal_Int16 GET_SELECTED_ITEM = (sal_Int16)7;
+static const ::sal_Int16 GET_SELECTED_ITEM_INDEX = (sal_Int16)8;
+static const ::sal_Int16 SET_HELP_URL = (sal_Int16)100;
+static const ::sal_Int16 SET_SELECT_ITEM = (sal_Int16)5;
+
+} } } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_UI_DIALOGS_CONTROLACTIONS_HDL

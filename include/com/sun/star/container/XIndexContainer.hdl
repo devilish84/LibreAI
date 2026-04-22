@@ -1,0 +1,44 @@
+#ifndef INCLUDED_COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HDL
+#define INCLUDED_COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/container/XIndexReplace.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace container {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XIndexContainer : public ::css::container::XIndexReplace
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XIndexContainer() = default;
+    XIndexContainer(XIndexContainer const &) = default;
+    XIndexContainer(XIndexContainer &&) = default;
+    XIndexContainer & operator =(XIndexContainer const &) = default;
+    XIndexContainer & operator =(XIndexContainer &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL insertByIndex( ::sal_Int32 Index, const ::css::uno::Any& Element ) = 0;
+    virtual void SAL_CALL removeByIndex( ::sal_Int32 Index ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XIndexContainer() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::container::XIndexContainer const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::container::XIndexContainer > *);
+
+#endif

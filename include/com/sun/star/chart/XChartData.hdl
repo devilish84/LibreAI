@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_CHART_XCHARTDATA_HDL
+#define INCLUDED_COM_SUN_STAR_CHART_XCHARTDATA_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace chart { class XChartDataChangeEventListener; } } } }
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace chart {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XChartData : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XChartData() = default;
+    XChartData(XChartData const &) = default;
+    XChartData(XChartData &&) = default;
+    XChartData & operator =(XChartData const &) = default;
+    XChartData & operator =(XChartData &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL addChartDataChangeEventListener( const ::css::uno::Reference< ::css::chart::XChartDataChangeEventListener >& aListener ) = 0;
+    virtual void SAL_CALL removeChartDataChangeEventListener( const ::css::uno::Reference< ::css::chart::XChartDataChangeEventListener >& aListener ) = 0;
+    virtual double SAL_CALL getNotANumber() = 0;
+    virtual ::sal_Bool SAL_CALL isNotANumber( double nNumber ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XChartData() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::chart::XChartData const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::chart::XChartData > *);
+
+#endif

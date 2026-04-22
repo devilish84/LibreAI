@@ -1,0 +1,47 @@
+#ifndef INCLUDED_COM_SUN_STAR_FORM_VALIDATION_XVALIDATABLEFORMCOMPONENT_HDL
+#define INCLUDED_COM_SUN_STAR_FORM_VALIDATION_XVALIDATABLEFORMCOMPONENT_HDL
+
+#include "sal/config.h"
+
+namespace com { namespace sun { namespace star { namespace form { namespace validation { class XFormComponentValidityListener; } } } } }
+#include "com/sun/star/form/validation/XValidatable.hdl"
+#include "com/sun/star/uno/Any.h"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace form { namespace validation {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XValidatableFormComponent : public ::css::form::validation::XValidatable
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XValidatableFormComponent() = default;
+    XValidatableFormComponent(XValidatableFormComponent const &) = default;
+    XValidatableFormComponent(XValidatableFormComponent &&) = default;
+    XValidatableFormComponent & operator =(XValidatableFormComponent const &) = default;
+    XValidatableFormComponent & operator =(XValidatableFormComponent &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL isValid() = 0;
+    virtual ::css::uno::Any SAL_CALL getCurrentValue() = 0;
+    virtual void SAL_CALL addFormComponentValidityListener( const ::css::uno::Reference< ::css::form::validation::XFormComponentValidityListener >& Listener ) = 0;
+    virtual void SAL_CALL removeFormComponentValidityListener( const ::css::uno::Reference< ::css::form::validation::XFormComponentValidityListener >& Listener ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XValidatableFormComponent() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::form::validation::XValidatableFormComponent const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::form::validation::XValidatableFormComponent > *);
+
+#endif

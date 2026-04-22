@@ -1,0 +1,43 @@
+#ifndef INCLUDED_COM_SUN_STAR_TEXT_XTEXTFIELD_HDL
+#define INCLUDED_COM_SUN_STAR_TEXT_XTEXTFIELD_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/text/XTextContent.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace text {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XTextField : public ::css::text::XTextContent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XTextField() = default;
+    XTextField(XTextField const &) = default;
+    XTextField(XTextField &&) = default;
+    XTextField & operator =(XTextField const &) = default;
+    XTextField & operator =(XTextField &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::rtl::OUString SAL_CALL getPresentation( ::sal_Bool bShowCommand ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XTextField() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::text::XTextField const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::text::XTextField > *);
+
+#endif

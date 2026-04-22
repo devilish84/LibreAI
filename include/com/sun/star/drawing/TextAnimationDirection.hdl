@@ -1,0 +1,42 @@
+#ifndef INCLUDED_COM_SUN_STAR_DRAWING_TEXTANIMATIONDIRECTION_HDL
+#define INCLUDED_COM_SUN_STAR_DRAWING_TEXTANIMATIONDIRECTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace drawing {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI TextAnimationDirection
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI TextAnimationDirection
+{
+
+#endif
+    TextAnimationDirection_LEFT = 0,
+    TextAnimationDirection_RIGHT = 1,
+    TextAnimationDirection_UP = 2,
+    TextAnimationDirection_DOWN = 3,
+    TextAnimationDirection_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto TextAnimationDirection_LEFT = TextAnimationDirection::TextAnimationDirection_LEFT;
+constexpr auto TextAnimationDirection_RIGHT = TextAnimationDirection::TextAnimationDirection_RIGHT;
+constexpr auto TextAnimationDirection_UP = TextAnimationDirection::TextAnimationDirection_UP;
+constexpr auto TextAnimationDirection_DOWN = TextAnimationDirection::TextAnimationDirection_DOWN;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::drawing::TextAnimationDirection const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::drawing::TextAnimationDirection *);
+
+#endif

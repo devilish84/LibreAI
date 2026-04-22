@@ -1,0 +1,39 @@
+#ifndef INCLUDED_COM_SUN_STAR_GEOMETRY_AFFINEMATRIX2D_HDL
+#define INCLUDED_COM_SUN_STAR_GEOMETRY_AFFINEMATRIX2D_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace geometry {
+
+#ifdef _WIN32
+#   pragma pack(push, 8)
+#endif
+
+struct SAL_DLLPUBLIC_RTTI SAL_WARN_UNUSED AffineMatrix2D {
+    inline AffineMatrix2D();
+
+    inline AffineMatrix2D(const double& m00_, const double& m01_, const double& m02_, const double& m10_, const double& m11_, const double& m12_);
+
+    double m00;
+    double m01;
+    double m02;
+    double m10;
+    double m11;
+    double m12;
+};
+
+#ifdef _WIN32
+#   pragma pack(pop)
+#endif
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::geometry::AffineMatrix2D const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::geometry::AffineMatrix2D *);
+
+#endif

@@ -1,0 +1,48 @@
+#ifndef INCLUDED_COM_SUN_STAR_SHEET_XCELLRANGEMOVEMENT_HDL
+#define INCLUDED_COM_SUN_STAR_SHEET_XCELLRANGEMOVEMENT_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/sheet/CellDeleteMode.hdl"
+#include "com/sun/star/sheet/CellInsertMode.hdl"
+#include "com/sun/star/table/CellAddress.hdl"
+#include "com/sun/star/table/CellRangeAddress.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace sheet {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XCellRangeMovement : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XCellRangeMovement() = default;
+    XCellRangeMovement(XCellRangeMovement const &) = default;
+    XCellRangeMovement(XCellRangeMovement &&) = default;
+    XCellRangeMovement & operator =(XCellRangeMovement const &) = default;
+    XCellRangeMovement & operator =(XCellRangeMovement &&) = default;
+#endif
+
+
+    // Methods
+    virtual void SAL_CALL insertCells( const ::css::table::CellRangeAddress& aRange, ::css::sheet::CellInsertMode nMode ) = 0;
+    virtual void SAL_CALL removeRange( const ::css::table::CellRangeAddress& aRange, ::css::sheet::CellDeleteMode nMode ) = 0;
+    virtual void SAL_CALL moveRange( const ::css::table::CellAddress& aDestination, const ::css::table::CellRangeAddress& aSource ) = 0;
+    virtual void SAL_CALL copyRange( const ::css::table::CellAddress& aDestination, const ::css::table::CellRangeAddress& aSource ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XCellRangeMovement() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::sheet::XCellRangeMovement const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::sheet::XCellRangeMovement > *);
+
+#endif

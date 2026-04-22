@@ -1,0 +1,64 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_DOM_DOMEXCEPTIONTYPE_HDL
+#define INCLUDED_COM_SUN_STAR_XML_DOM_DOMEXCEPTIONTYPE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml { namespace dom {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI DOMExceptionType
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI DOMExceptionType
+{
+
+#endif
+    DOMExceptionType_DOMSTRING_SIZE_ERR = 0,
+    DOMExceptionType_HIERARCHY_REQUEST_ERR = 1,
+    DOMExceptionType_INDEX_SIZE_ERR = 2,
+    DOMExceptionType_INUSE_ATTRIBUTE_ERR = 3,
+    DOMExceptionType_INVALID_ACCESS_ERR = 4,
+    DOMExceptionType_INVALID_CHARACTER_ERR = 5,
+    DOMExceptionType_INVALID_MODIFICATION_ERR = 6,
+    DOMExceptionType_INVALID_STATE_ERR = 7,
+    DOMExceptionType_NAMESPACE_ERR = 8,
+    DOMExceptionType_NO_DATA_ALLOWED_ERR = 9,
+    DOMExceptionType_NO_MODIFICATION_ALLOWED_ERR = 10,
+    DOMExceptionType_NOT_FOUND_ERR = 11,
+    DOMExceptionType_NOT_SUPPORTED_ERR = 12,
+    DOMExceptionType_SYNTAX_ERR = 13,
+    DOMExceptionType_WRONG_DOCUMENT_ERR = 14,
+    DOMExceptionType_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto DOMExceptionType_DOMSTRING_SIZE_ERR = DOMExceptionType::DOMExceptionType_DOMSTRING_SIZE_ERR;
+constexpr auto DOMExceptionType_HIERARCHY_REQUEST_ERR = DOMExceptionType::DOMExceptionType_HIERARCHY_REQUEST_ERR;
+constexpr auto DOMExceptionType_INDEX_SIZE_ERR = DOMExceptionType::DOMExceptionType_INDEX_SIZE_ERR;
+constexpr auto DOMExceptionType_INUSE_ATTRIBUTE_ERR = DOMExceptionType::DOMExceptionType_INUSE_ATTRIBUTE_ERR;
+constexpr auto DOMExceptionType_INVALID_ACCESS_ERR = DOMExceptionType::DOMExceptionType_INVALID_ACCESS_ERR;
+constexpr auto DOMExceptionType_INVALID_CHARACTER_ERR = DOMExceptionType::DOMExceptionType_INVALID_CHARACTER_ERR;
+constexpr auto DOMExceptionType_INVALID_MODIFICATION_ERR = DOMExceptionType::DOMExceptionType_INVALID_MODIFICATION_ERR;
+constexpr auto DOMExceptionType_INVALID_STATE_ERR = DOMExceptionType::DOMExceptionType_INVALID_STATE_ERR;
+constexpr auto DOMExceptionType_NAMESPACE_ERR = DOMExceptionType::DOMExceptionType_NAMESPACE_ERR;
+constexpr auto DOMExceptionType_NO_DATA_ALLOWED_ERR = DOMExceptionType::DOMExceptionType_NO_DATA_ALLOWED_ERR;
+constexpr auto DOMExceptionType_NO_MODIFICATION_ALLOWED_ERR = DOMExceptionType::DOMExceptionType_NO_MODIFICATION_ALLOWED_ERR;
+constexpr auto DOMExceptionType_NOT_FOUND_ERR = DOMExceptionType::DOMExceptionType_NOT_FOUND_ERR;
+constexpr auto DOMExceptionType_NOT_SUPPORTED_ERR = DOMExceptionType::DOMExceptionType_NOT_SUPPORTED_ERR;
+constexpr auto DOMExceptionType_SYNTAX_ERR = DOMExceptionType::DOMExceptionType_SYNTAX_ERR;
+constexpr auto DOMExceptionType_WRONG_DOCUMENT_ERR = DOMExceptionType::DOMExceptionType_WRONG_DOCUMENT_ERR;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::dom::DOMExceptionType const *);
+} } } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::xml::dom::DOMExceptionType *);
+
+#endif

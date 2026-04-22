@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_XML_XIMPORTFILTER_HDL
+#define INCLUDED_COM_SUN_STAR_XML_XIMPORTFILTER_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/beans/PropertyValue.hdl"
+#include "com/sun/star/uno/XInterface.hdl"
+namespace com { namespace sun { namespace star { namespace xml { namespace sax { class XDocumentHandler; } } } } }
+#include "com/sun/star/uno/Reference.h"
+#include "com/sun/star/uno/Sequence.h"
+#include "cppu/macros.hxx"
+#include "rtl/ustring.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace xml {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XImportFilter : public ::css::uno::XInterface
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XImportFilter() = default;
+    XImportFilter(XImportFilter const &) = default;
+    XImportFilter(XImportFilter &&) = default;
+    XImportFilter & operator =(XImportFilter const &) = default;
+    XImportFilter & operator =(XImportFilter &&) = default;
+#endif
+
+
+    // Methods
+    virtual ::sal_Bool SAL_CALL importer( const ::css::uno::Sequence< ::css::beans::PropertyValue >& aSourceData, const ::css::uno::Reference< ::css::xml::sax::XDocumentHandler >& xDocHandler, const ::css::uno::Sequence< ::rtl::OUString >& msUserData ) = 0;
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XImportFilter() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::xml::XImportFilter const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::xml::XImportFilter > *);
+
+#endif

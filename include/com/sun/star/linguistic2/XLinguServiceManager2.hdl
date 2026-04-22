@@ -1,0 +1,40 @@
+#ifndef INCLUDED_COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEMANAGER2_HDL
+#define INCLUDED_COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEMANAGER2_HDL
+
+#include "sal/config.h"
+
+#include "com/sun/star/lang/XComponent.hdl"
+#include "com/sun/star/linguistic2/XAvailableLocales.hdl"
+#include "com/sun/star/linguistic2/XLinguServiceManager.hdl"
+#include "com/sun/star/uno/Reference.h"
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace linguistic2 {
+
+class SAL_NO_VTABLE SAL_DLLPUBLIC_RTTI XLinguServiceManager2 : public ::css::linguistic2::XLinguServiceManager, public ::css::linguistic2::XAvailableLocales, public ::css::lang::XComponent
+{
+public:
+#if defined LIBO_INTERNAL_ONLY
+    XLinguServiceManager2() = default;
+    XLinguServiceManager2(XLinguServiceManager2 const &) = default;
+    XLinguServiceManager2(XLinguServiceManager2 &&) = default;
+    XLinguServiceManager2 & operator =(XLinguServiceManager2 const &) = default;
+    XLinguServiceManager2 & operator =(XLinguServiceManager2 &&) = default;
+#endif
+
+
+    static inline ::css::uno::Type const & SAL_CALL static_type(void * = 0);
+
+protected:
+    ~XLinguServiceManager2() SAL_NOEXCEPT {} // avoid warnings about virtual members and non-virtual dtor
+};
+
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::linguistic2::XLinguServiceManager2 const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::uno::Reference< ::css::linguistic2::XLinguServiceManager2 > *);
+
+#endif

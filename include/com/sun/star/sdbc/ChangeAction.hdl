@@ -1,0 +1,18 @@
+#ifndef INCLUDED_COM_SUN_STAR_SDBC_CHANGEACTION_HDL
+#define INCLUDED_COM_SUN_STAR_SDBC_CHANGEACTION_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+#include "sal/types.h"
+
+namespace com { namespace sun { namespace star { namespace sdbc { namespace ChangeAction {
+
+static const ::sal_Int32 DELETE = (sal_Int32)3;
+static const ::sal_Int32 INSERT = (sal_Int32)1;
+static const ::sal_Int32 UNDO = (sal_Int32)4;
+static const ::sal_Int32 UPDATE = (sal_Int32)2;
+
+} } } } }
+
+#endif // INCLUDED_COM_SUN_STAR_SDBC_CHANGEACTION_HDL

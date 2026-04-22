@@ -1,0 +1,46 @@
+#ifndef INCLUDED_COM_SUN_STAR_AWT_GRADIENTSTYLE_HDL
+#define INCLUDED_COM_SUN_STAR_AWT_GRADIENTSTYLE_HDL
+
+#include "sal/config.h"
+
+#include "cppu/macros.hxx"
+
+namespace com { namespace sun { namespace star { namespace uno { class Type; } } } }
+
+namespace com { namespace sun { namespace star { namespace awt {
+
+#if defined LIBO_INTERNAL_ONLY
+
+enum class SAL_DLLPUBLIC_RTTI GradientStyle
+{
+
+#else
+
+enum SAL_DLLPUBLIC_RTTI GradientStyle
+{
+
+#endif
+    GradientStyle_LINEAR = 0,
+    GradientStyle_AXIAL = 1,
+    GradientStyle_RADIAL = 2,
+    GradientStyle_ELLIPTICAL = 3,
+    GradientStyle_SQUARE = 4,
+    GradientStyle_RECT = 5,
+    GradientStyle_MAKE_FIXED_SIZE = SAL_MAX_ENUM
+};
+
+#if defined LIBO_INTERNAL_ONLY
+constexpr auto GradientStyle_LINEAR = GradientStyle::GradientStyle_LINEAR;
+constexpr auto GradientStyle_AXIAL = GradientStyle::GradientStyle_AXIAL;
+constexpr auto GradientStyle_RADIAL = GradientStyle::GradientStyle_RADIAL;
+constexpr auto GradientStyle_ELLIPTICAL = GradientStyle::GradientStyle_ELLIPTICAL;
+constexpr auto GradientStyle_SQUARE = GradientStyle::GradientStyle_SQUARE;
+constexpr auto GradientStyle_RECT = GradientStyle::GradientStyle_RECT;
+#endif
+
+inline ::css::uno::Type const & cppu_detail_getUnoType(SAL_UNUSED_PARAMETER ::css::awt::GradientStyle const *);
+} } } }
+
+SAL_DEPRECATED("use cppu::UnoType") inline ::css::uno::Type const & SAL_CALL getCppuType(const ::css::awt::GradientStyle *);
+
+#endif
