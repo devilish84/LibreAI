@@ -16,7 +16,10 @@ if(WIN32)
     set(LO_INCLUDE  "$ENV{PROGRAMFILES}/LibreOffice_25.8_SDK/sdk/include")
     set(LO_SDK_LIB  "$ENV{PROGRAMFILES}/LibreOffice_25.8_SDK/sdk/lib")
     add_compile_definitions(WNT _WIN32 CPPU_ENV=msvc)
-    set(UNO_LIBS iuno_cppu iuno_cppuhelper iuno_sal)
+    set(UNO_LIBS
+        ${LO_SDK_LIB}/icppu.lib
+        ${LO_SDK_LIB}/icppuhelper.lib
+        ${LO_SDK_LIB}/isal.lib)
 else()
     set(LO_INCLUDE  /usr/include/libreoffice)
     set(LO_SDK_LIB  /usr/lib/libreoffice/sdk/lib)

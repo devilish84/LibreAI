@@ -58,10 +58,12 @@ jobs:
       - name: Build
         shell: pwsh
         run: |
+          $sdkInc = "$env:SDK_PATH\sdk\include"
+          $sdkLib = "$env:SDK_PATH\sdk\lib"
           cmake -S . -B build `
             -DCMAKE_BUILD_TYPE=Release `
-            -DLO_INCLUDE="$env:SDK_PATH\sdk\include" `
-            -DLO_SDK_LIB="$env:SDK_PATH\sdk\lib"
+            -DLO_INCLUDE="$sdkInc" `
+            -DLO_SDK_LIB="$sdkLib"
           cmake --build build --config Release --parallel $env:NUMBER_OF_PROCESSORS
 
       - name: Upload Windows binary
