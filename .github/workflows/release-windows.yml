@@ -23,14 +23,14 @@ jobs:
       - name: Install LibreOffice SDK
         shell: pwsh
         run: |
-          $url = "https://download.documentfoundation.org/libreoffice/stable/25.8.6/win/x86_64/LibreOffice_25.8.6_Win_x86-64_sdk.msi"
-          Invoke-WebRequest $url -OutFile lo_sdk.msi
-          Start-Process msiexec.exe -ArgumentList "/i lo_sdk.msi /quiet /norestart" -Wait
+          $url = "https://download.documentfoundation.org/libreoffice/stable/25.8.6/win/x86_64/LibreOffice_25.8.6_Win_x86-64_sdk.zip"
+          Invoke-WebRequest $url -OutFile lo_sdk.zip
+          Expand-Archive lo_sdk.zip -DestinationPath C:\lo_sdk
 
       - name: Build
         shell: pwsh
         run: |
-          $sdk = "C:\Program Files\LibreOffice_25.8_SDK"
+          $sdk = (Get-ChildItem C:\lo_sdk -Directory | Select-Object -First 1).FullName
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release `
             "-DLO_INCLUDE=$sdk\sdk\include" `
             "-DLO_SDK_LIB=$sdk\sdk\lib"
