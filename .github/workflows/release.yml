@@ -1,4 +1,4 @@
-name: Release
+name: Release (Linux)
 
 on:
   push:
@@ -6,18 +6,15 @@ on:
       - 'v*'
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-latest
+  build-linux-2204:
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
-            qt6-base-dev \
-            libreoffice-dev \
-            zip
+          sudo apt-get install -y qt6-base-dev libreoffice-dev zip
 
       - name: Build
         run: |
@@ -29,72 +26,64 @@ jobs:
 
       - name: Collect Qt6 runtime libs
         run: |
-          mkdir -p linux-pkg
-          cp build/libreai.so linux-pkg/
-          # Copy all Qt6 libs libreai.so depends on
-          ldd build/libreai.so | grep -i 'Qt6' | awk '{print $3}' | \
-            xargs -I{} cp {} linux-pkg/
-          ls -lh linux-pkg/
+          mkdir -p pkg
+          cp build/libreai.so pkg/
+          ldd build/libreai.so | grep -i 'Qt6' | awk '{print $3}' | xargs -I{} cp {} pkg/
+          ls -lh pkg/
 
-      - name: Upload Linux package
+      - name: Package OXT
+        run: |
+          mkdir -p oxt
+          cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons oxt/
+          cp -r pkg/. oxt/
+          cd oxt && zip -r ../libreai_ubuntu2204_x86_64.oxt .
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: linux-binary
-          path: linux-pkg/
+          name: linux-2204
+          path: libreai_ubuntu2204_x86_64.oxt
 
-  build-windows:
-    runs-on: windows-latest
+  build-linux-2404:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Qt6
-        uses: jurplel/install-qt-action@v3
-        with:
-          version: '6.7.*'
-          arch: win64_msvc2019_64
-
-      - name: Install LibreOffice SDK
-        shell: pwsh
+      - name: Install dependencies
         run: |
-          $url = "https://download.documentfoundation.org/libreoffice/stable/25.8.6/win/x86_64/LibreOffice_25.8.6_Win_x86-64_sdk.msi"
-          Invoke-WebRequest $url -OutFile lo_sdk.msi -MaximumRedirection 5
-          Start-Process msiexec.exe -ArgumentList '/i', 'lo_sdk.msi', '/quiet', '/norestart' -Wait
-          $sdkPath = Get-ChildItem "C:\Program Files" -Directory | Where-Object { $_.Name -like "*LibreOffice*SDK*" } | Select-Object -First 1 -ExpandProperty FullName
-          echo "SDK_PATH=$sdkPath" >> $env:GITHUB_ENV
-          Write-Host "SDK installed at: $sdkPath"
-          Get-ChildItem "$sdkPath" -Directory | Select-Object -ExpandProperty Name
-          Write-Host "--- include subdirs ---"
-          Get-ChildItem "$sdkPath\include" -Directory -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Name
+          sudo apt-get update
+          sudo apt-get install -y qt6-base-dev libreoffice-dev zip
 
       - name: Build
-        shell: pwsh
         run: |
-          $sdkInc = "$env:SDK_PATH\sdk\include"
-          $sdkLib = "$env:SDK_PATH\sdk\lib"
-          cmake -S . -B build `
-            -DCMAKE_BUILD_TYPE=Release `
-            -DLO_INCLUDE="$sdkInc" `
-            -DLO_SDK_LIB="$sdkLib"
-          cmake --build build --config Release --parallel $env:NUMBER_OF_PROCESSORS
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_CXX_FLAGS="-fvisibility=hidden" \
+            -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-rpath,\$ORIGIN" \
+            -Wno-dev
+          cmake --build build --parallel $(nproc)
 
-      - name: Collect Qt runtime with windeployqt
-        shell: pwsh
+      - name: Collect Qt6 runtime libs
         run: |
-          $qt = "$env:Qt6_DIR\bin\windeployqt.exe"
-          New-Item -ItemType Directory -Force -Path windows-pkg
-          Copy-Item "build\Release\libreai.dll" "windows-pkg\"
-          & $qt "windows-pkg\libreai.dll" `
-            --release --no-translations --no-system-d3d-compiler `
-            --no-opengl-sw --dir windows-pkg
+          mkdir -p pkg
+          cp build/libreai.so pkg/
+          ldd build/libreai.so | grep -i 'Qt6' | awk '{print $3}' | xargs -I{} cp {} pkg/
+          ls -lh pkg/
 
-      - name: Upload Windows package
+      - name: Package OXT
+        run: |
+          mkdir -p oxt
+          cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons oxt/
+          cp -r pkg/. oxt/
+          cd oxt && zip -r ../libreai_ubuntu2404_x86_64.oxt .
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: windows-binary
-          path: windows-pkg/
+          name: linux-2404
+          path: libreai_ubuntu2404_x86_64.oxt
 
   release:
-    needs: [build-linux, build-windows]
+    needs: [build-linux-2204, build-linux-2404]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -106,60 +95,37 @@ jobs:
         with:
           path: artifacts
 
-      - name: Get version
-        id: version
-        run: echo "VERSION=${GITHUB_REF_NAME}" >> $GITHUB_OUTPUT
-
-      - name: Package Linux OXT
-        run: |
-          mkdir -p linux_oxt
-          cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons linux_oxt/
-          cp -r artifacts/linux-binary/. linux_oxt/
-          cd linux_oxt && zip -r ../libreai_linux_x86_64.oxt .
-
-      - name: Package Windows OXT
-        run: |
-          mkdir -p win_oxt
-          cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons win_oxt/
-          cp -r artifacts/windows-binary/. win_oxt/
-          cd win_oxt && zip -r ../libreai_windows_x86_64.oxt .
-
-      - name: Package cross-platform OXT
-        run: |
-          cp -r artifacts/linux-binary/. win_oxt/
-          cd win_oxt && zip -r ../libreai_cross_platform.oxt .
-
-      - name: Build Debian package
+      - name: Build Debian package (22.04)
         run: |
           sudo apt-get install -y dpkg-dev
-          cp libreai_linux_x86_64.oxt libreai.oxt
+          cp artifacts/linux-2204/libreai_ubuntu2204_x86_64.oxt libreai.oxt
           bash package_deb.sh
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.version.outputs.VERSION }}
-          name: "LibreAI ${{ steps.version.outputs.VERSION }}"
+          tag_name: ${{ github.ref_name }}
+          name: "LibreAI ${{ github.ref_name }}"
           body: |
-            ## LibreAI ${{ steps.version.outputs.VERSION }}
+            ## LibreAI ${{ github.ref_name }}
 
             AI writing assistant for LibreOffice Writer — supports Ollama, OpenAI, and Anthropic Claude.
 
-            ### Downloads
+            ### Linux Downloads
 
-            | File | Platform | Install method |
-            |------|----------|----------------|
-            | `libreai_linux_x86_64.oxt` | Linux x86_64 | `unopkg add libreai_linux_x86_64.oxt` |
-            | `libreai_windows_x86_64.oxt` | Windows x86_64 | Extension Manager → Add |
-            | `libreai_cross_platform.oxt` | Linux + Windows | Either method above |
-            | `libreai_*.deb` | Debian/Ubuntu | `sudo dpkg -i libreai_*.deb` |
+            | File | Ubuntu version | LibreOffice | Install |
+            |------|---------------|-------------|---------|
+            | `libreai_ubuntu2204_x86_64.oxt` | 22.04 LTS | 7.x | `unopkg add libreai_ubuntu2204_x86_64.oxt` |
+            | `libreai_ubuntu2404_x86_64.oxt` | 24.04 LTS | 24.x+ | `unopkg add libreai_ubuntu2404_x86_64.oxt` |
+            | `libreai_*.deb` | 22.04 LTS | 7.x | `sudo dpkg -i libreai_*.deb` |
+
+            ### Windows
+            Run the **Release (Windows)** workflow manually from Actions to build and attach the Windows OXT.
 
             ### Requirements
-            - LibreOffice 7.x or later
-            - Qt 6 runtime (Linux: `libqt6widgets6`; Windows: bundled with OXT)
+            - Qt 6 runtime bundled in OXT
             - Ollama, OpenAI key, or Anthropic key for AI providers
           files: |
-            libreai_linux_x86_64.oxt
-            libreai_windows_x86_64.oxt
-            libreai_cross_platform.oxt
+            artifacts/linux-2204/libreai_ubuntu2204_x86_64.oxt
+            artifacts/linux-2404/libreai_ubuntu2404_x86_64.oxt
             libreai_*.deb

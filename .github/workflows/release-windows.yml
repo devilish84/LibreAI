@@ -1,0 +1,60 @@
+name: Release (Windows)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to attach Windows OXT to (e.g. v1.0.2)'
+        required: true
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt6
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.7.*'
+          arch: win64_msvc2019_64
+          modules: ''
+
+      - name: Install LibreOffice SDK
+        shell: pwsh
+        run: |
+          $url = "https://download.documentfoundation.org/libreoffice/stable/25.8.6/win/x86_64/LibreOffice_25.8.6_Win_x86-64_sdk.msi"
+          Invoke-WebRequest $url -OutFile lo_sdk.msi
+          Start-Process msiexec.exe -ArgumentList "/i lo_sdk.msi /quiet /norestart" -Wait
+
+      - name: Build
+        shell: pwsh
+        run: |
+          $sdk = "C:\Program Files\LibreOffice_25.8_SDK"
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release `
+            "-DLO_INCLUDE=$sdk\sdk\include" `
+            "-DLO_SDK_LIB=$sdk\sdk\lib"
+          cmake --build build --config Release --parallel $env:NUMBER_OF_PROCESSORS
+
+      - name: Collect Qt6 runtime DLLs
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path pkg | Out-Null
+          Copy-Item build\Release\libreai.dll pkg\
+          windeployqt --release --no-translations --no-system-d3d-compiler `
+            --no-opengl-sw pkg\libreai.dll
+
+      - name: Package OXT
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path oxt | Out-Null
+          Copy-Item META-INF,description.xml,description-en.txt,Addons.xcu,Jobs.xcu,icons -Destination oxt -Recurse
+          Copy-Item pkg\* oxt\ -Recurse
+          Compress-Archive -Path oxt\* -DestinationPath libreai_windows_x86_64.oxt -Force
+
+      - name: Upload to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: pwsh
+        run: |
+          gh release upload ${{ github.event.inputs.tag }} libreai_windows_x86_64.oxt --clobber
