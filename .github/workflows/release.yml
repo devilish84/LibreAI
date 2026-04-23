@@ -112,6 +112,7 @@ jobs:
       - name: Build Debian package
         run: |
           sudo apt-get install -y dpkg-dev
+          cp libreai_linux_x86_64.oxt libreai.oxt
           bash package_deb.sh
 
       - name: Create GitHub Release
