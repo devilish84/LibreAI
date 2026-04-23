@@ -60,8 +60,8 @@ jobs:
         run: |
           cmake -S . -B build `
             -DCMAKE_BUILD_TYPE=Release `
-            -DLO_INCLUDE="$env:SDK_PATH\include" `
-            -DLO_SDK_LIB="$env:SDK_PATH\lib"
+            -DLO_INCLUDE="$env:SDK_PATH\sdk\include" `
+            -DLO_SDK_LIB="$env:SDK_PATH\sdk\lib"
           cmake --build build --config Release --parallel $env:NUMBER_OF_PROCESSORS
 
       - name: Upload Windows binary

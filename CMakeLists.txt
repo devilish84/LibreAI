@@ -13,8 +13,8 @@ find_package(Qt6 REQUIRED COMPONENTS Core Widgets Network
 set(LO_GEN_INCLUDE ${CMAKE_SOURCE_DIR}/include)
 
 if(WIN32)
-    set(LO_INCLUDE  "$ENV{PROGRAMFILES}/LibreOffice/sdk/include")
-    set(LO_SDK_LIB  "$ENV{PROGRAMFILES}/LibreOffice/sdk/lib")
+    set(LO_INCLUDE  "$ENV{PROGRAMFILES}/LibreOffice_25.8_SDK/sdk/include")
+    set(LO_SDK_LIB  "$ENV{PROGRAMFILES}/LibreOffice_25.8_SDK/sdk/lib")
     add_compile_definitions(WNT _WIN32 CPPU_ENV=msvc)
     set(UNO_LIBS iuno_cppu iuno_cppuhelper iuno_sal)
 else()
