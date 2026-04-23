@@ -21,15 +21,26 @@ jobs:
 
       - name: Build
         run: |
-          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-fvisibility=hidden" -Wno-dev
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_CXX_FLAGS="-fvisibility=hidden" \
+            -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-rpath,\$ORIGIN" \
+            -Wno-dev
           cmake --build build --parallel $(nproc)
-          cp build/libreai.so libreai.so
 
-      - name: Upload Linux binary
+      - name: Collect Qt6 runtime libs
+        run: |
+          mkdir -p linux-pkg
+          cp build/libreai.so linux-pkg/
+          # Copy all Qt6 libs libreai.so depends on
+          ldd build/libreai.so | grep -i 'Qt6' | awk '{print $3}' | \
+            xargs -I{} cp {} linux-pkg/
+          ls -lh linux-pkg/
+
+      - name: Upload Linux package
         uses: actions/upload-artifact@v4
         with:
           name: linux-binary
-          path: libreai.so
+          path: linux-pkg/
 
   build-windows:
     runs-on: windows-latest
@@ -101,10 +112,10 @@ jobs:
 
       - name: Package Linux OXT
         run: |
-          cp artifacts/linux-binary/libreai.so .
-          zip -r libreai_linux_x86_64.oxt \
-            META-INF/ description.xml description-en.txt \
-            Addons.xcu Jobs.xcu libreai.so icons/
+          mkdir -p linux_oxt
+          cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons linux_oxt/
+          cp -r artifacts/linux-binary/. linux_oxt/
+          cd linux_oxt && zip -r ../libreai_linux_x86_64.oxt .
 
       - name: Package Windows OXT
         run: |
@@ -115,7 +126,7 @@ jobs:
 
       - name: Package cross-platform OXT
         run: |
-          cp artifacts/linux-binary/libreai.so win_oxt/
+          cp -r artifacts/linux-binary/. win_oxt/
           cd win_oxt && zip -r ../libreai_cross_platform.oxt .
 
       - name: Build Debian package
