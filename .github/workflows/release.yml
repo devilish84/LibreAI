@@ -47,15 +47,13 @@ jobs:
         run: |
           $url = "https://download.documentfoundation.org/libreoffice/stable/25.8.6/win/x86_64/LibreOffice_25.8.6_Win_x86-64_sdk.msi"
           Invoke-WebRequest $url -OutFile lo_sdk.msi -MaximumRedirection 5
-          Start-Process msiexec.exe -ArgumentList '/i', 'lo_sdk.msi', '/quiet', '/norestart', 'TARGETDIR=C:\lo_sdk' -Wait
-          echo "SDK_PATH=C:\lo_sdk" >> $env:GITHUB_ENV
-
-      - name: Inspect SDK layout
-        shell: pwsh
-        run: |
-          Get-ChildItem "C:\lo_sdk" -Recurse -Depth 2 | Select-Object FullName | head -50
-          Write-Host "--- sal/config.h search ---"
-          Get-ChildItem "C:\lo_sdk" -Recurse -Filter "config.h" | Where-Object { $_.FullName -like "*sal*" }
+          Start-Process msiexec.exe -ArgumentList '/i', 'lo_sdk.msi', '/quiet', '/norestart' -Wait
+          $sdkPath = Get-ChildItem "C:\Program Files" -Directory | Where-Object { $_.Name -like "*LibreOffice*SDK*" } | Select-Object -First 1 -ExpandProperty FullName
+          echo "SDK_PATH=$sdkPath" >> $env:GITHUB_ENV
+          Write-Host "SDK installed at: $sdkPath"
+          Get-ChildItem "$sdkPath" -Directory | Select-Object -ExpandProperty Name
+          Write-Host "--- include subdirs ---"
+          Get-ChildItem "$sdkPath\include" -Directory -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Name
 
       - name: Build
         shell: pwsh
