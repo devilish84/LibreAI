@@ -95,12 +95,6 @@ jobs:
         with:
           path: artifacts
 
-      - name: Build Debian package (22.04)
-        run: |
-          sudo apt-get install -y dpkg-dev
-          cp artifacts/linux-2204/libreai_ubuntu2204_x86_64.oxt libreai.oxt
-          bash package_deb.sh
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -111,16 +105,13 @@ jobs:
 
             AI writing assistant for LibreOffice Writer — supports Ollama, OpenAI, and Anthropic Claude.
 
-            ### Linux Downloads
+            ### Downloads
 
-            | File | Ubuntu version | LibreOffice | Install |
-            |------|---------------|-------------|---------|
-            | `libreai_ubuntu2204_x86_64.oxt` | 22.04 LTS | 7.x | `unopkg add libreai_ubuntu2204_x86_64.oxt` |
-            | `libreai_ubuntu2404_x86_64.oxt` | 24.04 LTS | 24.x+ | `unopkg add libreai_ubuntu2404_x86_64.oxt` |
-            | `libreai_*.deb` | 22.04 LTS | 7.x | `sudo dpkg -i libreai_*.deb` |
-
-            ### Windows
-            Run the **Release (Windows)** workflow manually from Actions to build and attach the Windows OXT.
+            | File | Platform | LibreOffice | Install |
+            |------|----------|-------------|---------|
+            | `libreai_ubuntu2204_x86_64.oxt` | Ubuntu 22.04 LTS | 7.x | `unopkg add libreai_ubuntu2204_x86_64.oxt` |
+            | `libreai_ubuntu2404_x86_64.oxt` | Ubuntu 24.04 LTS | 24.x+ | `unopkg add libreai_ubuntu2404_x86_64.oxt` |
+            | `libreai_windows_x86_64.oxt` | Windows 10/11 | 24.x+ | Tools → Extension Manager → Add |
 
             ### Requirements
             - Qt 6 runtime bundled in OXT
@@ -128,4 +119,3 @@ jobs:
           files: |
             artifacts/linux-2204/libreai_ubuntu2204_x86_64.oxt
             artifacts/linux-2404/libreai_ubuntu2404_x86_64.oxt
-            libreai_*.deb
