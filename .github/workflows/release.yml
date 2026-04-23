@@ -109,9 +109,8 @@ jobs:
       - name: Package Windows OXT
         run: |
           mkdir -p win_oxt
-          cp META-INF/ description.xml description-en.txt Addons.xcu Jobs.xcu -t win_oxt/
-          cp -r icons win_oxt/
-          cp -r artifacts/windows-binary/* win_oxt/
+          cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons win_oxt/
+          cp -r artifacts/windows-binary/. win_oxt/
           cd win_oxt && zip -r ../libreai_windows_x86_64.oxt .
 
       - name: Package cross-platform OXT
