@@ -66,11 +66,21 @@ jobs:
             -DLO_SDK_LIB="$sdkLib"
           cmake --build build --config Release --parallel $env:NUMBER_OF_PROCESSORS
 
-      - name: Upload Windows binary
+      - name: Collect Qt runtime with windeployqt
+        shell: pwsh
+        run: |
+          $qt = "$env:Qt6_DIR\bin\windeployqt.exe"
+          New-Item -ItemType Directory -Force -Path windows-pkg
+          Copy-Item "build\Release\libreai.dll" "windows-pkg\"
+          & $qt "windows-pkg\libreai.dll" `
+            --release --no-translations --no-system-d3d-compiler `
+            --no-opengl-sw --dir windows-pkg
+
+      - name: Upload Windows package
         uses: actions/upload-artifact@v4
         with:
           name: windows-binary
-          path: build/Release/libreai.dll
+          path: windows-pkg/
 
   release:
     needs: [build-linux, build-windows]
@@ -98,16 +108,16 @@ jobs:
 
       - name: Package Windows OXT
         run: |
-          cp artifacts/windows-binary/libreai.dll .
-          zip -r libreai_windows_x86_64.oxt \
-            META-INF/ description.xml description-en.txt \
-            Addons.xcu Jobs.xcu libreai.dll icons/
+          mkdir -p win_oxt
+          cp META-INF/ description.xml description-en.txt Addons.xcu Jobs.xcu -t win_oxt/
+          cp -r icons win_oxt/
+          cp -r artifacts/windows-binary/* win_oxt/
+          cd win_oxt && zip -r ../libreai_windows_x86_64.oxt .
 
       - name: Package cross-platform OXT
         run: |
-          zip -r libreai_cross_platform.oxt \
-            META-INF/ description.xml description-en.txt \
-            Addons.xcu Jobs.xcu libreai.so libreai.dll icons/
+          cp artifacts/linux-binary/libreai.so win_oxt/
+          cd win_oxt && zip -r ../libreai_cross_platform.oxt .
 
       - name: Build Debian package
         run: |
