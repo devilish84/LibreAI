@@ -3,6 +3,16 @@
 #include <cppuhelper/implementationentry.hxx>
 #include <rtl/ustring.hxx>
 
+#ifdef _WIN32
+#include <windows.h>
+static HMODULE g_hModule = nullptr;
+BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID) {
+    if (fdwReason == DLL_PROCESS_ATTACH) g_hModule = hinstDLL;
+    return TRUE;
+}
+HMODULE libreai_module_handle() { return g_hModule; }
+#endif
+
 using rtl::OUString;
 using css::uno::Sequence;
 using css::uno::Reference;

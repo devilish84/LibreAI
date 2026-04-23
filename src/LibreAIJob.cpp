@@ -4,8 +4,15 @@
 #include "UnoHelper.hpp"
 
 #include <QApplication>
+#include <QCoreApplication>
+#include <QFileInfo>
 #include <cppuhelper/supportsservice.hxx>
 #include <rtl/ustring.hxx>
+
+#ifdef _WIN32
+#include <windows.h>
+extern HMODULE libreai_module_handle();
+#endif
 
 using rtl::OUString;
 namespace css = ::com::sun::star;
@@ -19,8 +26,17 @@ LibreAIJob::LibreAIJob(const css::uno::Reference<css::uno::XComponentContext>& c
 void SAL_CALL LibreAIJob::trigger(const OUString& args) {
     static int    argc = 0;
     static char** argv = nullptr;
-    if (!QApplication::instance())
+    if (!QApplication::instance()) {
+#ifdef _WIN32
+        // Tell Qt where to find platform plugins (platforms/qwindows.dll)
+        // which are extracted alongside our DLL inside the OXT cache directory.
+        wchar_t dllPath[MAX_PATH] = {};
+        GetModuleFileNameW(libreai_module_handle(), dllPath, MAX_PATH);
+        QString dllDir = QFileInfo(QString::fromWCharArray(dllPath)).absolutePath();
+        QCoreApplication::addLibraryPath(dllDir);
+#endif
         new QApplication(argc, argv);
+    }
 
     // Ensure interceptor is installed on the current frame
     LibreAIStarter::tryInstallInterceptor(UnoHelper::getCurrentFrame());
