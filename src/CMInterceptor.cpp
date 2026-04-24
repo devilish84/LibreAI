@@ -36,7 +36,7 @@ CMInterceptor::notifyContextMenuExecute(const css::ui::ContextMenuExecuteEvent& 
         if (props.is()) {
             QString label = QCoreApplication::translate("CMInterceptor", "Grab Selection to LibreAI");
             props->setPropertyValue("Text",
-                css::uno::Any(rtl::OUString(label.utf16())));
+                css::uno::Any(rtl::OUString(reinterpret_cast<const sal_Unicode*>(label.utf16()))));
             props->setPropertyValue("CommandURL",
                 css::uno::Any(rtl::OUString::createFromAscii(
                     "service:org.libreai.job?open_with_sel")));
