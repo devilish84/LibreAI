@@ -4,27 +4,28 @@
 #include <QVector>
 
 QT_BEGIN_NAMESPACE
-class QComboBox;
 class QLabel;
-class QLineEdit;
 class QPlainTextEdit;
 class QPushButton;
-class QStatusBar;
+class QTimer;
 QT_END_NAMESPACE
 
 class ChatWindow : public QWidget {
     Q_OBJECT
 public:
     static ChatWindow* instance();
+    static void        resetInstance();
     void setPendingSelection(const QString& text);
+
+protected:
+    void changeEvent(QEvent* e) override;
 
 private:
     explicit ChatWindow(QWidget* parent = nullptr);
 
     void buildUi();
     void applyTheme();
-    void onProviderChanged(int index);
-    void onRefreshModels();
+    void retranslateUi();
     void onGrabSelection();
     void onSend();
     void onRewrite();
@@ -33,21 +34,23 @@ private:
     void setBusy(bool busy);
     AIClient* buildClient();
 
-    // controls
-    QComboBox*     m_providerBox;
-    QLabel*        m_connLabel;
-    QLineEdit*     m_connEdit;
-    QComboBox*     m_modelBox;
-    QPushButton*   m_refreshBtn;
-    QPushButton*   m_grabBtn;
+    QLabel*         m_headerLabel;
+    QPushButton*    m_grabBtn;
+    QLabel*         m_selLabel;
     QPlainTextEdit* m_selEdit;
+    QLabel*         m_instrLabel;
     QPlainTextEdit* m_instrEdit;
+    QPushButton*    m_rewriteBtn;
+    QPushButton*    m_sendBtn;
+    QLabel*         m_respLabel;
     QPlainTextEdit* m_respEdit;
-    QPushButton*   m_sendBtn;
-    QPushButton*   m_rewriteBtn;
-    QPushButton*   m_applyBtn;
-    QLabel*        m_statusLabel;
+    QPushButton*    m_applyBtn;
+    QLabel*         m_statusLabel;
 
     QVector<Message> m_history;
-    AIClient*        m_client = nullptr;
+    AIClient*        m_client    = nullptr;
+    QTimer*          m_spinTimer = nullptr;
+    int              m_spinFrame = 0;
+
+    static ChatWindow* s_instance;
 };

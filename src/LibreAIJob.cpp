@@ -1,6 +1,8 @@
 #include "LibreAIJob.hpp"
 #include "LibreAIStarter.hpp"
 #include "ChatWindow.hpp"
+#include "ConfigDialog.hpp"
+#include "Config.hpp"
 #include "UnoHelper.hpp"
 
 #include <QApplication>
@@ -38,8 +40,26 @@ void SAL_CALL LibreAIJob::trigger(const OUString& args) {
         new QApplication(argc, argv);
     }
 
+    Config::applyLanguage();
+
     // Ensure interceptor is installed on the current frame
     LibreAIStarter::tryInstallInterceptor(UnoHelper::getCurrentFrame());
+
+    if (args.equalsAscii("config")) {
+        auto* dlg = ConfigDialog::instance();
+        dlg->show();
+        dlg->raise();
+        dlg->activateWindow();
+        return;
+    }
+
+    if (!Config::get().isConfigured()) {
+        auto* dlg = ConfigDialog::instance();
+        dlg->show();
+        dlg->raise();
+        dlg->activateWindow();
+        return;
+    }
 
     auto* win = ChatWindow::instance();
 

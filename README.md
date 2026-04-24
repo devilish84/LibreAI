@@ -4,17 +4,18 @@ An AI writing assistant extension for **LibreOffice Writer**, implemented as a n
 
 Connects to locally-running [Ollama](https://ollama.com) models or cloud providers (OpenAI, Anthropic Claude). Lets you grab selected text from your document, send it to an AI model, and apply the response back — all from a floating chat window or the right-click context menu.
 
-![LibreAI in action](screenshots/inaction.png)
-
 ---
 
 ## Features
 
 - **Multi-provider** — Ollama (local), OpenAI, and Anthropic Claude
 - **Writer integration** — grab selected text, rewrite it, apply response back to document
-- **Right-click shortcut** — "Ask from AI" context menu item pre-loads selected text
-- **Cold-start ready** — context menu item appears immediately on LibreOffice launch
-- **Persistent config** — provider, URL/key, and model saved to `~/.config/libreai/config.json`
+- **Right-click shortcut** — "Grab Selection to LibreAI" context menu item pre-loads selected text
+- **Auto-open on startup** — chat window (or Configuration dialog) opens automatically when LibreOffice starts
+- **Separate Configuration dialog** — provider, connection, and model selection in a dedicated dialog (LibreAI → Configuration)
+- **i18n** — UI available in English, Suomi, Svenska, Dansk, Norsk, Español, Deutsch, Português; language selectable from Configuration
+- **Processing animation** — braille spinner shown in the response area while waiting for the model
+- **Persistent config** — all settings saved to `~/.config/libreai/config.json`
 - **Dark theme** — VS Code-inspired dark UI
 - **Async networking** — UI never blocks while waiting for AI responses
 
@@ -24,11 +25,12 @@ Connects to locally-running [Ollama](https://ollama.com) models or cloud provide
 
 | Dependency | Version | Notes |
 |------------|---------|-------|
-| LibreOffice | 7.x | Tested on 7.3.7 (Ubuntu) |
+| LibreOffice | 7.x+ | Tested on 7.3.7 and 24.x |
 | CMake | 3.16+ | |
 | GCC / Clang | C++17 | |
 | Qt 6 | Core, Widgets, Network | `qt6-base-dev` |
 | LO SDK headers | — | `libreoffice-dev` |
+| lrelease | Qt 6 | `linguist-qt6` (for building translations) |
 
 **Runtime:**
 
@@ -44,21 +46,15 @@ Connects to locally-running [Ollama](https://ollama.com) models or cloud provide
 
 ## Installation
 
-### Option A — Install the pre-built `.deb`
+### Option A — Install the pre-built `.oxt`
 
-Download the latest `.deb` from [Releases](../../releases) and run:
-
-```bash
-sudo dpkg -i libreai_1.0.0_amd64.deb
-```
-
-The extension is automatically registered with LibreOffice. Restart LibreOffice to activate.
-
-To uninstall:
+Download the latest `.oxt` for your platform from [Releases](../../releases) and install via LibreOffice Extension Manager (**Tools → Extension Manager → Add**) or from the command line:
 
 ```bash
-sudo dpkg -r libreai
+unopkg add libreai_ubuntu2404_x86_64.oxt
 ```
+
+Restart LibreOffice to activate.
 
 ### Option B — Build from source
 
@@ -68,7 +64,8 @@ sudo dpkg -r libreai
 sudo apt-get install \
     build-essential cmake \
     qt6-base-dev \
-    libreoffice-dev
+    libreoffice-dev \
+    linguist-qt6
 ```
 
 #### 2. Generate UNO headers
@@ -84,7 +81,7 @@ cppumaker -O include \
 #### 3. Build and install the extension
 
 ```bash
-# Build and install directly into your LO user profile
+# Build, package, and install directly into your LO user profile
 bash build.sh --install
 ```
 
@@ -103,19 +100,29 @@ unopkg add -f libreai.oxt
 
 Restart LibreOffice to activate.
 
-#### 4. Package as `.deb` (optional)
-
-```bash
-bash build.sh          # build the .oxt first
-bash package_deb.sh    # wrap into .deb
-sudo dpkg -i libreai_1.0.0_amd64.deb
-```
-
 ---
 
 ## Configuration
 
-On first run, a config file is created at `~/.config/libreai/config.json`:
+On first launch LibreOffice will open the **Configuration** dialog automatically. You can also reach it at any time via **LibreAI → Configuration**.
+
+### General Settings tab
+
+| Setting | Description |
+|---------|-------------|
+| Language | UI language for all LibreAI windows |
+
+Supported languages: English, Suomi, Svenska, Dansk, Norsk, Español, Deutsch, Português.
+
+### Model Selection tab
+
+| Setting | Description |
+|---------|-------------|
+| Provider | Ollama / OpenAI / Claude |
+| Base URL / API Key | Connection details for the selected provider |
+| Model | Click **↺** to fetch available models, then select one |
+
+Settings are saved to `~/.config/libreai/config.json`:
 
 ```json
 {
@@ -124,22 +131,22 @@ On first run, a config file is created at `~/.config/libreai/config.json`:
   "openai_url": "https://api.openai.com/v1",
   "openai_key": "",
   "claude_key": "",
-  "model": ""
+  "model": "",
+  "language": "en"
 }
 ```
-
-All settings are also editable directly from the chat window UI.
 
 ---
 
 ## Usage
 
-1. Open a document in LibreOffice Writer.
-2. Click **LibreAI → Open chat** in the menu bar (or the toolbar button).
-3. Select a provider and click **↺** to load available models.
-4. Select text in your document and click **Grab Selection** (or right-click → **Ask from AI**).
-5. Type an instruction and click **Send** or **Rewrite**.
-6. Click **Apply to Document** to replace the selected text with the AI response.
+1. LibreOffice Writer opens → the LibreAI chat window appears automatically.
+2. If not yet configured, the Configuration dialog opens first — select a provider, enter credentials, refresh and pick a model, then click **OK**.
+3. In the chat window:
+   - Type a question or instruction in **INSTRUCTION / CHAT** and click **Send** for a pure chat message.
+   - Select text in your document and click **Grab Selection** (or right-click → **Grab Selection to LibreAI**) to load it into the **SELECTED TEXT** area, then add an instruction and click **Send** or **Rewrite**.
+   - Click **Apply to Document** to replace the selected text with the AI response.
+4. A spinner animation plays in the response area while the model is processing.
 
 ---
 
@@ -148,26 +155,46 @@ All settings are also editable directly from the chat window UI.
 ```
 LibreAI/
 ├── src/
-│   ├── component.cpp          UNO entry points
-│   ├── LibreAIJob.hpp/cpp     XJobExecutor — menu/toolbar/right-click handler
-│   ├── LibreAIStarter.hpp/cpp XJob — startup; installs context-menu interceptor
-│   ├── CMInterceptor.hpp/cpp  XContextMenuInterceptor — "Ask from AI" item
-│   ├── ChatWindow.hpp/cpp     Qt6 chat window (singleton)
-│   ├── AIClient.hpp           Abstract AI provider base (QObject + signals)
-│   ├── OllamaClient.hpp/cpp   Ollama REST client
-│   ├── OpenAIClient.hpp/cpp   OpenAI REST client
-│   ├── AnthropicClient.hpp/cpp Anthropic Claude REST client
-│   ├── Config.hpp/cpp         JSON config singleton
-│   └── UnoHelper.hpp/cpp      LO UNO utilities (selection, apply text)
-├── META-INF/manifest.xml      Extension manifest
-├── Addons.xcu                 Menu bar + toolbar registration
-├── Jobs.xcu                   Startup job binding
-├── CMakeLists.txt             CMake build definition
-├── build.sh                   Build + package + install script
-├── package_deb.sh             Debian package builder
+│   ├── component.cpp              UNO entry points
+│   ├── LibreAIJob.hpp/cpp         XJobExecutor — menu/toolbar/right-click handler
+│   ├── LibreAIStarter.hpp/cpp     XJob — startup; opens window, installs interceptor
+│   ├── CMInterceptor.hpp/cpp      XContextMenuInterceptor — right-click menu item
+│   ├── ChatWindow.hpp/cpp         Qt6 chat window (singleton)
+│   ├── ConfigDialog.hpp/cpp       Qt6 configuration dialog with tabs (singleton)
+│   ├── AIClient.hpp               Abstract AI provider base (QObject + signals)
+│   ├── OllamaClient.hpp/cpp       Ollama REST client
+│   ├── OpenAIClient.hpp/cpp       OpenAI REST client
+│   ├── AnthropicClient.hpp/cpp    Anthropic Claude REST client
+│   ├── Config.hpp/cpp             JSON config singleton + language loader
+│   └── UnoHelper.hpp/cpp          LO UNO utilities (selection, apply text)
+├── translations/
+│   ├── libreai_fi.ts / .qm        Finnish
+│   ├── libreai_sv.ts / .qm        Swedish
+│   ├── libreai_da.ts / .qm        Danish
+│   ├── libreai_nb.ts / .qm        Norwegian
+│   ├── libreai_es.ts / .qm        Spanish
+│   ├── libreai_de.ts / .qm        German
+│   ├── libreai_pt.ts / .qm        Portuguese
+│   └── libreai_translations.qrc   Qt resource file embedding all .qm files
+├── META-INF/manifest.xml          Extension manifest
+├── Addons.xcu                     Menu bar + toolbar registration (with i18n)
+├── Jobs.xcu                       Startup job bindings
+├── CMakeLists.txt                 CMake build definition
+├── build.sh                       Build + package + install script
 └── spec/
-    └── LibreAI_Specification.md  Full technical specification
+    └── LibreAI_Specification.md   Full technical specification
 ```
+
+---
+
+## Adding a New Language
+
+1. Copy an existing `translations/libreai_fi.ts` to `translations/libreai_XX.ts` (using the BCP 47 language code).
+2. Translate all `<translation>` entries.
+3. Add the language to `kLanguages[]` in `src/ConfigDialog.cpp`.
+4. Add the compiled `.qm` filename to `translations/libreai_translations.qrc`.
+5. Add localized `<value xml:lang="XX">` entries in `Addons.xcu` for the menu items.
+6. Run `lrelease translations/libreai_XX.ts` then `bash build.sh --install`.
 
 ---
 

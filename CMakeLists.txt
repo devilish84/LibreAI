@@ -30,6 +30,23 @@ else()
         ${LO_SDK_LIB}/libuno_sal.so)
 endif()
 
+# Compile .ts → .qm before the build (requires lrelease on PATH)
+find_program(LRELEASE_EXECUTABLE NAMES lrelease lrelease-qt6)
+if(LRELEASE_EXECUTABLE)
+    file(GLOB TS_FILES "${CMAKE_SOURCE_DIR}/translations/*.ts")
+    foreach(TS ${TS_FILES})
+        string(REPLACE ".ts" ".qm" QM ${TS})
+        add_custom_command(
+            OUTPUT  ${QM}
+            COMMAND ${LRELEASE_EXECUTABLE} ${TS} -qm ${QM}
+            DEPENDS ${TS}
+            COMMENT "Compiling ${TS}"
+        )
+        list(APPEND QM_FILES ${QM})
+    endforeach()
+    add_custom_target(translations ALL DEPENDS ${QM_FILES})
+endif()
+
 set(SOURCES
     src/component.cpp
     src/Config.cpp
@@ -39,12 +56,17 @@ set(SOURCES
     src/AnthropicClient.cpp
     src/UnoHelper.cpp
     src/ChatWindow.cpp
+    src/ConfigDialog.cpp
     src/CMInterceptor.cpp
     src/LibreAIJob.cpp
     src/LibreAIStarter.cpp
+    translations/libreai_translations.qrc
 )
 
 add_library(libreai SHARED ${SOURCES})
+if(LRELEASE_EXECUTABLE)
+    add_dependencies(libreai translations)
+endif()
 
 target_include_directories(libreai PRIVATE
     ${LO_INCLUDE}

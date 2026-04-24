@@ -1,6 +1,18 @@
 #include "LibreAIStarter.hpp"
 #include "CMInterceptor.hpp"
+#include "ChatWindow.hpp"
+#include "ConfigDialog.hpp"
+#include "Config.hpp"
 #include "UnoHelper.hpp"
+
+#include <QApplication>
+#include <QCoreApplication>
+#include <QFileInfo>
+
+#ifdef _WIN32
+#include <windows.h>
+extern HMODULE libreai_module_handle();
+#endif
 
 #include <com/sun/star/document/XDocumentEventBroadcaster.hpp>
 #include <com/sun/star/document/XDocumentEventListener.hpp>
@@ -44,8 +56,7 @@ public:
         OUString name = evt.EventName;
         if (!name.equalsAscii("OnViewCreated") &&
             !name.equalsAscii("OnNew") &&
-            !name.equalsAscii("OnLoad") &&
-            !name.equalsAscii("OnFocus")) return;
+            !name.equalsAscii("OnLoad")) return;
         try {
             auto model = Reference<css::frame::XModel>(evt.Source, UNO_QUERY);
             if (!model.is()) return;
@@ -68,9 +79,44 @@ LibreAIStarter::LibreAIStarter(const css::uno::Reference<css::uno::XComponentCon
 css::uno::Any SAL_CALL LibreAIStarter::execute(
     const css::uno::Sequence<css::beans::NamedValue>&)
 {
+    static bool s_listenerAttached = false;
+    static bool s_windowOpened    = false;
+    static int  argc = 0;
+    static char** argv = nullptr;
+
     UnoHelper::setContext(m_ctx);
     installInterceptors();
-    attachDocumentListener();
+
+    if (!s_listenerAttached) {
+        attachDocumentListener();
+        s_listenerAttached = true;
+    }
+
+    if (!s_windowOpened) {
+        s_windowOpened = true;
+        if (!QApplication::instance()) {
+#ifdef _WIN32
+            wchar_t dllPath[MAX_PATH] = {};
+            GetModuleFileNameW(libreai_module_handle(), dllPath, MAX_PATH);
+            QString dllDir = QFileInfo(QString::fromWCharArray(dllPath)).absolutePath();
+            QCoreApplication::addLibraryPath(dllDir);
+#endif
+            new QApplication(argc, argv);
+        }
+        Config::applyLanguage();
+        if (Config::get().isConfigured()) {
+            auto* win = ChatWindow::instance();
+            win->show();
+            win->raise();
+            win->activateWindow();
+        } else {
+            auto* dlg = ConfigDialog::instance();
+            dlg->show();
+            dlg->raise();
+            dlg->activateWindow();
+        }
+    }
+
     return css::uno::Any();
 }
 
@@ -108,16 +154,17 @@ void LibreAIStarter::tryInstallInterceptor(
 {
     if (!frame.is()) return;
     try {
+        sal_IntPtr id = reinterpret_cast<sal_IntPtr>(frame.get());
+        if (s_intercepted.count(id)) return;
+
         auto ctrl = frame->getController();
         if (!ctrl.is()) return;
 
-        sal_IntPtr id = reinterpret_cast<sal_IntPtr>(ctrl.get());
-        if (s_intercepted.count(id)) return;
-        s_intercepted.insert(id);
-
         auto interception = Reference<css::ui::XContextMenuInterception>(ctrl, UNO_QUERY);
-        if (interception.is())
-            interception->registerContextMenuInterceptor(getInterceptor());
+        if (!interception.is()) return;
+
+        interception->registerContextMenuInterceptor(getInterceptor());
+        s_intercepted.insert(id);  // only mark done after successful registration
     } catch (...) {}
 }
 

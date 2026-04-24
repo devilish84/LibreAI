@@ -20,13 +20,38 @@
               <value>service:org.libreai.job?open</value>
             </prop>
             <prop oor:name="Title" oor:type="xs:string">
-              <value xml:lang="en">Open chat</value>
+              <value xml:lang="en">Open LibreAI</value>
+              <value xml:lang="fi">Avaa LibreAI</value>
+              <value xml:lang="sv">Öppna LibreAI</value>
+              <value xml:lang="da">Åbn LibreAI</value>
+              <value xml:lang="nb">Åpne LibreAI</value>
+              <value xml:lang="es">Abrir LibreAI</value>
+              <value xml:lang="de">LibreAI öffnen</value>
+              <value xml:lang="pt">Abrir LibreAI</value>
             </prop>
             <prop oor:name="Target" oor:type="xs:string">
               <value>_self</value>
             </prop>
             <prop oor:name="ImageURL" oor:type="xs:string">
               <value>%origin%/icons/icon_16.png</value>
+            </prop>
+          </node>
+          <node oor:name="m02" oor:op="replace">
+            <prop oor:name="URL" oor:type="xs:string">
+              <value>service:org.libreai.job?config</value>
+            </prop>
+            <prop oor:name="Title" oor:type="xs:string">
+              <value xml:lang="en">Configuration</value>
+              <value xml:lang="fi">Asetukset</value>
+              <value xml:lang="sv">Inställningar</value>
+              <value xml:lang="da">Indstillinger</value>
+              <value xml:lang="nb">Innstillinger</value>
+              <value xml:lang="es">Configuración</value>
+              <value xml:lang="de">Einstellungen</value>
+              <value xml:lang="pt">Configuração</value>
+            </prop>
+            <prop oor:name="Target" oor:type="xs:string">
+              <value>_self</value>
             </prop>
           </node>
         </node>

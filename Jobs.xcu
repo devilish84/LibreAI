@@ -38,6 +38,13 @@
         </node>
       </node>
     </node>
+    <node oor:name="onViewCreated">
+      <node oor:name="JobList">
+        <node oor:name="org.libreai.startjob" oor:op="replace">
+          <prop oor:name="JobProperties"><value/></prop>
+        </node>
+      </node>
+    </node>
   </node>
 
 </oor:component-data>

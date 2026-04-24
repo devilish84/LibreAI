@@ -1,0 +1,12 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/i18n">
+        <file>libreai_fi.qm</file>
+        <file>libreai_sv.qm</file>
+        <file>libreai_da.qm</file>
+        <file>libreai_nb.qm</file>
+        <file>libreai_es.qm</file>
+        <file>libreai_de.qm</file>
+        <file>libreai_pt.qm</file>
+    </qresource>
+</RCC>

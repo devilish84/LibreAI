@@ -10,9 +10,12 @@ struct Config {
     QString  openaiKey;
     QString  claudeKey;
     QString  model;
+    QString  language   = "en";
 
     static Config& get();
     void save() const;
+    bool isConfigured() const;
+    static void applyLanguage();
 
 private:
     Config();

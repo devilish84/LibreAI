@@ -1,5 +1,6 @@
 #include "CMInterceptor.hpp"
 
+#include <QCoreApplication>
 #include <com/sun/star/beans/XPropertySet.hpp>
 #include <com/sun/star/container/XIndexContainer.hpp>
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
@@ -33,8 +34,9 @@ CMInterceptor::notifyContextMenuExecute(const css::ui::ContextMenuExecuteEvent& 
         auto item = msf->createInstance("com.sun.star.ui.ActionTrigger");
         auto props = Reference<css::beans::XPropertySet>(item, UNO_QUERY);
         if (props.is()) {
+            QString label = QCoreApplication::translate("CMInterceptor", "Grab Selection to LibreAI");
             props->setPropertyValue("Text",
-                css::uno::Any(rtl::OUString::createFromAscii("Ask from AI")));
+                css::uno::Any(rtl::OUString(label.utf16())));
             props->setPropertyValue("CommandURL",
                 css::uno::Any(rtl::OUString::createFromAscii(
                     "service:org.libreai.job?open_with_sel")));

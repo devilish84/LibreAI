@@ -1,9 +1,11 @@
 #include "Config.hpp"
+#include <QApplication>
 #include <QDir>
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QStandardPaths>
+#include <QTranslator>
 
 static QString configPath() {
     QString dir = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
@@ -26,6 +28,7 @@ Config::Config() {
     openaiKey = obj["openai_key"].toString();
     claudeKey = obj["claude_key"].toString();
     model     = obj["model"].toString();
+    language  = obj["language"].toString("en");
 }
 
 Config& Config::get() {
@@ -42,8 +45,37 @@ void Config::save() const {
     obj["openai_key"] = openaiKey;
     obj["claude_key"] = claudeKey;
     obj["model"]      = model;
+    obj["language"]   = language;
 
     QFile f(configPath());
     if (f.open(QIODevice::WriteOnly))
         f.write(QJsonDocument(obj).toJson());
+}
+
+bool Config::isConfigured() const {
+    if (model.isEmpty()) return false;
+    switch (provider) {
+        case Provider::Ollama: return !ollamaUrl.isEmpty();
+        case Provider::OpenAI: return !openaiKey.isEmpty();
+        case Provider::Claude: return !claudeKey.isEmpty();
+    }
+    return false;
+}
+
+void Config::applyLanguage() {
+    static QTranslator* s_translator = nullptr;
+    if (s_translator) {
+        QApplication::removeTranslator(s_translator);
+        delete s_translator;
+        s_translator = nullptr;
+    }
+    const QString& lang = Config::get().language;
+    if (lang == "en") return;
+    s_translator = new QTranslator();
+    if (!s_translator->load(":/i18n/libreai_" + lang + ".qm")) {
+        delete s_translator;
+        s_translator = nullptr;
+    } else {
+        QApplication::installTranslator(s_translator);
+    }
 }
