@@ -1,0 +1,64 @@
+name: Tests
+
+on:
+  push:
+    branches: [development, main]
+  pull_request:
+    branches: [development, main]
+
+jobs:
+  unit-tests:
+    name: Unit Tests (Google Test)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            qt6-base-dev libreoffice-dev \
+            libgtest-dev cmake linguist-qt6
+
+      - name: Build with tests
+        run: |
+          cmake -S . -B build \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DBUILD_TESTS=ON \
+            -Wno-dev
+          cmake --build build --parallel $(nproc)
+
+      - name: Run unit tests
+        run: ctest --test-dir build --output-on-failure
+
+  integration-tests:
+    name: Integration Tests (pytest + python-uno)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            qt6-base-dev libreoffice libreoffice-dev \
+            python3-uno xvfb zip linguist-qt6
+
+      - name: Build and package OXT
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -Wno-dev
+          cmake --build build --parallel $(nproc)
+          mkdir -p pkg oxt
+          cp build/libreai.so pkg/
+          ldd build/libreai.so | grep -i 'Qt6' | awk '{print $3}' | xargs -I{} cp {} pkg/
+          cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons oxt/
+          cp -r pkg/. oxt/
+          cd oxt && zip -r ../libreai.oxt .
+
+      - name: Install OXT into LibreOffice
+        run: unopkg add --shared libreai.oxt
+
+      - name: Run integration tests (headless)
+        run: |
+          pip install pytest
+          xvfb-run -a pytest tests/integration/ -v --timeout=60
