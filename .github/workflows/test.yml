@@ -56,7 +56,7 @@ jobs:
           cd oxt && zip -r ../libreai.oxt .
 
       - name: Install OXT into LibreOffice
-        run: unopkg add --shared libreai.oxt
+        run: unopkg add libreai.oxt
 
       - name: Run integration tests (headless)
         run: |
