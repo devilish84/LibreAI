@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oor:component-data
+    oor:name="UIElementFactoryManager"
+    oor:package="org.openoffice.Office.UI"
+    xmlns:oor="http://openoffice.org/2001/registry"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <node oor:name="Registered">
+    <node oor:name="UIElementTypes">
+      <node oor:name="private:resource/toolpanel/org.libreai/" oor:op="replace">
+        <prop oor:name="ImplementationName" oor:type="xs:string">
+          <value>org.libreai.SidebarFactory</value>
+        </prop>
+      </node>
+    </node>
+  </node>
+
+</oor:component-data>

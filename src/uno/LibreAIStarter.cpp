@@ -1,9 +1,9 @@
 #include "LibreAIStarter.hpp"
 #include "CMInterceptor.hpp"
-#include "ChatWindow.hpp"
-#include "ConfigDialog.hpp"
-#include "Config.hpp"
-#include "Logger.hpp"
+#include "../ui/ChatWindow.hpp"
+#include "../ui/ConfigDialog.hpp"
+#include "../Config.hpp"
+#include "../Logger.hpp"
 #include "UnoHelper.hpp"
 
 #include <QApplication>

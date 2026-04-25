@@ -48,19 +48,19 @@ if(LRELEASE_EXECUTABLE)
 endif()
 
 set(SOURCES
-    src/component.cpp
+    src/uno/component.cpp
     src/Config.cpp
-    src/AIClient.cpp
-    src/OllamaClient.cpp
-    src/OpenAIClient.cpp
-    src/AnthropicClient.cpp
-    src/UnoHelper.cpp
-    src/ChatWindow.cpp
-    src/ConfigDialog.cpp
-    src/CMInterceptor.cpp
+    src/ai/AIClient.cpp
+    src/ai/OllamaClient.cpp
+    src/ai/OpenAIClient.cpp
+    src/ai/AnthropicClient.cpp
+    src/uno/UnoHelper.cpp
+    src/ui/ChatWindow.cpp
+    src/ui/ConfigDialog.cpp
+    src/uno/CMInterceptor.cpp
     src/Logger.cpp
-    src/LibreAIJob.cpp
-    src/LibreAIStarter.cpp
+    src/uno/LibreAIJob.cpp
+    src/uno/LibreAIStarter.cpp
     translations/libreai_translations.qrc
 )
 
@@ -73,6 +73,9 @@ target_include_directories(libreai PRIVATE
     ${LO_INCLUDE}
     ${LO_GEN_INCLUDE}
     ${CMAKE_SOURCE_DIR}/src
+    ${CMAKE_SOURCE_DIR}/src/ai
+    ${CMAKE_SOURCE_DIR}/src/ui
+    ${CMAKE_SOURCE_DIR}/src/uno
 )
 
 target_link_libraries(libreai PRIVATE

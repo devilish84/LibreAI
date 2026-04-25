@@ -1,10 +1,10 @@
 #include "ConfigDialog.hpp"
 #include "ChatWindow.hpp"
-#include "Config.hpp"
-#include "Logger.hpp"
-#include "OllamaClient.hpp"
-#include "OpenAIClient.hpp"
-#include "AnthropicClient.hpp"
+#include "../Config.hpp"
+#include "../Logger.hpp"
+#include "../ai/OllamaClient.hpp"
+#include "../ai/OpenAIClient.hpp"
+#include "../ai/AnthropicClient.hpp"
 
 #include <QCheckBox>
 #include <QComboBox>
@@ -13,7 +13,6 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
-#include <QMessageBox>
 #include <QPushButton>
 #include <QTabWidget>
 #include <QVBoxLayout>
@@ -230,6 +229,27 @@ void ConfigDialog::applyTheme() {
             font-weight: normal;
         }
         QPushButton#btn2:hover { background: #4a4a4a; }
+        QCheckBox {
+            color: %2;
+            spacing: 6px;
+        }
+        QCheckBox::indicator {
+            width: 14px;
+            height: 14px;
+            border: 1px solid %5;
+            border-radius: 2px;
+            background: %4;
+        }
+        QCheckBox::indicator:checked {
+            background: %6;
+            border-color: %6;
+        }
+        QLabel:disabled, QComboBox:disabled {
+            color: %3;
+        }
+        QComboBox:disabled {
+            background: %7;
+        }
     )")
     .arg(C_BG, C_TEXT, C_MUTED, C_SURFACE, C_BORDER, C_BTN, C_BTN2));
 }
@@ -281,12 +301,6 @@ void ConfigDialog::onRefreshModels() {
 }
 
 void ConfigDialog::onOk() {
-    if (m_modelBox->currentText().isEmpty()) {
-        QMessageBox::warning(this, tr("Configuration"),
-            tr("Please select a model before continuing."));
-        return;
-    }
-
     auto& cfg = Config::get();
 
     // Save language

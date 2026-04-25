@@ -1,9 +1,9 @@
 #include "ChatWindow.hpp"
-#include "Config.hpp"
-#include "UnoHelper.hpp"
-#include "OllamaClient.hpp"
-#include "OpenAIClient.hpp"
-#include "AnthropicClient.hpp"
+#include "../Config.hpp"
+#include "../uno/UnoHelper.hpp"
+#include "../ai/OllamaClient.hpp"
+#include "../ai/OpenAIClient.hpp"
+#include "../ai/AnthropicClient.hpp"
 
 #include <QApplication>
 #include <QEvent>

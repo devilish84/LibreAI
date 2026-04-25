@@ -1,8 +1,8 @@
 #include "LibreAIJob.hpp"
 #include "LibreAIStarter.hpp"
-#include "ChatWindow.hpp"
-#include "ConfigDialog.hpp"
-#include "Config.hpp"
+#include "../ui/ChatWindow.hpp"
+#include "../ui/ConfigDialog.hpp"
+#include "../Config.hpp"
 #include "UnoHelper.hpp"
 
 #include <QApplication>

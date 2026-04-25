@@ -81,6 +81,8 @@ void initLogging() {
     }
 
     qInstallMessageHandler(messageHandler);
+    // Log the startup message outside the lock — messageHandler re-acquires it
+    lock.unlock();
     qInfo() << "LibreAI logging started — level" << cfg.logLevel;
 }
 

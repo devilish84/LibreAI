@@ -1,5 +1,5 @@
 #pragma once
-#include "AIClient.hpp"
+#include "../ai/AIClient.hpp"
 #include <QWidget>
 #include <QVector>
 
