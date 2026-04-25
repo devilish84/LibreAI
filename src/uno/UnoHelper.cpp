@@ -11,9 +11,6 @@
 #include <com/sun/star/container/XIndexAccess.hpp>
 #include <com/sun/star/drawing/XDrawView.hpp>
 #include <com/sun/star/drawing/XShape.hpp>
-#include <com/sun/star/drawing/XShapeDescriptor.hpp>
-#include <com/sun/star/sheet/XCellRangeAddressable.hpp>
-#include <com/sun/star/sheet/XSpreadsheetView.hpp>
 #include <com/sun/star/table/XCell.hpp>
 #include <com/sun/star/table/XCellRange.hpp>
 #include <com/sun/star/view/XSelectionSupplier.hpp>
@@ -27,6 +24,11 @@ namespace css = ::com::sun::star;
 using namespace css::uno;
 
 static Reference<XComponentContext> g_ctx;
+
+// Remembered targets so Apply works after the LO window loses focus
+static Reference<css::text::XText>      g_impressTarget;  // Impress shape text
+static Reference<css::text::XTextRange> g_calcTarget;     // Calc cell text range
+static Reference<css::text::XTextViewCursor> g_writerCursor; // Writer cursor
 
 namespace UnoHelper {
 
@@ -57,20 +59,45 @@ static OUString qToOu(const QString& s) {
     return OUString(reinterpret_cast<const sal_Unicode*>(s.utf16()), s.length());
 }
 
+// ── app detection ─────────────────────────────────────────────────────────────
+
+enum class AppType { Unknown, Writer, Impress, Calc };
+
+static AppType detectApp(const Reference<css::frame::XController>& ctrl) {
+    auto si = Reference<css::lang::XServiceInfo>(ctrl, UNO_QUERY);
+    if (si.is()) {
+        if (si->supportsService("com.sun.star.presentation.PresentationController") ||
+            si->supportsService("com.sun.star.drawing.DrawingDocumentDrawView"))
+            return AppType::Impress;
+        if (si->supportsService("com.sun.star.sheet.SpreadsheetViewSettings"))
+            return AppType::Calc;
+        if (si->supportsService("com.sun.star.text.TextDocumentView"))
+            return AppType::Writer;
+    }
+    // Fallback: structural check
+    if (Reference<css::drawing::XDrawView>(ctrl, UNO_QUERY).is())
+        return AppType::Impress;
+    return AppType::Writer;
+}
+
 // ── Writer ────────────────────────────────────────────────────────────────────
 
 static QString writerGetSelection(const Reference<css::frame::XController>& ctrl) {
-    // Try XTextViewCursorSupplier first (Writer native cursor)
+    // Remember cursor for later apply
+    g_writerCursor.clear();
+    g_impressTarget.clear();
+    g_calcTarget.clear();
+
     auto tvcs = Reference<css::text::XTextViewCursorSupplier>(ctrl, UNO_QUERY);
     if (tvcs.is()) {
         auto cur = tvcs->getViewCursor();
         auto range = Reference<css::text::XTextRange>(cur, UNO_QUERY);
-        if (range.is()) {
-            auto s = range->getString();
-            if (!s.isEmpty()) return ouToQ(s);
+        if (range.is() && !range->getString().isEmpty()) {
+            g_writerCursor = cur;
+            return ouToQ(range->getString());
         }
     }
-    // Fall back to XSelectionSupplier (also works for Writer frames / tables)
+    // Fall back to XSelectionSupplier
     auto ss = Reference<css::view::XSelectionSupplier>(ctrl, UNO_QUERY);
     if (ss.is()) {
         auto sel = ss->getSelection();
@@ -83,19 +110,19 @@ static QString writerGetSelection(const Reference<css::frame::XController>& ctrl
     return {};
 }
 
-static void writerSetText(const Reference<css::frame::XController>& ctrl,
-                          const QString& text)
-{
-    auto tvcs = Reference<css::text::XTextViewCursorSupplier>(ctrl, UNO_QUERY);
-    if (!tvcs.is()) return;
-    auto cur = tvcs->getViewCursor();
-    auto range = Reference<css::text::XTextRange>(cur, UNO_QUERY);
+static void writerSetText(const QString& text) {
+    if (!g_writerCursor.is()) return;
+    auto range = Reference<css::text::XTextRange>(g_writerCursor, UNO_QUERY);
     if (range.is()) range->setString(qToOu(text));
 }
 
 // ── Impress / Draw ────────────────────────────────────────────────────────────
 
 static QString impressGetSelection(const Reference<css::frame::XController>& ctrl) {
+    g_writerCursor.clear();
+    g_impressTarget.clear();
+    g_calcTarget.clear();
+
     auto ss = Reference<css::view::XSelectionSupplier>(ctrl, UNO_QUERY);
     if (!ss.is()) return {};
     auto sel = ss->getSelection();
@@ -105,51 +132,38 @@ static QString impressGetSelection(const Reference<css::frame::XController>& ctr
     QString result;
     sal_Int32 n = ia->getCount();
     for (sal_Int32 i = 0; i < n; ++i) {
-        // Each selected item may be a shape with an XText
         auto shape = Reference<css::drawing::XShape>(ia->getByIndex(i), UNO_QUERY);
         if (!shape.is()) continue;
         auto xt = Reference<css::text::XText>(shape, UNO_QUERY);
         if (!xt.is()) continue;
         QString part = ouToQ(xt->getString());
-        if (!part.isEmpty()) {
-            if (!result.isEmpty()) result += '\n';
-            result += part;
-        }
+        if (!result.isEmpty()) result += '\n';
+        result += part;
+        // Remember the first shape as the apply target
+        if (!g_impressTarget.is()) g_impressTarget = xt;
     }
     return result;
 }
 
-static void impressSetText(const Reference<css::frame::XController>& ctrl,
-                           const QString& text)
-{
-    auto ss = Reference<css::view::XSelectionSupplier>(ctrl, UNO_QUERY);
-    if (!ss.is()) return;
-    auto sel = ss->getSelection();
-    auto ia = Reference<css::container::XIndexAccess>(sel, UNO_QUERY);
-    if (!ia.is() || ia->getCount() == 0) return;
-
-    // Apply to the first selected shape that has text
-    auto shape = Reference<css::drawing::XShape>(ia->getByIndex(0), UNO_QUERY);
-    if (!shape.is()) return;
-    auto xt = Reference<css::text::XText>(shape, UNO_QUERY);
-    if (xt.is()) xt->setString(qToOu(text));
+static void impressSetText(const QString& text) {
+    if (g_impressTarget.is())
+        g_impressTarget->setString(qToOu(text));
 }
 
 // ── Calc ──────────────────────────────────────────────────────────────────────
 
 static QString calcGetSelection(const Reference<css::frame::XController>& ctrl) {
+    g_writerCursor.clear();
+    g_impressTarget.clear();
+    g_calcTarget.clear();
+
     auto ss = Reference<css::view::XSelectionSupplier>(ctrl, UNO_QUERY);
     if (!ss.is()) return {};
     auto sel = ss->getSelection();
 
-    // Single cell or range — both expose XCellRange
-    auto range = Reference<css::table::XCellRange>(sel, UNO_QUERY);
-    if (!range.is()) return {};
-
-    // XIndexAccess gives us the individual cells in a multi-selection
+    // Multi-range (Ctrl+click) — XIndexAccess over ranges
     auto ia = Reference<css::container::XIndexAccess>(sel, UNO_QUERY);
-    if (ia.is()) {
-        // Multi-range selection (Ctrl+click multiple cells)
+    if (ia.is() && ia->getCount() > 0) {
         QString result;
         for (sal_Int32 i = 0; i < ia->getCount(); ++i) {
             auto sub = Reference<css::table::XCellRange>(ia->getByIndex(i), UNO_QUERY);
@@ -158,54 +172,27 @@ static QString calcGetSelection(const Reference<css::frame::XController>& ctrl) 
             if (!cell.is()) continue;
             auto tr = Reference<css::text::XTextRange>(cell, UNO_QUERY);
             if (!tr.is()) continue;
-            QString part = ouToQ(tr->getString());
-            if (!part.isEmpty()) {
-                if (!result.isEmpty()) result += '\n';
-                result += part;
-            }
+            if (!result.isEmpty()) result += '\n';
+            result += ouToQ(tr->getString());
+            if (!g_calcTarget.is()) g_calcTarget = tr;
         }
         return result;
     }
 
-    // Simple single-cell selection
+    // Single cell / range
+    auto range = Reference<css::table::XCellRange>(sel, UNO_QUERY);
+    if (!range.is()) return {};
     auto cell = Reference<css::table::XCell>(range->getCellByPosition(0, 0), UNO_QUERY);
     if (!cell.is()) return {};
     auto tr = Reference<css::text::XTextRange>(cell, UNO_QUERY);
-    return tr.is() ? ouToQ(tr->getString()) : QString{};
+    if (!tr.is()) return {};
+    g_calcTarget = tr;
+    return ouToQ(tr->getString());
 }
 
-static void calcSetText(const Reference<css::frame::XController>& ctrl,
-                        const QString& text)
-{
-    auto ss = Reference<css::view::XSelectionSupplier>(ctrl, UNO_QUERY);
-    if (!ss.is()) return;
-    auto sel = ss->getSelection();
-    auto range = Reference<css::table::XCellRange>(sel, UNO_QUERY);
-    if (!range.is()) return;
-    auto cell = Reference<css::table::XCell>(range->getCellByPosition(0, 0), UNO_QUERY);
-    if (!cell.is()) return;
-    auto tr = Reference<css::text::XTextRange>(cell, UNO_QUERY);
-    if (tr.is()) tr->setString(qToOu(text));
-}
-
-// ── detect app and dispatch ───────────────────────────────────────────────────
-
-enum class AppType { Unknown, Writer, Impress, Calc };
-
-static AppType detectApp(const Reference<css::frame::XController>& ctrl) {
-    auto si = Reference<css::lang::XServiceInfo>(ctrl, UNO_QUERY);
-    if (!si.is()) return AppType::Unknown;
-    if (si->supportsService("com.sun.star.presentation.PresentationController") ||
-        si->supportsService("com.sun.star.drawing.DrawingDocumentDrawView"))
-        return AppType::Impress;
-    if (si->supportsService("com.sun.star.sheet.SpreadsheetViewSettings"))
-        return AppType::Calc;
-    if (si->supportsService("com.sun.star.text.TextDocumentView"))
-        return AppType::Writer;
-    // Fallback: check draw view (Impress/Draw without explicit service name)
-    if (Reference<css::drawing::XDrawView>(ctrl, UNO_QUERY).is())
-        return AppType::Impress;
-    return AppType::Writer; // assume Writer for unknown controllers
+static void calcSetText(const QString& text) {
+    if (g_calcTarget.is())
+        g_calcTarget->setString(qToOu(text));
 }
 
 // ── public API ────────────────────────────────────────────────────────────────
@@ -228,16 +215,22 @@ QString getSelectedText() {
 
 void applyText(const QString& text) {
     try {
+        // Use remembered targets — selection may have been lost when
+        // the user clicked into the LibreAI window
+        if (g_impressTarget.is()) { impressSetText(text); return; }
+        if (g_calcTarget.is())    { calcSetText(text);    return; }
+        if (g_writerCursor.is())  { writerSetText(text);  return; }
+
+        // No remembered target — fall back to live selection (Writer only)
         auto frame = getCurrentFrame();
         if (!frame.is()) return;
         auto ctrl = frame->getController();
         if (!ctrl.is()) return;
-
-        switch (detectApp(ctrl)) {
-            case AppType::Impress: impressSetText(ctrl, text); break;
-            case AppType::Calc:    calcSetText(ctrl, text);    break;
-            default:               writerSetText(ctrl, text);  break;
-        }
+        auto tvcs = Reference<css::text::XTextViewCursorSupplier>(ctrl, UNO_QUERY);
+        if (!tvcs.is()) return;
+        auto cur = tvcs->getViewCursor();
+        auto range = Reference<css::text::XTextRange>(cur, UNO_QUERY);
+        if (range.is()) range->setString(qToOu(text));
     } catch (...) {}
 }
 
