@@ -58,6 +58,7 @@ set(SOURCES
     src/ChatWindow.cpp
     src/ConfigDialog.cpp
     src/CMInterceptor.cpp
+    src/Logger.cpp
     src/LibreAIJob.cpp
     src/LibreAIStarter.cpp
     translations/libreai_translations.qrc

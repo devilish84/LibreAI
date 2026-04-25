@@ -3,6 +3,7 @@
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
+class QCheckBox;
 class QComboBox;
 class QLabel;
 class QLineEdit;
@@ -34,6 +35,9 @@ private:
     // General Settings tab
     QLabel*      m_langLabel;
     QComboBox*   m_langBox;
+    QCheckBox*   m_logEnabledBox;
+    QLabel*      m_logLevelLabel;
+    QComboBox*   m_logLevelBox;
 
     // Model Selection tab
     QLabel*      m_providerLabel;

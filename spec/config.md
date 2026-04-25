@@ -15,6 +15,8 @@ struct Config {
     QString  claudeKey;
     QString  model;
     QString  language   = "en";
+    bool     loggingEnabled = false;
+    int      logLevel       = 1;   // 0=Debug  1=Info  2=Error
 
     static Config& get();
     void save() const;
@@ -40,7 +42,9 @@ Created automatically by `QStandardPaths::AppConfigLocation` on first save.
   "openai_key":  "",
   "claude_key":  "",
   "model":       "",
-  "language":    "en"
+  "language":        "en",
+  "logging_enabled": false,
+  "log_level":       1
 }
 ```
 
@@ -53,6 +57,8 @@ Created automatically by `QStandardPaths::AppConfigLocation` on first save.
 | `claude_key` | string | Anthropic API key |
 | `model` | string | Model identifier string |
 | `language` | string | Two-letter language code (see [i18n.md](i18n.md)) |
+| `logging_enabled` | bool | `true` = write log file, default `false` |
+| `log_level` | int | `0`=Debug `1`=Info `2`=Error, default `1` |
 
 ---
 
@@ -75,3 +81,9 @@ English (`"en"`) skips the translator entirely — the source strings are Englis
 The previous translator is removed and deleted before installing the new one.
 
 Called on startup by `LibreAIStarter` and on save by `ConfigDialog` when the language changes.
+
+---
+
+## initLogging() / closeLogging()
+
+Defined in `src/Logger.hpp` / `src/Logger.cpp`. Installs a custom `QtMessageHandler` that writes timestamped lines to `~/.config/libreai/libreai.log` when `loggingEnabled` is true. Messages below `logLevel` are silently dropped. Thread-safe via `QMutex`. Re-calling `initLogging()` after a settings change takes effect immediately.

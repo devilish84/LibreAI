@@ -28,7 +28,9 @@ Config::Config() {
     openaiKey = obj["openai_key"].toString();
     claudeKey = obj["claude_key"].toString();
     model     = obj["model"].toString();
-    language  = obj["language"].toString("en");
+    language       = obj["language"].toString("en");
+    loggingEnabled = obj["logging_enabled"].toBool(false);
+    logLevel       = obj["log_level"].toInt(1);
 }
 
 Config& Config::get() {
@@ -45,7 +47,9 @@ void Config::save() const {
     obj["openai_key"] = openaiKey;
     obj["claude_key"] = claudeKey;
     obj["model"]      = model;
-    obj["language"]   = language;
+    obj["language"]        = language;
+    obj["logging_enabled"] = loggingEnabled;
+    obj["log_level"]       = logLevel;
 
     QFile f(configPath());
     if (f.open(QIODevice::WriteOnly))

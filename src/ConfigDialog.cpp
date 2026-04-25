@@ -1,10 +1,12 @@
 #include "ConfigDialog.hpp"
 #include "ChatWindow.hpp"
 #include "Config.hpp"
+#include "Logger.hpp"
 #include "OllamaClient.hpp"
 #include "OpenAIClient.hpp"
 #include "AnthropicClient.hpp"
 
+#include <QCheckBox>
 #include <QComboBox>
 #include <QEvent>
 #include <QFormLayout>
@@ -83,6 +85,25 @@ void ConfigDialog::buildUi() {
     }
 
     generalForm->addRow(m_langLabel, m_langBox);
+
+    // Logging controls
+    m_logEnabledBox = new QCheckBox();
+    m_logEnabledBox->setChecked(Config::get().loggingEnabled);
+    generalForm->addRow(m_logEnabledBox);
+
+    m_logLevelLabel = new QLabel();
+    m_logLevelBox   = new QComboBox();
+    m_logLevelBox->addItems({"Debug", "Info", "Error"});
+    m_logLevelBox->setCurrentIndex(Config::get().logLevel);
+    m_logLevelBox->setEnabled(Config::get().loggingEnabled);
+    m_logLevelLabel->setEnabled(Config::get().loggingEnabled);
+    generalForm->addRow(m_logLevelLabel, m_logLevelBox);
+
+    connect(m_logEnabledBox, &QCheckBox::toggled, this, [this](bool on) {
+        m_logLevelBox->setEnabled(on);
+        m_logLevelLabel->setEnabled(on);
+    });
+
     m_tabs->addTab(generalPage, "");
 
     // ── Model Selection tab ───────────────────────────────────────────────
@@ -142,6 +163,8 @@ void ConfigDialog::retranslateUi() {
     m_tabs->setTabText(0, tr("General Settings"));
     m_tabs->setTabText(1, tr("Model Selection"));
     m_langLabel->setText(tr("LANGUAGE"));
+    m_logEnabledBox->setText(tr("Enable logging"));
+    m_logLevelLabel->setText(tr("LEVEL"));
     m_providerLabel->setText(tr("PROVIDER"));
     m_modelLabel->setText(tr("MODEL"));
     m_okBtn->setText(tr("OK"));
@@ -278,8 +301,11 @@ void ConfigDialog::onOk() {
         case Provider::OpenAI:  cfg.openaiKey = m_connEdit->text(); break;
         case Provider::Claude:  cfg.claudeKey = m_connEdit->text(); break;
     }
-    cfg.model = m_modelBox->currentText();
+    cfg.model          = m_modelBox->currentText();
+    cfg.loggingEnabled = m_logEnabledBox->isChecked();
+    cfg.logLevel       = m_logLevelBox->currentIndex();
     cfg.save();
+    initLogging();
 
     if (langChanged) {
         Config::applyLanguage();

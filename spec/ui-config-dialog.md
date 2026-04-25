@@ -26,11 +26,16 @@ Also opened explicitly by `LibreAIJob::trigger("config")`.
 
 Fields shown/hidden based on the selected provider (Ollama shows URL only; OpenAI shows URL + key; Claude shows key only).
 
-### Tab 2 — General Settings
+### Tab 1 — General Settings
 
 | Control | Type | Purpose |
 |---------|------|---------|
 | Language | `QComboBox` | UI language selector |
+| Enable logging | `QCheckBox` | Enables writing log output to file (default: off) |
+| Level | `QComboBox` | Minimum log level: Debug / Info / Error (default: Info) |
+
+The Level combo and its label are disabled when the checkbox is unchecked.  
+Log file path: `~/.config/libreai/libreai.log` (fixed, not user-configurable).
 
 Language choices are defined in `kLanguages[]` in `ConfigDialog.cpp`:
 

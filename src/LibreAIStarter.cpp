@@ -3,6 +3,7 @@
 #include "ChatWindow.hpp"
 #include "ConfigDialog.hpp"
 #include "Config.hpp"
+#include "Logger.hpp"
 #include "UnoHelper.hpp"
 
 #include <QApplication>
@@ -104,6 +105,7 @@ css::uno::Any SAL_CALL LibreAIStarter::execute(
             new QApplication(argc, argv);
         }
         Config::applyLanguage();
+        initLogging();
         if (Config::get().isConfigured()) {
             auto* win = ChatWindow::instance();
             win->show();

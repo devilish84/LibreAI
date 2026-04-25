@@ -87,6 +87,33 @@ TEST(ConfigDefaults, ProviderEnumIsAlwaysValid) {
                 c.provider == Provider::Claude);
 }
 
+// ---- logging ---------------------------------------------------------------
+
+TEST(ConfigLogging, DefaultsToDisabled) {
+    Config& c = Config::get();
+    c.loggingEnabled = false;
+    c.logLevel       = 1;
+    EXPECT_FALSE(c.loggingEnabled);
+    EXPECT_EQ(c.logLevel, 1);
+}
+
+TEST(ConfigLogging, RoundTrip) {
+    Config& c = Config::get();
+    c.loggingEnabled = true;
+    c.logLevel       = 0;
+    c.save();
+
+    QString path = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)
+                   + "/config.json";
+    QFile f(path);
+    ASSERT_TRUE(f.open(QIODevice::ReadOnly));
+    QByteArray data = f.readAll();
+    EXPECT_TRUE(data.contains("\"logging_enabled\": true") ||
+                data.contains("\"logging_enabled\":true"));
+    EXPECT_TRUE(data.contains("\"log_level\": 0") ||
+                data.contains("\"log_level\":0"));
+}
+
 int main(int argc, char** argv) {
     QCoreApplication app(argc, argv);
     QCoreApplication::setApplicationName("libreai");
