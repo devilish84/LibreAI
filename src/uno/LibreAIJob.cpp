@@ -2,7 +2,7 @@
 #include "LibreAIStarter.hpp"
 #include "../ui/ChatWindow.hpp"
 #include "../ui/ConfigDialog.hpp"
-#include "../Config.hpp"
+#include "../core/Config.hpp"
 #include "UnoHelper.hpp"
 
 #include <QApplication>

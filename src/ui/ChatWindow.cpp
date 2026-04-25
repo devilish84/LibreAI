@@ -1,5 +1,5 @@
 #include "ChatWindow.hpp"
-#include "../Config.hpp"
+#include "../core/Config.hpp"
 #include "../uno/UnoHelper.hpp"
 #include "../ai/OllamaClient.hpp"
 #include "../ai/OpenAIClient.hpp"

@@ -2,8 +2,8 @@
 #include "CMInterceptor.hpp"
 #include "../ui/ChatWindow.hpp"
 #include "../ui/ConfigDialog.hpp"
-#include "../Config.hpp"
-#include "../Logger.hpp"
+#include "../core/Config.hpp"
+#include "../core/Logger.hpp"
 #include "UnoHelper.hpp"
 
 #include <QApplication>
