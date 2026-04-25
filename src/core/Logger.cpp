@@ -4,12 +4,15 @@
 #include <QDateTime>
 #include <QDir>
 #include <QFile>
+#include <QLoggingCategory>
 #include <QMutex>
 #include <QStandardPaths>
 #include <QtMessageHandler>
 
-static QFile*  s_logFile   = nullptr;
-static int     s_minLevel  = 1;   // mirrors Config::logLevel
+Q_LOGGING_CATEGORY(lcLogger, "libreai.logger")
+
+static QFile*  s_logFile  = nullptr;
+static int     s_minLevel = 1;   // 0=Debug 1=Info 2=Error
 static QMutex  s_mutex;
 
 static const char* levelName(QtMsgType type) {
@@ -40,13 +43,24 @@ static void messageHandler(QtMsgType type,
 {
     if (msgTypeToInt(type) < s_minLevel) return;
 
+    // At debug level, suppress Qt-internal categories to reduce noise
+    if (type == QtDebugMsg && ctx.category
+            && qstrncmp(ctx.category, "libreai", 7) != 0) return;
+
     QMutexLocker lock(&s_mutex);
     if (!s_logFile || !s_logFile->isOpen()) return;
 
-    QString line = QString("[%1] [%2] %3: %4\n")
-        .arg(QDateTime::currentDateTime().toString(Qt::ISODate))
+    // Show the part after "libreai." for brevity
+    QString cat;
+    if (ctx.category && qstrncmp(ctx.category, "libreai.", 8) == 0)
+        cat = QLatin1String(ctx.category + 8);
+    else if (ctx.category)
+        cat = QLatin1String(ctx.category);
+
+    QString line = QString("[%1] [%2] [%3] %4\n")
+        .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss.zzz"))
         .arg(QLatin1String(levelName(type)))
-        .arg(ctx.function ? QLatin1String(ctx.function) : QLatin1String(""))
+        .arg(cat)
         .arg(msg);
 
     s_logFile->write(line.toUtf8());
@@ -56,7 +70,7 @@ static void messageHandler(QtMsgType type,
 void initLogging() {
     QMutexLocker lock(&s_mutex);
 
-    // Always close any existing log first
+    // Always close previous handler first
     if (s_logFile) {
         s_logFile->close();
         delete s_logFile;
@@ -65,15 +79,27 @@ void initLogging() {
     }
 
     const Config& cfg = Config::get();
-    if (!cfg.loggingEnabled) return;
 
-    // logLevel: 0=Debug → QtDebugMsg, 1=Info → QtInfoMsg, 2=Error → QtCriticalMsg
-    s_minLevel = cfg.logLevel;
+    // Log file is ALWAYS written.
+    // loggingEnabled=false  → Info level (warnings + events, no debug detail)
+    // loggingEnabled=true   → honour logLevel: 0=Debug, 1=Info, 2=Error
+    s_minLevel = cfg.loggingEnabled ? cfg.logLevel : 1;
+
+    // Enable libreai.* categories according to the effective level
+    QString rules;
+    if (s_minLevel == 0)
+        rules = "libreai.*=true";
+    else if (s_minLevel == 1)
+        rules = "libreai.*=true\nlibreai.*.debug=false";
+    else
+        rules = "libreai.*=false\nlibreai.*.warning=true\nlibreai.*.critical=true";
+    QLoggingCategory::setFilterRules(rules);
 
     QString dir = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
     QDir().mkpath(dir);
+    QString path = dir + "/libreai.log";
 
-    s_logFile = new QFile(dir + "/libreai.log");
+    s_logFile = new QFile(path);
     if (!s_logFile->open(QIODevice::Append | QIODevice::Text)) {
         delete s_logFile;
         s_logFile = nullptr;
@@ -81,9 +107,10 @@ void initLogging() {
     }
 
     qInstallMessageHandler(messageHandler);
-    // Log the startup message outside the lock — messageHandler re-acquires it
     lock.unlock();
-    qInfo() << "LibreAI logging started — level" << cfg.logLevel;
+    qInfo(lcLogger) << "LibreAI logging started — level" << s_minLevel
+                    << "(loggingEnabled=" << cfg.loggingEnabled << ")"
+                    << "— file:" << path;
 }
 
 void closeLogging() {

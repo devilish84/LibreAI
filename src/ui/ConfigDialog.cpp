@@ -1,6 +1,7 @@
 #include "ConfigDialog.hpp"
 #include "ChatWindow.hpp"
 #include "../core/Config.hpp"
+#include "../core/CredentialStore.hpp"
 #include "../core/Logger.hpp"
 #include "../ai/OllamaClient.hpp"
 #include "../ai/OpenAIClient.hpp"
@@ -8,6 +9,9 @@
 
 #include <QCheckBox>
 #include <QComboBox>
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(lcConfigDlg, "libreai.configdialog")
 #include <QEvent>
 #include <QFormLayout>
 #include <QHBoxLayout>
@@ -50,14 +54,18 @@ void ConfigDialog::resetInstance() {
 }
 
 ConfigDialog::ConfigDialog(QWidget* parent) : QWidget(parent) {
-    setMinimumWidth(420);
+    qCDebug(lcConfigDlg) << "ConfigDialog constructing";
+    setMinimumWidth(440);
     setWindowFlags(Qt::Window);
     buildUi();
     applyTheme();
     retranslateUi();
 }
 
+// ── buildUi ───────────────────────────────────────────────────────────────────
+
 void ConfigDialog::buildUi() {
+    qCDebug(lcConfigDlg) << "buildUi";
     auto* root = new QVBoxLayout(this);
     root->setSpacing(10);
     root->setContentsMargins(14, 14, 14, 14);
@@ -76,16 +84,13 @@ void ConfigDialog::buildUi() {
     m_langBox   = new QComboBox();
     for (int i = 0; i < kLangCount; ++i)
         m_langBox->addItem(kLanguages[i].name, kLanguages[i].code);
-
-    // Select saved language
-    const QString saved = Config::get().language;
-    for (int i = 0; i < kLangCount; ++i) {
-        if (kLanguages[i].code == saved) { m_langBox->setCurrentIndex(i); break; }
+    {
+        const QString saved = Config::get().language;
+        for (int i = 0; i < kLangCount; ++i)
+            if (kLanguages[i].code == saved) { m_langBox->setCurrentIndex(i); break; }
     }
-
     generalForm->addRow(m_langLabel, m_langBox);
 
-    // Logging controls
     m_logEnabledBox = new QCheckBox();
     m_logEnabledBox->setChecked(Config::get().loggingEnabled);
     generalForm->addRow(m_logEnabledBox);
@@ -105,41 +110,82 @@ void ConfigDialog::buildUi() {
 
     m_tabs->addTab(generalPage, "");
 
-    // ── Model Selection tab ───────────────────────────────────────────────
+    // ── Model Selection tab — single flat QFormLayout ─────────────────────
     auto* modelPage = new QWidget();
-    auto* modelForm = new QFormLayout(modelPage);
-    modelForm->setSpacing(10);
-    modelForm->setContentsMargins(10, 14, 10, 10);
+    m_modelForm = new QFormLayout(modelPage);
+    m_modelForm->setSpacing(10);
+    m_modelForm->setContentsMargins(10, 14, 10, 10);
 
     m_providerLabel = new QLabel();
     m_providerBox   = new QComboBox();
     m_providerBox->addItems({"Ollama", "OpenAI", "Claude"});
     m_providerBox->setCurrentIndex(static_cast<int>(Config::get().provider));
-    modelForm->addRow(m_providerLabel, m_providerBox);
+    m_modelForm->addRow(m_providerLabel, m_providerBox);
 
-    m_connLabel = new QLabel();
-    m_connEdit  = new QLineEdit();
-    modelForm->addRow(m_connLabel, m_connEdit);
+    // Ollama fields
+    m_ollamaUrlLabel = new QLabel();
+    m_ollamaUrlEdit  = new QLineEdit(Config::get().ollamaUrl);
+    m_modelForm->addRow(m_ollamaUrlLabel, m_ollamaUrlEdit);
 
+    m_ollamaAuthLabel = new QLabel();
+    m_ollamaAuthBox   = new QComboBox();
+    m_ollamaAuthBox->addItems({"None", "Basic Auth", "API Key"});
+    m_ollamaAuthBox->setCurrentIndex(static_cast<int>(Config::get().ollamaAuth));
+    m_modelForm->addRow(m_ollamaAuthLabel, m_ollamaAuthBox);
+
+    m_ollamaUserLabel = new QLabel();
+    m_ollamaUserEdit  = new QLineEdit(Config::get().ollamaBasicUser);
+    m_modelForm->addRow(m_ollamaUserLabel, m_ollamaUserEdit);
+
+    m_ollamaPassLabel = new QLabel();
+    m_ollamaPassEdit  = new QLineEdit(Config::get().ollamaBasicPass);
+    m_ollamaPassEdit->setEchoMode(QLineEdit::Password);
+    m_modelForm->addRow(m_ollamaPassLabel, m_ollamaPassEdit);
+
+    m_ollamaKeyHeaderLabel = new QLabel();
+    m_ollamaKeyHeaderEdit  = new QLineEdit(Config::get().ollamaApiKeyHeader);
+    m_modelForm->addRow(m_ollamaKeyHeaderLabel, m_ollamaKeyHeaderEdit);
+
+    m_ollamaKeyValueLabel = new QLabel();
+    m_ollamaKeyValueEdit  = new QLineEdit(Config::get().ollamaApiKeyValue);
+    m_ollamaKeyValueEdit->setEchoMode(QLineEdit::Password);
+    m_modelForm->addRow(m_ollamaKeyValueLabel, m_ollamaKeyValueEdit);
+
+    // OpenAI fields
+    m_openaiUrlLabel = new QLabel();
+    m_openaiUrlEdit  = new QLineEdit(Config::get().openaiUrl);
+    m_modelForm->addRow(m_openaiUrlLabel, m_openaiUrlEdit);
+
+    m_openaiKeyLabel = new QLabel();
+    m_openaiKeyEdit  = new QLineEdit(Config::get().openaiKey);
+    m_openaiKeyEdit->setEchoMode(QLineEdit::Password);
+    m_modelForm->addRow(m_openaiKeyLabel, m_openaiKeyEdit);
+
+    // Claude fields
+    m_claudeKeyLabel = new QLabel();
+    m_claudeKeyEdit  = new QLineEdit(Config::get().claudeKey);
+    m_claudeKeyEdit->setEchoMode(QLineEdit::Password);
+    m_modelForm->addRow(m_claudeKeyLabel, m_claudeKeyEdit);
+
+    // Keychain hint (spanning label, no label column)
+    m_keychainHint = new QLabel();
+    m_keychainHint->setObjectName("keychainHint");
+    m_keychainHint->setWordWrap(true);
+    m_modelForm->addRow(m_keychainHint);
+
+    // Model row
     m_modelLabel = new QLabel();
     auto* modelRow = new QHBoxLayout();
     m_modelBox = new QComboBox();
     m_modelBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     modelRow->addWidget(m_modelBox);
-    m_refreshBtn = new QPushButton("↺");
+    m_refreshBtn = new QPushButton("\u21BA");
     m_refreshBtn->setFixedWidth(28);
     m_refreshBtn->setObjectName("btn2");
     modelRow->addWidget(m_refreshBtn);
-    modelForm->addRow(m_modelLabel, modelRow);
+    m_modelForm->addRow(m_modelLabel, modelRow);
 
     m_tabs->addTab(modelPage, "");
-
-    // Init connection field from saved config
-    onProviderChanged(m_providerBox->currentIndex());
-    if (!Config::get().model.isEmpty()) {
-        m_modelBox->addItem(Config::get().model);
-        m_modelBox->setCurrentText(Config::get().model);
-    }
 
     // ── Bottom buttons ────────────────────────────────────────────────────
     auto* btnRow = new QHBoxLayout();
@@ -151,26 +197,228 @@ void ConfigDialog::buildUi() {
     btnRow->addWidget(m_okBtn);
     root->addLayout(btnRow);
 
-    connect(m_providerBox, &QComboBox::currentIndexChanged, this, &ConfigDialog::onProviderChanged);
-    connect(m_refreshBtn,  &QPushButton::clicked,           this, &ConfigDialog::onRefreshModels);
-    connect(m_okBtn,       &QPushButton::clicked,           this, &ConfigDialog::onOk);
-    connect(m_cancelBtn,   &QPushButton::clicked,           this, &ConfigDialog::close);
+    // Wire signals
+    connect(m_tabs,         &QTabWidget::currentChanged,      this, [this](int idx) {
+        if (idx == 1) onProviderChanged(m_providerBox->currentIndex());
+    });
+    connect(m_providerBox,  &QComboBox::currentIndexChanged,  this, &ConfigDialog::onProviderChanged);
+    connect(m_ollamaAuthBox,&QComboBox::currentIndexChanged,  this, &ConfigDialog::onOllamaAuthChanged);
+    connect(m_refreshBtn,   &QPushButton::clicked,            this, &ConfigDialog::onRefreshModels);
+    connect(m_okBtn,        &QPushButton::clicked,            this, &ConfigDialog::onOk);
+    connect(m_cancelBtn,    &QPushButton::clicked,            this, &ConfigDialog::close);
+
+    // Auto-fetch when key/url field loses focus
+    auto autoFetch = [this]() {
+        if (!currentCredential().trimmed().isEmpty()) onRefreshModels();
+    };
+    connect(m_ollamaUrlEdit,    &QLineEdit::editingFinished, this, autoFetch);
+    connect(m_ollamaPassEdit,   &QLineEdit::editingFinished, this, autoFetch);
+    connect(m_ollamaKeyValueEdit,&QLineEdit::editingFinished,this, autoFetch);
+    connect(m_openaiKeyEdit,    &QLineEdit::editingFinished, this, autoFetch);
+    connect(m_claudeKeyEdit,    &QLineEdit::editingFinished, this, autoFetch);
+
+    // Init visibility
+    onProviderChanged(m_providerBox->currentIndex());
+    onOllamaAuthChanged(m_ollamaAuthBox->currentIndex());
 }
 
+// ── Slot implementations ──────────────────────────────────────────────────────
+
+void ConfigDialog::setRowVisible(QLabel* lbl, QWidget* field, bool visible) {
+    if (lbl)   lbl->setVisible(visible);
+    if (field) field->setVisible(visible);
+}
+
+void ConfigDialog::onProviderChanged(int index) {
+    qCDebug(lcConfigDlg) << "onProviderChanged, index=" << index;
+    auto& cfg = Config::get();
+    bool isOllama = (index == static_cast<int>(Provider::Ollama));
+    bool isOpenAI = (index == static_cast<int>(Provider::OpenAI));
+    bool isClaude = (index == static_cast<int>(Provider::Claude));
+
+    setRowVisible(m_ollamaUrlLabel,      m_ollamaUrlEdit,      isOllama);
+    setRowVisible(m_ollamaAuthLabel,     m_ollamaAuthBox,      isOllama);
+    setRowVisible(m_openaiUrlLabel,      m_openaiUrlEdit,      isOpenAI);
+    setRowVisible(m_openaiKeyLabel,      m_openaiKeyEdit,      isOpenAI);
+    setRowVisible(m_claudeKeyLabel,      m_claudeKeyEdit,      isClaude);
+
+    // Ollama auth sub-rows: delegate to onOllamaAuthChanged (only if Ollama)
+    if (isOllama)
+        onOllamaAuthChanged(m_ollamaAuthBox->currentIndex());
+    else {
+        setRowVisible(m_ollamaUserLabel,      m_ollamaUserEdit,      false);
+        setRowVisible(m_ollamaPassLabel,      m_ollamaPassEdit,      false);
+        setRowVisible(m_ollamaKeyHeaderLabel, m_ollamaKeyHeaderEdit, false);
+        setRowVisible(m_ollamaKeyValueLabel,  m_ollamaKeyValueEdit,  false);
+    }
+
+    // Keychain hint
+    m_keychainHint->setVisible(!CredentialStore::isAvailable());
+
+    m_modelBox->clear();
+
+    // Restore saved model for this provider
+    QString saved;
+    switch (static_cast<Provider>(index)) {
+        case Provider::Ollama:  saved = cfg.ollamaModel; break;
+        case Provider::OpenAI:  saved = cfg.openaiModel; break;
+        case Provider::Claude:  saved = cfg.claudeModel; break;
+    }
+    if (!saved.isEmpty()) {
+        m_modelBox->addItem(saved);
+        m_modelBox->setCurrentText(saved);
+    }
+
+    bool hasCredential = !currentCredential().trimmed().isEmpty();
+    m_modelBox->setEnabled(hasCredential);
+    m_refreshBtn->setEnabled(hasCredential);
+
+    if (hasCredential && m_tabs->currentIndex() == 1)
+        onRefreshModels();
+}
+
+void ConfigDialog::onOllamaAuthChanged(int index) {
+    qCDebug(lcConfigDlg) << "onOllamaAuthChanged, index=" << index;
+    bool isBasic  = (index == static_cast<int>(OllamaAuth::Basic));
+    bool isApiKey = (index == static_cast<int>(OllamaAuth::ApiKey));
+    setRowVisible(m_ollamaUserLabel,      m_ollamaUserEdit,      isBasic);
+    setRowVisible(m_ollamaPassLabel,      m_ollamaPassEdit,      isBasic);
+    setRowVisible(m_ollamaKeyHeaderLabel, m_ollamaKeyHeaderEdit, isApiKey);
+    setRowVisible(m_ollamaKeyValueLabel,  m_ollamaKeyValueEdit,  isApiKey);
+}
+
+QString ConfigDialog::currentCredential() const {
+    qCDebug(lcConfigDlg) << "currentCredential";
+    switch (static_cast<Provider>(m_providerBox->currentIndex())) {
+        case Provider::Ollama:
+            switch (static_cast<OllamaAuth>(m_ollamaAuthBox->currentIndex())) {
+                case OllamaAuth::None:   return m_ollamaUrlEdit->text();
+                case OllamaAuth::Basic:  return m_ollamaPassEdit->text();
+                case OllamaAuth::ApiKey: return m_ollamaKeyValueEdit->text();
+            }
+            break;
+        case Provider::OpenAI: return m_openaiKeyEdit->text();
+        case Provider::Claude: return m_claudeKeyEdit->text();
+    }
+    return {};
+}
+
+void ConfigDialog::onRefreshModels() {
+    qCInfo(lcConfigDlg) << "onRefreshModels, provider=" << m_providerBox->currentIndex();
+    delete m_client;
+    m_client = nullptr;
+    auto& cfg = Config::get();
+
+    switch (static_cast<Provider>(m_providerBox->currentIndex())) {
+        case Provider::Ollama: {
+            OllamaAuthConfig auth;
+            auth.type         = static_cast<OllamaAuth>(m_ollamaAuthBox->currentIndex());
+            auth.basicUser    = m_ollamaUserEdit->text();
+            auth.basicPass    = m_ollamaPassEdit->text();
+            auth.apiKeyHeader = m_ollamaKeyHeaderEdit->text();
+            auth.apiKeyValue  = m_ollamaKeyValueEdit->text();
+            m_client = new OllamaClient(m_ollamaUrlEdit->text(), auth, this);
+            break;
+        }
+        case Provider::OpenAI:
+            m_client = new OpenAIClient(m_openaiUrlEdit->text(), m_openaiKeyEdit->text(), this);
+            break;
+        case Provider::Claude:
+            m_client = new AnthropicClient(m_claudeKeyEdit->text(), this);
+            break;
+    }
+
+    connect(m_client, &AIClient::modelsReady, this, [this](QStringList models) {
+        qCInfo(lcConfigDlg) << "Models received, count=" << models.size();
+        m_modelBox->setEnabled(true);
+        m_refreshBtn->setEnabled(true);
+        m_modelBox->clear();
+        m_modelBox->addItems(models);
+        const QString saved = Config::get().currentModel();
+        if (!saved.isEmpty()) m_modelBox->setCurrentText(saved);
+    });
+    connect(m_client, &AIClient::errorOccurred, this, [this](const QString& err) {
+        qCWarning(lcConfigDlg) << "Model fetch error:" << err;
+        m_refreshBtn->setEnabled(true);
+    });
+    m_refreshBtn->setEnabled(false);
+    m_client->fetchModels();
+}
+
+void ConfigDialog::onOk() {
+    qCInfo(lcConfigDlg) << "onOk: saving configuration";
+    auto& cfg = Config::get();
+
+    // Language
+    int li = m_langBox->currentIndex();
+    bool langChanged = (cfg.language != kLanguages[li].code);
+    cfg.language = kLanguages[li].code;
+
+    // Logging
+    cfg.loggingEnabled = m_logEnabledBox->isChecked();
+    cfg.logLevel       = m_logLevelBox->currentIndex();
+
+    // Provider
+    cfg.provider = static_cast<Provider>(m_providerBox->currentIndex());
+
+    // Ollama
+    cfg.ollamaUrl          = m_ollamaUrlEdit->text();
+    cfg.ollamaAuth         = static_cast<OllamaAuth>(m_ollamaAuthBox->currentIndex());
+    cfg.ollamaBasicUser    = m_ollamaUserEdit->text();
+    cfg.ollamaBasicPass    = m_ollamaPassEdit->text();
+    cfg.ollamaApiKeyHeader = m_ollamaKeyHeaderEdit->text();
+    cfg.ollamaApiKeyValue  = m_ollamaKeyValueEdit->text();
+
+    // OpenAI
+    cfg.openaiUrl = m_openaiUrlEdit->text();
+    cfg.openaiKey = m_openaiKeyEdit->text();
+
+    // Claude
+    cfg.claudeKey = m_claudeKeyEdit->text();
+
+    // Per-provider model
+    switch (cfg.provider) {
+        case Provider::Ollama:  cfg.ollamaModel = m_modelBox->currentText(); break;
+        case Provider::OpenAI:  cfg.openaiModel = m_modelBox->currentText(); break;
+        case Provider::Claude:  cfg.claudeModel = m_modelBox->currentText(); break;
+    }
+
+    cfg.save();
+    initLogging();
+
+    if (langChanged) {
+        Config::applyLanguage();
+        ChatWindow::resetInstance();
+        ConfigDialog::resetInstance();  // closes & deletes self — must be last
+    } else {
+        close();
+    }
+}
+
+// ── UI helpers ────────────────────────────────────────────────────────────────
+
 void ConfigDialog::retranslateUi() {
+    qCDebug(lcConfigDlg) << "retranslateUi";
     setWindowTitle(tr("LibreAI — Configuration"));
     m_tabs->setTabText(0, tr("General Settings"));
     m_tabs->setTabText(1, tr("Model Selection"));
     m_langLabel->setText(tr("LANGUAGE"));
-    m_logEnabledBox->setText(tr("Enable logging"));
+    m_logEnabledBox->setText(tr("Enable verbose logging"));
     m_logLevelLabel->setText(tr("LEVEL"));
     m_providerLabel->setText(tr("PROVIDER"));
+    m_ollamaUrlLabel->setText(tr("BASE URL"));
+    m_ollamaAuthLabel->setText(tr("AUTH"));
+    m_ollamaUserLabel->setText(tr("USERNAME"));
+    m_ollamaPassLabel->setText(tr("PASSWORD"));
+    m_ollamaKeyHeaderLabel->setText(tr("HEADER"));
+    m_ollamaKeyValueLabel->setText(tr("API KEY"));
+    m_openaiUrlLabel->setText(tr("BASE URL"));
+    m_openaiKeyLabel->setText(tr("API KEY"));
+    m_claudeKeyLabel->setText(tr("API KEY"));
+    m_keychainHint->setText(tr("Keychain unavailable — credentials will not be saved between sessions"));
     m_modelLabel->setText(tr("MODEL"));
     m_okBtn->setText(tr("OK"));
     m_cancelBtn->setText(tr("Cancel"));
-
-    // Connection label depends on current provider
-    onProviderChanged(m_providerBox->currentIndex());
 }
 
 void ConfigDialog::changeEvent(QEvent* e) {
@@ -250,83 +498,10 @@ void ConfigDialog::applyTheme() {
         QComboBox:disabled {
             background: %7;
         }
+        QLabel#keychainHint {
+            color: %3;
+            font-size: 11px;
+        }
     )")
     .arg(C_BG, C_TEXT, C_MUTED, C_SURFACE, C_BORDER, C_BTN, C_BTN2));
-}
-
-void ConfigDialog::onProviderChanged(int index) {
-    auto& cfg = Config::get();
-    switch (static_cast<Provider>(index)) {
-        case Provider::Ollama:
-            m_connLabel->setText(tr("BASE URL"));
-            m_connEdit->setText(cfg.ollamaUrl);
-            m_connEdit->setEchoMode(QLineEdit::Normal);
-            break;
-        case Provider::OpenAI:
-            m_connLabel->setText(tr("API KEY"));
-            m_connEdit->setText(cfg.openaiKey);
-            m_connEdit->setEchoMode(QLineEdit::Password);
-            break;
-        case Provider::Claude:
-            m_connLabel->setText(tr("API KEY"));
-            m_connEdit->setText(cfg.claudeKey);
-            m_connEdit->setEchoMode(QLineEdit::Password);
-            break;
-    }
-    m_modelBox->clear();
-    if (!cfg.model.isEmpty()) {
-        m_modelBox->addItem(cfg.model);
-        m_modelBox->setCurrentText(cfg.model);
-    }
-}
-
-void ConfigDialog::onRefreshModels() {
-    delete m_client;
-    auto& cfg = Config::get();
-    switch (static_cast<Provider>(m_providerBox->currentIndex())) {
-        case Provider::Ollama:
-            m_client = new OllamaClient(m_connEdit->text(), this); break;
-        case Provider::OpenAI:
-            m_client = new OpenAIClient(cfg.openaiUrl, m_connEdit->text(), this); break;
-        case Provider::Claude:
-            m_client = new AnthropicClient(m_connEdit->text(), this); break;
-    }
-    connect(m_client, &AIClient::modelsReady, this, [this](QStringList models) {
-        m_modelBox->clear();
-        m_modelBox->addItems(models);
-        auto saved = Config::get().model;
-        if (!saved.isEmpty()) m_modelBox->setCurrentText(saved);
-    });
-    m_client->fetchModels();
-}
-
-void ConfigDialog::onOk() {
-    auto& cfg = Config::get();
-
-    // Save language
-    int li = m_langBox->currentIndex();
-    bool langChanged = (cfg.language != kLanguages[li].code);
-    cfg.language = kLanguages[li].code;
-
-    // Save model settings
-    cfg.provider = static_cast<Provider>(m_providerBox->currentIndex());
-    switch (cfg.provider) {
-        case Provider::Ollama:  cfg.ollamaUrl = m_connEdit->text(); break;
-        case Provider::OpenAI:  cfg.openaiKey = m_connEdit->text(); break;
-        case Provider::Claude:  cfg.claudeKey = m_connEdit->text(); break;
-    }
-    cfg.model          = m_modelBox->currentText();
-    cfg.loggingEnabled = m_logEnabledBox->isChecked();
-    cfg.logLevel       = m_logLevelBox->currentIndex();
-    cfg.save();
-    initLogging();
-
-    if (langChanged) {
-        Config::applyLanguage();
-        // Recreate windows so they open fresh in the new language next time
-        ChatWindow::resetInstance();
-        ConfigDialog::resetInstance();  // closes & deletes self — must be last
-    } else {
-        close();
-    }
 }

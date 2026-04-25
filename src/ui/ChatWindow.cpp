@@ -7,6 +7,9 @@
 
 #include <QApplication>
 #include <QEvent>
+#include <QLoggingCategory>
+
+Q_LOGGING_CATEGORY(lcChat, "libreai.chat")
 #include <QLabel>
 #include <QPlainTextEdit>
 #include <QPushButton>
@@ -171,11 +174,12 @@ void ChatWindow::applyTheme() {
 }
 
 AIClient* ChatWindow::buildClient() {
+    qCDebug(lcChat) << "buildClient, provider=" << static_cast<int>(Config::get().provider);
     delete m_client;
     auto& cfg = Config::get();
     switch (cfg.provider) {
         case Provider::Ollama:
-            m_client = new OllamaClient(cfg.ollamaUrl, this); break;
+            m_client = new OllamaClient(cfg.ollamaUrl, OllamaAuthConfig::fromConfig(), this); break;
         case Provider::OpenAI:
             m_client = new OpenAIClient(cfg.openaiUrl, cfg.openaiKey, this); break;
         case Provider::Claude:
@@ -185,6 +189,7 @@ AIClient* ChatWindow::buildClient() {
 }
 
 void ChatWindow::onGrabSelection() {
+    qCDebug(lcChat) << "onGrabSelection";
     QString sel = UnoHelper::getSelectedText();
     if (sel.isEmpty()) { setStatus(tr("No text selected"), C_MUTED); return; }
     m_selEdit->setPlainText(sel);
@@ -192,6 +197,7 @@ void ChatWindow::onGrabSelection() {
 }
 
 void ChatWindow::onSend() {
+    qCInfo(lcChat) << "onSend, model=" << Config::get().currentModel();
     QString instr = m_instrEdit->toPlainText().trimmed();
     QString sel   = m_selEdit->toPlainText().trimmed();
     if (instr.isEmpty() && sel.isEmpty()) return;
@@ -209,6 +215,7 @@ void ChatWindow::onSend() {
 
     auto* client = buildClient();
     connect(client, &AIClient::responseReady, this, [this, prompt](QString resp) {
+        qCInfo(lcChat) << "Send response received, length=" << resp.length();
         m_respEdit->setPlainText(resp);
         m_history.append({"user", prompt});
         m_history.append({"assistant", resp});
@@ -216,13 +223,15 @@ void ChatWindow::onSend() {
         setStatus(tr("Done"), C_SUCCESS);
     });
     connect(client, &AIClient::errorOccurred, this, [this](QString err) {
+        qCWarning(lcChat) << "Send error:" << err;
         setStatus(tr("Error: ") + err, C_ERROR);
         setBusy(false);
     });
-    client->sendChat(Config::get().model, m_history, prompt);
+    client->sendChat(Config::get().currentModel(), m_history, prompt);
 }
 
 void ChatWindow::onRewrite() {
+    qCInfo(lcChat) << "onRewrite, model=" << Config::get().currentModel();
     QString sel = m_selEdit->toPlainText().trimmed();
     if (sel.isEmpty()) { setStatus(tr("No text to rewrite"), C_MUTED); return; }
     QString instr = m_instrEdit->toPlainText().trimmed();
@@ -243,10 +252,11 @@ void ChatWindow::onRewrite() {
         setStatus(tr("Error: ") + err, C_ERROR);
         setBusy(false);
     });
-    client->sendChat(Config::get().model, {}, prompt);
+    client->sendChat(Config::get().currentModel(), {}, prompt);
 }
 
 void ChatWindow::onApply() {
+    qCInfo(lcChat) << "onApply";
     QString text = m_respEdit->toPlainText();
     if (text.isEmpty()) { setStatus(tr("No response to apply"), C_MUTED); return; }
     UnoHelper::applyText(text);

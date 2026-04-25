@@ -104,6 +104,7 @@ css::uno::Any SAL_CALL LibreAIStarter::execute(
 #endif
             new QApplication(argc, argv);
         }
+        QCoreApplication::setApplicationName("libreai");
         Config::applyLanguage();
         initLogging();
         if (Config::get().isConfigured()) {

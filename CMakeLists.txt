@@ -50,6 +50,7 @@ endif()
 set(SOURCES
     src/uno/component.cpp
     src/core/Config.cpp
+    src/core/CredentialStore.cpp
     src/core/Logger.cpp
     src/ai/AIClient.cpp
     src/ai/OllamaClient.cpp
@@ -83,6 +84,28 @@ target_link_libraries(libreai PRIVATE
     Qt6::Core Qt6::Widgets Qt6::Network
     ${UNO_LIBS}
 )
+
+if(NOT WIN32)
+    find_package(Qt6Keychain QUIET)
+    if(Qt6Keychain_FOUND)
+        target_link_libraries(libreai PRIVATE Qt6Keychain::Qt6Keychain)
+        target_compile_definitions(libreai PRIVATE HAVE_KEYCHAIN)
+    else()
+        # Fallback: detect manually when find_package fails due to missing DBus dev headers
+        find_library(QT6KEYCHAIN_LIB NAMES qt6keychain PATHS /usr/lib/x86_64-linux-gnu)
+        if(QT6KEYCHAIN_LIB)
+            target_link_libraries(libreai PRIVATE ${QT6KEYCHAIN_LIB})
+            target_include_directories(libreai PRIVATE /usr/include/qt6keychain)
+            target_compile_definitions(libreai PRIVATE HAVE_KEYCHAIN)
+            message(STATUS "Qt6Keychain found manually: ${QT6KEYCHAIN_LIB}")
+        endif()
+    endif()
+endif()
+
+if(WIN32)
+    target_link_libraries(libreai PRIVATE Crypt32)
+    target_compile_definitions(libreai PRIVATE HAVE_DPAPI)
+endif()
 
 if(WIN32)
     set_target_properties(libreai PROPERTIES PREFIX "" OUTPUT_NAME "libreai" SUFFIX ".dll")

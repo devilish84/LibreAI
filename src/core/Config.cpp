@@ -1,11 +1,15 @@
 #include "Config.hpp"
+#include "CredentialStore.hpp"
 #include <QApplication>
 #include <QDir>
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QLoggingCategory>
 #include <QStandardPaths>
 #include <QTranslator>
+
+Q_LOGGING_CATEGORY(lcConfig, "libreai.config")
 
 static QString configPath() {
     QString dir = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
@@ -14,8 +18,12 @@ static QString configPath() {
 }
 
 Config::Config() {
+    qCDebug(lcConfig) << "Config loading from" << configPath();
     QFile f(configPath());
-    if (!f.open(QIODevice::ReadOnly)) return;
+    if (!f.open(QIODevice::ReadOnly)) {
+        qCInfo(lcConfig) << "No config file found, using defaults";
+        return;
+    }
     auto obj = QJsonDocument::fromJson(f.readAll()).object();
 
     QString p = obj["provider"].toString("OLLAMA");
@@ -25,12 +33,48 @@ Config::Config() {
 
     ollamaUrl = obj["ollama_url"].toString(ollamaUrl);
     openaiUrl = obj["openai_url"].toString(openaiUrl);
-    openaiKey = obj["openai_key"].toString();
-    claudeKey = obj["claude_key"].toString();
-    model     = obj["model"].toString();
-    language       = obj["language"].toString("en");
-    loggingEnabled = obj["logging_enabled"].toBool(false);
-    logLevel       = obj["log_level"].toInt(1);
+
+    ollamaModel = obj["ollama_model"].toString();
+    openaiModel = obj["openai_model"].toString();
+    claudeModel = obj["claude_model"].toString();
+
+    // Migrate legacy single "model" field
+    if (ollamaModel.isEmpty() && openaiModel.isEmpty() && claudeModel.isEmpty()) {
+        QString legacy = obj["model"].toString();
+        if (!legacy.isEmpty()) {
+            qCInfo(lcConfig) << "Migrating legacy model field:" << legacy;
+            setCurrentModel(legacy);
+        }
+    }
+
+    QString auth = obj["ollama_auth"].toString("NONE");
+    if      (auth == "BASIC")  ollamaAuth = OllamaAuth::Basic;
+    else if (auth == "APIKEY") ollamaAuth = OllamaAuth::ApiKey;
+    else                       ollamaAuth = OllamaAuth::None;
+
+    ollamaBasicUser      = obj["ollama_basic_user"].toString();
+    ollamaApiKeyHeader   = obj["ollama_api_key_header"].toString(ollamaApiKeyHeader);
+
+    language        = obj["language"].toString("en");
+    loggingEnabled  = obj["logging_enabled"].toBool(false);
+    logLevel        = obj["log_level"].toInt(1);
+
+    qCDebug(lcConfig) << "Config loaded: provider=" << p
+                      << "ollamaUrl=" << ollamaUrl
+                      << "language=" << language
+                      << "loggingEnabled=" << loggingEnabled;
+
+    // Load credentials from OS keychain (never from JSON).
+    // Call isAvailable() first so subsequent calls use the cached result.
+    CredentialStore::isAvailable();
+    openaiKey        = CredentialStore::retrieve("libreai/openai_key");
+    claudeKey        = CredentialStore::retrieve("libreai/claude_key");
+    ollamaBasicPass  = CredentialStore::retrieve("libreai/ollama_basic_pass");
+    ollamaApiKeyValue= CredentialStore::retrieve("libreai/ollama_api_key");
+
+    qCDebug(lcConfig) << "Credentials loaded from keychain:"
+                      << "openaiKey=" << (!openaiKey.isEmpty() ? "set" : "empty")
+                      << "claudeKey=" << (!claudeKey.isEmpty() ? "set" : "empty");
 }
 
 Config& Config::get() {
@@ -39,34 +83,75 @@ Config& Config::get() {
 }
 
 void Config::save() const {
+    qCInfo(lcConfig) << "Saving configuration, provider="
+                     << (provider == Provider::OpenAI ? "OPENAI"
+                        : provider == Provider::Claude ? "CLAUDE" : "OLLAMA");
+
     QJsonObject obj;
     obj["provider"]   = provider == Provider::OpenAI ? "OPENAI"
                       : provider == Provider::Claude  ? "CLAUDE" : "OLLAMA";
     obj["ollama_url"] = ollamaUrl;
     obj["openai_url"] = openaiUrl;
-    obj["openai_key"] = openaiKey;
-    obj["claude_key"] = claudeKey;
-    obj["model"]      = model;
+
+    obj["ollama_model"] = ollamaModel;
+    obj["openai_model"] = openaiModel;
+    obj["claude_model"] = claudeModel;
+
+    obj["ollama_auth"] = ollamaAuth == OllamaAuth::Basic  ? "BASIC"
+                       : ollamaAuth == OllamaAuth::ApiKey ? "APIKEY" : "NONE";
+    obj["ollama_basic_user"]     = ollamaBasicUser;
+    obj["ollama_api_key_header"] = ollamaApiKeyHeader;
+
     obj["language"]        = language;
     obj["logging_enabled"] = loggingEnabled;
     obj["log_level"]       = logLevel;
 
+    CredentialStore::store("libreai/openai_key",        openaiKey);
+    CredentialStore::store("libreai/claude_key",        claudeKey);
+    CredentialStore::store("libreai/ollama_basic_pass", ollamaBasicPass);
+    CredentialStore::store("libreai/ollama_api_key",    ollamaApiKeyValue);
+
     QFile f(configPath());
-    if (f.open(QIODevice::WriteOnly))
+    if (f.open(QIODevice::WriteOnly)) {
         f.write(QJsonDocument(obj).toJson());
+        qCInfo(lcConfig) << "Configuration saved to" << configPath();
+    } else {
+        qCWarning(lcConfig) << "Failed to open config file for writing:" << configPath();
+    }
 }
 
 bool Config::isConfigured() const {
-    if (model.isEmpty()) return false;
+    qCDebug(lcConfig) << "isConfigured check, provider="
+                      << static_cast<int>(provider);
     switch (provider) {
-        case Provider::Ollama: return !ollamaUrl.isEmpty();
-        case Provider::OpenAI: return !openaiKey.isEmpty();
-        case Provider::Claude: return !claudeKey.isEmpty();
+        case Provider::Ollama:  return !ollamaUrl.isEmpty();
+        case Provider::OpenAI:  return !openaiKey.isEmpty();
+        case Provider::Claude:  return !claudeKey.isEmpty();
     }
     return false;
 }
 
+const QString& Config::currentModel() const {
+    qCDebug(lcConfig) << "currentModel";
+    switch (provider) {
+        case Provider::Ollama: return ollamaModel;
+        case Provider::OpenAI: return openaiModel;
+        case Provider::Claude: return claudeModel;
+    }
+    return ollamaModel;
+}
+
+void Config::setCurrentModel(const QString& m) {
+    qCDebug(lcConfig) << "setCurrentModel" << m;
+    switch (provider) {
+        case Provider::Ollama: ollamaModel = m; return;
+        case Provider::OpenAI: openaiModel = m; return;
+        case Provider::Claude: claudeModel = m; return;
+    }
+}
+
 void Config::applyLanguage() {
+    qCDebug(lcConfig) << "applyLanguage, lang=" << Config::get().language;
     static QTranslator* s_translator = nullptr;
     if (s_translator) {
         QApplication::removeTranslator(s_translator);
@@ -77,9 +162,11 @@ void Config::applyLanguage() {
     if (lang == "en") return;
     s_translator = new QTranslator();
     if (!s_translator->load(":/i18n/libreai_" + lang + ".qm")) {
+        qCWarning(lcConfig) << "Failed to load translation for" << lang;
         delete s_translator;
         s_translator = nullptr;
     } else {
         QApplication::installTranslator(s_translator);
+        qCInfo(lcConfig) << "Language applied:" << lang;
     }
 }

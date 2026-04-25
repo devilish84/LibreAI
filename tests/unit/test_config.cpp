@@ -5,34 +5,21 @@
 #include <QStandardPaths>
 #include "Config.hpp"
 
-// Point QStandardPaths at a temp dir so tests never touch ~/.config/libreai
-static void useTestConfigDir() {
-    QString tmp = QDir::tempPath() + "/libreai_test_" + QString::number(QCoreApplication::applicationPid());
-    QStandardPaths::setTestModeEnabled(true);
-    qputenv("HOME", tmp.toUtf8());
-    QDir().mkpath(tmp);
-}
-
 // ---- isConfigured() --------------------------------------------------------
 
-TEST(ConfigIsConfigured, OllamaRequiresUrlAndModel) {
+TEST(ConfigIsConfigured, OllamaRequiresUrl) {
     Config& c = Config::get();
     c.provider  = Provider::Ollama;
-    c.model     = "";
-    c.ollamaUrl = "http://localhost:11434";
-    EXPECT_FALSE(c.isConfigured());
-
-    c.model = "llama3";
-    EXPECT_TRUE(c.isConfigured());
-
     c.ollamaUrl = "";
     EXPECT_FALSE(c.isConfigured());
+
+    c.ollamaUrl = "http://localhost:11434";
+    EXPECT_TRUE(c.isConfigured());
 }
 
-TEST(ConfigIsConfigured, OpenAIRequiresKeyAndModel) {
+TEST(ConfigIsConfigured, OpenAIRequiresKey) {
     Config& c = Config::get();
     c.provider  = Provider::OpenAI;
-    c.model     = "gpt-4o";
     c.openaiKey = "";
     EXPECT_FALSE(c.isConfigured());
 
@@ -40,10 +27,9 @@ TEST(ConfigIsConfigured, OpenAIRequiresKeyAndModel) {
     EXPECT_TRUE(c.isConfigured());
 }
 
-TEST(ConfigIsConfigured, ClaudeRequiresKeyAndModel) {
+TEST(ConfigIsConfigured, ClaudeRequiresKey) {
     Config& c = Config::get();
     c.provider  = Provider::Claude;
-    c.model     = "claude-sonnet-4-6";
     c.claudeKey = "";
     EXPECT_FALSE(c.isConfigured());
 
@@ -51,36 +37,100 @@ TEST(ConfigIsConfigured, ClaudeRequiresKeyAndModel) {
     EXPECT_TRUE(c.isConfigured());
 }
 
-// ---- save() / load round-trip ----------------------------------------------
+// ---- per-provider model persistence ----------------------------------------
 
-TEST(ConfigPersistence, SaveAndReloadPreservesValues) {
-    {
-        Config& c = Config::get();
-        c.provider  = Provider::OpenAI;
-        c.openaiKey = "sk-roundtrip";
-        c.model     = "gpt-4o";
-        c.language  = "fi";
-        c.save();
-    }
+TEST(ConfigProviderModels, EachProviderHasOwnModel) {
+    Config& c = Config::get();
+    c.ollamaModel = "llama3";
+    c.openaiModel = "gpt-4o";
+    c.claudeModel = "claude-sonnet-4-6";
 
-    // Force re-read by creating a fresh Config via the private ctor trick:
-    // We can't (private ctor), so we verify the file content directly instead.
+    c.provider = Provider::Ollama;
+    EXPECT_EQ(c.currentModel(), "llama3");
+
+    c.provider = Provider::OpenAI;
+    EXPECT_EQ(c.currentModel(), "gpt-4o");
+
+    c.provider = Provider::Claude;
+    EXPECT_EQ(c.currentModel(), "claude-sonnet-4-6");
+}
+
+TEST(ConfigProviderModels, SetCurrentModelUpdatesCorrectField) {
+    Config& c = Config::get();
+    c.ollamaModel = "";
+    c.openaiModel = "";
+    c.claudeModel = "";
+
+    c.provider = Provider::Ollama;
+    c.setCurrentModel("llama3.2");
+    EXPECT_EQ(c.ollamaModel, "llama3.2");
+    EXPECT_TRUE(c.openaiModel.isEmpty());
+    EXPECT_TRUE(c.claudeModel.isEmpty());
+
+    c.provider = Provider::OpenAI;
+    c.setCurrentModel("gpt-4o-mini");
+    EXPECT_EQ(c.openaiModel, "gpt-4o-mini");
+    EXPECT_EQ(c.ollamaModel, "llama3.2"); // unchanged
+}
+
+TEST(ConfigProviderModels, CredentialsNotWrittenToJson) {
+    Config& c = Config::get();
+    c.provider   = Provider::OpenAI;
+    c.openaiKey  = "sk-secret";
+    c.claudeKey  = "sk-ant-secret";
+    c.ollamaBasicPass  = "hunter2";
+    c.ollamaApiKeyValue = "myapikey";
+    c.save();
+
     QString path = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)
                    + "/config.json";
     QFile f(path);
-    ASSERT_TRUE(f.open(QIODevice::ReadOnly)) << "config.json not written";
+    ASSERT_TRUE(f.open(QIODevice::ReadOnly));
+    QByteArray data = f.readAll();
+    EXPECT_FALSE(data.contains("sk-secret"));
+    EXPECT_FALSE(data.contains("sk-ant-secret"));
+    EXPECT_FALSE(data.contains("hunter2"));
+    EXPECT_FALSE(data.contains("myapikey"));
+}
+
+TEST(ConfigProviderModels, ModelsRoundTripIndependently) {
+    Config& c = Config::get();
+    c.ollamaModel = "mistral";
+    c.openaiModel = "gpt-4o";
+    c.claudeModel = "claude-haiku-4-5";
+    c.save();
+
+    QString path = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)
+                   + "/config.json";
+    QFile f(path);
+    ASSERT_TRUE(f.open(QIODevice::ReadOnly));
+    QByteArray data = f.readAll();
+    EXPECT_TRUE(data.contains("mistral"));
+    EXPECT_TRUE(data.contains("gpt-4o"));
+    EXPECT_TRUE(data.contains("claude-haiku-4-5"));
+}
+
+// ---- save() / load round-trip ----------------------------------------------
+
+TEST(ConfigPersistence, SavePreservesProviderAndLanguage) {
+    Config& c = Config::get();
+    c.provider  = Provider::OpenAI;
+    c.language  = "fi";
+    c.save();
+
+    QString path = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)
+                   + "/config.json";
+    QFile f(path);
+    ASSERT_TRUE(f.open(QIODevice::ReadOnly));
     QByteArray data = f.readAll();
     EXPECT_TRUE(data.contains("\"provider\":\"OPENAI\"") ||
                 data.contains("\"provider\": \"OPENAI\""));
-    EXPECT_TRUE(data.contains("sk-roundtrip"));
     EXPECT_TRUE(data.contains("fi"));
 }
 
 // ---- defaults --------------------------------------------------------------
 
 TEST(ConfigDefaults, ProviderEnumIsAlwaysValid) {
-    // The singleton is shared and dirtied by prior tests — only assert invariants
-    // that hold regardless of field values.
     Config& c = Config::get();
     EXPECT_TRUE(c.provider == Provider::Ollama ||
                 c.provider == Provider::OpenAI ||

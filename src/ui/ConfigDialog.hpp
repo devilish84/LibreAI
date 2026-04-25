@@ -5,6 +5,7 @@
 QT_BEGIN_NAMESPACE
 class QCheckBox;
 class QComboBox;
+class QFormLayout;
 class QLabel;
 class QLineEdit;
 class QPushButton;
@@ -26,8 +27,12 @@ private:
     void applyTheme();
     void retranslateUi();
     void onProviderChanged(int index);
+    void onOllamaAuthChanged(int index);
     void onRefreshModels();
     void onOk();
+
+    QString currentCredential() const;
+    void    setRowVisible(QLabel* lbl, QWidget* field, bool visible);
 
     // tabs
     QTabWidget*  m_tabs;
@@ -39,11 +44,39 @@ private:
     QLabel*      m_logLevelLabel;
     QComboBox*   m_logLevelBox;
 
-    // Model Selection tab
+    // Model Selection tab — single flat QFormLayout
+    QFormLayout* m_modelForm;
     QLabel*      m_providerLabel;
     QComboBox*   m_providerBox;
-    QLabel*      m_connLabel;
-    QLineEdit*   m_connEdit;
+
+    // Ollama fields
+    QLabel*      m_ollamaUrlLabel;
+    QLineEdit*   m_ollamaUrlEdit;
+    QLabel*      m_ollamaAuthLabel;
+    QComboBox*   m_ollamaAuthBox;
+    QLabel*      m_ollamaUserLabel;
+    QLineEdit*   m_ollamaUserEdit;
+    QLabel*      m_ollamaPassLabel;
+    QLineEdit*   m_ollamaPassEdit;
+    QLabel*      m_ollamaKeyHeaderLabel;
+    QLineEdit*   m_ollamaKeyHeaderEdit;
+    QLabel*      m_ollamaKeyValueLabel;
+    QLineEdit*   m_ollamaKeyValueEdit;
+
+    // OpenAI fields
+    QLabel*      m_openaiUrlLabel;
+    QLineEdit*   m_openaiUrlEdit;
+    QLabel*      m_openaiKeyLabel;
+    QLineEdit*   m_openaiKeyEdit;
+
+    // Claude fields
+    QLabel*      m_claudeKeyLabel;
+    QLineEdit*   m_claudeKeyEdit;
+
+    // Keychain status hint
+    QLabel*      m_keychainHint;
+
+    // Model row (shared)
     QLabel*      m_modelLabel;
     QComboBox*   m_modelBox;
     QPushButton* m_refreshBtn;

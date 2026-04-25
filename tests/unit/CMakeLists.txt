@@ -4,6 +4,7 @@ find_package(GTest REQUIRED)
 add_executable(test_config
     test_config.cpp
     ${CMAKE_SOURCE_DIR}/src/core/Config.cpp
+    ${CMAKE_SOURCE_DIR}/src/core/CredentialStore.cpp
 )
 
 target_include_directories(test_config PRIVATE
@@ -14,6 +15,13 @@ target_include_directories(test_config PRIVATE
 )
 
 target_compile_definitions(test_config PRIVATE LINUX GCC CPPU_ENV=gcc3 UNX)
+
+find_library(QT6KEYCHAIN_LIB NAMES qt6keychain PATHS /usr/lib/x86_64-linux-gnu)
+if(QT6KEYCHAIN_LIB)
+    target_link_libraries(test_config PRIVATE ${QT6KEYCHAIN_LIB})
+    target_include_directories(test_config PRIVATE /usr/include/qt6keychain)
+    target_compile_definitions(test_config PRIVATE HAVE_KEYCHAIN)
+endif()
 
 target_link_libraries(test_config PRIVATE
     Qt6::Core
