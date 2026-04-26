@@ -5,8 +5,11 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QLoggingCategory>
+#include <QAtomicInteger>
 
 Q_LOGGING_CATEGORY(lcOllama, "libreai.ollama")
+
+static QAtomicInteger<int> s_ollamaReqId{0};
 
 OllamaAuthConfig OllamaAuthConfig::fromConfig() {
     qCDebug(lcOllama) << "OllamaAuthConfig::fromConfig";
@@ -39,6 +42,29 @@ void OllamaClient::applyAuth(QNetworkRequest& req) const {
     }
 }
 
+QStringList OllamaClient::parseModels(const QByteArray& json) {
+    static const QStringList kExclude = {
+        "llava", "stable-diffusion", "sdxl", "dall",
+        "whisper", "speech", "audio",
+        "codellama", "codegemma", "starcoder", "deepseek-coder", "coder"
+    };
+    auto arr = QJsonDocument::fromJson(json).object()["models"].toArray();
+    QStringList names;
+    for (auto v : arr) {
+        QString name = v.toObject()["name"].toString();
+        bool skip = false;
+        for (const QString& kw : kExclude)
+            if (name.contains(kw, Qt::CaseInsensitive)) { skip = true; break; }
+        if (!skip) names << name;
+    }
+    return names;
+}
+
+QString OllamaClient::parseResponse(const QByteArray& json) {
+    return QJsonDocument::fromJson(json)
+               .object()["message"].toObject()["content"].toString();
+}
+
 void OllamaClient::fetchModels() {
     qCDebug(lcOllama) << "fetchModels, url=" << (m_baseUrl + "/api/tags");
     QNetworkRequest req(QUrl(m_baseUrl + "/api/tags"));
@@ -52,21 +78,7 @@ void OllamaClient::fetchModels() {
         }
         QByteArray body = reply->readAll();
         qCDebug(lcOllama) << "fetchModels response body:" << body;
-        auto arr = QJsonDocument::fromJson(body).object()["models"].toArray();
-
-        static const QStringList kExclude = {
-            "llava", "stable-diffusion", "sdxl", "dall",
-            "whisper", "speech", "audio",
-            "codellama", "codegemma", "starcoder", "deepseek-coder", "coder"
-        };
-        QStringList names;
-        for (auto v : arr) {
-            QString name = v.toObject()["name"].toString();
-            bool skip = false;
-            for (const QString& kw : kExclude)
-                if (name.contains(kw, Qt::CaseInsensitive)) { skip = true; break; }
-            if (!skip) names << name;
-        }
+        QStringList names = parseModels(body);
         qCInfo(lcOllama) << "fetchModels ready, count=" << names.size();
         emit modelsReady(names);
     });
@@ -75,7 +87,9 @@ void OllamaClient::fetchModels() {
 void OllamaClient::sendChat(const QString& model,
                              const QVector<Message>& history,
                              const QString& prompt) {
-    qCDebug(lcOllama) << "sendChat, model=" << model
+    int reqId = s_ollamaReqId.fetchAndAddRelaxed(1);
+    qCDebug(lcOllama) << "sendChat reqId=" << reqId
+                      << "model=" << model
                       << "historySize=" << history.size()
                       << "promptLength=" << prompt.length();
 
@@ -92,17 +106,17 @@ void OllamaClient::sendChat(const QString& model,
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     applyAuth(req);
     auto* reply = m_nam.post(req, bodyBytes);
-    connect(reply, &QNetworkReply::finished, this, [this, reply] {
+    connect(reply, &QNetworkReply::finished, this, [this, reply, reqId, model] {
         reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
-            qCWarning(lcOllama) << "sendChat error:" << reply->errorString();
+            qCWarning(lcOllama) << "sendChat reqId=" << reqId << "error:" << reply->errorString();
             emit errorOccurred(reply->errorString()); return;
         }
         QByteArray respBody = reply->readAll();
-        qCDebug(lcOllama) << "sendChat response body:" << respBody;
-        auto content = QJsonDocument::fromJson(respBody)
-                           .object()["message"].toObject()["content"].toString();
-        qCInfo(lcOllama) << "sendChat response received, length=" << content.length();
+        qCDebug(lcOllama) << "sendChat reqId=" << reqId << "response body:" << respBody;
+        QString content = parseResponse(respBody);
+        qCInfo(lcOllama) << "sendChat reqId=" << reqId << "model=" << model
+                         << "response length=" << content.length();
         emit responseReady(content);
     });
 }

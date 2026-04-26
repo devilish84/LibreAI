@@ -40,6 +40,7 @@ void SAL_CALL LibreAIJob::trigger(const OUString& args) {
         new QApplication(argc, argv);
     }
 
+    QCoreApplication::setApplicationName("libreai");
     Config::applyLanguage();
 
     // Ensure interceptor is installed on the current frame

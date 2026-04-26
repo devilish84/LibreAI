@@ -22,6 +22,9 @@ public:
     void fetchModels() override;
     void sendChat(const QString& model, const QVector<Message>& history,
                   const QString& prompt) override;
+
+    static QStringList parseModels(const QByteArray& json);
+    static QString     parseResponse(const QByteArray& json);
 private:
     void applyAuth(QNetworkRequest& req) const;
 

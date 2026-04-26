@@ -58,6 +58,7 @@ Config::Config() {
     language        = obj["language"].toString("en");
     loggingEnabled  = obj["logging_enabled"].toBool(false);
     logLevel        = obj["log_level"].toInt(1);
+    maxLogSizeMb    = obj["max_log_size_mb"].toInt(5);
 
     qCDebug(lcConfig) << "Config loaded: provider=" << p
                       << "ollamaUrl=" << ollamaUrl
@@ -105,6 +106,7 @@ void Config::save() const {
     obj["language"]        = language;
     obj["logging_enabled"] = loggingEnabled;
     obj["log_level"]       = logLevel;
+    obj["max_log_size_mb"] = maxLogSizeMb;
 
     CredentialStore::store("libreai/openai_key",        openaiKey);
     CredentialStore::store("libreai/claude_key",        claudeKey);

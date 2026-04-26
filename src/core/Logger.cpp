@@ -67,6 +67,18 @@ static void messageHandler(QtMsgType type,
     s_logFile->flush();
 }
 
+static void rotateLog(const QString& path, qint64 maxBytes) {
+    if (maxBytes <= 0) return;
+    QFileInfo fi(path);
+    if (!fi.exists() || fi.size() < maxBytes) return;
+
+    QString backup1 = path + ".1";
+    QString backup2 = path + ".2";
+    QFile::remove(backup2);
+    QFile::rename(backup1, backup2);
+    QFile::rename(path, backup1);
+}
+
 void initLogging() {
     QMutexLocker lock(&s_mutex);
 
@@ -99,6 +111,8 @@ void initLogging() {
     QDir().mkpath(dir);
     QString path = dir + "/libreai.log";
 
+    rotateLog(path, static_cast<qint64>(cfg.maxLogSizeMb) * 1024 * 1024);
+
     s_logFile = new QFile(path);
     if (!s_logFile->open(QIODevice::Append | QIODevice::Text)) {
         delete s_logFile;
@@ -110,6 +124,7 @@ void initLogging() {
     lock.unlock();
     qInfo(lcLogger) << "LibreAI logging started — level" << s_minLevel
                     << "(loggingEnabled=" << cfg.loggingEnabled << ")"
+                    << "maxLogSizeMb=" << cfg.maxLogSizeMb
                     << "— file:" << path;
 }
 

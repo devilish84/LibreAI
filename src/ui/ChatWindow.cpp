@@ -6,11 +6,13 @@
 #include "../ai/AnthropicClient.hpp"
 
 #include <QApplication>
+#include <QDateTime>
 #include <QEvent>
 #include <QLoggingCategory>
 
 Q_LOGGING_CATEGORY(lcChat, "libreai.chat")
 #include <QLabel>
+#include <QListWidget>
 #include <QPlainTextEdit>
 #include <QPushButton>
 #include <QTimer>
@@ -75,11 +77,25 @@ void ChatWindow::buildUi() {
     root->addWidget(m_instrEdit);
 
     auto* actRow = new QHBoxLayout();
-    m_rewriteBtn = new QPushButton();
-    m_sendBtn    = new QPushButton();
+    m_rewriteBtn   = new QPushButton();
+    m_sendBtn      = new QPushButton();
+    m_clearHistBtn = new QPushButton();
+    m_clearHistBtn->setObjectName("btn2");
     actRow->addWidget(m_rewriteBtn);
     actRow->addWidget(m_sendBtn);
+    actRow->addWidget(m_clearHistBtn);
     root->addLayout(actRow);
+
+    m_historyToggleBtn = new QPushButton();
+    m_historyToggleBtn->setObjectName("btn2");
+    m_historyToggleBtn->setCheckable(true);
+    root->addWidget(m_historyToggleBtn);
+
+    m_historyList = new QListWidget();
+    m_historyList->setWordWrap(true);
+    m_historyList->setFixedHeight(160);
+    m_historyList->setVisible(false);
+    root->addWidget(m_historyList);
 
     m_respLabel = new QLabel();
     m_respLabel->setObjectName("sectionLabel");
@@ -95,10 +111,15 @@ void ChatWindow::buildUi() {
     m_statusLabel->setObjectName("status");
     root->addWidget(m_statusLabel);
 
-    connect(m_grabBtn,    &QPushButton::clicked, this, &ChatWindow::onGrabSelection);
-    connect(m_sendBtn,    &QPushButton::clicked, this, &ChatWindow::onSend);
-    connect(m_rewriteBtn, &QPushButton::clicked, this, &ChatWindow::onRewrite);
-    connect(m_applyBtn,   &QPushButton::clicked, this, &ChatWindow::onApply);
+    connect(m_grabBtn,      &QPushButton::clicked, this, &ChatWindow::onGrabSelection);
+    connect(m_sendBtn,      &QPushButton::clicked, this, &ChatWindow::onSend);
+    connect(m_rewriteBtn,   &QPushButton::clicked, this, &ChatWindow::onRewrite);
+    connect(m_applyBtn,     &QPushButton::clicked, this, &ChatWindow::onApply);
+    connect(m_clearHistBtn, &QPushButton::clicked, this, &ChatWindow::onClearHistory);
+    connect(m_historyToggleBtn, &QPushButton::toggled, this, [this](bool open) {
+        m_historyList->setVisible(open);
+        retranslateUi();
+    });
 }
 
 void ChatWindow::retranslateUi() {
@@ -111,6 +132,11 @@ void ChatWindow::retranslateUi() {
     m_instrEdit->setPlaceholderText(tr("Type your instruction or message…"));
     m_rewriteBtn->setText(tr("Rewrite"));
     m_sendBtn->setText(tr("Send"));
+    m_clearHistBtn->setText(tr("Clear History"));
+    int exchanges = m_history.size() / 2;
+    m_historyToggleBtn->setText(
+        (m_historyToggleBtn->isChecked() ? tr("▼ History (%1)") : tr("▶ History (%1)"))
+        .arg(exchanges));
     m_respLabel->setText(tr("RESPONSE"));
     m_respEdit->setPlaceholderText(tr("AI response appears here…"));
     m_applyBtn->setText(tr("Apply to Document"));
@@ -169,6 +195,16 @@ void ChatWindow::applyTheme() {
         }
         QPushButton#btn2:hover  { background: #4a4a4a; }
         QPushButton:disabled { background: #2a2a2a; color: %3; }
+        QListWidget {
+            background: %4;
+            color: %2;
+            border: 1px solid %5;
+            border-radius: 2px;
+            font-family: monospace;
+            font-size: 11px;
+        }
+        QListWidget::item { padding: 3px 6px; border-bottom: 1px solid %5; }
+        QListWidget::item:selected { background: %6; color: white; }
     )")
     .arg(C_BG, C_TEXT, C_MUTED, C_SURFACE, C_BORDER, C_BTN, C_BTN2));
 }
@@ -217,8 +253,14 @@ void ChatWindow::onSend() {
     connect(client, &AIClient::responseReady, this, [this, prompt](QString resp) {
         qCInfo(lcChat) << "Send response received, length=" << resp.length();
         m_respEdit->setPlainText(resp);
-        m_history.append({"user", prompt});
-        m_history.append({"assistant", resp});
+        const auto& cfg = Config::get();
+        QString ts   = QDateTime::currentDateTime().toString(Qt::ISODate);
+        QString prov = cfg.provider == Provider::Ollama ? "ollama"
+                     : cfg.provider == Provider::OpenAI ? "openai" : "claude";
+        QString mdl  = cfg.currentModel();
+        m_history.append({"user",      prompt, ts, prov, mdl});
+        m_history.append({"assistant", resp,   ts, prov, mdl});
+        refreshHistoryPane();
         setBusy(false);
         setStatus(tr("Done"), C_SUCCESS);
     });
@@ -253,6 +295,28 @@ void ChatWindow::onRewrite() {
         setBusy(false);
     });
     client->sendChat(Config::get().currentModel(), {}, prompt);
+}
+
+void ChatWindow::refreshHistoryPane() {
+    m_historyList->clear();
+    for (const auto& msg : m_history) {
+        QString prefix = (msg.role == "user") ? tr("You: ") : tr("AI:  ");
+        QString text   = msg.content.simplified().left(200);
+        if (msg.content.length() > 200) text += "…";
+        auto* item = new QListWidgetItem(prefix + text);
+        item->setForeground(msg.role == "user"
+            ? QColor(C_TEXT) : QColor(C_SUCCESS));
+        m_historyList->addItem(item);
+    }
+    m_historyList->scrollToBottom();
+    retranslateUi();
+}
+
+void ChatWindow::onClearHistory() {
+    qCInfo(lcChat) << "onClearHistory, clearing" << m_history.size() << "messages";
+    m_history.clear();
+    refreshHistoryPane();
+    setStatus(tr("History cleared"), C_MUTED);
 }
 
 void ChatWindow::onApply() {

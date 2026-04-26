@@ -4,6 +4,31 @@ All notable changes to LibreAI are documented here.
 
 ---
 
+## [1.0.7] — 2026-04-26
+
+### Added
+
+- **Chat history pane** — collapsible "▶ History (N)" panel in the chat window lists all exchanges for the current session; user messages shown in light text, AI responses in teal; scrolls to the latest entry automatically.
+- **Clear History button** — clears the in-memory conversation context mid-session so the AI starts fresh without restarting LibreOffice.
+- **Message metadata** — each history entry now carries a timestamp (ISO 8601), provider name, and model name for improved log diagnostics.
+- **Log rotation** — `libreai.log` is rotated to `.log.1` / `.log.2` when it exceeds the configured max size (default 5 MB); configurable via a new "MAX SIZE" spinbox in General Settings.
+- **Log file path display** — General Settings tab now shows the exact path of the log file as a read-only, selectable label.
+- **Unit tests for Logger** — 8 new GTest cases covering log file creation, close behaviour, level filtering, and log rotation.
+- **Unit tests for AI client JSON parsing** — 17 new GTest cases covering model list parsing (exclusion filters, sorting, empty/malformed input) and response extraction for all three providers (Ollama, OpenAI, Anthropic).
+
+### Changed
+
+- **AI client JSON parsing extracted** — `parseModels()` and `parseResponse()` are now public static methods on each client class, making them independently testable without network calls.
+- **Request IDs in logs** — each `sendChat` call is tagged with an incrementing `reqId` so request and response log lines can be correlated even when calls interleave.
+- **`Config`** — new fields: `maxLogSizeMb` (default 5), persisted as `max_log_size_mb`.
+- **Test CMakeLists** — refactored with a shared `libreai_test` macro; added `test_logger` and `test_ai_parsing` executables.
+
+### Fixed
+
+- **Log path wrong on first launch** — `LibreAIJob::trigger` called `Config::applyLanguage()` (which initialises the Config singleton) before `QCoreApplication::setApplicationName("libreai")` was set, causing the log to be written to `~/.config/libreai.log` instead of `~/.config/libreai/libreai.log`. Fixed by setting the application name at the top of `trigger()`.
+
+---
+
 ## [1.0.6] — 2026-04-25
 
 ### Added

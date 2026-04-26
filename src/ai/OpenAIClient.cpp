@@ -4,8 +4,11 @@
 #include <QJsonObject>
 #include <QNetworkReply>
 #include <QLoggingCategory>
+#include <QAtomicInteger>
 
 Q_LOGGING_CATEGORY(lcOpenAI, "libreai.openai")
+
+static QAtomicInteger<int> s_openaiReqId{0};
 
 OpenAIClient::OpenAIClient(const QString& baseUrl, const QString& apiKey,
                             QObject* parent)
@@ -22,6 +25,32 @@ QNetworkRequest OpenAIClient::makeRequest(const QString& path) const {
     return req;
 }
 
+QStringList OpenAIClient::parseModels(const QByteArray& json) {
+    static const QStringList kExclude = {
+        "embed", "dall-e", "tts", "whisper", "transcri",
+        "search", "similarity", "moderat", "instruct",
+        "audio", "realtime", "codex", "image", "computer"
+    };
+    auto arr = QJsonDocument::fromJson(json).object()["data"].toArray();
+    QStringList names;
+    for (auto v : arr) {
+        QString id = v.toObject()["id"].toString();
+        bool skip = false;
+        for (const QString& kw : kExclude)
+            if (id.contains(kw, Qt::CaseInsensitive)) { skip = true; break; }
+        if (!skip) names << id;
+    }
+    names.sort();
+    return names;
+}
+
+QString OpenAIClient::parseResponse(const QByteArray& json) {
+    return QJsonDocument::fromJson(json)
+               .object()["choices"].toArray()
+               .first().toObject()["message"]
+               .toObject()["content"].toString();
+}
+
 void OpenAIClient::fetchModels() {
     qCDebug(lcOpenAI) << "fetchModels, url=" << (m_baseUrl + "/models");
     QNetworkRequest req(QUrl(m_baseUrl + "/models"));
@@ -35,21 +64,7 @@ void OpenAIClient::fetchModels() {
         }
         QByteArray body = reply->readAll();
         qCDebug(lcOpenAI) << "fetchModels response body:" << body;
-        auto arr = QJsonDocument::fromJson(body).object()["data"].toArray();
-        static const QStringList kExclude = {
-            "embed", "dall-e", "tts", "whisper", "transcri",
-            "search", "similarity", "moderat", "instruct",
-            "audio", "realtime", "codex", "image", "computer"
-        };
-        QStringList names;
-        for (auto v : arr) {
-            QString id = v.toObject()["id"].toString();
-            bool skip = false;
-            for (const QString& kw : kExclude)
-                if (id.contains(kw, Qt::CaseInsensitive)) { skip = true; break; }
-            if (!skip) names << id;
-        }
-        names.sort();
+        QStringList names = parseModels(body);
         qCInfo(lcOpenAI) << "fetchModels ready, count=" << names.size();
         emit modelsReady(names);
     });
@@ -58,7 +73,9 @@ void OpenAIClient::fetchModels() {
 void OpenAIClient::sendChat(const QString& model,
                              const QVector<Message>& history,
                              const QString& prompt) {
-    qCDebug(lcOpenAI) << "sendChat, model=" << model
+    int reqId = s_openaiReqId.fetchAndAddRelaxed(1);
+    qCDebug(lcOpenAI) << "sendChat reqId=" << reqId
+                      << "model=" << model
                       << "historySize=" << history.size()
                       << "promptLength=" << prompt.length();
 
@@ -72,19 +89,17 @@ void OpenAIClient::sendChat(const QString& model,
     qCDebug(lcOpenAI) << "sendChat request body:" << bodyBytes;
 
     auto* reply = m_nam.post(makeRequest("/chat/completions"), bodyBytes);
-    connect(reply, &QNetworkReply::finished, this, [this, reply] {
+    connect(reply, &QNetworkReply::finished, this, [this, reply, reqId, model] {
         reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
-            qCWarning(lcOpenAI) << "sendChat error:" << reply->errorString();
+            qCWarning(lcOpenAI) << "sendChat reqId=" << reqId << "error:" << reply->errorString();
             emit errorOccurred(reply->errorString()); return;
         }
         QByteArray respBody = reply->readAll();
-        qCDebug(lcOpenAI) << "sendChat response body:" << respBody;
-        auto content = QJsonDocument::fromJson(respBody)
-                           .object()["choices"].toArray()
-                           .first().toObject()["message"]
-                           .toObject()["content"].toString();
-        qCInfo(lcOpenAI) << "sendChat response received, length=" << content.length();
+        qCDebug(lcOpenAI) << "sendChat reqId=" << reqId << "response body:" << respBody;
+        QString content = parseResponse(respBody);
+        qCInfo(lcOpenAI) << "sendChat reqId=" << reqId << "model=" << model
+                         << "response length=" << content.length();
         emit responseReady(content);
     });
 }

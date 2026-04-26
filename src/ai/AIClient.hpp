@@ -4,8 +4,11 @@
 #include <QVector>
 
 struct Message {
-    QString role;    // "user" or "assistant"
+    QString role;       // "user" or "assistant"
     QString content;
+    QString timestamp;  // ISO 8601
+    QString provider;   // "ollama" | "openai" | "claude"
+    QString model;
 };
 
 class AIClient : public QObject {

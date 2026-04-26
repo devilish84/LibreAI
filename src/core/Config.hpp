@@ -31,6 +31,7 @@ struct Config {
     QString  language        = "en";
     bool     loggingEnabled  = false;
     int      logLevel        = 1;   // 0=Debug  1=Info  2=Error
+    int      maxLogSizeMb    = 5;   // rotate when log exceeds this size
 
     static Config& get();
     void save() const;

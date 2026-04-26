@@ -10,6 +10,8 @@
 #include <QCheckBox>
 #include <QComboBox>
 #include <QLoggingCategory>
+#include <QSpinBox>
+#include <QStandardPaths>
 
 Q_LOGGING_CATEGORY(lcConfigDlg, "libreai.configdialog")
 #include <QEvent>
@@ -103,9 +105,29 @@ void ConfigDialog::buildUi() {
     m_logLevelLabel->setEnabled(Config::get().loggingEnabled);
     generalForm->addRow(m_logLevelLabel, m_logLevelBox);
 
+    m_logMaxSizeLabel = new QLabel();
+    m_logMaxSizeBox   = new QSpinBox();
+    m_logMaxSizeBox->setRange(1, 500);
+    m_logMaxSizeBox->setSuffix(" MB");
+    m_logMaxSizeBox->setValue(Config::get().maxLogSizeMb);
+    m_logMaxSizeBox->setEnabled(Config::get().loggingEnabled);
+    m_logMaxSizeLabel->setEnabled(Config::get().loggingEnabled);
+    generalForm->addRow(m_logMaxSizeLabel, m_logMaxSizeBox);
+
+    m_logPathLabel = new QLabel();
+    m_logPathValue = new QLabel(
+        QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)
+        + "/libreai.log");
+    m_logPathValue->setObjectName("logPathValue");
+    m_logPathValue->setWordWrap(true);
+    m_logPathValue->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    generalForm->addRow(m_logPathLabel, m_logPathValue);
+
     connect(m_logEnabledBox, &QCheckBox::toggled, this, [this](bool on) {
         m_logLevelBox->setEnabled(on);
         m_logLevelLabel->setEnabled(on);
+        m_logMaxSizeBox->setEnabled(on);
+        m_logMaxSizeLabel->setEnabled(on);
     });
 
     m_tabs->addTab(generalPage, "");
@@ -357,6 +379,7 @@ void ConfigDialog::onOk() {
     // Logging
     cfg.loggingEnabled = m_logEnabledBox->isChecked();
     cfg.logLevel       = m_logLevelBox->currentIndex();
+    cfg.maxLogSizeMb   = m_logMaxSizeBox->value();
 
     // Provider
     cfg.provider = static_cast<Provider>(m_providerBox->currentIndex());
@@ -405,6 +428,8 @@ void ConfigDialog::retranslateUi() {
     m_langLabel->setText(tr("LANGUAGE"));
     m_logEnabledBox->setText(tr("Enable verbose logging"));
     m_logLevelLabel->setText(tr("LEVEL"));
+    m_logMaxSizeLabel->setText(tr("MAX SIZE"));
+    m_logPathLabel->setText(tr("LOG FILE"));
     m_providerLabel->setText(tr("PROVIDER"));
     m_ollamaUrlLabel->setText(tr("BASE URL"));
     m_ollamaAuthLabel->setText(tr("AUTH"));
@@ -501,6 +526,21 @@ void ConfigDialog::applyTheme() {
         QLabel#keychainHint {
             color: %3;
             font-size: 11px;
+        }
+        QLabel#logPathValue {
+            color: %3;
+            font-size: 11px;
+        }
+        QSpinBox {
+            background: %4;
+            color: %2;
+            border: 1px solid %5;
+            border-radius: 2px;
+            padding: 3px 6px;
+        }
+        QSpinBox:disabled {
+            color: %3;
+            background: %7;
         }
     )")
     .arg(C_BG, C_TEXT, C_MUTED, C_SURFACE, C_BORDER, C_BTN, C_BTN2));

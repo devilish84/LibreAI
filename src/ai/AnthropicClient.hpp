@@ -9,6 +9,9 @@ public:
     void fetchModels() override;
     void sendChat(const QString& model, const QVector<Message>& history,
                   const QString& prompt) override;
+
+    static QStringList hardcodedModels();
+    static QString     parseResponse(const QByteArray& json);
 private:
     QString               m_apiKey;
     QNetworkAccessManager m_nam;

@@ -5,14 +5,11 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QLoggingCategory>
+#include <QAtomicInteger>
 
 Q_LOGGING_CATEGORY(lcAnthropic, "libreai.anthropic")
 
-static const QStringList CLAUDE_MODELS = {
-    "claude-opus-4-7",
-    "claude-sonnet-4-6",
-    "claude-haiku-4-5-20251001",
-};
+static QAtomicInteger<int> s_anthropicReqId{0};
 
 AnthropicClient::AnthropicClient(const QString& apiKey, QObject* parent)
     : AIClient(parent), m_apiKey(apiKey)
@@ -20,15 +17,32 @@ AnthropicClient::AnthropicClient(const QString& apiKey, QObject* parent)
     qCDebug(lcAnthropic) << "AnthropicClient constructed";
 }
 
+QStringList AnthropicClient::hardcodedModels() {
+    return {
+        "claude-opus-4-7",
+        "claude-sonnet-4-6",
+        "claude-haiku-4-5-20251001",
+    };
+}
+
+QString AnthropicClient::parseResponse(const QByteArray& json) {
+    return QJsonDocument::fromJson(json)
+               .object()["content"].toArray()
+               .first().toObject()["text"].toString();
+}
+
 void AnthropicClient::fetchModels() {
-    qCDebug(lcAnthropic) << "fetchModels, returning" << CLAUDE_MODELS.size() << "hardcoded models";
-    emit modelsReady(CLAUDE_MODELS);
+    QStringList models = hardcodedModels();
+    qCDebug(lcAnthropic) << "fetchModels, returning" << models.size() << "hardcoded models";
+    emit modelsReady(models);
 }
 
 void AnthropicClient::sendChat(const QString& model,
                                 const QVector<Message>& history,
                                 const QString& prompt) {
-    qCDebug(lcAnthropic) << "sendChat, model=" << model
+    int reqId = s_anthropicReqId.fetchAndAddRelaxed(1);
+    qCDebug(lcAnthropic) << "sendChat reqId=" << reqId
+                         << "model=" << model
                          << "historySize=" << history.size()
                          << "promptLength=" << prompt.length();
 
@@ -51,18 +65,17 @@ void AnthropicClient::sendChat(const QString& model,
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     auto* reply = m_nam.post(req, bodyBytes);
-    connect(reply, &QNetworkReply::finished, this, [this, reply] {
+    connect(reply, &QNetworkReply::finished, this, [this, reply, reqId, model] {
         reply->deleteLater();
         if (reply->error() != QNetworkReply::NoError) {
-            qCWarning(lcAnthropic) << "sendChat error:" << reply->errorString();
+            qCWarning(lcAnthropic) << "sendChat reqId=" << reqId << "error:" << reply->errorString();
             emit errorOccurred(reply->errorString()); return;
         }
         QByteArray respBody = reply->readAll();
-        qCDebug(lcAnthropic) << "sendChat response body:" << respBody;
-        auto content = QJsonDocument::fromJson(respBody)
-                           .object()["content"].toArray()
-                           .first().toObject()["text"].toString();
-        qCInfo(lcAnthropic) << "sendChat response received, length=" << content.length();
+        qCDebug(lcAnthropic) << "sendChat reqId=" << reqId << "response body:" << respBody;
+        QString content = parseResponse(respBody);
+        qCInfo(lcAnthropic) << "sendChat reqId=" << reqId << "model=" << model
+                            << "response length=" << content.length();
         emit responseReady(content);
     });
 }

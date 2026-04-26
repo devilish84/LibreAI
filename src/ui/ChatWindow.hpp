@@ -8,6 +8,7 @@ class QLabel;
 class QPlainTextEdit;
 class QPushButton;
 class QTimer;
+class QListWidget;
 QT_END_NAMESPACE
 
 class ChatWindow : public QWidget {
@@ -30,6 +31,8 @@ private:
     void onSend();
     void onRewrite();
     void onApply();
+    void onClearHistory();
+    void refreshHistoryPane();
     void setStatus(const QString& msg, const QString& color = "#858585");
     void setBusy(bool busy);
     AIClient* buildClient();
@@ -42,6 +45,9 @@ private:
     QPlainTextEdit* m_instrEdit;
     QPushButton*    m_rewriteBtn;
     QPushButton*    m_sendBtn;
+    QPushButton*    m_clearHistBtn;
+    QPushButton*    m_historyToggleBtn;
+    QListWidget*    m_historyList;
     QLabel*         m_respLabel;
     QPlainTextEdit* m_respEdit;
     QPushButton*    m_applyBtn;

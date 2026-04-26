@@ -9,6 +9,7 @@ class QFormLayout;
 class QLabel;
 class QLineEdit;
 class QPushButton;
+class QSpinBox;
 class QTabWidget;
 QT_END_NAMESPACE
 
@@ -43,6 +44,10 @@ private:
     QCheckBox*   m_logEnabledBox;
     QLabel*      m_logLevelLabel;
     QComboBox*   m_logLevelBox;
+    QLabel*      m_logMaxSizeLabel;
+    QSpinBox*    m_logMaxSizeBox;
+    QLabel*      m_logPathLabel;
+    QLabel*      m_logPathValue;
 
     // Model Selection tab — single flat QFormLayout
     QFormLayout* m_modelForm;
