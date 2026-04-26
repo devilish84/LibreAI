@@ -24,7 +24,6 @@ jobs:
 
       - name: Install build tools and LibreOffice
         run: |
-          brew install dylibbundler
           brew install --cask libreoffice
 
       - name: Download LibreOffice SDK and locate paths
@@ -92,24 +91,35 @@ jobs:
           mkdir -p pkg
           cp build/libreai.dylib pkg/
 
-          # Rewrite LO's @__URELIB rpath references so dylibbundler ignores them.
-          # At runtime LO provides its own UNO libs — we must NOT bundle them.
-          for uno in libuno_cppu libuno_cppuhelpergcc3 libuno_sal; do
-            old=$(otool -L pkg/libreai.dylib | grep "${uno}" | awk '{print $1}')
-            if [ -n "$old" ]; then
-              install_name_tool -change "$old" "@loader_path/${uno}.dylib.3" pkg/libreai.dylib
-              echo "rewritten UNO ref: $old -> @loader_path/${uno}.dylib.3"
-            fi
-          done
+          # Recursively bundle all non-system, non-LO dylib dependencies.
+          # dylibbundler cannot handle LO's @__URELIB rpath scheme (goes
+          # interactive), so we do it manually with otool + install_name_tool.
+          bundle_deps() {
+            local target="$1"
+            otool -L "$target" | tail -n +2 | awk '{print $1}' | while read -r dep; do
+              case "$dep" in
+                # Already handled or provided by OS/LO at runtime — leave alone
+                @loader_path/*|@rpath/*|@executable_path/*) continue ;;
+                /usr/lib/*|/System/*) continue ;;
+                *LibreOffice*|*@_*) continue ;;
+              esac
+              [ -f "$dep" ] || continue
+              libname=$(basename "$dep")
+              dest_lib="pkg/$libname"
+              # Rewrite the reference in the target first
+              install_name_tool -change "$dep" "@loader_path/$libname" "$target"
+              # Copy and recurse only if not already present
+              if [ ! -f "$dest_lib" ]; then
+                cp "$dep" "$dest_lib"
+                chmod u+w "$dest_lib"
+                # Fix its own install name
+                install_name_tool -id "@loader_path/$libname" "$dest_lib"
+                bundle_deps "$dest_lib"
+              fi
+            done
+          }
 
-          # Now bundle only the Qt6 (and other non-system, non-LO) dylibs.
-          dylibbundler \
-            --fix-file pkg/libreai.dylib \
-            --bundle-deps \
-            --dest-dir pkg \
-            --install-path @loader_path/ \
-            --overwrite-dir \
-            --ignore /Applications/LibreOffice.app/Contents/Frameworks
+          bundle_deps pkg/libreai.dylib
 
           echo "=== Bundled libs ==="
           ls -lh pkg/
