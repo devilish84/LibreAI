@@ -50,7 +50,7 @@ jobs:
           cmake --build build --parallel $(nproc)
           mkdir -p pkg oxt
           cp build/libreai.so pkg/
-          ldd build/libreai.so | grep -i 'Qt6' | awk '{print $3}' | xargs -I{} cp {} pkg/
+          ldd build/libreai.so | grep -iE 'Qt6|keychain' | awk '{print $3}' | grep '^/' | xargs -I{} cp {} pkg/
           cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons oxt/
           cp -r pkg/. oxt/
           cd oxt && zip -r ../libreai.oxt .

@@ -110,7 +110,13 @@ endif()
 if(WIN32)
     set_target_properties(libreai PROPERTIES PREFIX "" OUTPUT_NAME "libreai" SUFFIX ".dll")
 else()
-    set_target_properties(libreai PROPERTIES PREFIX "" OUTPUT_NAME "libreai" SUFFIX ".so")
+    set_target_properties(libreai PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME "libreai"
+        SUFFIX ".so"
+        INSTALL_RPATH "$ORIGIN"
+        BUILD_WITH_INSTALL_RPATH ON
+    )
 endif()
 
 option(BUILD_TESTS "Build unit tests" OFF)
