@@ -47,18 +47,15 @@ jobs:
           # The SDK DMG is a flat directory — no installer package.
           SDK_DIR=$(find /Volumes/LOSDK -maxdepth 1 -type d -name "LibreOffice*SDK*" | head -1)
           echo "SDK dir: $SDK_DIR"
-          sudo cp -r "$SDK_DIR" /opt/lo_sdk
+          cp -r "$SDK_DIR" "$HOME/lo_sdk"
           hdiutil detach /Volumes/LOSDK -quiet
-          echo "=== SDK directory tree (depth 2) ==="
-          find /opt/lo_sdk -maxdepth 2 -type d
           # Find sal/config.h to determine the real include root
-          SAL_H=$(find /opt/lo_sdk -name "config.h" -path "*/sal/*" | head -1)
+          SAL_H=$(find "$HOME/lo_sdk" -name "config.h" -path "*/sal/*" | head -1)
           echo "sal/config.h found at: $SAL_H"
           if [ -n "$SAL_H" ]; then
-            # include root is two levels up from sal/config.h
             LO_INC=$(dirname "$(dirname "$SAL_H")")
           else
-            LO_INC=/opt/lo_sdk/include
+            LO_INC="$HOME/lo_sdk/include"
           fi
           echo "LO_INCLUDE=${LO_INC}" >> $GITHUB_ENV
           echo "LO_INCLUDE=${LO_INC}"
@@ -68,16 +65,16 @@ jobs:
           UNO_FW="${LO_APP}/Contents/Frameworks"
           echo "=== UNO libs found ==="
           ls "${UNO_FW}"/libuno_* 2>/dev/null
-          sudo mkdir -p /opt/uno_stubs
+          mkdir -p "$HOME/uno_stubs"
           for lib in cppu cppuhelpergcc3 sal; do
             src=$(ls "${UNO_FW}/libuno_${lib}.dylib"* 2>/dev/null | head -1)
             if [ -n "$src" ]; then
-              ln -sf "$src" "/opt/uno_stubs/libuno_${lib}.dylib"
-              echo "linked: /opt/uno_stubs/libuno_${lib}.dylib -> $src"
+              ln -sf "$src" "$HOME/uno_stubs/libuno_${lib}.dylib"
+              echo "linked: $HOME/uno_stubs/libuno_${lib}.dylib -> $src"
             fi
           done
-          echo "LO_SDK_LIB=/opt/uno_stubs" >> $GITHUB_ENV
-          echo "LO_SDK_LIB=/opt/uno_stubs"
+          echo "LO_SDK_LIB=$HOME/uno_stubs" >> $GITHUB_ENV
+          echo "LO_SDK_LIB=$HOME/uno_stubs"
 
       - name: Build
         run: |
