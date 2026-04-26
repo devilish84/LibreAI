@@ -63,15 +63,21 @@ jobs:
           echo "LO_INCLUDE=${LO_INC}" >> $GITHUB_ENV
           echo "LO_INCLUDE=${LO_INC}"
           ls "${LO_INC}/" | head -10
-          # Locate UNO dylibs — they may be in MacOS/ or Frameworks/
-          echo "=== Searching for libuno_cppu in LO bundle ==="
-          find "${LO_APP}" -name "libuno_cppu*" 2>/dev/null
-          find "${LO_APP}" -name "libuno_sal*" 2>/dev/null
-          find "${LO_APP}" -name "libuno_cppuhelper*" 2>/dev/null
-          UNO_DIR=$(find "${LO_APP}" -name "libuno_cppu.dylib" 2>/dev/null \
-            | head -1 | xargs dirname 2>/dev/null)
-          echo "LO_SDK_LIB=${UNO_DIR}" >> $GITHUB_ENV
-          echo "LO_SDK_LIB=${UNO_DIR}"
+          # UNO libs are in Frameworks/ as versioned dylibs (e.g. libuno_cppu.dylib.3).
+          # Create unversioned symlinks in /opt/uno_stubs so CMake can link them.
+          UNO_FW="${LO_APP}/Contents/Frameworks"
+          echo "=== UNO libs found ==="
+          ls "${UNO_FW}"/libuno_* 2>/dev/null
+          mkdir -p /opt/uno_stubs
+          for lib in cppu cppuhelpergcc3 sal; do
+            src=$(ls "${UNO_FW}/libuno_${lib}.dylib"* 2>/dev/null | head -1)
+            if [ -n "$src" ]; then
+              ln -sf "$src" "/opt/uno_stubs/libuno_${lib}.dylib"
+              echo "linked: /opt/uno_stubs/libuno_${lib}.dylib -> $src"
+            fi
+          done
+          echo "LO_SDK_LIB=/opt/uno_stubs" >> $GITHUB_ENV
+          echo "LO_SDK_LIB=/opt/uno_stubs"
 
       - name: Build
         run: |
