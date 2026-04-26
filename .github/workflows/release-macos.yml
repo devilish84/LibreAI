@@ -87,21 +87,30 @@ jobs:
           echo "=== otool -L build/libreai.dylib ==="
           otool -L build/libreai.dylib
 
-      - name: Bundle all dependencies with dylibbundler
+      - name: Bundle Qt6 dependencies
         run: |
           mkdir -p pkg
           cp build/libreai.dylib pkg/
-          # Recursively collect and relink all non-system dylibs.
-          # @loader_path resolves relative to the loading dylib — correct for a
-          # flat OXT where all libs sit alongside libreai.dylib.
-          # Exclude LO's own UNO libs: they are provided by the host LO install.
+
+          # Rewrite LO's @__URELIB rpath references so dylibbundler ignores them.
+          # At runtime LO provides its own UNO libs — we must NOT bundle them.
+          for uno in libuno_cppu libuno_cppuhelpergcc3 libuno_sal; do
+            old=$(otool -L pkg/libreai.dylib | grep "${uno}" | awk '{print $1}')
+            if [ -n "$old" ]; then
+              install_name_tool -change "$old" "@loader_path/${uno}.dylib.3" pkg/libreai.dylib
+              echo "rewritten UNO ref: $old -> @loader_path/${uno}.dylib.3"
+            fi
+          done
+
+          # Now bundle only the Qt6 (and other non-system, non-LO) dylibs.
           dylibbundler \
             --fix-file pkg/libreai.dylib \
             --bundle-deps \
             --dest-dir pkg \
             --install-path @loader_path/ \
             --overwrite-dir \
-            --ignore /Applications/LibreOffice.app
+            --ignore /Applications/LibreOffice.app/Contents/Frameworks
+
           echo "=== Bundled libs ==="
           ls -lh pkg/
           echo "=== Final link map ==="
