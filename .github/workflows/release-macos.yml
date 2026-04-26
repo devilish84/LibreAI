@@ -32,10 +32,12 @@ jobs:
           # Match the version brew installed so headers align with stub libs
           LO_APP=$(ls -d /Applications/LibreOffice*.app 2>/dev/null | head -1)
           echo "LO app: $LO_APP"
-          # Read version from the app bundle
-          LO_VER=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" \
+          # Read version from the app bundle (CFBundleShortVersionString may be
+          # 4-part, e.g. 26.2.2.2, but download URLs use 3-part: 26.2.2)
+          LO_VER_FULL=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" \
             "${LO_APP}/Contents/Info.plist" 2>/dev/null || echo "24.8.6")
-          echo "Detected LO version: $LO_VER"
+          LO_VER=$(echo "$LO_VER_FULL" | cut -d. -f1-3)
+          echo "Detected LO version: $LO_VER (from $LO_VER_FULL)"
           SDK_URL="https://download.documentfoundation.org/libreoffice/stable/${LO_VER}/mac/aarch64/LibreOffice_${LO_VER}_MacOS_aarch64_sdk.dmg"
           echo "Downloading: $SDK_URL"
           curl -fL "$SDK_URL" -o lo_sdk.dmg
