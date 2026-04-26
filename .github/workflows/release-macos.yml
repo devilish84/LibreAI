@@ -36,24 +36,27 @@ jobs:
             "${LO_APP}/Contents/Info.plist" 2>/dev/null || echo "26.2.2")
           LO_VER=$(echo "$LO_VER_FULL" | cut -d. -f1-3)
           echo "Detected LO version: $LO_VER"
-          SDK_URL="https://download.documentfoundation.org/libreoffice/stable/${LO_VER}/mac/aarch64/LibreOffice_${LO_VER}_MacOS_aarch64_sdk.dmg"
+          # Use funet mirror — more reliable than the primary LO download server
+          MIRROR="https://www.nic.funet.fi/pub/mirrors/documentfoundation.org/libreoffice/stable"
+          SDK_URL="${MIRROR}/${LO_VER}/mac/aarch64/LibreOffice_${LO_VER}_MacOS_aarch64_sdk.dmg"
           echo "Downloading: $SDK_URL"
-          curl -fL --retry 5 --retry-delay 5 "$SDK_URL" -o lo_sdk.dmg
+          curl -fL --retry 5 --retry-delay 10 "$SDK_URL" -o lo_sdk.dmg
           hdiutil attach lo_sdk.dmg -mountpoint /Volumes/LOSDK -nobrowse
           echo "=== DMG top-level ==="
           ls /Volumes/LOSDK/
           # The SDK DMG is a flat directory — no installer package.
-          # Copy the entire SDK tree to a stable path.
           SDK_DIR=$(find /Volumes/LOSDK -maxdepth 1 -type d -name "LibreOffice*SDK*" | head -1)
           echo "SDK dir: $SDK_DIR"
           sudo cp -r "$SDK_DIR" /opt/lo_sdk
           hdiutil detach /Volumes/LOSDK -quiet
           echo "LO_INCLUDE=/opt/lo_sdk/include" >> $GITHUB_ENV
-          echo "LO_SDK_LIB=/opt/lo_sdk/lib" >> $GITHUB_ENV
+          # UNO stub libs live in the installed app bundle's MacOS/ dir
+          LO_LIB="${LO_APP}/Contents/MacOS"
+          echo "LO_SDK_LIB=${LO_LIB}" >> $GITHUB_ENV
           echo "LO_INCLUDE=/opt/lo_sdk/include"
-          echo "LO_SDK_LIB=/opt/lo_sdk/lib"
+          echo "LO_SDK_LIB=${LO_LIB}"
           ls /opt/lo_sdk/include/ | head -10
-          ls /opt/lo_sdk/lib/ | head -10
+          ls "${LO_LIB}/" | grep -i uno | head -10
 
       - name: Build
         run: |
@@ -71,14 +74,16 @@ jobs:
           mkdir -p pkg
           cp build/libreai.dylib pkg/
           # Recursively collect and relink all non-system dylibs.
-          # @loader_path means "same directory as the loading dylib" — correct
-          # for a flat OXT where all libs sit alongside libreai.dylib.
+          # @loader_path resolves relative to the loading dylib — correct for a
+          # flat OXT where all libs sit alongside libreai.dylib.
+          # Exclude LO's own UNO libs: they are provided by the host LO install.
           dylibbundler \
             --fix-file pkg/libreai.dylib \
             --bundle-deps \
             --dest-dir pkg \
             --install-path @loader_path/ \
-            --overwrite-dir
+            --overwrite-dir \
+            --ignore /Applications/LibreOffice.app
           echo "=== Bundled libs ==="
           ls -lh pkg/
           echo "=== Final link map ==="
