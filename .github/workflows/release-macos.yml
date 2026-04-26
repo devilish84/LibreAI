@@ -38,7 +38,7 @@ jobs:
           echo "Detected LO version: $LO_VER"
           SDK_URL="https://download.documentfoundation.org/libreoffice/stable/${LO_VER}/mac/aarch64/LibreOffice_${LO_VER}_MacOS_aarch64_sdk.dmg"
           echo "Downloading: $SDK_URL"
-          curl -fL "$SDK_URL" -o lo_sdk.dmg
+          curl -fL --retry 5 --retry-delay 5 "$SDK_URL" -o lo_sdk.dmg
           hdiutil attach lo_sdk.dmg -mountpoint /Volumes/LOSDK -nobrowse
           echo "=== DMG top-level ==="
           ls /Volumes/LOSDK/
