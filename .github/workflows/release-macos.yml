@@ -68,7 +68,7 @@ jobs:
           UNO_FW="${LO_APP}/Contents/Frameworks"
           echo "=== UNO libs found ==="
           ls "${UNO_FW}"/libuno_* 2>/dev/null
-          mkdir -p /opt/uno_stubs
+          sudo mkdir -p /opt/uno_stubs
           for lib in cppu cppuhelpergcc3 sal; do
             src=$(ls "${UNO_FW}/libuno_${lib}.dylib"* 2>/dev/null | head -1)
             if [ -n "$src" ]; then
