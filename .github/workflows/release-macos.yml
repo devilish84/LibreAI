@@ -61,13 +61,17 @@ jobs:
             LO_INC=/opt/lo_sdk/include
           fi
           echo "LO_INCLUDE=${LO_INC}" >> $GITHUB_ENV
-          # UNO stub libs live in the installed app bundle's MacOS/ dir
-          LO_LIB="${LO_APP}/Contents/MacOS"
-          echo "LO_SDK_LIB=${LO_LIB}" >> $GITHUB_ENV
           echo "LO_INCLUDE=${LO_INC}"
-          echo "LO_SDK_LIB=${LO_LIB}"
           ls "${LO_INC}/" | head -10
-          ls "${LO_LIB}/" | grep -i uno | head -10
+          # Locate UNO dylibs — they may be in MacOS/ or Frameworks/
+          echo "=== Searching for libuno_cppu in LO bundle ==="
+          find "${LO_APP}" -name "libuno_cppu*" 2>/dev/null
+          find "${LO_APP}" -name "libuno_sal*" 2>/dev/null
+          find "${LO_APP}" -name "libuno_cppuhelper*" 2>/dev/null
+          UNO_DIR=$(find "${LO_APP}" -name "libuno_cppu.dylib" 2>/dev/null \
+            | head -1 | xargs dirname 2>/dev/null)
+          echo "LO_SDK_LIB=${UNO_DIR}" >> $GITHUB_ENV
+          echo "LO_SDK_LIB=${UNO_DIR}"
 
       - name: Build
         run: |
