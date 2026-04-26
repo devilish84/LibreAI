@@ -27,50 +27,33 @@ jobs:
           brew install dylibbundler
           brew install --cask libreoffice
 
-      - name: Download and install LibreOffice SDK
+      - name: Download LibreOffice SDK and locate paths
         run: |
-          # Match the version brew installed so headers align with stub libs
           LO_APP=$(ls -d /Applications/LibreOffice*.app 2>/dev/null | head -1)
           echo "LO app: $LO_APP"
-          # Read version from the app bundle (CFBundleShortVersionString may be
-          # 4-part, e.g. 26.2.2.2, but download URLs use 3-part: 26.2.2)
+          # CFBundleShortVersionString can be 4-part (26.2.2.2); URLs use 3-part
           LO_VER_FULL=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" \
-            "${LO_APP}/Contents/Info.plist" 2>/dev/null || echo "24.8.6")
+            "${LO_APP}/Contents/Info.plist" 2>/dev/null || echo "26.2.2")
           LO_VER=$(echo "$LO_VER_FULL" | cut -d. -f1-3)
-          echo "Detected LO version: $LO_VER (from $LO_VER_FULL)"
+          echo "Detected LO version: $LO_VER"
           SDK_URL="https://download.documentfoundation.org/libreoffice/stable/${LO_VER}/mac/aarch64/LibreOffice_${LO_VER}_MacOS_aarch64_sdk.dmg"
           echo "Downloading: $SDK_URL"
           curl -fL "$SDK_URL" -o lo_sdk.dmg
           hdiutil attach lo_sdk.dmg -mountpoint /Volumes/LOSDK -nobrowse
-          echo "=== DMG contents ==="
-          find /Volumes/LOSDK -maxdepth 3
-          # Find any installer package (pkg or mpkg)
-          PKG=$(find /Volumes/LOSDK \( -name "*.pkg" -o -name "*.mpkg" \) | head -1)
-          echo "Installing: $PKG"
-          sudo installer -pkg "$PKG" -target /
+          echo "=== DMG top-level ==="
+          ls /Volumes/LOSDK/
+          # The SDK DMG is a flat directory — no installer package.
+          # Copy the entire SDK tree to a stable path.
+          SDK_DIR=$(find /Volumes/LOSDK -maxdepth 1 -type d -name "LibreOffice*SDK*" | head -1)
+          echo "SDK dir: $SDK_DIR"
+          sudo cp -r "$SDK_DIR" /opt/lo_sdk
           hdiutil detach /Volumes/LOSDK -quiet
-
-      - name: Locate LO SDK paths
-        run: |
-          # SDK installs to /Library/Application Support/ or /opt
-          LO_INC=$(find /Library/Application\ Support /opt /usr/local \
-            -path "*/sdk/include/cppuhelper" -type d 2>/dev/null \
-            | head -1 | xargs dirname 2>/dev/null)
-          # Fall back to the app bundle's own headers if SDK installed there
-          if [ -z "$LO_INC" ]; then
-            LO_APP=$(ls -d /Applications/LibreOffice*.app 2>/dev/null | head -1)
-            LO_INC=$(find "$LO_APP" -path "*/sdk/include" -type d 2>/dev/null | head -1)
-          fi
-          LO_LIB=$(find /Library/Application\ Support /opt /usr/local \
-            -name "libuno_cppu*" 2>/dev/null | head -1 | xargs dirname 2>/dev/null)
-          if [ -z "$LO_LIB" ]; then
-            LO_APP=$(ls -d /Applications/LibreOffice*.app 2>/dev/null | head -1)
-            LO_LIB=$(find "$LO_APP" -name "libuno_cppu*" 2>/dev/null | head -1 | xargs dirname 2>/dev/null)
-          fi
-          echo "LO_INCLUDE=${LO_INC}" >> $GITHUB_ENV
-          echo "LO_SDK_LIB=${LO_LIB}" >> $GITHUB_ENV
-          echo "LO_INCLUDE=${LO_INC}"
-          echo "LO_SDK_LIB=${LO_LIB}"
+          echo "LO_INCLUDE=/opt/lo_sdk/include" >> $GITHUB_ENV
+          echo "LO_SDK_LIB=/opt/lo_sdk/lib" >> $GITHUB_ENV
+          echo "LO_INCLUDE=/opt/lo_sdk/include"
+          echo "LO_SDK_LIB=/opt/lo_sdk/lib"
+          ls /opt/lo_sdk/include/ | head -10
+          ls /opt/lo_sdk/lib/ | head -10
 
       - name: Build
         run: |
