@@ -13,16 +13,36 @@ find_package(Qt6 REQUIRED COMPONENTS Core Widgets Network
 set(LO_GEN_INCLUDE ${CMAKE_SOURCE_DIR}/include)
 
 if(WIN32)
-    set(LO_INCLUDE  "$ENV{PROGRAMFILES}/LibreOffice_25.8_SDK/sdk/include")
-    set(LO_SDK_LIB  "$ENV{PROGRAMFILES}/LibreOffice_25.8_SDK/sdk/lib")
+    if(NOT LO_INCLUDE)
+        set(LO_INCLUDE "$ENV{PROGRAMFILES}/LibreOffice_25.8_SDK/sdk/include")
+    endif()
+    if(NOT LO_SDK_LIB)
+        set(LO_SDK_LIB "$ENV{PROGRAMFILES}/LibreOffice_25.8_SDK/sdk/lib")
+    endif()
     add_compile_definitions(WNT _WIN32 CPPU_ENV=msvc)
     set(UNO_LIBS
         ${LO_SDK_LIB}/icppu.lib
         ${LO_SDK_LIB}/icppuhelper.lib
         ${LO_SDK_LIB}/isal.lib)
+elseif(APPLE)
+    if(NOT LO_INCLUDE)
+        set(LO_INCLUDE /usr/local/include/libreoffice)
+    endif()
+    if(NOT LO_SDK_LIB)
+        set(LO_SDK_LIB /Applications/LibreOffice.app/Contents/MacOS)
+    endif()
+    add_compile_definitions(MACOSX GCC CPPU_ENV=gcc3 UNX)
+    set(UNO_LIBS
+        ${LO_SDK_LIB}/libuno_cppu.dylib
+        ${LO_SDK_LIB}/libuno_cppuhelpergcc3.dylib
+        ${LO_SDK_LIB}/libuno_sal.dylib)
 else()
-    set(LO_INCLUDE  /usr/include/libreoffice)
-    set(LO_SDK_LIB  /usr/lib/libreoffice/sdk/lib)
+    if(NOT LO_INCLUDE)
+        set(LO_INCLUDE /usr/include/libreoffice)
+    endif()
+    if(NOT LO_SDK_LIB)
+        set(LO_SDK_LIB /usr/lib/libreoffice/sdk/lib)
+    endif()
     add_compile_definitions(LINUX GCC CPPU_ENV=gcc3 UNX)
     set(UNO_LIBS
         ${LO_SDK_LIB}/libuno_cppu.so
