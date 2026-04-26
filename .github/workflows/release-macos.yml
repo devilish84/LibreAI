@@ -49,13 +49,24 @@ jobs:
           echo "SDK dir: $SDK_DIR"
           sudo cp -r "$SDK_DIR" /opt/lo_sdk
           hdiutil detach /Volumes/LOSDK -quiet
-          echo "LO_INCLUDE=/opt/lo_sdk/include" >> $GITHUB_ENV
+          echo "=== SDK directory tree (depth 2) ==="
+          find /opt/lo_sdk -maxdepth 2 -type d
+          # Find sal/config.h to determine the real include root
+          SAL_H=$(find /opt/lo_sdk -name "config.h" -path "*/sal/*" | head -1)
+          echo "sal/config.h found at: $SAL_H"
+          if [ -n "$SAL_H" ]; then
+            # include root is two levels up from sal/config.h
+            LO_INC=$(dirname "$(dirname "$SAL_H")")
+          else
+            LO_INC=/opt/lo_sdk/include
+          fi
+          echo "LO_INCLUDE=${LO_INC}" >> $GITHUB_ENV
           # UNO stub libs live in the installed app bundle's MacOS/ dir
           LO_LIB="${LO_APP}/Contents/MacOS"
           echo "LO_SDK_LIB=${LO_LIB}" >> $GITHUB_ENV
-          echo "LO_INCLUDE=/opt/lo_sdk/include"
+          echo "LO_INCLUDE=${LO_INC}"
           echo "LO_SDK_LIB=${LO_LIB}"
-          ls /opt/lo_sdk/include/ | head -10
+          ls "${LO_INC}/" | head -10
           ls "${LO_LIB}/" | grep -i uno | head -10
 
       - name: Build
