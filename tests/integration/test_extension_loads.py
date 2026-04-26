@@ -17,10 +17,10 @@ def test_libreai_extension_registered(lo_context):
     smgr = lo_context.ServiceManager
     # The extension registers these two UNO services
     job = smgr.createInstanceWithContext(
-        "com.example.libreai.LibreAIJob", lo_context
+        "org.libreai.job", lo_context
     )
     assert job is not None, \
-        "LibreAIJob service not found — is libreai.oxt installed? (unopkg add ...)"
+        "org.libreai.job service not found — is libreai.oxt installed? (unopkg add ...)"
 
 
 def test_open_writer_document(lo_context):

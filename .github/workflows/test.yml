@@ -50,27 +50,15 @@ jobs:
           cmake --build build --parallel $(nproc)
           mkdir -p pkg oxt
           cp build/libreai.so pkg/
-          echo "=== ldd output ==="
-          ldd build/libreai.so
-          echo "=== copying Qt6/keychain deps ==="
-          ldd build/libreai.so | grep -iE 'Qt6|keychain' | awk '{print $3}' | grep '^/' | xargs -I{} cp -v {} pkg/
-          echo "=== pkg contents ==="
-          ls -la pkg/
+          ldd build/libreai.so | grep -iE 'Qt6|keychain' | awk '{print $3}' | grep '^/' | xargs -I{} cp {} pkg/
           cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons oxt/
           cp -r pkg/. oxt/
           cd oxt && zip -r ../libreai.oxt .
 
       - name: Install OXT into LibreOffice
-        run: |
-          unopkg add libreai.oxt
-          echo "=== installed extensions ==="
-          unopkg list
+        run: unopkg add libreai.oxt
 
       - name: Run integration tests (headless)
         run: |
-          echo "=== soffice version ==="
-          soffice --version
-          echo "=== try loading .so directly ==="
-          python3 -c "import ctypes; lib = ctypes.CDLL('oxt/libreai.so', ctypes.RTLD_GLOBAL); print('loaded ok')" || echo "dlopen failed"
           pip install pytest pytest-timeout
           xvfb-run -a pytest tests/integration/ -v --timeout=60
