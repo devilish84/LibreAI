@@ -107,8 +107,21 @@ if(WIN32)
     target_compile_definitions(libreai PRIVATE HAVE_DPAPI)
 endif()
 
+if(APPLE)
+    target_link_libraries(libreai PRIVATE "-framework Security")
+    target_compile_definitions(libreai PRIVATE HAVE_MACOS_KEYCHAIN)
+endif()
+
 if(WIN32)
     set_target_properties(libreai PROPERTIES PREFIX "" OUTPUT_NAME "libreai" SUFFIX ".dll")
+elseif(APPLE)
+    set_target_properties(libreai PROPERTIES
+        PREFIX ""
+        OUTPUT_NAME "libreai"
+        SUFFIX ".dylib"
+        INSTALL_RPATH "@loader_path"
+        BUILD_WITH_INSTALL_RPATH ON
+    )
 else()
     set_target_properties(libreai PROPERTIES
         PREFIX ""

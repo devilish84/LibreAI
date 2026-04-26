@@ -1,0 +1,97 @@
+name: Release (macOS)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to attach macOS OXT to (e.g. v1.0.7)'
+        required: true
+
+jobs:
+  build-macos:
+    runs-on: macos-14
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt6 and tools
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.7.*'
+          arch: clang_64
+          modules: ''
+
+      - name: Install build tools
+        run: brew install dylibbundler
+
+      - name: Install LibreOffice
+        run: brew install --cask libreoffice
+
+      - name: Download LibreOffice SDK (headers + stub libs)
+        run: |
+          LO_VER=25.8.6
+          curl -fL \
+            "https://download.documentfoundation.org/libreoffice/stable/${LO_VER}/mac/x86_64/LibreOffice_${LO_VER}_MacOS_x86-64_sdk.dmg" \
+            -o lo_sdk.dmg
+          hdiutil attach lo_sdk.dmg -mountpoint /Volumes/LOSDK -nobrowse -quiet
+          sudo installer -pkg "$(ls /Volumes/LOSDK/*.pkg | head -1)" -target /
+          hdiutil detach /Volumes/LOSDK -quiet
+
+      - name: Locate LO SDK paths
+        run: |
+          LO_INC=$(find /opt/libreoffice* /Applications/LibreOffice.app \
+            -name "cppuhelper" -type d 2>/dev/null | head -1 | xargs dirname)
+          LO_LIB=$(find /opt/libreoffice* /Applications/LibreOffice.app \
+            -name "libuno_cppu*" 2>/dev/null | head -1 | xargs dirname)
+          echo "LO_INCLUDE=${LO_INC}" >> $GITHUB_ENV
+          echo "LO_SDK_LIB=${LO_LIB}" >> $GITHUB_ENV
+          echo "Found LO_INCLUDE=${LO_INC}"
+          echo "Found LO_SDK_LIB=${LO_LIB}"
+
+      - name: Build
+        run: |
+          cmake -S . -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DLO_INCLUDE="${LO_INCLUDE}" \
+            -DLO_SDK_LIB="${LO_SDK_LIB}" \
+            -Wno-dev
+          cmake --build build --parallel $(sysctl -n hw.logicalcpu)
+
+      - name: Bundle dependencies with dylibbundler
+        run: |
+          mkdir -p pkg
+          cp build/libreai.dylib pkg/
+
+          # Collect and relink all non-system dylibs recursively.
+          # -od: overwrite dependencies in-place
+          # -b:  fix the binary
+          # -d:  place collected libs in pkg/
+          # -p:  rewrite install names to @loader_path/<lib>
+          dylibbundler \
+            --fix-file pkg/libreai.dylib \
+            --bundle-deps \
+            --dest-dir pkg \
+            --install-path @loader_path/ \
+            --overwrite-dir
+
+          echo "--- Bundled libs ---"
+          ls -lh pkg/
+          echo "--- Final otool -L ---"
+          otool -L pkg/libreai.dylib
+
+      - name: Package OXT
+        run: |
+          mkdir -p oxt
+          cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons oxt/
+          cp -r pkg/. oxt/
+          cd oxt && zip -r ../libreai_macos_arm64.oxt .
+          echo "--- OXT contents ---"
+          unzip -l libreai_macos_arm64.oxt
+
+      - name: Upload to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "${{ github.event.inputs.tag }}" \
+            libreai_macos_arm64.oxt --clobber
