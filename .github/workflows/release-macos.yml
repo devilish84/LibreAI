@@ -22,32 +22,53 @@ jobs:
           arch: clang_64
           modules: ''
 
-      - name: Install build tools
-        run: brew install dylibbundler
-
-      - name: Install LibreOffice
-        run: brew install --cask libreoffice
-
-      - name: Download LibreOffice SDK (headers + stub libs)
+      - name: Install build tools and LibreOffice
         run: |
-          LO_VER=25.8.6
-          curl -fL \
-            "https://download.documentfoundation.org/libreoffice/stable/${LO_VER}/mac/x86_64/LibreOffice_${LO_VER}_MacOS_x86-64_sdk.dmg" \
-            -o lo_sdk.dmg
-          hdiutil attach lo_sdk.dmg -mountpoint /Volumes/LOSDK -nobrowse -quiet
-          sudo installer -pkg "$(ls /Volumes/LOSDK/*.pkg | head -1)" -target /
+          brew install dylibbundler
+          brew install --cask libreoffice
+
+      - name: Download and install LibreOffice SDK
+        run: |
+          # Match the version brew installed so headers align with stub libs
+          LO_APP=$(ls -d /Applications/LibreOffice*.app 2>/dev/null | head -1)
+          echo "LO app: $LO_APP"
+          # Read version from the app bundle
+          LO_VER=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" \
+            "${LO_APP}/Contents/Info.plist" 2>/dev/null || echo "24.8.6")
+          echo "Detected LO version: $LO_VER"
+          SDK_URL="https://download.documentfoundation.org/libreoffice/stable/${LO_VER}/mac/aarch64/LibreOffice_${LO_VER}_MacOS_aarch64_sdk.dmg"
+          echo "Downloading: $SDK_URL"
+          curl -fL "$SDK_URL" -o lo_sdk.dmg
+          hdiutil attach lo_sdk.dmg -mountpoint /Volumes/LOSDK -nobrowse
+          echo "=== DMG contents ==="
+          find /Volumes/LOSDK -maxdepth 3
+          # Find any installer package (pkg or mpkg)
+          PKG=$(find /Volumes/LOSDK \( -name "*.pkg" -o -name "*.mpkg" \) | head -1)
+          echo "Installing: $PKG"
+          sudo installer -pkg "$PKG" -target /
           hdiutil detach /Volumes/LOSDK -quiet
 
       - name: Locate LO SDK paths
         run: |
-          LO_INC=$(find /opt/libreoffice* /Applications/LibreOffice.app \
-            -name "cppuhelper" -type d 2>/dev/null | head -1 | xargs dirname)
-          LO_LIB=$(find /opt/libreoffice* /Applications/LibreOffice.app \
-            -name "libuno_cppu*" 2>/dev/null | head -1 | xargs dirname)
+          # SDK installs to /Library/Application Support/ or /opt
+          LO_INC=$(find /Library/Application\ Support /opt /usr/local \
+            -path "*/sdk/include/cppuhelper" -type d 2>/dev/null \
+            | head -1 | xargs dirname 2>/dev/null)
+          # Fall back to the app bundle's own headers if SDK installed there
+          if [ -z "$LO_INC" ]; then
+            LO_APP=$(ls -d /Applications/LibreOffice*.app 2>/dev/null | head -1)
+            LO_INC=$(find "$LO_APP" -path "*/sdk/include" -type d 2>/dev/null | head -1)
+          fi
+          LO_LIB=$(find /Library/Application\ Support /opt /usr/local \
+            -name "libuno_cppu*" 2>/dev/null | head -1 | xargs dirname 2>/dev/null)
+          if [ -z "$LO_LIB" ]; then
+            LO_APP=$(ls -d /Applications/LibreOffice*.app 2>/dev/null | head -1)
+            LO_LIB=$(find "$LO_APP" -name "libuno_cppu*" 2>/dev/null | head -1 | xargs dirname 2>/dev/null)
+          fi
           echo "LO_INCLUDE=${LO_INC}" >> $GITHUB_ENV
           echo "LO_SDK_LIB=${LO_LIB}" >> $GITHUB_ENV
-          echo "Found LO_INCLUDE=${LO_INC}"
-          echo "Found LO_SDK_LIB=${LO_LIB}"
+          echo "LO_INCLUDE=${LO_INC}"
+          echo "LO_SDK_LIB=${LO_LIB}"
 
       - name: Build
         run: |
@@ -57,27 +78,25 @@ jobs:
             -DLO_SDK_LIB="${LO_SDK_LIB}" \
             -Wno-dev
           cmake --build build --parallel $(sysctl -n hw.logicalcpu)
+          echo "=== otool -L build/libreai.dylib ==="
+          otool -L build/libreai.dylib
 
-      - name: Bundle dependencies with dylibbundler
+      - name: Bundle all dependencies with dylibbundler
         run: |
           mkdir -p pkg
           cp build/libreai.dylib pkg/
-
-          # Collect and relink all non-system dylibs recursively.
-          # -od: overwrite dependencies in-place
-          # -b:  fix the binary
-          # -d:  place collected libs in pkg/
-          # -p:  rewrite install names to @loader_path/<lib>
+          # Recursively collect and relink all non-system dylibs.
+          # @loader_path means "same directory as the loading dylib" — correct
+          # for a flat OXT where all libs sit alongside libreai.dylib.
           dylibbundler \
             --fix-file pkg/libreai.dylib \
             --bundle-deps \
             --dest-dir pkg \
             --install-path @loader_path/ \
             --overwrite-dir
-
-          echo "--- Bundled libs ---"
+          echo "=== Bundled libs ==="
           ls -lh pkg/
-          echo "--- Final otool -L ---"
+          echo "=== Final link map ==="
           otool -L pkg/libreai.dylib
 
       - name: Package OXT
@@ -86,7 +105,7 @@ jobs:
           cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons oxt/
           cp -r pkg/. oxt/
           cd oxt && zip -r ../libreai_macos_arm64.oxt .
-          echo "--- OXT contents ---"
+          echo "=== OXT contents ==="
           unzip -l libreai_macos_arm64.oxt
 
       - name: Upload to GitHub Release
