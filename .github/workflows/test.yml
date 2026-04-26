@@ -60,5 +60,5 @@ jobs:
 
       - name: Run integration tests (headless)
         run: |
-          pip install pytest
+          pip install pytest pytest-timeout
           xvfb-run -a pytest tests/integration/ -v --timeout=60
