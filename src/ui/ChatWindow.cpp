@@ -16,6 +16,7 @@ Q_LOGGING_CATEGORY(lcChat, "libreai.chat")
 #include <QLabel>
 #include <QListWidget>
 #include <QPlainTextEdit>
+#include <QTextEdit>
 #include <QPushButton>
 #include <QTimer>
 #include <QVBoxLayout>
@@ -102,8 +103,17 @@ void ChatWindow::buildUi() {
     m_respLabel = new QLabel();
     m_respLabel->setObjectName("sectionLabel");
     root->addWidget(m_respLabel);
-    m_respEdit = new QPlainTextEdit();
+    m_respEdit = new QTextEdit();
     m_respEdit->setReadOnly(true);
+    m_respEdit->document()->setDefaultStyleSheet(
+        "h1,h2,h3,h4 { color: #CE9178; margin: 6px 0 2px 0; }"
+        "code { background: #2d2d2d; color: #9CDCFE; font-family: monospace; padding: 1px 3px; border-radius: 2px; }"
+        "pre  { background: #2d2d2d; color: #9CDCFE; font-family: monospace; padding: 6px; border-radius: 3px; }"
+        "blockquote { border-left: 3px solid #555; margin-left: 0; padding-left: 8px; color: #858585; }"
+        "a    { color: #4EC9B0; }"
+        "strong { color: #DCDCAA; }"
+        "em   { color: #C586C0; }"
+    );
     root->addWidget(m_respEdit, 1);
 
     m_applyBtn = new QPushButton();
@@ -173,11 +183,13 @@ void ChatWindow::applyTheme() {
             color: %3;
             font-size: 11px;
         }
-        QPlainTextEdit {
+        QPlainTextEdit, QTextEdit {
             background: %4;
             color: %2;
             border: 1px solid %5;
             border-radius: 2px;
+        }
+        QPlainTextEdit {
             font-family: monospace;
         }
         QPushButton {
@@ -258,7 +270,7 @@ void ChatWindow::onSend() {
     auto* client = buildClient();
     connect(client, &AIClient::responseReady, this, [this, prompt](QString resp) {
         qCInfo(lcChat) << "Send response received, length=" << resp.length();
-        m_respEdit->setPlainText(resp);
+        m_respEdit->setMarkdown(resp);
         const auto& cfg = Config::get();
         QString ts   = QDateTime::currentDateTime().toString(Qt::ISODate);
         QString prov = cfg.provider == Provider::Ollama  ? "ollama"
@@ -295,7 +307,7 @@ void ChatWindow::onRewrite() {
 
     auto* client = buildClient();
     connect(client, &AIClient::responseReady, this, [this](QString resp) {
-        m_respEdit->setPlainText(resp);
+        m_respEdit->setMarkdown(resp);
         setBusy(false);
         setStatus(tr("Done"), C_SUCCESS);
     });
@@ -330,9 +342,8 @@ void ChatWindow::onClearHistory() {
 
 void ChatWindow::onApply() {
     qCInfo(lcChat) << "onApply";
-    QString text = m_respEdit->toPlainText();
-    if (text.isEmpty()) { setStatus(tr("No response to apply"), C_MUTED); return; }
-    UnoHelper::applyText(text);
+    if (m_respEdit->document()->isEmpty()) { setStatus(tr("No response to apply"), C_MUTED); return; }
+    UnoHelper::applyRichText(m_respEdit->document());
     setStatus(tr("Applied to document"), C_SUCCESS);
 }
 

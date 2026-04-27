@@ -6,6 +6,7 @@
 QT_BEGIN_NAMESPACE
 class QLabel;
 class QPlainTextEdit;
+class QTextEdit;
 class QPushButton;
 class QTimer;
 class QListWidget;
@@ -49,7 +50,7 @@ private:
     QPushButton*    m_historyToggleBtn;
     QListWidget*    m_historyList;
     QLabel*         m_respLabel;
-    QPlainTextEdit* m_respEdit;
+    QTextEdit*      m_respEdit;
     QPushButton*    m_applyBtn;
     QLabel*         m_statusLabel;
 
