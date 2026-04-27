@@ -71,6 +71,10 @@ set(SOURCES
     src/uno/component.cpp
     src/core/Config.cpp
     src/core/CredentialStore.cpp
+    src/core/CredentialBackendMemory.cpp
+    src/core/CredentialBackendKeychain.cpp
+    src/core/CredentialBackendMacOS.cpp
+    src/core/CredentialBackendDPAPI.cpp
     src/core/Logger.cpp
     src/ai/AIClient.cpp
     src/ai/OllamaClient.cpp

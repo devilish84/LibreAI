@@ -1,5 +1,15 @@
 find_package(GTest REQUIRED)
 
+# All credential backend source files — each is ifdef-guarded for its platform,
+# so including all of them on every platform is safe.
+set(CREDENTIAL_SOURCES
+    ${CMAKE_SOURCE_DIR}/src/core/CredentialStore.cpp
+    ${CMAKE_SOURCE_DIR}/src/core/CredentialBackendMemory.cpp
+    ${CMAKE_SOURCE_DIR}/src/core/CredentialBackendKeychain.cpp
+    ${CMAKE_SOURCE_DIR}/src/core/CredentialBackendMacOS.cpp
+    ${CMAKE_SOURCE_DIR}/src/core/CredentialBackendDPAPI.cpp
+)
+
 # ---- helpers ----------------------------------------------------------------
 
 macro(libreai_test TARGET)
@@ -27,7 +37,7 @@ endmacro()
 add_executable(test_config
     test_config.cpp
     ${CMAKE_SOURCE_DIR}/src/core/Config.cpp
-    ${CMAKE_SOURCE_DIR}/src/core/CredentialStore.cpp
+    ${CREDENTIAL_SOURCES}
 )
 libreai_test(test_config)
 target_link_libraries(test_config PRIVATE Qt6::Core Qt6::Widgets)
@@ -39,7 +49,7 @@ add_executable(test_logger
     test_logger.cpp
     ${CMAKE_SOURCE_DIR}/src/core/Logger.cpp
     ${CMAKE_SOURCE_DIR}/src/core/Config.cpp
-    ${CMAKE_SOURCE_DIR}/src/core/CredentialStore.cpp
+    ${CREDENTIAL_SOURCES}
 )
 libreai_test(test_logger)
 target_link_libraries(test_logger PRIVATE Qt6::Core Qt6::Widgets)
@@ -54,7 +64,7 @@ add_executable(test_ai_parsing
     ${CMAKE_SOURCE_DIR}/src/ai/OpenAIClient.cpp
     ${CMAKE_SOURCE_DIR}/src/ai/AnthropicClient.cpp
     ${CMAKE_SOURCE_DIR}/src/core/Config.cpp
-    ${CMAKE_SOURCE_DIR}/src/core/CredentialStore.cpp
+    ${CREDENTIAL_SOURCES}
 )
 libreai_test(test_ai_parsing)
 target_link_libraries(test_ai_parsing PRIVATE Qt6::Core Qt6::Widgets Qt6::Network)
