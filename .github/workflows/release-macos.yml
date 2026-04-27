@@ -15,65 +15,45 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Qt6 and tools
+      - name: Install Qt6
         uses: jurplel/install-qt-action@v3
         with:
           version: '6.7.*'
           arch: clang_64
           modules: ''
 
-      - name: Install build tools and LibreOffice
-        run: |
-          brew install --cask libreoffice
+      - name: Install LibreOffice
+        run: brew install --cask libreoffice
 
-      - name: Download LibreOffice SDK and locate paths
+      - name: Download LibreOffice SDK
         run: |
           LO_APP=$(ls -d /Applications/LibreOffice*.app 2>/dev/null | head -1)
-          echo "LO app: $LO_APP"
-          # CFBundleShortVersionString can be 4-part (26.2.2.2); URLs use 3-part
           LO_VER_FULL=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" \
             "${LO_APP}/Contents/Info.plist" 2>/dev/null || echo "26.2.2")
           LO_VER=$(echo "$LO_VER_FULL" | cut -d. -f1-3)
-          echo "Detected LO version: $LO_VER"
-          # Use funet mirror — more reliable than the primary LO download server
+          echo "LO version: $LO_VER"
           MIRROR="https://www.nic.funet.fi/pub/mirrors/documentfoundation.org/libreoffice/stable"
-          SDK_URL="${MIRROR}/${LO_VER}/mac/aarch64/LibreOffice_${LO_VER}_MacOS_aarch64_sdk.dmg"
-          echo "Downloading: $SDK_URL"
-          curl -fL --retry 5 --retry-delay 10 "$SDK_URL" -o lo_sdk.dmg
+          curl -fL --retry 5 --retry-delay 10 \
+            "${MIRROR}/${LO_VER}/mac/aarch64/LibreOffice_${LO_VER}_MacOS_aarch64_sdk.dmg" \
+            -o lo_sdk.dmg
           hdiutil attach lo_sdk.dmg -mountpoint /Volumes/LOSDK -nobrowse
-          echo "=== DMG top-level ==="
-          ls /Volumes/LOSDK/
-          # The SDK DMG is a flat directory — no installer package.
           SDK_DIR=$(find /Volumes/LOSDK -maxdepth 1 -type d -name "LibreOffice*SDK*" | head -1)
-          echo "SDK dir: $SDK_DIR"
           cp -r "$SDK_DIR" "$HOME/lo_sdk"
           hdiutil detach /Volumes/LOSDK -quiet
-          # Find sal/config.h to determine the real include root
+          # Locate real include root via sal/config.h
           SAL_H=$(find "$HOME/lo_sdk" -name "config.h" -path "*/sal/*" | head -1)
-          echo "sal/config.h found at: $SAL_H"
-          if [ -n "$SAL_H" ]; then
-            LO_INC=$(dirname "$(dirname "$SAL_H")")
-          else
-            LO_INC="$HOME/lo_sdk/include"
-          fi
+          LO_INC=$(dirname "$(dirname "$SAL_H")")
           echo "LO_INCLUDE=${LO_INC}" >> $GITHUB_ENV
-          echo "LO_INCLUDE=${LO_INC}"
-          ls "${LO_INC}/" | head -10
-          # UNO libs are in Frameworks/ as versioned dylibs (e.g. libuno_cppu.dylib.3).
-          # Create unversioned symlinks in /opt/uno_stubs so CMake can link them.
+          echo "LO_INCLUDE: ${LO_INC}"
+          # UNO libs live in Frameworks/ as versioned dylibs — create unversioned symlinks
           UNO_FW="${LO_APP}/Contents/Frameworks"
-          echo "=== UNO libs found ==="
-          ls "${UNO_FW}"/libuno_* 2>/dev/null
           mkdir -p "$HOME/uno_stubs"
           for lib in cppu cppuhelpergcc3 sal; do
             src=$(ls "${UNO_FW}/libuno_${lib}.dylib"* 2>/dev/null | head -1)
-            if [ -n "$src" ]; then
-              ln -sf "$src" "$HOME/uno_stubs/libuno_${lib}.dylib"
-              echo "linked: $HOME/uno_stubs/libuno_${lib}.dylib -> $src"
-            fi
+            [ -n "$src" ] && ln -sf "$src" "$HOME/uno_stubs/libuno_${lib}.dylib" \
+              && echo "stub: libuno_${lib}.dylib -> $src"
           done
           echo "LO_SDK_LIB=$HOME/uno_stubs" >> $GITHUB_ENV
-          echo "LO_SDK_LIB=$HOME/uno_stubs"
 
       - name: Build
         run: |
@@ -83,47 +63,54 @@ jobs:
             -DLO_SDK_LIB="${LO_SDK_LIB}" \
             -Wno-dev
           cmake --build build --parallel $(sysctl -n hw.logicalcpu)
-          echo "=== otool -L build/libreai.dylib ==="
+          echo "=== deps of build/libreai.dylib ==="
           otool -L build/libreai.dylib
 
-      - name: Bundle Qt6 dependencies
+      - name: Bundle Qt6 frameworks into pkg/
         run: |
           mkdir -p pkg
           cp build/libreai.dylib pkg/
 
-          # Recursively bundle all non-system, non-LO dylib dependencies.
-          # dylibbundler cannot handle LO's @__URELIB rpath scheme (goes
-          # interactive), so we do it manually with otool + install_name_tool.
-          bundle_deps() {
+          # Qt6 from jurplel installs as frameworks; otool shows refs as
+          # @rpath/QtCore.framework/Versions/A/QtCore. We need to:
+          #   1. Find the actual file under $Qt6_DIR/lib/
+          #   2. Copy just the inner dylib (not the whole framework) to pkg/
+          #   3. Rewrite the reference in the binary
+          # LO UNO refs use @__URELIB — leave them untouched (LO provides them).
+
+          QT_LIB="${Qt6_DIR}/lib"
+
+          copy_qt_dep() {
             local target="$1"
+            # Process each dep that is an @rpath Qt framework reference
             otool -L "$target" | tail -n +2 | awk '{print $1}' | while read -r dep; do
               case "$dep" in
-                # Already handled or provided by OS/LO at runtime — leave alone
-                @loader_path/*|@rpath/*|@executable_path/*) continue ;;
-                /usr/lib/*|/System/*) continue ;;
-                *LibreOffice*|*@_*) continue ;;
+                @rpath/*.framework/*) ;;  # Qt framework — handle below
+                *) continue ;;
               esac
-              [ -f "$dep" ] || continue
-              libname=$(basename "$dep")
-              dest_lib="pkg/$libname"
-              # Rewrite the reference in the target first
-              install_name_tool -change "$dep" "@loader_path/$libname" "$target"
-              # Copy and recurse only if not already present
-              if [ ! -f "$dest_lib" ]; then
-                cp "$dep" "$dest_lib"
-                chmod u+w "$dest_lib"
-                # Fix its own install name
-                install_name_tool -id "@loader_path/$libname" "$dest_lib"
-                bundle_deps "$dest_lib"
+              # e.g. @rpath/QtCore.framework/Versions/A/QtCore
+              rel="${dep#@rpath/}"                     # QtCore.framework/Versions/A/QtCore
+              fw=$(echo "$rel" | cut -d/ -f1)          # QtCore.framework
+              inner=$(echo "$rel" | cut -d/ -f4)       # QtCore
+              src="${QT_LIB}/${fw}/Versions/A/${inner}"
+              [ -f "$src" ] || continue
+              dest="pkg/${inner}"
+              install_name_tool -change "$dep" "@loader_path/${inner}" "$target"
+              if [ ! -f "$dest" ]; then
+                cp "$src" "$dest"
+                chmod u+w "$dest"
+                install_name_tool -id "@loader_path/${inner}" "$dest"
+                echo "bundled: ${inner}"
+                copy_qt_dep "$dest"
               fi
             done
           }
 
-          bundle_deps pkg/libreai.dylib
+          copy_qt_dep pkg/libreai.dylib
 
-          echo "=== Bundled libs ==="
+          echo "=== pkg/ contents ==="
           ls -lh pkg/
-          echo "=== Final link map ==="
+          echo "=== final otool -L pkg/libreai.dylib ==="
           otool -L pkg/libreai.dylib
 
       - name: Package OXT
@@ -131,7 +118,7 @@ jobs:
           mkdir -p oxt
           cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons oxt/
           cp -r pkg/. oxt/
-          cd oxt && zip -r ../libreai_macos_arm64.oxt .
+          (cd oxt && zip -r ../libreai_macos_arm64.oxt .)
           echo "=== OXT contents ==="
           unzip -l libreai_macos_arm64.oxt
 
