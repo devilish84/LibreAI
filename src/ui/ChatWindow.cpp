@@ -4,6 +4,8 @@
 #include "../ai/OllamaClient.hpp"
 #include "../ai/OpenAIClient.hpp"
 #include "../ai/AnthropicClient.hpp"
+#include "../ai/GrokClient.hpp"
+#include "../ai/GeminiClient.hpp"
 
 #include <QApplication>
 #include <QDateTime>
@@ -220,6 +222,10 @@ AIClient* ChatWindow::buildClient() {
             m_client = new OpenAIClient(cfg.openaiUrl, cfg.openaiKey, this); break;
         case Provider::Claude:
             m_client = new AnthropicClient(cfg.claudeKey, this); break;
+        case Provider::Grok:
+            m_client = new GrokClient(cfg.grokKey, this); break;
+        case Provider::Gemini:
+            m_client = new GeminiClient(cfg.geminiKey, this); break;
     }
     return m_client;
 }
@@ -255,8 +261,11 @@ void ChatWindow::onSend() {
         m_respEdit->setPlainText(resp);
         const auto& cfg = Config::get();
         QString ts   = QDateTime::currentDateTime().toString(Qt::ISODate);
-        QString prov = cfg.provider == Provider::Ollama ? "ollama"
-                     : cfg.provider == Provider::OpenAI ? "openai" : "claude";
+        QString prov = cfg.provider == Provider::Ollama  ? "ollama"
+                     : cfg.provider == Provider::OpenAI  ? "openai"
+                     : cfg.provider == Provider::Claude  ? "claude"
+                     : cfg.provider == Provider::Grok    ? "grok"
+                     : "gemini";
         QString mdl  = cfg.currentModel();
         m_history.append({"user",      prompt, ts, prov, mdl});
         m_history.append({"assistant", resp,   ts, prov, mdl});

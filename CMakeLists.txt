@@ -80,6 +80,8 @@ set(SOURCES
     src/ai/OllamaClient.cpp
     src/ai/OpenAIClient.cpp
     src/ai/AnthropicClient.cpp
+    src/ai/GrokClient.cpp
+    src/ai/GeminiClient.cpp
     src/uno/UnoHelper.cpp
     src/ui/ChatWindow.cpp
     src/ui/ConfigDialog.cpp

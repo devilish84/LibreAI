@@ -29,14 +29,18 @@ Config::Config() {
     QString p = obj["provider"].toString("OLLAMA");
     if      (p == "OPENAI") provider = Provider::OpenAI;
     else if (p == "CLAUDE") provider = Provider::Claude;
+    else if (p == "GROK")   provider = Provider::Grok;
+    else if (p == "GEMINI") provider = Provider::Gemini;
     else                    provider = Provider::Ollama;
 
     ollamaUrl = obj["ollama_url"].toString(ollamaUrl);
     openaiUrl = obj["openai_url"].toString(openaiUrl);
 
-    ollamaModel = obj["ollama_model"].toString();
-    openaiModel = obj["openai_model"].toString();
-    claudeModel = obj["claude_model"].toString();
+    ollamaModel  = obj["ollama_model"].toString();
+    openaiModel  = obj["openai_model"].toString();
+    claudeModel  = obj["claude_model"].toString();
+    grokModel    = obj["grok_model"].toString();
+    geminiModel  = obj["gemini_model"].toString();
 
     // Migrate legacy single "model" field
     if (ollamaModel.isEmpty() && openaiModel.isEmpty() && claudeModel.isEmpty()) {
@@ -70,12 +74,16 @@ Config::Config() {
     CredentialStore::isAvailable();
     openaiKey        = CredentialStore::retrieve("libreai/openai_key");
     claudeKey        = CredentialStore::retrieve("libreai/claude_key");
+    grokKey          = CredentialStore::retrieve("libreai/grok_key");
+    geminiKey        = CredentialStore::retrieve("libreai/gemini_key");
     ollamaBasicPass  = CredentialStore::retrieve("libreai/ollama_basic_pass");
     ollamaApiKeyValue= CredentialStore::retrieve("libreai/ollama_api_key");
 
     qCDebug(lcConfig) << "Credentials loaded from keychain:"
                       << "openaiKey=" << (!openaiKey.isEmpty() ? "set" : "empty")
-                      << "claudeKey=" << (!claudeKey.isEmpty() ? "set" : "empty");
+                      << "claudeKey=" << (!claudeKey.isEmpty() ? "set" : "empty")
+                      << "grokKey="   << (!grokKey.isEmpty()   ? "set" : "empty")
+                      << "geminiKey=" << (!geminiKey.isEmpty() ? "set" : "empty");
 }
 
 Config& Config::get() {
@@ -86,17 +94,23 @@ Config& Config::get() {
 void Config::save() const {
     qCInfo(lcConfig) << "Saving configuration, provider="
                      << (provider == Provider::OpenAI ? "OPENAI"
-                        : provider == Provider::Claude ? "CLAUDE" : "OLLAMA");
+                        : provider == Provider::Claude  ? "CLAUDE"
+                        : provider == Provider::Grok    ? "GROK"
+                        : provider == Provider::Gemini  ? "GEMINI" : "OLLAMA");
 
     QJsonObject obj;
     obj["provider"]   = provider == Provider::OpenAI ? "OPENAI"
-                      : provider == Provider::Claude  ? "CLAUDE" : "OLLAMA";
+                      : provider == Provider::Claude  ? "CLAUDE"
+                      : provider == Provider::Grok    ? "GROK"
+                      : provider == Provider::Gemini  ? "GEMINI" : "OLLAMA";
     obj["ollama_url"] = ollamaUrl;
     obj["openai_url"] = openaiUrl;
 
-    obj["ollama_model"] = ollamaModel;
-    obj["openai_model"] = openaiModel;
-    obj["claude_model"] = claudeModel;
+    obj["ollama_model"]  = ollamaModel;
+    obj["openai_model"]  = openaiModel;
+    obj["claude_model"]  = claudeModel;
+    obj["grok_model"]    = grokModel;
+    obj["gemini_model"]  = geminiModel;
 
     obj["ollama_auth"] = ollamaAuth == OllamaAuth::Basic  ? "BASIC"
                        : ollamaAuth == OllamaAuth::ApiKey ? "APIKEY" : "NONE";
@@ -110,6 +124,8 @@ void Config::save() const {
 
     CredentialStore::store("libreai/openai_key",        openaiKey);
     CredentialStore::store("libreai/claude_key",        claudeKey);
+    CredentialStore::store("libreai/grok_key",          grokKey);
+    CredentialStore::store("libreai/gemini_key",        geminiKey);
     CredentialStore::store("libreai/ollama_basic_pass", ollamaBasicPass);
     CredentialStore::store("libreai/ollama_api_key",    ollamaApiKeyValue);
 
@@ -129,6 +145,8 @@ bool Config::isConfigured() const {
         case Provider::Ollama:  return !ollamaUrl.isEmpty();
         case Provider::OpenAI:  return !openaiKey.isEmpty();
         case Provider::Claude:  return !claudeKey.isEmpty();
+        case Provider::Grok:    return !grokKey.isEmpty();
+        case Provider::Gemini:  return !geminiKey.isEmpty();
     }
     return false;
 }
@@ -139,6 +157,8 @@ const QString& Config::currentModel() const {
         case Provider::Ollama: return ollamaModel;
         case Provider::OpenAI: return openaiModel;
         case Provider::Claude: return claudeModel;
+        case Provider::Grok:   return grokModel;
+        case Provider::Gemini: return geminiModel;
     }
     return ollamaModel;
 }
@@ -146,9 +166,11 @@ const QString& Config::currentModel() const {
 void Config::setCurrentModel(const QString& m) {
     qCDebug(lcConfig) << "setCurrentModel" << m;
     switch (provider) {
-        case Provider::Ollama: ollamaModel = m; return;
-        case Provider::OpenAI: openaiModel = m; return;
-        case Provider::Claude: claudeModel = m; return;
+        case Provider::Ollama: ollamaModel  = m; return;
+        case Provider::OpenAI: openaiModel  = m; return;
+        case Provider::Claude: claudeModel  = m; return;
+        case Provider::Grok:   grokModel    = m; return;
+        case Provider::Gemini: geminiModel  = m; return;
     }
 }
 

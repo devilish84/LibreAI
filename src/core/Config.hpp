@@ -1,7 +1,7 @@
 #pragma once
 #include <QString>
 
-enum class Provider  { Ollama, OpenAI, Claude };
+enum class Provider  { Ollama, OpenAI, Claude, Grok, Gemini };
 enum class OllamaAuth { None, Basic, ApiKey };
 
 struct Config {
@@ -15,6 +15,8 @@ struct Config {
     QString  ollamaModel;
     QString  openaiModel;
     QString  claudeModel;
+    QString  grokModel;
+    QString  geminiModel;
 
     // Ollama auth (non-secret parts)
     OllamaAuth ollamaAuth            = OllamaAuth::None;
@@ -24,6 +26,8 @@ struct Config {
     // Credentials — held in memory, stored in OS keychain (not JSON)
     QString  openaiKey;
     QString  claudeKey;
+    QString  grokKey;
+    QString  geminiKey;
     QString  ollamaBasicPass;
     QString  ollamaApiKeyValue;
 

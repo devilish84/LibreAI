@@ -78,6 +78,14 @@ private:
     QLabel*      m_claudeKeyLabel;
     QLineEdit*   m_claudeKeyEdit;
 
+    // Grok fields
+    QLabel*      m_grokKeyLabel;
+    QLineEdit*   m_grokKeyEdit;
+
+    // Gemini fields
+    QLabel*      m_geminiKeyLabel;
+    QLineEdit*   m_geminiKeyEdit;
+
     // Keychain status hint
     QLabel*      m_keychainHint;
 

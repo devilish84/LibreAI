@@ -6,6 +6,8 @@
 #include "../ai/OllamaClient.hpp"
 #include "../ai/OpenAIClient.hpp"
 #include "../ai/AnthropicClient.hpp"
+#include "../ai/GrokClient.hpp"
+#include "../ai/GeminiClient.hpp"
 
 #include <QCheckBox>
 #include <QComboBox>
@@ -140,7 +142,7 @@ void ConfigDialog::buildUi() {
 
     m_providerLabel = new QLabel();
     m_providerBox   = new QComboBox();
-    m_providerBox->addItems({"Ollama", "OpenAI", "Claude"});
+    m_providerBox->addItems({"Ollama", "OpenAI", "Claude", "Grok", "Gemini"});
     m_providerBox->setCurrentIndex(static_cast<int>(Config::get().provider));
     m_modelForm->addRow(m_providerLabel, m_providerBox);
 
@@ -188,6 +190,18 @@ void ConfigDialog::buildUi() {
     m_claudeKeyEdit  = new QLineEdit(Config::get().claudeKey);
     m_claudeKeyEdit->setEchoMode(QLineEdit::Password);
     m_modelForm->addRow(m_claudeKeyLabel, m_claudeKeyEdit);
+
+    // Grok fields
+    m_grokKeyLabel = new QLabel();
+    m_grokKeyEdit  = new QLineEdit(Config::get().grokKey);
+    m_grokKeyEdit->setEchoMode(QLineEdit::Password);
+    m_modelForm->addRow(m_grokKeyLabel, m_grokKeyEdit);
+
+    // Gemini fields
+    m_geminiKeyLabel = new QLabel();
+    m_geminiKeyEdit  = new QLineEdit(Config::get().geminiKey);
+    m_geminiKeyEdit->setEchoMode(QLineEdit::Password);
+    m_modelForm->addRow(m_geminiKeyLabel, m_geminiKeyEdit);
 
     // Keychain hint (spanning label, no label column)
     m_keychainHint = new QLabel();
@@ -238,6 +252,8 @@ void ConfigDialog::buildUi() {
     connect(m_ollamaKeyValueEdit,&QLineEdit::editingFinished,this, autoFetch);
     connect(m_openaiKeyEdit,    &QLineEdit::editingFinished, this, autoFetch);
     connect(m_claudeKeyEdit,    &QLineEdit::editingFinished, this, autoFetch);
+    connect(m_grokKeyEdit,      &QLineEdit::editingFinished, this, autoFetch);
+    connect(m_geminiKeyEdit,    &QLineEdit::editingFinished, this, autoFetch);
 
     // Init visibility
     onProviderChanged(m_providerBox->currentIndex());
@@ -257,12 +273,16 @@ void ConfigDialog::onProviderChanged(int index) {
     bool isOllama = (index == static_cast<int>(Provider::Ollama));
     bool isOpenAI = (index == static_cast<int>(Provider::OpenAI));
     bool isClaude = (index == static_cast<int>(Provider::Claude));
+    bool isGrok   = (index == static_cast<int>(Provider::Grok));
+    bool isGemini = (index == static_cast<int>(Provider::Gemini));
 
     setRowVisible(m_ollamaUrlLabel,      m_ollamaUrlEdit,      isOllama);
     setRowVisible(m_ollamaAuthLabel,     m_ollamaAuthBox,      isOllama);
     setRowVisible(m_openaiUrlLabel,      m_openaiUrlEdit,      isOpenAI);
     setRowVisible(m_openaiKeyLabel,      m_openaiKeyEdit,      isOpenAI);
     setRowVisible(m_claudeKeyLabel,      m_claudeKeyEdit,      isClaude);
+    setRowVisible(m_grokKeyLabel,        m_grokKeyEdit,        isGrok);
+    setRowVisible(m_geminiKeyLabel,      m_geminiKeyEdit,      isGemini);
 
     // Ollama auth sub-rows: delegate to onOllamaAuthChanged (only if Ollama)
     if (isOllama)
@@ -285,6 +305,8 @@ void ConfigDialog::onProviderChanged(int index) {
         case Provider::Ollama:  saved = cfg.ollamaModel; break;
         case Provider::OpenAI:  saved = cfg.openaiModel; break;
         case Provider::Claude:  saved = cfg.claudeModel; break;
+        case Provider::Grok:    saved = cfg.grokModel;   break;
+        case Provider::Gemini:  saved = cfg.geminiModel; break;
     }
     if (!saved.isEmpty()) {
         m_modelBox->addItem(saved);
@@ -321,6 +343,8 @@ QString ConfigDialog::currentCredential() const {
             break;
         case Provider::OpenAI: return m_openaiKeyEdit->text();
         case Provider::Claude: return m_claudeKeyEdit->text();
+        case Provider::Grok:   return m_grokKeyEdit->text();
+        case Provider::Gemini: return m_geminiKeyEdit->text();
     }
     return {};
 }
@@ -347,6 +371,12 @@ void ConfigDialog::onRefreshModels() {
             break;
         case Provider::Claude:
             m_client = new AnthropicClient(m_claudeKeyEdit->text(), this);
+            break;
+        case Provider::Grok:
+            m_client = new GrokClient(m_grokKeyEdit->text(), this);
+            break;
+        case Provider::Gemini:
+            m_client = new GeminiClient(m_geminiKeyEdit->text(), this);
             break;
     }
 
@@ -399,11 +429,19 @@ void ConfigDialog::onOk() {
     // Claude
     cfg.claudeKey = m_claudeKeyEdit->text();
 
+    // Grok
+    cfg.grokKey = m_grokKeyEdit->text();
+
+    // Gemini
+    cfg.geminiKey = m_geminiKeyEdit->text();
+
     // Per-provider model
     switch (cfg.provider) {
-        case Provider::Ollama:  cfg.ollamaModel = m_modelBox->currentText(); break;
-        case Provider::OpenAI:  cfg.openaiModel = m_modelBox->currentText(); break;
-        case Provider::Claude:  cfg.claudeModel = m_modelBox->currentText(); break;
+        case Provider::Ollama:  cfg.ollamaModel  = m_modelBox->currentText(); break;
+        case Provider::OpenAI:  cfg.openaiModel  = m_modelBox->currentText(); break;
+        case Provider::Claude:  cfg.claudeModel  = m_modelBox->currentText(); break;
+        case Provider::Grok:    cfg.grokModel    = m_modelBox->currentText(); break;
+        case Provider::Gemini:  cfg.geminiModel  = m_modelBox->currentText(); break;
     }
 
     cfg.save();
@@ -440,6 +478,8 @@ void ConfigDialog::retranslateUi() {
     m_openaiUrlLabel->setText(tr("BASE URL"));
     m_openaiKeyLabel->setText(tr("API KEY"));
     m_claudeKeyLabel->setText(tr("API KEY"));
+    m_grokKeyLabel->setText(tr("API KEY"));
+    m_geminiKeyLabel->setText(tr("API KEY"));
     m_keychainHint->setText(tr("Keychain unavailable — credentials will not be saved between sessions"));
     m_modelLabel->setText(tr("MODEL"));
     m_okBtn->setText(tr("OK"));
