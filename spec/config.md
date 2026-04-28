@@ -2,28 +2,53 @@
 
 ## Config Singleton
 
-**File:** `src/Config.hpp` / `src/Config.cpp`
+**File:** `src/core/Config.hpp` / `src/core/Config.cpp`
 
 `Config` is a lazy-loaded singleton accessed via `Config::get()`. It reads `~/.config/libreai/config.json` once on first access and writes it on every explicit `save()` call.
 
+API keys are **not** stored in `config.json` — they are managed by `CredentialStore` using the platform's secure storage.
+
 ```cpp
+enum class Provider { Ollama, OpenAI, Claude, Grok, Gemini };
+
+struct OllamaAuthConfig {
+    enum class Mode { None, Basic, ApiKey };
+    Mode    mode;
+    QString user, password;
+    QString keyHeader, keyValue;
+    static OllamaAuthConfig fromConfig();
+};
+
 struct Config {
-    Provider provider   = Provider::Ollama;
-    QString  ollamaUrl  = "http://localhost:11434";
-    QString  openaiUrl  = "https://api.openai.com/v1";
-    QString  openaiKey;
-    QString  claudeKey;
-    QString  model;
-    QString  language   = "en";
+    Provider provider       = Provider::Ollama;
+    QString  ollamaUrl      = "http://localhost:11434";
+    OllamaAuthConfig::Mode ollamaAuthMode = OllamaAuthConfig::Mode::None;
+    QString  ollamaAuthUser;
+    QString  ollamaAuthKeyHeader;
+    QString  openaiUrl      = "https://api.openai.com/v1";
+    QString  ollamaModel;
+    QString  openaiModel;
+    QString  claudeModel;
+    QString  grokModel;
+    QString  geminiModel;
+    QString  language       = "en";
     bool     loggingEnabled = false;
     int      logLevel       = 1;   // 0=Debug  1=Info  2=Error
+    int      logMaxSizeMB   = 10;
+
+    // Runtime-only (not persisted)
+    QString  openaiKey;
+    QString  claudeKey;
+    QString  grokKey;
+    QString  geminiKey;
 
     static Config& get();
     void save() const;
     bool isConfigured() const;
+    QString currentModel() const;
     static void applyLanguage();
 private:
-    Config();  // reads from disk
+    Config();  // reads from disk + loads keys from CredentialStore
 };
 ```
 
@@ -36,29 +61,34 @@ Created automatically by `QStandardPaths::AppConfigLocation` on first save.
 
 ```json
 {
-  "provider":    "OLLAMA",
-  "ollama_url":  "http://localhost:11434",
-  "openai_url":  "https://api.openai.com/v1",
-  "openai_key":  "",
-  "claude_key":  "",
-  "model":       "",
-  "language":        "en",
-  "logging_enabled": false,
-  "log_level":       1
+  "provider":           "OLLAMA",
+  "ollama_url":         "http://localhost:11434",
+  "ollama_auth_mode":   0,
+  "ollama_auth_user":   "",
+  "ollama_auth_key_header": "",
+  "openai_url":         "https://api.openai.com/v1",
+  "ollama_model":       "",
+  "openai_model":       "",
+  "claude_model":       "",
+  "grok_model":         "",
+  "gemini_model":       "",
+  "language":           "en",
+  "logging_enabled":    false,
+  "log_level":          1,
+  "log_max_size_mb":    10
 }
 ```
 
-| Key | Type | Values |
-|-----|------|--------|
-| `provider` | string | `"OLLAMA"` \| `"OPENAI"` \| `"CLAUDE"` |
-| `ollama_url` | string | Any HTTP URL |
-| `openai_url` | string | Any OpenAI-compatible base URL |
-| `openai_key` | string | OpenAI API key (empty = unauthenticated) |
-| `claude_key` | string | Anthropic API key |
-| `model` | string | Model identifier string |
-| `language` | string | Two-letter language code (see [i18n.md](i18n.md)) |
-| `logging_enabled` | bool | `true` = write log file, default `false` |
-| `log_level` | int | `0`=Debug `1`=Info `2`=Error, default `1` |
+API keys are **never written to this file**. They are stored in the platform credential backend under the keys:
+
+| Provider | Credential key |
+|----------|---------------|
+| Ollama (basic) | `libreai/ollama_password` |
+| Ollama (API key) | `libreai/ollama_api_key` |
+| OpenAI | `libreai/openai_key` |
+| Claude | `libreai/claude_key` |
+| Grok | `libreai/grok_key` |
+| Gemini | `libreai/gemini_key` |
 
 ---
 
@@ -68,9 +98,29 @@ Gates the ChatWindow — if false, ConfigDialog opens instead.
 
 | Provider | Condition |
 |----------|-----------|
-| Ollama | `!model.isEmpty() && !ollamaUrl.isEmpty()` |
-| OpenAI | `!model.isEmpty() && !openaiKey.isEmpty()` |
-| Claude | `!model.isEmpty() && !claudeKey.isEmpty()` |
+| Ollama | `!ollamaModel.isEmpty() && !ollamaUrl.isEmpty()` |
+| OpenAI | `!openaiModel.isEmpty() && !openaiKey.isEmpty()` |
+| Claude | `!claudeModel.isEmpty() && !claudeKey.isEmpty()` |
+| Grok | `!grokModel.isEmpty() && !grokKey.isEmpty()` |
+| Gemini | `!geminiModel.isEmpty() && !geminiKey.isEmpty()` |
+
+---
+
+## currentModel()
+
+Returns the model string for the active provider:
+
+```cpp
+QString Config::currentModel() const {
+    switch (provider) {
+        case Provider::Ollama:  return ollamaModel;
+        case Provider::OpenAI:  return openaiModel;
+        case Provider::Claude:  return claudeModel;
+        case Provider::Grok:    return grokModel;
+        case Provider::Gemini:  return geminiModel;
+    }
+}
+```
 
 ---
 
@@ -86,4 +136,6 @@ Called on startup by `LibreAIStarter` and on save by `ConfigDialog` when the lan
 
 ## initLogging() / closeLogging()
 
-Defined in `src/Logger.hpp` / `src/Logger.cpp`. Installs a custom `QtMessageHandler` that writes timestamped lines to `~/.config/libreai/libreai.log` when `loggingEnabled` is true. Messages below `logLevel` are silently dropped. Thread-safe via `QMutex`. Re-calling `initLogging()` after a settings change takes effect immediately.
+Defined in `src/core/Logger.hpp` / `src/core/Logger.cpp`. Installs a custom `QtMessageHandler` that writes timestamped lines to `~/.config/libreai/libreai.log` when `loggingEnabled` is true. Messages below `logLevel` are silently dropped. Thread-safe via `QMutex`. Re-calling `initLogging()` after a settings change takes effect immediately.
+
+Log size is capped at `logMaxSizeMB` megabytes — if the file exceeds this on open, it is truncated.

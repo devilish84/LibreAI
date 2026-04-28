@@ -1,6 +1,6 @@
 # Config Dialog
 
-**Class:** `ConfigDialog` (`src/ConfigDialog.hpp` / `src/ConfigDialog.cpp`)  
+**Class:** `ConfigDialog` (`src/ui/ConfigDialog.hpp` / `src/ui/ConfigDialog.cpp`)  
 **Base:** `QWidget` with `Qt::Window` flag  
 **Lifetime:** singleton via `ConfigDialog::instance()` / `ConfigDialog::resetInstance()`
 
@@ -11,33 +11,73 @@ Also opened explicitly by `LibreAIJob::trigger("config")`.
 
 ## Tabs
 
-### Tab 1 — AI Provider
+### Tab 1 — Model Selection
+
+Single flat `QFormLayout` with fields shown/hidden per provider.
+
+**Provider selector**
+
+`QComboBox` with five entries: Ollama / OpenAI / Claude (Anthropic) / Grok (xAI) / Gemini (Google).
+
+**Ollama fields**
+
+| Control | Type | Visibility |
+|---------|------|------------|
+| Server URL | `QLineEdit` | Always (Ollama) |
+| Authentication | `QComboBox` | Always (Ollama) — None / Basic / API Key |
+| Username | `QLineEdit` | Basic auth only |
+| Password | `QLineEdit` (password) | Basic auth only |
+| Key Header | `QLineEdit` | API Key auth only |
+| Key Value | `QLineEdit` (password) | API Key auth only |
+
+**OpenAI fields**
+
+| Control | Type |
+|---------|------|
+| Base URL | `QLineEdit` (default: `https://api.openai.com/v1`) |
+| API Key | `QLineEdit` (password) |
+
+**Claude fields**
+
+| Control | Type |
+|---------|------|
+| API Key | `QLineEdit` (password) |
+
+**Grok fields**
+
+| Control | Type |
+|---------|------|
+| API Key | `QLineEdit` (password) |
+
+**Gemini fields**
+
+| Control | Type |
+|---------|------|
+| API Key | `QLineEdit` (password) |
+
+**Model row (shared)**
 
 | Control | Type | Purpose |
 |---------|------|---------|
-| Provider | `QComboBox` | Ollama / OpenAI / Claude |
-| Ollama URL | `QLineEdit` | Base URL for local Ollama instance (default: `http://localhost:11434`) |
-| OpenAI URL | `QLineEdit` | Base URL for OpenAI-compatible endpoint (default: `https://api.openai.com/v1`) |
-| OpenAI Key | `QLineEdit` (password) | API key for OpenAI |
-| Claude Key | `QLineEdit` (password) | API key for Anthropic Claude |
-| Model | `QComboBox` | Selected model — populated by Refresh |
-| Refresh Models | `QPushButton` | Fetches model list from active provider |
-| Status | `QLabel` | Connection feedback |
+| Model | `QComboBox` | Populated by Refresh from the active provider |
+| Refresh Models | `QPushButton` | Calls `AIClient::fetchModels()` asynchronously |
 
-Fields shown/hidden based on the selected provider (Ollama shows URL only; OpenAI shows URL + key; Claude shows key only).
+**Keychain hint** — `QLabel` below model row; shows which credential backend is active (e.g., "Keys stored in system keychain").
 
-### Tab 1 — General Settings
+---
+
+### Tab 2 — General Settings
 
 | Control | Type | Purpose |
 |---------|------|---------|
-| Language | `QComboBox` | UI language selector |
-| Enable logging | `QCheckBox` | Enables writing log output to file (default: off) |
-| Level | `QComboBox` | Minimum log level: Debug / Info / Error (default: Info) |
+| Language | `QComboBox` | UI language |
+| Enable logging | `QCheckBox` | Write log file (default: off) |
+| Log level | `QComboBox` | Debug / Info / Error (disabled when logging off) |
+| Max log size | `QSpinBox` | MB cap for log file (default: 10) |
 
-The Level combo and its label are disabled when the checkbox is unchecked.  
-Log file path: `~/.config/libreai/libreai.log` (fixed, not user-configurable).
+Log file path: `~/.config/libreai/libreai.log` (fixed, shown as read-only label).
 
-Language choices are defined in `kLanguages[]` in `ConfigDialog.cpp`:
+Language choices defined in `kLanguages[]` in `ConfigDialog.cpp`:
 
 ```cpp
 static const std::pair<const char*, const char*> kLanguages[] = {
@@ -49,12 +89,20 @@ static const std::pair<const char*, const char*> kLanguages[] = {
 
 ---
 
-## Save Behaviour
+## Save Behaviour (`onOk`)
 
-On **Save**:
-1. Write all fields to `Config` and call `Config::save()`.
-2. If language changed: call `Config::applyLanguage()`, then `ChatWindow::resetInstance()` and `ConfigDialog::resetInstance()` — both singletons are destroyed and will be recreated in the new locale on next open.
-3. Close the dialog.
+1. Write all UI fields to `Config`.
+2. Store API keys in `CredentialStore` (one call per provider key).
+3. Call `Config::save()` — persists non-sensitive fields to `config.json`.
+4. Call `initLogging()` to apply any log setting changes immediately.
+5. If language changed: call `Config::applyLanguage()`, then `ChatWindow::resetInstance()` and `ConfigDialog::resetInstance()` — both singletons are destroyed and recreated in the new locale on next open.
+6. Close the dialog.
+
+---
+
+## Credential Security
+
+API key fields use `QLineEdit::setEchoMode(QLineEdit::Password)`. Keys are never written to `config.json`. On load, `Config()` retrieves them from `CredentialStore::retrieve()`. On save, `CredentialStore::store()` writes them to the platform backend. If the backend is `CredentialBackendMemory` (no secure storage), a warning hint is shown.
 
 ---
 
@@ -70,6 +118,5 @@ void          ConfigDialog::resetInstance();  // close + delete (called on langu
 ## i18n
 
 `ConfigDialog` is a `Q_OBJECT` class — use `tr("...")` for all strings.  
-`retranslateUi()` is called from `changeEvent(QEvent::LanguageChange)`.
-
-Tab labels, button text, and placeholder text all go through `tr()` so they update instantly when the translator is swapped.
+`retranslateUi()` is called from `changeEvent(QEvent::LanguageChange)`.  
+Tab labels, button text, and placeholder text all go through `tr()`.

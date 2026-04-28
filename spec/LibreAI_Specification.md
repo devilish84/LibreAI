@@ -1,14 +1,15 @@
 # LibreAI — Technical Specification
 
+**Version:** 1.0.7  
+**Branch:** `development` (release by tagging `v*`)
+
+---
+
 ## 1. Overview
 
-LibreAI is a LibreOffice Writer extension that provides an AI writing assistant
-through a floating Qt6 chat window. It connects to locally-running Ollama models
-or cloud AI providers (OpenAI, Anthropic Claude) and enables in-document text
-selection, chat, rewriting, and applying AI responses directly to the document.
+LibreAI is a LibreOffice extension that provides an AI writing assistant through a floating Qt6 chat window. It connects to locally-running Ollama models or cloud AI providers (OpenAI, Anthropic Claude, xAI Grok, Google Gemini) and enables in-document text selection, chat, rewriting, Markdown-rendered responses, and applying AI-formatted output directly to Writer documents.
 
-The extension is implemented in **C++17 with Qt 6** as a native UNO component
-(shared library `.so`), avoiding any Java dependency.
+The extension is implemented in **C++17 with Qt6** as a native UNO component (shared library), avoiding any Java dependency.
 
 ---
 
@@ -16,262 +17,311 @@ The extension is implemented in **C++17 with Qt 6** as a native UNO component
 
 | Goal | Description |
 |------|-------------|
-| Native C++ component | No Java required; loads reliably on any LO 7.x Linux installation |
-| Multi-provider | Ollama (local), OpenAI, and Anthropic Claude in one UI |
-| Writer integration | Grab selected text, rewrite it, apply response back to document |
+| Native C++ component | No Java required; loads on any LO 7.x+ Linux/macOS/Windows installation |
+| Multi-provider | Ollama, OpenAI, Claude, Grok, Gemini in one UI |
+| Writer integration | Grab selected text, rewrite it, apply formatted response back to document |
+| Rich text apply | Headings, bold, italic, code, and lists transferred as native Writer formatting |
 | Right-click access | "Ask from AI" context-menu item pre-loads selected text |
-| Cold-start context menu | Interceptor installed at startup via `XDocumentEventBroadcaster` |
-| Persistent config | Provider, URL/key, and model survive restarts (`~/.config/libreai/config.json`) |
-| Dark theme | VS Code-inspired dark UI: `#1E1E1E` background, `#0E639C` accent |
+| Secure credentials | Platform keychain (Linux Qt6Keychain / macOS Security.framework / Windows DPAPI) |
+| Persistent config | Provider, URL, model survive restarts (`~/.config/libreai/config.json`) |
+| Markdown rendering | AI responses rendered with headers, code blocks, bold, lists in the chat panel |
 | Async networking | All AI HTTP calls are non-blocking (`QNetworkAccessManager`) |
+| Dark theme | VS Code-inspired dark UI: `#1E1E1E` background, `#0E639C` accent |
 
 ---
 
-## 2. Architecture
+## 3. Architecture
+
+### 3.1 Directory Layout
 
 ```
 libreai/
 ├── src/
-│   ├── component.cpp          UNO entry points (component_getFactory, component_writeInfo)
-│   ├── LibreAIJob.hpp/cpp     XJobExecutor — handles menu/toolbar/right-click trigger
-│   ├── LibreAIStarter.hpp/cpp XJob — runs at LO startup; installs context-menu interceptor
-│   ├── CMInterceptor.hpp/cpp  XContextMenuInterceptor — injects "Ask from AI" into right-click
-│   ├── ChatWindow.hpp/cpp     Qt6 floating chat window (singleton)
-│   ├── AIClient.hpp           Abstract base for AI provider clients
-│   ├── OllamaClient.hpp/cpp   Ollama REST API client
-│   ├── OpenAIClient.hpp/cpp   OpenAI-compatible REST API client
-│   ├── AnthropicClient.hpp/cpp Anthropic Claude REST API client
-│   ├── Config.hpp/cpp         JSON config singleton (~/.config/libreai/config.json)
-│   └── UnoHelper.hpp/cpp      LO UNO utilities (get selection, apply text, current frame)
-├── META-INF/manifest.xml      Extension manifest
-├── Addons.xcu                 Menu bar + toolbar item registration
-├── Jobs.xcu                   Startup job binding (onStartApp / onNew / onLoad)
-├── description.xml            Extension metadata
-├── CMakeLists.txt             CMake build (Qt6 + LO SDK headers)
-└── build.sh                   Configure + build + package → libreai.oxt [+ --install]
+│   ├── uno/                    UNO glue layer
+│   │   ├── component.cpp       UNO entry points
+│   │   ├── LibreAIJob.*        XJobExecutor
+│   │   ├── LibreAIStarter.*    XJob (startup + interceptor install)
+│   │   ├── CMInterceptor.*     XContextMenuInterceptor
+│   │   └── UnoHelper.*         getSelectedText / applyText / applyRichText
+│   ├── core/
+│   │   ├── Config.*            JSON config singleton
+│   │   ├── CredentialStore.*   Backend factory + ICredentialBackend interface
+│   │   ├── CredentialBackendKeychain.*   Linux Qt6Keychain
+│   │   ├── CredentialBackendMacOS.*      macOS Security.framework
+│   │   ├── CredentialBackendDPAPI.*      Windows DPAPI
+│   │   ├── CredentialBackendMemory.*     In-memory fallback
+│   │   └── Logger.*            Qt file logger
+│   ├── ai/
+│   │   ├── AIClient.hpp        Abstract base + Message struct
+│   │   ├── OllamaClient.*
+│   │   ├── OpenAIClient.*
+│   │   ├── AnthropicClient.*
+│   │   ├── GrokClient.*
+│   │   └── GeminiClient.*
+│   └── ui/
+│       ├── ChatWindow.*
+│       └── ConfigDialog.*
+├── include/                    UNO SDK generated headers
+├── translations/               .ts / .qm + .qrc
+├── tests/unit/                 Google Test suites
+├── tests/integration/          pytest + python-uno
+├── spec/                       This documentation
+├── .github/workflows/          CI (Linux, Windows, macOS, tests)
+├── META-INF/manifest.xml
+├── Addons.xcu
+├── Jobs.xcu
+├── description.xml
+├── CMakeLists.txt
+└── build.sh
 ```
 
-### 2.1 Service Names
+### 3.2 UNO Services
 
-| Service | Implementation class | Triggered by |
-|---------|---------------------|--------------|
+| Service | Class | Triggered by |
+|---------|-------|--------------|
 | `org.libreai.job` | `LibreAIJob` | Menu, toolbar, right-click `service:` URL |
-| `org.libreai.starter` | `LibreAIStarter` | Jobs.xcu events: `onStartApp`, `onNew`, `onLoad` |
+| `org.libreai.starter` | `LibreAIStarter` | `Jobs.xcu`: `onStartApp`, `onNew`, `onLoad` |
 
-### 2.2 Startup Sequence
-
-```
-LO starts
-  → Jobs.xcu fires org.libreai.starter (onStartApp / onNew / onLoad)
-      → LibreAIStarter::execute()
-          → installInterceptors()
-              → XDesktop → XFramesSupplier → iterate all open frames
-              → tryInstallInterceptor(frame) for each
-          → attachDocumentListener()
-              → XDocumentEventBroadcaster singleton (getValueByName)
-              → DocListener registered for OnViewCreated / OnNew / OnLoad / OnFocus
-```
-
-### 2.3 Chat Window Activation
+### 3.3 Startup Sequence
 
 ```
-User clicks "Open chat" menu item (or toolbar button)
-  → LibreAIJob::trigger("open")
-      → QApplication created once if not yet running
-      → ChatWindow::instance() shown
-      → tryInstallInterceptor(currentFrame) called as side-effect
+LO starts → Jobs.xcu fires org.libreai.starter
+  → LibreAIStarter::execute()
+      → installInterceptors() — iterate all open frames
+      → attachDocumentListener() — XDocumentEventBroadcaster, once only
+      → (first call) QApplication created
+      → Config::applyLanguage()
+      → isConfigured() ? ChatWindow::instance() : ConfigDialog::instance()
 ```
 
-### 2.4 Right-Click Flow
+### 3.4 Trigger Arguments
 
-```
-User right-clicks in Writer
-  → CMInterceptor::notifyContextMenuExecute()
-      → Appends separator + ActionTrigger "Ask from AI"
-        (CommandURL = "service:org.libreai.job?open_with_sel")
-      → Returns CONTINUE_MODIFIED
-User clicks "Ask from AI"
-  → LibreAIJob::trigger("open_with_sel")
-      → ChatWindow shown with selected text pre-filled
-```
+| Argument | Action |
+|----------|--------|
+| `"open"` | Show ChatWindow (or ConfigDialog if unconfigured) |
+| `"config"` | Show ConfigDialog |
+| `"open_with_sel"` | Show ChatWindow with current selection pre-filled |
 
 ---
 
-## 3. Component Specifications
+## 4. AI Providers
 
-### 3.1 ChatWindow (Qt6 UI)
+### 4.1 AIClient Base
 
-**Technology:** `QWidget` singleton with `Qt::Tool` window flag (stays above LO).
+```cpp
+struct Message {
+    QString role;       // "user" | "assistant"
+    QString content;
+    QString timestamp;  // ISO 8601
+    QString provider;   // "ollama"|"openai"|"claude"|"grok"|"gemini"
+    QString model;
+};
 
-**Layout** (top → bottom):
+class AIClient : public QObject {
+signals:
+    void modelsReady(QStringList models);
+    void responseReady(QString text);
+    void errorOccurred(QString error);
+public:
+    virtual void fetchModels() = 0;
+    virtual void sendChat(const QString& model,
+                          const QVector<Message>& history,
+                          const QString& prompt) = 0;
+};
+```
 
-| Widget | Type | Purpose |
-|--------|------|---------|
-| Provider | `QComboBox` | Ollama / OpenAI / Claude |
-| Connection | `QLineEdit` | Base URL (Ollama/OpenAI) or API key (Claude) |
-| Model | `QComboBox` | Populated from provider on Refresh |
-| Refresh Models | `QPushButton` | Fetches model list asynchronously |
-| Selected Text | `QTextEdit` | Editable; pre-filled from Writer selection |
-| Grab Selection | `QPushButton` | Re-grabs current Writer selection |
-| Instruction | `QTextEdit` | User prompt / instruction |
-| Send | `QPushButton` | Sends request to AI provider |
-| Response | `QTextEdit` (read-only) | AI response |
-| Apply to Document | `QPushButton` | Replaces Writer selection with response text |
+### 4.2 Provider Summary
 
-**Color palette:**
+| Provider | Class | Base URL | Auth | List Models |
+|----------|-------|----------|------|-------------|
+| Ollama | `OllamaClient` | configurable | None / Basic / API Key header | `GET /api/tags` |
+| OpenAI | `OpenAIClient` | configurable | `Authorization: Bearer` | `GET /models` |
+| Claude | `AnthropicClient` | `api.anthropic.com` | `x-api-key` | Hard-coded list |
+| Grok | `GrokClient` | `api.x.ai/v1` | `Authorization: Bearer` | `GET /models` |
+| Gemini | `GeminiClient` | `generativelanguage.googleapis.com/v1beta` | `?key=` query param | `GET /models` |
 
-| Token | Hex | Use |
-|-------|-----|-----|
-| `C_BG` | `#1E1E1E` | Window background |
-| `C_SURFACE` | `#2D2D2D` | Input / textarea background |
-| `C_TEXT` | `#D4D4D4` | Primary text |
-| `C_BTN` | `#0E639C` | Primary buttons (Send, Apply) |
-| `C_BTN2` | `#3C3C3C` | Secondary buttons (Refresh, Grab) |
+---
 
-**Networking:** All provider calls use `QNetworkAccessManager` with signals/slots
-(`finished`). No blocking calls are made on any thread.
+## 5. Configuration
 
-### 3.2 Config
+### 5.1 Config Struct (key fields)
 
-**File:** `~/.config/libreai/config.json`
+```cpp
+enum class Provider { Ollama, OpenAI, Claude, Grok, Gemini };
+
+struct Config {
+    Provider provider;
+    QString  ollamaUrl, openaiUrl;
+    OllamaAuthConfig::Mode ollamaAuthMode;
+    QString  ollamaAuthUser, ollamaAuthKeyHeader;
+    QString  ollamaModel, openaiModel, claudeModel, grokModel, geminiModel;
+    QString  language;
+    bool     loggingEnabled;
+    int      logLevel, logMaxSizeMB;
+    // Runtime keys from CredentialStore — not persisted to JSON:
+    QString  openaiKey, claudeKey, grokKey, geminiKey;
+};
+```
+
+### 5.2 JSON Schema (`~/.config/libreai/config.json`)
+
+Non-sensitive settings only. API keys are stored in the platform credential backend.
 
 ```json
 {
   "provider": "OLLAMA",
   "ollama_url": "http://localhost:11434",
+  "ollama_auth_mode": 0,
   "openai_url": "https://api.openai.com/v1",
-  "openai_key": "",
-  "claude_key": "",
-  "model": ""
+  "ollama_model": "", "openai_model": "", "claude_model": "",
+  "grok_model": "",   "gemini_model": "",
+  "language": "en",
+  "logging_enabled": false,
+  "log_level": 1,
+  "log_max_size_mb": 10
 }
 ```
 
-Loaded and saved via `Config::get()` singleton (Qt JSON). Written on every change.
+### 5.3 Credential Storage
 
-### 3.3 AI Provider Clients
+| Platform | Backend | Compile flag |
+|----------|---------|--------------|
+| Linux + Qt6Keychain | `CredentialBackendKeychain` | `HAVE_KEYCHAIN` |
+| macOS | `CredentialBackendMacOS` (Security.framework) | `HAVE_MACOS_KEYCHAIN` |
+| Windows | `CredentialBackendDPAPI` | `HAVE_DPAPI` |
+| Fallback | `CredentialBackendMemory` | (none) |
 
-All extend `AIClient : QObject` with signals:
+All credential values are **never logged**. Keys are logged at Debug level only.
 
-```cpp
-signals:
-    void modelsReady(QStringList models);
-    void responseReady(QString text);
-    void errorOccurred(QString error);
-```
+---
 
-Pure virtuals:
+## 6. Chat Window
 
-```cpp
-virtual void fetchModels() = 0;
-virtual void sendChat(const QString& model,
-                      const QList<QPair<QString,QString>>& history,
-                      const QString& prompt) = 0;
-```
+### 6.1 Widget Layout
 
-| Provider | List models | Chat endpoint | Auth |
-|----------|------------|---------------|------|
-| Ollama | `GET /api/tags` | `POST /api/chat` (`stream: false`) | None |
-| OpenAI | `GET /v1/models` | `POST /v1/chat/completions` | `Authorization: Bearer <key>` |
-| Anthropic | Hard-coded list | `POST /v1/messages` | `x-api-key: <key>` |
+| Widget | Type |
+|--------|------|
+| Header | `QLabel` |
+| Grab Selection | `QPushButton` |
+| Selected text | `QPlainTextEdit` (80 px, editable) |
+| Instruction | `QPlainTextEdit` (80 px) |
+| Rewrite / Send / Clear History | `QPushButton` row |
+| History toggle | `QPushButton` (checkable) |
+| History list | `QListWidget` (160 px, hidden by default) |
+| Response | `QTextEdit` (read-only, Markdown) |
+| Apply to Document | `QPushButton` |
+| Status bar | `QLabel` |
 
-Connect/read timeout: 30 s (`QNetworkRequest::setTransferTimeout`).
+### 6.2 Markdown Rendering
 
-### 3.4 UnoHelper
+`QTextEdit::setMarkdown()` renders AI responses natively. A `QTextDocument::setDefaultStyleSheet()` provides dark-theme styling for headings, code blocks, blockquotes, and links.
 
-Namespace-scoped utilities (no class):
+### 6.3 Apply to Document — Rich Text
+
+`UnoHelper::applyRichText(doc)` walks `QTextBlock`/`QTextFragment` and:
+- Maps heading level → LO paragraph style (`"Heading 1"` … `"Heading 6"`)
+- Sets `CharWeight` (bold), `CharPosture` (italic), `CharFontName` (monospace) via `XPropertySet`
+- Prepends list markers (`"• "`, `"N. "`) for `QTextList` items
+- Falls back to plain text for Impress / Calc
+- Uses live view cursor if no selection was grabbed beforehand
+
+---
+
+## 7. Config Dialog
+
+### 7.1 Tab 1 — Model Selection
+
+Five-provider combo with conditional field visibility:
+- **Ollama**: URL + auth mode (None / Basic / API Key) + model
+- **OpenAI**: base URL + API key + model
+- **Claude**: API key + model (hard-coded list)
+- **Grok**: API key + model
+- **Gemini**: API key + model
+
+### 7.2 Tab 2 — General Settings
+
+Language selector, logging enable/disable, log level, log max size.
+
+### 7.3 Save Behaviour
+
+1. Write fields to `Config`
+2. Store keys in `CredentialStore`
+3. `Config::save()` — writes `config.json`
+4. `initLogging()` — applies log settings immediately
+5. Language changed → `applyLanguage()` + `resetInstance()` on both singletons
+
+---
+
+## 8. UnoHelper
 
 | Function | Description |
 |----------|-------------|
-| `setContext(ctx)` | Stores `XComponentContext` for later use |
+| `setContext(ctx)` | Stores `XComponentContext` |
 | `getCurrentFrame()` | Desktop → `getCurrentFrame()` |
-| `getSelectedText()` | Frame → Controller → `XTextViewCursorSupplier` → `getString()` |
-| `applyText(text)` | Frame → Controller → cursor → `setString(text)` |
+| `getSelectedText()` | Detects Writer/Impress/Calc; returns selected string; remembers cursor/target |
+| `applyText(text)` | Plain-text apply using remembered or live cursor |
+| `applyRichText(doc)` | Rich-text apply for Writer; plain-text fallback for Impress/Calc |
 
-### 3.5 CMInterceptor
+Supported document types detected from controller service name:
 
-Singleton instance (static in `LibreAIStarter.cpp`). Registered on each
-`XController` that supports `XContextMenuInterception`. De-duplication tracked
-via `std::set<sal_IntPtr> s_intercepted` keyed on controller pointer.
-
-Appends to every context menu:
-1. `com.sun.star.ui.ActionTriggerSeparator`
-2. `com.sun.star.ui.ActionTrigger` with `Text = "Ask from AI"` and
-   `CommandURL = "service:org.libreai.job?open_with_sel"`
+| App | Detection | Selection | Apply |
+|-----|-----------|-----------|-------|
+| Writer | `text.TextDocumentView` | `XTextViewCursorSupplier` | `XText` + `XPropertySet` |
+| Impress | `presentation.PresentationController` / `XDrawView` | `XSelectionSupplier` → shape | `XText::setString` |
+| Calc | `sheet.SpreadsheetViewSettings` | `XSelectionSupplier` → cell | `XTextRange::setString` |
 
 ---
 
-## 4. Configuration Files
+## 9. Build & Release
 
-### 4.1 Addons.xcu
-Registers:
-- **OfficeMenuBar** → `LibreAI` top-level menu → "Open chat"
-- **OfficeToolBar** → toolbar button
-
-### 4.2 Jobs.xcu
-Binds `org.libreai.starter` (XJob) to:
-- `onStartApp` — LO application launch
-- `onNew` — new document created
-- `onLoad` — existing document opened
-
----
-
-## 5. Build & Distribution
-
-### Build requirements
-
-| Dependency | Package / Notes |
-|------------|----------------|
-| CMake 3.16+ | `cmake` |
-| GCC / Clang (C++17) | `build-essential` |
-| Qt 6 (Core, Widgets, Network) | `qt6-base-dev` |
-| LO SDK headers | `/usr/include/libreoffice` (from `libreoffice-dev`) |
-| LO SDK libs | `/usr/lib/libreoffice/sdk/lib` (`libuno_*.so`) |
-
-### Build steps
+### 9.1 Quick Build
 
 ```bash
-cd /home/devilish/projects/libreai
-bash build.sh            # CMake configure + build + zip → libreai.oxt
-bash build.sh --install  # also installs via unopkg into LO user profile
+bash build.sh            # → libreai.oxt
+bash build.sh --install  # → installs into LO
 ```
 
-### Output
+### 9.2 CI Pipelines
 
-`libreai.oxt` — ZIP archive containing:
-- `libreai.so` (compiled native component, `Linux_X86_64` platform)
-- `META-INF/manifest.xml`
-- `Addons.xcu`, `Jobs.xcu`, `description.xml`
+| Pipeline | Trigger | Platform |
+|----------|---------|----------|
+| `release.yml` | `v*` tag | Linux (Ubuntu 22.04 + 24.04) |
+| `release-windows.yml` | `workflow_dispatch` | Windows x86_64 |
+| `release-macos.yml` | `workflow_dispatch` | macOS ARM64 (Apple Silicon) |
+| `test.yml` | push / PR | Linux — unit + integration tests |
 
-### Runtime requirements
+### 9.3 Unit Tests
 
-| Requirement | Notes |
-|-------------|-------|
-| LibreOffice 7.x | Tested on LO 7.3.7 (Ubuntu) |
-| Qt 6 runtime | `libqt6widgets6`, `libqt6network6` |
-| Ollama (optional) | Running at `http://localhost:11434` |
-| OpenAI API key (optional) | For GPT models |
-| Anthropic API key (optional) | For Claude models |
+Three Google Test executables: `test_config`, `test_logger`, `test_ai_parsing`.
+
+```bash
+cmake -S . -B build -DBUILD_TESTS=ON -Wno-dev
+cmake --build build --parallel $(nproc)
+ctest --test-dir build --output-on-failure
+```
 
 ---
 
-## 6. Known Limitations
+## 10. Known Limitations
 
 | Limitation | Details |
 |------------|---------|
-| Context menu cold-start | Interceptor registration via `XDocumentEventBroadcaster` may lag one event cycle on first launch |
-| Chat history is in-memory | Clears when LO restarts |
-| Anthropic model list is hard-coded | Anthropic has no public list-models REST endpoint |
-| Qt event loop inside LO | `QApplication` runs within LO's main thread; heavy Qt operations could affect LO responsiveness |
-| Writer only | `UnoHelper` uses `XTextViewCursorSupplier` which is Writer-specific |
+| Anthropic model list | Hard-coded in `AnthropicClient.cpp` — no public list-models endpoint |
+| Chat history | In-memory only; lost on LibreOffice restart |
+| Writer only for rich text | `applyRichText` applies formatting only in Writer; Impress/Calc receive plain text |
+| Qt event loop | Runs on LO's main thread; keep Qt operations lightweight |
+| Menu bar i18n | Follows LibreOffice's own UI language, not LibreAI's language setting |
 
 ---
 
-## 7. Extension Identity
+## 11. Extension Identity
 
 | Field | Value |
 |-------|-------|
 | Extension ID | `org.libreai` |
-| Version | `1.0.0` |
+| Version | `1.0.7` |
 | Implementation (job) | `org.libreai.job` |
 | Implementation (starter) | `org.libreai.starter` |
-| Native library | `libreai.so` (Linux_X86_64) |
+| Native library (Linux) | `libreai.so` |
+| Native library (macOS) | `libreai.dylib` |
+| Native library (Windows) | `libreai.dll` |

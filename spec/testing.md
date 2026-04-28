@@ -19,19 +19,25 @@ pkill -x soffice.bin; soffice --writer &
 - [ ] Extension loads without error (no crash on startup)
 - [ ] Chat panel opens via **Tools → LibreAI** or toolbar button
 - [ ] Config dialog opens via **Tools → LibreAI Settings** (and on first run with no config)
-- [ ] Selecting text and choosing **Right-click → Ask LibreAI** pre-fills the chat input
-- [ ] Sending a message returns a response
-- [ ] "Apply" button replaces Writer selection with the AI response
+- [ ] Selecting text and choosing **Right-click → Ask LibreAI** pre-fills the selected text area
+- [ ] **Grab Selection** button re-reads the current selection from Writer
+- [ ] Sending a message returns a response rendered with Markdown formatting (bold, headings, code blocks)
+- [ ] **Apply to Document** transfers headings, bold, italic, and list items with correct Writer formatting
+- [ ] **Rewrite** replaces document selection with AI response
+- [ ] Conversation history accumulates and shows in the history toggle panel
+- [ ] **Clear History** empties the history list
+- [ ] Provider switch (Ollama → OpenAI → Claude → Grok → Gemini) shows correct credential fields
+- [ ] API keys survive a LibreOffice restart (platform keychain)
 - [ ] Language change in ConfigDialog immediately relabels all UI strings (no restart needed)
 - [ ] Closing and reopening Writer does not crash (singleton cleanup)
+- [ ] Log file grows at `~/.config/libreai/libreai.log` when logging is enabled
 
 ---
 
 ## Unit Tests — Google Test
 
 **Location:** `tests/unit/`  
-**What's covered:** `Config::isConfigured()` logic and JSON persistence  
-**Dependencies:** Qt6::Core + libgtest — **no UNO runtime required**
+**Dependencies:** Qt6::Core + Qt6::Network + libgtest — **no UNO runtime required**
 
 ### Run locally
 
@@ -42,16 +48,19 @@ cmake --build build --parallel $(nproc)
 ctest --test-dir build --output-on-failure
 ```
 
-### Files
+### Test suites
 
-| File | Contents |
-|------|----------|
-| `tests/unit/test_config.cpp` | `isConfigured()` cases for all three providers, save/load round-trip, default values |
-| `tests/unit/CMakeLists.txt` | Builds `test_config` executable |
+| Executable | File | Coverage |
+|------------|------|----------|
+| `test_config` | `tests/unit/test_config.cpp` | `isConfigured()` for all 5 providers, save/load round-trip, default values |
+| `test_logger` | `tests/unit/test_logger.cpp` | `initLogging()` / `closeLogging()`, log level filtering, file creation |
+| `test_ai_parsing` | `tests/unit/test_ai_parsing.cpp` | `parseModels()` and `parseResponse()` for Ollama, OpenAI, Anthropic, Grok, Gemini |
+
+All three executables compile all credential backend source files (`CREDENTIAL_SOURCES`) to satisfy vtable requirements without needing a full UNO environment.
 
 ### Extending
 
-To add tests for an AI client: create `tests/unit/test_ollama_client.cpp`, link `src/OllamaClient.cpp + Qt6::Network`, mock `QNetworkReply` responses and assert the correct signals fire.
+To add tests: create a new `.cpp` in `tests/unit/`, add it to `tests/unit/CMakeLists.txt` following the existing pattern, link `Qt6::Core` and any provider `.cpp` files needed.
 
 ---
 
@@ -103,5 +112,5 @@ cppcheck --enable=all --std=c++17 src/
 
 # clang-tidy (needs compile_commands.json)
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -B build
-clang-tidy src/*.cpp -p build/
+clang-tidy src/**/*.cpp -p build/
 ```
