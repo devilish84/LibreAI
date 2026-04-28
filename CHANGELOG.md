@@ -4,6 +4,34 @@ All notable changes to LibreAI are documented here.
 
 ---
 
+## [1.0.8] — 2026-04-28
+
+### Added
+
+- **Grok (xAI) provider** — new `GrokClient` using the xAI API (`api.x.ai/v1`); OpenAI-compatible wire format; model list fetched live with embed/image/audio/vision models excluded.
+- **Gemini (Google) provider** — new `GeminiClient` using the Gemini `generateContent` API; `"assistant"` history role mapped to `"model"`; model list fetched live with embedding/aqa/retrieval/vision models excluded.
+- **Markdown rendering** — response area upgraded from `QPlainTextEdit` to `QTextEdit` with `setMarkdown()`; headers, bold, italic, inline code, code blocks, blockquotes, and links rendered natively with a dark-theme stylesheet.
+- **Rich text apply** — "Apply to Document" now transfers Markdown formatting as native LibreOffice Writer styles: headings become Heading 1–6 paragraph styles, bold/italic set via `CharWeight`/`CharPosture`, code spans use Courier New, bullet and numbered list items are prefixed automatically; falls back to plain text for Impress and Calc.
+- **Platform credential backends** — `ICredentialBackend` interface extracted; per-platform implementations: `CredentialBackendKeychain` (Linux Qt6Keychain), `CredentialBackendMacOS` (macOS Security.framework), `CredentialBackendDPAPI` (Windows DPAPI), `CredentialBackendMemory` (in-memory fallback). Backend selected at compile time via preprocessor flags.
+- **macOS release pipeline** — new `.github/workflows/release-macos.yml` targeting `macos-14` (Apple Silicon); Qt6 installed via `jurplel/install-qt-action`; LO SDK downloaded from funet mirror; Qt frameworks bundled with a custom `copy_qt_dep()` shell function using `otool` + `install_name_tool`.
+
+### Changed
+
+- **Provider list extended to 5** — `Provider` enum now includes `Ollama`, `OpenAI`, `Claude`, `Grok`, `Gemini`; ConfigDialog, Config, ChatWindow, and unit tests all updated.
+- **Per-provider model fields** — `Config` now has `grokModel` and `geminiModel` alongside the existing per-provider fields; `currentModel()` and `isConfigured()` cover all five providers.
+- **Credential keys** — Grok stored as `libreai/grok_key`, Gemini as `libreai/gemini_key`.
+- **`applyRichText` works without prior Grab Selection** — falls back to the live Writer view cursor so Apply works even when no text was grabbed beforehand.
+- **CMake `if(NOT VAR)` guards** — platform default paths now use `if(NOT LO_INCLUDE)` / `if(NOT LO_SDK_LIB)` guards so `-D` flags from CI override them correctly.
+- **Release workflow body** — Linux release workflow updated to include macOS row in the Downloads table and updated description.
+
+### Fixed
+
+- **`CredentialBackendDPAPI.hpp` missing `#include <QJsonObject>`** — MSVC requires explicit includes; GCC/Clang accepted it via transitive includes. Caused Windows CI build failure.
+- **`GeminiClient` most-vexing-parse** — `QNetworkRequest req(QUrl(url))` was parsed as a function declaration by MSVC; fixed by splitting into two statements.
+- **`applyRichText` bullet points lost** — Qt does not include list marker characters in `QTextFragment` text; detected via `QTextBlock::textList()` and prefixed manually.
+
+---
+
 ## [1.0.7] — 2026-04-26
 
 ### Added
