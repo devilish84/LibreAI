@@ -103,7 +103,7 @@ jobs:
           body: |
             ## LibreAI ${{ github.ref_name }}
 
-            AI writing assistant for LibreOffice Writer — supports Ollama, OpenAI, and Anthropic Claude.
+            AI writing assistant for LibreOffice — supports Ollama, OpenAI, Anthropic Claude, xAI Grok, and Google Gemini. Works in Writer, Impress, and Calc. No Java required.
 
             ### Downloads
 
@@ -112,10 +112,11 @@ jobs:
             | `libreai_ubuntu2204_x86_64.oxt` | Ubuntu 22.04 LTS | 7.x | `unopkg add libreai_ubuntu2204_x86_64.oxt` |
             | `libreai_ubuntu2404_x86_64.oxt` | Ubuntu 24.04 LTS | 24.x+ | `unopkg add libreai_ubuntu2404_x86_64.oxt` |
             | `libreai_windows_x86_64.oxt` | Windows 10/11 | 24.x+ | Tools → Extension Manager → Add |
+            | `libreai_macos_arm64.oxt` | macOS (Apple Silicon) | 24.x+ | Tools → Extension Manager → Add |
 
             ### Requirements
             - Qt 6 runtime bundled in OXT
-            - Ollama, OpenAI key, or Anthropic key for AI providers
+            - Ollama (local) or an API key for OpenAI, Anthropic, xAI Grok, or Google Gemini
           files: |
             artifacts/linux-2204/libreai_ubuntu2204_x86_64.oxt
             artifacts/linux-2404/libreai_ubuntu2404_x86_64.oxt
