@@ -1,6 +1,7 @@
 #pragma once
 #ifdef HAVE_DPAPI
 #include "CredentialStore.hpp"
+#include <QJsonObject>
 
 // Windows: DPAPI (CryptProtectData) with JSON file storage
 class CredentialBackendDPAPI : public ICredentialBackend {
