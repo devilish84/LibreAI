@@ -1,6 +1,6 @@
 # LibreAI — Technical Specification
 
-**Version:** 1.0.7  
+**Version:** 1.0.8  
 **Branch:** `development` (release by tagging `v*`)
 
 ---
@@ -319,7 +319,7 @@ ctest --test-dir build --output-on-failure
 | Field | Value |
 |-------|-------|
 | Extension ID | `org.libreai` |
-| Version | `1.0.7` |
+| Version | `1.0.8` |
 | Implementation (job) | `org.libreai.job` |
 | Implementation (starter) | `org.libreai.starter` |
 | Native library (Linux) | `libreai.so` |
