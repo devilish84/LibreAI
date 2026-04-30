@@ -59,6 +59,10 @@ Config::Config() {
     ollamaBasicUser      = obj["ollama_basic_user"].toString();
     ollamaApiKeyHeader   = obj["ollama_api_key_header"].toString(ollamaApiKeyHeader);
 
+    batchDelayMs     = obj["batch_delay_ms"].toInt(500);
+    batchTimeoutSec  = obj["batch_timeout_s"].toInt(60);
+    batchStopOnError = obj["batch_stop_on_error"].toBool(false);
+
     language        = obj["language"].toString("en");
     loggingEnabled  = obj["logging_enabled"].toBool(false);
     logLevel        = obj["log_level"].toInt(1);
@@ -116,6 +120,10 @@ void Config::save() const {
                        : ollamaAuth == OllamaAuth::ApiKey ? "APIKEY" : "NONE";
     obj["ollama_basic_user"]     = ollamaBasicUser;
     obj["ollama_api_key_header"] = ollamaApiKeyHeader;
+
+    obj["batch_delay_ms"]     = batchDelayMs;
+    obj["batch_timeout_s"]    = batchTimeoutSec;
+    obj["batch_stop_on_error"]= batchStopOnError;
 
     obj["language"]        = language;
     obj["logging_enabled"] = loggingEnabled;

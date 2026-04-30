@@ -83,8 +83,11 @@ set(SOURCES
     src/ai/GrokClient.cpp
     src/ai/GeminiClient.cpp
     src/uno/UnoHelper.cpp
+    src/uno/DocumentParser.cpp
+    src/core/BatchProcessor.cpp
     src/ui/ChatWindow.cpp
     src/ui/ConfigDialog.cpp
+    src/ui/BatchRewriteDialog.cpp
     src/uno/CMInterceptor.cpp
     src/uno/LibreAIJob.cpp
     src/uno/LibreAIStarter.cpp

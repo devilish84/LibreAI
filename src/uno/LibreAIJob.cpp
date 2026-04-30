@@ -1,5 +1,6 @@
 #include "LibreAIJob.hpp"
 #include "LibreAIStarter.hpp"
+#include "../ui/BatchRewriteDialog.hpp"
 #include "../ui/ChatWindow.hpp"
 #include "../ui/ConfigDialog.hpp"
 #include "../core/Config.hpp"
@@ -56,6 +57,15 @@ void SAL_CALL LibreAIJob::trigger(const OUString& args) {
 
     if (!Config::get().isConfigured()) {
         auto* dlg = ConfigDialog::instance();
+        dlg->show();
+        dlg->raise();
+        dlg->activateWindow();
+        return;
+    }
+
+    if (args.equalsAscii("batch_rewrite")) {
+        auto* dlg = new BatchRewriteDialog();
+        dlg->setAttribute(Qt::WA_DeleteOnClose);
         dlg->show();
         dlg->raise();
         dlg->activateWindow();

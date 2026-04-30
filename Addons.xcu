@@ -54,6 +54,24 @@
               <value>_self</value>
             </prop>
           </node>
+          <node oor:name="m03" oor:op="replace">
+            <prop oor:name="URL" oor:type="xs:string">
+              <value>service:org.libreai.job?batch_rewrite</value>
+            </prop>
+            <prop oor:name="Title" oor:type="xs:string">
+              <value xml:lang="en">Batch Rewrite...</value>
+              <value xml:lang="fi">Erämuokkaus...</value>
+              <value xml:lang="sv">Batchomskrivning...</value>
+              <value xml:lang="da">Batch-omskrivning...</value>
+              <value xml:lang="nb">Omskriving i batch...</value>
+              <value xml:lang="es">Reescritura por lotes...</value>
+              <value xml:lang="de">Stapelumschreibung...</value>
+              <value xml:lang="pt">Reescrita em lote...</value>
+            </prop>
+            <prop oor:name="Target" oor:type="xs:string">
+              <value>_self</value>
+            </prop>
+          </node>
         </node>
       </node>
     </node>

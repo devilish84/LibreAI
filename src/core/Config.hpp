@@ -31,6 +31,11 @@ struct Config {
     QString  ollamaBasicPass;
     QString  ollamaApiKeyValue;
 
+    // Batch processing
+    int  batchDelayMs         = 500;
+    int  batchTimeoutSec      = 60;
+    bool batchStopOnError     = false;
+
     // UI / misc
     QString  language        = "en";
     bool     loggingEnabled  = false;

@@ -129,81 +129,10 @@ static void writerSetText(const QString& text) {
 
 static void writerSetRichText(const QTextDocument* doc,
                               const Reference<css::text::XTextViewCursor>& viewCursor) {
-    auto xText = viewCursor->getText();
-    if (!xText.is()) return;
-    auto xCursor = xText->createTextCursorByRange(
+    auto xCursor = viewCursor->getText()->createTextCursorByRange(
         Reference<css::text::XTextRange>(viewCursor, UNO_QUERY));
-    if (!xCursor.is()) return;
-    auto xPS    = Reference<css::beans::XPropertySet>(xCursor, UNO_QUERY);
-    auto xRange = Reference<css::text::XTextRange>(xCursor, UNO_QUERY);
-
-    xText->insertString(xRange, OUString(), true); // delete selection
-
-    bool firstBlock = true;
-    for (auto block = doc->begin(); block != doc->end(); block = block.next()) {
-        // Skip trailing empty block Qt appends at end of document
-        if (block.next() == doc->end() && block.text().isEmpty()) break;
-
-        if (!firstBlock)
-            xText->insertControlCharacter(xRange,
-                css::text::ControlCharacter::PARAGRAPH_BREAK, false);
-        firstBlock = false;
-
-        // Paragraph style
-        if (xPS.is()) {
-            int heading = block.blockFormat().headingLevel();
-            OUString paraStyle;
-            if (heading >= 1 && heading <= 6)
-                paraStyle = qToOu(QString("Heading %1").arg(heading));
-            else if (block.charFormat().fontFixedPitch())
-                paraStyle = OUString("Preformatted Text");
-            else
-                paraStyle = OUString("Default Paragraph Style");
-            try { xPS->setPropertyValue("ParaStyleName", Any(paraStyle)); } catch (...) {}
-        }
-
-        // List item prefix — Qt doesn't put bullets in fragment text
-        if (block.textList()) {
-            auto listFmt = block.textList()->format();
-            QString prefix;
-            int itemNum = block.textList()->itemNumber(block) + 1;
-            if (listFmt.style() == QTextListFormat::ListDecimal)
-                prefix = QString::number(itemNum) + ". ";
-            else if (listFmt.style() == QTextListFormat::ListLowerAlpha)
-                prefix = QString(char('a' + itemNum - 1)) + ". ";
-            else
-                prefix = "• ";
-            if (xPS.is()) {
-                // Reset char props for the prefix
-                try {
-                    xPS->setPropertyValue("CharWeight",   Any((float)css::awt::FontWeight::NORMAL));
-                    xPS->setPropertyValue("CharPosture",  Any(css::awt::FontSlant_NONE));
-                    xPS->setPropertyValue("CharFontName", Any(OUString("")));
-                } catch (...) {}
-            }
-            xText->insertString(xRange, qToOu(prefix), false);
-        }
-
-        for (auto it = block.begin(); !it.atEnd(); ++it) {
-            auto frag = it.fragment();
-            if (!frag.isValid() || frag.text().isEmpty()) continue;
-            auto cf = frag.charFormat();
-            if (xPS.is()) {
-                float weight = cf.font().bold()
-                    ? css::awt::FontWeight::BOLD : css::awt::FontWeight::NORMAL;
-                css::awt::FontSlant slant = cf.font().italic()
-                    ? css::awt::FontSlant_ITALIC : css::awt::FontSlant_NONE;
-                OUString fontName = cf.fontFixedPitch()
-                    ? OUString("Courier New") : OUString("");
-                try {
-                    xPS->setPropertyValue("CharWeight",   Any(weight));
-                    xPS->setPropertyValue("CharPosture",  Any(slant));
-                    xPS->setPropertyValue("CharFontName", Any(fontName));
-                } catch (...) {}
-            }
-            xText->insertString(xRange, qToOu(frag.text()), false);
-        }
-    }
+    if (xCursor.is())
+        applyRichTextToRange(doc, xCursor);
 }
 
 // ── Impress / Draw ────────────────────────────────────────────────────────────
@@ -323,6 +252,79 @@ void applyRichText(const QTextDocument* doc) {
         auto cur = tvcs->getViewCursor();
         if (cur.is()) writerSetRichText(doc, cur);
     } catch (...) {}
+}
+
+void applyRichTextToRange(const QTextDocument* doc,
+                          const Reference<css::text::XTextCursor>& xCursor) {
+    if (!xCursor.is()) return;
+    auto xText  = xCursor->getText();
+    if (!xText.is()) return;
+    auto xPS    = Reference<css::beans::XPropertySet>(xCursor, UNO_QUERY);
+    auto xRange = Reference<css::text::XTextRange>(xCursor, UNO_QUERY);
+
+    xText->insertString(xRange, OUString(), true); // delete selection
+
+    bool firstBlock = true;
+    for (auto block = doc->begin(); block != doc->end(); block = block.next()) {
+        if (block.next() == doc->end() && block.text().isEmpty()) break;
+
+        if (!firstBlock)
+            xText->insertControlCharacter(xRange,
+                css::text::ControlCharacter::PARAGRAPH_BREAK, false);
+        firstBlock = false;
+
+        if (xPS.is()) {
+            int heading = block.blockFormat().headingLevel();
+            OUString paraStyle;
+            if (heading >= 1 && heading <= 6)
+                paraStyle = qToOu(QString("Heading %1").arg(heading));
+            else if (block.charFormat().fontFixedPitch())
+                paraStyle = OUString("Preformatted Text");
+            else
+                paraStyle = OUString("Default Paragraph Style");
+            try { xPS->setPropertyValue("ParaStyleName", Any(paraStyle)); } catch (...) {}
+        }
+
+        if (block.textList()) {
+            auto listFmt = block.textList()->format();
+            QString prefix;
+            int itemNum = block.textList()->itemNumber(block) + 1;
+            if (listFmt.style() == QTextListFormat::ListDecimal)
+                prefix = QString::number(itemNum) + ". ";
+            else if (listFmt.style() == QTextListFormat::ListLowerAlpha)
+                prefix = QString(char('a' + itemNum - 1)) + ". ";
+            else
+                prefix = "• ";
+            if (xPS.is()) {
+                try {
+                    xPS->setPropertyValue("CharWeight",   Any((float)css::awt::FontWeight::NORMAL));
+                    xPS->setPropertyValue("CharPosture",  Any(css::awt::FontSlant_NONE));
+                    xPS->setPropertyValue("CharFontName", Any(OUString("")));
+                } catch (...) {}
+            }
+            xText->insertString(xRange, qToOu(prefix), false);
+        }
+
+        for (auto it = block.begin(); !it.atEnd(); ++it) {
+            auto frag = it.fragment();
+            if (!frag.isValid() || frag.text().isEmpty()) continue;
+            auto cf = frag.charFormat();
+            if (xPS.is()) {
+                float weight = cf.font().bold()
+                    ? css::awt::FontWeight::BOLD : css::awt::FontWeight::NORMAL;
+                css::awt::FontSlant slant = cf.font().italic()
+                    ? css::awt::FontSlant_ITALIC : css::awt::FontSlant_NONE;
+                OUString fontName = cf.fontFixedPitch()
+                    ? OUString("Courier New") : OUString("");
+                try {
+                    xPS->setPropertyValue("CharWeight",   Any(weight));
+                    xPS->setPropertyValue("CharPosture",  Any(slant));
+                    xPS->setPropertyValue("CharFontName", Any(fontName));
+                } catch (...) {}
+            }
+            xText->insertString(xRange, qToOu(frag.text()), false);
+        }
+    }
 }
 
 void applyText(const QString& text) {
