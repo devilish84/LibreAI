@@ -9,6 +9,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets Network
     HINTS /usr/lib/x86_64-linux-gnu/cmake)
+find_package(Qt6 OPTIONAL_COMPONENTS LinguistTools
+    HINTS /usr/lib/x86_64-linux-gnu/cmake)
 
 set(LO_GEN_INCLUDE ${CMAKE_SOURCE_DIR}/include)
 
@@ -50,22 +52,25 @@ else()
         ${LO_SDK_LIB}/libuno_sal.so)
 endif()
 
-# Compile .ts → .qm before the build (requires lrelease on PATH)
-find_program(LRELEASE_EXECUTABLE NAMES lrelease lrelease-qt6)
-if(LRELEASE_EXECUTABLE)
-    file(GLOB TS_FILES "${CMAKE_SOURCE_DIR}/translations/*.ts")
-    foreach(TS ${TS_FILES})
-        string(REPLACE ".ts" ".qm" QM ${TS})
-        add_custom_command(
-            OUTPUT  ${QM}
-            COMMAND ${LRELEASE_EXECUTABLE} ${TS} -qm ${QM}
-            DEPENDS ${TS}
-            COMMENT "Compiling ${TS}"
-        )
-        list(APPEND QM_FILES ${QM})
-    endforeach()
-    add_custom_target(translations ALL DEPENDS ${QM_FILES})
+# Compile .ts → .qm — prefer Qt6::lrelease target (LinguistTools), fall back to find_program
+if(TARGET Qt6::lrelease)
+    set(LRELEASE_CMD Qt6::lrelease)
+else()
+    find_program(LRELEASE_EXECUTABLE NAMES lrelease-qt6 lrelease REQUIRED)
+    set(LRELEASE_CMD ${LRELEASE_EXECUTABLE})
 endif()
+file(GLOB TS_FILES "${CMAKE_SOURCE_DIR}/translations/*.ts")
+foreach(TS ${TS_FILES})
+    string(REPLACE ".ts" ".qm" QM ${TS})
+    add_custom_command(
+        OUTPUT  ${QM}
+        COMMAND ${LRELEASE_CMD} ${TS} -qm ${QM}
+        DEPENDS ${TS}
+        COMMENT "Compiling ${TS}"
+    )
+    list(APPEND QM_FILES ${QM})
+endforeach()
+add_custom_target(translations ALL DEPENDS ${QM_FILES})
 
 set(SOURCES
     src/uno/component.cpp
@@ -102,9 +107,7 @@ set(SOURCES
 )
 
 add_library(libreai SHARED ${SOURCES})
-if(LRELEASE_EXECUTABLE)
-    add_dependencies(libreai translations)
-endif()
+add_dependencies(libreai translations)
 
 target_include_directories(libreai PRIVATE
     ${LO_INCLUDE}
