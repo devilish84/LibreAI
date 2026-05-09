@@ -52,22 +52,34 @@ else()
         ${LO_SDK_LIB}/libuno_sal.so)
 endif()
 
-# Compile .ts → .qm — prefer Qt6::lrelease target (LinguistTools), fall back to find_program
+# Compile .ts → .qm when lrelease is available; otherwise use pre-built .qm files from repo
 if(TARGET Qt6::lrelease)
     set(LRELEASE_CMD Qt6::lrelease)
 else()
-    find_program(LRELEASE_EXECUTABLE NAMES lrelease-qt6 lrelease REQUIRED)
-    set(LRELEASE_CMD ${LRELEASE_EXECUTABLE})
+    find_program(LRELEASE_EXECUTABLE NAMES lrelease-qt6 lrelease)
+    if(LRELEASE_EXECUTABLE)
+        set(LRELEASE_CMD ${LRELEASE_EXECUTABLE})
+    endif()
 endif()
+
 file(GLOB TS_FILES "${CMAKE_SOURCE_DIR}/translations/*.ts")
 foreach(TS ${TS_FILES})
     string(REPLACE ".ts" ".qm" QM ${TS})
-    add_custom_command(
-        OUTPUT  ${QM}
-        COMMAND ${LRELEASE_CMD} ${TS} -qm ${QM}
-        DEPENDS ${TS}
-        COMMENT "Compiling ${TS}"
-    )
+    if(LRELEASE_CMD)
+        add_custom_command(
+            OUTPUT  ${QM}
+            COMMAND ${LRELEASE_CMD} ${TS} -qm ${QM}
+            DEPENDS ${TS}
+            COMMENT "Compiling ${TS}"
+        )
+    else()
+        # lrelease not found — use pre-built .qm already in the source tree
+        add_custom_command(
+            OUTPUT  ${QM}
+            COMMAND ${CMAKE_COMMAND} -E echo "Using pre-built ${QM}"
+            DEPENDS ${QM}
+        )
+    endif()
     list(APPEND QM_FILES ${QM})
 endforeach()
 add_custom_target(translations ALL DEPENDS ${QM_FILES})
