@@ -1,27 +1,39 @@
 #include "UnoHelper.hpp"
 
+#include <QDir>
+#include <QFile>
+#include <QTemporaryFile>
 #include <QTextBlock>
 #include <QTextDocument>
 #include <QTextCursor>
 #include <QTextList>
 #include <QTextListFormat>
+#include <QUrl>
 
 #include <com/sun/star/awt/FontSlant.hpp>
 #include <com/sun/star/awt/FontWeight.hpp>
+#include <com/sun/star/awt/Point.hpp>
+#include <com/sun/star/awt/Size.hpp>
 #include <com/sun/star/beans/XPropertySet.hpp>
 #include <com/sun/star/text/ControlCharacter.hpp>
+#include <com/sun/star/text/TextContentAnchorType.hpp>
 #include <com/sun/star/text/XTextCursor.hpp>
+#include <com/sun/star/text/XTextContent.hpp>
 #include <com/sun/star/frame/XDesktop.hpp>
 #include <com/sun/star/frame/XFrame.hpp>
 #include <com/sun/star/frame/XController.hpp>
+#include <com/sun/star/frame/XModel.hpp>
 #include <com/sun/star/text/XText.hpp>
 #include <com/sun/star/text/XTextDocument.hpp>
 #include <com/sun/star/text/XTextRange.hpp>
 #include <com/sun/star/text/XTextViewCursor.hpp>
 #include <com/sun/star/text/XTextViewCursorSupplier.hpp>
 #include <com/sun/star/container/XIndexAccess.hpp>
+#include <com/sun/star/drawing/XDrawPage.hpp>
 #include <com/sun/star/drawing/XDrawView.hpp>
 #include <com/sun/star/drawing/XShape.hpp>
+#include <com/sun/star/drawing/XShapes.hpp>
+#include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #include <com/sun/star/table/XCell.hpp>
 #include <com/sun/star/table/XCellRange.hpp>
 #include <com/sun/star/view/XSelectionSupplier.hpp>
@@ -325,6 +337,116 @@ void applyRichTextToRange(const QTextDocument* doc,
             xText->insertString(xRange, qToOu(frag.text()), false);
         }
     }
+}
+
+static QString saveTempPng(const QByteArray& pngData) {
+    QString path = QDir::tempPath() + "/libreai_img.png";
+    QFile f(path);
+    if (f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        f.write(pngData);
+        f.close();
+    }
+    return QUrl::fromLocalFile(path).toString();
+}
+
+void insertImage(const QByteArray& pngData) {
+    try {
+        auto frame = getCurrentFrame();
+        if (!frame.is()) return;
+        auto ctrl = frame->getController();
+        if (!ctrl.is()) return;
+
+        AppType app = detectApp(ctrl);
+        if (app == AppType::Calc) return;  // not supported in Calc
+
+        QString fileUrl = saveTempPng(pngData);
+        if (fileUrl.isEmpty()) return;
+        OUString uFileUrl = qToOu(fileUrl);
+
+        auto model = ctrl->getModel();
+        auto msfact = Reference<css::lang::XMultiServiceFactory>(model, UNO_QUERY);
+        if (!msfact.is()) return;
+
+        if (app == AppType::Writer) {
+            auto xTextDoc = Reference<css::text::XTextDocument>(model, UNO_QUERY);
+            if (!xTextDoc.is()) return;
+            auto xText = xTextDoc->getText();
+
+            // Resolve insertion point: end of stored selection, or live cursor
+            Reference<css::text::XTextRange> xAnchor;
+            if (g_writerCursor.is()) {
+                auto xCur = xText->createTextCursorByRange(
+                    Reference<css::text::XTextRange>(g_writerCursor, UNO_QUERY));
+                if (xCur.is()) {
+                    xCur->collapseToEnd();
+                    xAnchor = Reference<css::text::XTextRange>(xCur, UNO_QUERY);
+                }
+            }
+            if (!xAnchor.is()) {
+                auto tvcs = Reference<css::text::XTextViewCursorSupplier>(ctrl, UNO_QUERY);
+                if (tvcs.is()) {
+                    auto vc = tvcs->getViewCursor();
+                    if (vc.is()) {
+                        auto xCur = xText->createTextCursorByRange(
+                            Reference<css::text::XTextRange>(vc, UNO_QUERY));
+                        if (xCur.is()) {
+                            xCur->collapseToEnd();
+                            xAnchor = Reference<css::text::XTextRange>(xCur, UNO_QUERY);
+                        }
+                    }
+                }
+            }
+            if (!xAnchor.is()) return;
+
+            // Insert paragraph break before the image
+            xText->insertControlCharacter(xAnchor,
+                css::text::ControlCharacter::PARAGRAPH_BREAK, false);
+
+            // Create embedded graphic object
+            auto xGfxIface = msfact->createInstance(
+                OUString::createFromAscii("com.sun.star.text.TextGraphicObject"));
+            auto xPS = Reference<css::beans::XPropertySet>(xGfxIface, UNO_QUERY);
+            if (xPS.is()) {
+                xPS->setPropertyValue("GraphicURL",
+                    Any(uFileUrl));
+                xPS->setPropertyValue("AnchorType",
+                    Any(css::text::TextContentAnchorType_AS_CHARACTER));
+            }
+            auto xShape = Reference<css::drawing::XShape>(xGfxIface, UNO_QUERY);
+            if (xShape.is()) {
+                css::awt::Size sz;
+                sz.Width  = 12000;   // 12 cm in 1/100 mm
+                sz.Height = 9000;    // 9 cm
+                xShape->setSize(sz);
+            }
+            auto xContent = Reference<css::text::XTextContent>(xGfxIface, UNO_QUERY);
+            if (xContent.is())
+                xText->insertTextContent(xAnchor, xContent, false);
+
+        } else { // Impress
+            auto xDrawView = Reference<css::drawing::XDrawView>(ctrl, UNO_QUERY);
+            if (!xDrawView.is()) return;
+            auto xPage = xDrawView->getCurrentPage();
+            if (!xPage.is()) return;
+            auto xShapes = Reference<css::drawing::XShapes>(xPage, UNO_QUERY);
+            if (!xShapes.is()) return;
+
+            auto xShapeIface = msfact->createInstance(
+                OUString::createFromAscii("com.sun.star.drawing.GraphicObjectShape"));
+            auto xShape = Reference<css::drawing::XShape>(xShapeIface, UNO_QUERY);
+            if (!xShape.is()) return;
+            xShapes->add(xShape);
+
+            auto xPS = Reference<css::beans::XPropertySet>(xShape, UNO_QUERY);
+            if (xPS.is())
+                xPS->setPropertyValue("GraphicURL", Any(uFileUrl));
+
+            css::awt::Point pos; pos.X = 3000; pos.Y = 5000;
+            css::awt::Size  sz;  sz.Width = 14000; sz.Height = 10500;
+            xShape->setPosition(pos);
+            xShape->setSize(sz);
+        }
+    } catch (...) {}
 }
 
 void applyText(const QString& text) {

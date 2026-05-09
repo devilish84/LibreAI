@@ -55,6 +55,7 @@ gh workflow run release-macos.yml   --ref development --field tag=v1.0.X
 | [testing.md](spec/testing.md) | Manual checklist, Google Test unit tests, pytest integration tests |
 | [LibreAI_Specification.md](spec/LibreAI_Specification.md) | Formal technical specification |
 | [feature-batch-rewrite.md](spec/feature-batch-rewrite.md) | Batch Rewrite mode — DocumentParser, BatchProcessor, BatchRewriteDialog |
+| [feature-image-generation.md](spec/feature-image-generation.md) | Image Generation — ImageClient hierarchy, ImageGenDialog, UnoHelper::insertImage |
 | [feature-prompt-library.md](spec/feature-prompt-library.md) | Prompt Library & Templates — saved instructions, variable substitution |
 
 ## Plans

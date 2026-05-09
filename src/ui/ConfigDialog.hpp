@@ -1,5 +1,9 @@
 #pragma once
 #include "../ai/AIClient.hpp"
+#include "../ai/ImageClient.hpp"
+#include "../ai/OllamaClient.hpp"
+#include "../core/Config.hpp"
+#include "DualListWidget.hpp"
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -9,7 +13,9 @@ class QFormLayout;
 class QLabel;
 class QLineEdit;
 class QPushButton;
+class QScrollArea;
 class QSpinBox;
+class QStackedWidget;
 class QTabWidget;
 QT_END_NAMESPACE
 
@@ -25,79 +31,90 @@ protected:
 
 private:
     void buildUi();
+    void buildGeneralTab(QWidget* page);
+    void buildProvidersTab(QWidget* page);
+    void buildTextGenTab(QWidget* page);
+    void buildImageGenTab(QWidget* page);
     void applyTheme();
     void retranslateUi();
-    void onProviderChanged(int index);
+
     void onOllamaAuthChanged(int index);
-    void onRefreshModels();
+    void onFetchOllamaModels();
+    void onTxtProviderChanged(int index);
+    void onTxtRefreshModels();
+    void onImgProviderChanged(int index);
+    void onImgRefreshModels();
     void onOk();
 
-    QString currentCredential() const;
-    void    setRowVisible(QLabel* lbl, QWidget* field, bool visible);
+    QString credentialForProvider(Provider p) const;
 
-    // tabs
-    QTabWidget*  m_tabs;
+    // ── Tabs ──────────────────────────────────────────────────────────────
+    QTabWidget*    m_tabs;
 
-    // General Settings tab
-    QLabel*      m_langLabel;
-    QComboBox*   m_langBox;
-    QCheckBox*   m_logEnabledBox;
-    QLabel*      m_logLevelLabel;
-    QComboBox*   m_logLevelBox;
-    QLabel*      m_logMaxSizeLabel;
-    QSpinBox*    m_logMaxSizeBox;
-    QLabel*      m_logPathLabel;
-    QLabel*      m_logPathValue;
+    // General tab
+    QLabel*        m_langLabel;
+    QComboBox*     m_langBox;
+    QCheckBox*     m_logEnabledBox;
+    QLabel*        m_logLevelLabel;
+    QComboBox*     m_logLevelBox;
+    QLabel*        m_logMaxSizeLabel;
+    QSpinBox*      m_logMaxSizeBox;
+    QLabel*        m_logPathLabel;
+    QLabel*        m_logPathValue;
 
-    // Model Selection tab — single flat QFormLayout
-    QFormLayout* m_modelForm;
-    QLabel*      m_providerLabel;
-    QComboBox*   m_providerBox;
+    // Providers tab — combo selects provider, stack shows settings
+    QComboBox*     m_providerCombo;
+    QStackedWidget* m_providerStack;
 
-    // Ollama fields
-    QLabel*      m_ollamaUrlLabel;
-    QLineEdit*   m_ollamaUrlEdit;
-    QLabel*      m_ollamaAuthLabel;
-    QComboBox*   m_ollamaAuthBox;
-    QLabel*      m_ollamaUserLabel;
-    QLineEdit*   m_ollamaUserEdit;
-    QLabel*      m_ollamaPassLabel;
-    QLineEdit*   m_ollamaPassEdit;
-    QLabel*      m_ollamaKeyHeaderLabel;
-    QLineEdit*   m_ollamaKeyHeaderEdit;
-    QLabel*      m_ollamaKeyValueLabel;
-    QLineEdit*   m_ollamaKeyValueEdit;
+    // Ollama page widgets
+    QLineEdit*     m_ollamaUrlEdit;
+    QComboBox*     m_ollamaAuthBox;
+    QLineEdit*     m_ollamaUserEdit;
+    QLineEdit*     m_ollamaPassEdit;
+    QLineEdit*     m_ollamaKeyHeaderEdit;
+    QLineEdit*     m_ollamaKeyValueEdit;
+    QPushButton*   m_ollamaFetchBtn;
+    DualListWidget* m_ollamaTextList;
+    DualListWidget* m_ollamaImgList;
 
-    // OpenAI fields
-    QLabel*      m_openaiUrlLabel;
-    QLineEdit*   m_openaiUrlEdit;
-    QLabel*      m_openaiKeyLabel;
-    QLineEdit*   m_openaiKeyEdit;
+    // OpenAI page
+    QLineEdit*     m_openaiUrlEdit;
+    QLineEdit*     m_openaiKeyEdit;
 
-    // Claude fields
-    QLabel*      m_claudeKeyLabel;
-    QLineEdit*   m_claudeKeyEdit;
+    // Claude page
+    QLineEdit*     m_claudeUrlEdit;
+    QLineEdit*     m_claudeKeyEdit;
 
-    // Grok fields
-    QLabel*      m_grokKeyLabel;
-    QLineEdit*   m_grokKeyEdit;
+    // Grok page
+    QLineEdit*     m_grokUrlEdit;
+    QLineEdit*     m_grokKeyEdit;
 
-    // Gemini fields
-    QLabel*      m_geminiKeyLabel;
-    QLineEdit*   m_geminiKeyEdit;
+    // Gemini page
+    QLineEdit*     m_geminiUrlEdit;
+    QLineEdit*     m_geminiKeyEdit;
 
-    // Keychain status hint
-    QLabel*      m_keychainHint;
+    QLabel*        m_keychainHint;
 
-    // Model row (shared)
-    QLabel*      m_modelLabel;
-    QComboBox*   m_modelBox;
-    QPushButton* m_refreshBtn;
+    // Text Generation tab
+    QComboBox*     m_txtProviderBox;
+    QComboBox*     m_txtModelBox;
+    QPushButton*   m_txtRefreshBtn;
+    QLabel*        m_txtOllamaHint;
+    AIClient*      m_txtClient = nullptr;
 
-    QPushButton* m_okBtn;
-    QPushButton* m_cancelBtn;
+    // Image Generation tab
+    QComboBox*     m_imgProviderBox;
+    QComboBox*     m_imgModelBox;
+    QPushButton*   m_imgRefreshBtn;
+    QLabel*        m_imgOllamaHint;
+    ImageClient*   m_imgClient = nullptr;
 
-    AIClient*    m_client = nullptr;
+    // Bottom buttons
+    QPushButton*   m_okBtn;
+    QPushButton*   m_cancelBtn;
+
+    // Ollama model fetch client
+    OllamaClient*  m_ollamaFetchClient = nullptr;
 
     static ConfigDialog* s_instance;
 };

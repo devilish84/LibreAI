@@ -10,19 +10,17 @@
 
 Q_LOGGING_CATEGORY(lcGemini, "libreai.gemini")
 
-static const QString kBaseUrl = QStringLiteral("https://generativelanguage.googleapis.com/v1beta");
 static QAtomicInteger<int> s_geminiReqId{0};
 
-GeminiClient::GeminiClient(const QString& apiKey, QObject* parent)
-    : AIClient(parent), m_apiKey(apiKey)
+GeminiClient::GeminiClient(const QString& apiKey, const QString& baseUrl, QObject* parent)
+    : AIClient(parent), m_apiKey(apiKey), m_baseUrl(baseUrl)
 {
-    qCDebug(lcGemini) << "GeminiClient constructed";
+    qCDebug(lcGemini) << "GeminiClient constructed, baseUrl=" << baseUrl;
 }
 
 QString GeminiClient::modelEndpoint(const QString& model) const
 {
-    // e.g. kBaseUrl + "/models/gemini-1.5-pro:generateContent?key=..."
-    return kBaseUrl + "/models/" + model + ":generateContent?key=" + m_apiKey;
+    return m_baseUrl + "/models/" + model + ":generateContent?key=" + m_apiKey;
 }
 
 QStringList GeminiClient::parseModels(const QByteArray& json)
@@ -57,7 +55,7 @@ QString GeminiClient::parseResponse(const QByteArray& json)
 
 void GeminiClient::fetchModels()
 {
-    QUrl url(kBaseUrl + "/models?key=" + m_apiKey);
+    QUrl url(m_baseUrl + "/models?key=" + m_apiKey);
     qCDebug(lcGemini) << "fetchModels";
     QNetworkRequest req(url);
     auto* reply = m_nam.get(req);

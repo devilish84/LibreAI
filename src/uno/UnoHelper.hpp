@@ -1,4 +1,5 @@
 #pragma once
+#include <QByteArray>
 #include <QString>
 #include <com/sun/star/frame/XFrame.hpp>
 #include <com/sun/star/text/XTextCursor.hpp>
@@ -19,5 +20,9 @@ void    applyRichText(const QTextDocument* doc);
 // Used by BatchProcessor to write AI responses back to stored section ranges.
 void    applyRichTextToRange(const QTextDocument* doc,
                              const css::uno::Reference<css::text::XTextCursor>& cursor);
+
+// Insert a PNG image after the current cursor/selection in Writer or Impress.
+// Writes a temp file and embeds it as a graphic object. No-op for Calc.
+void    insertImage(const QByteArray& pngData);
 
 }

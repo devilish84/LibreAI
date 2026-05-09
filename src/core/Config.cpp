@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QDir>
 #include <QFile>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QLoggingCategory>
@@ -33,14 +34,36 @@ Config::Config() {
     else if (p == "GEMINI") provider = Provider::Gemini;
     else                    provider = Provider::Ollama;
 
-    ollamaUrl = obj["ollama_url"].toString(ollamaUrl);
-    openaiUrl = obj["openai_url"].toString(openaiUrl);
+    ollamaUrl  = obj["ollama_url"].toString(ollamaUrl);
+    openaiUrl  = obj["openai_url"].toString(openaiUrl);
+    claudeUrl  = obj["claude_url"].toString(claudeUrl);
+    grokUrl    = obj["grok_url"].toString(grokUrl);
+    geminiUrl  = obj["gemini_url"].toString(geminiUrl);
 
     ollamaModel  = obj["ollama_model"].toString();
     openaiModel  = obj["openai_model"].toString();
     claudeModel  = obj["claude_model"].toString();
     grokModel    = obj["grok_model"].toString();
     geminiModel  = obj["gemini_model"].toString();
+
+    auto toStringList = [](const QJsonValue& v) {
+        QStringList out;
+        for (auto e : v.toArray()) out << e.toString();
+        return out;
+    };
+    ollamaTextModels  = toStringList(obj["ollama_text_models"]);
+    ollamaImageModels = toStringList(obj["ollama_image_models"]);
+
+    QString ip = obj["image_provider"].toString("OPENAI");
+    if      (ip == "OLLAMA") imageProvider = Provider::Ollama;
+    else if (ip == "GROK")   imageProvider = Provider::Grok;
+    else if (ip == "GEMINI") imageProvider = Provider::Gemini;
+    else                     imageProvider = Provider::OpenAI;
+
+    ollamaImageModel  = obj["ollama_image_model"].toString();
+    openaiImageModel  = obj["openai_image_model"].toString(openaiImageModel);
+    grokImageModel    = obj["grok_image_model"].toString(grokImageModel);
+    geminiImageModel  = obj["gemini_image_model"].toString(geminiImageModel);
 
     // Migrate legacy single "model" field
     if (ollamaModel.isEmpty() && openaiModel.isEmpty() && claudeModel.isEmpty()) {
@@ -107,14 +130,33 @@ void Config::save() const {
                       : provider == Provider::Claude  ? "CLAUDE"
                       : provider == Provider::Grok    ? "GROK"
                       : provider == Provider::Gemini  ? "GEMINI" : "OLLAMA";
-    obj["ollama_url"] = ollamaUrl;
-    obj["openai_url"] = openaiUrl;
+    obj["ollama_url"]  = ollamaUrl;
+    obj["openai_url"]  = openaiUrl;
+    obj["claude_url"]  = claudeUrl;
+    obj["grok_url"]    = grokUrl;
+    obj["gemini_url"]  = geminiUrl;
+
+    auto toJsonArray = [](const QStringList& list) {
+        QJsonArray arr;
+        for (const auto& s : list) arr.append(s);
+        return arr;
+    };
+    obj["ollama_text_models"]  = toJsonArray(ollamaTextModels);
+    obj["ollama_image_models"] = toJsonArray(ollamaImageModels);
 
     obj["ollama_model"]  = ollamaModel;
     obj["openai_model"]  = openaiModel;
     obj["claude_model"]  = claudeModel;
     obj["grok_model"]    = grokModel;
     obj["gemini_model"]  = geminiModel;
+
+    obj["image_provider"] = imageProvider == Provider::Ollama  ? "OLLAMA"
+                          : imageProvider == Provider::Grok    ? "GROK"
+                          : imageProvider == Provider::Gemini  ? "GEMINI" : "OPENAI";
+    obj["ollama_image_model"]  = ollamaImageModel;
+    obj["openai_image_model"]  = openaiImageModel;
+    obj["grok_image_model"]    = grokImageModel;
+    obj["gemini_image_model"]  = geminiImageModel;
 
     obj["ollama_auth"] = ollamaAuth == OllamaAuth::Basic  ? "BASIC"
                        : ollamaAuth == OllamaAuth::ApiKey ? "APIKEY" : "NONE";
@@ -179,6 +221,26 @@ void Config::setCurrentModel(const QString& m) {
         case Provider::Claude: claudeModel  = m; return;
         case Provider::Grok:   grokModel    = m; return;
         case Provider::Gemini: geminiModel  = m; return;
+    }
+}
+
+const QString& Config::currentImageModel() const {
+    switch (imageProvider) {
+        case Provider::Ollama:  return ollamaImageModel;
+        case Provider::OpenAI:  return openaiImageModel;
+        case Provider::Grok:    return grokImageModel;
+        case Provider::Gemini:  return geminiImageModel;
+        default:                return openaiImageModel;
+    }
+}
+
+void Config::setCurrentImageModel(const QString& m) {
+    switch (imageProvider) {
+        case Provider::Ollama:  ollamaImageModel  = m; return;
+        case Provider::OpenAI:  openaiImageModel  = m; return;
+        case Provider::Grok:    grokImageModel    = m; return;
+        case Provider::Gemini:  geminiImageModel  = m; return;
+        default:                openaiImageModel  = m; return;
     }
 }
 

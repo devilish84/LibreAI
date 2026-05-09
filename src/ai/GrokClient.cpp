@@ -8,18 +8,17 @@
 
 Q_LOGGING_CATEGORY(lcGrok, "libreai.grok")
 
-static const QString kBaseUrl = QStringLiteral("https://api.x.ai/v1");
 static QAtomicInteger<int> s_grokReqId{0};
 
-GrokClient::GrokClient(const QString& apiKey, QObject* parent)
-    : AIClient(parent), m_apiKey(apiKey)
+GrokClient::GrokClient(const QString& apiKey, const QString& baseUrl, QObject* parent)
+    : AIClient(parent), m_apiKey(apiKey), m_baseUrl(baseUrl)
 {
-    qCDebug(lcGrok) << "GrokClient constructed";
+    qCDebug(lcGrok) << "GrokClient constructed, baseUrl=" << baseUrl;
 }
 
 QNetworkRequest GrokClient::makeRequest(const QString& path) const
 {
-    QNetworkRequest req(QUrl(kBaseUrl + path));
+    QNetworkRequest req(QUrl(m_baseUrl + path));
     req.setRawHeader("Authorization", ("Bearer " + m_apiKey).toUtf8());
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     return req;

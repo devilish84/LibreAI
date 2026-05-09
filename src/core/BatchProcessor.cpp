@@ -234,11 +234,11 @@ AIClient* BatchProcessor::buildClient() {
         case Provider::OpenAI:
             c = new OpenAIClient(cfg.openaiUrl, cfg.openaiKey, this); break;
         case Provider::Claude:
-            c = new AnthropicClient(cfg.claudeKey, this); break;
+            c = new AnthropicClient(cfg.claudeKey, cfg.claudeUrl, this); break;
         case Provider::Grok:
-            c = new GrokClient(cfg.grokKey, this); break;
+            c = new GrokClient(cfg.grokKey, cfg.grokUrl, this); break;
         case Provider::Gemini:
-            c = new GeminiClient(cfg.geminiKey, this); break;
+            c = new GeminiClient(cfg.geminiKey, cfg.geminiUrl, this); break;
     }
     return c;
 }

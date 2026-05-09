@@ -3,6 +3,7 @@
 #include "../ui/BatchRewriteDialog.hpp"
 #include "../ui/ChatWindow.hpp"
 #include "../ui/ConfigDialog.hpp"
+#include "../ui/ImageGenDialog.hpp"
 #include "../core/Config.hpp"
 #include "UnoHelper.hpp"
 
@@ -66,6 +67,17 @@ void SAL_CALL LibreAIJob::trigger(const OUString& args) {
     if (args.equalsAscii("batch_rewrite")) {
         auto* dlg = new BatchRewriteDialog();
         dlg->setAttribute(Qt::WA_DeleteOnClose);
+        dlg->show();
+        dlg->raise();
+        dlg->activateWindow();
+        return;
+    }
+
+    if (args.equalsAscii("generate_image")) {
+        auto* dlg = new ImageGenDialog();
+        dlg->setAttribute(Qt::WA_DeleteOnClose);
+        QString sel = UnoHelper::getSelectedText();
+        dlg->setContextHint(sel);
         dlg->show();
         dlg->raise();
         dlg->activateWindow();

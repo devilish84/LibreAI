@@ -38,24 +38,6 @@
           </node>
           <node oor:name="m02" oor:op="replace">
             <prop oor:name="URL" oor:type="xs:string">
-              <value>service:org.libreai.job?config</value>
-            </prop>
-            <prop oor:name="Title" oor:type="xs:string">
-              <value xml:lang="en">Configuration</value>
-              <value xml:lang="fi">Asetukset</value>
-              <value xml:lang="sv">Inställningar</value>
-              <value xml:lang="da">Indstillinger</value>
-              <value xml:lang="nb">Innstillinger</value>
-              <value xml:lang="es">Configuración</value>
-              <value xml:lang="de">Einstellungen</value>
-              <value xml:lang="pt">Configuração</value>
-            </prop>
-            <prop oor:name="Target" oor:type="xs:string">
-              <value>_self</value>
-            </prop>
-          </node>
-          <node oor:name="m03" oor:op="replace">
-            <prop oor:name="URL" oor:type="xs:string">
               <value>service:org.libreai.job?batch_rewrite</value>
             </prop>
             <prop oor:name="Title" oor:type="xs:string">
@@ -67,6 +49,59 @@
               <value xml:lang="es">Reescritura por lotes...</value>
               <value xml:lang="de">Stapelumschreibung...</value>
               <value xml:lang="pt">Reescrita em lote...</value>
+            </prop>
+            <prop oor:name="Target" oor:type="xs:string">
+              <value>_self</value>
+            </prop>
+            <prop oor:name="Context" oor:type="xs:string">
+              <value>com.sun.star.text.TextDocument</value>
+            </prop>
+          </node>
+          <node oor:name="m03" oor:op="replace">
+            <prop oor:name="URL" oor:type="xs:string">
+              <value>service:org.libreai.job?generate_image</value>
+            </prop>
+            <prop oor:name="Title" oor:type="xs:string">
+              <value xml:lang="en">Generate Image...</value>
+              <value xml:lang="fi">Luo kuva...</value>
+              <value xml:lang="sv">Generera bild...</value>
+              <value xml:lang="da">Generer billede...</value>
+              <value xml:lang="nb">Generer bilde...</value>
+              <value xml:lang="es">Generar imagen...</value>
+              <value xml:lang="de">Bild generieren...</value>
+              <value xml:lang="pt">Gerar imagem...</value>
+            </prop>
+            <prop oor:name="Target" oor:type="xs:string">
+              <value>_self</value>
+            </prop>
+            <prop oor:name="Context" oor:type="xs:string">
+              <value>com.sun.star.text.TextDocument;com.sun.star.presentation.PresentationDocument</value>
+            </prop>
+          </node>
+          <node oor:name="m04" oor:op="replace">
+            <prop oor:name="URL" oor:type="xs:string">
+              <value>private:separator</value>
+            </prop>
+            <prop oor:name="Title" oor:type="xs:string">
+              <value/>
+            </prop>
+            <prop oor:name="Target" oor:type="xs:string">
+              <value>_self</value>
+            </prop>
+          </node>
+          <node oor:name="m05" oor:op="replace">
+            <prop oor:name="URL" oor:type="xs:string">
+              <value>service:org.libreai.job?config</value>
+            </prop>
+            <prop oor:name="Title" oor:type="xs:string">
+              <value xml:lang="en">Configuration</value>
+              <value xml:lang="fi">Asetukset</value>
+              <value xml:lang="sv">Inställningar</value>
+              <value xml:lang="da">Indstillinger</value>
+              <value xml:lang="nb">Innstillinger</value>
+              <value xml:lang="es">Configuración</value>
+              <value xml:lang="de">Einstellungen</value>
+              <value xml:lang="pt">Configuração</value>
             </prop>
             <prop oor:name="Target" oor:type="xs:string">
               <value>_self</value>

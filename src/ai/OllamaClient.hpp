@@ -20,10 +20,12 @@ public:
                           const OllamaAuthConfig& auth = {},
                           QObject* parent = nullptr);
     void fetchModels() override;
+    void fetchAllModels();   // no keyword filtering — emits modelsReady with every model
     void sendChat(const QString& model, const QVector<Message>& history,
                   const QString& prompt) override;
 
     static QStringList parseModels(const QByteArray& json);
+    static QStringList parseAllModels(const QByteArray& json);
     static QString     parseResponse(const QByteArray& json);
 private:
     void applyAuth(QNetworkRequest& req) const;

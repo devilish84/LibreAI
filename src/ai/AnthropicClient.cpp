@@ -11,8 +11,8 @@ Q_LOGGING_CATEGORY(lcAnthropic, "libreai.anthropic")
 
 static QAtomicInteger<int> s_anthropicReqId{0};
 
-AnthropicClient::AnthropicClient(const QString& apiKey, QObject* parent)
-    : AIClient(parent), m_apiKey(apiKey)
+AnthropicClient::AnthropicClient(const QString& apiKey, const QString& baseUrl, QObject* parent)
+    : AIClient(parent), m_apiKey(apiKey), m_baseUrl(baseUrl)
 {
     qCDebug(lcAnthropic) << "AnthropicClient constructed";
 }
@@ -59,7 +59,8 @@ void AnthropicClient::sendChat(const QString& model,
     QByteArray bodyBytes = QJsonDocument(body).toJson();
     qCDebug(lcAnthropic) << "sendChat request body:" << bodyBytes;
 
-    QNetworkRequest req(QUrl("https://api.anthropic.com/v1/messages"));
+    QUrl url(m_baseUrl + "/messages");
+    QNetworkRequest req(url);
     req.setRawHeader("x-api-key", m_apiKey.toUtf8());
     req.setRawHeader("anthropic-version", "2023-06-01");
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");

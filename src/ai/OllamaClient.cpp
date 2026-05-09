@@ -42,6 +42,14 @@ void OllamaClient::applyAuth(QNetworkRequest& req) const {
     }
 }
 
+QStringList OllamaClient::parseAllModels(const QByteArray& json) {
+    auto arr = QJsonDocument::fromJson(json).object()["models"].toArray();
+    QStringList names;
+    for (auto v : arr)
+        names << v.toObject()["name"].toString();
+    return names;
+}
+
 QStringList OllamaClient::parseModels(const QByteArray& json) {
     static const QStringList kExclude = {
         "llava", "stable-diffusion", "sdxl", "dall",
@@ -63,6 +71,20 @@ QStringList OllamaClient::parseModels(const QByteArray& json) {
 QString OllamaClient::parseResponse(const QByteArray& json) {
     return QJsonDocument::fromJson(json)
                .object()["message"].toObject()["content"].toString();
+}
+
+void OllamaClient::fetchAllModels() {
+    qCDebug(lcOllama) << "fetchAllModels, url=" << (m_baseUrl + "/api/tags");
+    QNetworkRequest req(QUrl(m_baseUrl + "/api/tags"));
+    applyAuth(req);
+    auto* reply = m_nam.get(req);
+    connect(reply, &QNetworkReply::finished, this, [this, reply] {
+        reply->deleteLater();
+        if (reply->error() != QNetworkReply::NoError) {
+            emit errorOccurred(reply->errorString()); return;
+        }
+        emit modelsReady(parseAllModels(reply->readAll()));
+    });
 }
 
 void OllamaClient::fetchModels() {

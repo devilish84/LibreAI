@@ -10,11 +10,13 @@ Entry point for all user-initiated actions (menu, toolbar, right-click).
 
 ### trigger(args) dispatch table
 
-| Argument | Action |
-|----------|--------|
-| `"open"` | `Config::isConfigured()` ? show `ChatWindow` : show `ConfigDialog` |
-| `"config"` | Show `ConfigDialog` |
-| `"open_with_sel"` | Show `ChatWindow`; pre-fill Selected Text from current document selection |
+| Argument | Action | Available in |
+|----------|--------|-------------|
+| `"open"` | `Config::isConfigured()` ? show `ChatWindow` : show `ConfigDialog` | All |
+| `"config"` | Show `ConfigDialog` | All |
+| `"open_with_sel"` | Show `ChatWindow`; pre-fill Selected Text from current document selection | All |
+| `"batch_rewrite"` | Show `BatchRewriteDialog` | Writer only (`Context` in Addons.xcu) |
+| `"generate_image"` | Show `ImageGenDialog`; pass selected text as context hint | Writer, Impress (`Context` in Addons.xcu) |
 
 On the very first call, `QApplication` is created (if not already) and `Config::applyLanguage()` is called.
 
@@ -79,6 +81,13 @@ Returns `CONTINUE_MODIFIED`.
 | `getSelectedText()` | Detects Writer/Impress/Calc; returns selected text; remembers cursor/target for Apply |
 | `applyText(text)` | Plain-text insert using remembered or live cursor |
 | `applyRichText(doc)` | Rich-text insert for Writer; falls back to `applyText` for Impress/Calc |
+| `insertImage(pngData)` | Insert PNG image into Writer (AS_CHARACTER anchor, 12 cm × 9 cm) or Impress (graphic shape on current slide) |
+
+### insertImage Detail
+
+1. Saves `pngData` to `/tmp/libreai_img.png` and converts to a `file://` URL.
+2. **Writer:** creates a `TextGraphicObject` via `XMultiServiceFactory`, sets `GraphicURL`, `AnchorType = AS_CHARACTER`, and a 12 cm × 9 cm size; inserts after the current text cursor.
+3. **Impress:** creates a `GraphicObjectShape` on the current draw page, sets `GraphicURL` and position/size via `XPropertySet`.
 
 ### Supported Document Types
 

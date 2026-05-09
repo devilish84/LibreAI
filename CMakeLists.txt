@@ -77,17 +77,24 @@ set(SOURCES
     src/core/CredentialBackendDPAPI.cpp
     src/core/Logger.cpp
     src/ai/AIClient.cpp
+    src/ai/ImageClient.cpp
     src/ai/OllamaClient.cpp
     src/ai/OpenAIClient.cpp
     src/ai/AnthropicClient.cpp
     src/ai/GrokClient.cpp
     src/ai/GeminiClient.cpp
+    src/ai/OllamaImageClient.cpp
+    src/ai/OpenAIImageClient.cpp
+    src/ai/GrokImageClient.cpp
+    src/ai/GeminiImageClient.cpp
     src/uno/UnoHelper.cpp
     src/uno/DocumentParser.cpp
     src/core/BatchProcessor.cpp
     src/ui/ChatWindow.cpp
     src/ui/ConfigDialog.cpp
     src/ui/BatchRewriteDialog.cpp
+    src/ui/DualListWidget.cpp
+    src/ui/ImageGenDialog.cpp
     src/uno/CMInterceptor.cpp
     src/uno/LibreAIJob.cpp
     src/uno/LibreAIStarter.cpp

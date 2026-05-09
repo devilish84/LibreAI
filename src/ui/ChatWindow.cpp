@@ -233,11 +233,11 @@ AIClient* ChatWindow::buildClient() {
         case Provider::OpenAI:
             m_client = new OpenAIClient(cfg.openaiUrl, cfg.openaiKey, this); break;
         case Provider::Claude:
-            m_client = new AnthropicClient(cfg.claudeKey, this); break;
+            m_client = new AnthropicClient(cfg.claudeKey, cfg.claudeUrl, this); break;
         case Provider::Grok:
-            m_client = new GrokClient(cfg.grokKey, this); break;
+            m_client = new GrokClient(cfg.grokKey, cfg.grokUrl, this); break;
         case Provider::Gemini:
-            m_client = new GeminiClient(cfg.geminiKey, this); break;
+            m_client = new GeminiClient(cfg.geminiKey, cfg.geminiUrl, this); break;
     }
     return m_client;
 }
