@@ -13,6 +13,8 @@
 #ifdef _WIN32
 #include <windows.h>
 extern HMODULE libreai_module_handle();
+#elif defined(__APPLE__)
+#include <dlfcn.h>
 #endif
 
 #include <com/sun/star/document/XDocumentEventBroadcaster.hpp>
@@ -101,6 +103,12 @@ css::uno::Any SAL_CALL LibreAIStarter::execute(
             GetModuleFileNameW(libreai_module_handle(), dllPath, MAX_PATH);
             QString dllDir = QFileInfo(QString::fromWCharArray(dllPath)).absolutePath();
             QCoreApplication::addLibraryPath(dllDir);
+#elif defined(__APPLE__)
+            Dl_info info{};
+            if (dladdr(reinterpret_cast<void*>(&info), &info) && info.dli_fname) {
+                QString dllDir = QFileInfo(QString::fromUtf8(info.dli_fname)).absolutePath();
+                QCoreApplication::addLibraryPath(dllDir);
+            }
 #endif
             new QApplication(argc, argv);
         }

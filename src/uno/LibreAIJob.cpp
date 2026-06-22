@@ -16,6 +16,8 @@
 #ifdef _WIN32
 #include <windows.h>
 extern HMODULE libreai_module_handle();
+#elif defined(__APPLE__)
+#include <dlfcn.h>
 #endif
 
 using rtl::OUString;
@@ -38,6 +40,15 @@ void SAL_CALL LibreAIJob::trigger(const OUString& args) {
         GetModuleFileNameW(libreai_module_handle(), dllPath, MAX_PATH);
         QString dllDir = QFileInfo(QString::fromWCharArray(dllPath)).absolutePath();
         QCoreApplication::addLibraryPath(dllDir);
+#elif defined(__APPLE__)
+        // On macOS Qt needs platforms/libqcocoa.dylib relative to our dylib.
+        // Use dladdr to locate this dylib at runtime — __builtin_return_address(0)
+        // gives an address inside libreai.dylib regardless of how LO loaded us.
+        Dl_info info{};
+        if (dladdr(reinterpret_cast<void*>(&info), &info) && info.dli_fname) {
+            QString dllDir = QFileInfo(QString::fromUtf8(info.dli_fname)).absolutePath();
+            QCoreApplication::addLibraryPath(dllDir);
+        }
 #endif
         new QApplication(argc, argv);
     }

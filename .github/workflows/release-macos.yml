@@ -108,19 +108,51 @@ jobs:
 
           copy_qt_dep pkg/libreai.dylib
 
+          # Bundle the Qt platform plugin so Qt can create native windows.
+          # Without platforms/libqcocoa.dylib, every show() call silently does
+          # nothing on macOS — menus work but no window ever appears.
+          QT_PLUGINS="${Qt6_DIR}/plugins"
+          mkdir -p pkg/platforms
+          cp "${QT_PLUGINS}/platforms/libqcocoa.dylib" pkg/platforms/
+
+          # Rewrite any @rpath Qt deps inside libqcocoa.dylib itself
+          copy_qt_dep pkg/platforms/libqcocoa.dylib
+
+          # Also bundle the minimal platform support libs Qt expects alongside cocoa
+          for plugin in libqmacstyle.dylib; do
+            src="${QT_PLUGINS}/styles/${plugin}"
+            [ -f "$src" ] && cp "$src" pkg/platforms/ && copy_qt_dep "pkg/platforms/${plugin}" || true
+          done
+
           echo "=== pkg/ contents ==="
           ls -lh pkg/
+          ls -lh pkg/platforms/
           echo "=== final otool -L pkg/libreai.dylib ==="
           otool -L pkg/libreai.dylib
+          echo "=== otool -L pkg/platforms/libqcocoa.dylib ==="
+          otool -L pkg/platforms/libqcocoa.dylib
 
       - name: Package OXT
         run: |
           mkdir -p oxt
           cp -r META-INF description.xml description-en.txt Addons.xcu Jobs.xcu icons oxt/
           cp -r pkg/. oxt/
+          # Write a qt.conf so Qt resolves the platform plugin path relative to
+          # the loaded libreai.dylib — this is the most reliable cross-machine approach.
+          cat > oxt/qt.conf << 'EOF'
+[Paths]
+Plugins = .
+EOF
           (cd oxt && zip -r ../libreai_macos_arm64.oxt .)
           echo "=== OXT contents ==="
           unzip -l libreai_macos_arm64.oxt
+
+      - name: Validate OXT bundle
+        run: |
+          pip3 install --quiet pytest
+          pytest tests/integration/test_oxt_bundle.py \
+            --oxt=libreai_macos_arm64.oxt \
+            -v --tb=short
 
       - name: Upload to GitHub Release
         env:
