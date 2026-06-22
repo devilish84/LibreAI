@@ -18,10 +18,6 @@ from pathlib import Path
 import pytest
 
 
-def pytest_addoption(parser):
-    parser.addoption("--oxt", default=None, help="Path to .oxt file to inspect")
-
-
 @pytest.fixture(scope="session")
 def oxt_path(request):
     p = request.config.getoption("--oxt")

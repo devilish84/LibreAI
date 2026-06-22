@@ -1,6 +1,9 @@
 """
 Pytest fixtures for LibreAI integration tests.
 
+Custom options (registered here so they are available before test collection):
+    --oxt  Path to an .oxt file for bundle structure tests.
+
 Starts LibreOffice in UNO server mode (headless), yields a connected
 ServiceManager, then kills LO after the test session.
 
@@ -14,6 +17,11 @@ import subprocess
 import time
 import socket
 import pytest
+
+
+def pytest_addoption(parser):
+    parser.addoption("--oxt", default=None, help="Path to .oxt file for bundle structure tests")
+
 
 LO_PORT = 2002
 LO_HOST = "localhost"
