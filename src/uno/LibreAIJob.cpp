@@ -42,10 +42,11 @@ void SAL_CALL LibreAIJob::trigger(const OUString& args) {
         QCoreApplication::addLibraryPath(dllDir);
 #elif defined(__APPLE__)
         // On macOS Qt needs platforms/libqcocoa.dylib relative to our dylib.
-        // Use dladdr to locate this dylib at runtime — __builtin_return_address(0)
-        // gives an address inside libreai.dylib regardless of how LO loaded us.
         Dl_info info{};
-        if (dladdr(reinterpret_cast<void*>(&info), &info) && info.dli_fname) {
+        // A file-scope variable's address is guaranteed to be in this dylib's
+        // data segment, so dladdr resolves to libreai.dylib — not the stack.
+        static const char kAnchor = 0;
+        if (dladdr(&kAnchor, &info) && info.dli_fname) {
             QString dllDir = QFileInfo(QString::fromUtf8(info.dli_fname)).absolutePath();
             QCoreApplication::addLibraryPath(dllDir);
         }

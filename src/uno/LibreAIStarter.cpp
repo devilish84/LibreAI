@@ -105,7 +105,8 @@ css::uno::Any SAL_CALL LibreAIStarter::execute(
             QCoreApplication::addLibraryPath(dllDir);
 #elif defined(__APPLE__)
             Dl_info info{};
-            if (dladdr(reinterpret_cast<void*>(&info), &info) && info.dli_fname) {
+            static const char kAnchor = 0;
+            if (dladdr(&kAnchor, &info) && info.dli_fname) {
                 QString dllDir = QFileInfo(QString::fromUtf8(info.dli_fname)).absolutePath();
                 QCoreApplication::addLibraryPath(dllDir);
             }
