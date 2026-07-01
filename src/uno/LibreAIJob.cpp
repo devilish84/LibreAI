@@ -30,8 +30,12 @@ LibreAIJob::LibreAIJob(const css::uno::Reference<css::uno::XComponentContext>& c
 }
 
 void SAL_CALL LibreAIJob::trigger(const OUString& args) {
-    static int    argc = 0;
-    static char** argv = nullptr;
+    // Qt requires a valid argv whose argv[0] is the program name and which
+    // stays alive for the app's lifetime; passing nullptr is undefined and
+    // crashes the macOS cocoa plugin, which reads argv[0] for the app path.
+    static int   argc = 1;
+    static char  arg0[] = "libreai";
+    static char* argv[] = { arg0, nullptr };
     if (!QApplication::instance()) {
 #ifdef _WIN32
         // Tell Qt where to find platform plugins (platforms/qwindows.dll)
@@ -41,14 +45,22 @@ void SAL_CALL LibreAIJob::trigger(const OUString& args) {
         QString dllDir = QFileInfo(QString::fromWCharArray(dllPath)).absolutePath();
         QCoreApplication::addLibraryPath(dllDir);
 #elif defined(__APPLE__)
-        // On macOS Qt needs platforms/libqcocoa.dylib relative to our dylib.
+        // Point Qt at the bundled cocoa platform plugin. We must NOT call
+        // QCoreApplication::addLibraryPath here: on macOS that forces Qt to
+        // compute its install prefix via QLibraryInfo, which calls
+        // CFBundleCopyBundleURL and crashes because our Qt libs are flattened
+        // out of their .frameworks. Instead we set QT_QPA_PLATFORM_PLUGIN_PATH
+        // (read directly, no prefix computation) and ship an embedded
+        // :/qt/etc/qt.conf that provides Prefix so QLibraryInfo never reaches
+        // the crashing CoreFoundation path.
         Dl_info info{};
         // A file-scope variable's address is guaranteed to be in this dylib's
         // data segment, so dladdr resolves to libreai.dylib — not the stack.
         static const char kAnchor = 0;
         if (dladdr(&kAnchor, &info) && info.dli_fname) {
             QString dllDir = QFileInfo(QString::fromUtf8(info.dli_fname)).absolutePath();
-            QCoreApplication::addLibraryPath(dllDir);
+            qputenv("QT_QPA_PLATFORM_PLUGIN_PATH",
+                    (dllDir + "/platforms").toUtf8());
         }
 #endif
         new QApplication(argc, argv);

@@ -84,8 +84,10 @@ css::uno::Any SAL_CALL LibreAIStarter::execute(
 {
     static bool s_listenerAttached = false;
     static bool s_windowOpened    = false;
-    static int  argc = 0;
-    static char** argv = nullptr;
+    // Qt requires a valid argv[0]; passing nullptr is UB (crashes cocoa plugin).
+    static int   argc = 1;
+    static char  arg0[] = "libreai";
+    static char* argv[] = { arg0, nullptr };
 
     UnoHelper::setContext(m_ctx);
     installInterceptors();
@@ -104,11 +106,15 @@ css::uno::Any SAL_CALL LibreAIStarter::execute(
             QString dllDir = QFileInfo(QString::fromWCharArray(dllPath)).absolutePath();
             QCoreApplication::addLibraryPath(dllDir);
 #elif defined(__APPLE__)
+            // See LibreAIJob::trigger — on macOS addLibraryPath crashes in
+            // QLibraryInfo/CFBundle for our flattened Qt. Use the env var plus
+            // the embedded :/qt/etc/qt.conf instead.
             Dl_info info{};
             static const char kAnchor = 0;
             if (dladdr(&kAnchor, &info) && info.dli_fname) {
                 QString dllDir = QFileInfo(QString::fromUtf8(info.dli_fname)).absolutePath();
-                QCoreApplication::addLibraryPath(dllDir);
+                qputenv("QT_QPA_PLATFORM_PLUGIN_PATH",
+                        (dllDir + "/platforms").toUtf8());
             }
 #endif
             new QApplication(argc, argv);

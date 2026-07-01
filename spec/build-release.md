@@ -100,6 +100,17 @@ cmake -S . -B build \
 - Creates `$HOME/uno_stubs/` with unversioned symlinks to versioned UNO dylibs (`libuno_cppu.dylib.3` → `libuno_cppu.dylib`)
 - Uses a custom `copy_qt_dep()` shell function (otool + install_name_tool) to bundle Qt frameworks — `dylibbundler` is not used because LO's `@__URELIB` rpath causes it to hang
 
+#### macOS load-path requirements (all four required — issue #2)
+
+The extension is invisible/non-functional on macOS unless **all** of these hold:
+
+1. **manifest.xml declares the dylib.** `META-INF/manifest.xml` must have `platform=MacOSX_aarch64` (and `_x86_64`) file-entries pointing to `libreai.dylib`. Without them LibreOffice never loads the component — the menu shows but every item does nothing.
+2. **UNO install names are rewritten.** The UNO libs link with a never-patched placeholder (`@__…URELIB/libuno_*.dylib.3`). Rewrite to `@executable_path/../Frameworks/libuno_*.dylib.3` (what LO's own binaries use) or loading fails with "loading component library failed".
+3. **Every bundled Mach-O is re-signed.** `install_name_tool` invalidates each binary's signature; Apple Silicon SIGKILLs any image with a broken signature (even ad-hoc). Run `codesign --force --sign -` on `libreai.dylib` + all `Qt*` + `platforms/*.dylib` after all `install_name_tool` edits.
+4. **Qt must not compute its prefix via CoreFoundation.** Because the Qt libs are flattened out of their `.frameworks`, `QLibraryInfo` → `CFBundleCopyBundleURL` crashes at `QApplication` construction. Prevented by the embedded `:/qt/etc/qt.conf` resource (`src/qtconf.qrc`, sets `Prefix`) plus setting `QT_QPA_PLATFORM_PLUGIN_PATH` at runtime instead of calling `addLibraryPath`. Also: pass a valid `argv` (argv[0] set) to `QApplication`, never `nullptr`.
+
+These are guarded by `tests/integration/test_oxt_bundle.py` (`test_macos_manifest_declares_dylib`, `test_macos_no_urelib_placeholder`, `test_macos_bundled_binaries_have_valid_signature`, `test_macos_libreai_dylib_loads_without_crashing`).
+
 ---
 
 ## Release Workflow

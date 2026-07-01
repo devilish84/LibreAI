@@ -1,0 +1,11 @@
+<!DOCTYPE RCC><RCC version="1.0">
+  <!-- Qt reads :/qt/etc/qt.conf during QLibraryInfo init, BEFORE it falls back
+       to CoreFoundation bundle lookup. On macOS our Qt libs are flattened out
+       of their .frameworks, so CFBundleCopyBundleURL crashes when Qt tries to
+       compute its own prefix. Providing Prefix here short-circuits that path
+       entirely. The actual platform-plugin location is supplied at runtime via
+       the QT_QPA_PLATFORM_PLUGIN_PATH environment variable. -->
+  <qresource prefix="/qt/etc">
+    <file>qt.conf</file>
+  </qresource>
+</RCC>

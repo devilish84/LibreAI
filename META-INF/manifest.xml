@@ -10,6 +10,14 @@
     manifest:full-path="libreai.dll"/>
 
   <manifest:file-entry
+    manifest:media-type="application/vnd.sun.star.uno-component;type=native;platform=MacOSX_aarch64"
+    manifest:full-path="libreai.dylib"/>
+
+  <manifest:file-entry
+    manifest:media-type="application/vnd.sun.star.uno-component;type=native;platform=MacOSX_x86_64"
+    manifest:full-path="libreai.dylib"/>
+
+  <manifest:file-entry
     manifest:media-type="application/vnd.sun.star.configuration-data"
     manifest:full-path="Addons.xcu"/>
 

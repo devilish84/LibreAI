@@ -22,3 +22,6 @@ Makefile
 
 # Claude Code session data
 .claude/
+scratch_package_macos.sh
+pkg/
+oxt/

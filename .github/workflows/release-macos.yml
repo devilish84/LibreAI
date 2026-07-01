@@ -1,6 +1,12 @@
 name: Release (macOS)
 
 on:
+  # Build the macOS asset automatically on every version tag so releases
+  # always include it (previously this was manual-only and macOS assets were
+  # often missing or stale). Still dispatchable by hand for re-runs.
+  push:
+    tags:
+      - 'v*'
   workflow_dispatch:
     inputs:
       tag:
@@ -108,6 +114,19 @@ jobs:
 
           copy_qt_dep pkg/libreai.dylib
 
+          # The UNO libs are linked with a never-patched placeholder install
+          # name (@__…URELIB/libuno_*.dylib.3) that does not resolve at runtime,
+          # so LibreOffice fails to load libreai.dylib on macOS ("loading
+          # component library failed"). Rewrite them to @executable_path/../
+          # Frameworks — the same scheme LibreOffice's own binaries use.
+          URELIB='@__________________________________________________URELIB'
+          for lib in cppu cppuhelpergcc3 sal; do
+            install_name_tool -change \
+              "${URELIB}/libuno_${lib}.dylib.3" \
+              "@executable_path/../Frameworks/libuno_${lib}.dylib.3" \
+              pkg/libreai.dylib || true
+          done
+
           # Bundle the Qt platform plugin so Qt can create native windows.
           # Without platforms/libqcocoa.dylib, every show() call silently does
           # nothing on macOS — menus work but no window ever appears.
@@ -132,6 +151,28 @@ jobs:
           echo "=== otool -L pkg/platforms/libqcocoa.dylib ==="
           otool -L pkg/platforms/libqcocoa.dylib
 
+      - name: Re-sign bundled binaries
+        run: |
+          # install_name_tool above rewrote load commands in every bundled
+          # Qt binary (and libreai.dylib itself). That invalidates their
+          # original code signature — each QtXxx binary was copied out of
+          # its .framework and is no longer sealed against that framework's
+          # Info.plist. On Apple Silicon, dyld/AMFI refuse to map any image
+          # with an invalid signature (even ad-hoc, even with library
+          # validation disabled), so LibreOffice gets silently SIGKILLed the
+          # moment it dlopen()s the extension — indistinguishable from
+          # "menu items do nothing" with zero console output. Re-sign
+          # everything ad-hoc so each binary is self-consistent again.
+          for f in pkg/libreai.dylib pkg/Qt* pkg/platforms/*.dylib; do
+            [ -f "$f" ] || continue
+            codesign --force --sign - "$f"
+          done
+          echo "=== verify signatures ==="
+          for f in pkg/libreai.dylib pkg/Qt* pkg/platforms/*.dylib; do
+            [ -f "$f" ] || continue
+            codesign --verify --strict "$f"
+          done
+
       - name: Package OXT
         run: |
           mkdir -p oxt
@@ -152,8 +193,10 @@ jobs:
             -v --tb=short
 
       - name: Upload to GitHub Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release upload "${{ github.event.inputs.tag }}" \
-            libreai_macos_arm64.oxt --clobber
+        # softprops creates the release if it does not exist yet, or appends
+        # the macOS asset if the Linux job already created it — so this is
+        # race-free regardless of which platform's job finishes first.
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.tag || github.ref_name }}
+          files: libreai_macos_arm64.oxt

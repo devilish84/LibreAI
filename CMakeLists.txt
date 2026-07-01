@@ -116,6 +116,7 @@ set(SOURCES
     src/uno/LibreAIJob.cpp
     src/uno/LibreAIStarter.cpp
     translations/libreai_translations.qrc
+    src/qtconf.qrc
 )
 
 add_library(libreai SHARED ${SOURCES})
