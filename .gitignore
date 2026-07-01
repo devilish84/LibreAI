@@ -25,3 +25,6 @@ Makefile
 scratch_package_macos.sh
 pkg/
 oxt/
+build*/
+libreai_*.oxt
+aqtinstall.log

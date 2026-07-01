@@ -206,6 +206,55 @@ def test_macos_cocoa_no_rpath_qt_deps(oxt_names, oxt_path, is_macos_oxt):
         os.unlink(tmp)
 
 
+def test_macos_plugin_loader_path_deps_resolve(oxt_path, oxt_names, is_macos_oxt):
+    """Each @loader_path Qt dep of a bundled plugin must resolve to a real file.
+
+    The plugins live in platforms/, but the Qt dylibs live in the OXT root, so
+    the plugin's deps must be @loader_path/../QtFoo. If they are written as
+    @loader_path/QtFoo (pointing inside platforms/), the file does not exist —
+    the cocoa plugin fails to load and Qt aborts at QApplication construction,
+    i.e. every menu click crashes LibreOffice (the v1.0.11 macOS regression).
+
+    Resolve each @loader_path/... dependency of every plugin against the
+    extracted tree and assert the target exists.
+    """
+    if not is_macos_oxt:
+        pytest.skip("not a macOS OXT")
+    if sys.platform != "darwin":
+        pytest.skip("otool only available on macOS")
+    plugins = [n for n in oxt_names if n.startswith("platforms/") and n.endswith(".dylib")]
+    if not plugins:
+        pytest.skip("no bundled plugins")
+
+    import tempfile, os
+    with tempfile.TemporaryDirectory() as td:
+        with zipfile.ZipFile(oxt_path) as z:
+            z.extractall(td)
+        failures = []
+        for plugin in plugins:
+            plugin_path = os.path.join(td, plugin)
+            plugin_dir = os.path.dirname(plugin_path)
+            result = subprocess.run(["otool", "-L", plugin_path],
+                                    capture_output=True, text=True)
+            if result.returncode != 0:
+                pytest.skip("otool not available on this runner")
+            for line in result.stdout.splitlines()[1:]:
+                dep = line.strip().split(" ")[0]
+                if not dep.startswith("@loader_path/"):
+                    continue
+                rel = dep[len("@loader_path/"):]
+                resolved = os.path.normpath(os.path.join(plugin_dir, rel))
+                if not os.path.exists(resolved):
+                    failures.append(f"{plugin}: {dep} -> missing {os.path.relpath(resolved, td)}")
+
+    assert not failures, (
+        "Bundled plugin has @loader_path deps that do not resolve to a file in "
+        "the OXT — the plugin will fail to load and crash QApplication init. "
+        "Plugins in platforms/ must reference root Qt dylibs as "
+        "@loader_path/../QtFoo:\n" + "\n".join(failures)
+    )
+
+
 def test_macos_main_dylib_no_rpath_qt_deps(oxt_names, oxt_path, is_macos_oxt):
     """libreai.dylib must not have unresolved @rpath Qt references."""
     if not is_macos_oxt:

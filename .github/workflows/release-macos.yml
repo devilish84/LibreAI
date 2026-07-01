@@ -86,8 +86,15 @@ jobs:
 
           QT_LIB="${Qt6_DIR}/lib"
 
+          # $2 = @loader_path relative prefix from the *target* to pkg/ root
+          # where the Qt dylibs live. Empty for binaries in pkg/ (libreai.dylib);
+          # "../" for binaries in pkg/platforms/ (the plugins) — otherwise the
+          # plugin resolves @loader_path/QtGui to pkg/platforms/QtGui, which does
+          # not exist, so the cocoa plugin fails to load and Qt aborts at
+          # QApplication construction (crash on the first menu click).
           copy_qt_dep() {
             local target="$1"
+            local rel_prefix="$2"
             # Process each dep that is an @rpath Qt framework reference
             otool -L "$target" | tail -n +2 | awk '{print $1}' | while read -r dep; do
               case "$dep" in
@@ -101,18 +108,20 @@ jobs:
               src="${QT_LIB}/${fw}/Versions/A/${inner}"
               [ -f "$src" ] || continue
               dest="pkg/${inner}"
-              install_name_tool -change "$dep" "@loader_path/${inner}" "$target"
+              install_name_tool -change "$dep" "@loader_path/${rel_prefix}${inner}" "$target"
               if [ ! -f "$dest" ]; then
                 cp "$src" "$dest"
                 chmod u+w "$dest"
                 install_name_tool -id "@loader_path/${inner}" "$dest"
                 echo "bundled: ${inner}"
-                copy_qt_dep "$dest"
+                # Bundled Qt dylibs live in pkg/ root and reference each other
+                # from there, so their prefix is always empty.
+                copy_qt_dep "$dest" ""
               fi
             done
           }
 
-          copy_qt_dep pkg/libreai.dylib
+          copy_qt_dep pkg/libreai.dylib ""
 
           # The UNO libs are linked with a never-patched placeholder install
           # name (@__…URELIB/libuno_*.dylib.3) that does not resolve at runtime,
@@ -134,13 +143,14 @@ jobs:
           mkdir -p pkg/platforms
           cp "${QT_PLUGINS}/platforms/libqcocoa.dylib" pkg/platforms/
 
-          # Rewrite any @rpath Qt deps inside libqcocoa.dylib itself
-          copy_qt_dep pkg/platforms/libqcocoa.dylib
+          # Rewrite any @rpath Qt deps inside libqcocoa.dylib itself. The plugin
+          # sits in pkg/platforms/, so its Qt deps must point one level up.
+          copy_qt_dep pkg/platforms/libqcocoa.dylib "../"
 
           # Also bundle the minimal platform support libs Qt expects alongside cocoa
           for plugin in libqmacstyle.dylib; do
             src="${QT_PLUGINS}/styles/${plugin}"
-            [ -f "$src" ] && cp "$src" pkg/platforms/ && copy_qt_dep "pkg/platforms/${plugin}" || true
+            [ -f "$src" ] && cp "$src" pkg/platforms/ && copy_qt_dep "pkg/platforms/${plugin}" "../" || true
           done
 
           echo "=== pkg/ contents ==="

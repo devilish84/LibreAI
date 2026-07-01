@@ -2,7 +2,7 @@
 
 LibreAI is a native **C++17 / Qt6** LibreOffice extension providing an AI writing assistant. Supports Ollama (local), OpenAI, Anthropic Claude, xAI Grok, and Google Gemini.
 
-**Current version:** 1.0.11 | **Branch strategy:** develop on `development`, release by tagging `v*`
+**Current version:** 1.0.12 | **Branch strategy:** develop on `development`, release by tagging `v*`
 
 ---
 
